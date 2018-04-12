@@ -1,0 +1,58 @@
+{{if in .Params.disabled $.Site.Params.TargetRegion}}
+<meta http-equiv="refresh" content="0; URL='/' " />
+{{else}}
+
+{{ partial "head" . }}
+
+<div class="backdrop">
+    <div class="backdrop-paper"></div>
+</div>
+
+<header class="header">
+    {{ partial "header" . }}
+</header>
+
+ <main class="main">
+    <div class="drawer">
+        {{ partial "drawer" . }}
+    </div>
+    
+    <div class="article">
+       <div class="wrapper">
+         <div class="breadcrumb">{{- partial "breadcrumb" . -}}</div>
+            <h1>{{ .Title }}</h1>
+            {{ .Content }}
+            {{- .Scratch.Set "pages" (.Pages | union .Sections) }}
+            {{- $pages := (.Scratch.Get "pages") }}
+            {{- range $pages.ByWeight }}
+                {{- if in .Params.disabled $.Site.Params.TargetRegion}}
+                {{- else}}
+                <a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a><br>
+                {{- end}}
+            {{- end}}
+        </div>
+    </div>
+
+    <div id="sidebar-toc">
+        {{ .TableOfContents }}
+    </div>
+
+</main>
+
+    <div class="results" role="status" aria-live="polite">
+        <div class="scrollable">
+            <div class="wrapper">
+                <div class="meta"></div>
+                <div class="list"></div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        {{ partial "footer" . }}
+    </footer>
+    
+{{end}}
+
+  </body>
+</html>

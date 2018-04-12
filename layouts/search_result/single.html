@@ -1,0 +1,51 @@
+{{ partial "head" . }}
+<div class="backdrop"></div>
+
+    <header class="header">
+        {{ partial "header" . }}
+    </header>
+
+    <main class="main">
+        <article class="article" >
+            <div class="wrapper">
+            <div class="breadcrumb">
+              {{- partial "breadcrumb" . -}}
+            </div>
+                <h1>{{ .Title }}</h1>
+                    <div id="searchResultContainer">
+         　　　    　<div class="mf_finder_container">
+                            <mf-search-box ajax-url="//mf2ap001.marsflag.com/cybozu__support__help/x_search.x"
+                            imgsize-default="0"
+
+                            category-default="{{ .Site.Language.Params.search_all }}"
+                            force-category-csv="{{ .Site.Language.Params.search_categories }}"
+
+                            doctype-hidden="true"
+                            sort-hidden="true"
+                            pagemax-hidden="true"
+                            imgsize-hidden="true"
+                            use-links="true"
+                            :suggest-max="0"
+                            ></mf-search-box>
+                            <mf-zubaken></mf-zubaken>
+                            <mf-search-results></mf-search-results>
+                        </div>
+                    </div>
+            </div>
+        </article>
+                    {{ .Content }}
+    </main>
+        
+    <footer class="footer" style="position:absolute; bottom:0px;">
+    </footer>
+    
+    <script type="text/javascript">
+    !function(){
+      var G = GALFSRAM = window.GALFSRAM || {}
+      G.mfx = G.mfx || {}
+      G.mfx.router_mode = 'history'
+    }();
+    </script>
+    <script src="//c.marsflag.com/mf/mfx/1.0/js/mfx-serp.js" charset="UTF-8"></script>
+  </body>
+</html>

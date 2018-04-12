@@ -1,0 +1,4 @@
+ {{- if in .Params $.Site.Params.TargetRegion}}
+ {{else}}
+ {{- .Inner}}
+ {{- end}}

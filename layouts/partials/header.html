@@ -1,0 +1,25 @@
+<nav aria-label="Header">
+    <div class="header-logo-base">
+  {{ with .Site.Params.logo }}
+        <a href="/{{$.Lang}}/">
+            <img class="header-logo" src="{{ $.Site.BaseURL }}{{ . }}">
+        </a>
+  {{ end }}
+    </div>
+  
+  <div class="langselector">
+  <span class="fa fa-language"></span>
+  <span id="langlist">{{ partial "langselector" . }}</span>
+  </div>
+  
+  {{if ne .Params.type "search_result"}}
+    <div class="searchbox">
+      <form id="headerSearchBox_form" action="/{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}'>
+        <input name="q" id="headerSearchBox_input" placeholder="{{ .Site.Language.Params.search_guide }}" type="text" aria-label="search">
+        <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}">
+        <button id="headerSearchBox_button" type="submit"></button>
+      </form>
+    </div>
+  {{end}}
+  
+</nav>

@@ -1,0 +1,19 @@
+<div class="taglist">
+{{- range .Site.Taxonomies -}}
+  {{- range $key, $pages := . -}}
+    {{$.Scratch.Set "pagecnt" 0}}
+    {{range $pages}}
+        {{if in .Params.disabled $.Site.Params.TargetRegion}}
+        {{else}}
+            {{$.Scratch.Add "pagecnt" 1}}
+        {{end}}
+    {{end}}
+    {{if gt ($.Scratch.Get "pagecnt") 0}}
+        <span class="tagitem">
+        <a class="{{- if eq $.Data.Term $key }}current{{- end}}"
+        href="/{{$.Lang}}/tags/{{ $key }}.html">{{- $key -}}</a><span class="tagnumber">({{$.Scratch.Get "pagecnt"}})</span>
+    </span>
+    {{end}}
+  {{end}}
+{{- end -}}
+</div>

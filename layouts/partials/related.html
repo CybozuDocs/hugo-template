@@ -1,0 +1,25 @@
+{{ $related := .Site.RegularPages.Related . | first 5 }}
+
+{{$.Scratch.Set "pagecnt" 0}}
+
+{{ range $related }}
+    {{ if in .Params.disabled $.Site.Params.TargetRegion }}
+    {{ else }}
+        {{$.Scratch.Add "pagecnt" 1}}
+    {{ end}}
+{{ end }}
+
+{{if gt ($.Scratch.Get "pagecnt") 0}}
+  {{ with $related.ByWeight }}
+<hr>
+<h3>See Also</h3>
+<ul>
+	{{- range . -}}
+      {{- if in .Params.disabled $.Site.Params.TargetRegion -}}
+      {{- else -}}
+	<li><a href="{{ .RelPermalink }}">{{- .Title -}}</a></li>
+      {{- end -}}
+	{{- end -}}
+</ul>
+  {{ end }}
+{{ end }}

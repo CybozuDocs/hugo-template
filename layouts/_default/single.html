@@ -1,0 +1,43 @@
+{{if in .Params.disabled $.Site.Params.TargetRegion}}
+<meta http-equiv="refresh" content="0; URL='/' " />
+{{else}}
+
+{{ partial "head" . }}
+
+<div class="backdrop">
+    <div class="backdrop-paper"></div>
+</div>
+
+<header class="header">
+    {{ partial "header" . }}
+</header>
+
+ <main class="main">
+    <div class="drawer">
+        {{ partial "drawer" . }}
+    </div>
+    <div class="article">
+        <div class="wrapper"> 
+            <div class="breadcrumb">{{- partial "breadcrumb" . -}}</div>
+            <h1>{{ .Title }}</h1>
+            {{ .Content }}
+            
+            <div class="seealso">
+                {{ partial "related" .}}
+            </div>
+        </div>
+    </div>
+    
+    <div id="sidebar-toc">
+        {{ .TableOfContents }}
+    </div>
+
+</main>
+    
+    <footer class="footer">
+        {{ partial "footer" . }}
+    </footer>
+{{end}}
+
+  </body>
+</html>

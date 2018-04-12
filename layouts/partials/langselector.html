@@ -1,0 +1,9 @@
+<ul>
+    <li>{{- .Site.Language.Params.LanguageName }}
+      <ul>
+      {{- range .Translations -}}
+        <li><a rel="alternate" href="{{ .RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}">{{ .Site.Language.Params.LanguageName }}</a></li>
+      {{- end -}}
+      </ul>
+    </li>
+</ul>

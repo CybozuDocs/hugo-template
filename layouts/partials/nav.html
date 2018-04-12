@@ -1,0 +1,47 @@
+{{- $entries := $.Site.Home.Sections}}
+{{- $target := .}}
+<div id="mainmenu">
+<ul>
+{{- range $entries.ByWeight}}
+  {{- template "mainmenu" (dict "curnode" . "target" $target )}}
+{{- end}}
+</ul>
+</div>
+
+{{- define "mainmenu" }}
+   {{- $target := .target}}
+   {{- $curnode := .curnode}}
+   {{- with $curnode}}
+       {{- if .IsSection }}
+            {{- $pages := (cond .IsHome (where .Site.RegularPages "Section" "") .Pages) }}
+            {{- $numberOfPages := (add (len $pages) (len .Sections)) }}
+            {{- if in .Params.disabled .Site.Params.TargetRegion}}
+            {{- else}}
+        <li>
+            <a href="{{ .RelPermalink}}" class="{{- if eq .RelPermalink $target.RelPermalink}}current{{end}}">
+            {{- .Title -}}</a><span class="{{- if .IsAncestor $target}} expand{{end}}"></span>
+                {{- if ne $numberOfPages 0 }}
+            <ul class="{{- if .IsAncestor $target}}opened{{end}}">
+                    {{- if .Sections}}
+                        {{- .Scratch.Set "entries" ($pages | union .Sections) }}
+                    {{- else}}
+                        {{- .Scratch.Set "entries" $pages }}
+                    {{- end}}
+                    {{- $entries := (.Scratch.Get "entries") }}
+                    {{- range $entries.ByWeight }}
+                        {{- template "mainmenu" (dict "curnode" . "target" $target) }}
+                    {{- end}}
+            </ul>
+                {{- end}}
+        </li>
+           {{- end}}
+        {{- else}}
+            {{- if in .Params.disabled .Site.Params.TargetRegion}}
+            {{- else}}
+            <li>
+               <a href="{{ .RelPermalink}}" class="{{- if eq .RelPermalink $target.RelPermalink}} current{{end -}}">{{.Title}}</a>
+            </li>
+            {{- end}}
+        {{- end}}
+    {{- end}}
+{{- end}}
