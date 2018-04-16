@@ -124,10 +124,10 @@
 .nextpage {align-self: flex-end;}
 
 #footercenter {display:flex; flex-direction:row; font-size: 120%; margin-top: 20px; line-height: 1.5em;}
-#footerlinks {display:flex; flex-basis: auto; }
+#footerlinks {display:flex; flex-basis: auto; padding-left: 20px;}
 #footerlinks ul li {display: inline-block; margin-right: 1em;}
 #footerlinks ul li a{padding-right: 0.3em; }
-#footercopyright {width: 50%;}
+#footercopyright {width: 50%; padding-left: 20px;}
 
 #sidebar-toc {
     position: fixed;
@@ -247,6 +247,29 @@
 
 .tagnumber {
     padding-left: 1px;
+}
+
+.nfarticle {
+    margin-left: 40px;
+    font-size: 14px;
+    line-height: 1.7em;
+}
+
+.nfarticle a{color:#e84e40}
+
+.nftitle {
+    color: #e84e40;
+    font-size: 1.5em;
+    padding-top: 120px;
+    padding-bottom: 40px;
+}
+
+.nfdetail {
+    margin-bottom: 10px;
+}
+
+.nflink {
+    line-height: 1.5em;
 }
 
 @media only screen and (max-width:800px) {

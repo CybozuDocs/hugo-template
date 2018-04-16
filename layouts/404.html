@@ -1,0 +1,28 @@
+{{ partial "head" . }}
+
+<div class="backdrop"></div>
+
+    <header class="header">
+        {{ partial "header" . }}
+    </header>
+
+    <main class="main">
+        <article class="nfarticle" >
+            <div class="nftitle">
+             {{ .Site.Language.Params.notfound_title }}
+             </div>
+             <div class="nfdetail">
+             {{ .Site.Language.Params.notfound_guide }}
+             </div>
+             <div class="nflink">
+             <a href="javascript:history.back()">{{ .Site.Language.Params.notfound_goprev }}</a><br>
+             <a href="/{{.Lang}}/">{{ .Site.Language.Params.notfound_gotop }}</a>
+             </div>
+        </article>
+    </main>
+
+    <footer class="footer" style="position:absolute; bottom:0px;">
+        {{ partial "footer" . }}
+    </footer>
+  </body>
+</html>
