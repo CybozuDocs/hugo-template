@@ -445,36 +445,17 @@ h1 .article .headerlink{display:none}
   margin-left:12px;
   padding: 0px;
   border-top: 1px solid #e6e6e6;
-  cursor: pointer;
+  list-style: none;
 }
 
-#mainmenu li span::after {
-    font-family: icon;
-    content: "\E602";
-    font-weight: bold;
-    color: #e84e40;
-}
-
-#mainmenu li span.closed{
-    transform: rotate(0deg);
-}
-
-#mainmenu li span.expand{
-    transform: rotate(90deg);
-}
-
-#mainmenu li a {
+#mainmenu a {
   display: inline-block;
-  margin: 15px 0;
+  padding: 15px 10px;
+  width: 100%;
 }
 
-#mainmenu li a:hover{
-    color: #e84e40;
-}
-
-#mainmenu li a.current{
-    font-weight: bold;
-    /*color: #e84e40;*/
+#mainmenu li a:hover,#mainmenu li a.current{
+    background-color: #ECEAF7;
 }
 
 #mainmenu li ul{
@@ -486,9 +467,24 @@ h1 .article .headerlink{display:none}
 }
 
 #mainmenu li ul li{
-    border-left: 2px solid #e84e40;
-    padding-left: 10px;
-    list-style: none;
+    border-left: 2px solid #e94f90;
+    /*padding-left: 10px;*/
+    /*list-style: none;*/
+}
+#mainmenu .category {
+  margin-right: 5px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+}
+#mainmenu a.expand{
+    background-color: #EAF3FF;
+}
+#mainmenu i.expand{
+    transform: rotate(90deg);
 }
 .taglist {
     padding: 5px;

@@ -18,8 +18,8 @@
             {{- if in .Params.disabled .Site.Params.TargetRegion}}
             {{- else}}
         <li>
-            <a href="{{ .RelPermalink}}" class="{{- if eq .RelPermalink $target.RelPermalink}}current{{end}}">
-            {{- .Title -}}</a><span class="{{- if .IsAncestor $target}} expand{{end}}"></span>
+            <a href="{{ .RelPermalink}}" class="category{{- if eq .RelPermalink $target.RelPermalink}} current{{end}}{{- if .IsAncestor $target}} expand{{end}}">
+            <span>{{- .Title -}}</span><i class="fa fa-chevron-right {{- if .IsAncestor $target}} expand{{end}}" aria-hidden="true"></i></a>
                 {{- if ne $numberOfPages 0 }}
             <ul class="{{- if .IsAncestor $target}}opened{{end}}">
                     {{- if .Sections}}
