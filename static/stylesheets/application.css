@@ -438,30 +438,24 @@ h1 .article .headerlink{display:none}
 }
 
 #TableOfContents li {
-    margin-left:12px;
-    padding: 3px;
-    cursor: pointer;
-    padding-top: 5px;
+    list-style: none;
 }
 
-#TableOfContents li a:before{
+/*#TableOfContents li a:before{
     font-family: icon;
     content:"\e602";
-}
+}*/
 
-#TableOfContents li a {
-   color: #777777;
+#TableOfContents a {
+   color: #2869ab;
    text-decoration: none;
    border-bottom: 0px;
+   display: block;
+   padding: 5px 10px;
 }
 
-#TableOfContents li a:hover {
-    color:#e84e40;
-}
-
-#TableOfContents li a.current {
-    font-weight: bold;
-    color: #e84e40;
+#TableOfContents a:hover,#TableOfContents a.current {
+  background-color: #ECEAF7;
 }
 
 #TableOfContents ul ul ul {
