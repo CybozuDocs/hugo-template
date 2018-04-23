@@ -19,7 +19,7 @@
     
     <div class="article">
        <div class="wrapper">
-         <div class="breadcrumb">{{- partial "breadcrumb" . -}}</div>
+         <nav class="breadcrumb">{{- partial "breadcrumb" . -}}</nav>
             <h1>{{ .Title }}</h1>
             {{ .Content }}
             {{- .Scratch.Set "pages" (.Pages | union .Sections) }}

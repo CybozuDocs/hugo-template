@@ -187,6 +187,9 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
 .article .headerlink{float:right;margin-left:20px;font-size:14px}
 h1 .article .headerlink{display:none}
 .article ol,.article p,.article ul{margin-top:1em}
+.article ul {
+  margin-left: 21px;
+}
 .article ol {
   counter-reset: li;
   list-style: none;
@@ -404,11 +407,8 @@ h1 .article .headerlink{display:none}
     font-weight: bold;
 }
 /*パンくず*/
-/*.breadcrumbs {
-  font-size: 80%;
-}*/
-.breadcrumbs ul {
-  list-style-type: none;
+ul.breadcrumbs {
+  margin-left: 0;
 }
 .breadcrumbs li {
   display: inline;
