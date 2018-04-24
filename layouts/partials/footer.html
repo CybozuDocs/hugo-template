@@ -1,68 +1,10 @@
-{{.Scratch.Set "region" $.Site.Params.TargetRegion}}
-
-{{- if .IsHome -}}
-{{- else -}}
-{{- template "nextprev" dict "curnode" .Site.Home "target" . -}}
-{{- end -}}
-
-{{- define "nextprev" -}}
-    {{- $target := .target -}}
-
-  {{- with .curnode}}
-    {{- if in .Params.disabled ($target.Scratch.Get "region")}}
-    {{- else}}
-        {{- if hasPrefix $target.URL .URL -}}
-            {{- $target.Scratch.Set "NextPageOK" "OK" -}}
-            {{- $target.Scratch.Set "prevPage" ($target.Scratch.Get "prevPageTmp") -}}
-        {{- else -}}
-            {{- if eq ($target.Scratch.Get "NextPageOK") "OK" -}}
-                {{- $target.Scratch.Set "NextPageOK" nil -}}
-                {{- $target.Scratch.Set "nextPage" . -}}
-            {{- end -}}
-        {{- end -}}
-        {{- $target.Scratch.Set "prevPageTmp" . -}}
-    {{- end -}}
-        
-    {{- if .IsHome -}}
-         {{- $target.Scratch.Set "pages" .Sections -}}
-    {{- else if .Sections -}}
-         {{- $target.Scratch.Set "pages" (.Pages | union .Sections) -}}
-    {{- else -}}
-         {{- $target.Scratch.Set "pages" .Pages -}}
-    {{- end -}}
-    
-    {{- $pages := ($target.Scratch.Get "pages") -}}
-
-    {{- range $pages.ByWeight -}}
-        {{- template "nextprev" dict "curnode" . "target" $target -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
-
-{{- with ($.Scratch.Get "prevPage") -}}
-    <div class="previous">
-        <a href="{{.URL}}" title="{{.Title}}">
-                <div class="prevbutton">
-                    <span class="icon icon-back"></span>
-                </div>
-                <div class="prevpage">
-                    <span class="title">{{.Title}}</span>
-                </div>
-        </a>
+<div class="wrapper">
+    <div id="footerlinks">
+      <ul>
+        {{ range $i, $r := getCSV "," $.Site.Params.footer_links }}
+        <li><a class="" href="{{- index $r 1 -}}" target="_blank">{{- index $r 0 -}}</a><span  class="fa fa-external-link"></span></li>
+        {{ end }}
+      </ul>
     </div>
-{{- end -}}
-
-{{- partial "footerlink" . -}}
-
-{{- with ($.Scratch.Get "nextPage") -}}
-      <div class="next">
-            <a href="{{.URL}}" title="{{.Title}}" style="margin-right: 0px;">
-                    <div class="nextbutton">
-                        <span class="icon icon-forward"></span>
-                    </div>
-                    <div class="nextpage">
-                        <span class="title">{{.Title}}</span>
-                    </div>
-            </a>
-      </div>
-{{- end }}
+    <div id="footercopyright">{{$.Site.Params.footer_copyright}}</div>
+</div>

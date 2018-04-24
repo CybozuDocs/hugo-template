@@ -232,17 +232,18 @@ h1 .article .headerlink{display:none}
 .article blockquote{padding-left:16px}
 .article .data{margin:1.5em -16px;padding:1.5em 0;overflow:auto;-webkit-overflow-scrolling:touch;text-align:center}
 .article .data table{display:inline-block;margin:0 16px;text-align:left}
+.nextpage {
+  margin-top: 69px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+}
 .footer {
   position:absolute;
   background: #fff;
   bottom:0;
   left:0;
   right:0;
-  padding:0 4px;
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height:92px;
   width: 100%;
 }
 .footer::before {
@@ -258,7 +259,16 @@ h1 .article .headerlink{display:none}
   background-image: radial-gradient(circle farthest-corner at left bottom, #e94f90 0%, rgba(233, 79, 144, .01) 100%), radial-gradient(circle farthest-corner at right bottom, #287bf4 0%, rgba(40, 123, 244, .01) 100%);
 }
 .footer a{border:none}
-.previous, .next {
+.footer .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1300px;
+  height: 92px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/*.previous, .next {
     font-size: 120%;
     display: flex;
     flex-basis:15%;
@@ -273,11 +283,11 @@ h1 .article .headerlink{display:none}
 .prevpage {align-self: flex-end;}
 .nextbutton {text-align: right; font-size: 200%; }
 .nextpage {align-self: flex-end;}
-#footercenter {display:flex; flex-direction:row; font-size: 120%; margin-top: 20px; line-height: 1.5em;}
+#footercenter {display:flex; flex-direction:row; font-size: 120%; margin-top: 20px; line-height: 1.5em;}*/
 #footerlinks {display:flex; flex-basis: auto; padding-left: 20px;}
 #footerlinks ul li {display: inline-block; margin-right: 1em;}
 #footerlinks ul li a{padding-right: 0.3em; }
-#footercopyright {width: 50%; padding-left: 20px;}
+#footercopyright {padding-left: 20px;}
 /*.copyright{margin:1.5em 0}*/
 /*.pagination{max-width:1184px;height:92px;padding:4px 0;margin-left:auto;margin-right:auto;overflow:hidden}
 .pagination a{display:block;height:100%}

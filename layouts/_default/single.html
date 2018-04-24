@@ -17,23 +17,24 @@
         {{ partial "drawer" . }}
     </div>
     <div class="article">
-        <div class="wrapper"> 
+        <div class="wrapper">
             <nav class="breadcrumb">{{- partial "breadcrumb" . -}}</nav>
             <h1>{{ .Title }}</h1>
             {{ .Content }}
-            
+
             <div class="seealso">
                 {{ partial "related" .}}
             </div>
+            <nav class="nextpage">{{- partial "nextpage" . -}}</nav>
         </div>
     </div>
-    
+
     <div id="sidebar-toc">
         {{ .TableOfContents }}
     </div>
 
 </main>
-    
+
     <footer class="footer">
         {{ partial "footer" . }}
     </footer>

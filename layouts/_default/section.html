@@ -16,7 +16,7 @@
     <div class="drawer">
         {{ partial "drawer" . }}
     </div>
-    
+
     <div class="article">
        <div class="wrapper">
          <nav class="breadcrumb">{{- partial "breadcrumb" . -}}</nav>
@@ -30,7 +30,8 @@
                 <a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a><br>
                 {{- end}}
             {{- end}}
-        </div>
+         <nav class="nextpage">{{- partial "nextpage" . -}}</nav>
+       </div>
     </div>
 
     <div id="sidebar-toc">
@@ -47,11 +48,11 @@
             </div>
         </div>
     </div>
-    
+
     <footer class="footer">
         {{ partial "footer" . }}
     </footer>
-    
+
 {{end}}
 
   </body>
