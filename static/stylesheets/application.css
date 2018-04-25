@@ -23,7 +23,7 @@ pre,pre code{color:rgba(0,0,0,.87)}
 .font-zh {
   font-family: "STHeiti","Microsoft YaHei","Arial", "Helvetica Neue", "Helvetica", "Verdana", sans-serif;
 }
-.c,.c1,.cm,.o{color:rgba(0,0,0,.54)}
+/*.c,.c1,.cm,.o{color:rgba(0,0,0,.54)}
 .k,.kn{color:#a71d5d}
 .kd,.kt{color:#0086b3}
 .n.f,.nf{color:#795da3}
@@ -42,7 +42,7 @@ pre,pre code{color:rgba(0,0,0,.87)}
 .icon-download:before{content:"\e608"}
 .icon-star:before{content:"\e609"}
 .icon-warning:before{content:"\e610"}
-.icon-note:before{content:"\e611"}
+.icon-note:before{content:"\e611"}*/
 a{-webkit-transition:color .25s;transition:color .25s}
 /*.overlay{-webkit-transition:opacity .25s,width 0s .25s,height 0s .25s;transition:opacity .25s,width 0s .25s,height 0s .25s}*/
 #toggle-drawer:checked~.overlay,.toggle-drawer .overlay{-webkit-transition:opacity .25s,width 0s,height 0s;transition:opacity .25s,width 0s,height 0s}
