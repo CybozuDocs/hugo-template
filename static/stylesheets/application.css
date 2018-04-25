@@ -302,6 +302,7 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
   padding: .6em;
   border-right: 1px solid #ECEAF7;
   border-bottom: 1px solid #ECEAF7;
+  vertical-align: top;
 }
 .article blockquote{border-left:2px solid rgba(0,0,0,.54);color:rgba(0,0,0,.54)}
 /*.footer{background:#e84e40;color:#fff}*/
