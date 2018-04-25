@@ -27,10 +27,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | absURL }}{{ else }}{{ "images/favicon.ico" | absURL }}{{ end }}">
-    <link rel="icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | absURL }}{{ else }}{{ "images/favicon.ico" | absURL }}{{ end }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | absURL }}{{ else }}{{ "favicon.ico" | absURL }}{{ end }}">
+    <link rel="icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | absURL }}{{ else }}{{ "favicon.ico" | absURL }}{{ end }}">
 
-    <style>
+<!--     <style>
       @font-face {
         font-family: 'Icon';
         src: url('{{ "fonts/icon.eot?52m981" | absURL }}');
@@ -45,7 +45,7 @@
         font-weight: normal;
         font-style: normal;
       }
-    </style>
+    </style> -->
 
     <link rel="stylesheet" href="{{ "stylesheets/application.css" | absURL }}">
     <link rel="stylesheet" href="{{ "stylesheets/temporary.css" | absURL }}">
@@ -68,27 +68,11 @@
     <link rel="stylesheet" href="{{ "stylesheets/search_result.css" | absURL }}">
     {{end}}
 
-    {{/* set default values if no custom ones are defined */}}
-    {{ $text := or .Site.Params.font.text "Roboto" }}
-    {{ $code := or .Site.Params.font.code "Roboto Mono" }}
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ $text }}:400,700|{{ replace  $code " " "+" | safeURL }}">
-    <style>
-      body, input {
-        font-family: '{{ $text }}', Helvetica, Arial, sans-serif;
-      }
-      pre, code {
-        font-family: '{{ $code }}', 'Courier New', 'Courier', monospace;
-      }
-    </style>
-
     <script src="{{ "javascripts/modernizr.js" | absURL }}"></script>
     <script src="https://js.cybozu.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="{{ "javascripts/js.cookie.js" | absURL }}"></script>
-
     <script src="{{ "javascripts/transition.min.js" | absURL }}"></script>
     <script src="{{ "javascripts/zoom.js" | absURL }}"></script>
-
     <script src="{{ "javascripts/custom.js" | absURL }}"></script>
-
   </head>
-  <body class="{{ with .Site.Params.palette.primary }}palette-primary-{{ . }}{{end }} {{ with .Site.Params.palette.accent }}palette-accent-{{ .  }}{{ end }}">
+  <body class="font-{{.Lang}} {{ with .Site.Params.palette.primary }}palette-primary-{{ . }}{{end }} {{ with .Site.Params.palette.accent }}palette-accent-{{ .  }}{{ end }}">

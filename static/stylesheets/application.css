@@ -14,6 +14,15 @@ a,button,input,label{-webkit-tap-highlight-color:rgba(255,255,255,0);-webkit-tap
 h1,h2,h3,h4,h5,h6{font-weight:inherit}
 pre{background:rgba(0,0,0,.05)}
 pre,pre code{color:rgba(0,0,0,.87)}
+.font-ja {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo", "メイリオ", "ＭＳ Ｐゴシック", "MS PGothic",sans-serif;
+}
+.font-en {
+  font-family: "HelveticaNeueW02-45Ligh", "Helvetica", "Verdana", sans-serif;
+}
+.font-zh {
+  font-family: "STHeiti","Microsoft YaHei","Arial", "Helvetica Neue", "Helvetica", "Verdana", sans-serif;
+}
 .c,.c1,.cm,.o{color:rgba(0,0,0,.54)}
 .k,.kn{color:#a71d5d}
 .kd,.kt{color:#0086b3}
@@ -292,17 +301,20 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
 .admonition a,.admonition a:hover{color:#fff}
 .article{font-size:14px;line-height:1.7em}
 .article:after{content:" ";display:block;clear:both}
-.article .wrapper{padding:0px 16px 92px;margin-top: 90px;}
+.article .wrapper{padding:0px 16px 92px;margin-top: 18px;}
 .ios.standalone .article{position:absolute;top:56px;right:0;bottom:0;left:0;overflow:auto;-webkit-overflow-scrolling:touch}
 .ios.standalone .article .wrapper{position:relative;min-height:100%;padding-top:60px;margin-bottom:2px}
-.article h1{font-size:24px;line-height:1.333334em;padding:20px 0 42px}
-.article h2{font-size:20px;line-height:1.4em;padding-top:92px;margin-top:-56px}
-.ios.standalone .article h2{padding-top:36px;margin:0}
-.article h3,.article h4{font-size:14px;padding-top:76px;margin-top:-56px}
+.article h1{font-size:2.7rem;line-height:1.2em;margin:42px 0 30px;font-weight: 700;}
+.article h2{font-size:2.5rem;line-height:1.2em;margin:42px 0 30px;}
+.article h3{font-size:2.1rem;line-height:1.2em;margin:42px 0 30px;}
+.article h4{font-size:1.8rem;line-height:1.2em;margin:42px 0 30px;}
+.article h5{font-size:1.5rem;line-height:1.2em;margin:42px 0 30px;}
+.article h6{font-size:1.2rem;line-height:1.2em;margin:42px 0 30px;font-weight: 700;}
+/*.ios.standalone .article h2{padding-top:36px;margin:0}*/
 .ios.standalone .article h3,.ios.standalone .article h4{padding-top:20px;margin-top:0}
 .article .headerlink{float:right;margin-left:20px;font-size:14px}
 h1 .article .headerlink{display:none}
-.article ol,.article p,.article ul{margin-top:1em}
+.article ol,.article p,.article ul{margin-bottom:1em}
 .article ul {
   margin-left: 21px;
 }
@@ -420,9 +432,9 @@ h1 .article .headerlink{display:none}
 .admonition .admonition-title{font-size:20px}
 .admonition .admonition-title:before{content:"\e611";display:block;float:left;font-family:Icon;font-size:24px;vertical-align:-.1em;margin-right:5px}
 .admonition.warning .admonition-title:before{content:"\e610"}
-.article h3{font-weight:700}
-.article h4{font-weight:400;font-style:italic}
-.article h2 a,.article h3 a,.article h4 a,.article h5 a,.article h6 a{font-weight:400;font-style:normal}
+/*.article h3{font-weight:700}
+.article h4{font-weight:400;font-style:italic}*/
+/*.article h2 a,.article h3 a,.article h4 a,.article h5 a,.article h6 a{font-weight:400;font-style:normal}*/
 /*.bar{-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-transition:opacity .2s cubic-bezier(.75,0,.25,1),-webkit-transform .4s cubic-bezier(.75,0,.25,1);transition:opacity .2s cubic-bezier(.75,0,.25,1),-webkit-transform .4s cubic-bezier(.75,0,.25,1);transition:opacity .2s cubic-bezier(.75,0,.25,1),transform .4s cubic-bezier(.75,0,.25,1);transition:opacity .2s cubic-bezier(.75,0,.25,1),transform .4s cubic-bezier(.75,0,.25,1),-webkit-transform .4s cubic-bezier(.75,0,.25,1)}*/
 .results {
   display: none;
