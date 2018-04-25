@@ -16,7 +16,7 @@
       </form>
     </div>
   {{end}}
-  {{if ne (len .Translations) 0}}
+  {{if .IsTranslated}}
   <div id="langselector">{{ partial "langselector" . }}</div>
   {{end}}
 </nav>
