@@ -505,15 +505,15 @@ ul.breadcrumbs {
   display: inline;
   margin-left: 0px;
 }
-.breadcrumbs li:after {
+/*.breadcrumbs li:after {
     font-family: icon;
     content: "\E602";
     font-weight: bold;
     vertical-align: middle;
-}
-.breadcrumbs li:last-child:after {
+}*/
+/*.breadcrumbs li:last-child:after {
   content: '';
-}
+}*/
 #sidebar-toc {
     position: fixed;
     /*right: 0px;*/

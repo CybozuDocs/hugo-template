@@ -7,12 +7,12 @@
     {{- else if not .p1.IsHome -}}
         {{- template "breadcrumbnav" (dict "p1" .p1.Site.Home "p2" .p2 ) -}}
     {{- end -}}
-    
+
 <li>
     {{ if eq .p1 .p2 }}
         {{- .p1.Title -}}
     {{else}}
-      <a href="{{- .p1.Permalink -}}">{{- .p1.Title -}}</a>
+      <a href="{{- .p1.Permalink -}}">{{- .p1.Title -}}</a>&nbsp;>
     {{ end }}
 </li>
 {{- end -}}
