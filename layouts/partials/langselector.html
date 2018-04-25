@@ -1,9 +1,8 @@
 <ul>
-    <li>{{- .Site.Language.Params.LanguageName }}
-      <ul>
+    <li><div class="selectedlang"><i class="fas fa-globe"></i><span class="selectedlangtitle">{{- .Site.Language.Params.LanguageName }}</span><i class="fa fa-chevron-down" aria-hidden="true"></i></div></li>
+    <div class="otherlanguage">
       {{- range .Translations -}}
-        <li><a rel="alternate" href="{{ .RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}">{{ .Site.Language.Params.LanguageName }}</a></li>
+    <li><a class="langlink" rel="alternate" href="{{ .RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}">{{ .Site.Language.Params.LanguageName }}</a></li>
       {{- end -}}
-      </ul>
-    </li>
+    </div>
 </ul>
