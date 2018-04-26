@@ -1,4 +1,5 @@
-<div class="admonition warning">
-<p class="admonition-title">{{ .Get "title" }}</p>
-<p>{{ printf "%s" .Inner | markdownify }}</p>
-</div>
+<aside class="admonition warning">
+  <i class="fas fa-exclamation-circle"></i>
+  {{ if .Get "title" }}<h1 class="admonition-title">{{ .Get "title" }}</h1>{{end}}
+  {{ printf "%s" .Inner | markdownify }}
+</aside>

@@ -1,6 +1,6 @@
 html{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}
 *,:after,:before{box-sizing:inherit;-moz-box-sizing:inherit;-webkit-box-sizing:inherit}
-html{font-size:14px;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;text-size-adjust:none}
+html{font-size:14px;line-height:1.5em;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;text-size-adjust:none}
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,main,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0}
 main{display:block}
 /*ul{list-style:none}*/
@@ -22,6 +22,9 @@ pre,pre code{color:rgba(0,0,0,.87)}
 }
 .font-zh {
   font-family: "STHeiti","Microsoft YaHei","Arial", "Helvetica Neue", "Helvetica", "Verdana", sans-serif;
+}
+.fa, .fas {
+  color: #777;
 }
 /*.c,.c1,.cm,.o{color:rgba(0,0,0,.54)}
 .k,.kn{color:#a71d5d}
@@ -309,12 +312,36 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
 /*.copyright{color:rgba(0,0,0,.54)}*/
 .pagination a .button,.pagination a .title{color:#fff}
 .pagination .direction{color:hsla(0,0%,100%,.7)}
-.admonition{background:#29b6f6;color:#fff}
-.admonition pre{background:hsla(0,0%,100%,.3)}
-.admonition.warning{background:#e84e40}
-.admonition a,.admonition a:hover{color:#fff}
-.article{font-size:14px;line-height:1.7em}
-.article:after{content:" ";display:block;clear:both}
+.article .admonition {
+  padding: 18px 18px 18px 60px;
+  margin: 21px 0;
+  position: relative;
+}
+.article .admonition.note {
+  background:#EAF3FF;
+}
+.article .admonition.warning {
+  background:#fcf8e3;
+}
+.article .admonition .fas {
+  font-size: 1.3em;
+  position: absolute;
+  left: 21px;
+  top: 21px;
+}
+.article .admonition .admonition-title {
+  font-size: 1.3em;
+  margin: 5px 0 9px;
+}
+
+/*.admonition pre{background:hsla(0,0%,100%,.3)}*/
+/*.admonition a,.admonition a:hover{color:#fff}*/
+/*.admonition{margin:20px -16px 0;padding:20px 16px}*/
+/*.admonition>:first-child{margin-top:0}*/
+/*.admonition .admonition-title{font-size:20px}*/
+/*.admonition .admonition-title:before{content:"\e611";display:block;float:left;font-family:Icon;font-size:24px;vertical-align:-.1em;margin-right:5px}*/
+/*.admonition.warning .admonition-title:before{content:"\e610"}*/
+
 .article .wrapper{padding:0px 16px 92px;margin-top: 18px;}
 .ios.standalone .article{position:absolute;top:56px;right:0;bottom:0;left:0;overflow:auto;-webkit-overflow-scrolling:touch}
 .ios.standalone .article .wrapper{position:relative;min-height:100%;padding-top:60px;margin-bottom:2px}
@@ -331,6 +358,7 @@ h1 .article .headerlink{display:none}
 .article ol,.article p,.article ul{margin-bottom:1em}
 .article ul {
   margin-left: 21px;
+  list-style-type: disc;
 }
 .article ol {
   counter-reset: li;
@@ -441,11 +469,6 @@ h1 .article .headerlink{display:none}
 .pagination .direction{display:block;position:absolute;bottom:40px;width:100%;font-size:15px;line-height:20px;padding:0 52px}
 .pagination .stretch{padding:0 4px}
 .pagination .stretch .title{font-size:14px;padding:11px 0 13px}*/
-.admonition{margin:20px -16px 0;padding:20px 16px}
-.admonition>:first-child{margin-top:0}
-.admonition .admonition-title{font-size:20px}
-.admonition .admonition-title:before{content:"\e611";display:block;float:left;font-family:Icon;font-size:24px;vertical-align:-.1em;margin-right:5px}
-.admonition.warning .admonition-title:before{content:"\e610"}
 /*.article h3{font-weight:700}
 .article h4{font-weight:400;font-style:italic}*/
 /*.article h2 a,.article h3 a,.article h4 a,.article h5 a,.article h6 a{font-weight:400;font-style:normal}*/
