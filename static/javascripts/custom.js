@@ -49,7 +49,7 @@ window.onload = function() {
         let timer;
         function scrollStopTrigger() {
           if (timer) { clearTimeout(timer); }
-          timer = setTimeout(function() { $(window).trigger(scrollStop) }, 20);
+          timer = setTimeout(function() { $(window).trigger(scrollStop) }, 5);
         }
         $(window).on("scroll", scrollStopTrigger);
         $("body").on("touchmove", scrollStopTrigger); //タッチデバイス向け
