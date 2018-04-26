@@ -526,12 +526,20 @@ h1 .article .headerlink{display:none}
 .no-csstransforms3d #toggle-search:checked~.main .results,.no-csstransforms3d .toggle-search .results{display:block;overflow:auto}
 .meta{text-transform:uppercase;font-weight:700}*/
 
+.section-pagelist ul {
+  list-style: none;
+  margin: 0;
+}
+.section-pagelist ul>li {
+  margin: 15px 0;
+}
+
 /*パンくず*/
 ul.breadcrumbs {
   margin-left: 0;
 }
 .breadcrumbs li {
-  display: inline;
+  display: inline-block;
   margin-left: 0px;
 }
 /*.breadcrumbs li:after {

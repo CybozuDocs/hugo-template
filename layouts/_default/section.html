@@ -22,15 +22,18 @@
          <nav class="breadcrumb">{{- partial "breadcrumb" . -}}</nav>
             <h1>{{ .Title }}</h1>
             {{ .Content }}
+            <nav class="section-pagelist">
             {{- .Scratch.Set "pages" (.Pages | union .Sections) }}
             {{- $pages := (.Scratch.Get "pages") }}
+              <ul>
             {{- range $pages.ByWeight }}
                 {{- if in .Params.disabled $.Site.Params.TargetRegion}}
                 {{- else}}
-                <a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a><br>
+                <li><a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a></li>
                 {{- end}}
             {{- end}}
-         <nav class="nextpage">{{- partial "nextpage" . -}}</nav>
+              </ul>
+            </nav>
        </div>
     </div>
 
