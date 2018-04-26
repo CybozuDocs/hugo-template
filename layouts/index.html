@@ -5,27 +5,15 @@
     <header class="header">
         {{ partial "header" . }}
     </header>
-
     <main class="main">
         <article class="article" >
             <div class="wrapper">
-
-            <div class="col-flex">
+              <div class="col-flex">
                     {{ .Content }}
-                </div>
-                <aside class="copyright" role="note">
-                    {{ with .Site.Params.copyright }}
-                    &copy; {{ now.Format "2006" }} {{ . }} &ndash;
-                    {{ end }}
-                    Documentation built with
-                    <a href="https://www.gohugo.io" target="_blank">Hugo</a>
-                    using the
-                    <a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
-                </aside>
+              </div>
             </div>
         </article>
     </main>
-
     <footer class="footer" style="position:absolute; bottom:0px;">
         {{ partial "footer" . }}
     </footer>
