@@ -52,7 +52,7 @@ a{-webkit-transition:color .25s;transition:color .25s}
 .js .header{-webkit-transition:background .6s,color .6s;transition:background .6s,color .6s}
 .js .header:before{-webkit-transition:background .6s;transition:background .6s}
 .button .icon{-webkit-transition:background .25s;transition:background .25s}
-body{color:rgba(0,0,0,.87)}
+body{color:#333;}
 /*@supports (-webkit-appearance:none){body{background:#e84e40}
 }*/
 .ios body{background:#fff}

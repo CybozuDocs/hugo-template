@@ -1,15 +1,7 @@
-.backdrop {
-    background-color: #ffffff;
-}
-
-.main {
-    width: 100%;
-    max-width: 100%;
-}
-
 .article .wrapper {
     width: 100%;
     max-width: 100%;
+    padding: 0;
 }
 
 .article {
@@ -52,24 +44,49 @@
   height: 223px;
   border: 1px solid #e6e6e6;
   border-radius: 6px;
+  position: relative;
 }
-
-.tile-left {
+.col-tile:hover {
+    -webkit-transform: scale(1.045);
+    -moz-transform: scale(1.045);
+    -ms-transform: scale(1.045);
+    -o-transform: scale(1.045);
+    transform: scale(1.045);
+    background-color: #FFFFFF;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+}
+.col-tile a {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-bottom:none;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+.col-tile .fa-chevron-right {
+  margin-left: 6px;
+  color: #333;
+}
+/*.tile-left {
     position: relative;
     width: 50%;
     height:100%;
     float: left;
-}
+}*/
 
 .tile-title {
-  font-size: 2.4rem;
-  font-weight: bold;
+  font-size: 2.1rem;
   line-height: 1.2;
+  position: relative;
+  z-index: 1;
 }
 
 .tile-link {
-    position: absolute;
-    bottom: 20px;
+  position: absolute;
+  bottom: 20px;
+  z-index: 1;
 }
 
 .tile-right {
@@ -85,8 +102,11 @@
 .tile-img {
   position: absolute;
   bottom: 0px;
-  max-height: 200px;
+  right: 0px;
+  max-height: 150px;
   max-width: 160px;
+  margin-right: 6px;
+  margin-bottom: 6px;
 }
 
 .fa-file-pdf-o {
@@ -118,19 +138,19 @@
 #hotArticles-showMore:hover {
   background: #ECEAF7;
 }
-#hotArticles-showMore.closed{ 
+#hotArticles-showMore.closed{
     transform: rotate(0deg);
-} 
+}
 
-#hotArticles-showMore.expand{ 
+#hotArticles-showMore.expand{
     transform: rotate(180deg);
-} 
+}
 
 @media only screen and (max-width:850px) {
   .hero{
     display: none
   }
-  
+
   .article .wrapper {
 
   }
