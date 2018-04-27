@@ -608,10 +608,6 @@ ul.breadcrumbs {
   width: 100%;
 }
 
-#mainmenu li a:hover,#mainmenu li a.current{
-    background-color: #ECEAF7;
-}
-
 #mainmenu li ul{
     display: none;
 }
@@ -621,7 +617,7 @@ ul.breadcrumbs {
 }
 
 #mainmenu li ul li{
-    border-left: 2px solid #e94f90;
+    border-left: 2px solid #0D8199;
     /*padding-left: 10px;*/
     /*list-style: none;*/
 }
@@ -634,8 +630,12 @@ ul.breadcrumbs {
   -webkit-align-items: center;
   align-items: center;
 }
-#mainmenu a.expand{
-    background-color: #EAF3FF;
+#mainmenu a:hover,#mainmenu li a.current{
+    background-color: #ECEAF7;
+}
+#mainmenu a.expand,#mainmenu li a.current{
+  font-weight: bold;
+    /*background-color: #EAF3FF;*/
 }
 #mainmenu i.expand{
     transform: rotate(90deg);
