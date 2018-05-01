@@ -1,0 +1,36 @@
+<aside id="enquete" style="display:none;">
+  <form id="enqueteForm" name="enqueteForm" target="blankFrame" method="post">
+    <input type="hidden" name="questions[74180]" value="アプリ作成の5つの方法">
+    <input type="hidden" name="questions[74181]" value="https://help.cybozu.com/ja/k/user/5ways.html">
+    <input class="enqueteIpAddr" type="hidden" name="questions[74184]" value="">
+    <input class="enqueteSubDomain" type="hidden" name="questions[74185]" value="">
+    <input class="enqueteReferrer" type="hidden" name="questions[88367]" value="">
+    <input class="enqueteKeyWords" type="hidden" name="questions[88366]" value="">
+    <input id="enqueteRadio" type="hidden" name="questions[74183]" value="">
+    <span id="enqueteYesOrNoBtns">
+      この情報は役に立ちましたか？
+      <input class="enqueteBtn" id="feedback_yes" type="button" value="はい" onclick='$.cookie("answered","/ja/k/user/5ways.html", {path:"/",expires:1});'>
+      <input class="enqueteBtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","/ja/k/user/5ways.html",{path:"/",expires:1});'>
+    </span>
+    <span id="enqueteThanks" style="display:none;">
+    ご回答ありがとうございました。
+    </span>
+    <div id="additionnalEnquate" style="display:none;">
+      <div>この記事へのご意見やご要望があれば、ご記入ください。記事の改善に利用させていただきます。</div>
+        <textarea id="additionnalEnquate_textArea" name="questions[74182]"></textarea>
+        <span id="additionnalEnquate_countChar">残り1500文字</span>
+        <div id="enquete_note">
+         <ul>
+          <li>製品に関するご意見への回答は行っておりません。</li>
+          <li>個人情報、秘密保持義務のある情報、個別の通信内容等の提供はご遠慮ください。</li>
+         </ul>
+        </div>
+        <input type="submit" value="送信" id="feedback_send" class="enqueteBtn btn_disabled">
+        <input type="submit" value="閉じる" id="feedback_sendWithoutComment" class="enqueteBtn">
+    </div>
+  </form>
+</aside>
+<script src="/javascripts/enquete.js"></script>
+<script>
+document.getElementById("enqueteForm").action="https://formcreator.jp/answer.php/screens/enquete_from_external_site?key=pDgJI91lHBlbFjGvfIKRhw%3D%3D";
+</script>

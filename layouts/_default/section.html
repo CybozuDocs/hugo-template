@@ -7,37 +7,37 @@
 <header class="header">
     {{ partial "header" . }}
 </header>
-
- <main class="main">
-    <div class="drawer">
+<div class="main">
+    <nav class="drawer">
         {{ partial "drawer" . }}
-    </div>
-
+    </nav>
     <div class="article">
-       <div class="wrapper">
-         <nav class="breadcrumb">{{- partial "breadcrumb" . -}}</nav>
-            <h1>{{ .Title }}</h1>
-            {{ .Content }}
-            <nav class="section-pagelist">
-            {{- .Scratch.Set "pages" (.Pages | union .Sections) }}
-            {{- $pages := (.Scratch.Get "pages") }}
-              <ul>
-            {{- range $pages.ByWeight }}
-                {{- if in .Params.disabled $.Site.Params.TargetRegion}}
-                {{- else}}
-                <li><a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a></li>
-                {{- end}}
-            {{- end}}
-              </ul>
-            </nav>
-       </div>
+        <div class="wrapper">
+            <nav class="breadcrumb">{{- partial "breadcrumb" . -}}</nav>
+            <main>
+                <article>
+                    <h1>{{ .Title }}</h1>
+                    {{ .Content }}
+                </article>
+                <nav class="section-pagelist">
+                    {{- .Scratch.Set "pages" (.Pages | union .Sections) }}
+                    {{- $pages := (.Scratch.Get "pages") }}
+                      <ul>
+                    {{- range $pages.ByWeight }}
+                        {{- if in .Params.disabled $.Site.Params.TargetRegion}}
+                        {{- else}}
+                        <li><a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a></li>
+                        {{- end}}
+                    {{- end}}
+                      </ul>
+                </nav>
+            </main>
+        </div>
     </div>
-
     <div id="sidebar-toc">
         {{ .TableOfContents }}
     </div>
-
-</main>
+</div>
 
     <div class="results" role="status" aria-live="polite">
         <div class="scrollable">
@@ -48,11 +48,9 @@
         </div>
     </div>
 
-    <footer class="footer">
-        {{ partial "footer" . }}
-    </footer>
-
+<footer class="footer">
+    {{ partial "footer" . }}
+</footer>
 {{end}}
-
-  </body>
+</body>
 </html>

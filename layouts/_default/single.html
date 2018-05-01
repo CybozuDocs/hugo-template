@@ -7,34 +7,34 @@
 <header class="header">
     {{ partial "header" . }}
 </header>
-
- <main class="main">
-    <div class="drawer">
+<div class="main">
+    <nav class="drawer">
         {{ partial "drawer" . }}
-    </div>
+    </nav>
     <div class="article">
         <div class="wrapper">
             <nav class="breadcrumb">{{- partial "breadcrumb" . -}}</nav>
-            <h1>{{ .Title }}</h1>
-            {{ .Content }}
-
-            <div class="seealso">
+            <main>
+                <article>
+                    <h1>{{ .Title }}</h1>
+                    {{ .Content }}
+                </article>
+            </main>
+            <nav class="seealso">
                 {{ partial "related" .}}
-            </div>
+            </nav>
             <nav class="nextpage">{{- partial "nextpage" . -}}</nav>
         </div>
     </div>
 
-    <div id="sidebar-toc">
+    <nav id="sidebar-toc">
         {{ .TableOfContents }}
-    </div>
-
-</main>
-
-    <footer class="footer">
-        {{ partial "footer" . }}
-    </footer>
+    </nav>
+</div>
+{{- partial "enquete" . -}}
+<footer class="footer">
+    {{ partial "footer" . }}
+</footer>
 {{end}}
-
-  </body>
+</body>
 </html>
