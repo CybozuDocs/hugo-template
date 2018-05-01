@@ -83,11 +83,11 @@ hr{border:0;border-top:1px solid rgba(0,0,0,.12)}
   z-index: 1;
   background-image: radial-gradient(circle farthest-corner at left bottom, #e94f90 0%, rgba(233, 79, 144, .01) 100%), radial-gradient(circle farthest-corner at right bottom, #287bf4 0%, rgba(40, 123, 244, .01) 100%);
 }
-.header > nav {
+.header .wrapper {
   max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 4px;
+  padding: 0 9px 4px 9px;
   height:56px;
   display: -webkit-flex;
   display: flex;
@@ -98,15 +98,23 @@ hr{border:0;border-top:1px solid rgba(0,0,0,.12)}
 }
 .header-logo-base{
   width: 300px;
+  height: 100%;
+  padding:5px;
+  margin-right: 15px;
 }
 .header-logo{
-  padding:5px;
-  width: 245px;
-  height:53px;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.header-img{
+  max-width: 100%;
+  max-height: 100%;
 }
 /*検索ボックス*/
 .searchbox {
-  width: 57%;
+  width: 500px;
   height: 36px;
   /*box-sizing: border-box;*/
   border: 1px solid #e6e6e6;
@@ -118,6 +126,7 @@ hr{border:0;border-top:1px solid rgba(0,0,0,.12)}
   justify-content: flex-start;
   -webkit-align-items: center;
   align-items: center;
+  margin-left: auto;
 }
 .searchbox .fa-search {
   margin-left: 12px;
@@ -151,7 +160,7 @@ hr{border:0;border-top:1px solid rgba(0,0,0,.12)}
 #langselector {
   /*margin-left: 15px;*/
   white-space: nowrap;
-  z-index: 2;
+  z-index: 3;
   position: relative;
   width: 138px;
   border: 1px solid #e6e6e6;
@@ -159,7 +168,7 @@ hr{border:0;border-top:1px solid rgba(0,0,0,.12)}
   background-color: #f6f6f6;
   height: 36px;
   cursor: pointer;
-  margin-left: auto;
+  margin-left: 15px;
 }
 #langselector .langlink,#langselector .selectedlang{
   display: block;
@@ -194,6 +203,7 @@ hr{border:0;border-top:1px solid rgba(0,0,0,.12)}
   position: absolute;
   left: -1px;
   top: 34px;
+  box-shadow:0 1.5px 0px rgba(0,0,0,.24);
 }
 /*#langselector:hover .otherlanguage {
   display: block;
@@ -203,7 +213,7 @@ hr{border:0;border-top:1px solid rgba(0,0,0,.12)}
 /*.bar .path{color:hsla(0,0%,100%,.7)}*/
 /*.button .icon{border-radius:100%}
 .button .icon:active{background:hsla(0,0%,100%,.12)}*/
-html{height:100%;color:#333;font-size:90%;line-height:1.5em;}
+html{height:100%;color:#333;font-size:90%;line-height:1.7em;}
 body{position:relative;min-height:calc(100% - 56px);}
 /*hr{display:block;height:1px;padding:0;margin:0}*/
 /*.locked{height:100%;overflow:hidden}*/
@@ -421,6 +431,7 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
   left:0;
   right:0;
   width: 100%;
+  z-index: 1;
 }
 .footer::before {
   content: '';
@@ -439,10 +450,11 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1300px;
+  max-width: 1300px;
   height: 92px;
   margin-left: auto;
   margin-right: auto;
+  padding: 9px;
 }
 /*.previous, .next {
     font-size: 120%;
@@ -460,7 +472,7 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
 .nextbutton {text-align: right; font-size: 200%; }
 .nextpage {align-self: flex-end;}
 #footercenter {display:flex; flex-direction:row; font-size: 120%; margin-top: 20px; line-height: 1.5em;}*/
-#footerlinks {display:flex; flex-basis: auto; padding-left: 20px;}
+#footerlinks {display:flex;padding-left: 20px;}
 #footerlinks ul li {display: inline-block; margin-right: 1em;}
 #footerlinks ul li a{padding-right: 0.3em; }
 #footercopyright {padding-left: 20px;}
@@ -711,13 +723,15 @@ ul.breadcrumbs {
 @media only screen and (min-width:480px){
 
 }*/
+@media only screen and (max-width:650px) {
+
+}
 @media only screen and (max-width:800px) {
-    .langselector {display:none;}
+    #langselector {display:none;}
     .footer { display: block; }
     #footercenter {flex-direction: column;}
     #footercopyright {padding-top: 15px; width: 100%;}
 }
-
 @media only screen and (min-width:960px) {
     .main { flex-direction: row; }
     .article { width: 820px; margin-left: 280px; margin-bottom: 92px;}
@@ -733,14 +747,15 @@ ul.breadcrumbs {
     .drawer {position: relative; width: 100%; padding-top:0px;padding-bottom:30px; background-color: #eeeeee; z-index: 1;}
     /*.backdrop,.backdrop-paper {display: none;}*/
     .previous, .next{display: none;}
+    .searchbox {
+      width: 350px;
+    }
 }
 
 @media only screen and (max-width:1100px) {
   #sidebar-toc { display: none;}
 }
 
-@media only screen and (min-width:1200px){
-}
 @media print{.drawer,.footer,.header,.headerlink{display:none}
 
     }

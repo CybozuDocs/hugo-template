@@ -1,8 +1,8 @@
-<nav aria-label="Header">
+<nav class="wrapper" aria-label="Header">
     <div class="header-logo-base">
   {{ with .Site.Params.logo }}
-        <a href="/{{$.Lang}}/">
-            <img class="header-logo" src="{{ $.Site.BaseURL }}{{ . }}">
+        <a class="header-logo" href="/{{$.Lang}}/">
+            <img class="header-img" src="{{ $.Site.BaseURL }}{{ . }}">
         </a>
   {{ end }}
     </div>
