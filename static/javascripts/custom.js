@@ -3,10 +3,10 @@
 window.onload = function() {
     if( document.getElementById("mainmenu") != null ) {
         /* セクションクリック時の開閉トグル */
-        $("#mainmenu li span").click(function(e) {
-           $(this).toggleClass("expand closed") ;
-           $(this).parent().children("ul").slideToggle();
-            e.stopPropagation();
+        $("#mainmenu .expand-button").click(function(e) {
+           $(this).parent().parent().children("ul").toggleClass("opened");
+           $(this).toggleClass("expand")
+           // $(this).parent().children("ul").slideToggle();
         });
 
        /* メニュー選択時にスクロール位置をクッキーに保存 */

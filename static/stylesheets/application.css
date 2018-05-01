@@ -751,7 +751,7 @@ ul.breadcrumbs {
 @media only screen and (max-width:959px) {
     .main { flex-direction: column-reverse; flex-wrap: wrap;}
     .article { background-color: #ffffff;}
-    .drawer {position: relative; width: 100%; padding-top:0px;padding-bottom:30px; background-color: #eeeeee; z-index: 1;}
+    .drawer {position: relative; width: 100%; padding-top:0px;padding-bottom:30px; background-color: #f6f6f6; z-index: 1;}
     /*.backdrop,.backdrop-paper {display: none;}*/
     .previous, .next{display: none;}
     .searchbox {
