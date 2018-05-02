@@ -475,7 +475,7 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
 #footercenter {display:flex; flex-direction:row; font-size: 120%; margin-top: 20px; line-height: 1.5em;}*/
 #footerlinks {display:flex;padding-left: 20px;}
 #footerlinks ul li {display: inline-block; margin-right: 1em;}
-#footerlinks ul li a{padding-right: 0.3em; }
+#footerlinks a{padding-right: 0.3em;border-bottom: 1px dotted;}
 #footercopyright {padding-left: 20px;}
 /*.copyright{margin:1.5em 0}*/
 /*.pagination{max-width:1184px;height:92px;padding:4px 0;margin-left:auto;margin-right:auto;overflow:hidden}
