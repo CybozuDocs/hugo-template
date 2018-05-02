@@ -33,12 +33,12 @@
 }
 
 /* Flexbox */
-.col-flex {
+/*.col-flex {
   display: -webkit-box;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-}
+}*/
 .col-tile {
   margin: 0 0 16px;
   padding: .9375rem;
@@ -47,6 +47,7 @@
   border: 1px solid #e6e6e6;
   border-radius: 6px;
   position: relative;
+  float: left;
 }
 .col-tile:hover {
     -webkit-transform: scale(1.015);

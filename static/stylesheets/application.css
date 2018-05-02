@@ -712,7 +712,7 @@ ul.breadcrumbs {
   width: 400px;
 }
 .main {
-  padding: 1em 0 4em;
+  padding: 12px 0 120px;
   width: 100%;
   position: relative;
   overflow: hidden;
