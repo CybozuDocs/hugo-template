@@ -14,13 +14,13 @@ a,button,input,label{-webkit-tap-highlight-color:rgba(255,255,255,0);-webkit-tap
 h1,h2,h3,h4,h5,h6{font-weight:inherit}
 pre{background:rgba(0,0,0,.05)}
 pre,pre code{color:rgba(0,0,0,.87)}
-.font-ja {
+.font-ja,.font-ja input {
   font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo", "メイリオ", "ＭＳ Ｐゴシック", "MS PGothic",sans-serif;
 }
-.font-en {
+.font-en,.font-en input {
   font-family: "HelveticaNeueW02-45Ligh", "Helvetica", "Verdana", sans-serif;
 }
-.font-zh {
+.font-zh,.font-zh input {
   font-family: "STHeiti","Microsoft YaHei","Arial", "Helvetica Neue", "Helvetica", "Verdana", sans-serif;
 }
 .fa, .fas {
@@ -214,6 +214,7 @@ hr{border:0;border-top:1px solid rgba(0,0,0,.12)}
 /*.button .icon{border-radius:100%}
 .button .icon:active{background:hsla(0,0%,100%,.12)}*/
 html{height:100%;color:#333;font-size:90%;line-height:1.7em;}
+input{font-size:.9rem;}
 body{position:relative;min-height:calc(100% - 56px);}
 /*hr{display:block;height:1px;padding:0;margin:0}*/
 /*.locked{height:100%;overflow:hidden}*/
