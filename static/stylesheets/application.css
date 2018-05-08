@@ -417,6 +417,9 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
 .article blockquote{padding-left:16px}
 /*.article .data{margin:1.5em -16px;padding:1.5em 0;overflow:auto;-webkit-overflow-scrolling:touch;text-align:center}
 .article .data table{display:inline-block;margin:0 16px;text-align:left}*/
+.article .screenchot {
+  margin: 21px 0;
+}
 .nextpage {
   position: absolute;
   bottom: 33px;
