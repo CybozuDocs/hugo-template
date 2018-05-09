@@ -606,6 +606,9 @@ ul.breadcrumbs {
 #TableOfContents ul ul ul ul ul {
   display: none;
 }
+#TableOfContents ul ul ul {
+  margin-left: 12px;
+}
 
 #mainmenu {
     display: block;
