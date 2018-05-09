@@ -603,7 +603,7 @@ ul.breadcrumbs {
   background-color: #ECEAF7;
 }
 
-#TableOfContents ul ul ul {
+#TableOfContents ul ul ul ul ul {
   display: none;
 }
 
