@@ -10,9 +10,9 @@
 
 <li>
     {{ if eq .p1 .p2 }}
-        {{- .p1.Title -}}
+        {{- partial "title" .p1 -}}
     {{else}}
-      <a href="{{- .p1.Permalink -}}">{{- .p1.Title -}}</a>&nbsp;>&nbsp;
+      <a href="{{- .p1.Permalink -}}">{{- partial "title" .p1 -}}</a>&nbsp;>&nbsp;
     {{ end }}
 </li>
 {{- end -}}

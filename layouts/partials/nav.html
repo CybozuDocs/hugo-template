@@ -19,7 +19,7 @@
             {{- else}}
         <li>
             <div class="category"><a href="{{ .RelPermalink}}" class="{{- if eq .RelPermalink $target.RelPermalink}} current{{end}}{{- if .IsAncestor $target}} expand{{end}}">
-            <span>{{- .Title -}}</span></a><i class="fa fa-chevron-right expand-button {{- if .IsAncestor $target}} expand{{end}}" aria-hidden="true"></i></div>
+            <span>{{- partial "title" . -}}</span></a><i class="fa fa-chevron-right expand-button {{- if .IsAncestor $target}} expand{{end}}" aria-hidden="true"></i></div>
                 {{- if ne $numberOfPages 0 }}
             <ul class="{{- if .IsAncestor $target}}opened{{end}}">
                     {{- if .Sections}}
@@ -39,7 +39,7 @@
             {{- if in .Params.disabled .Site.Params.TargetRegion}}
             {{- else}}
             <li>
-               <a href="{{ .RelPermalink}}" class="{{- if eq .RelPermalink $target.RelPermalink}} current{{end -}}">{{.Title}}</a>
+               <a href="{{ .RelPermalink}}" class="{{- if eq .RelPermalink $target.RelPermalink}} current{{end -}}">{{ partial "title" .}}</a>
             </li>
             {{- end}}
         {{- end}}

@@ -16,7 +16,7 @@
             <nav class="breadcrumb">{{- partial "breadcrumb" . -}}</nav>
             <main>
                 <article>
-                    <h1>{{ .Title }}</h1>
+                    <h1>{{ partial "title" . }}</h1>
                     {{ .Content }}
                 </article>
                 <nav class="section-pagelist">
@@ -26,7 +26,7 @@
                     {{- range $pages.ByWeight }}
                         {{- if in .Params.disabled $.Site.Params.TargetRegion}}
                         {{- else}}
-                        <li><a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a></li>
+                        <li><a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{ partial "title" . }}{{safeHTML .Params.Post}}</a></li>
                         {{- end}}
                     {{- end}}
                       </ul>
