@@ -343,6 +343,7 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
 .article .admonition .admonition-title {
   font-size: 1.3em;
   margin: 5px 0 9px;
+  padding-top: 0;
 }
 
 /*.admonition pre{background:hsla(0,0%,100%,.3)}*/
