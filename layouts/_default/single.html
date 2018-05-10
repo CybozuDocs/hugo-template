@@ -16,7 +16,7 @@
             <nav class="breadcrumb">{{- partial "breadcrumb" . -}}</nav>
             <main>
                 <article>
-                    <h1>{{ .Title }}</h1>
+                    <h1>{{ partial "title" . }}</h1>
                     {{ .Content }}
                 </article>
             </main>

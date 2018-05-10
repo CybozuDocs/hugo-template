@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=11" />
-    <title>{{ .Title }}{{ if not .IsHome }} - {{ .Site.Title }}{{ end }}</title>
+    <title>{{- partial "title" . -}}{{ if not .IsHome }} - {{ .Site.Title }}{{ end }}</title>
     {{ .Hugo.Generator }}
 
     {{ with .Site.Params.description }}

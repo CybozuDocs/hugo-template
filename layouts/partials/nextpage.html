@@ -42,15 +42,15 @@
 {{- with ($.Scratch.Get "prevPage") -}}
     <div class="previous">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        <a href="{{.URL}}" title="{{.Title}}">
-          <span class="title">{{.Title}}</span>
+        <a href="{{.URL}}" title="{{ partial "title" . }}">
+          <span class="title">{{ partial "title" . }}</span>
         </a>
     </div>
 {{- end -}}
 {{- with ($.Scratch.Get "nextPage") -}}
     <div class="next">
-        <a href="{{.URL}}" title="{{.Title}}">
-          <span class="title">{{.Title}}</span>
+        <a href="{{.URL}}" title="{{ partial "title" . }}">
+          <span class="title">{{ partial "title" . }}</span>
         </a>
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
     </div>
