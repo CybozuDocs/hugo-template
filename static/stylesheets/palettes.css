@@ -1,4 +1,4 @@
-@supports (-webkit-appearance:none){.palette-primary-red{background:#e84e40}
+@supports (-webkit-appearance:none){.palette-primary-red{background:#fff}
 }
 .palette-primary-red .footer,.palette-primary-red .header{background:#e84e40}
 .palette-primary-red .drawer .toc a.current,.palette-primary-red .drawer .toc a:focus,.palette-primary-red .drawer .toc a:hover{color:#e84e40}
