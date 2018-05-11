@@ -12,7 +12,7 @@
 {{if gt ($.Scratch.Get "pagecnt") 0}}
   {{ with $related.ByWeight }}
 <hr>
-<h3>See Also</h3>
+<div class="seealso">{{ $.Site.Language.Params.see_also }}</div>
 <ul>
 	{{- range . -}}
       {{- if in .Params.disabled $.Site.Params.TargetRegion -}}
