@@ -420,6 +420,7 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
 .article .data table{display:inline-block;margin:0 16px;text-align:left}*/
 .article .screenchot {
   margin: 21px 0;
+  display: block;
 }
 .nextpage {
   position: absolute;
