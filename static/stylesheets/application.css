@@ -430,6 +430,12 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
   display: flex;
   -webkit-justify-content: space-between;
 }
+
+.nextpage >:last-child{
+    margin-left: auto;
+    padding-right: 20px;
+}
+
 .footer {
   position:absolute;
   /*position: relative;*/
@@ -772,6 +778,11 @@ ul.breadcrumbs {
 #enqueteThanks {
   height: 27px;
 }
+
+.seealso {
+    font-size: 1em;
+}
+
 /*@media only screen and (min-width:960px){
 
 }
