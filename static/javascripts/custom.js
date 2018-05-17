@@ -40,7 +40,7 @@ window.onload = function() {
         /* TOC構築 */
         let toclist = "<div id='TableOfContents'><ul>";
         let curlevel = 0;
-        $(".article :header").each(function() {
+        $(".article :header").not(".article h1").each(function() {
             let href = $(this).attr("id");
             let val = $(this).text();
             let taglevel = Number($(this).prop("tagName").substr(1,1));
