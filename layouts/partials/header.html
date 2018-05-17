@@ -1,7 +1,7 @@
 <nav class="wrapper" aria-label="Header">
     <div class="header-logo-base">
   {{ with .Site.Params.logo }}
-        <a class="header-logo" href="/{{$.Lang}}/">
+        <a class="header-logo" href="{{ $.Site.BaseURL }}{{$.Lang}}/">
             <img class="header-img" src="{{ $.Site.BaseURL }}{{ . }}">
         </a>
   {{ end }}
