@@ -44,17 +44,17 @@ window.onload = function() {
             let href = $(this).attr("id");
             let val = $(this).text();
             let taglevel = Number($(this).prop("tagName").substr(1,1));
-            
+
             while(curlevel < taglevel) {
                 toclist += "<ul>";
                 curlevel++;
             }
-            
+
             while(curlevel > taglevel) {
                 toclist += "</ul>";
                 curlevel--;
             }
-            
+
             if(val != "") {
                 toclist += "<li><a href='#" + href + "'>" + val + "</a></li>";
             }
@@ -62,7 +62,7 @@ window.onload = function() {
         toclist += "</ul></div>";
         $("#sidebar-toc").append(toclist);
     }
-    
+
     if( document.getElementById("TableOfContents") != null ) {
         /* TOC選択による本文スクロール */
         $("#TableOfContents li").click(function() {
@@ -110,7 +110,6 @@ window.onload = function() {
             e.stopPropagation();
         });
      }
-
      if( document.getElementById("langselector") != null ) {
         $("#langselector").click(function(e){
           $(this).find(".otherlanguage").toggle();
@@ -119,6 +118,12 @@ window.onload = function() {
           if (!$(e.target).closest('#langselector').length) {
             $(".otherlanguage").hide();
           }
+        });
+     }
+     let tables = $("article table")
+     if( tables != null ) {
+        tables.each( function() {
+          $(this).wrap("<div class='wrapTable'></div>");
         });
      }
 }
