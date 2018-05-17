@@ -35,6 +35,34 @@ window.onload = function() {
        $("div.drawer").scrollTop(dpos);
     }
 
+    let tocdiv =  document.getElementById("sidebar-toc");
+    if( tocdiv != null ) {
+        /* TOC構築 */
+        let toclist = "<div id='TableOfContents'><ul>";
+        let curlevel = 0;
+        $(".article :header").each(function() {
+            let href = $(this).attr("id");
+            let val = $(this).text();
+            let taglevel = Number($(this).prop("tagName").substr(1,1));
+            
+            while(curlevel < taglevel) {
+                toclist += "<ul>";
+                curlevel++;
+            }
+            
+            while(curlevel > taglevel) {
+                toclist += "</ul>";
+                curlevel--;
+            }
+            
+            if(val != "") {
+                toclist += "<li><a href='#" + href + "'>" + val + "</a></li>";
+            }
+        });
+        toclist += "</ul></div>";
+        $("#sidebar-toc").append(toclist);
+    }
+    
     if( document.getElementById("TableOfContents") != null ) {
         /* TOC選択による本文スクロール */
         $("#TableOfContents li").click(function() {
