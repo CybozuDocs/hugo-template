@@ -29,7 +29,7 @@ pre,pre code{color:rgba(0,0,0,.87)}
   width:100%;
   -moz-user-select:none;
   -ms-user-select:none;
-  user-select:none;*/
+  user-select:none;
   z-index:2;
   background: #fff;
   box-shadow:0 1.5px 3px rgba(0,0,0,.24),0 3px 8px rgba(0,0,0,.05);
@@ -263,7 +263,7 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
 .article table th{text-align:left;}
 .article blockquote{padding-left:16px}
 .article caption{text-align: left; font-weight: bold;}
-.article .data table{display:inline-block;margin:0 16px;text-align:left}*/
+.article .data table{display:inline-block;margin:0 16px;text-align:left}
 .article .screenchot {
   margin: 21px 0;
   display: block;
