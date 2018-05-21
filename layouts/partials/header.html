@@ -10,7 +10,7 @@
   {{if ne .Params.type "search_result"}}
     <div class="searchbox">
       <i class="fas fa-search"></i>
-      <form id="headerSearchBox_form" action="/{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}'>
+      <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}'>
         <input name="q" id="headerSearchBox_input" placeholder="{{ .Site.Language.Params.search_guide }}" type="text" aria-label="search">
         <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}">
       </form>
