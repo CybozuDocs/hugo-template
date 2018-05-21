@@ -174,7 +174,10 @@ body{position:relative;min-height:calc(100% - 56px);}
 }
 .article table th{
   padding: .6em;
-  background:#ECEAF7;
+  border-right: 1px solid #ECEAF7;
+  border-bottom: 1px solid #ECEAF7;
+  background:#f6f6f6;
+  font-weight: bold;
 }
 .article table td{
   padding: .6em;
@@ -213,11 +216,11 @@ body{position:relative;min-height:calc(100% - 56px);}
 }
 .article h1{font-size:2.7rem;line-height:1.2em;margin-bottom:30px;padding-top: 42px;font-weight: 700;}
 .article h2{font-size:2.5rem;line-height:1.2em;margin-bottom:30px;padding-top: 72px;}
-.article h3{font-size:2.1rem;line-height:1.2em;margin-bottom:30px;padding-top: 72px;}
-.article h4{font-size:1.8rem;line-height:1.2em;margin-bottom:30px;padding-top: 72px;}
-.article h5{font-size:1.5rem;line-height:1.2em;margin-bottom:30px;padding-top: 72px;}
-.article h6{font-size:1.2rem;line-height:1.2em;margin-bottom:30px;padding-top: 72px;font-weight: 700;}
-.article ol,.article p,.article ul{margin-bottom:1em}
+.article h3{font-size:2.1rem;line-height:1.2em;margin-bottom:30px;padding-top: 60px;}
+.article h4{font-size:1.8rem;line-height:1.2em;margin-bottom:30px;padding-top: 48px;}
+.article h5{font-size:1.5rem;line-height:1.2em;margin-bottom:30px;padding-top: 48px;}
+.article h6{font-size:1.2rem;line-height:1.2em;margin-bottom:30px;padding-top: 48px;font-weight: 700;}
+.article ol,.article p,.article ul{margin-bottom:.9em;}
 .article ul {
   margin-left: 21px;
   list-style-type: disc;
@@ -252,7 +255,7 @@ body{position:relative;min-height:calc(100% - 56px);}
 .article p>code{white-space:nowrap;padding:2px 4px}
 .article hr{margin-top:1.5em}
 .article pre{padding:16px;margin:1.5em -16px 0;line-height:1.5em;overflow:auto;-webkit-overflow-scrolling:touch}
-.article table{margin:3em 0 1.5em;overflow:hidden;}
+.article table{margin:21px 0;overflow:hidden;}
 .article table th{text-align:left;}
 .article caption{text-align: left; font-weight: bold;}
 .article img{max-width:100%}
@@ -261,7 +264,8 @@ body{position:relative;min-height:calc(100% - 56px);}
   display: block;
 }
 .nextpage {
-  position: absolute;
+  /*position: absolute;*/
+  margin-top: 72px;
   bottom: 33px;
   width: 100%;
   display: -webkit-flex;
@@ -535,7 +539,7 @@ ul.breadcrumbs {
 }
 @media only screen and (min-width:960px) {
     .main { flex-direction: row; }
-    .article { width: 820px; margin-left: 280px; margin-bottom: 92px;}
+    .article { width: 820px; margin-left: 280px;}
     .drawer { width: 280px; position:fixed; padding-bottom: 100px}
 
 @media only screen and (max-width:959px) {
