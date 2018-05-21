@@ -161,6 +161,7 @@ body{position:relative;min-height:calc(100% - 56px);}
 .article a, .nfarticle a {
   color: #0D8199;
   border-bottom:1px dotted;
+  line-height: 1.5em;
 }
 .article code{background:#eee}
 .article .wrapTable {
@@ -218,9 +219,10 @@ body{position:relative;min-height:calc(100% - 56px);}
 .article h2{font-size:2.5rem;line-height:1.2em;margin-bottom:30px;padding-top: 72px;}
 .article h3{font-size:2.1rem;line-height:1.2em;margin-bottom:30px;padding-top: 60px;}
 .article h4{font-size:1.8rem;line-height:1.2em;margin-bottom:30px;padding-top: 48px;}
-.article h5{font-size:1.5rem;line-height:1.2em;margin-bottom:30px;padding-top: 48px;}
-.article h6{font-size:1.2rem;line-height:1.2em;margin-bottom:30px;padding-top: 48px;font-weight: 700;}
-.article ol,.article p,.article ul{margin-bottom:.9em;}
+.article h5{font-size:1.5rem;line-height:1.2em;margin-bottom:30px;padding-top: 36px;}
+.article h6{font-size:1.2rem;line-height:1.2em;margin-bottom:30px;padding-top: 21px;font-weight: 700;}
+.article ol{margin: 30px 0;}
+.article p,.article ul{margin-bottom:.9em;}
 .article ul {
   margin-left: 21px;
   list-style-type: disc;
@@ -257,7 +259,7 @@ body{position:relative;min-height:calc(100% - 56px);}
 .article pre{padding:16px;margin:1.5em -16px 0;line-height:1.5em;overflow:auto;-webkit-overflow-scrolling:touch}
 .article table{margin:21px 0;overflow:hidden;}
 .article table th{text-align:left;}
-.article caption{text-align: left; font-weight: bold;}
+.article caption{text-align: left; font-weight: bold; font-size: 1.1rem;line-height: 2em;}
 .article img{max-width:100%}
 .article img.screenchot {
   margin: 21px 0;
@@ -275,7 +277,7 @@ body{position:relative;min-height:calc(100% - 56px);}
 
 .nextpage >:last-child{
     margin-left: auto;
-    padding-right: 20px;
+    /*padding-right: 20px;*/
 }
 
 .footer {
@@ -318,13 +320,13 @@ body{position:relative;min-height:calc(100% - 56px);}
   display: none;
 }
 
-/*.section-pagelist ul {
+.section-pagelist ul {
   list-style: none;
   margin: 0;
 }
 .section-pagelist ul>li {
   margin: 15px 0;
-}*/
+}
 
 ul.breadcrumbs {
   margin-left: 0;
@@ -360,7 +362,7 @@ ul.breadcrumbs {
   background-color: #ECEAF7;
 }
 
-#TableOfContents ul ul ul ul ul {
+#TableOfContents ul > ul > ul > ul > ul > ul {
   display: none;
 }
 #TableOfContents ul ul ul {
@@ -451,7 +453,9 @@ ul.breadcrumbs {
 .tagnumber {
     padding-left: 1px;
 }
+.referrence h1{font-size:1.5rem;font-weight: normal;margin-bottom: 12px;}
 .referrence {
+  margin-top: 72px;
   border-top: 1px solid #e6e6e6;
 }
 .referrence > a {
