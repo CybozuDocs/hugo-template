@@ -11,8 +11,8 @@ window.onload = function() {
 
        /* メニュー選択時にスクロール位置をクッキーに保存 */
        $("#mainmenu li a").click(function (e) {
-           let pos = $("div.drawer").scrollTop();
-           $.cookie("dpos", pos, { path:"/",expires:0,secure:true});
+           let pos = $(".drawer").scrollTop();
+           $.cookie("dpos", pos);
            // Cookies.set("dpos", pos);
        });
 
@@ -34,7 +34,7 @@ window.onload = function() {
         }
 
         /* メニューを選択位置までスクロール */
-       $("div.drawer").scrollTop(dpos);
+       $(".drawer").scrollTop(dpos);
     }
 
     let tocdiv =  document.getElementById("sidebar-toc");
