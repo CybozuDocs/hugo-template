@@ -12,11 +12,13 @@ window.onload = function() {
        /* メニュー選択時にスクロール位置をクッキーに保存 */
        $("#mainmenu li a").click(function (e) {
            let pos = $("div.drawer").scrollTop();
-           Cookies.set("dpos", pos);
+           $.cookie("dpos", pos, { path:"/",expires:0,secure:true});
+           // Cookies.set("dpos", pos);
        });
 
        /* 選択されたメニューのスクロール位置をクッキーから取り出す */
-       let dpos = Cookies.get("dpos");
+       // let dpos = Cookies.get("dpos");
+       let dpos = $.cookie("dpos");
 
         if(dpos == undefined) {
             /* クッキーを持たない場合(=直リンクで開かれた場合) */

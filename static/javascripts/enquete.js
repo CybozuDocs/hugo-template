@@ -166,7 +166,7 @@ $(function(){
         }
       }
     };
-    setTimeout(displayEnquete,3000); //3秒後にアンケートを表示する
+    setTimeout(displayEnquete,10000); //3秒後にアンケートを表示する
     controlDisplayPosition();
     $window.scroll(function() {
       windowScrollTop = $window.scrollTop();
