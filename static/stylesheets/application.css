@@ -2,7 +2,6 @@ html{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-
 *,:after,:before{box-sizing:inherit;-moz-box-sizing:inherit;-webkit-box-sizing:inherit}
 html{-webkit-text-size-adjust:none;-ms-text-size-adjust:none;text-size-adjust:none}
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,main,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0}
-main{display:block}
 table{border-collapse:collapse;border-spacing:0}
 td{text-align:left;font-weight:400;vertical-align:middle}
 button{outline:0;padding:0;background:transparent;border:none;font-size:inherit}
@@ -13,6 +12,7 @@ a,button,input,label{-webkit-tap-highlight-color:rgba(255,255,255,0);-webkit-tap
 h1,h2,h3,h4,h5,h6{font-weight:inherit}
 pre{background:rgba(0,0,0,.05)}
 pre,pre code{color:rgba(0,0,0,.87)}
+
 .font-ja,.font-ja input {
   font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo", "メイリオ", "ＭＳ Ｐゴシック", "MS PGothic",sans-serif;
 }
@@ -157,15 +157,12 @@ body{position:relative;min-height:calc(100% - 56px);}
 .header{position:fixed;top:0}
 
 .main{display:flex;max-width:1300px;margin:56px auto 0 auto;}
-body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .drawer{height:calc(100% - 56px); overflow:auto; width:280px;line-height:1em;border-right: 1px solid #e6e6e6;}
-.ios .drawer{overflow:scroll;-webkit-overflow-scrolling:touch}
 .article a, .nfarticle a {
   color: #0D8199;
   border-bottom:1px dotted;
 }
 .article code{background:#eee}
-.article kbd{color:#555;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}
 .article .wrapTable {
   overflow: auto;
 }
@@ -185,9 +182,7 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
   border-bottom: 1px solid #ECEAF7;
   vertical-align: top;
 }
-.article blockquote{border-left:2px solid rgba(0,0,0,.54);color:rgba(0,0,0,.54)}
-.pagination a .button,.pagination a .title{color:#fff}
-.pagination .direction{color:hsla(0,0%,100%,.7)}
+.article blockquote{border-left:2px solid rgba(0,0,0,.54);color:rgba(0,0,0,.54);padding-left:16px;}
 .article .admonition {
   padding: 18px 18px 18px 60px;
   margin: 21px 0;
@@ -255,16 +250,13 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
 
 .article li p{display:inline}
 .article p>code{white-space:nowrap;padding:2px 4px}
-.article kbd{display:inline-block;padding:3px 5px;line-height:10px}
 .article hr{margin-top:1.5em}
-.article img{max-width:100%}
 .article pre{padding:16px;margin:1.5em -16px 0;line-height:1.5em;overflow:auto;-webkit-overflow-scrolling:touch}
 .article table{margin:3em 0 1.5em;overflow:hidden;}
 .article table th{text-align:left;}
-.article blockquote{padding-left:16px}
 .article caption{text-align: left; font-weight: bold;}
-.article .data table{display:inline-block;margin:0 16px;text-align:left}
-.article .screenchot {
+.article img{max-width:100%}
+.article img.screenchot {
   margin: 21px 0;
   display: block;
 }
@@ -322,15 +314,14 @@ body,input{font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoo
   display: none;
 }
 
-.section-pagelist ul {
+/*.section-pagelist ul {
   list-style: none;
   margin: 0;
 }
 .section-pagelist ul>li {
   margin: 15px 0;
-}
+}*/
 
-/*パンくず*/
 ul.breadcrumbs {
   margin-left: 0;
 }
@@ -463,15 +454,12 @@ ul.breadcrumbs {
   display: block;
   border-bottom: none;
 }
-/* Enquete
-=========================================*/
 #enquete {
-  padding: 12px;
+  padding: 9px;
   background-color: rgba(9,17,38,0.7);
   color: #fff;
   text-align: center;
   position: fixed;
-  right: 0;
   bottom: 0;
   z-index: 100;
   width: 400px;
