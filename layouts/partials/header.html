@@ -16,7 +16,7 @@
       </form>
     </div>
   {{end}}
-  {{if .IsTranslated}}
+  {{if and .IsTranslated (eq .Site.Params.langSelector true) }}
   <div id="langselector">{{ partial "langselector" . }}</div>
   {{end}}
 </nav>
