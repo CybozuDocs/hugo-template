@@ -2,4 +2,5 @@
 {{ $t2 := replaceRE "{{%\\s*service\\s*%}}" .Site.Params.service $t1 }}
 {{ $t3 := replaceRE "{{%\\s*store\\s*%}}" .Site.Params.store $t2 }}
 {{ $t4 := replaceRE "{{%\\s*cybozu_com\\s*%}}" .Site.Params.cybozu_com $t3 }}
-{{ $t4 }}
+{{ $t5 := replaceRE "{{%\\s*slash_help\\s*%}}" .Site.Params.slash_help $t4 }}
+{{ $t5 }}
