@@ -4,10 +4,7 @@
         {{- $.Scratch.Set "target" "_blank" -}}
     {{- end -}}
     <a class="{{- .Get "link_class" -}}" href="{{- .Get "link_href" -}}" target="{{ .Scratch.Get "target" }}"></a>
-        <div class="tile-title">{{- .Get "title" -}}</div>
-        {{- if (.Get "title2") -}}
-        <div class="tile-title">{{- .Get "title2" -}}</div>
-        {{- end -}}
+        <div class="tile-title">{{ printf "%s" .Inner | markdownify }}</div>
         <div class="tile-link">
             {{- if eq (.Get "pdf_icon") "true" -}}
             <span class="fa fa-file-pdf-o"></span>

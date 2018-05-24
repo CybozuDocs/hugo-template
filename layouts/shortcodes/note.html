@@ -1,5 +1,4 @@
 <aside class="admonition note">
   <i class="fas fa-check"></i>
-  {{ if .Get "title" }}<h1 class="admonition-title">{{ .Get "title" }}</h1>{{end}}
   {{ printf "%s" .Inner | markdownify }}
 </aside>
