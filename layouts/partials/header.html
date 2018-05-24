@@ -7,7 +7,7 @@
   {{ end }}
     </div>
 
-  {{if ne .Params.type "search_result"}}
+  {{if and (ne .Params.type "search_result") (ne .IsHome true)}}
     <div class="searchbox">
       <i class="fas fa-search"></i>
       <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}'>
