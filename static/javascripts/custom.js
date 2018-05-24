@@ -90,7 +90,7 @@ window.onload = function() {
         /* TOCへのハイライト設定 */
         function moveHighlite() {
              let cur_pos = $(window).scrollTop() + 80;
-            $(".article :header").each(function() {
+            $(".article :header").not(".article h1").each(function() {
                 if(cur_pos >= $(this).offset().top) {
                    $("#TableOfContents li a").removeClass("current");
                    $("#TableOfContents li a[href='#" + $(this).attr("id") +"']").addClass("current");
