@@ -1,9 +1,12 @@
+.main {
+  margin-top: 0;
+}
 .article .wrapper {
     max-width: 100%;
     padding-top: 0;
     padding-right: 0;
     padding-left: 0;
-    margin: 72px 12px 12px 12px;
+    margin: 0 12px 12px 12px;
 }
 
 .article {
@@ -21,11 +24,13 @@
     align-items: center;
     height: 180px;
     width: 100%;
+    margin-top: 56px;
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: left top;
     text-align: center;
     justify-content: center;
+    /*background-image: url("/general/images/hero_common.png");*/
 }
 
 .hero-logo {

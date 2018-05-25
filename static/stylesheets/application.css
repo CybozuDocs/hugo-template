@@ -169,21 +169,21 @@ body{position:relative;min-height:calc(100% - 56px);}
 }
 .article table {
   border-collapse: collapse;
-  border-left: 1px solid #ECEAF7;
-  border-top: 1px solid #ECEAF7;
-  border-right: 1px solid #ECEAF7;
+  border-left: 2px solid #ECEAF7;
+  border-top: 2px solid #ECEAF7;
+  border-right: 2px solid #ECEAF7;
 }
 .article table th{
   padding: .6em;
-  border-right: 1px solid #ECEAF7;
-  border-bottom: 1px solid #ECEAF7;
+  border-right: 2px solid #ECEAF7;
+  border-bottom: 2px solid #ECEAF7;
   background:#f6f6f6;
   font-weight: bold;
 }
 .article table td{
   padding: .6em;
-  border-right: 1px solid #ECEAF7;
-  border-bottom: 1px solid #ECEAF7;
+  border-right: 2px solid #ECEAF7;
+  border-bottom: 2px solid #ECEAF7;
   vertical-align: top;
 }
 .article blockquote{border-left:2px solid rgba(0,0,0,.54);color:rgba(0,0,0,.54);padding-left:16px;}
