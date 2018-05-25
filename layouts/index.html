@@ -9,6 +9,7 @@
     <main class="main">
         <article class="article" >
             <div class="wrapper">
+                {{ with .Site.Language.Params.welcome_message }}<h1 class="welcome_message">{{ . }}</h1>{{ end }}
                 <div class="searchbox">
                     <i class="fas fa-search"></i>
                     <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}'>
