@@ -58,7 +58,7 @@
   clear: both;
   display: block;
 }
-.col-flex > *:first-child {
+.col-flex > h2:first-child,.col-flex > h3:first-child {
   padding-top: 0;
   margin-top: 0;
 }
