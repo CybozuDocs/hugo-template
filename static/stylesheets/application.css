@@ -185,6 +185,7 @@ body{position:relative;min-height:calc(100% - 56px);}
   border-right: 2px solid #ECEAF7;
   border-bottom: 2px solid #ECEAF7;
   vertical-align: top;
+  background:#fff;
 }
 .article blockquote{border-left:2px solid rgba(0,0,0,.54);color:rgba(0,0,0,.54);padding-left:16px;}
 .article .admonition {
