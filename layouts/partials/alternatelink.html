@@ -1,0 +1,40 @@
+{{ .Scratch.Set "domain_jp" "https://jp.cybozu.help" }}
+{{ .Scratch.Set "domain_us" "https://help.kintone.com" }}
+{{ .Scratch.Set "domain_cn" "https://help.cybozu.cn" }}
+
+{{ if eq .Site.LanguageCode "ja-jp" }}
+    <link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}" hreflang="ja-us" />
+    <link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .Permalink | relURL }}" hreflang="ja-cn" />
+{{ end }}
+{{ if eq .Site.LanguageCode "ja-us" }}
+    <link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="ja-jp" />
+    <link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .Permalink | relURL }}" hreflang="ja-cn" />
+{{ end }}
+{{ if eq .Site.LanguageCode "ja-cn" }}
+    <link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="ja-jp" />
+    <link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}" hreflang="ja-us" />
+{{ end }}
+{{ if eq .Site.LanguageCode "en-jp" }}
+    <link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}" hreflang="en-us" />
+    <link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .Permalink | relURL }}" hreflang="en-cn" />
+{{ end }}
+{{ if eq .Site.LanguageCode "en-us" }}
+    <link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="en-jp" />
+    <link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .Permalink | relURL }}" hreflang="en-cn" />
+{{ end }}
+{{ if eq .Site.LanguageCode "en-cn" }}
+    <link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="en-jp" />
+    <link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}" hreflang="en-us" />
+{{ end }}
+{{ if eq .Site.LanguageCode "zh-jp" }}
+    <link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}" hreflang="zh-us" />
+    <link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .Permalink | relURL }}" hreflang="zh-cn" />
+{{ end }}
+{{ if eq .Site.LanguageCode "zh-us" }}
+    <link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="zh-jp" />
+    <link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .Permalink | relURL }}" hreflang="zh-cn" />
+{{ end }}
+{{ if eq .Site.LanguageCode "zh-cn" }}
+    <link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="zh-jp" />
+    <link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}" hreflang="zh-us" />
+{{ end }}
