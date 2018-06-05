@@ -120,6 +120,7 @@
   line-height: 1.2;
   position: relative;
   z-index: 1;
+  margin-bottom: 12px;
 }
 
 .tile-link {
@@ -158,7 +159,19 @@
   clear: both;
 }
 .article ol,.article p,.article ul {
-    margin-top: 0
+    margin: 0;
+}
+.article .col-tile ol {
+    margin-left: 21px;
+}
+.article .col-tile ol>li {
+    list-style: decimal;
+    padding: 0;
+    margin: 0;
+    margin-bottom: .6rem;
+}
+.article .col-tile ol>li:before {
+  content: none;
 }
 
 .hotArticle {
@@ -168,11 +181,11 @@
   padding-top: 0px;
 }
 #hotArticles-showMore {
-  padding: 2px;
+  /*padding: 2px;*/
   text-align: center;
   cursor: pointer;
   color: #139cb7;
-  margin-top: 14px;
+  /*margin-top: 14px;*/
 }
 #hotArticles-showMore:hover {
   background: #ECEAF7;
