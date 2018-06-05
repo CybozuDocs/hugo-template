@@ -147,11 +147,9 @@
 }
 .col-tile .fas {
   position: absolute;
-  bottom: 0px;
-  right: 0px;
-  margin-right: 18px;
-  margin-bottom: 18px;
-  font-size: 90px;
+  bottom: 18px;
+  right: 8%;
+  font-size: 105px;
   color: #424242;
 }
 
