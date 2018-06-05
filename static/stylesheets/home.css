@@ -85,7 +85,7 @@
   position: relative;
   float: left;
 }
-.col-tile:hover,.article .col-logo:hover {
+.col-tile:not(.col-topics):hover,.article .col-logo:hover {
     -webkit-transform: scale(1.015);
     -moz-transform: scale(1.015);
     -ms-transform: scale(1.015);
