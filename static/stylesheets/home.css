@@ -145,6 +145,15 @@
   margin-right: 6px;
   margin-bottom: 6px;
 }
+.col-tile .fas {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  margin-right: 18px;
+  margin-bottom: 18px;
+  font-size: 90px;
+  color: #424242;
+}
 
 .fa-file-pdf-o {
   color: #CB0606;

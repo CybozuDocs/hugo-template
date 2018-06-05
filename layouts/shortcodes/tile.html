@@ -11,5 +11,6 @@
             {{- end -}}
             <a href="{{- .Get "link_href" -}}" target="{{ .Scratch.Get "target" }}">{{- .Get "link_text" -}}</a><i class="fa fa-chevron-right" aria-hidden="true"></i>
         </div>
-            <img class="tile-img" src="{{- .Get "img_src" -}}" alt="{{- .Get "img_alt" -}}"></img>
+            {{- if (.Get "img_src") -}}<img class="tile-img" src="{{- .Get "img_src" -}}" alt="{{- .Get "img_alt" -}}"></img>{{- end -}}
+            {{- if (.Get "fontawesome_icon") -}}<i class="fas {{ .Get "fontawesome_icon" }}"></i>{{- end -}}
 </div>
