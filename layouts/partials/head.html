@@ -46,31 +46,24 @@
     </style> -->
 
     <link rel="stylesheet" href="{{ "stylesheets/application.css" | relURL }}">
-    <link rel="stylesheet" href="{{ "stylesheets/temporary.css" | relURL }}">
-    <link rel="stylesheet" href="{{ "stylesheets/palettes.css" | relURL }}">
-
     <link rel="stylesheet" href="{{ with .Site.Params.highlight_css }}{{ . | relURL }}{{ else }}{{ "stylesheets/highlight/highlight.css" | relURL }}{{ end }}">
-
     <link rel="stylesheet" href="{{ "stylesheets/zoom.css" | relURL }}">
-
-    <link rel="stylesheet" href="{{ "stylesheets/custom.css" | relURL }}">
-
     <link href="//js.cybozu.com/font-awesome/v5.0.9/css/fontawesome-all.min.css" rel="stylesheet">
-
     {{if .IsHome}}
     <link rel="stylesheet" href="{{ "stylesheets/home.css" | relURL }}">
     {{end}}
+    <link rel="stylesheet" href="{{ "stylesheets/custom.css" | relURL }}">
 
     {{if eq .Params.type "search_result"}}
     <link href="//c.marsflag.com/mf/mfx/css/mfx-serp.css" rel="stylesheet" type="text/css" media="all" charset="UTF-8">
     <link rel="stylesheet" href="{{ "stylesheets/search_result.css" | relURL }}">
     {{end}}
 
-    <script src="{{ "javascripts/modernizr.js" | relURL }}"></script>
+    <!-- <script src="{{ "javascripts/modernizr.js" | relURL }}"></script> -->
     <script src="https://js.cybozu.com/jquery/3.2.1/jquery.min.js"></script>
     <!-- <script src="{{ "javascripts/js.cookie.js" | relURL }}"></script> -->
     <script src="{{ "javascripts/jquery.cookie.js" | relURL }}"></script>
-    <script src="{{ "javascripts/transition.min.js" | relURL }}"></script>
+    <!-- <script src="{{ "javascripts/transition.min.js" | relURL }}"></script> -->
     <script src="{{ "javascripts/zoom.js" | relURL }}"></script>
     <script src="{{ "javascripts/custom.js" | relURL }}"></script>
     <!-- Google Tag Manager -->
