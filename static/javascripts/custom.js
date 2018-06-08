@@ -76,6 +76,7 @@ window.onload = function() {
             let href = $(this).find("a").attr("href");
             let pos = $(href).offset().top;
             $("html, body").stop().animate({ scrollTop:pos });
+            location.href = href;
             return false;
         });
 
