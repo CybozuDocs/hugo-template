@@ -229,9 +229,9 @@ body{position:relative;min-height:calc(100% - 56px);}
   margin-top: 18px;
   position: relative;
 }
-.article h1{font-size:2.4rem;line-height:1.2em;margin-bottom:30px;padding-top: 42px;font-weight: 700;}
-.article h2{font-size:2.1rem;line-height:1.2em;margin-bottom:24px;padding-top: 42px;}
-.article h3{font-size:1.6rem;line-height:1.2em;margin-bottom:15px;padding-top: 42px;}
+.article h1{font-size:2.4rem;line-height:1.2em;margin-bottom:30px;padding-top: 66px;font-weight: 700;}
+.article h2{font-size:2.1rem;line-height:1.2em;margin-bottom:24px;padding-top: 66px;}
+.article h3{font-size:1.6rem;line-height:1.2em;margin-bottom:15px;padding-top: 66px;}
 .article h4{font-size:1.3rem;line-height:1.2em;margin-bottom:12px;padding-top: 30px;}
 .article h5{font-size:1.1rem;line-height:1.2em;margin-bottom:10px;padding-top: 24px;}
 .article h6{font-size:1.0rem;line-height:1.2em;margin-bottom:10px;padding-top: 18px;font-weight: 700;}
