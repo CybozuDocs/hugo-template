@@ -40,7 +40,7 @@ window.onload = function() {
     let tocdiv =  document.getElementById("sidebar-toc");
     if( tocdiv != null ) {
         /* TOC構築 */
-        let toclist = "<div id='TableOfContents'><ul>";
+        let toclist = "<div id='TableOfContents'>";
         let curlevel = 0;
         $(".article :header").not(".article h1").each(function() {
             let href = $(this).attr("id");
@@ -61,7 +61,7 @@ window.onload = function() {
                 toclist += "<li><a href='#" + href + "'>" + val + "</a></li>";
             }
         });
-        toclist += "</ul></div>";
+        toclist += "</div>";
         $("#sidebar-toc").append(toclist);
     }
 

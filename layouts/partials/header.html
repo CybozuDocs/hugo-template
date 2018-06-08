@@ -11,7 +11,7 @@
     <div class="searchbox">
       <i class="fas fa-search"></i>
       <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}'>
-        <input name="q" id="headerSearchBox_input" placeholder="{{ .Site.Language.Params.search_guide }}" type="text" aria-label="search">
+        <input name="q" id="headerSearchBox_input" placeholder="{{if eq .Lang "ja" }}何をお探しですか？{{ end }}{{if eq .Lang "en" }}Enter keywords to search help.{{ end }}{{if eq .Lang "zh" }}您可输入关键字查找{{ end }}" type="text" aria-label="search">
         <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}">
       </form>
     </div>

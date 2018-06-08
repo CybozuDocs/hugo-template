@@ -9,14 +9,18 @@
     <main class="main">
         <article class="nfarticle" >
             <div class="nftitle">
-             {{ .Site.Language.Params.notfound_title }}
+             {{if eq .Lang "ja" }}お探しのページが見つかりません{{ end }}
+             {{if eq .Lang "en" }}The page you are looking for could not be found{{ end }}
+             {{if eq .Lang "zh" }}无法找到您正在查找的页面{{ end }}
              </div>
              <div class="nfdetail">
-             {{ .Site.Language.Params.notfound_guide }}
+             {{if eq .Lang "ja" }}申し訳ありません。お探しのページは見つかりません。{{ end }}
+             {{if eq .Lang "en" }}I'm sorry. The page you are looking for can not be found.{{ end }}
+             {{if eq .Lang "zh" }}我很抱歉。 无法找到您正在查找的页面{{ end }}
              </div>
              <div class="nflink">
-             <a href="javascript:history.back()">{{ .Site.Language.Params.notfound_goprev }}</a><br>
-             <a href="/{{.Lang}}/">{{ .Site.Language.Params.notfound_gotop }}</a>
+             <a href="javascript:history.back()">{{if eq .Lang "ja" }}前のページに戻る{{ end }}{{if eq .Lang "en" }}Go back to previous page{{ end }}{{if eq .Lang "zh" }}回到前一页{{ end }}</a><br>
+             <a href="/{{.Lang}}/">{{if eq .Lang "ja" }}トップに戻る{{ end }}{{if eq .Lang "en" }}Go back to top page{{ end }}{{if eq .Lang "zh" }}返回页首{{ end }}</a>
              </div>
         </article>
     </main>

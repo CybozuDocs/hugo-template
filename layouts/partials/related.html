@@ -12,7 +12,9 @@
 {{if gt ($.Scratch.Get "pagecnt") 0}}
   {{ with $related.ByWeight }}
 <hr>
-<div class="seealso">{{ $.Site.Language.Params.see_also }}</div>
+{{if eq .Lang "ja" }}<div class="seealso">次のページも参照してください</div>{{ end }}
+{{if eq .Lang "en" }}<div class="seealso">See also</div>{{ end }}
+{{if eq .Lang "zh" }}<div class="seealso">另请参阅下一页</div>{{ end }}
 <ul>
 	{{- range . -}}
       {{- if in .Params.disabled $.Site.Params.TargetRegion -}}

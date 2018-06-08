@@ -28,6 +28,9 @@
         {{- partial "enquete" . -}}
     </div>
     <nav id="sidebar-toc">
+        {{if eq .Lang "ja" }}<h2 class="tocTitle">この記事の内容</h2>{{ end }}
+        {{if eq .Lang "en" }}<h2 class="tocTitle">In this article</h2>{{ end }}
+        {{if eq .Lang "zh" }}<h2 class="tocTitle">本文内容</h2>{{ end }}
     </nav>
 </div>
 <footer class="footer">

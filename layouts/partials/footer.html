@@ -6,5 +6,7 @@
         {{ end }}
       </ul>
     </div>
-    <div id="footercopyright">{{$.Site.Params.footer_copyright}}</div>
+    {{if eq .Lang "ja" }}<div id="footercopyright">記載された商品名、各製品名は各社の登録商標または商標です。 © {{ $.Site.Params.CorpName }}</div>{{ end }}
+    {{if eq .Lang "en" }}<div id="footercopyright">All brand names and product names appearing on this site are registered trademarks or trademarks of {{ $.Site.Params.CorpName }}.</div>{{ end }}
+    {{if eq .Lang "zh" }}<div id="footercopyright">记载的商品名称、各产品名称都为各公司的注册商标或商标。 © {{ $.Site.Params.CorpName }}</div>{{ end }}
 </div>
