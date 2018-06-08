@@ -232,7 +232,7 @@ body{position:relative;min-height:calc(100% - 56px);}
   /*padding: 18px 18px 12px 18px;*/
 }
 .article .admonition .admonition-title {
-  font-size: 1.3rem;
+  font-size: 1rem;
   margin-bottom: 9px;
   padding-top: 0;
 }
@@ -375,6 +375,7 @@ ul.breadcrumbs {
 }
 
 #sidebar-toc {
+    display: none;
     position: fixed;
     width: 200px;
     height: 100%;
