@@ -202,21 +202,23 @@ body{position:relative;min-height:calc(100% - 56px);}
 }
 .article .admonition.note {
   /*background:#EAF3FF;*/
-  border: 1px solid #86b3e0;
+  border-top: 1px solid #86b3e0;
+  border-bottom: 1px solid #86b3e0;
 }
 .article .admonition.note .fas{
   color: #4496d3;
 }
 .article .admonition.warning {
   /*background:#fcf8e3;*/
-  border: 1px solid #f39b50;
+  border-top: 1px solid #f39b50;
+  border-bottom: 1px solid #f39b50;
 }
 .article .admonition.warning .fas{
   color: #ed6c00;
 }
 .article .admonition .admonition-alt {
   font-size: 1rem;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
   /*background: #fff;*/
   /*display: inline-block;*/
   /*padding: 0px 15px;*/
