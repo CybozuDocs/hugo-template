@@ -126,9 +126,12 @@
 }
 
 .tile-link {
-  position: absolute;
-  bottom: 20px;
+  /*position: absolute;*/
+  /*bottom: 20px;*/
+  margin-top: 45px;
   z-index: 1;
+  width: 50%;
+  /*display: none;*/
 }
 
 /*.tile-right {
@@ -230,11 +233,13 @@
   font-size: 1.2rem;
 }
 
-@media only screen and (max-width:1000px) {
+@media only screen and (max-width:1100px) {
   .col-tile {
     width: 46.8%;
     margin: 0 1.6% 16px;
   }
+}
+@media only screen and (max-width:1000px) {
   .hero {
     height: 90px;
   }

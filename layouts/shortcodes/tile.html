@@ -6,11 +6,10 @@
     <a class="{{- .Get "link_class" -}}" href="{{- .Get "link_href" -}}" target="{{ .Scratch.Get "target" }}"></a>
         <div class="tile-title">{{ printf "%s" .Inner | markdownify }}</div>
         <div class="tile-link">
-            {{- if eq (.Get "pdf_icon") "true" -}}
-            <span class="fa fa-file-pdf-o"></span>
+            {{- if (.Get "link_text") -}}
+                {{- .Get "link_text" -}}
             {{- end -}}
-            <a href="{{- .Get "link_href" -}}" target="{{ .Scratch.Get "target" }}">{{- .Get "link_text" -}}</a><i class="fa fa-chevron-right" aria-hidden="true"></i>
         </div>
             {{- if (.Get "img_src") -}}<img class="tile-img" src="{{- .Get "img_src" -}}" alt="{{- .Get "img_alt" -}}"></img>{{- end -}}
-            {{- if (.Get "fontawesome_icon") -}}<i class="fas {{ .Get "fontawesome_icon" }}"></i>{{- end -}}
+            {{- if (.Get "fontawesome_icon") -}}<i class="fas {{ .Get "fontawesome_icon" }}"{{- if (.Get "fontawesome_color") -}} style="color:{{ .Get "fontawesome_color" }};"{{- end -}}></i>{{- end -}}
 </div>
