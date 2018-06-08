@@ -42,6 +42,7 @@ window.onload = function() {
         /* TOC構築 */
         let toclist = "<div id='TableOfContents'>";
         let curlevel = 0;
+        let existsToc = 0;
         $(".article :header").not(".article h1").each(function() {
             let href = $(this).attr("id");
             let val = $(this).text();
@@ -60,9 +61,13 @@ window.onload = function() {
             if(val != "") {
                 toclist += "<li><a href='#" + href + "'>" + val + "</a></li>";
             }
+            existsToc++;
         });
         toclist += "</div>";
-        $("#sidebar-toc").append(toclist);
+        if( existsToc > 0 ){
+            $("#sidebar-toc").show();
+            $("#sidebar-toc").append(toclist);
+        }
     }
 
     if( document.getElementById("TableOfContents") != null ) {
