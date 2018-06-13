@@ -5,16 +5,17 @@
     <header class="header">
         {{ partial "header" . }}
     </header>
-
+    <div class="nftitle">
+        <h1>
+         {{if eq .Lang "ja" }}お探しのページが見つかりません{{ end }}
+         {{if eq .Lang "en" }}The page you are looking for could not be found{{ end }}
+         {{if eq .Lang "zh" }}无法找到您正在查找的页面{{ end }}
+        </h1>
+    </div>
     <main class="main">
         <article class="nfarticle" >
-            <div class="nftitle">
-             {{if eq .Lang "ja" }}お探しのページが見つかりません{{ end }}
-             {{if eq .Lang "en" }}The page you are looking for could not be found{{ end }}
-             {{if eq .Lang "zh" }}无法找到您正在查找的页面{{ end }}
-             </div>
              <div class="nfdetail">
-             {{if eq .Lang "ja" }}申し訳ありません。お探しのページは見つかりません。{{ end }}
+             {{if eq .Lang "ja" }}申し訳ありません。お探しのページが見つかりませんでした。{{ end }}
              {{if eq .Lang "en" }}I'm sorry. The page you are looking for can not be found.{{ end }}
              {{if eq .Lang "zh" }}我很抱歉。 无法找到您正在查找的页面{{ end }}
              </div>
