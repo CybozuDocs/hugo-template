@@ -5,7 +5,7 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 table{border-collapse:collapse;border-spacing:0}
 td{text-align:left;font-weight:400;vertical-align:middle}
 button{outline:0;padding:0;background:transparent;border:none;font-size:inherit}
-input{-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;-o-appearance:none;appearance:none;outline:none;border:none}
+input{-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;-o-appearance:none;appearance:none;border:none}
 ul{list-style: none;}
 a{text-decoration:none;color:inherit}
 a,button,input,label{-webkit-tap-highlight-color:rgba(255,255,255,0);-webkit-tap-highlight-color:transparent}
