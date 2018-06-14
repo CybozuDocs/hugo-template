@@ -568,11 +568,14 @@ ul.breadcrumbs {
   background: radial-gradient(circle farthest-corner at left bottom, #e94f90 0%, rgba(233, 79, 144, .01) 100%), radial-gradient(circle farthest-corner at right bottom, #287bf4 0%, rgba(40, 123, 244, .01) 100%);
 }
 .nftitle > h1 {
-  width: 1300px;
+  max-width: 1300px;
   margin: 0 auto;
   font-size: 2.1rem;
-  padding: 112px 0;
+  padding: 112px 9px;
   color: #fff;
+}
+.nfarticle {
+  padding: 9px;
 }
 .nflink {
   margin-top: 1rem;
