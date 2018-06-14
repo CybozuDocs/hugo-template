@@ -175,21 +175,21 @@ body{position:relative;min-height:calc(100% - 56px);}
 }
 .article table {
   border-collapse: collapse;
-  border-left: 2px solid #e3e7e8;
-  border-top: 2px solid #e3e7e8;
-  border-right: 2px solid #e3e7e8;
+  border-left: 2px solid #a7a5a6;
+  border-top: 2px solid #a7a5a6;
+  /*border-right: 1px solid #a7a5a6;*/
 }
 .article table th{
   padding: .6em;
-  border-right: 2px solid #e3e7e8;
-  border-bottom: 2px solid #e3e7e8;
+  border-right: 2px solid #a7a5a6;
+  border-bottom: 2px solid #a7a5a6;
   background:#f6f6f6;
   font-weight: bold;
 }
 .article table td{
   padding: .6em;
-  border-right: 2px solid #e3e7e8;
-  border-bottom: 2px solid #e3e7e8;
+  border-right: 2px solid #a7a5a6;
+  border-bottom: 2px solid #a7a5a6;
   vertical-align: top;
   background:#fff;
 }
