@@ -1,7 +1,7 @@
 <aside id="enquete" style="display:none;">
   <form id="enqueteForm" name="enqueteForm" target="blankFrame" method="post">
-    <input type="hidden" name="questions[74180]" value="アプリ作成の5つの方法">
-    <input type="hidden" name="questions[74181]" value="https://help.cybozu.com/ja/k/user/5ways.html">
+    <input type="hidden" name="questions[74180]" value="{{- partial "title" . -}}">
+    <input type="hidden" name="questions[74181]" value="https://help.cybozu.com{{ .Permalink | relURL }}">
     <input class="enqueteIpAddr" type="hidden" name="questions[74184]" value="">
     <input class="enqueteSubDomain" type="hidden" name="questions[74185]" value="">
     <input class="enqueteReferrer" type="hidden" name="questions[88367]" value="">
@@ -9,8 +9,8 @@
     <input id="enqueteRadio" type="hidden" name="questions[74183]" value="">
     <span id="enqueteYesOrNoBtns">
       この情報は役に立ちましたか？
-      <input class="enqueteBtn" id="feedback_yes" type="button" value="はい" onclick='$.cookie("answered","/ja/k/user/5ways.html", {path:"/",expires:1});'>
-      <input class="enqueteBtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","/ja/k/user/5ways.html",{path:"/",expires:1});'>
+      <input class="enqueteBtn" id="feedback_yes" type="button" value="はい" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
+      <input class="enqueteBtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
     </span>
     <span id="enqueteThanks" style="display:none;">
     ご回答ありがとうございました。
@@ -34,3 +34,4 @@
 <script>
 document.getElementById("enqueteForm").action="https://formcreator.jp/answer.php/screens/enquete_from_external_site?key=pDgJI91lHBlbFjGvfIKRhw%3D%3D";
 </script>
+<iframe name="blankFrame" width=0 height=0 style="visibility:hidden"></iframe> <!-- for questionnaire -->
