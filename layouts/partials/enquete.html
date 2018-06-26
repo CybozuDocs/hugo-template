@@ -13,16 +13,19 @@
       <input class="enqueteBtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
     </span>
     <span id="enqueteThanks" style="display:none;">
-    ご回答ありがとうございました。
+    ありがとうございます！お役に立てたようで何よりです。
+    </span>
+    <span id="enqueteSorry" style="display:none;">
+    お役に立てず、申し訳ございません。
     </span>
     <div id="additionnalEnquate" style="display:none;">
-      <div>この記事へのご意見やご要望があれば、ご記入ください。記事の改善に利用させていただきます。</div>
+      <div>どのように改善したらよいか、ぜひお聞かせください。</div>
         <textarea id="additionnalEnquate_textArea" name="questions[74182]"></textarea>
         <span id="additionnalEnquate_countChar">残り1500文字</span>
         <div id="enquete_note">
          <ul>
-          <li>製品に関するご意見への回答は行っておりません。</li>
-          <li>個人情報、秘密保持義務のある情報、個別の通信内容等の提供はご遠慮ください。</li>
+          <li>質問や要望への返答は行っておりません。</li>
+          <li>個人情報、秘密保持義務のある情報、個別の通信内容等の記入はご遠慮ください。</li>
          </ul>
         </div>
         <input type="submit" value="送信" id="feedback_send" class="enqueteBtn btn_disabled">
