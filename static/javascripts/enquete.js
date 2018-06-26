@@ -26,6 +26,7 @@ $(function(){
   var $window= $(window);
   var $enqueteYesOrNoBtns = $("#enqueteYesOrNoBtns");
   var $enqueteThanks = $("#enqueteThanks");
+  var $enqueteSorry = $("#enqueteSorry");
   var $additionnalEnquate = $("#additionnalEnquate");
   var $additionnalEnquate_textArea = $('#additionnalEnquate_textArea');
   var $additionnalEnquate_countChar = $('#additionnalEnquate_countChar');
@@ -77,7 +78,7 @@ $(function(){
       feedbackflg = true;
       document.enqueteForm.submit();
       $enqueteYesOrNoBtns.hide();
-      $enqueteThanks.show();
+      $enqueteSorry.show();
       //[いいえ]を押されたらご意見記入欄を表示
       setTimeout(function() {
         $additionnalEnquate.show();

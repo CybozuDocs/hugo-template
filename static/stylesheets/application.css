@@ -553,7 +553,7 @@ ul.breadcrumbs {
 #enquete_note {
   margin: 2rem 0;
 }
-#enqueteThanks {
+#enqueteThanks,#enqueteSorry {
   height: 27px;
 }
 
