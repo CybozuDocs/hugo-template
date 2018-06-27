@@ -1,7 +1,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {{ range .Data.Pages }}
   <url>
-    <loc>{{ .Permalink }}</loc>
+    <loc>{{ .Permalink | absURL }}</loc>
   </url>
   {{ end }}
 </urlset> 
