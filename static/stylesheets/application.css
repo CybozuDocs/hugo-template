@@ -247,7 +247,7 @@ body{position:relative;min-height:calc(100% - 56px);}
 }
 .article ol>li {
   position: relative;
-  padding: 5px 0 5px 50px;
+  padding: 5px 0 5px 53px;
   margin: 0 0 15px 5px;
 }
 .article ol>li:before {
@@ -255,7 +255,7 @@ body{position:relative;min-height:calc(100% - 56px);}
   counter-increment: li;
   position: absolute;
   height: 100%;
-  width: 30px;
+/*  width: 30px;*/
   top: 0;
   left: 0;
   padding-right:10px;
