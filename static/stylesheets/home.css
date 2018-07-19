@@ -150,7 +150,7 @@
   margin-right: 6px;
   margin-bottom: 6px;
 }
-.col-tile .fas {
+.col-tile .fas,.col-tile .fab {
   position: absolute;
   bottom: 18px;
   right: 8%;
