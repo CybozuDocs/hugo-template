@@ -260,7 +260,7 @@ body{position:relative;min-height:calc(100% - 56px);}
   left: 0;
   padding-right:10px;
   color: #888;
-  font-size: 170%;
+  font-size: 1.7rem;
   font-weight: 600;
   line-height: 33px;
   text-align: right;
