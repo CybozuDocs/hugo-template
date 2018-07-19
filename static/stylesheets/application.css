@@ -352,7 +352,12 @@ body{position:relative;min-height:calc(100% - 56px);}
 .section-pagelist ul>li {
   margin: 15px 0;
 }
-
+.section-pagelist .section-pagelist-heading {
+  font-size: 1.5rem;
+  font-weight: normal;
+  padding-top: 60px;
+  margin-bottom: 18px;
+}
 ul.breadcrumbs {
   margin-left: 0;
 }
