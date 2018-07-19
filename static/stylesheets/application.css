@@ -271,7 +271,7 @@ body{position:relative;min-height:calc(100% - 56px);}
 .article p>code{white-space:nowrap;padding:2px 4px}
 .article hr{margin-top:1.5em}
 .article pre{padding:16px;margin:1.5em -16px 0;line-height:1.5em;overflow:auto;-webkit-overflow-scrolling:touch}
-.article table{margin:21px 0;overflow:hidden;}
+.article table{margin:21px 0;overflow:hidden;font-size: .93rem;}
 .article table th{text-align:left;}
 .article caption{text-align: left; font-weight: bold; font-size: 1.1rem;line-height: 2em;}
 .article img{max-width:100%}
