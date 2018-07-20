@@ -43,7 +43,7 @@ window.onload = function() {
         let toclist = "<div id='TableOfContents'>";
         let curlevel = 0;
         let existsToc = 0;
-        $(".article :header").not(".article h1").each(function() {
+        $(".article h2,.article h3,.article h4").each(function() {
             let href = $(this).attr("id");
             let val = $(this).text();
             let taglevel = Number($(this).prop("tagName").substr(1,1));
