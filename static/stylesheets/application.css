@@ -230,11 +230,11 @@ body{position:relative;min-height:calc(100% - 56px);}
   position: relative;
 }
 .article h1{font-size:2.4rem;line-height:1.2em;margin-bottom:30px;padding-top: 66px;font-weight: 700;}
-.article h2{font-size:2.1rem;line-height:1.2em;margin-bottom:24px;padding-top: 66px;}
-.article h3{font-size:1.6rem;line-height:1.2em;margin-bottom:15px;padding-top: 66px;}
-.article h4{font-size:1.3rem;line-height:1.2em;margin-bottom:12px;padding-top: 66px;}
-.article h5{font-size:1.1rem;line-height:1.2em;margin-bottom:10px;padding-top: 24px;font-weight: 700;}
-.article h6{font-size:1.0rem;line-height:1.2em;margin-bottom:10px;padding-top: 18px;font-weight: 700;}
+.article h2{font-size:2.1rem;line-height:1.2em;margin-bottom:24px;margin-top: -24px;padding-top: 66px;}
+.article h3{font-size:1.6rem;line-height:1.2em;margin-bottom:15px;margin-top: -36px;padding-top: 66px;}
+.article h4{font-size:1.4rem;line-height:1.2em;margin-bottom:12px;margin-top: -36px;padding-top: 66px;}
+.article h5{font-size:1.2rem;line-height:1.2em;margin-bottom:10px;margin-top: -42px;padding-top: 66px;font-weight: 700;}
+.article h6{font-size:1.0rem;line-height:1.2em;margin-bottom:10px;margin-top: -48px;padding-top: 66px;font-weight: 700;}
 .article ol{margin: 30px 0;}
 .article p,.article ul{margin-bottom:.9em;}
 .article ul {
@@ -247,7 +247,7 @@ body{position:relative;min-height:calc(100% - 56px);}
 }
 .article ol>li {
   position: relative;
-  padding: 5px 0 5px 50px;
+  padding: 5px 0 5px 53px;
   margin: 0 0 15px 5px;
 }
 .article ol>li:before {
@@ -255,12 +255,12 @@ body{position:relative;min-height:calc(100% - 56px);}
   counter-increment: li;
   position: absolute;
   height: 100%;
-  width: 30px;
+/*  width: 30px;*/
   top: 0;
   left: 0;
   padding-right:10px;
   color: #888;
-  font-size: 170%;
+  font-size: 1.7rem;
   font-weight: 600;
   line-height: 33px;
   text-align: right;
@@ -271,7 +271,7 @@ body{position:relative;min-height:calc(100% - 56px);}
 .article p>code{white-space:nowrap;padding:2px 4px}
 .article hr{margin-top:1.5em}
 .article pre{padding:16px;margin:1.5em -16px 0;line-height:1.5em;overflow:auto;-webkit-overflow-scrolling:touch}
-.article table{margin:21px 0;overflow:hidden;}
+.article table{margin:15px 0;overflow:hidden;font-size: .93rem;}
 .article table th{text-align:left;}
 .article caption{text-align: left; font-weight: bold; font-size: 1.1rem;line-height: 2em;word-break: keep-all;}
 .article img{max-width:100%}
@@ -352,7 +352,12 @@ body{position:relative;min-height:calc(100% - 56px);}
 .section-pagelist ul>li {
   margin: 15px 0;
 }
-
+.section-pagelist .section-pagelist-heading {
+  font-size: 1.5rem;
+  font-weight: normal;
+  padding-top: 60px;
+  margin-bottom: 18px;
+}
 ul.breadcrumbs {
   margin-left: 0;
 }

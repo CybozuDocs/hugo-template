@@ -20,6 +20,7 @@
                     {{ .Content }}
                 </article>
                 <nav class="section-pagelist">
+                    <h1 class="section-pagelist-heading">{{if eq .Lang "ja" }}このカテゴリーの記事{{ end }}{{if eq .Lang "en" }}Articles in this category{{ end }}{{if eq .Lang "zh" }}此类别中的内容{{ end }}</h1>
                     {{- .Scratch.Set "pages" (.Pages | union .Sections) }}
                     {{- $pages := (.Scratch.Get "pages") }}
                       <ul>
