@@ -175,14 +175,13 @@
     margin: 0;
 }
 .article .col-tile ol>li {
-    list-style: decimal;
-    list-style-position:inside;
-    padding: 0;
-    margin: 0;
-    margin-bottom: .4rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  list-style: decimal;
+  padding: 0;
+  margin: 0 0 0 2rem;
+  margin-bottom: .4rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .article .col-tile ol>li:before {
   content: none;
