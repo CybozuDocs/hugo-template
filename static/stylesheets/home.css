@@ -181,7 +181,6 @@
   margin-bottom: .4rem;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
 }
 .article .col-tile ol>li:before {
   content: none;
