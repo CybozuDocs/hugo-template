@@ -146,6 +146,7 @@ $(function(){
     var windowHeight = $window.height();
     var windowScrollTop = $window.scrollTop();
     var triggerNodeOffsetTop = $triggerNode.offset().top;
+    var triggerNodeHeight = $triggerNode.height();
     var isDisplayed = false;
     var displayedPos = "fixed";
 
@@ -157,7 +158,7 @@ $(function(){
     function controlDisplayPosition() {
       if ( (triggerNodeOffsetTop - windowHeight) < windowScrollTop ) { //アンケートのfixed<->absoluteを切り替える
         if (displayedPos == "fixed") {
-          $enquete.css({position: "absolute",bottom: "92px"});
+          $enquete.css({position: "absolute",bottom: triggerNodeHeight});
           displayedPos = "absolute";
         }
       } else {
