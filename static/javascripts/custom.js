@@ -65,7 +65,7 @@ window.onload = function() {
         });
         toclist += "</div>";
         if( existsToc > 0 ){
-            $("#sidebar-toc").show();
+            $(".tocTitle").show();
             $("#sidebar-toc").append(toclist);
         }
     }

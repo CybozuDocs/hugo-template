@@ -8,9 +8,11 @@
     {{ partial "header" . }}
 </header>
 <div class="main">
-    <nav class="drawer">
-        {{ partial "drawer" . }}
-    </nav>
+    <div class="wrap_drawer">
+        <nav class="drawer">
+            {{ partial "drawer" . }}
+        </nav>
+    </div>
     <div class="article">
         <div class="wrapper">
             <nav class="breadcrumb">{{- partial "breadcrumb" . -}}</nav>
@@ -35,7 +37,8 @@
             </main>
         </div>
     </div>
-    <div id="sidebar-toc">
+    <div class="wrap_sidebar">
+        <div id="sidebar-toc"></div>
     </div>
 </div>
 
