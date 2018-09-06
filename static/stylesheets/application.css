@@ -502,6 +502,7 @@ ul.breadcrumbs {
   /*text-align: center;*/
   position: fixed;
   bottom: 0;
+  right: 0;
   z-index: 100;
   /* width: 400px; */
   font-size: .9rem;
@@ -509,7 +510,7 @@ ul.breadcrumbs {
 .main {
   padding: 12px 0 10rem;
   width: 100%;
-  position: relative;
+  /* position: relative; */
   overflow: hidden;
 }
 #enqueteForm {
@@ -585,7 +586,6 @@ ul.breadcrumbs {
 }
 @media only screen and (max-width:800px) {
     #langselector{display:none;}
-    #enquete{position:absolute !important;}
     .footer { display: block; }
     .header .searchbox {
       width: 240px;
@@ -605,12 +605,17 @@ ul.breadcrumbs {
     .main { flex-direction: column-reverse; flex-wrap: wrap;}
     /*.article { background-color: #ffffff;}*/
     .drawer {position: relative; width: auto; padding-top:0px;padding-bottom:30px; background-color: #f6f6f6; z-index: 1;}
-    .previous, .next{display: none;}
+    .article {position: relative;}
+      .previous, .next{display: none;}
     #footercopyright {float: left;}
 }
 
 @media only screen and (max-width:1260px) {
   #sidebar-toc { display: none;}
+  #enquete {
+    position:absolute !important;
+    bottom: 0;
+  }
 }
 
 @media print{
