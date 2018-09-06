@@ -7,11 +7,13 @@
     <input class="enqueteReferrer" type="hidden" name="questions[88367]" value="">
     <input class="enqueteKeyWords" type="hidden" name="questions[88366]" value="">
     <input id="enqueteRadio" type="hidden" name="questions[74183]" value="">
-    <span id="enqueteYesOrNoBtns">
+    <div id="enqueteYesOrNoBtns">
       この情報は役に立ちましたか？
-      <input class="enqueteBtn" id="feedback_yes" type="button" value="はい" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
-      <input class="enqueteBtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
-    </span>
+      <div>
+        <input class="enqueteBtn" id="feedback_yes" type="button" value="はい" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
+        <input class="enqueteBtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
+      </div>
+    </div>
     <span id="enqueteThanks" style="display:none;">
     ありがとうございます！お役に立てたようで何よりです。
     </span>

@@ -323,7 +323,7 @@ body{position:relative;min-height:calc(100% - 56px);}
   margin: 0 auto;
   padding: 0 18px;
   max-width: 1300px;
-  height: 8rem;
+  height: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -502,13 +502,15 @@ ul.breadcrumbs {
   /*text-align: center;*/
   position: fixed;
   bottom: 0;
-  z-index: 100;
-  width: 400px;
+  right: 0;
+  z-index: 1;
+  /* width: 400px; */
+  font-size: .9rem;
 }
 .main {
   padding: 12px 0 10rem;
   width: 100%;
-  position: relative;
+  /* position: relative; */
   overflow: hidden;
 }
 #enqueteForm {
@@ -525,6 +527,7 @@ ul.breadcrumbs {
   border-radius: 2px;
   display: inline-block;
   cursor: pointer;
+  margin-top: 5px;
 }
 .enqueteBtn:hover {
   background: #F8F8F8;
@@ -583,7 +586,6 @@ ul.breadcrumbs {
 }
 @media only screen and (max-width:800px) {
     #langselector{display:none;}
-    #enquete{position:absolute !important;}
     .footer { display: block; }
     .header .searchbox {
       width: 240px;
@@ -596,19 +598,34 @@ ul.breadcrumbs {
 @media only screen and (min-width:1060px) {
     .main { flex-direction: row; }
     .article { width: 780px;}
-    .drawer { width: 280px; position:fixed; padding-bottom: 8rem}
+    .drawer { width: 280px; position:fixed; padding-bottom: 10rem}
     .wrap_drawer { width: 280px;}
 }
 @media only screen and (max-width:1059px) {
     .main { flex-direction: column-reverse; flex-wrap: wrap;}
     /*.article { background-color: #ffffff;}*/
     .drawer {position: relative; width: auto; padding-top:0px;padding-bottom:30px; background-color: #f6f6f6; z-index: 1;}
-    .previous, .next{display: none;}
+    .article {position: relative;}
+      .previous, .next{display: none;}
     #footercopyright {float: left;}
+    #enquete {
+      width: 100%;
+    }
+    #enqueteYesOrNoBtns div{
+      display: inline;
+    }
+    .enqueteBtn {
+      margin-top: 0;
+    }
+
 }
 
 @media only screen and (max-width:1260px) {
   #sidebar-toc { display: none;}
+  #enquete {
+    position:absolute !important;
+    bottom: 0;
+  }
 }
 
 @media print{
