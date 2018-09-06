@@ -503,7 +503,7 @@ ul.breadcrumbs {
   position: fixed;
   bottom: 0;
   right: 0;
-  z-index: 100;
+  z-index: 1;
   /* width: 400px; */
   font-size: .9rem;
 }
