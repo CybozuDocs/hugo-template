@@ -323,7 +323,7 @@ body{position:relative;min-height:calc(100% - 56px);}
   margin: 0 auto;
   padding: 0 18px;
   max-width: 1300px;
-  height: 8rem;
+  height: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -598,7 +598,7 @@ ul.breadcrumbs {
 @media only screen and (min-width:1060px) {
     .main { flex-direction: row; }
     .article { width: 780px;}
-    .drawer { width: 280px; position:fixed; padding-bottom: 8rem}
+    .drawer { width: 280px; position:fixed; padding-bottom: 10rem}
     .wrap_drawer { width: 280px;}
 }
 @media only screen and (max-width:1059px) {
