@@ -201,6 +201,7 @@
   white-space: nowrap;
   position: absolute;
   width: 100%;
+  top: 0;
 }
 #hotArticles-showMore {
   /*padding: 2px;*/
