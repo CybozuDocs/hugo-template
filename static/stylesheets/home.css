@@ -171,8 +171,11 @@
 .article h1,.article h2,.article h3,.article h4,.article h5,.article h6 {
   clear: both;
 }
-.article ol,.article p,.article ul {
+.article ol,.article p,{
     margin: 0;
+}
+.article ul li {
+    margin: .4rem 0;
 }
 .article .col-tile ol>li {
   list-style: decimal;
