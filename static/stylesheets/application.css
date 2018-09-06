@@ -608,6 +608,16 @@ ul.breadcrumbs {
     .article {position: relative;}
       .previous, .next{display: none;}
     #footercopyright {float: left;}
+    #enquete {
+      width: 100%;
+    }
+    #enqueteYesOrNoBtns div{
+      display: inline;
+    }
+    .enqueteBtn {
+      margin-top: 0;
+    }
+
 }
 
 @media only screen and (max-width:1260px) {
