@@ -503,7 +503,8 @@ ul.breadcrumbs {
   position: fixed;
   bottom: 0;
   z-index: 100;
-  width: 400px;
+  /* width: 400px; */
+  font-size: .9rem;
 }
 .main {
   padding: 12px 0 10rem;
@@ -525,6 +526,7 @@ ul.breadcrumbs {
   border-radius: 2px;
   display: inline-block;
   cursor: pointer;
+  margin-top: 5px;
 }
 .enqueteBtn:hover {
   background: #F8F8F8;

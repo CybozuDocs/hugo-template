@@ -27,7 +27,6 @@
             </nav>
             <!-- <nav class="nextpage">{{- partial "nextpage" . -}}</nav> -->
         </div>
-        {{- partial "enquete" . -}}
     </div>
     <div class="wrap_sidebar">
         <nav id="sidebar-toc">
@@ -35,6 +34,7 @@
             {{if eq .Lang "en" }}<h2 class="tocTitle">In this article</h2>{{ end }}
             {{if eq .Lang "zh" }}<h2 class="tocTitle">本文内容</h2>{{ end }}
         </nav>
+        {{- partial "enquete" . -}}
     </div>
 </div>
 <footer class="footer">
