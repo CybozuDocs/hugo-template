@@ -182,6 +182,7 @@
   padding: 0;
   margin: 0 0 0 2rem;
   margin-bottom: .4rem;
+  position: relative
 }
 .article .col-tile ol>li:before {
   content: none;
@@ -198,6 +199,8 @@
   text-overflow: ellipsis;
   display: block;
   white-space: nowrap;
+  position: absolute;
+  width: 100%;
 }
 #hotArticles-showMore {
   /*padding: 2px;*/
