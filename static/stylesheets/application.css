@@ -409,6 +409,7 @@ ul.breadcrumbs {
 #mainmenu {
     display: block;
     margin-bottom: 30px;
+    font-size: 0.875rem
 }
 
 #mainmenu li {
@@ -420,7 +421,7 @@ ul.breadcrumbs {
 
 #mainmenu a {
   display: inline-block;
-  padding: 15px 10px;
+  padding: 10px 5px;
   width: 100%;
 }
 
@@ -429,35 +430,47 @@ ul.breadcrumbs {
 }
 
 #mainmenu li ul.opened{
+    margin-left: 1rem;
     display: block;
 }
 
-#mainmenu li ul li{
+/* #mainmenu li ul li{
     border-left: 2px solid #0d7b91;
-}
+} */
 #mainmenu .category {
-  display: -webkit-flex;
+  padding-left: 1rem;
+  position: relative;
   display: flex;
-  -webkit-justify-content: space-between;
   justify-content: space-between;
-  -webkit-align-items: center;
-  align-items: center;
+  align-items: center
 }
-#mainmenu .category .expand-button{
+/* #mainmenu .category .expand-button{
   width: 30px;
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
+} */
 #mainmenu a:hover,#mainmenu li a.current{
     background-color: #ECEAF7;
 }
 #mainmenu a.expand,#mainmenu li a.current{
   font-weight: bold;
 }
-#mainmenu i.expand{
+/* #mainmenu i.expand{
+    transform: rotate(90deg);
+} */
+.chevron::before {
+	width: 1rem;
+	font-family: "Font Awesome 5 Free";
+	font-weight: bold;
+        content: "\f054";
+	    position: absolute;
+	left:0
+}
+.chevron.expand::before{
+	margin-top: .2rem;
     transform: rotate(90deg);
 }
 /*.taglist {
