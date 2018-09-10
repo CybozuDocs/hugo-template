@@ -169,6 +169,10 @@ body{position:relative;min-height:calc(100% - 56px);}
   text-decoration:underline;
   line-height: 1.5em;
 }
+
+.article ul li {
+  margin: .5rem 0;
+}
 .article code{background:#eee}
 .article .wrapTable {
   overflow: auto;
