@@ -204,15 +204,15 @@ body{position:relative;min-height:calc(100% - 56px);}
   position: relative;
 }
 .article .admonition.note {
-  border-top: 1px solid #86b3e0;
-  border-bottom: 1px solid #86b3e0;
+  border: 1px solid #a7cde1;
+  background-color: #d9edf7;
 }
 .article .admonition.note .fas{
   color: #4496d3;
 }
 .article .admonition.warning {
-  border-top: 1px solid #f39b50;
-  border-bottom: 1px solid #f39b50;
+  border: 1px solid #dfdf96;
+  background: #fcf8e3
 }
 .article .admonition.warning .fas{
   color: #ed6c00;
