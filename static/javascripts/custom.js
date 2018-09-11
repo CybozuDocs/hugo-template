@@ -3,10 +3,9 @@
 window.onload = function() {
     if( document.getElementById("mainmenu") != null ) {
         /* セクションクリック時の開閉トグル */
-        $("#mainmenu .expand-button").click(function(e) {
+        $("#mainmenu .category a").click(function(e) {
+           $(this).parent().toggleClass("expand");
            $(this).parent().parent().children("ul").toggleClass("opened");
-           $(this).toggleClass("expand")
-           // $(this).parent().children("ul").slideToggle();
         });
 
        /* メニュー選択時にスクロール位置をクッキーに保存 */

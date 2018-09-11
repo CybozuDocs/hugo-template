@@ -461,7 +461,7 @@ ul.breadcrumbs {
 /* #mainmenu i.expand{
     transform: rotate(90deg);
 } */
-.chevron::before {
+.chevron a::before {
 	width: 1rem;
 	font-family: "Font Awesome 5 Free";
 	font-weight: bold;
@@ -469,7 +469,7 @@ ul.breadcrumbs {
 	    position: absolute;
 	left:0
 }
-.chevron.expand::before{
+.chevron.expand a::before{
 	margin-top: .2rem;
     transform: rotate(90deg);
 }

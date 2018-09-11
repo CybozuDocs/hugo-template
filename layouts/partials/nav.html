@@ -20,7 +20,7 @@
         <li>
             <div class="category chevron{{- if .IsAncestor $target}} expand{{end}}">
                 {{- if eq .RelPermalink $target.RelPermalink}}
-                <a href="#main" class="current{{- if .IsAncestor $target}} expand{{end}}">
+                <a href="#" class="current{{- if .IsAncestor $target}} expand{{end}}">
                 {{ else }}
                 <a href="{{ .RelPermalink}}" class="{{- if .IsAncestor $target}}expand{{end}}">
                 {{ end -}}
@@ -46,7 +46,7 @@
             {{- else}}
             <li>
                 {{- if eq .RelPermalink $target.RelPermalink}}
-                <a href="#main" class="current" aria-current="page">{{ partial "title" .}}</a>
+                <a href="#" class="current" aria-current="page">{{ partial "title" .}}</a>
                 {{ else }}
                 <a href="{{ .RelPermalink}}">{{ partial "title" .}}</a>
                 {{ end -}}
