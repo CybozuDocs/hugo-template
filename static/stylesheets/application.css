@@ -408,12 +408,11 @@ ul.breadcrumbs {
 
 #mainmenu {
     display: block;
-    margin-bottom: 30px;
+    margin: 0 0 30px 12px;
     font-size: 0.875rem
 }
 
 #mainmenu li {
-  margin-left:12px;
   padding: 0px;
   border-top: 1px solid #e6e6e6;
   list-style: none;
