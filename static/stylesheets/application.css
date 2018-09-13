@@ -394,6 +394,7 @@ ul.breadcrumbs {
    display: block;
    padding: 5px 10px;
    line-height: 1.3rem;
+   font-size: .875rem;
 }
 
 #TableOfContents a.current {
@@ -409,14 +410,12 @@ ul.breadcrumbs {
 
 #mainmenu {
     display: block;
-    margin-bottom: 30px;
+    margin: 0 0 30px 12px;
     font-size: 0.875rem
 }
 
 #mainmenu li {
-  margin-left:12px;
   padding: 0px;
-  border-top: 1px solid #e6e6e6;
   list-style: none;
 }
 
@@ -462,17 +461,17 @@ ul.breadcrumbs {
 /* #mainmenu i.expand{
     transform: rotate(90deg);
 } */
-.chevron::before {
-	width: 1rem;
+.chevron a::before {
 	font-family: "Font Awesome 5 Free";
 	font-weight: bold;
-        content: "\f054";
-	    position: absolute;
+  content: "\f054";
+	position: absolute;
 	left:0
 }
-.chevron.expand::before{
+.chevron.expand a::before{
 	margin-top: .2rem;
-    transform: rotate(90deg);
+  transform: rotate(90deg);
+  transform-origin: center;
 }
 /*.taglist {
     padding: 5px;
