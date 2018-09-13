@@ -460,16 +460,16 @@ ul.breadcrumbs {
     transform: rotate(90deg);
 } */
 .chevron a::before {
-	width: 1rem;
 	font-family: "Font Awesome 5 Free";
 	font-weight: bold;
-        content: "\f054";
-	    position: absolute;
+  content: "\f054";
+	position: absolute;
 	left:0
 }
 .chevron.expand a::before{
 	margin-top: .2rem;
-    transform: rotate(90deg);
+  transform: rotate(90deg);
+  transform-origin: center;
 }
 /*.taglist {
     padding: 5px;
