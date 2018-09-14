@@ -289,6 +289,9 @@ body{position:relative;min-height:calc(100% - 56px);}
   margin: 21px 0;
   display: block;
 }
+.article iframe {
+  max-width: 100%;
+}
 .nextpage {
   /*position: absolute;*/
   margin-top: 72px;
