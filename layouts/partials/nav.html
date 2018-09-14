@@ -18,13 +18,14 @@
             {{- if in .Params.disabled .Site.Params.TargetRegion}}
             {{- else}}
         <li>
-            <div class="category">
-            {{- if eq .RelPermalink $target.RelPermalink}}
-            <a href="#main" class="current{{- if .IsAncestor $target}} expand{{end}}">
-            {{ else }}
-            <a href="{{ .RelPermalink}}" class="{{- if .IsAncestor $target}}expand{{end}}">
-            {{ end -}}
-            <span>{{- partial "title" . -}}</span></a><i class="fa fa-chevron-right expand-button {{- if .IsAncestor $target}} expand{{end}}" aria-hidden="true"></i></div>
+            <div class="category chevron{{- if .IsAncestor $target}} expand{{end}}">
+                {{- if eq .RelPermalink $target.RelPermalink}}
+                <a href="#" class="current{{- if .IsAncestor $target}} expand{{end}}">
+                {{ else }}
+                <a href="{{ .RelPermalink}}" class="{{- if .IsAncestor $target}}expand{{end}}">
+                {{ end -}}
+                <span>{{- partial "title" . -}}</span></a>
+            </div>
                 {{- if ne $numberOfPages 0 }}
             <ul class="{{- if .IsAncestor $target}}opened{{end}}">
                     {{- if .Sections}}
@@ -45,7 +46,7 @@
             {{- else}}
             <li>
                 {{- if eq .RelPermalink $target.RelPermalink}}
-                <a href="#main" class="current" aria-current="page">{{ partial "title" .}}</a>
+                <a href="#" class="current" aria-current="page">{{ partial "title" .}}</a>
                 {{ else }}
                 <a href="{{ .RelPermalink}}">{{ partial "title" .}}</a>
                 {{ end -}}
