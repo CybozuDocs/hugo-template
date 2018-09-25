@@ -116,6 +116,7 @@ pre,pre code{color:rgba(0,0,0,.87)}
   height: 36px;
   cursor: pointer;
   margin-left: 15px;
+  font-size: 0.875rem;
 }
 #langselector .langlink,#langselector .selectedlang{
   display: block;
