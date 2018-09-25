@@ -1,3 +1,4 @@
+{{if eq .Lang "ja" }}
 <aside id="enquete" style="display:none;">
   <form id="enqueteForm" name="enqueteForm" target="blankFrame" method="post">
     <input type="hidden" name="questions[74180]" value="{{- partial "title" . -}}">
@@ -40,3 +41,4 @@
 document.getElementById("enqueteForm").action="https://formcreator.jp/answer.php/screens/enquete_from_external_site?key=pDgJI91lHBlbFjGvfIKRhw%3D%3D";
 </script>
 <iframe name="blankFrame" width=0 height=0 style="visibility:hidden"></iframe> <!-- for questionnaire -->
+{{ end }}
