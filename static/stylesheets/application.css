@@ -279,7 +279,7 @@ body{position:relative;min-height:calc(100% - 56px);}
   text-align: right;
   border-right: 1px solid #e6e6e6;
 }
-.article ol>li:before {
+.article ol>li>ol>li:before {
   font-size: 1.3rem;
 }
 
