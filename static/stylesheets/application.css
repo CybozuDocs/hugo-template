@@ -255,6 +255,9 @@ body{position:relative;min-height:calc(100% - 56px);}
   counter-reset: li;
   list-style: none;
 }
+.article ol ol{
+  margin-top: 0;
+}
 .article ol>li {
   position: relative;
   padding: 5px 0 5px 53px;
@@ -275,6 +278,9 @@ body{position:relative;min-height:calc(100% - 56px);}
   line-height: 33px;
   text-align: right;
   border-right: 1px solid #e6e6e6;
+}
+.article ol>li>ol>li:before {
+  font-size: 1.3rem;
 }
 
 .article li p{display:inline}
