@@ -2,7 +2,7 @@
   <div class="admonition-alt">
     <i class="fas fa-exclamation-circle"></i>
     {{ if eq $.Site.Params.LanguageName "日本語" }}<span>注意</span>{{ end }}
-    {{ if eq $.Site.Params.LanguageName "English" }}<span>Caution</span>{{ end }}
+    {{ if eq $.Site.Params.LanguageName "English" }}<span>Note</span>{{ end }}
     {{ if eq $.Site.Params.LanguageName "中文(简体)" }}<span>注意</span>{{ end }}
   </div>
   <div class="admonition-content">{{ printf "%s" .Inner | markdownify }}</div>
