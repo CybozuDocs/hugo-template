@@ -1,9 +1,12 @@
 <aside class="admonition warning">
   <div class="admonition-alt">
     <i class="fas fa-exclamation-circle"></i>
-    {{ if eq $.Site.Params.LanguageName "日本語" }}<span>注意</span>{{ end }}
-    {{ if eq $.Site.Params.LanguageName "English" }}<span>Note</span>{{ end }}
-    {{ if eq $.Site.Params.LanguageName "中文(简体)" }}<span>注意</span>{{ end }}
+    <span>
+    {{- if eq $.Site.Params.LanguageName "日本語" -}}注意
+    {{- else if eq $.Site.Params.LanguageName "英語" -}}Caution
+    {{- else if eq $.Site.Params.LanguageName "中文(简体)" -}}注意
+    {{- end -}}
+    </span>
   </div>
   <div class="admonition-content">{{ printf "%s" .Inner | markdownify }}</div>
 </aside>
