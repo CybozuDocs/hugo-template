@@ -174,12 +174,14 @@ body{position:relative;min-height:calc(100% - 56px);}
 .article code,.article pre{background:#eee}
 .article .wrapTable {
   overflow: auto;
+  max-height: 80vh;
 }
 .article table {
   border-collapse: collapse;
   border-left: 2px solid #c2bfc0;
   border-top: 2px solid #c2bfc0;
   /*border-right: 1px solid #a7a5a6;*/
+  max-width: 100%;
 }
 .article table th{
   padding: .6em;
@@ -187,6 +189,8 @@ body{position:relative;min-height:calc(100% - 56px);}
   border-bottom: 2px solid #c2bfc0;
   background:#f6f6f6;
   font-weight: bold;
+  position: sticky;
+  top: -1px;
 }
 .article table td{
   padding: .6em;
