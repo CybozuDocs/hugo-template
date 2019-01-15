@@ -175,6 +175,7 @@ body{position:relative;min-height:calc(100% - 56px);}
 .article .wrapTable {
   overflow: auto;
   max-height: 80vh;
+  display: inline-block;
 }
 .article table {
   border-collapse: collapse;
@@ -182,7 +183,6 @@ body{position:relative;min-height:calc(100% - 56px);}
   border-top: 2px solid #c2bfc0;
   /*border-right: 1px solid #a7a5a6;*/
   max-width: 100%;
-  display: inline-block;
 }
 .article table th{
   padding: .6em;
