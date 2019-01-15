@@ -182,6 +182,7 @@ body{position:relative;min-height:calc(100% - 56px);}
   border-top: 2px solid #c2bfc0;
   /*border-right: 1px solid #a7a5a6;*/
   max-width: 100%;
+  display: inline-block;
 }
 .article table th{
   padding: .6em;
@@ -191,6 +192,7 @@ body{position:relative;min-height:calc(100% - 56px);}
   font-weight: bold;
   position: sticky;
   top: -1px;
+  z-index: 1;
 }
 .article table td{
   padding: .6em;
