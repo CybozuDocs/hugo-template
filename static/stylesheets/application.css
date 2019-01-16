@@ -176,13 +176,13 @@ body{position:relative;min-height:calc(100% - 56px);}
   overflow: auto;
   max-height: 80vh;
   display: inline-block;
+  max-width: 100%;
 }
 .article table {
   border-collapse: collapse;
   border-left: 2px solid #c2bfc0;
   border-top: 2px solid #c2bfc0;
   /*border-right: 1px solid #a7a5a6;*/
-  max-width: 100%;
 }
 .article table th{
   padding: .6em;
