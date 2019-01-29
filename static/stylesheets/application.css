@@ -631,7 +631,7 @@ ul.breadcrumbs {
     .wrap_drawer { width: 280px;}
 }
 @media only screen and (max-width:1059px) {
-    .main { flex-direction: column-reverse; flex-wrap: wrap;}
+    .main { flex-direction: column-reverse;}
     /*.article { background-color: #ffffff;}*/
     .drawer {position: relative; width: auto; padding-top:0px;padding-bottom:30px; background-color: #f6f6f6; z-index: 1;}
     .article {position: relative;}
