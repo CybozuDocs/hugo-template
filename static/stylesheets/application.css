@@ -1,4 +1,4 @@
-html{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}
+﻿html{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}
 *,:after,:before{box-sizing:inherit;-moz-box-sizing:inherit;-webkit-box-sizing:inherit}
 html{-webkit-text-size-adjust:none;-ms-text-size-adjust:none;text-size-adjust:none}
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,main,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0}
@@ -174,9 +174,6 @@ body{position:relative;min-height:calc(100% - 56px);}
 .article code,.article pre{background:#eee}
 .article .wrapTable {
   overflow: auto;
-  max-height: 80vh;
-  display: inline-block;
-  max-width: 100%;
 }
 .article table {
   border-collapse: collapse;
@@ -190,9 +187,6 @@ body{position:relative;min-height:calc(100% - 56px);}
   border-bottom: 2px solid #c2bfc0;
   background:#f6f6f6;
   font-weight: bold;
-  position: sticky;
-  top: -1px;
-  z-index: 1;
 }
 .article table td{
   padding: .6em;
@@ -291,7 +285,7 @@ body{position:relative;min-height:calc(100% - 56px);}
 .article p>code{white-space:nowrap;padding:2px 4px}
 .article hr{margin-top:1.5em}
 .article pre{padding:16px;line-height:1.5em;overflow:auto;-webkit-overflow-scrolling:touch}
-.article table{margin:15px 0;font-size: .93rem;}
+.article table{margin:15px 0;overflow:hidden;font-size: .93rem;}
 .article table th{text-align:left;}
 .article caption{text-align: left; font-weight: bold; font-size: 1.1rem;line-height: 2em;word-break: keep-all;}
 .article img{max-width:100%}
@@ -637,8 +631,7 @@ ul.breadcrumbs {
     .wrap_drawer { width: 280px;}
 }
 @media only screen and (max-width:1059px) {
-    /* .main { flex-direction: column-reverse; flex-wrap: wrap;} */
-    .main { flex-direction: column-reverse;}
+    .main { flex-direction: column-reverse; flex-wrap: wrap;}
     /*.article { background-color: #ffffff;}*/
     .drawer {position: relative; width: auto; padding-top:0px;padding-bottom:30px; background-color: #f6f6f6; z-index: 1;}
     .article {position: relative;}
