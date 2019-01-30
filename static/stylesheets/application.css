@@ -841,3 +841,8 @@ margin-right: .5rem;
 -webkit-text-fill-color: #000;
 color:#000
 }
+.navi-icon {
+  display: inline-block;
+  width: 1.6rem;
+  text-align: center;
+}

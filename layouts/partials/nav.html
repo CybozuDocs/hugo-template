@@ -20,8 +20,8 @@
         <li>
             <div class="category"> 
                 <span class="navi-icon">
-                    {{- if .IsAncestor $target}}<i class="fa fa-minus-circle"></i>
-                    {{- else}}<i class="fa fa-plus-circle"></i>
+                    {{- if .IsAncestor $target}}<i class="fa fa-chevron-down"></i>
+                    {{- else}}<i class="fa fa-chevron-right"></i>
                     {{- end}}
                 </span>
                 {{- if eq .RelPermalink $target.RelPermalink}}

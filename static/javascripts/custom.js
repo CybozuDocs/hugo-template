@@ -6,10 +6,10 @@ window.onload = function() {
         $("#mainmenu").find(".navi-icon").click(function(e) {
         //    $(this).parent().toggleClass("expand");
             let ico = $(this).children("i");
-            if (ico.hasClass("fa-minus-circle")) {
-                ico.removeClass().addClass('fa fa-plus-circle');
+            if (ico.hasClass("fa-chevron-down")) {
+                ico.removeClass().addClass('fa fa-chevron-right');
             } else {
-                ico.removeClass().addClass('fa fa-minus-circle');
+                ico.removeClass().addClass('fa fa-chevron-down');
             }
             $(this).parent().parent().children("ul").slideToggle();
         });
