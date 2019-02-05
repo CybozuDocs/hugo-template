@@ -588,20 +588,27 @@ cursor: pointer;
 #mainmenu a.expand, #mainmenu li a.current {
   font-weight: bold;
 }
-/* #mainmenu i.expand{
-  transform: rotate(90deg);
-} */
-.chevron a::before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: bold;
-  content: "\f054";
-  position: absolute;
-  left: 0
+#navi ul {
+  margin-left: 1rem
 }
-.chevron.expand a::before {
-  margin-top: .2rem;
-  transform: rotate(90deg);
-  transform-origin: center;
+#navi li ul {
+  display: none;
+}
+.navi-sp{
+  padding-left: 1rem;
+}
+.fa{
+  margin-right: .5rem;
+  font-size: 1rem
+}
+.fa:before{
+  -webkit-text-fill-color: #000;
+  color:#000
+}
+.navi-icon {
+  display: inline-block;
+  width: 1.6rem;
+  text-align: center;
 }
 /*.taglist {
   padding: 5px;
@@ -817,32 +824,4 @@ nav, header, footer {
 .font-ja {
   font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
-}
-
-/* 追加ナビ */
-#navi {
-
-}
-#navi ul {
-margin-left: 1rem
-}
-
-#navi li ul {
-display: none;
-}
-.navi-sp{
-  padding-left: 1rem;
-}
-.fa{
-margin-right: .5rem;
-    font-size: 1rem
-  }
-.fa:before{
--webkit-text-fill-color: #000;
-color:#000
-}
-.navi-icon {
-  display: inline-block;
-  width: 1.6rem;
-  text-align: center;
 }
