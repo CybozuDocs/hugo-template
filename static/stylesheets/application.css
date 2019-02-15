@@ -461,13 +461,10 @@ overflow-y: scroll;
   border: none
 }
 .footer .wrapper {
-  /*  display: flex;
-justify-content: space-between;
-align-items: center;*/
   margin: 0 auto;
   padding: 0 18px;
   max-width: 1300px;
-  height: 8rem;
+  height: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -486,6 +483,19 @@ align-items: center;*/
 }
 #footercopyright {
 }
+
+@media only screen and (max-width:800px){
+.footer .wrapper {
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+#footerlinks {
+  margin-bottom: 0
+}
+}
+
+
 .results {
   display: none;
 }
@@ -666,7 +676,7 @@ cursor: pointer;
   font-size: .9rem;
 }
 .main {
-  padding: 12px 0 8rem;
+  padding: 12px 0 6rem;
   width: 100%;
   /* position: relative; */
   overflow: hidden;
