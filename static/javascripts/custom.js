@@ -3,9 +3,15 @@
 window.onload = function() {
     if( document.getElementById("mainmenu") != null ) {
         /* セクションクリック時の開閉トグル */
-        $("#mainmenu .category a").click(function(e) {
-           $(this).parent().toggleClass("expand");
-           $(this).parent().parent().children("ul").toggleClass("opened");
+        $("#mainmenu").find(".navi-icon").click(function(e) {
+        //    $(this).parent().toggleClass("expand");
+            let ico = $(this).children("i");
+            if (ico.hasClass("fa-chevron-down")) {
+                ico.removeClass().addClass('fa fa-chevron-right');
+            } else {
+                ico.removeClass().addClass('fa fa-chevron-down');
+            }
+            $(this).parent().parent().children("ul").slideToggle();
         });
 
        /* メニュー選択時にスクロール位置をクッキーに保存 */
