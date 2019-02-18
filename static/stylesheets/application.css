@@ -753,7 +753,7 @@ cursor: pointer;
 
 @media only screen and (max-width:600px) {
   .footer .wrapper {
-    height: 10rem;
+    height: 9rem;
   }
 }  
 
