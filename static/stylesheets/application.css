@@ -787,6 +787,11 @@ cursor: pointer;
 }
 .wrap_drawer {
   width: 280px;
+  flex-shrink: 0;
+}
+.wrap_sidebar {
+  width: 200px;
+  flex-shrink: 0;
 }
 }
 
@@ -823,7 +828,7 @@ cursor: pointer;
 }
 }
 
-@media only screen and (max-width:1260px) {
+@media only screen and (max-width:1080px) {
 #sidebar-toc {
   display: none;
 }
