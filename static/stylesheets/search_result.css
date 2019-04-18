@@ -1,6 +1,9 @@
 /*.backdrop {
     background-color: #ffffff;
 }*/
+.header .wrapper {
+    justify-content: space-between;
+}
 
 .main {
     justify-content: space-between;
