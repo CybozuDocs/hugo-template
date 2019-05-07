@@ -91,9 +91,7 @@ $(function(){
       }
       document.getElementById("enqueteRadio").value = null;
       document.enqueteForm.submit();
-      $additionnalEnquate.fadeOut("slow", function() {
-        $enqueteThanks.show();
-      });
+      $additionnalEnquate.fadeOut("slow");
       setTimeout(function() {
         $enquete.fadeOut();
       },3000);

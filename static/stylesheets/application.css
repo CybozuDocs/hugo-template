@@ -606,6 +606,7 @@ cursor: pointer;
 }
 .navi-sp{
   padding-left: 1rem;
+  display: block;
 }
 .fa{
   margin-right: .5rem;
