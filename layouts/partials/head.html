@@ -17,6 +17,9 @@
     {{ with .Site.Params.author }}
     <meta name="author" content="{{ . }}">
     {{ end }}
+    {{ if eq .Params.noindex true }}
+    <meta name="robots" content="noindex">
+    {{ end }}
 
     <meta property="og:url" content="{{ .Permalink }}">
     {{ with .Site.Title }}<meta property="og:title" content="{{ . }}">{{ end }}
