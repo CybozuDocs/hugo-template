@@ -4,7 +4,6 @@
 .header .wrapper {
     justify-content: space-between;
 }
-
 .main {
     justify-content: space-between;
     padding-right: 16px;
@@ -30,10 +29,6 @@
   padding: 2em 0;
   padding-left: 24px;
 }
-/*.subnavimsg {
-  font-size: 120%;
-}*/
-
 .btn-mail {
   margin: 24px 0;
   border: 1px solid #e5e5e5;
@@ -99,7 +94,7 @@
 }
 .mf_finder_searchBox_category_links a{
   padding: .9rem 1rem !important;
-  border-radius: 0 !important;
+  border-radius: 0;
 }
 .mf_finder_organic_total:before {
   content: "" !important;
@@ -144,8 +139,7 @@
 .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a:hover, .mf_finder_searchBox_links .mf_finder_searchBox_imgsize_links div a:hover, .mf_finder_searchBox_links .mf_finder_searchBox_pagemax_links div a:hover, .mf_finder_searchBox_links .mf_finder_searchBox_sort_links div a:hover {
     background-color: #bbb;
     color: inherit;
-    border: 1px solid #bbb;
-    border-bottom: none;
+    border-radius: 6px;
 }
 .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a.mf_finder_searchBox_link_current, .mf_finder_searchBox_links .mf_finder_searchBox_imgsize_links div a.mf_finder_searchBox_link_current, .mf_finder_searchBox_links .mf_finder_searchBox_pagemax_links div a.mf_finder_searchBox_link_current, .mf_finder_searchBox_links .mf_finder_searchBox_sort_links div a.mf_finder_searchBox_link_current {
     background-color: #fff;
@@ -181,11 +175,12 @@
       display: block;
       background-color: #0d89a2;
       color: #fff;
-      border-radius: 6px!important
+      border-radius: 6px
   }
   .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a {
       background-color: inherit;
       border: none;
+      display: block
   }
   /* Main */
   .mf_finder_organic_doc {
