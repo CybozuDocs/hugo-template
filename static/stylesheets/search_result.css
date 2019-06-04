@@ -14,8 +14,8 @@
   }
 
 .article {
-    margin-left: 0;
-    width: 100%
+  margin-left: 0;
+  width: 100%
 }
 
 .article .wrapper {
@@ -123,7 +123,7 @@
   color: #333 !important;
 }
 .mf_finder_organic_doc_body_wrapper {
-  padding: .5rem 0
+  padding: .5rem 0 1.3rem 0;
 }
 .mf_finder_link {
   text-decoration: none;
@@ -155,18 +155,10 @@
     border-bottom: none;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1060px) {
   .subnavi {
     display: none
   }
-}
-
-@media screen and (min-width: 800px) {
-.subnavi {
-  margin-left: 24px;
-  padding-top: 60px;
-  border-left: 1px solid #e6e6e6;
-}
 }
 
 @media (max-width: 800px) {
@@ -211,10 +203,12 @@
   }
 }
 
-@media screen and (max-width: 800px) {
-  .subnavi {
-      display: none;
-  }
+@media screen and (min-width: 800px) {
+.subnavi {
+  margin-left: 24px;
+  padding-top: 60px;
+  border-left: 1px solid #e6e6e6;
+}
 }
 
 @media (max-width: 639px) {
