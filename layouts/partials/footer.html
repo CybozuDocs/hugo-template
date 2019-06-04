@@ -2,7 +2,7 @@
     <div id="footerlinks">
       <ul>
         {{ range $i, $r := getCSV "," $.Site.Params.footer_links }}
-        <li><a class="" href="{{- index $r 1 -}}" target="_blank">{{- index $r 0 -}}</a><i class="fas fa-external-link"></i></li>
+        <li><a class="" href="{{- index $r 1 -}}" target="_blank">{{- index $r 0 -}}</a></li>
         {{ end }}
       </ul>
     </div>
