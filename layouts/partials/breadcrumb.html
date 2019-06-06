@@ -12,7 +12,7 @@
     {{ if eq .p1 .p2 }}
         {{- partial "title" .p1 -}}
     {{else}}
-      <a href="{{- .p1.Permalink -}}">{{- partial "title" .p1 -}}</a>&nbsp;>&nbsp;
+      <a href="{{- .p1.Permalink -}}">{{- partial "title" .p1 -}}</a>
     {{ end }}
 </li>
 {{- end -}}

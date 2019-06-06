@@ -1,4 +1,4 @@
-﻿*, :after, :before {
+*, :after, :before {
   -moz-box-sizing: inherit;
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
@@ -225,7 +225,10 @@ overflow-y: scroll;
   line-height: 1.5em;
 }
 .article ul li {
-  margin: .5rem 0;
+  margin: 0 5px;
+}
+.mf_finder_pager_items li a {
+  color: #fff!important
 }
 .article code, .article pre {
   background: #eee
@@ -514,10 +517,21 @@ overflow-y: scroll;
 }
 ul.breadcrumbs {
   margin-left: 0;
+    font-size: 0.875rem
 }
 .breadcrumbs li {
   display: inline;
-  margin-left: 0px;
+  margin: 0!important;
+    padding-right: .3rem;
+}
+.breadcrumbs li::before {
+    display: inline-block;
+    padding-right: .3rem;
+    content: ">";
+}
+.breadcrumbs li:first-child::before {
+    padding-right: 0;
+    content: "";
 }
 #sidebar-toc {
   position: fixed;
