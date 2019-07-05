@@ -120,7 +120,7 @@
     float: left;
 }*/
 
-.tile-title {
+.col-tile .tile-title {
   font-size: 1.4rem;
   line-height: 1.2;
   position: relative;
@@ -128,7 +128,7 @@
   margin-bottom: 12px;
 }
 
-.tile-link {
+.col-tile .tile-link {
   /*position: absolute;*/
   /*bottom: 20px;*/
   margin-top: 45px;
@@ -144,7 +144,7 @@
     float: right;
 }*/
 
-.tile-img {
+.col-tile .tile-img {
   position: absolute;
   bottom: 0px;
   right: 0px;
