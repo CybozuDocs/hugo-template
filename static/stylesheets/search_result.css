@@ -131,6 +131,11 @@
 .mf_finder_organic_doc_body,.mf_finder_query,.mf_finder_searchBox_category_links,.mf_finder_searchBox_submit,.mf_finder_organic_total {
   font-size: 1rem !important;
 }
+.mf_finder_searchBox_links .mf_finder_searchBox_category_links div a{
+    border-radius: 6px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
 .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a, .mf_finder_searchBox_links .mf_finder_searchBox_imgsize_links div a, .mf_finder_searchBox_links .mf_finder_searchBox_pagemax_links div a, .mf_finder_searchBox_links .mf_finder_searchBox_sort_links div a {
     background-color: #ddd;
     border: 1px solid #ddd;
@@ -139,8 +144,7 @@
 }
 .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a:hover, .mf_finder_searchBox_links .mf_finder_searchBox_imgsize_links div a:hover, .mf_finder_searchBox_links .mf_finder_searchBox_pagemax_links div a:hover, .mf_finder_searchBox_links .mf_finder_searchBox_sort_links div a:hover {
     background-color: #bbb;
-    color: inherit;
-    border-radius: 6px;
+    color: inherit
 }
 .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a.mf_finder_searchBox_link_current, .mf_finder_searchBox_links .mf_finder_searchBox_imgsize_links div a.mf_finder_searchBox_link_current, .mf_finder_searchBox_links .mf_finder_searchBox_pagemax_links div a.mf_finder_searchBox_link_current, .mf_finder_searchBox_links .mf_finder_searchBox_sort_links div a.mf_finder_searchBox_link_current {
     background-color: #fff;
@@ -211,4 +215,11 @@
   .mf_finder_organic_doc_body {
       height: 3.6rem;
   }
+}
+
+/* Tab */
+@media (max-width: 800px){
+.mf_finder_searchBox_links .mf_finder_searchBox_category {
+    border-bottom: none
+}
 }
