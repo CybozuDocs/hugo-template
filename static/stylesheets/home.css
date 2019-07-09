@@ -177,6 +177,7 @@
 .article h2 {
   display: block;
   background: none;
+  font-weight: normal;
 }
 .article ol,.article p{
     margin: 0;
