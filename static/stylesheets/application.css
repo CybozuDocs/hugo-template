@@ -770,17 +770,6 @@ cursor: pointer;
 .nflink {
   margin-top: 1rem;
 }
-@media only screen and (max-width:600px) {
-  .footer .wrapper {
-    height: 9rem;
-  }
-}  
-
-@media only screen and (max-width:600px) {
-  .footer .wrapper {
-    height: 9rem;
-  }
-}  
 
 @media only screen and (max-width:800px) {
 #langselector {
@@ -788,6 +777,9 @@ cursor: pointer;
 }
 .footer {
   display: block;
+}
+.footer .wrapper {
+  height: 9rem;
 }
 .header .searchbox {
   width: 240px;
