@@ -131,18 +131,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 12px;
   font-size: 120%;
 }
-#headerSearchBox_form {
-  height: 100%;
-  width: 100%;
-}
-#headerSearchBox_input {
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0 12px;
-  border: none;
-  background-color: #f6f6f6;
-}
 #langselector {
   white-space: nowrap;
   z-index: 3;
@@ -311,12 +299,9 @@ overflow-y: scroll;
 .article h2 {
   font-size: 2.1rem;
   line-height: 1.2em;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   margin-top: -24px;
   padding-top: 66px;
-  background: linear-gradient(transparent 90%, #bddfff 70%);
-  display: inline-block;
-  font-weight: 700;
 }
 .article h3 {
   font-size: 1.6rem;
@@ -324,18 +309,16 @@ overflow-y: scroll;
   margin-bottom: 15px;
   margin-top: -36px;
   padding-top: 66px;
-  font-weight: 700;
 }
 .article h4 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.2em;
   margin-bottom: 12px;
   margin-top: -36px;
   padding-top: 66px;
-  font-weight: 700;
 }
 .article h5 {
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.2em;
   margin-bottom: 10px;
   margin-top: -42px;
@@ -343,7 +326,7 @@ overflow-y: scroll;
   font-weight: 700;
 }
 .article h6 {
-  font-size: .8rem;
+  font-size: 1.0rem;
   line-height: 1.2em;
   margin-bottom: 10px;
   margin-top: -48px;
@@ -787,23 +770,6 @@ cursor: pointer;
 .header-logo-base {
   width: 200px;
 }
-.article h1 {
-  font-size: 1.75rem;
-  padding-top: 30px;
-}
-.article h2 {
-  font-size: 1.5rem;
-}
- .article h3 {
-  font-size: 1.25rem;
-}
- .article h4 {
-  font-size: 1.125rem;
-}
-.article h5 {
-  font-size: 1rem;
-}
-
 /*#footercenter {flex-direction: column;}*/
 }
 
