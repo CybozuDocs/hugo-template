@@ -114,35 +114,52 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 100%;
   max-height: 100%;
 }
-.header .searchbox {
-  width: 500px;
-  height: 36px;
-  border: 1px solid #e6e6e6;
-  background-color: #f6f6f6;
-  -webkit-display: flex;
-  display: flex;
-  -webkit-justify-content: flex-start;
-  justify-content: flex-start;
-  -webkit-align-items: center;
-  align-items: center;
-  margin-left: auto;
+
+/* Search */
+.search-wrap {
+    max-width: 800px;
+    margin: auto;
 }
-.header .fa-search {
-  margin-left: 12px;
-  font-size: 120%;
+.searchbox {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
-#headerSearchBox_form {
-  height: 100%;
-  width: 100%;
+.searchbox input[type=text]{
+    padding-right: .8rem;
+    padding-left: .8rem;
+    width: calc(100% - 59px);
+    height: 60px;
+    border: 1px solid #e6e6e6;
+    border-right: none;
+    background-color: #fff;
 }
-#headerSearchBox_input {
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0 12px;
-  border: none;
-  background-color: #f6f6f6;
+.searchbox input[type=submit]{
+    width:60px;
+    height: 60px;
+    border: 1px solid #e6e6e6;
+    background: #f6f6f6 url("../search-solid.svg") no-repeat center;
+    background-size:60%;
+    cursor: pointer
 }
+.searchbox input[type=submit]::after{
+	font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+	content: "\f002";
+}
+.header .search-wrap {
+    margin: 0 0 0 auto;
+    width: 300px;
+}
+.header .searchbox input[type=text]{
+    width: calc(100% - 35px);
+    height: 36px;
+}
+.header .searchbox input[type=submit]{
+    width:36px;
+    height: 36px;
+}
+
 #langselector {
   white-space: nowrap;
   z-index: 3;
@@ -311,12 +328,9 @@ overflow-y: scroll;
 .article h2 {
   font-size: 2.1rem;
   line-height: 1.2em;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   margin-top: -24px;
   padding-top: 66px;
-  background: linear-gradient(transparent 90%, #bddfff 70%);
-  display: inline-block;
-  font-weight: 700;
 }
 .article h3 {
   font-size: 1.6rem;
@@ -324,18 +338,16 @@ overflow-y: scroll;
   margin-bottom: 15px;
   margin-top: -36px;
   padding-top: 66px;
-  font-weight: 700;
 }
 .article h4 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.2em;
   margin-bottom: 12px;
   margin-top: -36px;
   padding-top: 66px;
-  font-weight: 700;
 }
 .article h5 {
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.2em;
   margin-bottom: 10px;
   margin-top: -42px;
@@ -343,7 +355,7 @@ overflow-y: scroll;
   font-weight: 700;
 }
 .article h6 {
-  font-size: .8rem;
+  font-size: 1.0rem;
   line-height: 1.2em;
   margin-bottom: 10px;
   margin-top: -48px;
@@ -771,6 +783,12 @@ cursor: pointer;
   margin-top: 1rem;
 }
 
+@media only screen and (max-width:600px) {
+  .footer .wrapper {
+    height: 9rem;
+  }
+}  
+
 @media only screen and (max-width:800px) {
 #langselector {
   display: none;
@@ -778,32 +796,9 @@ cursor: pointer;
 .footer {
   display: block;
 }
-.footer .wrapper {
-  height: 9rem;
-}
-.header .searchbox {
-  width: 240px;
-}
 .header-logo-base {
   width: 200px;
 }
-.article h1 {
-  font-size: 1.75rem;
-  padding-top: 30px;
-}
-.article h2 {
-  font-size: 1.5rem;
-}
- .article h3 {
-  font-size: 1.25rem;
-}
- .article h4 {
-  font-size: 1.125rem;
-}
-.article h5 {
-  font-size: 1rem;
-}
-
 /*#footercenter {flex-direction: column;}*/
 }
 
