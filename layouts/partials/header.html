@@ -8,12 +8,14 @@
     </div>
 
   {{if and (ne .Params.type "search_result") (ne .IsHome true)}}
-    <div class="searchbox">
-      <i class="fas fa-search"></i>
+    <div class="search-wrap">
       <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}'>
-        <input name="q" id="headerSearchBox_input" placeholder="{{if eq .Lang "ja" }}何をお探しですか？{{ end }}{{if eq .Lang "en" }}Enter keywords to search help.{{ end }}{{if eq .Lang "zh" }}您可输入关键字查找{{ end }}" type="text" aria-label="search">
-        <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}">
-      </form>
+          <div class="searchbox">
+              <input type="text" name="q" aria-label="search" id="headerSearchBox_input" class="search-input" placeholder="{{if eq .Lang "ja" }}何をお探しですか？{{ end }}{{if eq .Lang "en" }}Enter keywords to search help.{{ end }}{{if eq .Lang "zh" }}您可输入关键字查找{{ end }}">
+              <input type="submit" name="commit" value="" class="search-submit" data-disable-with="">
+              <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}">
+          </div>
+        </form>
     </div>
   {{end}}
   {{if and .IsTranslated (eq .Site.Params.langSelector true) }}
