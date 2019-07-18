@@ -138,7 +138,7 @@ h1, h2, h3, h4, h5, h6 {
     width:60px;
     height: 60px;
     border: 1px solid #e6e6e6;
-    background: #f6f6f6 url("../search-solid.svg") no-repeat center;
+    background: #f6f6f6 url("../images/search-solid.svg") no-repeat center;
     background-size:60%;
     cursor: pointer
 }
