@@ -133,6 +133,8 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid #e6e6e6;
     border-right: none;
     background-color: #fff;
+   -webkit-appearance: none;
+   border-radius: 0
 }
 .searchbox input[type=submit]{
     width:60px;
@@ -141,6 +143,8 @@ h1, h2, h3, h4, h5, h6 {
     background: #f6f6f6 url("../images/search-solid.svg") no-repeat center;
     background-size:60%;
     cursor: pointer
+   -webkit-appearance: none;
+   border-radius: 0
 }
 .searchbox input[type=submit]::after{
 	font-family: "Font Awesome 5 Free";
