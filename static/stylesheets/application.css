@@ -222,6 +222,7 @@ input {
 body {
   position: relative;
   min-height: calc(100% - 56px);
+  overflow-y: scroll
 }
 .header {
   position: fixed;
