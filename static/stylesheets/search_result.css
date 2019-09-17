@@ -5,7 +5,7 @@
     justify-content: space-between;
 }
 
-.body { overflow-y: scroll; }
+body { overflow-y: scroll; }
 
 .main {
     justify-content: space-between;
