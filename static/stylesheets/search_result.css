@@ -5,6 +5,8 @@
     justify-content: space-between;
 }
 
+.body { overflow-y: scroll; }
+
 .main {
     justify-content: space-between;
     padding-right: 16px;
