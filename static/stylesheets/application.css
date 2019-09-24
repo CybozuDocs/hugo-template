@@ -592,7 +592,8 @@ ul.breadcrumbs {
 #mainmenu {
   display: block;
   margin: 0 12px 30px;
-  font-size: 0.875rem
+  font-size: 0.875rem;
+  padding-top: 12px;
 }
 #mainmenu li {
   padding: 0px;
@@ -712,7 +713,7 @@ cursor: pointer;
   font-size: .9rem;
 }
 .main {
-  padding: 12px 0 6rem;
+  padding: 0 0 6rem;
   width: 100%;
   /* position: relative; */
   overflow: hidden;
