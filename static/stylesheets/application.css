@@ -166,7 +166,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #langselector {
   white-space: nowrap;
-  z-index: 3;
+  z-index: 1000;
   position: relative;
   width: 123px;
   border: 1px solid #e6e6e6;
