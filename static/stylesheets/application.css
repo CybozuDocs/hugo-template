@@ -192,7 +192,9 @@ h1, h2, h3, h4, h5, h6 {
 #langselector .selectedlangtitle {
   margin-left: auto;
 }
-#langselector .selectedlang .span.fa.fa-chevron-down {margin: 0}
+#langselector .selectedlang .fa-chevron-down {
+  margin-left: 5px;
+}
 #langselector li:hover {
   background: #ddd;
 }
