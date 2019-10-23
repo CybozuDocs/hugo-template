@@ -525,16 +525,16 @@ overflow-y: scroll;
   display: none;
 }
 .section-pagelist ul {
-  list-style: none;
-  margin: 0;
+  list-style: disc;
+  margin: 0 30;
 }
 .section-pagelist ul>li {
   margin: 15px 0;
 }
 .section-pagelist .section-pagelist-heading {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: normal;
-  padding-top: 60px;
+  padding-top: 20px;
   margin-bottom: 18px;
 }
 ul.breadcrumbs {
