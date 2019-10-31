@@ -153,6 +153,10 @@
   margin-right: 6px;
   margin-bottom: 6px;
 }
+.col-tile .tile-img:nth-child(7) {
+  background-color: #f00;
+  max-width: 80%!important
+}
 .col-tile i {
   position: absolute;
   bottom: 18px;
