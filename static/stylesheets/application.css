@@ -657,6 +657,7 @@ cursor: pointer;
   display: inline-block;
   width: 1.6rem;
   text-align: center;
+  cursor: pointer
 }
 /*.taglist {
   padding: 5px;
