@@ -148,14 +148,9 @@
   position: absolute;
   bottom: 0px;
   right: 0px;
-  max-height: 150px;
-  max-width: 160px;
+  max-height: 140px;
   margin-right: 6px;
   margin-bottom: 6px;
-}
-.col-tile .tile-img:nth-child(7) {
-  background-color: #f00;
-  max-width: 80%!important
 }
 .col-tile i {
   position: absolute;
