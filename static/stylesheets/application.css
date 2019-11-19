@@ -235,10 +235,9 @@ body {
   margin: 56px auto 0 auto;
 }
 .drawer {
-  height: calc(100% - 56px);
+  height: calc(100% - 9.6rem);
   overflow: auto;
   line-height: 1.2em;
-  border-right: 1px solid #e6e6e6;
   font-size: .95rem;
 overflow-y: scroll;
 }
@@ -824,6 +823,7 @@ cursor: pointer;
 .wrap_drawer {
   width: 280px;
   flex-shrink: 0;
+  border-right: 1px solid #e6e6e6;
 }
 .wrap_sidebar {
   width: 200px;
