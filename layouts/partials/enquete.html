@@ -25,7 +25,7 @@
               </span>
           </a>
       </div>
-        <input class="enqueteBtn" id="feedback_yes" type="icon" fontawesome_icon="far fa-thumbs-up" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
+        <input class="enqueteBtn" id="feedback_yes" type="icon" value="はい" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
         <input class="enqueteBtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
       </div>
     </div>
