@@ -9,29 +9,32 @@
     <input class="enqueteKeyWords" type="hidden" name="questions[88366]" value="">
     <input id="enqueteRadio" type="hidden" name="questions[74183]" value="">
     <div id="enqueteYesOrNoBtns">
-      この情報は役に立ちましたか？
+      この記事は役に立ちましたか？
       <div>
         <input class="enqueteBtn" id="feedback_yes" type="button" value="はい" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
         <input class="enqueteBtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
       </div>
     </div>
     <span id="enqueteThanks" style="display:none;">
-    ありがとうございます！お役に立てたようで何よりです。
+    お知らせいただき、ありがとうございます！<br>
+    お役に立てて嬉しいです。
     </span>
     <span id="enqueteSorry" style="display:none;">
-    お役に立てず、申し訳ございません。
+    お知らせいただき、ありがとうございます！<br>
+    ぜひご意見をお聞かせください。
     </span>
     <div id="additionnalEnquate" style="display:none;">
-      <div>どのように改善したらよいか、ぜひお聞かせください。</div>
+      <div>【任意】困っていることを教えてください。</div>
         <textarea id="additionnalEnquate_textArea" name="questions[74182]"></textarea>
-        <span id="additionnalEnquate_countChar">残り1500文字</span>
+        <span id="additionnalEnquate_countChar"></span>
+        <!-- 入力できる文字数は1500文字まで。アンケートには表示しない-->
         <div id="enquete_note">
          <ul>
+          <li>個人情報や秘密保持義務のある情報を含めないでください。</li>
           <li>質問や要望への返答は行っておりません。</li>
-          <li>個人情報、秘密保持義務のある情報、個別の通信内容等の記入はご遠慮ください。</li>
          </ul>
         </div>
-        <input type="submit" value="送信" id="feedback_send" class="enqueteBtn btn_disabled">
+        <input type="submit" value="送信する" id="feedback_send" class="enqueteBtn btn_disabled">
         <input type="submit" value="閉じる" id="feedback_sendWithoutComment" class="enqueteBtn">
     </div>
   </form>
