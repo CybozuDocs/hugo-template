@@ -8,10 +8,24 @@
     <input class="enqueteReferrer" type="hidden" name="questions[88367]" value="">
     <input class="enqueteKeyWords" type="hidden" name="questions[88366]" value="">
     <input id="enqueteRadio" type="hidden" name="questions[74183]" value="">
+
     <div id="enqueteYesOrNoBtns">
       この記事は役に立ちましたか？
-      <div>
-        <input class="enqueteBtn" id="feedback_yes" type="button" value="はい" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
+      <div class="btn-article-vote">
+          <a href="#" class="btn-article-vote-up">
+            <span class="fa-stack">
+                <i class="fas fa-certificate fa-stack-2x"></i>
+                <i class="fas fa-thumbs-up fa-stack-1x"></i>
+            </span>
+          </a>
+          <a href="#" class="btn-article-vote-down">
+              <span class="fa-stack">
+                  <i class="fas fa-certificate fa-stack-2x"></i>
+                  <i class="fas fa-thumbs-down fa-stack-1x"></i>
+              </span>
+          </a>
+      </div>
+        <input class="enqueteBtn" id="feedback_yes" type="icon" fontawesome_icon="far fa-thumbs-up" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
         <input class="enqueteBtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
       </div>
     </div>
