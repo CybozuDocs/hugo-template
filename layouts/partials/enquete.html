@@ -8,7 +8,6 @@
     <input class="enqueteReferrer" type="hidden" name="questions[88367]" value="">
     <input class="enqueteKeyWords" type="hidden" name="questions[88366]" value="">
     <input id="enqueteRadio" type="hidden" name="questions[74183]" value="">
-
     <div id="enqueteYesOrNoBtns">
       この記事は役に立ちましたか？
       <div class="btn-article-vote">
@@ -25,7 +24,8 @@
               </span>
           </a>
       </div>
-        <input class="enqueteBtn" id="feedback_yes" type="icon" value="はい" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
+      <div>
+        <input class="enqueteBtn" id="feedback_yes" type="button" value="はい" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
         <input class="enqueteBtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
       </div>
     </div>
@@ -33,27 +33,13 @@
     お知らせいただき、ありがとうございます！<br>
     お役に立てて嬉しいです。
     </span>
-      <div id="additionnalEnquate" style="display:none;">
-        <div>【任意】困っていることを教えてください。</div>
-          <textarea id="additionnalEnquate_textArea" name="questions[74182]"></textarea>
-          <span id="additionnalEnquate_countChar"></span>
-          <!-- 入力できる文字数は1500文字まで。アンケートには表示しない-->
-          <div id="enquete_note">
-           <ul>
-            <li>個人情報や秘密保持義務のある情報を含めないでください。</li>
-            <li>質問や要望への返答は行っておりません。</li>
-           </ul>
-          </div>
-          <input type="submit" value="送信する" id="feedback_send" class="enqueteBtn btn_disabled">
-          <input type="submit" value="閉じる" id="feedback_sendWithoutComment" class="enqueteBtn">
-      </div>
     <span id="enqueteSorry" style="display:none;">
     お知らせいただき、ありがとうございます！<br>
     ぜひご意見をお聞かせください。
     </span>
-      <div id="additionnalEnquate" style="display:none;">
+    <div id="additionnalEnquate" style="display:none;">
       <div>【任意】困っていることを教えてください。</div>
-        <textarea id="additionnalEnquate_textArea" name="questions[74182]"></textarea>
+        <textarea id="additionnalEnquate_textArea" name="questions[74182]" placeholder = "・○○○のような使い方がしたいが方法が分からない&#13;&#10;・○○○に関する情報があると嬉しい" ></textarea>
         <span id="additionnalEnquate_countChar"></span>
         <!-- 入力できる文字数は1500文字まで。アンケートには表示しない-->
         <div id="enquete_note">
@@ -64,7 +50,7 @@
         </div>
         <input type="submit" value="送信する" id="feedback_send" class="enqueteBtn btn_disabled">
         <input type="submit" value="閉じる" id="feedback_sendWithoutComment" class="enqueteBtn">
-      </div>
+    </div>
   </form>
 </aside>
 <script src="{{ "javascripts/enquete.js" | relURL }}"></script>
