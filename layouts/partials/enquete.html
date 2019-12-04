@@ -30,23 +30,25 @@
       </div>
     </div>
     <span id="enqueteThanks" style="display:none;">
-    お知らせいただき、ありがとうございます！<br>
-    お役に立てて嬉しいです。
+      お知らせいただき、ありがとうございます！<br>
+      お役に立てて嬉しいです。
     </span>
     <span id="enqueteSorry" style="display:none;">
-    お知らせいただき、ありがとうございます！<br>
-    ぜひご意見をお聞かせください。
+        <div id="enquete_close" align="right">
+            <button type="button" id="feedback_sendWithoutComment" class="enqueteBtn_close">&times;</button>
+        </div>
+      お知らせいただき、ありがとうございます！<br>
+      ぜひご意見をお聞かせください。
     </span>
-      <div>
-        <input class="enqueteBtn" id="feedback_difficult_to_understand" type="button" value="内容がわかりにくかった" >
-        <input class="enqueteBtn" id="feedback_cannot_resolve" type="button" value="解決できなかった" >
-        <input class="enqueteBtn" id="feedback_want_another_info" type="button" value="知りたい内容とちがった" >
-        <input class="enqueteBtn" id="feedback_others" type="button" value="その他" >
-      </div>
     <div id="additionnalEnquate" style="display:none;">
+      <div id="additionnalEnquate_feedback">
+          <input class="enqueteBtn" id="feedback_difficult_to_understand" type="button" value="内容がわかりにくかった" >
+          <input class="enqueteBtn" id="feedback_cannot_resolve" type="button" value="解決できなかった" >
+          <input class="enqueteBtn" id="feedback_want_another_info" type="button" value="知りたい内容とちがった" >
+          <input class="enqueteBtn" id="feedback_others" type="button" value="その他" >
+      </div>
       <div>【任意】困っていることを教えてください。</div>
         <textarea id="additionnalEnquate_textArea" name="questions[74182]" placeholder = "・○○○のような使い方がしたいが方法が分からない&#13;&#10;・○○○に関する情報があると嬉しい" ></textarea>
-        <span id="additionnalEnquate_countChar"></span>
         <!-- 入力できる文字数は1500文字まで。アンケートには表示しない-->
         <div id="enquete_note">
          <ul>
@@ -55,7 +57,6 @@
          </ul>
         </div>
         <input type="submit" value="送信する" id="feedback_send" class="enqueteBtn btn_disabled">
-        <input type="submit" value="閉じる" id="feedback_sendWithoutComment" class="enqueteBtn">
     </div>
   </form>
 </aside>

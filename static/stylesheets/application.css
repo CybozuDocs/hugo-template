@@ -776,23 +776,32 @@ cursor: pointer;
 #additionnalEnquate {
   max-width: 800px;
   margin: auto;
+  font-size: 1.1rem;
+}
+#additionnalEnquate_feedback {
+  float: left;
+  font-size: 1rem;
+  margin: auto;
+  margin-bottom: 13px;
 }
 #additionnalEnquate_textArea {
   width: 100%;
   height: 39px;
-  margin-top: 9px;
+  margin: auto;
 }
 #additionnalEnquate_countChar {
   float: right;
 }
 #enquete_note {
-  margin: 2rem 0;
+  margin: 0.2rem 0;
+  font-size: 0.7rem;
 }
 #enqueteThanks, #enqueteSorry {
   height: 27px;
+  font-size: 1.1rem;
 }
 .seealso {
-  font-size: 1em;
+  font-size: 1rem;
 }
 .nftitle {
   font-size: 3rem;
@@ -886,6 +895,22 @@ cursor: pointer;
 }
 .enqueteBtn {
   margin-top: 0;
+}
+#enquete_close {
+  float: right;
+  font-size: 1rem;
+}
+.enqueteBtn_close {
+  color: #eee;
+  min-width: 65px;
+  height: 27px;
+  border: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  display: inline-block;
+  cursor: pointer;
+  margin-top: 5px;
 }
 }
 
