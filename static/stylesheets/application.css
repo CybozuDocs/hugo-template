@@ -736,7 +736,7 @@ cursor: pointer;
 .btn-article-vote .fa-stack-2x {
   transition: .3s;
 }
-.btn-article-vote .btn-article-vote-up .btn-article-vote-down .fa-stack-2x {
+.btn-article-vote .btn_article_vote_up .btn_article_vote_down .fa-stack-2x {
   color: #74c1f8;
 }
 .btn-social-giza a:hover .fa-stack-2x {
