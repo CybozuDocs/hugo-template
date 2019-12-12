@@ -61,11 +61,8 @@ h1, h2, h3, h4, h5, h6 {
 .font-zh, .font-zh input {
   font-family: "STHeiti", "Microsoft YaHei", "Arial", "Helvetica Neue", "Helvetica", "Verdana", sans-serif;
 }
-.fa {
+.fa, .fas {
   color: #0d7b91;
-}
-.fas {
-  color: #668ad8;
 }
 .header {
   width: 100%;
@@ -724,19 +721,18 @@ cursor: pointer;
   overflow: hidden;
 }
 
-.btn-article-vote a {
-  display: inline-block;
+.btn_article_vote {
   text-decoration: none;
   font-size: 25px;
 }
-.btn-article-vote .fa-stack-1x {
+.btn_article_vote .fa-stack-1x {
   color: white;
   font-size: 18px;
 }
-.btn-article-vote .fa-stack-2x {
-  transition: .3s;
+.btn_article_vote .fa-stack-2x {
+  color: #668ad8;
 }
-.btn-article-vote .btn_article_vote_up .btn_article_vote_down .fa-stack-2x {
+.btn_article_vote .btn_article_vote_up .btn_article_vote_down .fa-stack-2x {
   color: #74c1f8;
 }
 .btn-social-giza a:hover .fa-stack-2x {

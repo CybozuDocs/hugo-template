@@ -10,23 +10,19 @@
     <input id="enqueteRadio" type="hidden" name="questions[74183]" value="">
     <div id="enqueteYesOrNoBtns">
       この記事は役に立ちましたか？
-      <div class="btn-article-vote">
-          <a href="#" class="btn_article_vote_up" >
-            <span class="fa-stack">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-thumbs-up fa-stack-1x"></i>
-            </span>
-          </a>
-          <a href="#" class="btn_article_vote_down">
+      <div class="btn_article_vote">
+          <button class="btn_article_vote_up" id="feedback_yes" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
               <span class="fa-stack">
                   <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fas fa-thumbs-down fa-stack-1x"></i>
+                  <i class="fas fa-thumbs-up fa-stack-1x" aria-label="Yes"></i>
               </span>
-          </a>
-      </div>
-      <div>
-        <input class="enqueteBtn" id="feedback_yes" type="button" value="はい" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
-        <input class="enqueteBtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
+          </button>
+          <button class="btn_article_vote_down" id="feedback_no" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
+              <span class="fa-stack">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-thumbs-down fa-stack-1x" aria-label="No"></i>
+              </span>
+          </button>
       </div>
     </div>
     <span id="enqueteThanks" style="display:none;">
