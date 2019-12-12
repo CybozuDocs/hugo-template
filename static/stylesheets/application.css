@@ -739,6 +739,14 @@ cursor: pointer;
   -webkit-transform: rotate(60deg);
   transform: rotate(60deg);
 }
+.enqueteBtn_close {
+  size: 15px;
+  color: white;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-right: 10px;
+  float: right;
+}
 
 #enqueteForm {
   display: inline;
@@ -896,18 +904,7 @@ cursor: pointer;
   float: right;
   font-size: 1rem;
 }
-.enqueteBtn_close {
-  color: #eee;
-  min-width: 65px;
-  height: 27px;
-  border: none;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  display: inline-block;
-  cursor: pointer;
-  margin-top: 5px;
-}
+
 }
 
 @media only screen and (max-width:1080px) {
