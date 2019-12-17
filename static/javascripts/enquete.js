@@ -82,7 +82,6 @@ $(function(){
       //[いいえ]を押されたらご意見記入欄を表示
       setTimeout(function() {
         $additionnalEnquate.show();
-        $additionnalEnquate_textArea.focus();
       },200);
     });
     $("#feedback_send").click( function() {
@@ -120,24 +119,27 @@ $(function(){
     });
   })('39px','100px',$additionnalEnquate_textArea);
   //ご意見記入欄に残りの入力可能文字数を表示
-  (function() {
-    var maxCharLength = 1500;
+  // (function() {
+  //   var maxCharLength = 1500;
 
-    $additionnalEnquate_textArea.bind('keydown keyup keypress change',function(){
-      var remainingLength = maxCharLength -$additionnalEnquate_textArea[0].value.length;
-      $additionnalEnquate_countChar.text('残り'+remainingLength+'文字')
-      if(remainingLength < maxCharLength) {
-        $feedback_sendWithoutComment.addClass('btn_disabled');
-        $feedback_send.removeClass('btn_disabled');
-      } else {
-        $feedback_sendWithoutComment.removeClass('btn_disabled');
-        $feedback_send.addClass('btn_disabled');
-      }
-      if(remainingLength < 0) {
-        $additionnalEnquate_countChar.text('最大文字数を超えています。')
-      }
-    });
-  })();
+  //   $additionnalEnquate_textArea.bind('keydown keyup keypress change',function(){
+  //     var remainingLength = maxCharLength -$additionnalEnquate_textArea[0].value.length;
+  //     $additionnalEnquate_countChar.text('残り'+remainingLength+'文字')
+  //     if(remainingLength < maxCharLength) {
+  //       $feedback_sendWithoutComment.addClass('btn_disabled');
+  //       $feedback_send.removeClass('btn_disabled');
+  //     } else {
+  //       $feedback_sendWithoutComment.removeClass('btn_disabled');
+  //       $feedback_send.addClass('btn_disabled');
+  //     }
+  //     if(remainingLength < 0) {
+  //       $additionnalEnquate_countChar.text('最大文字数を超えています。')
+  //     }
+  //   });
+  // })();
+
+  //ラジオボタンを選択したら、送信ボタンを表示する
+
   //アンケートの表示位置の制御
   $window.on("load", function() {
     var $triggerNode = $(".footer"); //アンケートのfixed<->absoluteを切り替える位置

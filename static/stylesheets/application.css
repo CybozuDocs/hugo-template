@@ -730,7 +730,7 @@ cursor: pointer;
   font-size: 18px;
 }
 .btn_article_vote .fa-stack-2x {
-  color: #668ad8;
+  color: #428AFF;
 }
 .btn_article_vote .btn_article_vote_up .btn_article_vote_down .fa-stack-2x {
   color: #74c1f8;
@@ -769,11 +769,9 @@ cursor: pointer;
 }
 
 .radio_inline_input:focus + .radio_inline_label {
-  outline-color: #4D90FE;
-  outline-offset: -2px;
-  outline-style: auto;
-  outline-width: 5px;
+  outline: 3px solid #428AFF;
 }
+
 
 #enqueteForm {
   display: inline;
@@ -807,7 +805,6 @@ cursor: pointer;
 #additionnalEnquate {
   max-width: 700px;
   margin: auto;
-  font-size: 1.1rem;
 }
 #additionnalEnquate_feedback {
   float: left;
@@ -815,6 +812,10 @@ cursor: pointer;
   margin: auto;
   margin-bottom: 13px;
 }
+.additionnalEnquate_textArea_title {
+  margin-top: 10px;
+}
+
 #additionnalEnquate_textArea {
   width: 100%;
   height: 39px;
@@ -828,8 +829,9 @@ cursor: pointer;
   font-size: 0.7rem;
 }
 #enqueteThanks, #enqueteSorry {
-  height: 27px;
+  /* height: 27px; */
   font-size: 1.1rem;
+  margin-bottom: 10px;
 }
 .seealso {
   font-size: 1rem;
