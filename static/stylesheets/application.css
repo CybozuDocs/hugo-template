@@ -929,7 +929,7 @@ cursor: pointer;
 .enqueteBtn {
   margin-top: 0;
 }
-#enquete_close {
+.enquete_close {
   float: right;
   font-size: 1rem;
 }
