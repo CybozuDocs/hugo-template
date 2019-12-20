@@ -27,12 +27,12 @@
     </div>
     <div id="enqueteThanks" style="display:none;">
       <div class="enquete_close">
-        <button type="button" id="feedback_sendWithoutComment" class="enqueteBtn_close"><i class="far fa-times-circle"></i></button>
+        <button type="button" class="enqueteBtn_close feedback_sendWithoutComment"><i class="far fa-times-circle"></i></button>
       </div>
       お知らせいただき、ありがとうございます！<br>
       お役に立てて嬉しいです。
-      <div class="additionnalEnquate_textArea_title">【任意】困っていることを教えてください。</div>
-        <textarea id="additionnalEnquate_textArea" maxlength="1500" name="questions[74182]" placeholder="・○○○のような使い方がしたいが方法が分からない&#13;&#10;・○○○に関する情報があるとよい" ></textarea>
+      <div class="additionnalEnquate_textArea_title">【任意】要望があれば教えてください。</div>
+        <textarea class="additionnalEnquate_textArea" maxlength="1500" name="questions[74182]" placeholder="・○○○のような使い方がしたいが方法が分からない&#13;&#10;・○○○に関する情報があるとよい" ></textarea>
         <!-- 入力できる文字数は1500文字まで。アンケートには表示しない-->
         <div id="enquete_note">
          <ul>
@@ -40,14 +40,16 @@
           <li>質問や要望への返答は行っておりません。</li>
          </ul>
         </div>
-        <input type="submit" value="送信する" id="feedback_send" class="enqueteBtn btn_disabled">
+        <input type="submit" value="送信する" class="feedback_send enqueteBtn btn_disabled">
     </div>
     <div id="enqueteSorry" style="display:none;">
         <div class="enquete_close">
-            <button type="button" id="feedback_sendWithoutComment" class="enqueteBtn_close"><i class="far fa-times-circle"></i></button>
+            <button type="button" class="enqueteBtn_close feedback_sendWithoutComment"><i class="far fa-times-circle"></i></button>
         </div>
-      お知らせいただき、ありがとうございます！<br>
-      ぜひご意見をお聞かせください。
+      お知らせいただき、ありがとうございます！
+      <div class="enqueteSorry_subcomment" >
+        ぜひご意見をお聞かせください。
+      </div>
     </div>
     <div id="additionnalEnquate" style="display:none;">
       <input id="item-1" class="radio_inline_input" type="radio" name="accessible-radio" value="フォームブリッジのフィール値を入れる"/>
@@ -67,7 +69,7 @@
           その他
         </label>
       <div class="additionnalEnquate_textArea_title">【任意】困っていることを教えてください。</div>
-        <textarea id="additionnalEnquate_textArea" maxlength="1500" name="questions[74182]" placeholder="・○○○のような使い方がしたいが方法が分からない&#13;&#10;・○○○に関する情報があるとよい" ></textarea>
+        <textarea class="additionnalEnquate_textArea" maxlength="1500" name="questions[74182]" placeholder="・○○○のような使い方がしたいが方法が分からない&#13;&#10;・○○○に関する情報があるとよい" ></textarea>
         <!-- 入力できる文字数は1500文字まで。アンケートには表示しない-->
         <div id="enquete_note">
          <ul>
@@ -75,7 +77,7 @@
           <li>質問や要望への返答は行っておりません。</li>
          </ul>
         </div>
-        <input type="submit" value="送信する" id="feedback_send" class="enqueteBtn btn_disabled">
+        <input type="submit" value="送信する" class="feedback_send enqueteBtn btn_disabled">
     </div>
   </form>
 </aside>

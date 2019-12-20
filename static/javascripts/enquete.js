@@ -11,8 +11,8 @@ $(function(){
 });
 //いいえの回答が二重登録されてしまう件の暫定対処
 $(function(){
-  $("#feedback_send").attr("type","button");
-  $("#feedback_sendWithoutComment").attr("type","button");
+  $(".feedback_send").attr("type","button");
+  $(".feedback_sendWithoutComment").attr("type","button");
 });
 //役立ちましたか？[はい][いいえ]のアンケート
 $(function(){
@@ -28,10 +28,10 @@ $(function(){
   var $enqueteThanks = $("#enqueteThanks");
   var $enqueteSorry = $("#enqueteSorry");
   var $additionnalEnquate = $("#additionnalEnquate");
-  var $additionnalEnquate_textArea = $('#additionnalEnquate_textArea');
+  var $additionnalEnquate_textArea = $('.additionnalEnquate_textArea');
   var $additionnalEnquate_countChar = $('#additionnalEnquate_countChar');
-  var $feedback_send = $('#feedback_send');
-  var $feedback_sendWithoutComment = $('#feedback_sendWithoutComment');
+  var $feedback_send = $('.feedback_send');
+  var $feedback_sendWithoutComment = $('.feedback_sendWithoutComment');
 
   //アンケート項目に回答送信元の情報をセット
   (function() {
@@ -69,9 +69,9 @@ $(function(){
       document.enqueteForm.submit();
       $enqueteYesOrNoBtns.hide();
       $enqueteThanks.show();
-      setTimeout(function() {
-        $enquete.fadeOut();
-      },3000);
+      // setTimeout(function() {
+      //   $enquete.fadeOut();
+      // },3000);
     });
     $('#feedback_no').click( function() {
       document.getElementById("enqueteRadio").value = 342410;
@@ -84,18 +84,19 @@ $(function(){
         $additionnalEnquate.show();
       },200);
     });
-    $("#feedback_send").click( function() {
+    $(".feedback_send").click( function() {
       if ($(this).hasClass('btn_disabled')) {
         return false;
       }
       document.getElementById("enqueteRadio").value = null;
       document.enqueteForm.submit();
       $additionnalEnquate.fadeOut("slow");
+      $(".enqueteSorry_subcomment").fadeOut("slow");
       setTimeout(function() {
         $enquete.fadeOut();
       },3000);
     });
-    $("#feedback_sendWithoutComment").click( function() {
+    $(".feedback_sendWithoutComment").click( function() {
         $enquete.fadeOut();
     });
   })();
@@ -139,6 +140,12 @@ $(function(){
   // })();
 
   //ラジオボタンを選択したら、送信ボタンを表示する
+  (function() {
+    $(".radio_inline_input,.additionnalEnquate_textArea").click(function() {
+      $feedback_send.removeClass("btn_disabled");
+    });
+  })();
+
 
   //アンケートの表示位置の制御
   $window.on("load", function() {
