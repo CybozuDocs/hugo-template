@@ -27,7 +27,7 @@ $(function(){
   var $enqueteYesOrNoBtns = $("#enqueteYesOrNoBtns");
   var $enqueteThanks = $("#enqueteThanks");
   var $enqueteSorry = $("#enqueteSorry");
-  var $additionnalEnquate = $("#additionnalEnquate");
+  var $additionnalEnquate = $(".additionnalEnquate");
   var $additionnalEnquate_textArea = $('.additionnalEnquate_textArea');
   var $additionnalEnquate_countChar = $('#additionnalEnquate_countChar');
   var $feedback_send = $('.feedback_send');
@@ -69,6 +69,10 @@ $(function(){
       document.enqueteForm.submit();
       $enqueteYesOrNoBtns.hide();
       $enqueteThanks.show();
+      //[はい]を押されたらご意見記入欄を表示
+      setTimeout(function() {
+        $additionnalEnquate.show();
+      },200);
       // setTimeout(function() {
       //   $enquete.fadeOut();
       // },3000);

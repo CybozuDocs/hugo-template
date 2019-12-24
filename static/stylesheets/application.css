@@ -802,18 +802,20 @@ cursor: pointer;
 .btn_disabled:hover {
   background: #a8a8a8;
 }
-#additionnalEnquate {
+.additionnalEnquate {
   max-width: 700px;
   margin: auto;
+  font-size: 1rem;
 }
 #additionnalEnquate_feedback {
   float: left;
-  font-size: 1rem;
   margin: auto;
   margin-bottom: 13px;
+  font-size: 1rem;
 }
 .additionnalEnquate_textArea_title {
   margin-top: 10px;
+  font-size: 1rem;
 }
 
 .additionnalEnquate_textArea {
