@@ -1,0 +1,12 @@
+<aside class="admonition reference">
+  <div class="admonition-alt">
+    <i class="fas fa-book fa-lg"></i>
+    <span>
+    {{- if eq $.Site.Params.LanguageName "日本語" -}}関連ページ
+    {{- else if eq $.Site.Params.LanguageName "English" -}}References
+    {{- else if eq $.Site.Params.LanguageName "中文(简体)" -}}相关页面
+    {{- end -}}
+    </span>
+  </div>
+  <div class="admonition-content">{{ printf "%s" .Inner | markdownify }}</div>
+</aside>

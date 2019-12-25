@@ -290,20 +290,43 @@ overflow-y: scroll;
 .article .admonition.note {
   border: 1px solid #a7cde1;
   background-color: #d9edf7;
+  border-radius: 10px;
 }
 .article .admonition.note .fas {
   color: #4496d3;
+  font-size: 1.3rem;
 }
 .article .admonition.warning {
-  border: 1px solid #dfdf96;
-  background: #fcf8e3
+  border: 1px solid #e95464;
+  background: #FEF2EB;
+  border-radius: 10px;
 }
 .article .admonition.warning .fas {
-  color: #ed6c00;
+  color: #e95464;
+  font-size: 1.3rem;
+}
+.article .admonition.referrence .fas {
+  color: #228b22;
+}
+.article .admonition.hint {
+  border: 1px solid #ffd700;
+  background: #ffffe0;
+  border-radius: 10px;
+}
+.article .admonition.reference {
+  border: 1px solid #3cb371;
+  background: #f0fff0;
+  border-radius: 10px;
+}
+.article .admonition.hint .admonition-alt::before {
+  content: url(../images/hint.png);
+}
+.article .admonition.hint .admonition-alt-text {
+  vertical-align: 25%;
 }
 .article .admonition .admonition-alt {
   font-size: 1rem;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
   font-weight: bold;
 }
 .article .admonition .admonition-title {
@@ -449,17 +472,11 @@ overflow-y: scroll;
 .article iframe {
   max-width: 100%;
 }
-.nextpage {
-  /*position: absolute;*/
-  margin-top: 72px;
-  bottom: 33px;
-  width: 100%;
-  display: -webkit-flex;
+.article .pagination {
   display: flex;
-  -webkit-justify-content: space-between;
-}
-.nextpage >:last-child {
-  margin-left: auto;/*padding-right: 20px;*/
+  justify-content: space-between;
+  align-content: center;
+  margin-top: 90px;
 }
 .footer {
   position: absolute;
@@ -846,9 +863,6 @@ cursor: pointer;
 }
 .article {
   position: relative;
-}
-.previous, .next {
-  display: none;
 }
 #footercopyright {
   float: left;

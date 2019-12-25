@@ -25,6 +25,32 @@
             <nav class="seealso">
                 {{ partial "related" .}}
             </nav>
+            {{ if eq .Type "series" }}
+            <nav class="pagination">
+                {{ with .NextInSection }} {{- /* hugoのバグへの対応で、敢えて.NextInSectionと.PrevInSectionを逆に使っている */ -}}
+                <div class="pagination_previous">
+                    <i class="fas fa-caret-left"></i>
+                    <a href="{{ .Permalink }}">
+                        {{- if eq $.Site.Params.LanguageName "日本語" -}}前のページへ
+                        {{- else if eq $.Site.Params.LanguageName "English" -}}Previous page
+                        {{- else if eq $.Site.Params.LanguageName "中文(简体)" -}}上一页
+                        {{- end -}}
+                    </a>
+                </div>
+                {{ end }}
+                {{ with .PrevInSection }}
+                <div class="pagination_next">
+                    <a href="{{ .Permalink }}">
+                        {{- if eq $.Site.Params.LanguageName "日本語" -}}次のページへ
+                        {{- else if eq $.Site.Params.LanguageName "English" -}}Next page
+                        {{- else if eq $.Site.Params.LanguageName "中文(简体)" -}}下一页
+                        {{- end -}}
+                    </a>
+                    <i class="fas fa-caret-right"></i>
+                </div>
+                {{ end }}
+            </nav>
+            {{ end }}
         </div>
         {{- partial "enquete" . -}}
     </div>
