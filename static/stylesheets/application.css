@@ -289,7 +289,7 @@ overflow-y: scroll;
 }
 .article .admonition.note {
   border: 1px solid #a7cde1;
-  background-color: #d9edf7;
+  background-color: #f0f8ff;
   border-radius: 10px;
 }
 .article .admonition.note .fas {
