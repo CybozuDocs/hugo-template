@@ -319,7 +319,7 @@ overflow-y: scroll;
   border-radius: 10px;
 }
 .article .admonition.hint .admonition-alt::before {
-  content: url(../images/hint.png);
+  content: "\f0eb";
 }
 .article .admonition.hint .admonition-alt-text {
   vertical-align: 25%;
