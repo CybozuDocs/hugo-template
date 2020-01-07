@@ -319,11 +319,11 @@ overflow-y: scroll;
   border-radius: 10px;
 }
 .article .admonition.hint .admonition-alt::before {
+  font-family: "Font Awesome 5 Free";
   content: "\f0eb";
+  color: #ffa500;
 }
-.article .admonition.hint .admonition-alt-text {
-  vertical-align: 25%;
-}
+
 .article .admonition .admonition-alt {
   font-size: 1rem;
   margin-bottom: 10px;
