@@ -1,0 +1,11 @@
+<aside class="admonition hint">
+  <div class="admonition-alt">
+    <span class="admonition-alt-text">
+    {{- if eq $.Site.Params.LanguageName "日本語" -}}ヒント
+    {{- else if eq $.Site.Params.LanguageName "English" -}}Tips
+    {{- else if eq $.Site.Params.LanguageName "中文(简体)" -}}注意
+    {{- end -}}
+    </span>
+  </div>
+  <div class="admonition-content">{{ printf "%s" .Inner | markdownify }}</div>
+</aside>
