@@ -9,31 +9,80 @@
     <input class="enqueteKeyWords" type="hidden" name="questions[88366]" value="">
     <input id="enqueteRadio" type="hidden" name="questions[74183]" value="">
     <div id="enqueteYesOrNoBtns">
-      この情報は役に立ちましたか？
-      <div>
-        <input class="enqueteBtn" id="feedback_yes" type="button" value="はい" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
-        <input class="enqueteBtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
+      この記事は役に立ちましたか？
+      <div class="btn_article_vote">
+          <button class="btn_article_vote_up" id="feedback_yes" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
+              <span class="fa-stack">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-thumbs-up fa-stack-1x" aria-label="Yes"></i>
+              </span>
+          </button>
+          <button class="btn_article_vote_down" id="feedback_no" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
+              <span class="fa-stack">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-thumbs-down fa-stack-1x" aria-label="No"></i>
+              </span>
+          </button>
       </div>
     </div>
-    <span id="enqueteThanks" style="display:none;">
-    ありがとうございます！お役に立てたようで何よりです。
-    </span>
-    <span id="enqueteSorry" style="display:none;">
-    お役に立てず、申し訳ございません。
-    </span>
-    <div id="additionnalEnquate" style="display:none;">
-      <div>どのように改善したらよいか、ぜひお聞かせください。</div>
-        <textarea id="additionnalEnquate_textArea" name="questions[74182]"></textarea>
-        <span id="additionnalEnquate_countChar">残り1500文字</span>
-        <div id="enquete_note">
-         <ul>
-          <li>質問や要望への返答は行っておりません。</li>
-          <li>個人情報、秘密保持義務のある情報、個別の通信内容等の記入はご遠慮ください。</li>
-         </ul>
-        </div>
-        <input type="submit" value="送信" id="feedback_send" class="enqueteBtn btn_disabled">
-        <input type="submit" value="閉じる" id="feedback_sendWithoutComment" class="enqueteBtn">
+    <div id="enqueteThanks" style="display:none;">
+      <div class="enquete_close">
+        <button type="button" class="enqueteBtn_close feedback_sendWithoutComment"><i class="far fa-times-circle"></i></button>
+      </div>
+      お知らせいただき、ありがとうございます！
+      <div class="enqueteSorry_subcomment" >
+      お役に立てて嬉しいです。
+      </div>
+      <div class="additionnalEnquate" style="display:none;">
+        <div class="additionnalEnquate_textArea_title">【任意】要望があれば教えてください。</div>
+          <textarea class="additionnalEnquate_textArea" maxlength="1500" name="questions[74182]" placeholder="・○○○のような使い方がしたいが方法が分からない&#13;&#10;・○○○に関する情報があるとよい" ></textarea>
+          <!-- 入力できる文字数は1500文字まで。アンケートには表示しない-->
+          <div id="enquete_note">
+          <ul>
+            <li>個人情報や秘密保持義務のある情報を含めないでください。</li>
+            <li>質問や要望への返答は行っておりません。</li>
+          </ul>
+          </div>
+        <input type="submit" value="送信する" class="feedback_send enqueteBtn btn_disabled">
+      </div>
     </div>
+    <div id="enqueteSorry" style="display:none;">
+        <div class="enquete_close">
+            <button type="button" class="enqueteBtn_close feedback_sendWithoutComment"><i class="far fa-times-circle"></i></button>
+        </div>
+      お知らせいただき、ありがとうございます！
+      <div class="enqueteSorry_subcomment" >
+        ぜひご意見をお聞かせください。
+      </div>
+      <div class="additionnalEnquate" style="display:none;">
+        <input id="item-1" class="radio_inline_input" type="radio" name="accessible-radio" value="フォームブリッジのフィール値を入れる"/>
+          <label class="radio_inline_label" for="item-1">
+          内容がわかりにくかった
+          </label>
+          <input id="item-2" class="radio_inline_input" type="radio" name="accessible-radio" value="フォームブリッジのフィール値を入れる"/>
+          <label class="radio_inline_label" for="item-2">
+          解決できなかった
+          </label>
+          <input id="item-3" class="radio_inline_input" type="radio" name="accessible-radio" value="フォームブリッジのフィール値を入れる"/>
+          <label class="radio_inline_label" for="item-3">
+          知りたい内容とちがった
+          </label>
+          <input id="item-4" class="radio_inline_input" type="radio" name="accessible-radio" value="フォームブリッジのフィール値を入れる"/>
+          <label class="radio_inline_label" for="item-4">
+          その他
+          </label>
+          <div class="additionnalEnquate_textArea_title">【任意】困っていることを教えてください。</div>
+          <textarea class="additionnalEnquate_textArea" maxlength="1500" name="questions[74182]" placeholder="・○○○のような使い方がしたいが方法が分からない&#13;&#10;・○○○に関する情報があるとよい" ></textarea>
+          <!-- 入力できる文字数は1500文字まで。アンケートには表示しない-->
+          <div id="enquete_note">
+          <ul>
+            <li>個人情報や秘密保持義務のある情報を含めないでください。</li>
+            <li>質問や要望への返答は行っておりません。</li>
+          </ul>
+          </div>
+          <input type="submit" value="送信する" class="feedback_send enqueteBtn btn_disabled">
+        </div>
+      </div>
   </form>
 </aside>
 <script src="{{ "javascripts/enquete.js" | relURL }}"></script>
