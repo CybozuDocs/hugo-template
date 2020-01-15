@@ -725,6 +725,9 @@ cursor: pointer;
   text-decoration: none;
   font-size: 25px;
 }
+.fa-stack{
+  cursor: pointer;
+}
 .btn_article_vote .fa-stack-1x {
   color: #ffffff;
   font-size: 18px;
