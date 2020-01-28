@@ -16,25 +16,13 @@
 {{ end }}
 {{ if eq .Site.LanguageCode "en-jp" }}
     <link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}" hreflang="en-us" />
-    <link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .Permalink | relURL }}" hreflang="en-cn" />
 {{ end }}
 {{ if eq .Site.LanguageCode "en-us" }}
     <link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="en-jp" />
-    <link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .Permalink | relURL }}" hreflang="en-cn" />
-{{ end }}
-{{ if eq .Site.LanguageCode "en-cn" }}
-    <link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="en-jp" />
-    <link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}" hreflang="en-us" />
 {{ end }}
 {{ if eq .Site.LanguageCode "zh-jp" }}
-    <link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}" hreflang="zh-us" />
-    <link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .Permalink | relURL }}" hreflang="zh-cn" />
-{{ end }}
-{{ if eq .Site.LanguageCode "zh-us" }}
-    <link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="zh-jp" />
     <link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .Permalink | relURL }}" hreflang="zh-cn" />
 {{ end }}
 {{ if eq .Site.LanguageCode "zh-cn" }}
     <link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="zh-jp" />
-    <link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}" hreflang="zh-us" />
 {{ end }}
