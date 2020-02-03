@@ -3,6 +3,6 @@
 {{ $t3 := replaceRE "{{%\\s*store\\s*%}}" .Site.Params.store $t2 }}
 {{ $t4 := replaceRE "{{%\\s*cybozu_com\\s*%}}" .Site.Params.cybozu_com $t3 }}
 {{ $t5 := replaceRE "{{%\\s*slash_help\\s*%}}" .Site.Params.slash_help $t4 }}
-{{ $t6 := replaceRE "{{%\\s*slash\\s*%}}" .Site.Params.slash $t6 }}
-{{ $t7 := replaceRE "{{%\\s*CorpName\\s*%}}" .Site.Params.CorpName $t7 }}
+{{ $t6 := replaceRE "{{%\\s*slash\\s*%}}" .Site.Params.slash $t5 }}
+{{ $t7 := replaceRE "{{%\\s*CorpName\\s*%}}" .Site.Params.CorpName $t6 }}
 {{ $t7 }}
