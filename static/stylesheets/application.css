@@ -53,13 +53,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: inherit
 }
 .font-ja, .font-ja input {
-  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo", "メイリオ", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "Meiryo", "メイリオ", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
 .font-en, .font-en input {
   font-family: "HelveticaNeueW02-45Ligh", "Helvetica", "Verdana", sans-serif;
 }
 .font-zh, .font-zh input {
-  font-family: "STHeiti", "Microsoft YaHei", "Arial", "Helvetica Neue", "Helvetica", "Verdana", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", "Arial", "Helvetica Neue", "Helvetica", "Verdana", sans-serif;
 }
 .fa, .fas {
   color: #0d7b91;
