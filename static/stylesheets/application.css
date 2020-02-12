@@ -61,9 +61,6 @@ h1, h2, h3, h4, h5, h6 {
 .font-zh, .font-zh input {
   font-family: "PingFang SC", "Microsoft YaHei", "Arial", "Helvetica Neue", "Helvetica", "Verdana", sans-serif;
 }
-.font-tw, .font-tw input {
-  font-family: "PingFang TC", "Microsoft YaHei", "Arial", "Helvetica Neue", "Helvetica", "Verdana", sans-serif;
-}
 .fa, .fas {
   color: #0d7b91;
 }
