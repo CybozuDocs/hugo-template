@@ -1,17 +1,13 @@
-{{ .Scratch.Set "domain_jp" "https://jp.cybozu.help" }}
-{{ .Scratch.Set "domain_us" "https://help.kintone.com" }}
-{{ .Scratch.Set "domain_cn" "https://help.cybozu.cn" }}
-
-<link rel="canonical" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}">
+<link rel="canonical" href="https://help.kintone.com{{ .Permalink | relURL }}">
   {{- range .AllTranslations -}}
-    <link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-jp" />
+    <link rel="alternate" href="https://jp.cybozu.help{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-jp" />
     {{- if eq .Site.Language.Lang "ja" -}}
-      <link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-us" />
+      <link rel="alternate" href="https://help.kintone.com{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-us" />
     {{- end -}}
     {{- if eq .Site.Language.Lang "en" -}}
       <link rel="alternate" href="https://get.kintone.help/hc/en-us" hreflang="{{ .Site.Language.Lang }}-us" />
     {{- end -}}
     {{- if ne .Site.Language.Lang "en" -}}
-      <link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-cn" />
+      <link rel="alternate" href="https://help.cybozu.cn{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-cn" />
     {{- end -}}
   {{- end -}}
