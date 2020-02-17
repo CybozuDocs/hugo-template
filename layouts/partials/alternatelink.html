@@ -3,10 +3,15 @@
 {{ .Scratch.Set "domain_cn" "https://help.cybozu.cn" }}
 
 <link rel="canonical" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}">
-<link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="ja-jp" />
-<link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}" hreflang="ja-us" />
-<link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .Permalink | relURL }}" hreflang="ja-cn" />
-<link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .Permalink | relURL }}" hreflang="en-us" />
-<link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="en-jp" />
-<link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .Permalink | relURL }}" hreflang="zh-cn" />
-<link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .Permalink | relURL }}" hreflang="zh-jp" />
+  {{- range .AllTranslations -}}
+    <link rel="alternate" href="{{ .Scratch.Get "domain_jp" }}{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-jp" />
+    {{- if eq .Site.Language.Lang "ja" -}}
+      <link rel="alternate" href="{{ .Scratch.Get "domain_us" }}{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-us" />
+    {{- end -}}
+    {{- if eq .Site.Language.Lang "en" -}}
+      <link rel="alternate" href="https://get.kintone.help/hc/en-us" hreflang="{{ .Site.Language.Lang }}-us" />
+    {{- end -}}
+    {{- if ne .Site.Language.Lang "en" -}}
+      <link rel="alternate" href="{{ .Scratch.Get "domain_cn" }}{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-cn" />
+    {{- end -}}
+  {{- end -}}
