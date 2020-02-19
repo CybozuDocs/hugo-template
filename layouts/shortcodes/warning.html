@@ -2,12 +2,7 @@
 <aside class="admonition warning">
   <div class="admonition-alt">
     <i class="fas fa-exclamation-circle"></i>
-    <span>
-    {{- if eq $.Site.Params.LanguageName "日本語" -}}注意
-    {{- else if eq $.Site.Params.LanguageName "English" -}}Caution
-    {{- else if eq $.Site.Params.LanguageName "中文(简体)" -}}注意
-    {{- end -}}
-    </span>
+    <span>{{ i18n "Title_caution" }}</span>
   </div>
   <div class="admonition-content">{{ printf "%s" .Inner | markdownify }}</div>
 </aside>
