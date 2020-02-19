@@ -9,13 +9,11 @@
     <main class="main">
         <article class="article" >
             <div class="wrapper">
-                {{if eq .Lang "ja" }}<h1 class="welcome_message">{{ .Site.Title }}へようこそ</h1>{{ end }}
-                {{if eq .Lang "en" }}<h1 class="welcome_message">Welcome to {{ .Site.Title }}</h1>{{ end }}
-                {{if eq .Lang "zh" }}<h1 class="welcome_message">欢迎使用{{ .Site.Title }}</h1>{{ end }}
+                <h1 class="welcome_message">{{ i18n "Welcome" . }}</h1>
                 <div class="search-wrap">
                     <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html"　onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}'>
                         <div class="searchbox">
-                            <input type="text" name="q" id="headerSearchBox_input" class="search-input" placeholder="{{if eq .Lang "ja" }}何をお探しですか？{{ end }}{{if eq .Lang "en" }}Enter keywords to search help.{{ end }}{{if eq .Lang "zh" }}您可输入关键字查找{{ end }}">
+                            <input type="text" name="q" id="headerSearchBox_input" class="search-input" placeholder='{{ i18n "Enter_keywords" }}'>
                             <input type="submit" name="commit" value="" class="search-submit" data-disable-with="">
                             <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}">
                         </div>

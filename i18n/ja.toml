@@ -1,2 +1,48 @@
+[Welcome]
+other = "{{ .Site.Title }}へようこそ"
+
+[Enter_keywords]
+other = "何をお探しですか？"
+
+[Page_not_found]
+other = "お探しのページが見つかりません"
+
+[I_am_sorry_page_not_found]
+other = "申し訳ありません。お探しのページが見つかりませんでした。"
+
+[Previous_page]
+other = "前のページへ"
+
+[Next_page]
+other = "次のページへ"
+
+[In_this_article]
+other = "この記事の内容"
+
+[Go_back_to_previous]
+other = "前のページに戻る"
+
+[Go_back_to_top]
+other = "トップに戻る"
+
 [Articles_in_this_category]
 other = "このカテゴリーの記事"
+
+[Footer_copyright]
+other = "記載された商品名、各製品名は各社の登録商標または商標です。 © Cybozu"
+
+[See_also]
+other = "次のページも参照してください"
+
+[Title_tips]
+other = "ヒント"
+
+[Title_note]
+other = "補足"
+
+[Title_references]
+other = "関連ページ"
+
+[Title_caution]
+other = "注意"
+

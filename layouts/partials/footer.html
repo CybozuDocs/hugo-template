@@ -6,7 +6,5 @@
         {{ end }}
       </ul>
     </div>
-    {{if eq .Lang "ja" }}<div id="footercopyright">記載された商品名、各製品名は各社の登録商標または商標です。 © Cybozu</div>{{ end }}
-    {{if eq .Lang "en" }}<div id="footercopyright">All brand names and product names appearing on this site are registered trademarks or trademarks of Cybozu.</div>{{ end }}
-    {{if eq .Lang "zh" }}<div id="footercopyright">记载的商品名称、各产品名称都为各公司的注册商标或商标。 © Cybozu</div>{{ end }}
+    <div id="footercopyright">{{ i18n "Footer_copyright" }}</div>
 </div>

@@ -30,22 +30,12 @@
                 {{ with .NextInSection }} {{- /* hugoのバグへの対応で、敢えて.NextInSectionと.PrevInSectionを逆に使っている */ -}}
                 <div class="pagination_previous">
                     <i class="fas fa-caret-left"></i>
-                    <a href="{{ .Permalink }}">
-                        {{- if eq $.Site.Params.LanguageName "日本語" -}}前のページへ
-                        {{- else if eq $.Site.Params.LanguageName "English" -}}Previous page
-                        {{- else if eq $.Site.Params.LanguageName "中文(简体)" -}}上一页
-                        {{- end -}}
-                    </a>
+                    <a href="{{ .Permalink }}">{{ i18n "Previous_page" }}</a>
                 </div>
                 {{ end }}
                 {{ with .PrevInSection }}
                 <div class="pagination_next">
-                    <a href="{{ .Permalink }}">
-                        {{- if eq $.Site.Params.LanguageName "日本語" -}}次のページへ
-                        {{- else if eq $.Site.Params.LanguageName "English" -}}Next page
-                        {{- else if eq $.Site.Params.LanguageName "中文(简体)" -}}下一页
-                        {{- end -}}
-                    </a>
+                    <a href="{{ .Permalink }}">{{ i18n "Next_page" }}</a>
                     <i class="fas fa-caret-right"></i>
                 </div>
                 {{ end }}
@@ -56,9 +46,7 @@
     </div>
     <div class="wrap_sidebar">
         <nav id="sidebar-toc">
-            {{if eq .Lang "ja" }}<h2 class="tocTitle">この記事の内容</h2>{{ end }}
-            {{if eq .Lang "en" }}<h2 class="tocTitle">In this article</h2>{{ end }}
-            {{if eq .Lang "zh" }}<h2 class="tocTitle">本文内容</h2>{{ end }}
+            <h2 class="tocTitle">{{ i18n "In_this_article" }}</h2>
         </nav>
     </div>
 </div>
