@@ -8,7 +8,7 @@ other = "可输入关键字查找"
 other = "无法找到您正在查找的页面"
 
 [I_am_sorry_page_not_found]
-other = "我很抱歉。 无法找到您正在查找的页面"
+other = "我很抱歉。无法找到您正在查找的页面。"
 
 [Previous_page]
 other = "上一页"
