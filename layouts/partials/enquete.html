@@ -11,13 +11,13 @@
     <div id="enqueteYesOrNoBtns">
       この記事は役に立ちましたか？
       <div class="btn_article_vote">
-          <button class="btn_article_vote_up" id="feedback_yes" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
+          <button class="btn_article_vote_up" id="feedback_yes" name="この記事は役に立ちましたか" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
               <span class="fa-stack">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fas fa-thumbs-up fa-stack-1x" aria-label="Yes"></i>
               </span>
           </button>
-          <button class="btn_article_vote_down" id="feedback_no" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
+          <button class="btn_article_vote_down" id="feedback_no" name="この記事は役に立ちましたか" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
               <span class="fa-stack">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fas fa-thumbs-down fa-stack-1x" aria-label="No"></i>
@@ -87,7 +87,8 @@
 </aside>
 <script src="{{ "javascripts/enquete.js" | relURL }}"></script>
 <script>
-document.getElementById("enqueteForm").action="https://formcreator.jp/answer.php/screens/enquete_from_external_site?key=pDgJI91lHBlbFjGvfIKRhw%3D%3D";
+document.getElementById("enqueteForm").action="https://form.run/api/v1/r/ap1iv9t1rxx0t3z6xbhkv7ql";
+
 </script>
 <iframe name="blankFrame" width=0 height=0 style="visibility:hidden"></iframe> <!-- for questionnaire -->
 {{ end }}
