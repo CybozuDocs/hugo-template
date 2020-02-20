@@ -1,12 +1,8 @@
+{{- $_hugo_config := `{ "version": 1 }` -}}
 <aside class="admonition note">
   <div class="admonition-alt">
     <i class="fas fa-check"></i>
-    <span>
-    {{- if eq $.Site.Params.LanguageName "日本語" -}}補足
-    {{- else if eq $.Site.Params.LanguageName "English" -}}Note
-    {{- else if eq $.Site.Params.LanguageName "中文(简体)" -}}补充
-    {{- end -}}
-    </span>
+    <span>{{ i18n "Title_note" }}</span>
   </div>
   <div class="admonition-content">{{ printf "%s" .Inner | markdownify }}</div>
 </aside>
