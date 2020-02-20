@@ -1,4 +1,3 @@
-<link rel="canonical" href="https://help.kintone.com{{ .Permalink | relURL }}">
   {{- range .AllTranslations -}}
     <link rel="alternate" href="https://jp.cybozu.help{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-jp" />
     {{- if eq .Site.Language.Lang "ja" -}}
@@ -6,6 +5,7 @@
     {{- end -}}
     {{- if eq .Site.Language.Lang "en" -}}
       <link rel="alternate" href="https://get.kintone.help/hc/en-us" hreflang="{{ .Site.Language.Lang }}-us" />
+      <link rel="alternate" href="https://jp.cybozu.help{{ .RelPermalink }}" hreflang="x-default" />
     {{- end -}}
     {{- if ne .Site.Language.Lang "en" -}}
       <link rel="alternate" href="https://help.cybozu.cn{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-cn" />
