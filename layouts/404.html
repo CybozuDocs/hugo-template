@@ -7,21 +7,17 @@
     </header>
     <div class="nftitle">
         <h1>
-         {{if eq .Lang "ja" }}お探しのページが見つかりません{{ end }}
-         {{if eq .Lang "en" }}The page you are looking for could not be found{{ end }}
-         {{if eq .Lang "zh" }}无法找到您正在查找的页面{{ end }}
+         {{ i18n "Page_not_found" }}
         </h1>
     </div>
     <main class="main">
         <article class="nfarticle" >
              <div class="nfdetail">
-             {{if eq .Lang "ja" }}申し訳ありません。お探しのページが見つかりませんでした。{{ end }}
-             {{if eq .Lang "en" }}I'm sorry. The page you are looking for can not be found.{{ end }}
-             {{if eq .Lang "zh" }}我很抱歉。 无法找到您正在查找的页面{{ end }}
+             {{ i18n "I_am_sorry_page_not_found" }}
              </div>
              <div class="nflink">
-             <a href="javascript:history.back()">{{if eq .Lang "ja" }}前のページに戻る{{ end }}{{if eq .Lang "en" }}Go back to previous page{{ end }}{{if eq .Lang "zh" }}回到前一页{{ end }}</a><br>
-             <a href="/{{.Lang}}/">{{if eq .Lang "ja" }}トップに戻る{{ end }}{{if eq .Lang "en" }}Go back to top page{{ end }}{{if eq .Lang "zh" }}返回页首{{ end }}</a>
+             <a href="javascript:history.back()">{{ i18n "Go_back_to_previous" }}</a><br>
+             <a href="/{{.Lang}}/">{{ i18n "Go_back_to_top" }}</a>
              </div>
         </article>
     </main>

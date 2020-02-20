@@ -1,0 +1,48 @@
+[Welcome]
+other = "Welcome to {{ .Site.Title }}"
+
+[Enter_keywords]
+other = "Enter keywords to search help."
+
+[Page_not_found]
+other = "The page you are looking for could not be found"
+
+[I_am_sorry_page_not_found]
+other = "I'm sorry. The page you are looking for can not be found."
+
+[Previous_page]
+other = "Previous page"
+
+[Next_page]
+other = "Next page"
+
+[In_this_article]
+other = "In this article"
+
+[Go_back_to_previous]
+other = "Go back to previous page"
+
+[Go_back_to_top]
+other = "Go back to top page"
+
+[Articles_in_this_category]
+other = "Articles in this category"
+
+[Footer_copyright]
+other = "All brand names and product names appearing on this site are registered trademarks or trademarks of Cybozu."
+
+[See_also]
+other = "See also"
+
+[Title_tips]
+other = "Tips"
+
+[Title_note]
+other = "Note"
+
+[Title_references]
+other = "References"
+
+[Title_caution]
+other = "Caution"
+
