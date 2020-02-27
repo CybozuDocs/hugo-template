@@ -56,7 +56,9 @@
     <link rel="stylesheet" href="{{ "stylesheets/home.css" | relURL }}">
     {{end}}
     <link rel="stylesheet" href="{{ "stylesheets/custom.css" | relURL }}">
-
+    {{with .Site.Params.custom_css}}
+    <link rel="stylesheet" href="{{ . | relURL }}">
+    {{end}}
     {{if eq .Params.type "search_result"}}
     <link href="//c.marsflag.com/mf/mfx/css/mfx-serp.css" rel="stylesheet" type="text/css" media="all" charset="UTF-8">
     <link rel="stylesheet" href="{{ "stylesheets/search_result.css" | relURL }}">
