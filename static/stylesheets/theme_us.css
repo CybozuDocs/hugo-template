@@ -1,25 +1,4 @@
-.main {
-  top: -182px;
-}
-
-.hero {
-  background-image: url("../images/kt_thinking.png") !important;
-  background-size: 300px;
-  background-position: 100% -30%;
-  height: 290px;
-  /* background-color: #f2f2f2; */
-  background-color: #ee3e23;
-}
-@media only screen and (max-width:1000px) {
-  .main {
-    top:-90px;
-  }
-}
-
-.article .welcome_message {
-  color: #fff;
-}
-
+/* Font */
 @font-face {
   font-family: "proximasoft-medium";
   font-style: normal;
@@ -48,6 +27,9 @@
 .font-en .article table th, .font-en .article .admonition .admonition-alt, .font-en .article h1,.font-en .article h2, .font-en .article h5, .font-en .article h6, .font-en .article ol>li:before, .font-en .article caption, .font-en #mainmenu a.expand, .font-en #mainmenu li a.current {
   font-family: proximasoft-bold;
 }
+
+/* Header */
+/* change color of the boundary lines between header and body and footer. */
 .header::before {
   content: none;
 }
@@ -55,6 +37,28 @@
   background-image: none;
   background-color: #e6e6e6;
 }
+
+/* Eye-catching of the top page */
+.main {
+  top: -182px;
+}
+.hero {
+  background-image: url("../images/kt_thinking.png") !important;
+  background-size: 300px;
+  background-position: 100% -30%;
+  height: 290px;
+  background-color: #ee3e23;
+}
+@media only screen and (max-width:1000px) {
+  .main {
+    top:-90px;
+  }
+}
+.article .welcome_message {
+  color: #fff;
+}
+
+/* Tiles of the top page */
 .col-tile {
   border-radius: 10px;
 }
