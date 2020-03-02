@@ -1,8 +1,7 @@
-{{if in .Params.disabled $.Site.Params.TargetRegion}}
+{{- if in .Params.disabled $.Site.Params.TargetRegion}}
 <meta http-equiv="refresh" content="0; URL=/" />
-{{else}}
-
-{{ partial "head" . }}
+{{- else}}
+{{- partial "head" . }}
 
 <header class="header">
     {{ partial "header" . }}
