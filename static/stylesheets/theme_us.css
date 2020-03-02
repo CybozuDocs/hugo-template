@@ -48,6 +48,12 @@
   background-position: 100% -30%;
   height: 290px;
   background-color: #ee3e23;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.eye-catching {
+  background-color: #ee3e23;
 }
 @media only screen and (max-width:1000px) {
   .main {
