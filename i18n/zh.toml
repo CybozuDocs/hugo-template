@@ -1,5 +1,5 @@
 [Welcome]
-other = "欢迎使用{{ .Site.Title }}"
+other = "{{ .Site.Title }}"
 
 [Enter_keywords]
 other = "可输入关键字查找"
