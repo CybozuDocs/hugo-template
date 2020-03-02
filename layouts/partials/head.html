@@ -1,66 +1,44 @@
 <!DOCTYPE html>
-  <!--[if lt IE 7 ]><html class="no-js ie6"><![endif]-->
-  <!--[if IE 7 ]><html class="no-js ie7"><![endif]-->
-  <!--[if IE 8 ]><html class="no-js ie8"><![endif]-->
-  <!--[if IE 9 ]><html class="no-js ie9"><![endif]-->
-  <!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
-
-  <head {{ with .Site.LanguageCode }}lang="{{ . }}"{{ end }}>
+<html {{ with .Site.LanguageCode }}lang="{{ . }}"{{ end }}>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=11" />
     <title>{{- partial "title" . -}}{{ if not .IsHome }} - {{ .Site.Title }}{{ end }}</title>
-    {{ with .Site.Params.description }}
+    {{- with .Site.Params.description }}
     <meta name="description" content="{{ . }}">
-    {{ end }}
+    {{- end }}
     <link rel="canonical" href="{{ .Permalink }}">
-    {{ with .Site.Params.author }}
+    {{- with .Site.Params.author }}
     <meta name="author" content="{{ . }}">
-    {{ end }}
-    {{ if eq .Params.noindex true }}
+    {{- end }}
+    {{- if eq .Params.noindex true }}
     <meta name="robots" content="noindex">
-    {{ end }}
+    {{- end }}
 
     <meta property="og:url" content="{{ .Permalink }}">
-    {{ with .Site.Title }}<meta property="og:title" content="{{ . }}">{{ end }}
-    {{ with .Site.Params.logo }}<meta property="og:image" content="{{ . | relURL }}">{{ end }}
-    {{ with .Site.Title }}<meta name="apple-mobile-web-app-title" content="{{ . }}">{{ end }}
+    {{- with .Site.Title }}<meta property="og:title" content="{{ . }}">{{ end }}
+    {{- with .Site.Params.logo }}<meta property="og:image" content="{{ . | relURL }}">{{ end }}
+    {{- with .Site.Title }}<meta name="apple-mobile-web-app-title" content="{{ . }}">{{ end }}
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    {{ partial "alternatelink" . }}
+    {{- partial "alternatelink" . }}
     <link rel="shortcut icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
     <link rel="icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
-
-<!--     <style>
-      @font-face {
-        font-family: 'Icon';
-        src: url('{{ "fonts/icon.eot?52m981" | relURL }}');
-        src: url('{{ "fonts/icon.eot?#iefix52m981" | relURL }}')
-               format('embedded-opentype'),
-             url('{{ "fonts/icon.woff?52m981" | relURL }}')
-               format('woff'),
-             url('{{ "fonts/icon.ttf?52m981" | relURL }}')
-               format('truetype'),
-             url('{{ "fonts/icon.svg?52m981#icon" | relURL }}')
-               format('svg');
-        font-weight: normal;
-        font-style: normal;
-      }
-    </style> -->
 
     <link rel="stylesheet" href="{{ "stylesheets/application.css" | relURL }}">
     <link rel="stylesheet" href="{{ with .Site.Params.highlight_css }}{{ . | relURL }}{{ else }}{{ "stylesheets/highlight/highlight.css" | relURL }}{{ end }}">
     <link rel="stylesheet" href="{{ "stylesheets/zoom.css" | relURL }}">
     <link href="//js.cybozu.com/font-awesome/v5.0.13/css/fontawesome-all.min.css" rel="stylesheet">
-    {{if .IsHome}}
+    {{- if .IsHome}}
     <link rel="stylesheet" href="{{ "stylesheets/home.css" | relURL }}">
-    {{end}}
+    {{- end}}
     <link rel="stylesheet" href="{{ "stylesheets/custom.css" | relURL }}">
 
-    {{if eq .Params.type "search_result"}}
+    {{- if eq .Params.type "search_result"}}
     <link href="//c.marsflag.com/mf/mfx/css/mfx-serp.css" rel="stylesheet" type="text/css" media="all" charset="UTF-8">
     <link rel="stylesheet" href="{{ "stylesheets/search_result.css" | relURL }}">
-    {{end}}
+    {{- end}}
 
     <!-- <script src="{{ "javascripts/modernizr.js" | relURL }}"></script> -->
     <script src="https://js.cybozu.com/jquery/3.4.0/jquery.min.js"></script>
