@@ -1,5 +1,5 @@
 [Welcome]
-other = "{{ .Site.Title }}へようこそ"
+other = "{{ .Site.Title }}"
 
 [Enter_keywords]
 other = "何をお探しですか？"
