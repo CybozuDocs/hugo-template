@@ -1,5 +1,5 @@
 [Welcome]
-other = "{{ .Site.Title }}"
+other = "Welcome to {{ .Site.Title }}"
 
 [Enter_keywords]
 other = "Enter keywords to search help."
