@@ -865,8 +865,8 @@ cursor: pointer;
 .nftitle > h1 {
   max-width: 1300px;
   margin: 0 auto;
-  font-size: 2.1rem;
-  padding: 112px 9px;
+  font-size: 1.5rem;
+  padding: 48px 9px;
   color: #fff;
 }
 .nfarticle {
