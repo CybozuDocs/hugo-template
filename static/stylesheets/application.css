@@ -889,7 +889,7 @@ cursor: pointer;
 }
 
 @media print {
-nav, header, footer {
+nav, header, footer, #enquete {
   display: none !important;
 }
 .font-ja {
