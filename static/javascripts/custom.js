@@ -13,33 +13,10 @@ window.onload = function() {
             }
             $(this).parent().parent().children("ul").slideToggle();
         });
-
-       /* メニュー選択時にスクロール位置をクッキーに保存 */
-       $("#mainmenu li a").click(function (e) {
-           let pos = $(".drawer").scrollTop();
-           $.cookie("dpos", pos);
-           // Cookies.set("dpos", pos);
-       });
-
-       /* 選択されたメニューのスクロール位置をクッキーから取り出す */
-       // let dpos = Cookies.get("dpos");
-       let dpos = $.cookie("dpos");
-
-        if(dpos == undefined) {
-            /* クッキーを持たない場合(=直リンクで開かれた場合) */
-            /* 表示ページのメニュー位置をスクロール位置と設定 */
-            let curnode = null;
-            $("#mainmenu li a").each(function() {
-                let url = $(this).attr("href");
-                if(location.href.match(url)) {
-                    dpos = $(this).parent().offset().top;
-                    return false;
-                }
-            });
-        }
-
+        //現在開いているページの位置を取得する
+        let dpos = $(".current").offset().top;
         /* メニューを選択位置までスクロール */
-       $(".drawer").scrollTop(dpos);
+        $(".drawer").scrollTop(dpos-90);
     }
 
     let tocdiv =  document.getElementById("sidebar-toc");

@@ -576,7 +576,7 @@ ul.breadcrumbs {
   position: fixed;
   width: 200px;
   padding-top: 48px;
-  height: 100%;
+  height: calc(100% - 130px);
   overflow: auto;
   /*line-height: 13px;*/
   font-size: .95rem;
@@ -836,7 +836,7 @@ cursor: pointer;
 .drawer {
   width: 280px;
   position: fixed;
-  padding-bottom: 10rem
+  padding-bottom: 6rem
 }
 .wrap_drawer {
   width: 280px;
@@ -889,7 +889,7 @@ cursor: pointer;
 }
 
 @media print {
-nav, header, footer {
+nav, header, footer, #enquete {
   display: none !important;
 }
 .font-ja {
