@@ -1,4 +1,9 @@
-{{- $t1 := replaceRE "{{%\\s*kintone\\s*%}}" .Site.Params.kintone .Title }}
+{{- if and (eq .Site.Params.TargetRegion "US") .Params.title_us }}
+    {{- .Scratch.Set "title" .Params.title_us }}
+{{- else }}
+    {{- .Scratch.Set "title" .Title }}
+{{- end }}
+{{- $t1 := replaceRE "{{%\\s*kintone\\s*%}}" .Site.Params.kintone (.Scratch.Get "title") }}
 {{- $t2 := replaceRE "{{%\\s*service\\s*%}}" .Site.Params.service $t1 }}
 {{- $t3 := replaceRE "{{%\\s*store\\s*%}}" .Site.Params.store $t2 }}
 {{- $t4 := replaceRE "{{%\\s*cybozu_com\\s*%}}" .Site.Params.cybozu_com $t3 }}
