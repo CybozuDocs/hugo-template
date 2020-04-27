@@ -576,7 +576,7 @@ ul.breadcrumbs {
   position: fixed;
   width: 200px;
   padding-top: 48px;
-  height: calc(100% - 130px);
+  height: calc(100% - 170px);
   overflow: auto;
   /*line-height: 13px;*/
   font-size: .95rem;
