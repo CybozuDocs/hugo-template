@@ -13,10 +13,32 @@ window.onload = function() {
             }
             $(this).parent().parent().children("ul").slideToggle();
         });
-        //現在開いているページの位置を取得する
-        let dpos = $(".current").offset().top;
+
+        /* メニュー選択時にスクロール位置をクッキーに保存させるイベントハンドラ */
+        $("#mainmenu li a").click(function (e) {
+            let pos = $(".drawer").scrollTop();
+            let date = new Date();
+            date.setTime( date.getTime() + ( 5000 ));
+            $.cookie("dpos", pos, { expires: date });
+        });
+
+        /* 選択されたメニューのスクロール位置をクッキーから取り出す */
+        let dpos = $.cookie("dpos");
+        if(dpos == undefined) {
+            /* クッキーを持たない場合(=直リンクで開かれた場合) */
+            /* ハイライト位置をスクロール位置と設定 */
+            dpos = $("#mainmenu .current").offset().top - 90;
+        }
+
         /* メニューを選択位置までスクロール */
-        $(".drawer").scrollTop(dpos-90);
+        $(".drawer").scrollTop(dpos);
+
+        /* 画面内に収まっていない場合の表示補正 */
+        let curpos = $("#mainmenu .current").offset().top;
+        let dtop = $(".drawer").offset().top;
+        if((curpos < dtop) || (curpos > (dtop + $(".drawer").height())) ){
+                $(".drawer").scrollTop($("#mainmenu .current").offset().top - 90);
+        } 
     }
 
     let tocdiv =  document.getElementById("sidebar-toc");
