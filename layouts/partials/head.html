@@ -12,7 +12,7 @@
     {{- with .Site.Params.author }}
     <meta name="author" content="{{ . }}">
     {{- end }}
-    {{- if eq .Params.noindex true }}
+    {{- if eq .Params.type "search_result"}}
     <meta name="robots" content="noindex">
     {{- end }}
 
