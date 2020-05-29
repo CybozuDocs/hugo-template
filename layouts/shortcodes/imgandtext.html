@@ -1,0 +1,27 @@
+<div class="imgandtext" style="position: relative;">
+{{- $img_file := (.Get "img_file") }}
+{{- range $i, $r := getCSV "," "csv/img_and_text.csv" }}
+    {{- if eq $img_file (index $r 0) }}
+        {{- $c2 := (index $r 1) }}
+        {{- if eq "image" $c2 }}
+            {{- $img_alt := "" }}
+            {{- if ($.Get "img_alt") }}
+                {{ $img_alt = ($.Get "img_alt") }}
+            {{- end }}
+    <div>
+        <img style="{{ (index $r 2) | safeCSS }}" src="/k/img/{{ $img_file }}" alt="{{$img_alt}}">
+    </div>
+        {{- else if ($.Get $c2) }}
+            {{- $t1 := replaceRE "{{%\\s*kintone\\s*%}}" $.Site.Params.kintone ($.Get $c2) }}
+            {{- $t2 := replaceRE "{{%\\s*service\\s*%}}" $.Site.Params.service $t1 }}
+            {{- $t3 := replaceRE "{{%\\s*store\\s*%}}" $.Site.Params.store $t2 }}
+            {{- $t4 := replaceRE "{{%\\s*cybozu_com\\s*%}}" $.Site.Params.cybozu_com $t3 }}
+            {{- $t5 := replaceRE "{{%\\s*slash_help\\s*%}}" $.Site.Params.slash_help $t4 }}
+            {{- $t6 := replaceRE "{{%\\s*slash\\s*%}}" $.Site.Params.slash $t5 }}
+            {{- $t7 := replaceRE "{{%\\s*CorpName\\s*%}}" $.Site.Params.CorpName $t6 }}
+            {{- $t8 := replaceRE "{{%\\s*Garoon\\s*%}}" $.Site.Params.product $t7 }}
+    <div style="{{ (index $r 2) | safeCSS }}" aria-hidden="true" >{{ $t8 }}</div>
+        {{- end }}
+    {{- end }}
+{{- end }}
+</div>
