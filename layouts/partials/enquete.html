@@ -4,14 +4,14 @@
     <div id="enqueteYesOrNoBtns">
       この記事は役に立ちましたか？
       <div class="btn_article_vote">
-          <button class="btn_article_vote" id="feedback_yes" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
-              <span class="fa-stack">
+          <button class="btn_article_vote" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
+              <span class="fa-stack" id="feedback_yes">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fas fa-thumbs-up fa-stack-1x" aria-label="Yes"></i>
               </span>
           </button>
-          <button class="btn_article_vote" id="feedback_no" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
-              <span class="fa-stack">
+          <button class="btn_article_vote" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
+              <span class="fa-stack" id="feedback_no">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fas fa-thumbs-down fa-stack-1x" aria-label="No"></i>
               </span>
