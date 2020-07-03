@@ -3,15 +3,13 @@
   <form id="enqueteForm" name="enqueteForm" target="blankFrame" method="post">
     <div id="enqueteYesOrNoBtns">
       この記事は役に立ちましたか？
-      <div class="btn_article_vote">
-        <button class="btn-article-vote vote-yes" id="feedback_yes" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
-        </button>
-        <button class="btn-article-vote vote-no" id="feedback_no" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
-        </button>
+      <div class="btn_article_vote"></div>
+        <input class="enquetebtn" id="feedback_yes" type="button" value="はい" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
+        <input class="enquetebtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
       </div>
     </div>
   </form>
 </aside>
-<script src="{{ "javascripts/enquete.js?20200518" | relURL }}"></script>
+<script src="{{ "javascripts/enquete.js?20200703" | relURL }}"></script>
 <iframe name="blankFrame" width=0 height=0 style="visibility:hidden"></iframe> <!-- for questionnaire -->
 {{ end }}
