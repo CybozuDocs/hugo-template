@@ -511,9 +511,6 @@ overflow-y: scroll;
   flex-direction: column;
   justify-content: center;
 }
-#footerlinks {
-  margin-bottom: 1rem;
-}
 #footerlinks ul li {
   display: inline-block;
   margin-right: 1em;
@@ -524,6 +521,24 @@ overflow-y: scroll;
   line-height: 2em;
 }
 #footercopyright {
+}
+
+/* CookiePro Cookies Settings button */
+.ot-sdk-show-settings {
+    float: right;
+    color: #68b631;
+    border: 1px solid #68b631;
+    height: auto;
+    white-space: normal;
+    word-wrap: break-word;
+    padding: 0.8em 2em;
+    font-size: 0.8em;
+    line-height: 1.2;
+    cursor: pointer;
+    -moz-transition: 0.1s ease;
+    -o-transition: 0.1s ease;
+    -webkit-transition: 1s ease;
+    transition: 0.1s ease;
 }
 
 @media only screen and (min-width:800px){

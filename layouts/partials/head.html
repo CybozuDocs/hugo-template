@@ -26,6 +26,16 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
     <link rel="icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
 
+    {{- if eq .Site.Params.TargetRegion "US" }}
+    <!-- OneTrust Cookies Consent Notice start -->
+    <script type="text/javascript" src="https://cookie-cdn.cookiepro.com/consent/9d6098cc-90be-4d07-a9ef-6e07312a3016/OtAutoBlock.js"></script>
+    <script src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="9d6098cc-90be-4d07-a9ef-6e07312a3016"></script>
+    <script type="text/javascript">
+    function OptanonWrapper() { }
+    </script>
+    <!-- OneTrust Cookies Consent Notice end -->
+    {{- end }}
+
     <link rel="stylesheet" href="{{ "stylesheets/application.css?20200703" | relURL }}">
     <link rel="stylesheet" href="{{ with .Site.Params.highlight_css }}{{ . | relURL }}{{ else }}{{ "stylesheets/highlight/highlight.css" | relURL }}{{ end }}">
     <link rel="stylesheet" href="{{ "stylesheets/zoom.css" | relURL }}">
