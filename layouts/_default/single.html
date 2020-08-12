@@ -26,13 +26,13 @@
             </nav>
             {{ if eq .Type "series" }}
             <nav class="pagination">
-                {{ with .NextInSection }} {{- /* hugoのバグへの対応で、敢えて.NextInSectionと.PrevInSectionを逆に使っている */ -}}
+                {{ with .PrevInSection }} {{- /* Hugo Ver072にともない、リンク修正済 */ -}}
                 <div class="pagination_previous">
                     <i class="fas fa-caret-left"></i>
                     <a href="{{ .Permalink }}">{{ i18n "Previous_page" }}</a>
                 </div>
                 {{ end }}
-                {{ with .PrevInSection }}
+                {{ with .NextInSection }}
                 <div class="pagination_next">
                     <a href="{{ .Permalink }}">{{ i18n "Next_page" }}</a>
                     <i class="fas fa-caret-right"></i>
