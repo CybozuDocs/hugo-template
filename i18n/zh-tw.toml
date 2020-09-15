@@ -1,0 +1,53 @@
+[Welcome]
+other = "歡迎來到{{ .Site.Title }}"
+
+[Enter_keywords]
+other = "在尋找什麼呢？"
+
+[Page_not_found]
+other = "找不到您尋找的頁面"
+
+[I_am_sorry_page_not_found]
+other = "非常抱歉。我們並沒有找到您尋找的頁面。"
+
+[Previous_page]
+other = "回到上一頁"
+
+[Next_page]
+other = "前往下一頁"
+
+[In_this_article]
+other = "文章目錄"
+
+[Go_back_to_previous]
+other = "回到上一頁"
+
+[Go_back_to_top]
+other = "回到首頁"
+
+[Articles_in_this_category]
+other = "同類文章"
+
+[Footer_copyright]
+other = "文章記載的商品及各類產品名稱為各家公司的註冊或非註冊商標。 © Cybozu"
+
+[See_also]
+other = "也請參閱以下頁面"
+
+[Title_tips]
+other = "提示"
+
+[Title_note]
+other = "補充"
+
+[Title_references]
+other = "相關頁面"
+
+[Title_caution]
+other = "注意"
+
+[og_desc1]
+other = "{{$.Site.Params.product_name}}的{{.Site.Params.help}}。"
+
+[og_desc2]
+other = "介紹使用{{.Site.Params.product_name}}所需的設定及使用方法。"
