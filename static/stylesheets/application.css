@@ -996,6 +996,10 @@ table .wd10 {
     background: #ffffe0;
     border-radius: 10px;
 }
+.admonition.hint .fas {
+    color: #ffa500;
+    font-size: 1.3rem;
+}
 .admonition-alt {
     font-size: 1rem;
     margin-bottom: 10px;
