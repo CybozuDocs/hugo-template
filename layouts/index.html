@@ -1,35 +1,27 @@
-{{ partial "head" . }}
-
-<div class="backdrop"></div>
-
-    <header class="header">
-        {{ partial "header" . }}
-    </header>
+{{- partial "head" . }}
+{{- partial "header" . }}
     <div class="eye-catching">
         <div class="hero" style="background-image: url('{{ "images/hero_common.png" | relURL}}');"></div>
     </div>
     <main class="main">
         <article class="article" >
             <div class="wrapper">
-                <h1 class="welcome_message">{{ i18n "Welcome" . }}</h1>
+                <div class="welcome_message">{{ i18n "Welcome" . }}</div>
                 <div class="search-wrap">
                     <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html"　onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}'>
                         <div class="searchbox">
                             <input type="text" name="q" id="headerSearchBox_input" class="search-input" placeholder='{{ i18n "Enter_keywords" }}'>
-                            <input type="submit" name="commit" value="" class="search-submit" data-disable-with="">
+                            <button type="submit" name="commit" value="" class="search-submit" data-disable-with=""></button>
                             <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}">
                         </div>
                     </form>
                 </div>
-
               <nav class="col-flex">
                     {{ .Content }}
               </nav>
             </div>
         </article>
     </main>
-    <footer class="footer">
-        {{ partial "footer" . }}
-    </footer>
-  </body>
+    {{- partial "footer" . }}
+</body>
 </html>

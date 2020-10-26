@@ -1,0 +1,49 @@
+<div id="tree-nav" role="navigation" >
+    <div id="tree-head">
+        <div class="tree-title"><a href="{{.RelPermalink}}">{{- partial "title" . -}}</a></div>
+    </div>
+    <nav id="tree-main" role="tree">
+        <ul class="trunk" role="group" >
+            <li role="treeitem" >
+                {{- $tocs := "" }}
+                {{- $cont := .Content }}
+                {{- $tocs = findRE "<h2.*?>(.|\n)*?</h2>" $cont }}
+                    {{- if gt (len $tocs) 0 }}
+                <ul class="opened" role="group" aria-selected="true" >
+                        {{- $pageurl := .RelPermalink}}
+                        {{- range $tocs }}
+                            {{- $anc := "" }}
+                            {{- $params := split . " " }}
+                            {{- range $params }}
+                                {{- if in . "pid=" }}
+                                    {{- $params2 := split . ">" }}
+                                    {{- range $params2 }}
+                                        {{- if in . "pid=" }}
+                                            {{- $anc = (strings.TrimPrefix "pid=\"" . ) }}
+                                            {{- $anc = (strings.TrimSuffix "\"" $anc ) }}
+                                        {{- end }}
+                                    {{- end }}
+                                {{- else if in . "id=" }}
+                                    {{- $anc = (strings.TrimPrefix "id=\"" . ) }}
+                                    {{- $anc = (strings.TrimSuffix "\"" $anc ) }}
+                                {{- end }}
+                            {{- end }}
+
+                            {{- $txts := (findRE ">.+<" . 1) }}
+                            {{- $txt := "" }}
+                            {{- range $txts }}
+                                {{- $txt = . }}
+                            {{- end }}
+                            {{- $txtlen := (countrunes  $txt) }}
+
+                            {{- if gt $txtlen 0 }}
+                                {{ $txt := (substr $txt 1 $txtlen) }}
+                         <li role="treeitem" ><span class="branch-sp"><a href="{{$pageurl}}#{{$anc}}" class="toclink">{{$txt}}</a></span></li>
+                            {{- end }}
+                        {{- end }}
+                </ul>
+                    {{- end }}
+            </li>
+        </ul>
+    </nav>
+</div>

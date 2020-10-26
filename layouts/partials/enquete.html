@@ -1,15 +1,10 @@
-{{if eq .Lang "ja" }}
-<aside id="enquete" style="display:none;">
-  <form id="enqueteForm" name="enqueteForm" target="blankFrame" method="post">
-    <div id="enqueteYesOrNoBtns">
-      この記事は役に立ちましたか？
-      <div class="btn_article_vote">
-        <input class="enquetebtn" id="feedback_yes" type="button" value="はい" onclick='$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});'>
-        <input class="enquetebtn" id="feedback_no" type="button" value="いいえ" onclick='$.cookie("answered","{{ .Permalink | relURL }}",{path:"/",expires:1});'>
+<aside id="enquete">
+    <div class="enquete-panel">
+      <div>{{ i18n "Was_it_helpful" }}</div>
+      <div>
+          <button class="enquete-btn" id="feedback-yes" aria-label='{{ i18n "Yes" }}'>{{ i18n "Yes" }}</button>
+          <button class="enquete-btn" id="feedback-no" aria-label='{{ i18n "No" }}'>{{ i18n "No" }}</button>
       </div>
     </div>
-  </form>
 </aside>
-<script src="{{ "javascripts/enquete.js?20200703" | relURL }}"></script>
-<iframe name="blankFrame" width=0 height=0 style="visibility:hidden"></iframe> <!-- for questionnaire -->
-{{ end }}
+<script src="{{ "javascripts/enquete.js" | relURL }}"></script>

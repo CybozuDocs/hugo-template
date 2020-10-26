@@ -1,0 +1,126 @@
+{{- define "getsecond" }}
+    {{- if and .p1.Parent (ne .p1 .p1.FirstSection) }}
+        {{- .scratch.Set "second" .p1  }}
+        {{- template "getsecond" (dict "p1" .p1.Parent "scratch" .scratch ) -}}
+    {{- end -}}
+{{- end }}
+
+{{- $scratch := newScratch }}
+{{- template "getsecond" (dict "p1" . "scratch" $scratch ) }}
+{{- $secondsect := ($scratch.Get "second") }}
+
+{{- $entries := $.Site.Home.Sections }}
+{{- $rootsect := .FirstSection }}
+{{- $seconditems := len $rootsect.Pages }}
+{{- if .IsHome}}
+  {{- $seconditems = 0 }}
+{{- else if or (in $rootsect "purpose") (in $rootsect "pdf")}}
+  {{- $seconditems = 0 }}
+{{- else if or (eq $.Params.type "search_result") (eq $.Params.type "gr/sitemap")}}
+  {{- $seconditems = 0 }}
+{{- end }}
+
+<nav role="navigation"> 
+    <div class="g-nav" role="menubar">
+{{- $tc := "" }}
+{{- range $entries.ByWeight}}
+    {{- if ne .Params.weight 0 }}
+        {{- if eq .CurrentSection $rootsect }}
+            {{- $tc = "current" }}
+        {{- else }}
+            {{- $tc = "" }}
+        {{- end }}
+        <div class="g-col"><a role="menuitem" href="{{ .RelPermalink }}" class="{{$tc}}">{{- partial "title" . -}}</a></div>
+    {{- end }}
+{{- end}}
+    </div>
+
+    <div class="mega-nav">
+{{- if gt $seconditems 0 }}
+        <div class="mega-tab" role="tablist">
+            <h2 class="mega-guide">{{ i18n "By_features" }}</h2>
+    {{- range $entries.ByWeight}}
+        {{- if eq .CurrentSection $rootsect }}
+            {{- template "sectbar" (dict "cursect" $rootsect "secondsect" $secondsect) }}
+        {{- end}}
+    {{- end}}
+        </div>
+{{- end }}
+    </div>
+</nav>
+
+{{- define "sectbar" }}
+    {{- $cursect := .cursect }}
+    {{- $secondsect := .secondsect }}
+        <ul role="presentation">
+    {{$menuid := 0}}
+    {{- range $cursect.Pages.ByWeight }}
+        {{- $curclass := "" }}
+        {{- if eq $secondsect . }}
+            {{- $curclass = " current" }}
+        {{- end }}
+        
+        {{- $menuid = (add $menuid 1)}}
+            <li class="mega-item {{- $curclass -}}" role="tab" id="tab{{$menuid}}" tabindex="0" aria-controls="panel{{$menuid}}" aria-selected="false" aria-expanded="false">
+            {{- partial "title" . -}}
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+        {{- if ne (len .Pages) 0 }}
+            <div class="mega-panel" role="tabpanel" id="panel{{$menuid}}" aria-labelledby="tab{{$menuid}}" >
+                <div class="mega-title">
+                  <div class="wrap">
+                    {{- if ne .Params.nolink true -}}
+                      <a href="{{.RelPermalink}}">
+                    {{- end -}}
+                      <span class="fa-stack" tabindex="-1" aria-hidden="true">
+                {{- $iconface := "" }}
+                {{- $targetlink := .RelPermalink }}
+                {{- range $i, $r := getCSV "," "csv/icon_images.csv" }}
+                    {{- if in $targetlink (index $r 0)}}
+                        {{- $iconface = (index $r 1) }}
+                    {{- end }}
+                {{- end }}
+                          <i class="far fa-circle fa-stack-2x" aria-hidden="true"></i>
+                          <i class="{{$iconface}} fa-stack-1x" aria-hidden="true"></i>
+                      </span>
+                {{- partial "title" . -}}
+                    {{- if ne .Params.nolink true -}}
+                      </a>
+                    {{- end -}}
+                  </div>
+                </div>
+            {{- template "pagelist" . }}
+            </div>
+        {{- end }}
+          </li>
+    {{- end}}
+        </ul>
+{{- end }}
+
+{{- define "pagelist" }}
+    {{- $pageitms := (len .Pages) }}
+    {{- $colitms := (div $pageitms 3) }}
+    {{- if gt $pageitms (mul $colitms 3) }}
+        {{- $colitms = (add $colitms  1) }}
+    {{- end }}
+    
+    {{- $itms := 1 }}
+    {{- $menupart := 1 }}
+    {{- range .Pages }}
+        {{- if eq $itms  1 }}
+              <div class="wrap">
+                <div id="menu{{$menupart}}" class="panel-item" role="menu">
+        {{- end }}
+                    <p><a href="{{.RelPermalink}}" role="menuitem">{{- partial "title" . }}</a></p>
+        {{- $itms = (add $itms 1) }}     
+        {{- if gt $itms $colitms }}
+                </div>
+              </div>
+            {{- $itms = 1 }}
+            {{- $menupart = (add $menupart 1) }}
+        {{- end }}
+    {{- end }}
+    {{- if ne $itms 1 }}
+                </div>
+              </div>
+    {{- end }}
+{{- end }}

@@ -1,64 +1,86 @@
 <!DOCTYPE html>
-<html {{ with .Site.LanguageCode }}lang="{{ . }}"{{ end }}>
+<html lang="{{.Site.LanguageCode}}"> 
   <head>
+    {{- $buildnum := (now.Format "2006010203") }}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=11" />
-    <title>{{- partial "title" . -}}{{ if not .IsHome }} - {{ .Site.Title }}{{ end }}</title>
-    {{- with .Site.Params.description }}
-    <meta name="description" content="{{ . }}">
+    {{- $title := partial "title" .}}
+    {{- $sitename := "" }}
+    {{- $servicetype := "" }}
+    {{- with .Site.Params.service_type }}
+        {{- $servicetype = . }}
     {{- end }}
-    <link rel="canonical" href="{{ .Permalink }}">
-    {{- with .Site.Params.author }}
-    <meta name="author" content="{{ . }}">
+    {{- if and (eq .Site.Params.service_type_id "on-premise") (eq .Site.LanguageCode "en-us") }}
+        {{- $sitename = printf "%s %s" .Site.Params.product_name $servicetype }}
+    {{- else }}
+        {{- $sitename = printf "%s %s" $servicetype .Site.Params.product_name }}
     {{- end }}
+    {{- $sitename = strings.TrimLeft " " $sitename }}
+    {{- .Scratch.Set "sitename" $sitename}}
+    {{- $sitename = printf "%s %s" $sitename .Site.Params.help -}}
+
+    {{- $desc := "" }}
+    {{- if and (not .IsHome) (or (eq .Site.Params.product "Garoon") (eq .Site.Params.product "Mailwise")) }}
+        {{- $title = printf "%s | %s" $title $sitename }}
+        {{- $contents := split .Content "\n" }}
+        {{- $first := "" }}
+        {{- range first 1 $contents }}
+            {{- $desc = strings.TrimLeft "<p>" . }}
+            {{- $desc = strings.TrimRight "<br>" $desc }}
+            {{- $desc = (strings.TrimRight "</p>" $desc) | html }}
+        {{- end }}
+    {{- end -}}
+
+    {{- $desc_base := (i18n "og_desc1" .) }}
+    {{- with .Site.Params.service_type }}
+        {{- $desc_base = (i18n "og_desc1_service" $) }}
+    {{- end }}
+    {{- $desc = printf "%s %s %s" $desc_base (i18n "og_desc2" .) $desc }}
+    <title>{{ $title }}</title>
+    <link rel="canonical" href="https://{{.Site.Params.domain}}{{ .Permalink | relURL }}">
     {{- if eq .Params.type "search_result"}}
     <meta name="robots" content="noindex">
     {{- end }}
-
-    <meta property="og:url" content="{{ .Permalink }}">
-    {{- with .Site.Title }}<meta property="og:title" content="{{ . }}">{{ end }}
-    {{- with .Site.Params.logo }}<meta property="og:image" content="{{ . | relURL }}">{{ end }}
-    {{- with .Site.Title }}<meta name="apple-mobile-web-app-title" content="{{ . }}">{{ end }}
+    <meta name="description" content="{{$desc}}">
+    <meta property="og:url" content="https://{{.Site.Params.domain}}{{.Permalink | relURL }}">
+    <meta property="og:site_name" content="{{$sitename}}">
+    <meta property="og:title" content="{{$title}}">
+    <meta property="og:image" content="https://{{.Site.Params.domain}}{{ .Site.Params.og_img | relURL }}">
+    <meta property="og:description" content="{{$desc}}">
+    <meta property="og:locale" content="{{.Site.LanguageCode}}">
+    <meta name="apple-mobile-web-app-title" content="{{$title}}">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     {{- partial "alternatelink" . }}
     <link rel="shortcut icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
     <link rel="icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
-
-    {{- if eq .Site.Params.TargetRegion "US" }}
-    <!-- OneTrust Cookies Consent Notice start -->
-    <script type="text/javascript" src="https://cookie-cdn.cookiepro.com/consent/9d6098cc-90be-4d07-a9ef-6e07312a3016/OtAutoBlock.js"></script>
-    <script src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="9d6098cc-90be-4d07-a9ef-6e07312a3016"></script>
-    <script type="text/javascript">
-    function OptanonWrapper() { }
-    </script>
-    <!-- OneTrust Cookies Consent Notice end -->
-    {{- end }}
-
-    <link rel="stylesheet" href="{{ "stylesheets/application.css?20200703" | relURL }}">
-    <link rel="stylesheet" href="{{ with .Site.Params.highlight_css }}{{ . | relURL }}{{ else }}{{ "stylesheets/highlight/highlight.css" | relURL }}{{ end }}">
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application.css" $buildnum | relURL }}">
     <link rel="stylesheet" href="{{ "stylesheets/zoom.css" | relURL }}">
-    <link href="//js.cybozu.com/font-awesome/v5.0.13/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="https://js.cybozu.com/font-awesome/v5.0.13/css/fontawesome-all.min.css" rel="stylesheet">
     {{- if .IsHome}}
-    <link rel="stylesheet" href="{{ "stylesheets/home.css" | relURL }}">
-    {{- end}}
-    <link rel="stylesheet" href="{{ "stylesheets/custom.css" | relURL }}">
-    {{- with .Site.Params.custom_css}}
-    <link rel="stylesheet" href="{{ . | relURL }}">
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/home.css" $buildnum | relURL }}">
     {{- end}}
     {{- if eq .Params.type "search_result"}}
     <link href="//c.marsflag.com/mf/mfx/css/mfx-serp.css" rel="stylesheet" type="text/css" media="all" charset="UTF-8">
-    <link rel="stylesheet" href="{{ "stylesheets/search_result.css" | relURL }}">
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/search_result.css" $buildnum | relURL }}">
     {{- end}}
-
-    <!-- <script src="{{ "javascripts/modernizr.js" | relURL }}"></script> -->
+    {{- with .Site.Params.custom_css }}
+        {{- $files := split . "," }}
+        {{- range $files }}
+    <link rel="stylesheet" href="{{ printf "%s?%s" . $buildnum | relURL }}">
+        {{- end }}
+    {{- end}}
+    
     <script src="https://js.cybozu.com/jquery/3.5.1/jquery.min.js"></script>
-    <!-- <script src="{{ "javascripts/js.cookie.js" | relURL }}"></script> -->
+    <script src="{{ "javascripts/js.cookie.js" | relURL }}"></script>
     <script src="{{ "javascripts/jquery.cookie.js" | relURL }}"></script>
-    <!-- <script src="{{ "javascripts/transition.min.js" | relURL }}"></script> -->
     <script src="{{ "javascripts/zoom.js" | relURL }}"></script>
-    <script src="{{ "javascripts/custom.js" | relURL }}"></script>
+    <script src="{{ printf "%s?%s" "javascripts/application.js" $buildnum | relURL }}"></script>
+    {{- if eq $.Site.Params.meganav true }}
+    <script src="{{ printf "%s?%s" "javascripts/meganav.js" $buildnum | relURL }}"></script>
+    {{- end }}
+    
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -73,4 +95,4 @@
       })(window,document,'script','dataLayer','GTM-5N49D3');</script>
     <!-- End Google Tag Manager -->
   </head>
-  <body class="font-{{.Lang}} {{ with .Site.Params.palette.primary }}palette-primary-{{ . }}{{end }} {{ with .Site.Params.palette.accent }}palette-accent-{{ .  }}{{ end }}">
+  <body class="font-{{.Lang}}">

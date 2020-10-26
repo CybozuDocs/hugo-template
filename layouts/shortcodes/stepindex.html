@@ -1,0 +1,18 @@
+<div>
+<strong>Steps:</strong>
+    <dl class="step-list">
+{{- $lc := 0}}
+{{- $idx := 0}}
+{{- $href := ""}}
+{{- range .Params }}
+    {{-  $lc = (add $lc 1) }}
+    {{- if not (modBool $lc 2)}}
+        {{- $href = . }}
+    {{- else }}
+        {{-  $idx = (add $idx 1) }}
+        <dt class="step-index">Step {{$idx}}</dt>
+        <dd class="step-link"><a href="{{$href}}">{{partial "applyparams" (dict "target" . "params" $.Site.Params)}}</a></dd>
+    {{- end }}
+{{- end }}
+    </dl>
+</div>

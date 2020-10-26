@@ -1,0 +1,18 @@
+{{- if in .Params.disabled $.Site.Params.TargetRegion}}
+<meta http-equiv="refresh" content="0; URL=/" />
+{{- else}}
+{{- partial "head" . }}
+{{- partial "header" . }}
+{{- if eq $.Site.Params.meganav true -}}
+    {{ partial "meganav" . }}
+{{- end -}}
+<div class="wrapper">
+    <main id="main">
+        <h1 class="top-title">{{$.Scratch.Get "sitename"}} {{$.Site.Params.help}}</h1>
+        {{ .Content }}
+    </main>
+</div>
+{{- partial "footer" . }}
+{{- end}}
+</body>
+</html>

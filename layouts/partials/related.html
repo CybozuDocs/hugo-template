@@ -1,16 +1,16 @@
-{{ $related := .Site.RegularPages.Related . | first 5 }}
+{{- $related := .Site.RegularPages.Related . | first 5 }}
 
-{{$.Scratch.Set "pagecnt" 0}}
+{{- $.Scratch.Set "pagecnt" 0}}
 
-{{ range $related }}
-    {{ if in .Params.disabled $.Site.Params.TargetRegion }}
-    {{ else }}
+{{- range $related }}
+    {{- if in .Params.disabled $.Site.Params.TargetRegion }}
+    {{- else }}
         {{$.Scratch.Add "pagecnt" 1}}
-    {{ end}}
-{{ end }}
+    {{- end }}
+{{- end }}
 
-{{if gt ($.Scratch.Get "pagecnt") 0}}
-  {{ with $related.ByWeight }}
+{{- if gt ($.Scratch.Get "pagecnt") 0}}
+  {{- with $related.ByWeight }}
 <hr>
 <div class="seealso">{{ i18n "See_also" }}</div>
 <ul>
@@ -21,5 +21,5 @@
       {{- end -}}
 	{{- end -}}
 </ul>
-  {{ end }}
-{{ end }}
+  {{- end }}
+{{- end }}

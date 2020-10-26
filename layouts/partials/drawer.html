@@ -1,6 +1,10 @@
 <nav aria-label="Navigation">
   <div class="wrapper">
+  {{- if eq $.Site.Params.meganav true -}}
+      {{ partial "nav2" . }}
+  {{- else }}
       {{ partial "nav" . }}
-      {{ partial "tagslist" . }}
+  {{- end }}
+  {{ partial "tagslist" . }}
   </div>
 </nav>

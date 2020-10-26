@@ -1,0 +1,88 @@
+{{- if in .Params.disabled $.Site.Params.TargetRegion }}
+<meta http-equiv="refresh" content="0; URL=/" />
+{{- else }}
+{{- partial "head" . }}
+{{- partial "header" . }}
+{{- if eq $.Site.Params.meganav true -}}
+    {{ partial "meganav" . }}
+{{- end -}}
+
+<div class="sect-wrap">
+    {{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.Params.languageCode "ja-jp") (ne $.Site.Params.languageCode "ja-cn") }}
+        {{ partial "disclaimer" . }}
+    {{- end }}
+    {{- partial "breadcrumb" . -}}
+    <main class="sect-main">
+        <h1>{{ partial "title" . }}</h1>
+
+{{- $entries := $.Site.Home.Pages }}
+{{- $rootsect := .FirstSection }}
+                    
+{{- range $entries.ByWeight}}
+    {{- if eq .CurrentSection $rootsect }}
+        {{- template "sectmenu" (dict "cursect" $rootsect ) }}
+    {{- end}}
+{{- end}}
+
+{{ .Content }}
+    </main>
+</div>
+{{- partial "footer" . }}
+{{- end }}
+</body>
+</html>
+
+{{- define "sectmenu" }}
+    {{- $cursect := .cursect }}
+  <div>
+    {{- range $cursect.Pages.ByWeight }}
+    <div class="mega-title">
+            {{- if ne .Params.nolink true -}}
+        <a href="{{.RelPermalink}}">
+            {{- end -}}
+            <span class="fa-stack">
+            {{- $iconface := "" }}
+            {{- $targetlink := .RelPermalink }}
+            {{- range $i, $r := getCSV "," "csv/icon_images.csv" }}
+                {{- if in $targetlink (index $r 0)}}
+                    {{- $iconface = (index $r 1) }}
+                {{- end }}
+            {{- end}}
+              <i class="far fa-circle fa-stack-2x" aria-hidden="true"></i>
+              <i class="{{$iconface}} fa-stack-1x" aria-hidden="true"></i>
+            </span>
+            {{- partial "title" . -}}
+            {{- if ne .Params.nolink true -}}
+        </a>
+            {{- end -}}
+    </div>
+    <div class="sect-menu">
+        {{- template "pagelist2" . }}
+    </div>
+    {{- end}}
+  </div>
+{{- end }}
+
+{{- define "pagelist2" }}
+    {{- $pageitms := (len .Pages) }}
+    {{- $colitms := (div $pageitms 3) }}
+    {{- if gt $pageitms (mul $colitms 3) }}
+        {{- $colitms = (add $colitms  1) }}
+    {{- end }}
+    
+    {{- $itms := 1 }}
+    {{- range .Pages }}
+        {{- if eq $itms  1 }}
+                <div class="sect-col">
+        {{- end }}
+                    <p><a href="{{.RelPermalink}}">{{- partial "title" . }}</a></p>
+        {{- $itms = (add $itms 1) }}     
+        {{- if gt $itms $colitms }}
+                </div>
+            {{- $itms = 1 }}
+        {{- end }}
+    {{- end }}
+    {{- if ne $itms 1 }}
+                </div>
+    {{- end }}
+{{- end }}

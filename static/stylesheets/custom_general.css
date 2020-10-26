@@ -1,0 +1,21 @@
+/* Header */
+.logo-wrap {
+  width: 300px;
+}
+.logo-img {
+  width: 200px;
+  height: 56px;
+  padding: 15px 9px 7px 9px;
+}
+.logo-product {
+  display: none;
+}
+.logo-title {
+  padding-left: 0;
+  font-size: 1.7em;
+  line-height: 1.6em;
+  color: #333;
+}
+.logo-title:lang(en) {
+  font-size: 2em;
+}

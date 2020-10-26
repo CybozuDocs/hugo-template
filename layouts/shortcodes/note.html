@@ -1,7 +1,9 @@
 {{- $_hugo_config := `{ "version": 1 }` -}}
 <aside class="admonition note">
   <div class="admonition-alt">
-    <i class="fas fa-pencil-alt"></i>
+{{- if and (ne .Site.Params.product "Garoon") (ne .Site.Params.product "Mailwise") }}
+    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+{{- end }}
     <span>{{ i18n "Title_note" }}</span>
   </div>
   <div class="admonition-content">{{ printf "%s" .Inner | markdownify }}</div>

@@ -2,56 +2,43 @@
 <meta http-equiv="refresh" content="0; URL=/" />
 {{- else}}
 {{- partial "head" . }}
-
-<header class="header">
-    {{ partial "header" . }}
-</header>
-<div class="main">
-    <div class="wrap_drawer">
-        <nav class="drawer">
-            {{ partial "drawer" . }}
-        </nav>
+{{- partial "header" . }}
+{{- if eq $.Site.Params.meganav true }}
+    {{ partial "meganav" . }}
+{{- end }}
+<div class="page" >
+    <div class="tree-wrap">
+        {{ partial "treenav" . }}
     </div>
-    <div class="article">
-        <div class="wrapper">
-            <nav class="breadcrumb">{{- partial "breadcrumb" . -}}</nav>
-            <main id="main">
-                <article>
-                    <h1>{{ partial "title" . }}</h1>
-                    {{ .Content }}
-                </article>
-            </main>
-            <nav class="seealso">
-                {{ partial "related" .}}
-            </nav>
-            {{ if eq .Type "series" }}
-            <nav class="pagination">
-                {{ with .PrevInSection }} {{- /* Hugo Ver072にともない、リンク修正済 */ -}}
-                <div class="pagination_previous">
-                    <i class="fas fa-caret-left"></i>
-                    <a href="{{ .Permalink }}">{{ i18n "Previous_page" }}</a>
-                </div>
-                {{ end }}
-                {{ with .NextInSection }}
-                <div class="pagination_next">
-                    <a href="{{ .Permalink }}">{{ i18n "Next_page" }}</a>
-                    <i class="fas fa-caret-right"></i>
-                </div>
-                {{ end }}
-            </nav>
-            {{ end }}
-        </div>
+    <div class="contents-wrap">
+        {{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.Params.languageCode "ja-jp") (ne $.Site.Params.languageCode "ja-cn") }}
+            {{ partial "disclaimer" . }}
+        {{- end }}
+        <main id="main" role="main">
+            {{- partial "breadcrumb" . -}}
+            <article class="article" role="article">
+                <h1>{{ partial "title" . }}</h1>
+                {{ .Content }}
+            </article>
+            {{- partial "related" .}}
+
+            {{- if eq .Type "series" }}
+                {{- partial "pagenav" .}}
+            {{- end }}
+
+        </main>
         {{- partial "enquete" . -}}
     </div>
-    <div class="wrap_sidebar">
-        <nav id="sidebar-toc">
-            <h2 class="tocTitle">{{ i18n "In_this_article" }}</h2>
+    {{- if ne $.Site.Params.meganav true -}}
+    <div class="sidebar-wrap">
+        <nav id="rightside-bar">
+            <h2 class="toc-title">{{ i18n "In_this_article" }}</h2>
         </nav>
     </div>
+    {{- end }}
 </div>
-<footer class="footer">
-    {{ partial "footer" . }}
-</footer>
-{{end}}
+{{- partial "gototop" . }}
+{{- partial "footer" . }}
+{{- end }}
 </body>
 </html>

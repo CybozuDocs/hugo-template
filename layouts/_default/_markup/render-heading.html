@@ -1,0 +1,23 @@
+{{- if or (eq .Page.Site.Params.product "Garoon") (eq .Page.Site.Params.product "Mailwise") }}
+    {{- if eq .Level 6 }}
+        {{- $anctxt := (anchorize .Text) }}
+        {{- $ancs := findRE $anctxt .Anchor }}
+        {{- $preanc := "" }}
+        {{- range first 1 $ancs}}
+            {{- $preanc = .}}
+        {{- end}}
+        {{- if eq $preanc "" }}
+<div class="adjustAnchor">
+    <div class="h6-anc" id="{{.Anchor | safeURL}}">{{.Text | safeHTML}}</div>
+</div>
+        {{- else }}
+<h6>{{.Text | safeHTML}}</h6>
+        {{- end }}
+    {{- else }}
+        {{- $link := (printf "https://%s%s" .Page.Site.Params.domain .Page.RelPermalink) }}
+        {{- template "anchorlink" (dict "level" .Level "link" $link "id" .Anchor "title" .Text ) }}
+    {{- end }}
+{{- else }}
+<h{{.Level}} id="{{.Anchor | safeURL}}" role="heading">{{.Text | safeHTML }}</h{{.Level}}>
+{{- end }}
+

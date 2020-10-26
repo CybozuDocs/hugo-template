@@ -1,0 +1,13 @@
+<div class="disclaimer-wrap">
+    <div class="disclaimer">
+{{- $pdf_url := "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf" }}
+{{- if eq $.Site.Params.languageCode "zh-cn" }}
+    {{- $pdf_url = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf" }}
+{{- end }}
+        <a href="{{$pdf_url}}" target="_blank">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            {{ i18n "MT_Disclaimer" }}
+            <i class="far fa-file-pdf" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>

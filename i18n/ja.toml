@@ -1,5 +1,5 @@
 [Welcome]
-other = "{{ .Site.Title }}へようこそ"
+other = "{{$.Site.Params.product_name}} {{$.Site.Params.help}}へようこそ"
 
 [Enter_keywords]
 other = "何をお探しですか？"
@@ -29,7 +29,7 @@ other = "トップに戻る"
 other = "このカテゴリーの記事"
 
 [Footer_copyright]
-other = "記載された商品名、各製品名は各社の登録商標または商標です。 © Cybozu"
+other = "記載された商品名、各製品名は各社の登録商標または商標です。 ©Cybozu"
 
 [See_also]
 other = "次のページも参照してください"
@@ -45,4 +45,37 @@ other = "関連ページ"
 
 [Title_caution]
 other = "注意"
+
+[By_features]
+other = "機能で探す"
+
+[Top_page]
+other = "トップ"
+
+[Read_more]
+other = "もっと見る"
+
+[Was_it_helpful]
+other = "この情報は役に立ちましたか？"
+
+[Yes]
+other = "はい"
+
+[No]
+other = "いいえ"
+
+[Permalink]
+other = "固定リンク"
+
+[MT_Disclaimer]
+other = "機械翻訳についての免責事項"
+
+[og_desc1]
+other = "{{.Site.Params.product_name}}の{{.Site.Params.help}}です。"
+
+[og_desc1_service]
+other = "{{.Site.Params.service_type}} {{.Site.Params.product_name}}の{{.Site.Params.help}}です。"
+
+[og_desc2]
+other = "{{.Site.Params.product_name}}を利用するために必要な設定や操作方法などを説明します。"
 

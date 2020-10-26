@@ -1,6 +1,3 @@
-/*.backdrop {
-    background-color: #ffffff;
-}*/
 .header .wrapper {
     justify-content: space-between;
 }
@@ -14,6 +11,11 @@ body { overflow-y: scroll; }
     max-width: 1200px;
     width: 100%;
   }
+
+.contents-wrap {
+    width: calc(100% - 300px);
+    min-width: 320px;
+}
 
 .article {
   margin-left: 0;
@@ -48,13 +50,14 @@ body { overflow-y: scroll; }
   font-size: 16px;
   margin-bottom: .4em;
 }
-.btn-mail p {
-  text-align: left
+.btn-mail i {
+  font-size: 2.4em;
 }
 .fa-envelope-o {
   display: block;
   font-size: 40px;
   padding-bottom: 17px;
+  color: #000;
 }
 .mf_finder_logo,.mf_finder_searchBox_category_link_0,.mf_finder_organic_doc_img_wrapper,.mf_gui_img_frame,.mf_finder_organic_doc_url_wrapper,.mf_finder_query,.mf_finder_organic_range{
  display: none !important;
@@ -72,7 +75,7 @@ body { overflow-y: scroll; }
 }
 .mf_finder_searchBox_submit:before {
   margin: 0;
-  font-size: 16px;
+  font-size: 1.5em;
 }
 .mf_finder_searchBox_items {
   margin: 0 auto 39px auto;
@@ -139,18 +142,16 @@ body { overflow-y: scroll; }
     border-bottom-left-radius: 0;
 }
 .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a, .mf_finder_searchBox_links .mf_finder_searchBox_imgsize_links div a, .mf_finder_searchBox_links .mf_finder_searchBox_pagemax_links div a, .mf_finder_searchBox_links .mf_finder_searchBox_sort_links div a {
-    background-color: #ddd;
     border: 1px solid #ddd;
     border-bottom: none;
     transition: .2s linear;
+    margin-top: 5px;
 }
 .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a:hover, .mf_finder_searchBox_links .mf_finder_searchBox_imgsize_links div a:hover, .mf_finder_searchBox_links .mf_finder_searchBox_pagemax_links div a:hover, .mf_finder_searchBox_links .mf_finder_searchBox_sort_links div a:hover {
     background-color: #bbb;
-    color: inherit
+    color: inherit;
 }
 .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a.mf_finder_searchBox_link_current, .mf_finder_searchBox_links .mf_finder_searchBox_imgsize_links div a.mf_finder_searchBox_link_current, .mf_finder_searchBox_links .mf_finder_searchBox_pagemax_links div a.mf_finder_searchBox_link_current, .mf_finder_searchBox_links .mf_finder_searchBox_sort_links div a.mf_finder_searchBox_link_current {
-    background-color: #fff;
-    color: #333;
     cursor: default;
     border: 1px solid #ddd;
     border-bottom: none;
@@ -158,43 +159,43 @@ body { overflow-y: scroll; }
 
 @media screen and (max-width: 1060px) {
   .subnavi {
-    display: none
+    display: none;
+  }
+
+  .contents-wrap {
+    width: 100%;
   }
 }
 
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
   .article h1 {
       margin: 0;
       font-size: 1.5rem;
   }
   
   .mf_finder_searchBox_category_links {
-      font-size: .875rem!important
+      font-size: .875rem!important;
   }
   .mf_finder_searchBox_links .mf_finder_searchBox_category_links div {
       width: 100%
   }
-  .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a {
-      color: #0d89a2;
-  }
+
   .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a.mf_finder_searchBox_link_current {
       border: none;
       display: block;
-      background-color: #0d89a2;
-      color: #fff;
-      border-radius: 6px
+      border-radius: 6px;
   }
   .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a {
-      background-color: inherit;
       border: none;
-      display: block
+      display: block;
+      border-radius: 6px;
   }
   /* Main */
   .mf_finder_organic_doc {
       padding: 1.5rem 0;
   }
   .mf_finder_organic_header_wrapper {
-      margin-left: 0
+      margin-left: 0;
   }
   .mf_finder_organic_doc_body {
       font-size: .875rem !important;
@@ -206,22 +207,22 @@ body { overflow-y: scroll; }
 }
 
 @media screen and (min-width: 800px) {
-.subnavi {
-  margin-left: 24px;
-  padding-top: 60px;
-  border-left: 1px solid #e6e6e6;
-}
+    .subnavi {
+      margin-left: 24px;
+      padding-top: 60px;
+      border-left: 1px solid #e6e6e6;
+    }
 }
 
-@media (max-width: 639px) {
+@media screen and (max-width: 639px) {
   .mf_finder_organic_doc_body {
       height: 3.6rem;
   }
 }
 
 /* Tab */
-@media (max-width: 800px){
-.mf_finder_searchBox_links .mf_finder_searchBox_category {
-    border-bottom: none
-}
+@media screen and (max-width: 800px){
+    .mf_finder_searchBox_links .mf_finder_searchBox_category {
+        border-bottom: none;
+    }
 }

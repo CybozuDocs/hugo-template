@@ -1,0 +1,20 @@
+{{- define "anchorlink" }}
+    {{- $level := .level }}
+    {{- $link := .link }}
+    {{- $id := .id }}
+    {{- $title := .title }}
+    <div class="adjustAnchor" id="{{$id}}">
+        <h{{$level}} class="h{{$level}}-contents" pid="{{$id}}">{{$title}}</h{{$level}}>
+    </div>
+    {{- if le $level 5 }}
+    <div class="heading-link">
+        <a tabindex="0">
+            <span>{{ i18n "Permalink" }}</span>
+            <i class="fas fa-link" aria-hidden="true"></i>
+        </a>
+    <div class="heading-url">
+        <input readonly="readonly" value="{{ printf "%s#%s" $link $id | safeURL}}" name="headingUrl" type="text" onclick="this.focus(); this.select()">
+    </div>
+    </div>
+    {{- end }}
+{{- end }}

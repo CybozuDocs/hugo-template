@@ -1,13 +1,5 @@
+{{- $target := .Title }}
 {{- if and (eq .Site.Params.TargetRegion "US") .Params.title_us }}
-    {{- .Scratch.Set "title" .Params.title_us }}
-{{- else }}
-    {{- .Scratch.Set "title" .Title }}
+    {{- $target = .Params.title_us }}
 {{- end }}
-{{- $t1 := replaceRE "{{%\\s*kintone\\s*%}}" .Site.Params.kintone (.Scratch.Get "title") }}
-{{- $t2 := replaceRE "{{%\\s*service\\s*%}}" .Site.Params.service $t1 }}
-{{- $t3 := replaceRE "{{%\\s*store\\s*%}}" .Site.Params.store $t2 }}
-{{- $t4 := replaceRE "{{%\\s*cybozu_com\\s*%}}" .Site.Params.cybozu_com $t3 }}
-{{- $t5 := replaceRE "{{%\\s*slash_help\\s*%}}" .Site.Params.slash_help $t4 }}
-{{- $t6 := replaceRE "{{%\\s*slash\\s*%}}" .Site.Params.slash $t5 }}
-{{- $t7 := replaceRE "{{%\\s*CorpName\\s*%}}" .Site.Params.CorpName $t6 }}
-{{- $t7 }}
+{{- partial "applyparams" (dict "target" $target "params" .Site.Params) }}

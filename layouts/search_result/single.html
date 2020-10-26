@@ -1,17 +1,16 @@
-{{ partial "head" . }}
-    <header class="header">
-        {{ partial "header" . }}
-    </header>
-
-    <main class="main">
-        <article class="article" >
-            <div class="wrapper">
-            <div class="breadcrumb">
-              {{- partial "breadcrumb" . -}}
-            </div>
+{{- partial "head" . }}
+{{- partial "header" . }}
+{{- if eq $.Site.Params.meganav true -}}
+    {{- partial "meganav" . }}
+{{- end -}}
+<div class="page" >
+    <div class="contents-wrap">
+        <main class="main" role="main">
+            {{- partial "breadcrumb" . -}}
+            <article class="article" >
                 <h1>{{ partial "title" . }}</h1>
-                    <div id="searchResultContainer">
-         　　　    　<div class="mf_finder_container">
+                <div id="searchResultContainer">
+         　　　        <div class="mf_finder_container">
                             <mf-search-box ajax-url="//mf2ap005.marsflag.com/cybozu__support__help/x_search.x"
                             imgsize-default="0"
 
@@ -27,16 +26,14 @@
                             ></mf-search-box>
                             <mf-zubaken></mf-zubaken>
                             <mf-search-results></mf-search-results>
-                        </div>
                     </div>
-            </div>
-        </article>
-                    {{ .Content }}
-    </main>
-
-    <footer class="footer">
-        {{ partial "footer" . }}
-    </footer>
+                </div>
+            </article>
+        </main>
+    </div>
+    {{ .Content }}
+</div>
+    {{- partial "footer" . }}
 
     <script type="text/javascript">
     !function(){

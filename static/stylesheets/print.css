@@ -1,0 +1,275 @@
+@page { 
+    /*size: A4;*/
+    size: 215mm 297mm;
+    margin: 18mm 15mm 16mm 15mm;
+}
+
+@page :left {  /* left page setting */
+  @top-left {
+    content: string(Section);
+    margin-top: 20px;
+    margin-bottom: 25px;
+    border-bottom: solid 2px #000;
+  }
+  @bottom-right {
+    content: string(title);
+    margin-bottom: 25px;
+    margin-top: 10px;
+    border-top: solid 2px #000;
+  }
+  @bottom-left {
+    content: counter(page);
+    margin-bottom: 25px;
+    margin-top: 10px;
+    border-top: solid 2px #000;
+  }
+}
+@page :right {  /* right page setting */
+  @top-right {
+    content: string(Content);
+    margin-top: 20px;
+    margin-bottom: 25px;
+    border-bottom: solid 2px #000;
+  }
+  @bottom-left {
+    margin-bottom: 25px;
+    margin-top: 10px;
+    border-top: solid 2px #000;
+    content: string(title);
+  }
+  @bottom-right {
+    content: counter(page);
+    margin-bottom: 25px;
+    margin-top: 10px;
+    border-top: solid 2px #000;
+  }
+}
+
+@page :first {
+  @top-right {
+    content: none;
+  }
+  @bottom-left {
+    content: none;
+  }
+  @bottom-right {
+    content: none;
+  }
+}
+
+@page :last-child {
+  @top-right {
+    content: none;
+  }
+  @bottom-left {
+    content: none;
+  }
+  @bottom-right {
+    content: none;
+  }
+}
+
+@media print {
+    .font-ja {
+        font-family: "MS PGothic", sans-serif!important;
+    }
+    .font-en {
+        font-family: "Arial", sans-serif!important;
+    }
+    .font-zh {
+        font-family: "Microsoft YaHei", sans-serif!important;
+    }
+    .font-zh-tw {
+        font-family: "Microsoft JhengHei", sans-serif!important;
+    }
+
+    .book-title {
+        string-set: title content();
+    }
+
+    .section-title {
+        page-break-before: avoid;
+        string-set: Section content();
+    }
+
+    .content-title {
+        string-set: Content content();
+    }
+
+    .index-title {
+        string-set: Section content();
+    }
+
+    .item-title a::after {
+        content: leader(dotted) " " target-counter(attr(href), page, decimal);
+    }
+
+    .chapter  {
+        page-break-before: always;
+    }
+    
+    .section {
+        page-break-after: always;
+    }
+
+    .admonition-alt  {
+        page-break-after: avoid;
+    }
+    
+    h1 {
+        line-height: 2.5em;
+    }
+    
+    img {
+        page-break-inside: avoid;
+    }
+    
+    h1, h2, h3, h4, h5, h6, table tr:first-of-type, tbody tr:first-of-type {
+        page-break-after: avoid;
+    }
+
+    .bm-1 {
+        bookmark-level: 1;
+        bookmark-state: closed;
+        border-bottom: 3px solid #000;
+    }
+
+    .bm-2 {
+        bookmark-level: 2;
+        bookmark-state: closed;
+        border-bottom: 1px solid #000;
+    }
+
+    .bm-3 {
+        bookmark-level: 3;
+        bookmark-state: closed;
+    }
+
+    .bm-4 {
+        bookmark-level: 4;
+        bookmark-state: closed;
+    }
+}
+
+.fa:before {
+    -webkit-text-fill-color: initial;
+}
+
+.admonition.reference {
+    display: none;
+}
+
+.index a {
+    color: #000;
+}
+
+.heading-link {
+    margin-bottom: 1em;
+}
+.heading-link a {
+    display: none;
+}
+
+.book-title {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 4em;
+    line-height: 1.3em;
+    margin-top: 50%;
+    width: 60%;
+    text-align:center;
+    word-break: keep-all;
+}
+
+.sub-title {
+    font-size: 30px;
+}
+
+.trademark {
+    margin-top: 10%;
+}
+
+.trademark h1 {
+    font-size: 20px;
+}
+
+.trademark li {
+    padding-left: 14px;
+}
+
+.index-title {
+    font-size: 20px;
+}
+
+.index li {
+    margin-left: 20px;
+}
+
+.item-title {
+    font-size: 14px;
+}
+
+.adjustAnchor {
+    margin-top: 0;
+}
+
+.article h1 {
+    font-size: 160%;
+    padding-top: 1em;
+    padding-bottom: 0;
+    margin-bottom: 1em;
+}
+
+.article h2 {
+    padding-top: 1em;
+    padding-bottom: .3em;
+    margin-top: 0;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.article ol>li {
+    margin: 0;
+}
+.article ol>li:before {
+    border-right: 0;
+}
+
+.article img.screenshot {
+    max-width: 600px;
+    height: auto;
+}
+
+.article img {
+    max-width: 600px;
+}
+
+.article td img {
+    max-width: 400px;
+}
+
+.imprint {
+    page-break-before: always;
+    margin-top: 220mm;
+    padding: 40px;
+}
+
+.admonition.note .fa {
+    color: #4496d3;
+    font-size: 1.3rem;
+}
+
+.admonition.warning .fa {
+    color: #e95464;
+    font-size: 1.3rem;
+}
+
+.admonition.referrence .fa {
+    color: #228b22;
+    font-size: 1.3rem;
+}
+
+.admonition.hint .fa {
+    color: #ffa500;
+    font-size: 1.3rem;
+}
