@@ -1,0 +1,274 @@
+{{- $entries := "" }}
+{{- $needtoc := false }}
+{{- $islastsect := false }}
+{{- $entries = $.Site.Home.Sections}}
+
+<div id="tree-nav" role="navigation" >
+{{- if eq $.Site.Params.meganav true -}}
+    {{- $lastpage := (slice "") }}
+    {{- if eq $.Site.Params.product "Garoon" }}
+        {{- $lastpage = (slice "/purpose/" "/user/basic/" "/user/mobile/" "/user/personal/" ) }}
+    {{- end }}
+    {{- range $lastpage }}
+        {{- if in $.RelPermalink . }}
+            {{- $islastsect = true }}
+        {{- end }}
+    {{- end }}
+    
+    {{- $link1  := "" }}
+    {{- $title1 := . }}
+    {{- $link2  := "" }}
+    {{- $title2 := . }}
+    
+    {{- $parenttree := false }}
+    
+    {{- if and (eq $.Site.Params.product "Garoon") (in .RelPermalink "/application.html") }}
+        {{- $needtoc = false }}
+    {{- else }}
+        {{- $needtoc = true }}
+    {{- end }}
+    
+    {{- if eq $islastsect true }}
+        {{- $link1  = .Parent.RelPermalink }}
+        {{- $title1 = .Parent }}
+        {{- $parenttree = true }}
+    {{- else }}
+        {{- if ne .FirstSection . }}
+            {{- if eq .Parent .FirstSection }}
+                {{- $link1  = .RelPermalink }}
+                {{- $title1 = . }}
+            {{- else if eq .Parent.Parent .FirstSection }}
+                    {{- $link1  = .Parent.RelPermalink }}
+                    {{- $title1 = .Parent }}
+                    {{- $link2  = .RelPermalink }}
+                    {{- $title2 = . }}
+            {{- else }}
+                    {{- $link1  = .Parent.Parent.RelPermalink }}
+                    {{- $title1 = .Parent.Parent }}
+                    {{- $link2  = .Parent.RelPermalink }}
+                    {{- $title2 = .Parent }}
+                    {{- $parenttree = true }}
+            {{- end }}
+        {{- end }}
+    {{- end }}
+    
+  <div id="tree-head">
+    <div class="tree-title"><a href="{{$link1}}">{{- partial "title" $title1 -}}</a></div>
+    {{- if ne $link2 "" }}
+    <div class="tree-subtitle"><a href="{{$link2}}">{{- partial "title" $title2 -}}</a></div>
+    {{- end }}
+  </div>
+    
+    {{- $nochild := (slice "") }}
+    {{- if eq $.Site.Params.product "Garoon" }}
+        {{- $nochild = (slice "/purpose/" "/admin/spec/io.html" "/admin/spec/timezone.html" ) }}
+    {{- end }}
+    {{- range $nochild }}
+        {{- if in $.RelPermalink . }}
+            {{- $parenttree = true }}
+        {{- end }}
+    {{- end }}
+
+    {{- if eq $parenttree true }}
+        {{- $entries = (.Parent.Pages | union .Parent.Sections) }}
+    {{- else }}
+        {{- $entries = (.Pages | union .Sections) }}
+    {{- end }}
+{{- end }}
+
+  <nav id="tree-main" role="tree" tabindex="0">
+    <ul class="trunk" role="group" >
+{{- $target := .}}
+{{- $.Scratch.Set "bnum" 1 }}
+{{- range $entries.ByWeight}}
+    {{- template "mainmenu" (dict "curnode" . "target" $target "needtoc" $needtoc)}}
+{{- end}}
+    </ul>
+  </nav>
+</div>
+
+{{- define "mainmenu" }}
+    {{- $target := .target}}
+    {{- $curnode := .curnode}}
+    {{- $needtoc := .needtoc}}
+    {{- $bnum := .bnum }}
+    {{- with $curnode}}
+        {{- $icontype := "fas fa-chevron-right" }}
+        {{- $expandclass := "" }}
+        {{- $expand_wai := "false" }}
+        {{- $selected_wai := "false" }}
+
+        {{- if .IsSection }}
+            {{- $pages := (cond .IsHome (where .Site.RegularPages "Section" "") .Pages) }}
+            {{- $numberOfPages := (add (len $pages) (len .Sections)) }}
+            {{- if in .Params.disabled .Site.Params.TargetRegion}}
+            {{- else}}
+                {{- if .IsAncestor $target }}
+                    {{- $icontype = "fas fa-chevron-down" }}
+                    {{- $expandclass = "opened" }}
+                    {{- $expand_wai = "ture" }}
+                {{- end }}
+                {{- if eq .RelPermalink $target.RelPermalink}}
+                    {{- $selected_wai = "ture" }}
+                {{- end }}
+        <li role="presentation">
+                {{- if ne $numberOfPages 0 }}
+                {{- $bnum := $target.Scratch.Get "bnum" }}
+            <div class="branch">
+                <span class="branch-icon" role="treeitem" aria-expanded="{{$expand_wai}}" aria-owns="branch{{$bnum}}" aria-label="expand" tabindex="0"><i class="{{$icontype}}" aria-hidden="true"></i></span>
+                {{- if eq $selected_wai "ture" }}
+                <a role="treeitem" href="#" class="current {{$expandclass}}" aria-selected="{{$selected_wai}}" >
+                {{ else }}
+                <a role="treeitem" href="{{.RelPermalink}}" class="{{$expandclass}}" >
+                {{ end -}}
+                <span>{{- partial "title" . -}}</span></a>
+            </div>
+            <ul id="branch{{$bnum}}" class="{{$expandclass}}" role="group" > 
+                    {{- $bnum = add $bnum 1 }}
+                    {{- $target.Scratch.Set "bnum" $bnum }}
+                    {{- $entries := ""}}
+                    {{- if .Sections}}
+                        {{- $entries = ($pages | union .Sections) }}
+                    {{- else}}
+                        {{- $entries = $pages }}
+                    {{- end}}
+                    
+                    {{- range $entries.ByWeight }}
+                        {{- template "mainmenu" (dict "curnode" . "target" $target "needtoc" $needtoc) }}
+                    {{- end}}
+            </ul>
+                {{- end}}
+        </li>
+            {{- end }}
+        {{- else}}
+            {{- if in .Params.disabled .Site.Params.TargetRegion}}
+            {{- else}}
+                {{- $tocs := "" }}
+                {{- if eq .RelPermalink $target.RelPermalink -}}
+                    {{- $icontype = "fas fa-chevron-down" }}
+                    {{- $expandclass = "opened" }}
+                    {{- $expand_wai = "ture" }}
+                {{- end }}
+                {{- if eq .RelPermalink $target.RelPermalink -}}
+                    {{- $selected_wai = "ture" }}
+                {{- end }}
+
+                {{- $toclen := 0 }}
+                {{- if and (eq .Site.Params.meganav true) (eq $needtoc true) -}}
+                    {{- $cont := .Content }}
+                    {{- $tocs = findRE "<h[23].*?>(.|\n)*?</h[23]>" $cont }}
+                    {{- $toclen = (len $tocs) }}
+                {{- end }}
+            <li role="presentation">
+                <div class="branch">
+                {{- $bnum := $target.Scratch.Get "bnum" }}
+                {{- if gt $toclen 0 }}
+                    <span class="branch-icon" role="treeitem" aria-expanded="{{$expand_wai}}" aria-owns="branch{{$bnum}}" aria-label="expand" tabindex="0"><i class="{{$icontype}}" aria-hidden="true"></i></span>
+                {{- else }}
+                    <span class="branch-sp"></span>
+                {{- end -}}
+                
+                {{- if eq $selected_wai "ture" -}}
+                    <a role="treeitem" href="#" class="toclink current" aria-selected="{{$selected_wai}}" >{{ partial "title" .}}</a>
+                {{- else -}}
+                    <a role="treeitem" href="{{.RelPermalink}}">{{ partial "title" .}}</a>
+                {{- end -}}
+                </div>
+                {{- if gt $toclen 0 }}
+                    <ul id="branch{{$bnum}}" class="{{$expandclass}}" role="group" >
+                    {{- $bnum = add $bnum 1 }}
+                    {{- $target.Scratch.Set "bnum" $bnum }}
+                    {{- $pageurl := .RelPermalink}}
+                    {{- $loopcnt := 0 }}
+                    {{- $curitem := "" }}
+                    {{- $prevtitem := "" }}
+                    {{- $ulopen := false }}
+                    
+                    {{- range $tocs }}
+                        {{- $curitem = . }}
+                        {{- $haschild := false }}
+                        
+                        {{- if ne $prevtitem "" }}
+                            {{- if and (in $prevtitem "<h2") (in $curitem "<h3") }}
+                                {{- $haschild = true }}
+                            {{- end }}
+                            {{- template "treeitem" (dict "tocitem" $prevtitem "haschild" $haschild "pageurl" $pageurl ) }}
+                        {{- end }}
+                        
+                        {{- if eq $haschild true }}
+                            <ul class="twig-parent" role="group" >
+                            {{- $haschild = false }}
+                            {{- $ulopen = true }}
+                        {{- end }}
+                        
+                        {{- if ne $prevtitem "" }}
+                            {{- if and (in $prevtitem "<h3") (in $curitem "<h2") }}
+                            </ul>
+                                {{- $ulopen = false }}
+                            {{- end }}
+                        {{- end }}
+                        
+                        {{- $loopcnt = (add $loopcnt 1) }}
+                        
+                        {{- if eq $loopcnt $toclen }}
+                            {{- template "treeitem" (dict "tocitem" $curitem "haschild" false "pageurl" $pageurl ) }}
+                            {{- if eq $ulopen true }}
+                            </ul>
+                            {{- end }}
+                        {{- end }}
+                        
+                        {{- $prevtitem = $curitem }}
+                    {{- end }}
+                    </ul>
+                {{- end }}
+            </li>
+            {{- end }}
+        {{- end }}
+    {{- end }}
+{{- end }}
+
+{{- define "treeitem" }}
+    {{- $tocitem := .tocitem }}
+    {{- $haschild := .haschild }}
+    {{- $pageurl := .pageurl }}
+     
+    {{- $anc := "" }}
+    {{- $params := split $tocitem " " }}
+    {{- range $params }}
+        {{- if in . "pid=" }}
+            {{- $params2 := split . ">" }}
+            {{- range $params2 }}
+                {{- if in . "pid=" }}
+                    {{- $anc = (strings.TrimPrefix "pid=\"" . ) }}
+                    {{- $anc = (strings.TrimSuffix "\"" $anc ) }}
+                {{- end }}
+            {{- end }}
+        {{- else if in . "id=" }}
+            {{- $anc = (strings.TrimPrefix "id=\"" . ) }}
+            {{- $anc = (strings.TrimSuffix "\"" $anc ) }}
+        {{- end }}
+    {{- end }}
+
+    {{- $txts := (findRE ">.+<" $tocitem 1) }}
+    {{- $txt := "" }}
+    {{- range first 1 $txts }}
+       {{- $txt = . }}
+    {{- end }}
+    {{- $txt = (strings.TrimPrefix ">" $txt ) }}
+    {{- $txt = (strings.TrimSuffix "<" $txt ) }}
+
+    {{- $subclass := "leaf-sp" }}
+                        <li role="presentation">
+    {{- if eq $haschild true -}}
+                            <div class="branch twig">
+                                <span class="branch-icon leaf-icon" role="treeitem" aria-label="expand" tabindex="0"><i class="fas fa-chevron-right"></i></span>
+        {{- $subclass = "leaf" }}
+    {{- end}}
+                                <span class="{{$subclass}}"><a role="treeitem" href="{{$pageurl}}#{{$anc}}" class="toclink">{{$txt}}</a></span>
+    {{- if eq $haschild true -}}
+                            </div>
+    {{- else -}}
+                        </li>
+    {{- end -}}
+
+{{- end }}

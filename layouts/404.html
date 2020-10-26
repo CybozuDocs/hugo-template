@@ -1,18 +1,13 @@
-{{ partial "head" . }}
-
-<div class="backdrop"></div>
-
-    <header class="header">
-        {{ partial "header" . }}
-    </header>
+{{- partial "head" . }}
+{{- partial "header" . }}
     <div class="nftitle">
         <h1>
          {{ i18n "Page_not_found" }}
         </h1>
     </div>
-    <main class="main">
-        <article class="nfarticle" >
-             <div class="nfdetail">
+    <main class="main" role="main">
+        <article class="nfarticle" role="article">
+             <div class="nfdetail" role="alert">
              {{ i18n "I_am_sorry_page_not_found" }}
              </div>
              <div class="nflink">
@@ -21,9 +16,6 @@
              </div>
         </article>
     </main>
-
-    <footer class="footer" style="position:absolute; bottom:0px;">
-        {{ partial "footer" . }}
-    </footer>
-  </body>
+    {{- partial "footer" . }}
+</body>
 </html>

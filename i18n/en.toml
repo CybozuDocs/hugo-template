@@ -1,5 +1,5 @@
 [Welcome]
-other = "Welcome to {{ .Site.Title }}"
+other = "Welcome to {{$.Site.Params.product_name}} {{$.Site.Params.help}}"
 
 [Enter_keywords]
 other = "Enter keywords to search help."
@@ -45,4 +45,38 @@ other = "References"
 
 [Title_caution]
 other = "Caution"
+
+[By_features]
+other = "Search by Features"
+
+[Top_page]
+other = "Top"
+
+[Read_more]
+other = "More"
+
+[Was_it_helpful]
+other = "Was this information helpful?"
+
+[Yes]
+other = "Yes"
+
+[No]
+other = "No"
+
+[Permalink]
+other = "Permalink"
+
+[MT_Disclaimer]
+other = "Machine-Translations Disclaimer"
+
+[og_desc1]
+other = "This is the {{$.Site.Params.help}} for {{$.Site.Params.product_name}}."
+
+[og_desc1_service]
+other = "This is the {{$.Site.Params.help}} for {{$.Site.Params.product_name}} {{$.Site.Params.service_type}}. "
+
+[og_desc2]
+other = "This guide describes how to set up and operate {{$.Site.Params.product_name}}."
+
 

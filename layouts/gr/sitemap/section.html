@@ -1,0 +1,72 @@
+{{- partial "head" . }}
+{{- partial "header" . }}
+{{- if eq $.Site.Params.meganav true }}
+    {{ partial "meganav" . }}
+{{- end }}
+{{- $entries := $.Site.Home.Sections }}
+{{- $rootsect := .FirstSection }}
+<div class="page" >
+    <div class="tree-wrap">
+      <div id="tree-nav" role="navigation" >
+        <div id="tree-head">
+          <div class="tree-title"><a href="{{.RelPermalink}}">{{- partial "title" . -}}</a></div>
+        </div>
+        <nav id="tree-main" role="tree" tabindex="0">
+    {{ template "site_map_nav" $entries }}
+        </nav>
+     </div>
+    </div>
+    <div class="contents-wrap">
+        <main id="main" role="main">
+    {{- partial "breadcrumb" . -}}
+            <article class="article" role="article">
+                <h1>{{ partial "title" . }}</h1>
+    {{- $idnum := 1 }}
+    {{- range $entries.ByWeight}}
+        {{- $title := (partial "title" .) }}
+        {{- if and (lt .Params.weight 400) (ne .Params.weight 0) }}
+            {{- $link := (printf "https://%s%s" $.Site.Params.domain $.RelPermalink) }}
+            {{- $id := printf "sitemap_index_%02d" $idnum }}
+            {{- template "anchorlink" (dict "level" 2 "link" $link "id" $id "title" $title ) }}
+                <div class="sitemap">
+            {{- template "site_map" .}}
+                </div>
+            {{- $idnum = (add $idnum 1) }}
+        {{- end}}
+    {{- end}}
+            </article>
+        </main>
+    </div>
+</div>
+{{- partial "gototop" . }}
+{{- partial "footer" . }}
+</body>
+</html>
+
+{{- define "site_map" }}
+                <ul role="group">
+    {{- range .Pages.ByWeight }}
+                    <li role="presentation">
+                        <a role="treeitem" href="{{.RelPermalink}}">{{- partial "title" . -}}</a>
+                    </li>
+        {{- template "site_map" . }}
+    {{- end}}
+                </ul>
+{{- end }}
+
+{{- define "site_map_nav" }}
+    {{- $entries := . }}
+    <ul role="group">
+    {{- $idnum := 1 }}
+    {{- range $entries.ByWeight }}
+        {{- if and (lt .Params.weight 400) (ne .Params.weight 0) }}
+            {{- $id := printf "#sitemap_index_%02d" $idnum }}
+        <li role="presentation">
+            <a role="treeitem" href="{{$id}}" class="toclink">{{- partial "title" . -}}</a>
+        </li>
+            {{- $idnum = (add $idnum 1) }}
+        {{- end }}
+    {{- end }}
+    </ul>
+{{- end }}
+

@@ -1,0 +1,14 @@
+{{- $params := .params }}
+{{- $target := .target }}
+{{- $t1 := replaceRE "{{%\\s*kintone\\s*%}}" $params.kintone $target  }}
+{{- $t2 := replaceRE "{{%\\s*service\\s*%}}" $params.service $t1 }}
+{{- $t3 := replaceRE "{{%\\s*store\\s*%}}" $params.store $t2 }}
+{{- $t4 := replaceRE "{{%\\s*cybozu_com\\s*%}}" $params.cybozu_com $t3 }}
+{{- $t5 := replaceRE "{{%\\s*slash_help\\s*%}}" $params.slash_help $t4 }}
+{{- $t6 := replaceRE "{{%\\s*slash\\s*%}}" $params.slash $t5 }}
+{{- $t7 := replaceRE "{{%\\s*CorpName\\s*%}}" $params.CorpName $t6 }}
+{{- $t8 := replaceRE "{{%\\s*product\\s*%}}" $params.product $t7 }}
+{{- $t9 := replaceRE "{{%\\s*service_type\\s*%}}" $params.service_type $t8 }}
+{{- $t10 := replaceRE "{{%\\s*help\\s*%}}" $params.help $t9 }}
+{{- $t11 := replaceRE "{{%\\s*product_name\\s*%}}" $params.product_name $t10 }}
+{{- return $t11 }}

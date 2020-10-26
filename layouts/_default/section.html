@@ -2,57 +2,54 @@
 <meta http-equiv="refresh" content="0; URL=/" />
 {{- else}}
 {{- partial "head" . }}
-
-<header class="header">
-    {{ partial "header" . }}
-</header>
-<div class="main">
-    <div class="wrap_drawer">
-        <nav class="drawer">
-            {{ partial "drawer" . }}
-        </nav>
+{{- partial "header" . }}
+{{- if eq $.Site.Params.meganav true -}}
+    {{ partial "meganav" . }}
+{{- end -}}
+<div class="page">
+    <div class="tree-wrap">
+        {{- if in .RelPermalink "/pdf.html" }}
+            {{ partial "treenav2" . }}
+        {{- else }}
+            {{ partial "treenav" . }}
+        {{- end }}
     </div>
-    <div class="article">
-        <div class="wrapper">
-            <nav class="breadcrumb">{{- partial "breadcrumb" . -}}</nav>
-            <main id="main">
-                <article>
-                    <h1>{{ partial "title" . }}</h1>
-                    {{ .Content }}
-                </article>
-                <nav class="section-pagelist">
-                    <h1 class="section-pagelist-heading">{{ i18n "Articles_in_this_category" }}</h1>
-                    {{- .Scratch.Set "pages" (.Pages | union .Sections) }}
-                    {{- $pages := (.Scratch.Get "pages") }}
-                      <ul>
-                    {{- range $pages.ByWeight }}
-                        {{- if in .Params.disabled $.Site.Params.TargetRegion}}
-                        {{- else}}
-                        <li><a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{ partial "title" . }}{{safeHTML .Params.Post}}</a></li>
-                        {{- end}}
+    <div class="contents-wrap">
+        {{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.Params.languageCode "ja-jp") (ne $.Site.Params.languageCode "ja-cn") }}
+            {{ partial "disclaimer" . }}
+        {{- end }}
+        <main id="main" role="main"> 
+            {{- partial "breadcrumb" . -}}
+            <article class="article">
+                <h1>{{ partial "title" . }}</h1>
+                {{ .Content }}
+            </article>
+            {{- if ne $.Site.Params.meganav true -}}
+            <nav class="section-pagelist">
+                <div class="section-pagelist-heading">{{ i18n "Articles_in_this_category" }}</div>
+                {{- $pages := (.Pages | union .Sections) }}
+                <ul>
+                {{- range $pages.ByWeight }}
+                    {{- if in .Params.disabled $.Site.Params.TargetRegion}}
+                    {{- else}}
+                    <li><a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{ partial "title" . }}{{safeHTML .Params.Post}}</a></li>
                     {{- end}}
-                      </ul>
-                </nav>
-            </main>
-        </div>
+                {{- end}}
+                </ul>
+            </nav>
+            {{- end }}
+        </main>
+            {{- partial "enquete" . -}}
     </div>
+
+    {{- if ne $.Site.Params.meganav true -}}
     <div class="wrap_sidebar">
         <div id="sidebar-toc"></div>
     </div>
+    {{- end }}
 </div>
-
-    <div class="results" role="status" aria-live="polite">
-        <div class="scrollable">
-            <div class="wrapper">
-                <div class="meta"></div>
-                <div class="list"></div>
-            </div>
-        </div>
-    </div>
-
-<footer class="footer">
-    {{ partial "footer" . }}
-</footer>
-{{end}}
+{{- partial "gototop" . }}
+{{- partial "footer" . }}
+{{- end }}
 </body>
 </html>

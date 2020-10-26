@@ -1,0 +1,33 @@
+{{- $_hugo_config := `{ "version": 1 }` -}}
+{{- $id := "" }}
+{{- if .Get "id" }}
+    {{- $id = .Get "id" }}
+{{- end }}
+<div class="step-wrap" id="{{$id}}">
+    <div class="step-label">
+{{- $number := "" }}
+{{- if .Get "number" }}
+    {{- $number = .Get "number" }}
+        <div class="step-num">Step<span>{{$number}}</span></div>
+{{- end }}
+        <div class="step-desc">
+{{- $section := "" }}
+{{- if .Get "section" }}
+    {{- $section = .Get "section" }}
+    {{- $section = (partial "applyparams" (dict "target" $section "params" .Site.Params)) }}
+    {{- $bc := "" }}
+    {{- if .Get "bgcolor" }}
+        {{- $bc = printf "%s%s" "background-color:" (.Get "bgcolor") }}
+    {{- end }}
+        <span class="step-section" style="{{$bc}}">{{$section}}</span>
+{{- end }}
+{{- $title := "" }}
+{{- if .Get "title" }}
+    {{- $title = .Get "title" }}
+    {{- $title = (partial "applyparams" (dict "target" $title "params" .Site.Params)) }}
+    {{- $title | markdownify }}
+{{- end }}
+        </div>
+    </div>
+</div>
+<div class="step-memo">{{ printf "%s" .Inner | markdownify }}</div>

@@ -1,0 +1,79 @@
+{{- if in .Params.disabled $.Site.Params.TargetRegion }}
+<meta http-equiv="refresh" content="0; URL=/" />
+{{- else }}
+{{- partial "head" . }}
+{{- partial "header" . }}
+{{- partial "meganav" . }}
+<div class="article clearfix">
+    <div class="sect-wrap">
+    {{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.Params.languageCode "ja-jp") (ne $.Site.Params.languageCode "ja-cn") }}
+        {{ partial "disclaimer" . }}
+    {{- end }}
+    {{- partial "breadcrumb" . -}}
+    <main id="main">
+        <h1>{{ partial "title" . }}</h1>
+
+{{- $entries := .Pages }}
+{{- $rootsect := .FirstSection }}
+
+{{ .Content }}
+
+{{- range $entries.ByWeight}}
+        <section class="inner-index">
+            <h2>
+                <a href="{{.RelPermalink}}">
+    {{- partial "title" . -}}
+                </a>
+            </h2>
+            <div class="guide-link clearfix">
+    {{- template "toclist" . }}
+            </div>
+        </section>
+{{- end}}
+    </main>
+    </div>
+</div>
+{{- partial "footer" . }}
+{{- end }}
+</body>
+</html>
+
+{{- define "toclist" }}
+    {{- $tocs := findRE "<h2.*?>(.|\n)*?</h2>" .Content }}
+    {{- $toclen := (len $tocs) }}
+    {{- if gt $toclen 0 }}
+        {{- $pageurl := .RelPermalink}}
+        <ul>
+        {{- range first 5 $tocs}}
+            {{- $anc := "" }}
+            {{- $params := split . " " }}
+            {{- range $params }}
+                {{- if in . "pid=" }}
+                {{- $params2 := split . ">" }}
+                {{- range $params2 }}
+                    {{- if in . "pid=" }}
+                        {{- $anc = (strings.TrimPrefix "pid=\"" . ) }}
+                        {{- $anc = (strings.TrimSuffix "\"" $anc ) }}
+                    {{- end }}
+                {{- end }}
+                {{- else if in . "id=" }}
+                    {{- $anc = (strings.TrimPrefix "id=\"" . ) }}
+                    {{- $anc = (strings.TrimSuffix "\"" $anc ) }}
+                {{- end }}
+            {{- end }}
+
+            {{- $txts := (findRE ">.+<" . 1) }}
+            {{- $txt := "" }}
+            {{- range first 1 $txts }}
+                {{- $txt = . }}
+            {{- end }}
+            {{- $txt = (strings.TrimPrefix ">" $txt ) }}
+            {{- $txt = (strings.TrimSuffix "<" $txt ) }}
+            <li><a href="{{$pageurl}}#{{$anc}}">{{$txt}}</a></li>
+        {{- end }}
+        {{- if gt $toclen 5 }}
+        <a href="{{$pageurl}}"><i class="fas fa-arrow-circle-right" aria-hidden="true"></i>{{- i18n "Read_more" }}</a>
+        {{- end }}
+        </ul>
+    {{- end }}
+{{- end }}

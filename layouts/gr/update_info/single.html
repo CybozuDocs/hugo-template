@@ -1,0 +1,14 @@
+{{- partial "head" . }}
+<div class="page" >
+    <div class="contents-wrap">
+        <main id="main" role="main">
+            <article class="article">
+                <h1>{{ partial "title" . }}</h1>
+                {{ .Content }}
+            </article>
+        </main>
+    </div>
+</div>
+{{- partial "gototop" . -}}
+</body>
+</html>

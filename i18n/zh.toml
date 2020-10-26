@@ -1,5 +1,5 @@
 [Welcome]
-other = "欢迎使用{{ .Site.Title }}"
+other = "欢迎使用{{$.Site.Params.product_name}}{{$.Site.Params.help}}"
 
 [Enter_keywords]
 other = "可输入关键字查找"
@@ -29,7 +29,7 @@ other = "返回页首"
 other = "此类别中的内容"
 
 [Footer_copyright]
-other = "记载的商品名称、各产品名称都为各公司的注册商标或商标。 © Cybozu"
+other = "记载的商品名称、各产品名称都为各公司的注册商标或商标。 ©Cybozu"
 
 [See_also]
 other = "另请参阅下一页"
@@ -45,4 +45,37 @@ other = "相关页面"
 
 [Title_caution]
 other = "注意"
+
+[By_features]
+other = "按功能搜索"
+
+[Top_page]
+other = "首页"
+
+[Read_more]
+other = "显示更多"
+
+[Was_it_helpful]
+other = "此信息对您是否有帮助？"
+
+[Yes]
+other = "有"
+
+[No]
+other = "没有"
+
+[Permalink]
+other = "固定链接"
+
+[MT_Disclaimer]
+other = "免责声明"
+
+[og_desc1]
+other = "{{$.Site.Params.product_name}}的{{.Site.Params.help}}。"
+
+[og_desc1_service]
+other = "{{$.Site.Params.service_type}} {{$.Site.Params.product_name}}的{{.Site.Params.help}}。"
+
+[og_desc2]
+other = "介绍使用{{$.Site.Params.product_name}}所需的设置和操作方法。"
 

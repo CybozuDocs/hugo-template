@@ -1,17 +1,12 @@
-<div class="wrapper">
-    <div id="footerlinks">
-      <ul>
-        {{ range $i, $r := getCSV "," $.Site.Params.footer_links }}
-        <li><a class="" href="{{- index $r 1 -}}" target="_blank">{{- index $r 0 -}}</a></li>
-        {{ end }}
-      </ul>
+<footer class="footer">
+    <div class="footer-wrap">
+        <div class="footer-links">
+          <ul>
+            {{ range $i, $r := getCSV "," $.Site.Params.footer_links }}
+            <li><a href="{{- index $r 1 -}}" target="_blank">{{- index $r 0 -}}</a></li>
+            {{ end }}
+          </ul>
+        </div>
+        <div class="footer-copyright">{{ i18n "Footer_copyright" }}</div>
     </div>
-    <div id="footercopyright">
-    {{ i18n "Footer_copyright" }}<br>
-    {{- if eq .Site.Params.TargetRegion "US" }}
-    <!-- CookiePro Cookies Settings button start -->
-    <button id="ot-sdk-btn" class="ot-sdk-show-settings"> Cookie Settings</button>
-    <!-- CookiePro Cookies Settings button end -->
-    {{- end }}
-    </div>
-</div>
+</footer>
