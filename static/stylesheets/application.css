@@ -812,6 +812,13 @@ ul.breadcrumbs {
     background: #f6f6f6;
     font-weight: bold;
 }
+.article table td {
+  padding: .6em;
+  border-right: 2px solid #c2bfc0;
+  border-bottom: 2px solid #c2bfc0;
+  vertical-align: top;
+  background: #fff;
+}
 .article p, .article ul {
     margin-bottom: .9em;
 }
