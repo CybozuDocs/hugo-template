@@ -886,6 +886,10 @@ ul.breadcrumbs {
 .article iframe {
     max-width: 100%;
 }
+
+.home-article {
+    padding-bottom: 150px;
+}
 /* -------------------- end of Article */
 
 
@@ -1481,6 +1485,11 @@ table .wd10 {
     #lang-selector {
       display: block;
     }
+
+    .searchbox input[type=text]{
+        font-size: 1.2rem;
+    }
+
     .page {
       flex-direction: row;
     }
