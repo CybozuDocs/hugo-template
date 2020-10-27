@@ -786,7 +786,7 @@ ul.breadcrumbs {
     word-break: keep-all;
 }
 .article a, .nfarticle a {
-    colocolr: #0d7b91;
+    color: #0d7b91;
     text-decoration: underline;
     line-height: 1.5em;
 }
