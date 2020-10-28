@@ -193,11 +193,17 @@
 }
 .tile-img {
   position: absolute;
-  bottom: 0px;
-  right: 0px;
-  max-height: 140px;
   margin-right: 6px;
-  margin-bottom: 6px;
+  margin-bottom: 20px;
+}
+.tile-img-wrap {
+  height: 140px;
+  text-align: left;
+}
+.tile-img-entity {
+  position: absolute;
+  bottom: 10px;
+  max-height: 130px;
 }
 .tile-icon{
     padding-top: 1em;
@@ -347,7 +353,7 @@ i.index-pdf {
     }
 
     .tile-title {
-        font-size: calc(1.1rem + ((1vw - 0.3rem) * 2.5444));
+        font-size: 1.4rem;
     }
 }
 

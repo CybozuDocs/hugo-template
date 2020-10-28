@@ -1,0 +1,12 @@
+{{- $_hugo_config := `{ "version": 1 }` -}}
+<div class="col-tile">
+    {{- .Scratch.Set "target" "_self" -}}
+    {{- if eq (.Get "external") "true" -}}
+        {{- $.Scratch.Set "target" "_blank" -}}
+    {{- end -}}
+    <a class="{{- .Get "link_class" -}}" href="{{- .Get "link_href" -}}" target="{{ .Scratch.Get "target" }}"></a>
+    <div class="tile-title">{{ printf "%s" .Inner | markdownify }}</div>
+    <div class="tile-img-wrap">
+      <img class="tile-img-entity" src="{{- .Get "img_src" -}}" alt="{{- .Get "img_alt" -}}"></img>
+    </div>
+</div>
