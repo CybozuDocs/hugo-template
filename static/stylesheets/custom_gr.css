@@ -201,6 +201,7 @@ td a > .fa:hover{
 .article .h6-anc{
     padding-top:65px;
     margin-top:-65px;
+    z-index: -100;
 }
 .article a {
     color: #1b72cd;
