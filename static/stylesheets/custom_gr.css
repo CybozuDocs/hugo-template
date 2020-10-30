@@ -94,7 +94,6 @@ td a > .fa:hover{
 }
 /* -------------------- End of Header */
 
-
 /* Search box --------------------*/
 .header .searchbox input[type=text]{
     border: 3px solid #015aaa;
@@ -139,7 +138,6 @@ td a > .fa:hover{
     line-height: 1.5em;
 }
 /* -------------------- end of Breadcrumb */
-
 
 /* tree navigation -------------------- */
 #tree-main {
@@ -251,6 +249,10 @@ td a > .fa:hover{
 .article table tr{
     border-bottom: 1px solid #000;
 }
+.article table td {
+    border-right: none;
+    border-bottom: none;
+  }
 .article table th,
 .article table td{
     padding: 10px;
@@ -271,7 +273,6 @@ td a > .fa:hover{
 background: rgba(255, 255, 255, 0.9);
 }
 /* -------------------- End of article */
-
 
 /* admonition -------------------- */
 .admonition {
@@ -325,7 +326,6 @@ background: rgba(255, 255, 255, 0.9);
 }
 /* -------------------- End of admonition */
 
-
 .footer {
     border-top: 3px solid #b8c5ca;
 }
@@ -336,7 +336,6 @@ background: rgba(255, 255, 255, 0.9);
 #goto-top .fa-stack-1x {
     color: #015aaa;
 }
-
 
 /* Home page --------------------------------------*/
 .tile-title {
@@ -349,7 +348,6 @@ background: rgba(255, 255, 255, 0.9);
     color: #000;
 }
 /* -------------------------------------- End of Home page */
-
 
 /* footer --------------------------------------*/
 .footer{
@@ -365,7 +363,6 @@ background: rgba(255, 255, 255, 0.9);
     background-image: none;
     background-color: #1b72cd;
 }
-
 
 /* 768px以上の設定  **************************************************************/
 @media only screen and (min-width: 768px) {
@@ -388,23 +385,18 @@ background: rgba(255, 255, 255, 0.9);
     .header .search-wrap {
         width: 350px;
     }
-
     .header .searchbox input[type=text]{
         font-size: 1.2rem;
     }
-
     .article h2 {
         font-size:2.063em;      
     }
-
     .article h3 {
         font-size: 1.62em;
     }
-
     .article h4 {
         font-size: 1.25em;
     }
-
     .footer{
         position: absolute;
     }
@@ -412,7 +404,6 @@ background: rgba(255, 255, 255, 0.9);
         height: 6rem;
     }
 }
-
 
 /* 1059px以上の設定  *************************************************************/
 @media only screen and (min-width: 1180px) {
