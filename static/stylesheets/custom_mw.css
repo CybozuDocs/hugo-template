@@ -1,3 +1,22 @@
+a,
+.mega-title a:hover i,
+.breadcrumbs a,
+.col-tile-gr2 a,
+.tile-text li:before,
+.tile-title,
+.col-tile-gr i,
+.article a,
+.tree-title a {
+    color: #d0324b;
+}
+
+.article em {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(55%, transparent), color-stop(55%, #fce2e6));
+    background: -webkit-linear-gradient(transparent 55%, #fce2e6 55%);
+    background: linear-gradient(transparent 55%, #fce2e6 55%);
+    font-style: normal;
+}
+
 .logo-wrap {
     width: 350px;
 }
@@ -67,15 +86,6 @@
     background: #d0324b;
 }
 
-.tile-title,
-.col-tile-gr i {
-    color: #d0324b;
-}
-.tile-text li:before{
-    color: #000000;
-}
-
-
 /* -------------------------------------- End of Home page */
 
 /* 404 page */
@@ -84,3 +94,15 @@
     background-color: #d0324b;
 }
 
+
+@media only screen and (min-width: 768px) {
+    .g-col {
+        width: 25%;
+    }
+}
+
+@media only screen and (min-width: 1059px) {
+    .col-tile-gr {
+        width: 23%;
+    }
+}
