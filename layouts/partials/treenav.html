@@ -5,7 +5,7 @@
 
 <div id="tree-nav" role="navigation" >
 {{- if eq $.Site.Params.meganav true -}}
-    {{- $lastpage := (slice "") }}
+    {{- $lastpage := (slice) }}
     {{- if eq $.Site.Params.product "Garoon" }}
         {{- $lastpage = (slice "/purpose/" "/user/basic/" "/user/mobile/" "/user/personal/" ) }}
     {{- else if eq $.Site.Params.product "Mailwise" }}
@@ -59,14 +59,14 @@
     <div class="tree-subtitle"><a href="{{$link2}}">{{- partial "title" $title2 -}}</a></div>
     {{- end }}
   </div>
-    {{- $nochild := (slice "") }}
+    {{- $nochild := (slice) }}
     {{- if eq $.Site.Params.product "Garoon" }}
         {{- $nochild = (slice "/purpose/" "/admin/spec/io.html" "/admin/spec/timezone.html") }}
     {{- else if eq $.Site.Params.product "Mailwise" }}
         {{- $nochild = (slice "/admin/spec/limit.html") }}
     {{- end }}
     {{- range $nochild }}
-        {{- if and (ne . "") (in $.RelPermalink .) }}
+        {{- if in $.RelPermalink . }}
             {{- $parenttree = true }}
         {{- end }}
     {{- end }}
@@ -155,7 +155,7 @@
                 {{- end }}
 
                 {{- $toclen := 0 }}
-                {{- if and (eq .Site.Params.meganav true) (eq $needtoc true) -}}
+                {{- if eq $needtoc true -}}
                     {{- $cont := .Content }}
                     {{- $tocs = findRE "<h[23].*?>(.|\n)*?</h[23]>" $cont }}
                     {{- $toclen = (len $tocs) }}
