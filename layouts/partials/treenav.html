@@ -5,9 +5,11 @@
 
 <div id="tree-nav" role="navigation" >
 {{- if eq $.Site.Params.meganav true -}}
-    {{- $lastpage := (slice "") }}
+    {{- $lastpage := (slice) }}
     {{- if eq $.Site.Params.product "Garoon" }}
         {{- $lastpage = (slice "/purpose/" "/user/basic/" "/user/mobile/" "/user/personal/" ) }}
+    {{- else if eq $.Site.Params.product "Mailwise" }}
+        {{- $lastpage = (slice "/user/basic/" "/user/personal/" ) }}
     {{- end }}
     {{- range $lastpage }}
         {{- if in $.RelPermalink . }}
@@ -22,12 +24,12 @@
     
     {{- $parenttree := false }}
     
-    {{- if and (eq $.Site.Params.product "Garoon") (in .RelPermalink "/application.html") }}
-        {{- $needtoc = false }}
-    {{- else }}
+    {{- if or (eq $.Site.Params.product "Garoon") (eq $.Site.Params.product "Mailwise") }}
         {{- $needtoc = true }}
+        {{- if in .RelPermalink "/application.html" }}
+            {{- $needtoc = false }}
+        {{- end }}
     {{- end }}
-    
     {{- if eq $islastsect true }}
         {{- $link1  = .Parent.RelPermalink }}
         {{- $title1 = .Parent }}
@@ -51,24 +53,23 @@
             {{- end }}
         {{- end }}
     {{- end }}
-    
   <div id="tree-head">
     <div class="tree-title"><a href="{{$link1}}">{{- partial "title" $title1 -}}</a></div>
     {{- if ne $link2 "" }}
     <div class="tree-subtitle"><a href="{{$link2}}">{{- partial "title" $title2 -}}</a></div>
     {{- end }}
   </div>
-    
-    {{- $nochild := (slice "") }}
+    {{- $nochild := (slice) }}
     {{- if eq $.Site.Params.product "Garoon" }}
-        {{- $nochild = (slice "/purpose/" "/admin/spec/io.html" "/admin/spec/timezone.html" ) }}
+        {{- $nochild = (slice "/purpose/" "/admin/spec/io.html" "/admin/spec/timezone.html") }}
+    {{- else if eq $.Site.Params.product "Mailwise" }}
+        {{- $nochild = (slice "/admin/spec/limit.html") }}
     {{- end }}
     {{- range $nochild }}
         {{- if in $.RelPermalink . }}
             {{- $parenttree = true }}
         {{- end }}
     {{- end }}
-
     {{- if eq $parenttree true }}
         {{- $entries = (.Parent.Pages | union .Parent.Sections) }}
     {{- else }}
@@ -154,7 +155,7 @@
                 {{- end }}
 
                 {{- $toclen := 0 }}
-                {{- if and (eq .Site.Params.meganav true) (eq $needtoc true) -}}
+                {{- if eq $needtoc true -}}
                     {{- $cont := .Content }}
                     {{- $tocs = findRE "<h[23].*?>(.|\n)*?</h[23]>" $cont }}
                     {{- $toclen = (len $tocs) }}
