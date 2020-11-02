@@ -68,7 +68,8 @@ a,
 }
 
 .txtblue img,
-.txtred img{
+.txtred img,
+.txtbtn img{
     vertical-align:middle;
     margin-right:3px;
 }
