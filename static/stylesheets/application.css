@@ -612,7 +612,7 @@ ul.breadcrumbs {
 
 .tree-title, .tree-subtitle {
     font-weight: normal;
-    height: 60px;
+    min-height: 60px;
     padding-top: 1em;
     padding-left: 3px;
 }
