@@ -7,9 +7,9 @@
 {{- if eq $.Site.Params.meganav true -}}
     {{- $lastpage := (slice) }}
     {{- if eq $.Site.Params.product "Garoon" }}
-        {{- $lastpage = (slice "/purpose/" "/user/basic/" "/user/mobile/" "/user/personal/" ) }}
+        {{- $lastpage = (slice "/purpose/" "/user/basic/" "/user/mobile/" "/user/personal/" "/admin/spec/io.html" "/admin/spec/timezone.html") }}
     {{- else if eq $.Site.Params.product "Mailwise" }}
-        {{- $lastpage = (slice "/user/basic/" "/user/personal/" ) }}
+        {{- $lastpage = (slice "/user/basic/" "/user/personal/" "/admin/spec/limit.html") }}
     {{- end }}
     {{- range $lastpage }}
         {{- if in $.RelPermalink . }}
@@ -40,16 +40,16 @@
                 {{- $link1  = .RelPermalink }}
                 {{- $title1 = . }}
             {{- else if eq .Parent.Parent .FirstSection }}
-                    {{- $link1  = .Parent.RelPermalink }}
-                    {{- $title1 = .Parent }}
-                    {{- $link2  = .RelPermalink }}
-                    {{- $title2 = . }}
+                {{- $link1  = .Parent.RelPermalink }}
+                {{- $title1 = .Parent }}
+                {{- $link2  = .RelPermalink }}
+                {{- $title2 = . }}
             {{- else }}
-                    {{- $link1  = .Parent.Parent.RelPermalink }}
-                    {{- $title1 = .Parent.Parent }}
-                    {{- $link2  = .Parent.RelPermalink }}
-                    {{- $title2 = .Parent }}
-                    {{- $parenttree = true }}
+                {{- $link1  = .Parent.Parent.RelPermalink }}
+                {{- $title1 = .Parent.Parent }}
+                {{- $link2  = .Parent.RelPermalink }}
+                {{- $title2 = .Parent }}
+                {{- $parenttree = true }}
             {{- end }}
         {{- end }}
     {{- end }}
@@ -59,17 +59,6 @@
     <div class="tree-subtitle"><a href="{{$link2}}">{{- partial "title" $title2 -}}</a></div>
     {{- end }}
   </div>
-    {{- $nochild := (slice) }}
-    {{- if eq $.Site.Params.product "Garoon" }}
-        {{- $nochild = (slice "/purpose/" "/admin/spec/io.html" "/admin/spec/timezone.html") }}
-    {{- else if eq $.Site.Params.product "Mailwise" }}
-        {{- $nochild = (slice "/admin/spec/limit.html") }}
-    {{- end }}
-    {{- range $nochild }}
-        {{- if in $.RelPermalink . }}
-            {{- $parenttree = true }}
-        {{- end }}
-    {{- end }}
     {{- if eq $parenttree true }}
         {{- $entries = (.Parent.Pages | union .Parent.Sections) }}
     {{- else }}
@@ -153,7 +142,6 @@
                 {{- if eq .RelPermalink $target.RelPermalink -}}
                     {{- $selected_wai = "ture" }}
                 {{- end }}
-
                 {{- $toclen := 0 }}
                 {{- if eq $needtoc true -}}
                     {{- $cont := .Content }}
