@@ -55,8 +55,12 @@
                 {{- if eq .Site.Language.Lang "en" }}
                     {{- $disp = "false" }}
                 {{- end }}
-                {{- if and (eq $product "Garoon") (eq $.Site.Params.service_type_id "cloud") }} 
-                    {{- $disp = "true" }}
+                {{- if eq $product "Garoon" }}
+                    {{- if eq $.Site.Params.service_type_id "cloud" }} 
+                        {{- $disp = "true" }}
+                    {{- else }}
+                        {{- $disp = "false" }}
+                    {{- end }}
                 {{- end }}
                 {{- if eq $disp "true" }}
     <link rel="alternate" href="https://help.cybozu.cn{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-cn" />
