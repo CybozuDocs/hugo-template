@@ -351,7 +351,7 @@
                     {{- else if eq $parent.Site.Params.product "Garoon" -}}
                         {{- $prod := "g" }}
                         {{- if eq $parent.Site.Params.service_type_id "on-premise" }}
-                            {{- $prod := "g5" }}
+                            {{- $prod = "g5" }}
                         {{- end }}
                         {{- if eq $parent.Params.weight 200 -}}
                             {{- $targeturl = (printf "/%s/%s/admin" $prod .Language) -}}
@@ -361,7 +361,7 @@
                     {{- else if eq $parent.Site.Params.product "Mailwise" -}}
                         {{- $prod := "m" }}
                         {{- if eq $parent.Site.Params.service_type_id "on-premise" }}
-                            {{- $prod := "m5" }}
+                            {{- $prod = "m5" }}
                         {{- end }}
                         {{- if eq $parent.Params.weight 200 -}}
                             {{- $targeturl = (printf "/%s/%s/admin" $prod .Language) -}}
