@@ -46,7 +46,7 @@
                 {{- $thislang := .Site.Language.Lang }}
                 {{- if or (eq $thislang "en") (eq $thislang "ja")}}
                     {{- $lang := (printf "%s-us" $thislang) }}
-    <link rel="alternate" href="https://get.kintone.com{{ .RelPermalink }}" hreflang="{{$thislang}}-us" />
+    <link rel="alternate" href="https://get.kintone.com{{ .RelPermalink }}" hreflang="{{$lang}}" />
                 {{- end }}
             {{- end }}
         {{- else if eq . "CN" }}
@@ -61,6 +61,9 @@
                     {{- else }}
                         {{- $disp = "false" }}
                     {{- end }}
+                {{- end }}
+                {{- if eq .Site.Language.Lang "zh-tw" }}
+                    {{- $disp = "false" }}
                 {{- end }}
                 {{- if eq $disp "true" }}
     <link rel="alternate" href="https://help.cybozu.cn{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-cn" />
