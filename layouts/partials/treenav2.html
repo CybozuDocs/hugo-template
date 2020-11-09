@@ -31,15 +31,13 @@
 
                             {{- $txts := (findRE ">.+<" . 1) }}
                             {{- $txt := "" }}
-                            {{- range $txts }}
-                                {{- $txt = . }}
+                            {{- range first 1 $txts }}
+                               {{- $txt = . }}
                             {{- end }}
-                            {{- $txtlen := (countrunes  $txt) }}
+                            {{- $txt = (strings.TrimPrefix ">" $txt ) }}
+                            {{- $txt = (strings.TrimSuffix "<" $txt ) }}
 
-                            {{- if gt $txtlen 0 }}
-                                {{ $txt := (substr $txt 1 $txtlen) }}
                          <li role="treeitem" ><span class="branch-sp"><a href="{{$pageurl}}#{{$anc}}" class="toclink">{{$txt}}</a></span></li>
-                            {{- end }}
                         {{- end }}
                 </ul>
                     {{- end }}
