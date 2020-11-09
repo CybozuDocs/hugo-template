@@ -349,10 +349,24 @@
                             {{- $targeturl = (printf "/general/%s/login" .Language) -}}
                         {{- end -}}
                     {{- else if eq $parent.Site.Params.product "Garoon" -}}
+                        {{- $prod := "g" }}
+                        {{- if eq $parent.Site.Params.service_type_id "on-premise" }}
+                            {{- $prod := "g5" }}
+                        {{- end }}
                         {{- if eq $parent.Params.weight 200 -}}
-                            {{- $targeturl = (printf "/g/%s/admin" .Language) -}}
+                            {{- $targeturl = (printf "/%s/%s/admin" $prod .Language) -}}
                         {{- else if eq $parent.Params.weight 300 -}}
-                            {{- $targeturl = (printf "/g/%s/user" .Language) -}}
+                            {{- $targeturl = (printf "/%s/%s/user" $prod .Language) -}}
+                        {{- end -}}
+                    {{- else if eq $parent.Site.Params.product "Mailwise" -}}
+                        {{- $prod := "m" }}
+                        {{- if eq $parent.Site.Params.service_type_id "on-premise" }}
+                            {{- $prod := "m5" }}
+                        {{- end }}
+                        {{- if eq $parent.Params.weight 200 -}}
+                            {{- $targeturl = (printf "/%s/%s/admin" $prod .Language) -}}
+                        {{- else if eq $parent.Params.weight 300 -}}
+                            {{- $targeturl = (printf "/%s/%s/user" $prod .Language) -}}
                         {{- end -}}
                     {{- end -}}
 
