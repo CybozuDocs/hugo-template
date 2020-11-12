@@ -39,7 +39,7 @@
     {{- $desc = printf "%s %s %s" $desc_base (i18n "og_desc2" .) $desc }}
     <title>{{ $title }}</title>
     <link rel="canonical" href="https://{{.Site.Params.domain}}{{ .Permalink | relURL }}">
-    {{- if eq .Params.type "search_result"}}
+    {{- if or (eq .Params.type "search_result") (eq .Params.nolink true) }}
     <meta name="robots" content="noindex">
     {{- end }}
     <meta name="description" content="{{$desc}}">
