@@ -4,7 +4,7 @@
     {{- $id := .id }}
     {{- $title := .title }}
     <div class="adjustAnchor" id="{{$id}}">
-        <h{{$level}} class="h{{$level}}-contents" pid="{{$id}}">{{$title}}</h{{$level}}>
+        <h{{$level}} class="h{{$level}}-contents" pid="{{$id}}">{{$title | safeHTML}}</h{{$level}}>
     </div>
     {{- if le $level 5 }}
     <div class="heading-link">
