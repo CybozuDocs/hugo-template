@@ -7,4 +7,5 @@
       </div>
     </div>
 </aside>
-<script src="{{ "javascripts/enquete.js" | relURL }}"></script>
+{{- $buildnum := (now.Format "2006010203") }}
+<script src="{{ printf "%s?%s" "javascripts/enquete.js" $buildnum | relURL }}"></script>
