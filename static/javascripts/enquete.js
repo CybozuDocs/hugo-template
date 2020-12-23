@@ -23,7 +23,8 @@
         let queryObj = {
             check: "",
             url: encodeURI(location.href),
-            title: document.title
+            title: document.title,
+            lang: document.documentElement.lang
         };
 
         // Yes/Noボタンのイベントハンドラ
@@ -35,7 +36,6 @@
             queryObj.check = 'No';
             openForm();
         });
-        
 
         // 別ウィンドウで送信画面を表示
         function openForm() {
