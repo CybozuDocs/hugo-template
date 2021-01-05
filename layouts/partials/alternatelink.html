@@ -24,7 +24,7 @@
     {{- if eq .Site.Language.Lang $deflang }}
         {{- $domain := "jp.cybozu.help" }}
         {{- if eq $product "store" }}
-            {{- $domain = "get.kintone.com" }}
+            {{- $domain = "get.kintone.help" }}
         {{- end }}
     <link rel="alternate" href="https://{{$domain}}{{.RelPermalink}}" hreflang="x-default" />
     {{- end }}
@@ -46,7 +46,7 @@
                 {{- $thislang := .Site.Language.Lang }}
                 {{- if or (eq $thislang "en") (eq $thislang "ja")}}
                     {{- $lang := (printf "%s-us" $thislang) }}
-    <link rel="alternate" href="https://get.kintone.com{{ .RelPermalink }}" hreflang="{{$lang}}" />
+    <link rel="alternate" href="https://get.kintone.help{{ .RelPermalink }}" hreflang="{{$lang}}" />
                 {{- end }}
             {{- end }}
         {{- else if eq . "CN" }}
