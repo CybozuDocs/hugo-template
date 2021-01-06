@@ -18,6 +18,9 @@
         if((cururl.indexOf("/g/") != -1) || (cururl.indexOf("/g5/") != -1)) {
             formid = "3a1e708ed680b060dbb5f7c4a57ca6ec2d7dedf6426d1cf7faded0e75e1f1d87";
         }
+        if((cururl.indexOf("/m/") != -1) || (cururl.indexOf("/mw5/") != -1)) {
+            formid = "941072d61311ef3c6649c67885983e26cc98ec986a45f7706fe12fb4a0df1e3e";
+        }
         url = url + formid + "?";
 
         let queryObj = {
