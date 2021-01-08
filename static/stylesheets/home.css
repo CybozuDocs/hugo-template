@@ -371,11 +371,9 @@ i.index-pdf {
         width: 31.7%;
         margin: 0 .8% 16px;
     }
-    .col-tile-gr {
-        width: 18%;
-    }
+    .col-tile-gr,
     .col-tile-gr2 {
-        width: 23%;
+        width: 28%;
     }
 
     .main {
