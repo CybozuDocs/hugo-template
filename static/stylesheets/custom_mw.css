@@ -6,7 +6,8 @@ a,
 .tile-title,
 .col-tile-gr i,
 .article a,
-.tree-title a {
+.tree-title a,
+.tree-subtitle a {
     color: #d0324b;
 }
 
