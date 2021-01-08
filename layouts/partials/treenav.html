@@ -9,7 +9,7 @@
     {{- if eq $.Site.Params.product "Garoon" }}
         {{- $lastpage = (slice "/purpose/" "/user/basic/" "/user/mobile/" "/user/personal/" "/admin/spec/") }}
     {{- else if eq $.Site.Params.product "Mailwise" }}
-        {{- $lastpage = (slice "/user/basic/" "/user/personal/" "/admin/spec/" "/admin/system/" "/option/migration/") }}
+        {{- $lastpage = (slice "/user/basic/" "/user/personal/" "/admin/spec/" "/admin/system/" "/option/migration/" "/intro/first/" "/intro/install/" "/intro/verup/" "/intro/uninstall/") }}
     {{- end }}
     {{- range $lastpage }}
         {{- if in $.RelPermalink . }}
