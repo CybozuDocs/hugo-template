@@ -349,6 +349,22 @@ background: rgba(255, 255, 255, 0.9);
 }
 /* -------------------------------------- End of Home page */
 
+/* Search page ---------------------------------*/
+.search-button {
+    background-color: #1b72cd;
+}
+.search-button:hover {
+    background-color: #74a0ce;
+}
+.search-words {
+    border-color: #1b72cd;
+}
+
+.subnavi {
+    padding-bottom: 0;
+}
+/* -------------------------------------- End of Search opage */
+
 /* footer --------------------------------------*/
 .footer{
     position: relative;

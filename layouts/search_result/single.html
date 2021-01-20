@@ -6,10 +6,45 @@
 <div class="page" >
     <div class="contents-wrap">
         <main class="main" role="main">
-            {{- partial "breadcrumb" . -}}
+            {{- partial "breadcrumb" . }}
             <article class="article" >
                 <h1>{{ partial "title" . }}</h1>
                 <div id="searchResultContainer">
+                    {{- if eq $.Site.Params.google_search true -}}
+                    <div id="main_form">
+                        <div role="search" class="search-part">
+                            <input v-model="search_words" v-on:keyup.enter="submit" class="search-words" v-bind:disabled="searching == true" aria-label='{{i18n "search_word"}}'>
+                            <button role="button" class="search-button" v-on:click="submit_button" v-bind:disabled="searching == true" title='{{i18n "search"}}' aria-label='{{i18n "search"}}'><i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                            <div id="logo_place" class="search-logo"></div>
+                        </div>
+                        
+                        <div class="category-bar" v-bind:class="{ nodisp : initial }" v-cloak>
+                            <span class="ctab" v-for="(ctab, index) in ctabs">
+                                <input type="radio" name="category" class="category-tab" :id="'category'+(index)" v-model="cid" v-on:click="change_category(index)" :value="index">
+                                <label :for="'category'+(index)" role="tab" tabindex="0">[[ctab]]</label>
+                            </span>
+                        </div>
+
+                        <div class="result" v-bind:class="{ nodisp : initial }" v-cloak>
+                            <div class="item-total">[[total]] results<span class="current-position">([[start]]-[[last]])</span></div>
+                            <div v-for="item in items" class="items">
+                                <div class="item-title"><a v-bind:href="item.link" v-html="item.htmlTitle"></a></div>
+                                <div class="item-url">[[item.link]]</div>
+                                <div class="item-snippet" v-html="item.htmlSnippet"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="page-navigation" v-bind:class="{ nodisp : pages.length <= 1 }" v-cloak="">
+                            <hr class="partition">
+                            <button role="button" class="page-index" v-bind:disabled="current <= 0" v-on:click="go_prev"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+                            <button role="button" v-for="page in pages" v-on:click="page_navigate(page)" class="page-index" v-bind:class="[ page - 1 == current ? 'current-page' : '' ]" v-bind:aria-selected="page - 1 == current">[[page]]</button>
+                            <button role="button" class="page-index" v-bind:disabled="total == 0 || pages.length - 1 == current" v-on:click="go_next"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                        </div>
+                        
+                        <div class="errmsg">[[error_message]]</div>
+                    </div>
+                    {{- else }}
          　　　        <div class="mf_finder_container">
                             <mf-search-box ajax-url="//mf2ap005.marsflag.com/cybozu__support__help/x_search.x"
                             imgsize-default="0"
@@ -27,14 +62,24 @@
                             <mf-zubaken></mf-zubaken>
                             <mf-search-results></mf-search-results>
                     </div>
+                    {{- end }}
                 </div>
             </article>
         </main>
     </div>
     {{ .Content }}
 </div>
-    {{- partial "footer" . }}
-
+    {{ partial "footer" . }}
+    {{- if eq $.Site.Params.google_search true }}
+        {{- $categories := (slice) }}
+        {{- with $.Site.Params.google_search_tabs }}
+            {{- $categories = trim $.Site.Params.google_search_tabs "\"" | safeJS}}
+        {{- end }}
+    <script>var category_list = {{$categories}};</script>
+        {{- $buildnum := (now.Format "2006010203") }}
+    <script type="text/javascript" src="{{ printf "%s?%s" "javascripts/helpsearch.js" $buildnum | relURL }}"></script>
+    <script src="https://www.gstatic.com/prose/brand.js" targetId="logo_place" hl="jp"></script>
+    {{- else }}
     <script type="text/javascript">
     !function(){
       var G = GALFSRAM = window.GALFSRAM || {}
@@ -44,5 +89,6 @@
     }();
     </script>
     <script src="//c.marsflag.com/mf/mfx/1.0/js/mfx-serp.js" charset="UTF-8"></script>
+    {{- end }}
   </body>
 </html>

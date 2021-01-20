@@ -1,0 +1,143 @@
+.mf_finder_logo,.mf_finder_searchBox_category_link_0,.mf_finder_organic_doc_img_wrapper,.mf_gui_img_frame,.mf_finder_organic_doc_url_wrapper,.mf_finder_query,.mf_finder_organic_range{
+ display: none !important;
+}
+.mf_finder_searchBox {
+  background-color: #fff !important;
+}
+.mf_finder_searchBox_submit {
+  background-color: #0d89a2;
+  padding: 0 1.75rem;
+  cursor: pointer;
+}
+.mf_finder_searchBox_submit span {
+  display: none;
+}
+.mf_finder_searchBox_submit:before {
+  margin: 0;
+  font-size: 1.5em;
+}
+.mf_finder_searchBox_items {
+  margin: 0 auto 39px auto;
+  width: 100%;
+  height: 60px;
+  max-width: 555px;
+}
+#searchResultContainer .mf_finder_searchBox_query_input {
+  padding: 0 15px;
+  background: none;
+  background-color: #fff;
+  font-size: 1rem;
+}
+.mf_finder_searchBox_category_links {
+  padding-left: .35rem !important;
+}
+.mf_finder_searchBox_category_links div{
+  margin-bottom: -1px !important;
+}
+.mf_finder_searchBox_category_links:before,.mf_finder_searchBox_category_links:after {
+  content:none !important;
+}
+.mf_finder_searchBox_category_links a{
+  padding: .9rem 1rem !important;
+  border-radius: 0;
+}
+.mf_finder_organic_total:before {
+  content: "" !important;
+}
+.mf_finder_organic_total:after {
+  content: " results" !important;
+  font-size: 16px !important;
+}
+.mf_finder_organic_pager_wrapper {
+  padding: 1.3rem;
+}
+.mf_finder_organic_doc {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+.mf_finder_pager_items li a {
+  background-color: #bbb;
+}
+.mf_finder_pager_items .mf_finder_pager_item_first a, .mf_finder_pager_items .mf_finder_pager_item_next a, .mf_finder_pager_items .mf_finder_pager_item_prev a {
+  background-color: #fff !important;
+  color: #333 !important;
+}
+.mf_finder_organic_doc_body_wrapper {
+  padding: .5rem 0 1.3rem 0;
+}
+.mf_finder_link {
+  text-decoration: none;
+}
+.mf_finder_organic_doc_title {
+  font-size: 16px;
+  font-weight: normal;
+}
+.mf_finder_organic_doc_body,.mf_finder_query,.mf_finder_searchBox_category_links,.mf_finder_searchBox_submit,.mf_finder_organic_total {
+  font-size: 1rem !important;
+}
+.mf_finder_searchBox_links .mf_finder_searchBox_category_links div a{
+    border-radius: 6px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.mf_finder_searchBox_links .mf_finder_searchBox_category_links div a, .mf_finder_searchBox_links .mf_finder_searchBox_imgsize_links div a, .mf_finder_searchBox_links .mf_finder_searchBox_pagemax_links div a, .mf_finder_searchBox_links .mf_finder_searchBox_sort_links div a {
+    border: 1px solid #ddd;
+    border-bottom: none;
+    transition: .2s linear;
+    margin-top: 5px;
+}
+.mf_finder_searchBox_links .mf_finder_searchBox_category_links div a:hover, .mf_finder_searchBox_links .mf_finder_searchBox_imgsize_links div a:hover, .mf_finder_searchBox_links .mf_finder_searchBox_pagemax_links div a:hover, .mf_finder_searchBox_links .mf_finder_searchBox_sort_links div a:hover {
+    background-color: #bbb;
+    color: inherit;
+}
+.mf_finder_searchBox_links .mf_finder_searchBox_category_links div a.mf_finder_searchBox_link_current, .mf_finder_searchBox_links .mf_finder_searchBox_imgsize_links div a.mf_finder_searchBox_link_current, .mf_finder_searchBox_links .mf_finder_searchBox_pagemax_links div a.mf_finder_searchBox_link_current, .mf_finder_searchBox_links .mf_finder_searchBox_sort_links div a.mf_finder_searchBox_link_current {
+    cursor: default;
+    border: 1px solid #ddd;
+    border-bottom: none;
+}
+
+@media screen and (max-width: 800px) {
+  .mf_finder_searchBox_category_links {
+      font-size: .875rem!important;
+  }
+  .mf_finder_searchBox_links .mf_finder_searchBox_category_links div {
+      width: 100%
+  }
+  .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a.mf_finder_searchBox_link_current {
+      border: none;
+      display: block;
+      border-radius: 6px;
+  }
+  .mf_finder_searchBox_links .mf_finder_searchBox_category_links div a {
+      border: none;
+      display: block;
+      border-radius: 6px;
+  }
+  /* Main */
+  .mf_finder_organic_doc {
+      padding: 1.5rem 0;
+  }
+  .mf_finder_organic_header_wrapper {
+      margin-left: 0;
+  }
+  .mf_finder_organic_doc_body {
+      font-size: .875rem !important;
+  }
+  .mf_finder_organic_doc {
+      margin: 0 0 1rem;
+      padding: 0;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .mf_finder_organic_doc_body {
+      height: 3.6rem;
+  }
+}
+
+/* Tab */
+@media screen and (max-width: 800px){
+    .mf_finder_searchBox_links .mf_finder_searchBox_category {
+        border-bottom: none;
+    }
+}
