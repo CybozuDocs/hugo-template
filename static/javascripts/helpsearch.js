@@ -1,7 +1,7 @@
 "use strict";
 
 (function () {
-const searchUrl = "https://r90h2sz5e4.execute-api.us-east-1.amazonaws.com/helpsearch";
+const searchUrl = "https://yc83ph1yui.execute-api.ap-northeast-1.amazonaws.com/helpsearch";
 
 const vm = new Vue({
   delimiters: ['[[', ']]'],
@@ -88,29 +88,23 @@ const vm = new Vue({
         callSearchApi();
     },
     set_environment: function() {
-        // get language code
-        const langall = document.documentElement.lang;
-        const lang = langall.substr(0,2);
-
-        switch (lang) {
-            case "ja":
-                this.lang = lang;
-                break;
-            case "zh":
-                if (langall.substr(0,5) == "zh-TW") {
-                    this.lang = "zhtw";
-                } else {
-                    this.lang = "zhcn";
-                }
-                break;
-            default:
-                this.lang = "en";
-        }
-
-        // get application name from url
         const this_url = location.pathname;
         const url_parts = this_url.split("/");
+        
+        // get application name from url
         this.app = url_parts[1];
+        
+        // get language code from url
+        this.lang = url_parts[2];
+        
+        // get region code from html lang
+        const htmllang = document.documentElement.lang;
+        if (htmllang === "zh-tw") {
+            this.region = "jp";
+            this.lang = "zhtw";
+        } else {
+            this.region = htmllang.substr(3,2);
+        }
     },
     set_options: function () {
         const qstr = location.search;
