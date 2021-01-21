@@ -97,6 +97,17 @@ const vm = new Vue({
         // get language code from url
         this.lang = url_parts[2];
         
+        // 'common' does not have app section
+        switch (this.app) {
+            case "en":
+            case "ja":
+            case "zh":
+            case "zh-tw":
+                this.lang = this.app;
+                this.app = "common";
+                break;
+        }
+        
         // get region code from html lang
         const htmllang = document.documentElement.lang;
         if (htmllang === "zh-tw") {
