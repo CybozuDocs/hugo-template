@@ -136,7 +136,7 @@ body { overflow-y: scroll; }
 .search-words {
     width: 100%;
     padding: 0 15px;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
 }
 .search-words:disabled {
     cursor: wait;

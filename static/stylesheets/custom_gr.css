@@ -337,6 +337,10 @@ background: rgba(255, 255, 255, 0.9);
     color: #015aaa;
 }
 
+.subnavi {
+    padding-bottom: 0;
+}
+
 /* Home page --------------------------------------*/
 .tile-title {
     margin-top: 1em;
@@ -358,10 +362,6 @@ background: rgba(255, 255, 255, 0.9);
 }
 .search-words {
     border-color: #1b72cd;
-}
-
-.subnavi {
-    padding-bottom: 0;
 }
 /* -------------------------------------- End of Search opage */
 
@@ -418,6 +418,9 @@ background: rgba(255, 255, 255, 0.9);
     }
     .footer-wrap {
         height: 6rem;
+    }
+    .subnavi {
+        padding-bottom: 100px;
     }
 }
 
