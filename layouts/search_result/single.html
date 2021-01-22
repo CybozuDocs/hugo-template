@@ -13,11 +13,11 @@
                     {{- if eq $.Site.Params.google_search true -}}
                     <div id="main_form">
                         <div role="search" class="search-part">
-                            <input v-model="search_words" v-on:keyup.enter="submit" class="search-words" v-bind:disabled="searching == true" aria-label='{{i18n "search_word"}}'>
+                            <input type="search" v-model="search_words" v-on:keyup.enter="submit" class="search-words" v-bind:disabled="searching == true" aria-label='{{i18n "search_word"}}'>
                             <button role="button" class="search-button" v-on:click="submit_button" v-bind:disabled="searching == true" title='{{i18n "search"}}' aria-label='{{i18n "search"}}'><i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                            <div id="logo_place" class="search-logo"></div>
+                            </button> 
                         </div>
+                        <div id="logo_place" class="search-logo"></div>
                         
                         <div class="category-bar" v-bind:class="{ nodisp : initial }" v-cloak>
                             <span class="ctab" v-for="(ctab, index) in ctabs">
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="result" v-bind:class="{ nodisp : initial }" v-cloak>
-                            <div class="item-total">[[total]] results<span class="current-position">([[start]]-[[last]])</span></div>
+                            <div class="item-total">[[total]] results<span class="current-position" v-bind:class="{ nodisp : pages.length <= 1 }">([[start]]-[[last]])</span></div>
                             <div v-for="item in items" class="items">
                                 <div class="item-title"><a v-bind:href="item.link" v-html="item.htmlTitle"></a></div>
                                 <div class="item-url">[[item.link]]</div>
@@ -35,11 +35,11 @@
                             </div>
                         </div>
                         
-                        <div class="page-navigation" v-bind:class="{ nodisp : pages.length <= 1 }" v-cloak="">
+                        <div class="page-navigation"  role="navigation" v-bind:class="{ nodisp : pages.length <= 1 }" v-cloak="">
                             <hr class="partition">
-                            <button role="button" class="page-index" v-bind:disabled="current <= 0" v-on:click="go_prev"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
-                            <button role="button" v-for="page in pages" v-on:click="page_navigate(page)" class="page-index" v-bind:class="[ page - 1 == current ? 'current-page' : '' ]" v-bind:aria-selected="page - 1 == current">[[page]]</button>
-                            <button role="button" class="page-index" v-bind:disabled="total == 0 || pages.length - 1 == current" v-on:click="go_next"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                            <button role="button" class="page-index page-arrow" v-bind:disabled="current <= 0" v-on:click="go_prev" title='{{ i18n "Previous_page"}}' aria-label='{{ i18n "Previous_page"}}'><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+                            <button role="button" v-for="page in pages" v-on:click="page_navigate(page)" class="page-index" v-bind:class="[ page - 1 == current ? 'current-page' : '' ]" v-bind:aria-selected="page - 1 == current" v-bind:title="page" v-bind:aria-label="page">[[page]]</button>
+                            <button role="button" class="page-index page-arrow" v-bind:disabled="total == 0 || pages.length - 1 == current" v-on:click="go_next" title='{{ i18n "Next_page"}}' aria-label='{{ i18n "Next_page"}}'><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
                         </div>
                         
                         <div class="errmsg">[[error_message]]</div>
@@ -78,7 +78,13 @@
     <script>var category_list = {{$categories}};</script>
         {{- $buildnum := (now.Format "2006010203") }}
     <script type="text/javascript" src="{{ printf "%s?%s" "javascripts/helpsearch.js" $buildnum | relURL }}"></script>
-    <script src="https://www.gstatic.com/prose/brand.js" targetId="logo_place" hl="jp"></script>
+    {{- $glang := $.Site.Language.Lang}}
+    {{- if eq $glang "zh" }}
+        {{- $glang = "zh-CN" }}
+    {{- else if eq $glang "zh-tw" }}
+        {{- $glang = "zh-TW" }}
+    {{- end }}
+    <script src="https://www.gstatic.com/prose/brand.js" targetId="logo_place" hl="{{$glang}}"></script>
     {{- else }}
     <script type="text/javascript">
     !function(){

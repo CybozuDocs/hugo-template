@@ -163,7 +163,7 @@ td {
     justify-content: flex-start;
     align-items: center;
 }
-.searchbox input[type=text]{
+.searchbox input[type=search]{
     padding-right: .8rem;
     padding-left: .8rem;
     width: calc(100% - 59px);
@@ -187,15 +187,22 @@ td {
     font-size: 2.2em;
     color: #0d7b91;
 }
+
+.search-logo {
+    float: right;
+    padding-top: 10px;
+}
+
+
 /* for header searchbox */
 .header .search-wrap {
     margin: 0 0 0 auto;
     width: 300px;
 }
-.header .searchbox input[type=text]{
+.header .searchbox input[type=search]{
     border: 1px solid #e6e6e6;
-    width: calc(100% - 35px);
-    height: 42px;
+    width: calc(100% - 35px) !important;
+    height: 42px !important;
     font-size: .9em;
 }
 .header .search-submit{
@@ -1486,7 +1493,7 @@ table .wd10 {
       display: block;
     }
 
-    .searchbox input[type=text]{
+    .searchbox input[type=search]{
         font-size: 1.2rem;
     }
 

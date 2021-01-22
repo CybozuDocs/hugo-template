@@ -46,9 +46,14 @@ body { overflow-y: scroll; }
 .subnavimsg {
     padding-right: 10px;
     font-size: .9em;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
 }
 .subnavibtn {
-    width: 90%;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
 }
 .subnavianc {
     border: 1px solid #e5e5e5;
@@ -97,22 +102,20 @@ body { overflow-y: scroll; }
 }
 
 .search-part {
-    border: 0;
-    height: 42px;
-    width: 400px;
+    display: flex;
+    height: 60px;
     white-space: nowrap;
+    margin: 0 auto 0 auto;
+    padding: .4rem;
 }
 
 .search-button {
+    font-size: 1rem;
+    padding: 0 1rem;
     cursor: pointer;
-    height: 58px;
-    width: 52px;
-    padding-top: 2px;
-    margin-left: -7px;
-    background-color: #666;
+    border-radius: 0 3px 3px 0;
     color: #eee;
-    border: solid 1px #eee;
-    border-radius: 0 6px 6px 0;
+    background-color: #0d89a2;
 }
 .search-button-label {
     color: #fff;
@@ -125,19 +128,15 @@ body { overflow-y: scroll; }
     cursor: wait;
     filter: opacity(20%);
 }
-
 .button-clicked {
     cursor: wait;
     filter: opacity(20%);
 }
 
 .search-words {
-    font-size: 1.2em;
-    width: 346px;
-    height: 56px;
-    margin-left: 5px;
-    border: solid 2px #666;
-    border-radius: 6px 0 0 6px;
+    width: 100%;
+    padding: 0 15px;
+    border: 1px solid #ddd;
 }
 .search-words:disabled {
     cursor: wait;
@@ -148,7 +147,9 @@ body { overflow-y: scroll; }
     width: 124px;
     height: 15px;
     float: right;
-    margin: 5px 0 0 10px;
+    margin-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 20px;
 }
 
 .category-bar {
@@ -263,6 +264,9 @@ body { overflow-y: scroll; }
 .page-index .fas {
     color: #777;
 }
+.page-arrow {
+    padding: 5px;
+}
 
 .current-page {
     cursor: default;
@@ -288,16 +292,13 @@ body { overflow-y: scroll; }
     .search-part {
         width: 600px;
     }
-
     .search-button {
         width: 90px;
     }
-
     .search-label {
         display: inline-block;
         padding-left: 10px;
     }
-
     .search-words {
         width: 496px;
     }
