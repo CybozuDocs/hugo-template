@@ -164,7 +164,7 @@ const vm = new Vue({
 
             if(this.search_words.length > 0 ) {
                 newpath = newpath + "?c=" + this.cid + "&start=" + vm.start + "&q=" + encodeURIComponent(this.search_words);
-                location.replace(newpath);
+                location.href = newpath;
             }
         }
     },
