@@ -57,13 +57,16 @@
     <link rel="icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application.css" $buildnum | relURL }}">
     <link rel="stylesheet" href="{{ "stylesheets/zoom.css" | relURL }}">
-    <link href="https://js.cybozu.com/font-awesome/v5.0.13/css/fontawesome-all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://js.cybozu.com/font-awesome/v5.0.13/css/fontawesome-all.min.css">
     {{- if .IsHome}}
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/home.css" $buildnum | relURL }}">
-    {{- end}}
+    {{- end }}
     {{- if eq .Params.type "search_result"}}
-    <link href="//c.marsflag.com/mf/mfx/css/mfx-serp.css" rel="stylesheet" type="text/css" media="all" charset="UTF-8">
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/search_result.css" $buildnum | relURL }}">
+        {{- if ne $.Site.Params.google_search true -}}
+    <link href="//c.marsflag.com/mf/mfx/css/mfx-serp.css" rel="stylesheet" type="text/css" media="all" charset="UTF-8">
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/mf_search.css" $buildnum | relURL }}">
+        {{- end }}
     {{- end}}
     {{- with .Site.Params.custom_css }}
         {{- $files := split . "," }}
@@ -79,6 +82,9 @@
     <script src="{{ printf "%s?%s" "javascripts/application.js" $buildnum | relURL }}"></script>
     {{- if eq $.Site.Params.meganav true }}
     <script src="{{ printf "%s?%s" "javascripts/meganav.js" $buildnum | relURL }}"></script>
+    {{- end }}
+    {{- if eq $.Site.Params.google_search true }}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
     {{- end }}
     
     <!-- Google Tag Manager -->

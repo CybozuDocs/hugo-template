@@ -337,6 +337,10 @@ background: rgba(255, 255, 255, 0.9);
     color: #015aaa;
 }
 
+.subnavi {
+    padding-bottom: 0;
+}
+
 /* Home page --------------------------------------*/
 .tile-title {
     margin-top: 1em;
@@ -348,6 +352,18 @@ background: rgba(255, 255, 255, 0.9);
     color: #000;
 }
 /* -------------------------------------- End of Home page */
+
+/* Search page ---------------------------------*/
+.search-button {
+    background-color: #1b72cd;
+}
+.search-button:hover {
+    background-color: #74a0ce;
+}
+.search-words {
+    border-color: #1b72cd;
+}
+/* -------------------------------------- End of Search opage */
 
 /* footer --------------------------------------*/
 .footer{
@@ -402,6 +418,9 @@ background: rgba(255, 255, 255, 0.9);
     }
     .footer-wrap {
         height: 6rem;
+    }
+    .subnavi {
+        padding-bottom: 100px;
     }
 }
 

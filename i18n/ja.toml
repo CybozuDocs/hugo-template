@@ -79,3 +79,8 @@ other = "{{.Site.Params.service_type}} {{.Site.Params.product_name}}の{{.Site.P
 [og_desc2]
 other = "{{.Site.Params.product_name}}を利用するために必要な設定や操作方法などを説明します。"
 
+[search]
+other = "検索"
+
+[search_word]
+other = "検索ワード"

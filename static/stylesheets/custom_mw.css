@@ -52,6 +52,10 @@ a,
     color: #d0324b;
 }
 
+.subnavi {
+    padding-bottom: 0;
+}
+    
 /*text decration
 ---------------------------------------------------*/
 .txtblue,
@@ -90,6 +94,18 @@ a,
 
 /* -------------------------------------- End of Home page */
 
+/* Search page ---------------------------------*/
+.search-button {
+    background-color: #d0324b;
+}
+.search-button:hover {
+    background-color: #d98c98;
+}
+.search-words {
+    border-color: #d0324b;
+}
+/* -------------------------------------- End of Search opage */
+
 /* 404 page */
 .nftitle {
     background-image: none;
@@ -100,6 +116,10 @@ a,
 @media only screen and (min-width: 768px) {
     .g-col {
         width: 25%;
+    }
+    
+    .subnavi {
+        padding-bottom: 100px;
     }
 }
 
