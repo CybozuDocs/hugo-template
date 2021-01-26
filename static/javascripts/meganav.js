@@ -74,10 +74,6 @@
     })
     
     .bind('keydown', function(e) {
-        if(($(window).width() < mobilewidth) && (e.which >= 37)) {
-            return false;
-        }
-
         let menupos = $menus.index($(':focus'));
         
         let $alllinks = $(this).find("div.mega-panel").find("a");
