@@ -264,18 +264,10 @@
                 {{- template "updatesectstr" $parent -}}
                 {{- $sectStr := ($parent.Scratch.Get "sectStr") -}}
 
-                <!-- in case of the section string is empty, the title is not displayed -->
-                {{- if ne $sectStr "" -}}
-                    {{- $chapter := "" -}}
-                    {{- if eq (len $sectList) 1 -}}
-                        <!-- At the top level section, add class of 'chapter'. -->
-                        {{- $chapter = "chapter" -}}
-                    {{- end -}}
-            <h1 class="section-title {{ $chapter }} bm-{{ (len $sectList) }}" id="{{- anchorize .RelPermalink -}}"> 
-                    {{- $sectStr -}}&nbsp;{{- partial "title" . -}}
-            </h1>
-                {{- end -}}
-
+                <!-- body -->
+                {{- $title := partial "title" . -}}
+                {{- template "contentbody" (dict "sectList" $sectList "sectStr" $sectStr "content" .Content "product" $parent.Site.Params.product "serviceType" $parent.Site.Params.service_type_id "weight" $parent.Params.weight "ancid" .RelPermalink "title" $title) }}
+                
                 <!-- add a sub section （go down the section tree） -->
                 {{- $sectList = $sectList | append 1 -}}
                 {{- $parent.Scratch.Set "sectList" $sectList -}}
@@ -300,72 +292,96 @@
                 {{- template "nextsection" $parent -}}
 
             {{- end -}}
-        {{- else -}}
+        {{- else -}}      
             {{- if in .Params.disabled .Site.Params.TargetRegion -}}
             {{- else -}}
                 {{- $sectList := ($parent.Scratch.Get "sectList") -}}
 
                 <!-- make a section string -->
                 {{- template "updatesectstr" $parent -}}
-                {{ $sectStr := ($parent.Scratch.Get "sectStr") }}
+                {{- $sectStr := ($parent.Scratch.Get "sectStr") -}}
 
-        <div class="article">
-          <div class="wrapper">
-                {{- $class := "content-title" -}}
-                {{- $chapter := "" -}}
-                {{- if eq (len $sectList) 1 -}}
-                    <!-- At the top level section, add class of 'chapter'. -->
-                    {{- $chapter = "chapter" -}}
-                    {{- $class = "section-title" -}}
-                {{- end -}}
-                <h1 class="{{ $class }} {{ $chapter }} bm-{{ (len $sectList) }}" id="{{- anchorize .RelPermalink -}}">{{- $sectStr -}}&nbsp;{{- partial "title" . -}}</h1>
+                <!-- body -->
+                {{- $title := partial "title" . -}}
+                {{- template "contentbody" (dict "sectList" $sectList "sectStr" $sectStr "content" .Content "product" $parent.Site.Params.product "serviceType" $parent.Site.Params.service_type_id "weight" $parent.Params.weight "ancid" .RelPermalink "title" $title) }}
+        
+                <!-- increment the section number -->
+                {{- template "nextsection" $parent -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
 
-                {{/* - if .IsSection - */}}
-                {{/* else */}}
-                <div class="content-body">
-                    {{- $cont := .Content -}}
+<!-- content body -->
+{{- define "contentbody" -}}
+    {{- $sectList := .sectList -}}
+    {{- $sectStr := .sectStr -}}
+    {{- $cont := .content -}}
+    {{- $product := .product -}}
+    {{- $serviceType := .serviceType -}}
+    {{- $title := .title -}}
+    {{- $weight := .weight -}}
+    {{- $ancid := .ancid -}}
+    
+    <div class="article">
+        <div class="wrapper">
+          
+    <!-- in case of the section string is empty, the title is not displayed -->
+    {{- if ne $sectStr "" -}}
+        {{- $class := "content-title" -}}
+        {{- $chapter := "" -}}
+        {{- if eq (len $sectList) 1 -}}
+            <!-- At the top level section, add class of 'chapter'. -->
+            {{- $chapter = "chapter" -}}
+            {{- $class = "section-title" -}}
+        {{- end -}}
+                <h1 class="{{ $class }} {{ $chapter }} bm-{{ (len $sectList) }}" id="{{- anchorize $ancid -}}">{{- $sectStr -}}&nbsp;{{- $title -}}</h1>
+    {{- end -}}
+                
+    {{- if ne $cont "" }}
+                <div class="content-body">          
                     <!-- make a collection of A tag -->
                     {{- $links := findRE "<a +href=\"[\\w!\\?/\\+\\-_~=;\\.,\\*&@#\\$%\\(\\)'\\[\\]]*\" *(target=\"_blank\")*>" $cont -}}
 
                     {{- $newurl := "" -}}
                     {{- $targeturl := "" -}}
                     <!-- Identify the URL to convert -->
-                    {{- if eq $parent.Site.Params.product "kintone" -}}
-                        {{- if eq $parent.Params.weight 100 -}}
+                    {{- if eq $product "kintone" -}}
+                        {{- if eq $weight 100 -}}
                             {{- $targeturl = (printf "/k/%s/user" .Language) -}}
-                        {{- else if eq $parent.Params.weight 200 -}}
+                        {{- else if eq $weight 200 -}}
                             {{- $targeturl = (printf "/k/%s/admin" .Language) -}}
-                        {{- else if eq $parent.Params.weight 300 -}}
+                        {{- else if eq $weight 300 -}}
                             {{- $targeturl = (printf "/k/%s/utility" .Language) -}}
-                        {{- else if eq $parent.Params.weight 400 -}}
+                        {{- else if eq $weight 400 -}}
                             {{- $targeturl = (printf "/k/%s/trouble_shooting" .Language) -}}
                         {{- end -}}
-                    {{- else if eq $parent.Site.Params.product "slash" -}}
-                        {{- if eq $parent.Params.weight 100 -}}
+                    {{- else if eq $product "slash" -}}
+                        {{- if eq $weight 100 -}}
                             {{- $targeturl = (printf "/general/%s/admin" .Language) -}}
-                        {{- else if eq $parent.Params.weight 200 -}}
+                        {{- else if eq $weight 200 -}}
                             {{- $targeturl = (printf "/general/%s/user" .Language) -}}
-                        {{- else if eq $parent.Params.weight 300 -}}
+                        {{- else if eq $weight 300 -}}
                             {{- $targeturl = (printf "/general/%s/login" .Language) -}}
                         {{- end -}}
-                    {{- else if eq $parent.Site.Params.product "Garoon" -}}
+                    {{- else if eq $product "Garoon" -}}
                         {{- $prod := "g" }}
-                        {{- if eq $parent.Site.Params.service_type_id "on-premise" }}
+                        {{- if eq $serviceType "on-premise" }}
                             {{- $prod = "g5" }}
                         {{- end }}
-                        {{- if eq $parent.Params.weight 200 -}}
+                        {{- if eq $weight 200 -}}
                             {{- $targeturl = (printf "/%s/%s/admin" $prod .Language) -}}
-                        {{- else if eq $parent.Params.weight 300 -}}
+                        {{- else if eq $weight 300 -}}
                             {{- $targeturl = (printf "/%s/%s/user" $prod .Language) -}}
                         {{- end -}}
-                    {{- else if eq $parent.Site.Params.product "Mailwise" -}}
+                    {{- else if eq $product "Mailwise" -}}
                         {{- $prod := "m" }}
-                        {{- if eq $parent.Site.Params.service_type_id "on-premise" }}
+                        {{- if eq $serviceType "on-premise" }}
                             {{- $prod = "mw5" }}
                         {{- end }}
-                        {{- if eq $parent.Params.weight 200 -}}
+                        {{- if eq $weight 200 -}}
                             {{- $targeturl = (printf "/%s/%s/admin" $prod .Language) -}}
-                        {{- else if eq $parent.Params.weight 300 -}}
+                        {{- else if eq $weight 300 -}}
                             {{- $targeturl = (printf "/%s/%s/user" $prod .Language) -}}
                         {{- end -}}
                     {{- end -}}
@@ -409,14 +425,9 @@
                     {{- end -}}
 
                     {{- $cont | safeHTML -}}
-                </div><!-- close content-body -->
-                {{/* - end - */}}
-
-                <!-- increment the section number -->
-                {{template "nextsection" $parent}}
-          </div><!-- close wrapper -->
-        </div><!-- close article -->
-            {{- end -}}
-        {{- end -}}
+                </div><!-- close content-body -->  
     {{- end -}}
+    
+        </div><!-- close wrapper -->
+    </div><!-- close article -->
 {{- end -}}
