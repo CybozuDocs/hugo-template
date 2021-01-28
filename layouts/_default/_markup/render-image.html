@@ -1,8 +1,10 @@
 {{- $simple := "false" }}
 {{- if and (eq .Page.Site.Params.product "Garoon") (in .Destination "/common/icon/") }}
     {{- $simple = "true" }}
-{{- else if and (eq .Page.Site.Params.product "Mailwise") (in .Destination "/common/img/") }}
-    {{- $simple = "true" }}
+{{- else if eq .Page.Site.Params.product "Mailwise" }}
+    {{- if in .Destination "/common/img/" }}
+        {{- $simple = "true" }}
+    {{- end }}
 {{- else if (in .Destination "/img/") }}
     {{- $simple = "true" }}
 {{- end }}
