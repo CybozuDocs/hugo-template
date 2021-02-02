@@ -48,40 +48,42 @@ other = "注意"
 
 [By_features]
 other = "Search by Features"
+# 翻訳対象外とのことで確認済（https://bozuman.cybozu.com/k/#/space/22/thread/39194/2678532/4308687）
 
 [Top_page]
-other = "Top"
+other = "首頁"
 
 [Read_more]
-other = "More"
+other = "查看更多"
 
 [Was_it_helpful]
-other = "Was this information helpful?"
+other = "這項資訊是否對您有幫助？"
 
 [Yes]
-other = "Yes"
+other = "是"
 
 [No]
-other = "No"
+other = "否"
 
 [Permalink]
-other = "Permalink"
+other = "永久連結"
 
 [MT_Disclaimer]
 other = "Machine-Translations Disclaimer"
+# 翻訳対象外とのことで確認済（https://bozuman.cybozu.com/k/#/space/22/thread/39194/2678532/4308687）
 
 [og_desc1]
-other = "This is the {{$.Site.Params.help}} for {{$.Site.Params.product_name}}."
+other = "{{.Site.Params.product_name}}的{{.Site.Params.help}}。"
 
 [og_desc1_service]
-other = "This is the {{$.Site.Params.help}} for {{$.Site.Params.product_name}} {{$.Site.Params.service_type}}. "
+other = "{{.Site.Params.service_type}} {{.Site.Params.product_name}}的{{.Site.Params.help}}。"
 
 [og_desc2]
-other = "This guide describes how to set up and operate {{$.Site.Params.product_name}}."
+other = "說明使用{{.Site.Params.product_name}}須知的設定及操作方法。"
 
 [search]
-other = "search"
+other = "搜尋"
 
 [search_word]
-other = "search word"
+other = "搜尋關鍵詞"
 
