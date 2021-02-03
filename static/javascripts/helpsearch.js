@@ -39,7 +39,7 @@ const vm = new Vue({
            
                     const xhr = new XMLHttpRequest();
                     xhr.timeout = 10000; // 10 seconds
-                    
+                    xhr.responseType = "text"; // for IE11
                     xhr.open("GET", chkurl);
                     
                     xhr.onload = function() {
