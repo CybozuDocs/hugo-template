@@ -227,12 +227,12 @@ const callSearchApi = function() {
 
                 if (jd.hasOwnProperty("error") === false) {
                     if("searchInformation" in jd) {
-                        vm.total = jd["searchInformation"].totalResults;
+                        vm.total = Number(jd["searchInformation"].totalResults);
                     }
 
                     const queries = jd["queries"];
                     if("request" in queries) {
-                        vm.start = queries["request"][0]["startIndex"];
+                        vm.start = Number(queries["request"][0]["startIndex"]);
                         vm.last = vm.start + 9;
                         if ( vm.last > vm.total ) {
                             vm.last = vm.total;
@@ -241,12 +241,13 @@ const callSearchApi = function() {
 
                         // page navigation bar
                         const pages = [];
-                        for (let i = 1; i * 10 <= vm.total; i++) {
-                            pages.push(i);
+                        const lastnum = vm.total + 10;
+                        for (let i = 10; lastnum >= i; i = i + 10) {
+                            pages.push(i/10);
 
                             // because the maximum number of search items is 100
                             // the maximum number of pages is 10
-                            if (i >= 10) break;
+                            if (i >= 100) break;
                         }
                         vm.pages = pages;
                     }
