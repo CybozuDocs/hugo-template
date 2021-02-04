@@ -38,8 +38,6 @@ const vm = new Vue({
                     const chkurl = "https://www.googleapis.com/customsearch/v1";
            
                     const xhr = new XMLHttpRequest();
-                    xhr.timeout = 10000; // 10 seconds
-                    xhr.responseType = "text"; // for IE11
                     xhr.open("GET", chkurl);
                     
                     xhr.onload = function() {
