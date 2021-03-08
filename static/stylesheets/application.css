@@ -59,6 +59,11 @@ td {
     font-weight: 400;
     vertical-align: middle;
 }
+
+:focus:not(:focus-visible) {
+    outline: 0;
+}
+
 /* -------------------- end of General tags */
 
 
@@ -647,14 +652,14 @@ ul.breadcrumbs {
 }
 #tree-main a {
     display: inline-block;
-    padding: 10px 8px;
+    padding: 8px 4px;
     width: 200px;
 }
 #tree-main li ul {
     display: none;
 }
 #tree-main li ul.opened {
-    margin-left: 1rem;
+    margin-left: 19px;
     display: block;
 }
 #tree-main li ul li {
@@ -678,7 +683,7 @@ ul.breadcrumbs {
 }
 
 .trunk ul {
-    margin-left: 1rem
+    margin-left: 19px;
 }
 .trunk li ul {
     display: none;
@@ -686,7 +691,7 @@ ul.breadcrumbs {
 
 .branch-icon {
     display: inline-block;
-    width: 1.6rem;
+    width: 1rem;
     line-height: 1em;
     margin-left: 3px;
     text-align: center;
@@ -695,10 +700,11 @@ ul.breadcrumbs {
 .branch-icon .fas {
     margin-right: 0px;
     color: #000;
+    font-size: .7rem;
 }
 .branch-sp{
     display:inline-block;
-    width: 1.8rem;
+    width: 19px;
 }
 
 .twig {
