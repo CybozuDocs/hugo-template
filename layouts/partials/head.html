@@ -21,7 +21,7 @@
     {{- $sitename = printf "%s %s" $sitename .Site.Params.help -}}
 
     {{- $desc := "" }}
-    {{- if and (not .IsHome) (or (eq .Site.Params.product "Garoon") (eq .Site.Params.product "Mailwise")) }}
+    {{- if and (not .IsHome) (or (eq .Site.Params.product "Garoon") (eq .Site.Params.product "Mailwise") (eq .Site.Params.product "Office")) }}
         {{- $title = printf "%s | %s" $title $sitename }}
         {{- $contents := split .Content "\n" }}
         {{- $first := "" }}

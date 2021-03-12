@@ -1,0 +1,59 @@
+{{- if in .Params.disabled $.Site.Params.TargetRegion }}
+<meta http-equiv="refresh" content="0; URL=/" />
+{{- else }}
+{{- partial "head" . }}
+{{- partial "header" . }}
+{{- if eq $.Site.Params.meganav true -}}
+    {{ partial "meganav" . }}
+{{- end -}}
+
+<div class="sect-wrap">
+    {{- partial "breadcrumb" . -}}
+    <main class="sect-main">
+        <h1>{{ partial "title" . }}</h1>
+
+{{- $entries := $.Site.Home.Pages }}
+{{- $rootsect := .FirstSection }}
+
+{{- range $entries.ByWeight}}
+    {{- if eq .CurrentSection $rootsect }}
+        {{- template "sectmenu_single" (dict "cursect" $rootsect "target" "/app/") }}
+    {{- end}}
+{{- end}}
+
+{{ .Content }}
+    </main>
+</div>
+{{- partial "footer" . }}
+{{- end }}
+</body>
+</html>
+
+{{- define "sectmenu_single" }}
+    {{- $cursect := .cursect }}
+    {{- $target := .target }}
+  <div>
+    {{- range $cursect.Pages.ByWeight }}
+        {{- if in . $target }}
+    <div class="mega-title">
+            <span class="fa-stack">
+            {{- $iconface := "" }}
+            {{- $targetlink := .RelPermalink }}
+            {{- range $i, $r := getCSV "," "csv/icon_images.csv" }}
+                {{- if in $targetlink (index $r 0)}}
+                    {{- $iconface = (index $r 1) }}
+                {{- end }}
+            {{- end}}
+              <i class="far fa-circle fa-stack-2x" aria-hidden="true"></i>
+              <i class="{{$iconface}} fa-stack-1x" aria-hidden="true"></i>
+            </span>
+            {{- partial "title" . -}}
+    </div>
+    <div class="sect-menu">
+            {{- template "pagelist2" . }}
+    </div>
+        {{- end }}
+    {{- end}}
+  </div>
+{{- end }}
+

@@ -1,4 +1,4 @@
-{{- if or (eq .Page.Site.Params.product "Garoon") (eq .Page.Site.Params.product "Mailwise") }}
+{{- if or (eq .Page.Site.Params.product "Garoon") (eq .Page.Site.Params.product "Mailwise") (eq .Page.Site.Params.product "Office") }}
     {{- if eq .Level 6 }}
         {{- $anctxt := (anchorize .Text) }}
         {{- $ancs := findRE $anctxt .Anchor }}

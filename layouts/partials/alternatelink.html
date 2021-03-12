@@ -16,6 +16,8 @@
     {{- $regions = slice "US" }}
 {{- else if eq $product "Mailwise" }}
     {{- $regions = slice "JP" }}
+{{- else if eq $product "Office" }}
+    {{- $regions = slice "JP" }}
 {{- end }}
 
 {{- $diabled := .Params.disabled }}

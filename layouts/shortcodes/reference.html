@@ -1,7 +1,7 @@
 {{- $_hugo_config := `{ "version": 1 }` -}}
 <aside class="admonition reference">
   <div class="admonition-alt">
-{{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.Params.product "Mailwise") }}
+{{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.Params.product "Mailwise") (ne $.Site.Params.product "Office") }}
     <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
 {{- end }}
     <span>{{ i18n "Title_references" }}</span>
