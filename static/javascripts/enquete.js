@@ -14,13 +14,26 @@
 
         let url = "https://form.kintoneapp.com/public/form/show/";
         let formid = "2a7268574abefeca37c34f2e89c1dad558239925266fe18a3ee9499e6c2b0590";
-        let cururl = location.href;
-        if((cururl.indexOf("/g/") != -1) || (cururl.indexOf("/g5/") != -1)) {
-            formid = "3a1e708ed680b060dbb5f7c4a57ca6ec2d7dedf6426d1cf7faded0e75e1f1d87";
+
+        let cururl = location.pathname;
+        let url_parts = cururl.split("/");
+        let product = url_parts[1];
+
+        switch(product) {
+            case "g":
+            case "g5":
+                formid = "3a1e708ed680b060dbb5f7c4a57ca6ec2d7dedf6426d1cf7faded0e75e1f1d87";
+                break;
+            case "m":
+            case "mw5":
+                formid = "941072d61311ef3c6649c67885983e26cc98ec986a45f7706fe12fb4a0df1e3e";
+                break;
+            case "o":
+            case "of10":
+                formid= "b171044e8835b86f44f794671a2c2ab7d5b85240677b2b83bd4ec5f42eccff85?";
+                break;
         }
-        if((cururl.indexOf("/m/") != -1) || (cururl.indexOf("/mw5/") != -1)) {
-            formid = "941072d61311ef3c6649c67885983e26cc98ec986a45f7706fe12fb4a0df1e3e";
-        }
+
         url = url + formid + "?";
 
         let queryObj = {
