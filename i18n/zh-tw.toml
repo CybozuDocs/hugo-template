@@ -1,5 +1,5 @@
 [Welcome]
-other = "歡迎來到{{$.Site.Params.product_name}} {{$.Site.Params.help}}"
+other = "歡迎來到{{$.Site.Params.product_name}}{{$.Site.Params.help}}"
 
 [Enter_keywords]
 other = "在尋找什麼呢？"
