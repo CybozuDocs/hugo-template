@@ -5,6 +5,10 @@
     {{- if in .Destination "/common/img/" }}
         {{- $simple = "true" }}
     {{- end }}
+{{- else if eq .Page.Site.Params.product "Office" }}
+    {{- if or (in .Destination "/common/img/") (in .Destination "/common/icon/") }}
+        {{- $simple = "true" }}
+    {{- end }}
 {{- else if (in .Destination "/img/") }}
     {{- $simple = "true" }}
 {{- end }}
