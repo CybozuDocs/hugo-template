@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{.Site.LanguageCode}}"> 
+<html lang="{{.Site.LanguageCode}}" prefix="og: https://ogp.me/ns#"> 
   <head>
     {{- $buildnum := (now.Format "2006010203") }}
     <meta charset="utf-8">
@@ -44,6 +44,11 @@
     {{- end }}
     <meta name="description" content="{{$desc}}">
     <meta property="og:url" content="https://{{.Site.Params.domain}}{{.Permalink | relURL }}">
+    {{- if .IsHome}}
+    <meta property="og:type" content="website">
+    {{- else }}
+    <meta property="og:type" content="article">
+    {{- end }}
     <meta property="og:site_name" content="{{$sitename}}">
     <meta property="og:title" content="{{$title}}">
     <meta property="og:image" content="https://{{.Site.Params.domain}}{{ .Site.Params.og_img | relURL }}">
