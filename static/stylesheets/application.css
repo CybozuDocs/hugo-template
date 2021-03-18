@@ -1726,4 +1726,7 @@ table .wd10 {
     .font-ja, html[lang="ja-jp"], html[lang="ja-cn"] {
         font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     }
+    pre {
+        white-space: pre-wrap;
+    }
 }
