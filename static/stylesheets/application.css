@@ -1426,6 +1426,23 @@ table .wd10 {
 }
 /* -------------------- end of Footer */
 
+/* CookiePro Cookies Settings button */
+.ot-sdk-show-settings {
+    float: right;
+    color: #68b631;
+    border: 1px solid #68b631;
+    height: auto;
+    white-space: normal;
+    word-wrap: break-word;
+    padding: 0.8em 2em;
+    font-size: 0.8em;
+    line-height: 1.2;
+    cursor: pointer;
+    -moz-transition: 0.1s ease;
+    -o-transition: 0.1s ease;
+    -webkit-transition: 1s ease;
+    transition: 0.1s ease;
+}
 
 /* Enquete -------------------- */
 #enquete {

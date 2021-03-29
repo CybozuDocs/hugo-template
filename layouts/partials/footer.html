@@ -7,6 +7,13 @@
             {{ end }}
           </ul>
         </div>
-        <div class="footer-copyright">{{ i18n "Footer_copyright" }}</div>
+        <div id="footercopyright">
+        {{ i18n "Footer_copyright" }}<br>
+        {{- if eq .Site.Params.TargetRegion "US" }}
+        <!-- CookiePro Cookies Settings button start -->
+        <button id="ot-sdk-btn" class="ot-sdk-show-settings"> Cookie Settings</button>
+        <!-- CookiePro Cookies Settings button end -->
+        {{- end }}
+        </div>
     </div>
 </footer>
