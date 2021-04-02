@@ -755,6 +755,8 @@ ul.breadcrumbs {
     margin-bottom: 24px;
     margin-top: -24px;
     padding-top: 66px;
+    position: relative; /* z-indexの指定のため */
+    z-index: -1; /* マイナスのマージンが見出しの直前の要素をクリック不能にしてしまう問題への対処 */
 }
 .article h3 {
     font-size: 1.6rem;
@@ -762,6 +764,8 @@ ul.breadcrumbs {
     margin-bottom: 15px;
     margin-top: -36px;
     padding-top: 66px;
+    position: relative; /* z-indexの指定のため */
+    z-index: -1; /* マイナスのマージンが見出しの直前の要素をクリック不能にしてしまう問題への対処 */
 }
 .article h4 {
     font-size: 1.4rem;
@@ -769,6 +773,8 @@ ul.breadcrumbs {
     margin-bottom: 12px;
     margin-top: -36px;
     padding-top: 66px;
+    position: relative; /* z-indexの指定のため */
+    z-index: -1; /* マイナスのマージンが見出しの直前の要素をクリック不能にしてしまう問題への対処 */
 }
 .article h5 {
     font-size: 1.2rem;
@@ -777,6 +783,8 @@ ul.breadcrumbs {
     margin-top: -42px;
     padding-top: 66px;
     font-weight: 700;
+    position: relative; /* z-indexの指定のため */
+    z-index: -1; /* マイナスのマージンが見出しの直前の要素をクリック不能にしてしまう問題への対処 */
 }
 .article h6 {
     font-size: 1.0rem;
@@ -785,6 +793,8 @@ ul.breadcrumbs {
     margin-top: -48px;
     padding-top: 66px;
     font-weight: 700;
+    position: relative; /* z-indexの指定のため */
+    z-index: -1; /* マイナスのマージンが見出しの直前の要素をクリック不能にしてしまう問題への対処 */
 }
 .article blockquote {
     border-left: 2px solid rgba(0,0,0,.54);
