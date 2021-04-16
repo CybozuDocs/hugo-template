@@ -345,6 +345,25 @@ td {
 .article .inner-index a:hover{
     text-decoration: underline;
 }
+
+.section-pagelist a {
+    color: #0d7b91;
+    text-decoration: underline;
+    line-height: 1.5em;
+}
+.section-pagelist ul {
+    padding-left: 26px;
+    list-style: disc;
+}
+.section-pagelist ul>li {
+    margin: 15px 0;
+}
+.section-pagelist-heading {
+    font-size: 1.3rem;
+    font-weight: normal;
+    padding-top: 20px;
+    margin-bottom: 18px;
+}
 /* -------------------------------------- End of Section top page */
 
 
@@ -381,28 +400,6 @@ td {
     font-size:1.25em;
 }
 /* -------------------------end of disclaimer */
-
-
-/* section top page -------------------- */
-.section-pagelist a {
-    color: #0d7b91;
-    text-decoration: underline;
-    line-height: 1.5em;
-}
-.section-pagelist ul {
-    padding-left: 26px;
-    list-style: disc;
-}
-.section-pagelist ul>li {
-    margin: 15px 0;
-}
-.section-pagelist-heading {
-    font-size: 1.3rem;
-    font-weight: normal;
-    padding-top: 20px;
-    margin-bottom: 18px;
-}
-/* -------------------- end of section top page */
 
 
 /* mega menu -------------------------------------------- */
@@ -614,7 +611,7 @@ ul.breadcrumbs {
 
 #tree-nav {
     display: block;
-    margin: 0 12px 30px;
+    margin: 0 12px 30px 0;
     font-size: 0.875rem;
     overflow: hidden;
     width: auto;
@@ -643,20 +640,23 @@ ul.breadcrumbs {
 }
 
 #tree-main {
+    display: none;
     width: auto;
     height: auto;
 }
+#tree-main ul {
+    padding-inline-start: 10px;
+}
 #tree-main li {
-    padding: 0px;
+    padding: 0;
     list-style: none;
 }
 #tree-main a {
     display: inline-block;
-    padding: 8px 4px;
+    padding: 8px 4px 8px 4px;
+    margin-left: 4px;
     width: 200px;
-}
-#tree-main li ul {
-    display: none;
+    margin-bottom: 2px;
 }
 #tree-main li ul.opened {
     margin-left: 19px;
@@ -665,11 +665,6 @@ ul.breadcrumbs {
 #tree-main li ul li {
     margin-left: 0rem;
 }
-#tree-main .branch {
-    position: relative;
-    display: flex;
-    align-items: center
-}
 #tree-main a:hover, #tree-main li a.current {
     background-color: #ECEAF7;
 }
@@ -677,54 +672,52 @@ ul.breadcrumbs {
     font-weight: bold;
 }
 
+.jstree-node {
+    display: inline-block;
+}
+
+.jstree-ocl {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 14px;
+}
+
+.jstree-ocl::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-style: normal;
+    font-size: .7em;
+    line-height: 2rem;
+    cursor: pointer;
+
+}
+.jstree-open > .jstree-ocl::before {
+    content: "\f078";
+}
+
+.jstree-closed > .jstree-ocl::before {
+    content: "\f054";
+}
+.jstree-anchor {
+    display: inline-block;
+    margin: 0;
+}
+
+.jstree-anchor,
+.jstree-anchor:link,
+.jstree-anchor:visited,
+.jstree-anchor:active {
+    text-decoration: none;
+    color: inherit;
+}
+
 .fixed-tree {
     top: 46px;
     position: fixed;
 }
 
-.trunk ul {
-    margin-left: 19px;
-}
-.trunk li ul {
-    display: none;
-}
-
-.branch-icon {
-    display: inline-block;
-    width: 1rem;
-    line-height: 1em;
-    margin-left: 3px;
-    text-align: center;
-    cursor: pointer
-}
-.branch-icon .fas {
-    margin-right: 0px;
-    color: #000;
-    font-size: .7rem;
-}
-.branch-sp{
-    display:inline-block;
-    width: 19px;
-}
-
-.twig {
-    justify-content: flex-start;
-    border-top: 0px;
-}
-
-.leaf {
-    margin-left: .2em;
-    font-size: .8em;
-}
-
-.leaf-sp {
-    margin-left: 1.4em;
-    font-size: .8em;
-}
-.leaf-icon {
-    font-size: 1em;
-    width: 1em;
-}
 /* -------------------- end of tree navigation */
 
 
@@ -1604,19 +1597,19 @@ table .wd10 {
         position: relative;
         padding-top: 0px;
         padding-bottom: 30px;
-        width: 212px;
+        width: 292px;
     }
     #tree-nav {
-        width: 200px;
+        width: 280px;
     }
     #tree-main {
-        width: 200px;
+        width: 280px;
         position: fixed;
         overflow-y: scroll;
         overflow-x: hidden;
     }
     .contents-wrap {
-        width: calc(100% - 200px);
+        width: calc(100% - 292px);
         padding-right: 32px;
         padding-left: 32px;
         margin-bottom: 3rem;
@@ -1708,15 +1701,7 @@ table .wd10 {
         padding-left: 2.5em;
     }
     /* -------------------------------------- mega menu */
-    .tree-wrap {
-        width: 292px;
-    }
-    #tree-nav {
-        width: 280px;
-    }
-    #tree-main {
-        width: 280px;
-    }
+
     .contents-wrap {
         width: calc(100% - 492px);
     }

@@ -68,9 +68,8 @@
 {{- end }}
 
   <nav id="tree-main" role="tree" tabindex="0">
-    <ul class="trunk" role="group" >
+    <ul>
 {{- $target := .}}
-{{- $.Scratch.Set "bnum" 1 }}
 {{- range $entries.ByWeight}}
     {{- template "mainmenu" (dict "curnode" . "target" $target "needtoc" $needtoc)}}
 {{- end}}
@@ -82,12 +81,9 @@
     {{- $target := .target}}
     {{- $curnode := .curnode}}
     {{- $needtoc := .needtoc}}
-    {{- $bnum := .bnum }}
     {{- with $curnode}}
-        {{- $icontype := "fas fa-chevron-right" }}
-        {{- $expandclass := "" }}
-        {{- $expand_wai := "false" }}
-        {{- $selected_wai := "false" }}
+        {{- $opened := "false" }}
+        {{- $selected := "false" }}
 
         {{- if .IsSection }}
             {{- $pages := (cond .IsHome (where .Site.RegularPages "Section" "") .Pages) }}
@@ -95,28 +91,26 @@
             {{- if in .Params.disabled .Site.Params.TargetRegion}}
             {{- else}}
                 {{- if .IsAncestor $target }}
-                    {{- $icontype = "fas fa-chevron-down" }}
-                    {{- $expandclass = "opened" }}
-                    {{- $expand_wai = "ture" }}
+                    {{- $opened = "true" }}
                 {{- end }}
                 {{- if eq .RelPermalink $target.RelPermalink}}
-                    {{- $selected_wai = "ture" }}
+                    {{- $selected = "true" }}
                 {{- end }}
+
+                {{- if eq $opened "true" }}
+        <li role="presentation" data-jstree='{ "opened" : true }'>
+                {{- else }}
         <li role="presentation">
+                {{- end }}
+
                 {{- if ne $numberOfPages 0 }}
-                {{- $bnum := $target.Scratch.Get "bnum" }}
-            <div class="branch">
-                <span class="branch-icon" role="treeitem" aria-expanded="{{$expand_wai}}" aria-owns="branch{{$bnum}}" aria-label="expand" tabindex="0"><i class="{{$icontype}}" aria-hidden="true"></i></span>
-                {{- if eq $selected_wai "ture" }}
-                <a role="treeitem" href="#" class="current {{$expandclass}}" aria-selected="{{$selected_wai}}" >
-                {{ else }}
-                <a role="treeitem" href="{{.RelPermalink}}" class="{{$expandclass}}" >
-                {{ end -}}
-                <span>{{- partial "title" . -}}</span></a>
-            </div>
-            <ul id="branch{{$bnum}}" class="{{$expandclass}}" role="group" > 
-                    {{- $bnum = add $bnum 1 }}
-                    {{- $target.Scratch.Set "bnum" $bnum }}
+                  {{- if eq $selected "true" }}
+            <a href="#" data-jstree='{ "selected" : true }' class="current">
+                  {{- else }}
+            <a href="{{.RelPermalink}}">
+                  {{- end }}
+                  {{- partial "title" . -}}</a>
+            <ul> 
                     {{- $entries := ""}}
                     {{- if .Sections}}
                         {{- $entries = ($pages | union .Sections) }}
@@ -136,12 +130,8 @@
             {{- else}}
                 {{- $tocs := "" }}
                 {{- if eq .RelPermalink $target.RelPermalink -}}
-                    {{- $icontype = "fas fa-chevron-down" }}
-                    {{- $expandclass = "opened" }}
-                    {{- $expand_wai = "ture" }}
-                {{- end }}
-                {{- if eq .RelPermalink $target.RelPermalink -}}
-                    {{- $selected_wai = "ture" }}
+                    {{- $opened = "false" }}
+                    {{- $selected = "true" }}
                 {{- end }}
                 {{- $toclen := 0 }}
                 {{- if eq $needtoc true -}}
@@ -149,25 +139,21 @@
                     {{- $tocs = findRE "<h[23].*?>(.|\n)*?</h[23]>" $cont }}
                     {{- $toclen = (len $tocs) }}
                 {{- end }}
-            <li role="presentation">
-                <div class="branch">
-                {{- $bnum := $target.Scratch.Get "bnum" }}
-                {{- if gt $toclen 0 }}
-                    <span class="branch-icon" role="treeitem" aria-expanded="{{$expand_wai}}" aria-owns="branch{{$bnum}}" aria-label="expand" tabindex="0"><i class="{{$icontype}}" aria-hidden="true"></i></span>
-                {{- else }}
-                    <span class="branch-sp"></span>
-                {{- end -}}
-                
-                {{- if eq $selected_wai "ture" -}}
-                    <a role="treeitem" href="#" class="toclink current" aria-selected="{{$selected_wai}}" >{{ partial "title" .}}</a>
+
+                {{ if eq $opened "true" -}}
+            <li role="presentation" data-jstree='{ "opened" : true }'>
                 {{- else -}}
-                    <a role="treeitem" href="{{.RelPermalink}}">{{ partial "title" .}}</a>
+            <li role="presentation">
                 {{- end -}}
-                </div>
+
+                {{- if eq $selected "true" -}}
+                <a href="#" data-jstree='{ "selected" : true }' class="toclink current">{{ partial "title" .}}</a>
+                {{- else -}}
+                <a href="{{.RelPermalink}}" class="toclink">{{ partial "title" .}}</a>
+                {{- end }}
+
                 {{- if gt $toclen 0 }}
-                    <ul id="branch{{$bnum}}" class="{{$expandclass}}" role="group" >
-                    {{- $bnum = add $bnum 1 }}
-                    {{- $target.Scratch.Set "bnum" $bnum }}
+                    <ul>
                     {{- $pageurl := .RelPermalink}}
                     {{- $loopcnt := 0 }}
                     {{- $curitem := "" }}
@@ -186,14 +172,14 @@
                         {{- end }}
                         
                         {{- if eq $haschild true }}
-                            <ul class="twig-parent" role="group" >
+                        <ul class="twig-parent">
                             {{- $haschild = false }}
                             {{- $ulopen = true }}
                         {{- end }}
                         
                         {{- if ne $prevtitem "" }}
                             {{- if and (in $prevtitem "<h3") (in $curitem "<h2") }}
-                            </ul>
+                        </ul>
                                 {{- $ulopen = false }}
                             {{- end }}
                         {{- end }}
@@ -203,7 +189,7 @@
                         {{- if eq $loopcnt $toclen }}
                             {{- template "treeitem" (dict "tocitem" $curitem "haschild" false "pageurl" $pageurl ) }}
                             {{- if eq $ulopen true }}
-                            </ul>
+                        </ul>
                             {{- end }}
                         {{- end }}
                         
@@ -211,7 +197,7 @@
                     {{- end }}
                     </ul>
                 {{- end }}
-            </li>
+                </li>
             {{- end }}
         {{- end }}
     {{- end }}
@@ -246,18 +232,9 @@
     {{- end }}
     {{- $txt = (strings.TrimPrefix ">" $txt ) }}
     {{- $txt = (strings.TrimSuffix "<" $txt ) }}
-
-    {{- $subclass := "leaf-sp" }}
                         <li role="presentation">
-    {{- if eq $haschild true -}}
-                            <div class="branch twig">
-                                <span class="branch-icon leaf-icon" role="treeitem" aria-label="expand" tabindex="0"><i class="fas fa-chevron-right"></i></span>
-        {{- $subclass = "leaf" }}
-    {{- end}}
-                                <span class="{{$subclass}}"><a role="treeitem" href="{{$pageurl}}#{{$anc}}" class="toclink">{{$txt}}</a></span>
-    {{- if eq $haschild true -}}
-                            </div>
-    {{- else -}}
+                            <a href="{{$pageurl}}#{{$anc}}" class="toclink">{{$txt}}</a>
+    {{- if ne $haschild true -}}
                         </li>
     {{- end -}}
 

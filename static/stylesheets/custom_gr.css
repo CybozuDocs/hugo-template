@@ -154,6 +154,16 @@ td a > .fa:hover{
 #tree-main .branch {
     border-top: 1px solid #e7eff3;
 }
+#tree-main ul li ul li a {
+    font-size: 0.8rem;
+}
+
+.jstree-anchor:hover {
+    color: #0d7b91;
+    text-decoration: underline;
+    line-height: 1.5em;
+}
+
 /* -------------------- end of tree navigation */
 
 /* article --------------------*/

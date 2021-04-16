@@ -94,13 +94,14 @@
     <script src="https://js.cybozu.com/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ "javascripts/js.cookie.js" | relURL }}"></script>
     <script src="{{ "javascripts/jquery.cookie.js" | relURL }}"></script>
+    <script src="https://js.cybozu.com/jstree/3.3.11/jstree.min.js"></script>
     <script src="{{ "javascripts/zoom.js" | relURL }}"></script>
     <script src="{{ printf "%s?%s" "javascripts/application.js" $buildnum | relURL }}"></script>
     {{- if eq $.Site.Params.meganav true }}
     <script src="{{ printf "%s?%s" "javascripts/meganav.js" $buildnum | relURL }}"></script>
     {{- end }}
     {{- if eq $.Site.Params.google_search true }}
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://js.cybozu.com/vuejs/v2.6.12/vue.min.js"></script>
     {{- end }}
     
     <!-- Google Tag Manager -->
