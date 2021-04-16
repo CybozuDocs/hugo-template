@@ -605,7 +605,7 @@ ul.breadcrumbs {
     line-height: 1.2em;
     font-size: .95rem;
     overflow: hidden;
-    width: 100%;
+    width: 320px;
     flex-shrink: 0;
 }
 
@@ -616,7 +616,6 @@ ul.breadcrumbs {
     overflow: hidden;
     width: auto;
     height: auto;
-    border-right: 1px solid #e6e6e6;
 }
 
 .tree-title, .tree-subtitle {
@@ -655,7 +654,7 @@ ul.breadcrumbs {
     display: inline-block;
     padding: 8px 4px 8px 4px;
     margin-left: 4px;
-    width: 200px;
+    width: 260px;
     margin-top: 3px;
     margin-bottom: 2px;
 }
@@ -1611,12 +1610,16 @@ table .wd10 {
     }
     #tree-nav {
         width: 280px;
+        border-right: 1px solid #e6e6e6;
     }
     #tree-main {
         width: 280px;
         position: fixed;
         overflow-y: scroll;
         overflow-x: hidden;
+    }
+    #tree-main a {
+        width: 200px;
     }
     .contents-wrap {
         width: calc(100% - 292px);
