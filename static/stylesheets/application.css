@@ -700,17 +700,23 @@ ul.breadcrumbs {
 .jstree-closed > .jstree-ocl::before {
     content: "\f054";
 }
+.dummy-node > i {
+    display: none;
+}
+
 .jstree-anchor {
     display: inline-block;
     margin: 0;
 }
-
 .jstree-anchor,
 .jstree-anchor:link,
 .jstree-anchor:visited,
 .jstree-anchor:active {
     text-decoration: none;
     color: inherit;
+}
+.dummy-node > .jstree-anchor {
+    display: none;
 }
 
 .fixed-tree {
