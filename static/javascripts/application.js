@@ -15,7 +15,7 @@
         let timer;
         function scrollStopTrigger() {
           if (timer) { clearTimeout(timer); }
-          timer = setTimeout(function() { $(window).trigger(scrollStop) }, 30);
+          timer = setTimeout(function() { $(window).trigger(scrollStop) }, 10);
         }
         $(window).on("scroll", scrollStopTrigger);
 
