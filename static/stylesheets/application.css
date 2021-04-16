@@ -1086,9 +1086,13 @@ table .wd10 {
     font-size: 1.5em;
     border:none;
     margin-top: 0;
+    z-index: 0;
 }
 .article .pickUp a{
     text-decoration: none;
+}
+.article .pickUp a:hover{
+    text-decoration: underline;
 }
 .fa-lightbulb{
     font-size: 1.5em;
