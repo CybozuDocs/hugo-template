@@ -656,6 +656,7 @@ ul.breadcrumbs {
     padding: 8px 4px 8px 4px;
     margin-left: 4px;
     width: 200px;
+    margin-top: 3px;
     margin-bottom: 2px;
 }
 #tree-main li ul.opened {
@@ -679,8 +680,7 @@ ul.breadcrumbs {
 .jstree-ocl {
     display: inline-block;
     vertical-align: top;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 5px 5px 0 5px;
     width: 14px;
 }
 
@@ -1085,9 +1085,13 @@ table .wd10 {
     font-size: 1.5em;
     border:none;
     margin-top: 0;
+    z-index: 0;
 }
 .article .pickUp a{
     text-decoration: none;
+}
+.article .pickUp a:hover{
+    text-decoration: underline;
 }
 .fa-lightbulb{
     font-size: 1.5em;
