@@ -3,13 +3,13 @@
         <div class="tree-title"><a href="{{.RelPermalink}}">{{- partial "title" . -}}</a></div>
     </div>
     <nav id="tree-main" role="tree">
-        <ul class="trunk" role="group" >
-            <li role="treeitem" >
+        <ul>
+            <li class="dummy-node" data-jstree='{ "opened" : true, "disabled" : true }'>
                 {{- $tocs := "" }}
                 {{- $cont := .Content }}
                 {{- $tocs = findRE "<h2.*?>(.|\n)*?</h2>" $cont }}
                     {{- if gt (len $tocs) 0 }}
-                <ul class="opened" role="group" aria-selected="true" >
+                <ul>
                         {{- $pageurl := .RelPermalink}}
                         {{- range $tocs }}
                             {{- $anc := "" }}
@@ -37,7 +37,7 @@
                             {{- $txt = (strings.TrimPrefix ">" $txt ) }}
                             {{- $txt = (strings.TrimSuffix "<" $txt ) }}
 
-                         <li role="treeitem" ><span class="branch-sp"><a href="{{$pageurl}}#{{$anc}}" class="toclink">{{$txt}}</a></span></li>
+                         <li><a href="{{$pageurl}}#{{$anc}}" class="toclink">{{$txt}}</a></li>
                         {{- end }}
                 </ul>
                     {{- end }}
