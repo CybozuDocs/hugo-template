@@ -39,7 +39,7 @@
 </div>
 {{- partial "gototop" . }}
 {{- partial "footer" . }}
-{{- if eq $.Site.Params.product "kintone" }}{{ partial "yahootagmanager" . }}{{- end }}
+{{- if and (eq $.Site.Params.product "kintone") (eq $.Site.Params.TargetRegion "JP") }}{{ partial "yahootagmanager" . }}{{- end }}
 {{- end }}
 </body>
 </html>
