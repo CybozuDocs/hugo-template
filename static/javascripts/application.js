@@ -574,16 +574,10 @@
                         dpos = $current.offset().top - topMargin;
                     }
                     // ハイライト位置までスクロール
-                    $tree.scrollTop(dpos);
-
-
                     if(hasTreeHead === true) {
-                        // ナビゲーション内TOCの直リンク対応
-                        let hash = location.hash;
-                        let anc = hash.split("#");
-                        if(anc[1] != ""){
-                            moveTreeTocHighlight();
-                        }
+                        moveTreeTocHighlight();
+                    } else {
+                        $tree.scrollTop(dpos);
                     }
 
                     // キーボード操作で遷移してきた場合は、ハイライトされたノードにフォーカスも当てる
