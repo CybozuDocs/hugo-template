@@ -8,7 +8,7 @@
         if (!$enquete[0]) {
             return true; // アンケートがなければ終了
         }
-        if ($.cookie('answered') == location.pathname) {
+        if (Cookies.get('answered') === location.pathname) {
             return true; // すでに回答済みの場合は終了
         }
 
@@ -60,7 +60,7 @@
             $enquete.fadeOut();
 
             // クッキーに回答済フラグを書き込む（有効期限は1日）
-　　　　　　　　　　　　$.cookie("answered","{{ .Permalink | relURL }}", {path:"/",expires:1});
+　　　　　　　　　　　　Cookies.set("answered", location.pathname, {path:"/",expires:1});
         }
 
         // アンケートボタンの表示位置の制御
