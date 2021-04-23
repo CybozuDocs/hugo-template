@@ -654,7 +654,7 @@ ul.breadcrumbs {
     display: inline-block;
     padding: 8px 4px 8px 4px;
     margin-left: 4px;
-    width: 260px;
+    width: 240px;
     margin-top: 3px;
     margin-bottom: 2px;
 }
@@ -1619,7 +1619,7 @@ table .wd10 {
         overflow-x: hidden;
     }
     #tree-main a {
-        width: 200px;
+        width: 190px;
     }
     .contents-wrap {
         width: calc(100% - 292px);
