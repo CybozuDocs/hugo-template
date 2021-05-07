@@ -34,6 +34,11 @@ a,
 .header .search-submit:focus {
     outline: 3px solid rgba(131,192,253,0.5);
 }
+
+#search1 {
+    right: 0;
+}
+
 .g-col a.current {
     border-bottom: 2px solid #d0324b;
 }
