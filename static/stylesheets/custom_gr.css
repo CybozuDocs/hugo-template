@@ -67,22 +67,17 @@ td a > .fa:hover{
 
 /* Header -------------------- */
 .logo-wrap {
-    flex-direction: column;
-    width: 190px;
-    padding-left: 0;
-}
-.logo-product {
-    font-size: 1em;
+    padding-left: 10px;
 }
 .logo-title {
-    font-size: 1em;
-    line-height: 1.5em;
+    font-size: 14px;
+    line-height: 14px;
     text-align: center;
     padding-left: 0;
 }
 .logo-title:lang(en) {
-    font-size: 1em;
-    line-height: 1.5em;
+    font-size: 14px;
+    line-height: 14px;
 }
 
 .header {
@@ -95,7 +90,7 @@ td a > .fa:hover{
 /* -------------------- End of Header */
 
 /* Search box --------------------*/
-.header .searchbox input[type=text]{
+.header .searchbox input {
     border: 3px solid #015aaa;
 }
 
@@ -126,6 +121,13 @@ td a > .fa:hover{
     margin-top: 0;
     word-wrap:break-word;
     word-break:normal;
+}
+
+.current-lang {
+    padding-top: 3px;
+}
+.current-lang .fas {
+    margin-top: 6px;
 }
 
 /* Breadcrumb -------------------- */
@@ -393,27 +395,37 @@ background: rgba(255, 255, 255, 0.9);
 /* 768px以上の設定  **************************************************************/
 @media only screen and (min-width: 768px) {
     .logo-wrap {
-        flex-direction: row;
         width: 290px;
     }
-    .logo-product {
-        font-size: 1.2em;
-    }
     .logo-title {
-        font-size: 1.2em;
-        line-height: 1.4em;
-        padding-left: 0.3em;
+        font-size: 20px;
+        line-height: 24px;
+        padding-left: 8px;
     }
     .logo-title:lang(en) {
-        font-size: 1.2em;
-        line-height: 1.4em;
+        font-size: 20px;
+        line-height: 24px;
     }
-    .header .search-wrap {
-        width: 350px;
+    .search-wrap {
+        width: calc(100% - 270px - 130px);
     }
-    .header .searchbox input[type=text]{
+    .search-wrap:lang(en) {
+        width: calc(100% - 280px - 130px);
+    }
+    .search-wrap input:lang(en)::placeholder {
+        color: transparent;
+    }
+    .header .searchbox input {
         font-size: 1.2rem;
     }
+    
+    .current-lang {
+        padding-top: 6px;
+    }
+    .current-lang .fas {
+        margin-top: 6px;
+    }
+    
     .article h2 {
         font-size:2.063em;      
     }
@@ -434,10 +446,17 @@ background: rgba(255, 255, 255, 0.9);
     }
 }
 
+/* 850px以上の設定  **************************************************************/
+@media only screen and (min-width: 850px) {
+    .search-wrap input:lang(en)::placeholder {
+        color: #000;
+    }
+}
+
 /* 1059px以上の設定  *************************************************************/
 @media only screen and (min-width: 1180px) {
-    .header .search-wrap {
-        width: 500px;
+    .search-wrap {
+
     }
 
     .top-title {

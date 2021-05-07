@@ -6,13 +6,13 @@
             <div class="tile-icon">
                 <i class="{{- .Get "fontawesome_icon" -}}"></i>
             </div>
-            <div class="tile-title">{{- .Get "tile_title" -}}</div>
+            <h3 class="tile-title">{{- .Get "tile_title" -}}</h3>
         </a>
         {{- else -}}
         <div class="tile-icon">
             <i class="{{ .Get "fontawesome_icon" }} nolink"></i>
         </div>
-        <div class="tile-title nolink">{{- .Get "tile_title" -}}</div>
+        <h3 class="tile-title nolink">{{- .Get "tile_title" -}}</h3>
         {{- end -}}
     {{- end -}}
     </div>

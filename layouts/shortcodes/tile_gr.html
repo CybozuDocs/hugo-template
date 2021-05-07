@@ -4,7 +4,7 @@
         <div class="tile-icon">
             <i class="{{- .Get "fontawesome_icon"}}"></i>
         </div>
-        <div class="tile-title">{{- .Get "tile_title" -}}</div>
+        <h3 class="tile-title">{{- .Get "tile_title" -}}</h3>
         <div class="tile-text">{{- .Inner | markdownify -}}</div>
     </a>
     {{- end -}}
