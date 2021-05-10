@@ -9,14 +9,14 @@
         {{- if ne $langlen 0 }}
             {{- $baselang = printf "%s/" $.Lang }}
         {{- end }}
-          <div class="header-flex-box">
             <div class="logo-wrap">
                 <h1 class="frame-h1">
                     <a class="logo-link" href="{{ $.Site.BaseURL }}{{$baselang}}">
             {{- with .Site.Params.logo }}
                         <span><img class="logo-img" src="{{ $.Site.BaseURL }}{{.}}" aria-hidden="true"></span>
             {{- end }}
-            {{- $title := printf "%s %s" $.Site.Params.product_name $.Site.Params.help }}
+            {{- $title := printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help }}
+            
             {{- if eq .Site.Params.product "slash"}}
                 {{- $title = $.Site.Params.help }}
             {{- end }}
@@ -60,7 +60,6 @@
         {{- if and .IsTranslated (eq .Site.Params.langSelector true) }}
             {{ partial "langselector" . }}
         {{- end}}
-          </div> 
 
         {{- if eq $disp_sbox true }}
             <div id="search2" class="search-wrap">

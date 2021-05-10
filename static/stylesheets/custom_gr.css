@@ -70,14 +70,10 @@ td a > .fa:hover{
     padding-left: 10px;
 }
 .logo-title {
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 12px;
+    line-height: 12px;
     text-align: center;
     padding-left: 0;
-}
-.logo-title:lang(en) {
-    font-size: 14px;
-    line-height: 14px;
 }
 
 .header {
@@ -390,6 +386,14 @@ background: rgba(255, 255, 255, 0.9);
 .nftitle {
     background-image: none;
     background-color: #1b72cd;
+}
+
+/* 370px以上の設定 *****************************************************/
+@media only screen and (min-width:370px){
+    .logo-title {
+        font-size: 14px;
+        line-height: 14px;
+    }
 }
 
 /* 768px以上の設定  **************************************************************/

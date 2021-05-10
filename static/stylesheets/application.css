@@ -140,8 +140,8 @@ td {
 .logo-wrap {
     display: flex;
     width: 200px;
-    padding-top: 9px;
     padding-left: 10px;
+    padding-top: 9px;
     padding-bottom: 9px;
     margin-right: 10px;
     font-weight: bold;
@@ -155,12 +155,8 @@ td {
 }
 .logo-title {
     color: #222;
-    font-size: 22px;
-    line-height: 28px;
-}
-.logo-title:lang(en) {
-    font-size: 22px;
-    line-height: 28px;
+    font-size: 16px;
+    line-height: 20px;
 }
 .logo-link{
     color: #000;
@@ -174,9 +170,7 @@ td {
 /* Searchbox --------------------*/
 #search1 {
     display: none;
-    position: absolute;
-    right: 130px;
-    padding-left: 40px;
+    margin: 0 5px 0 auto;
 }
 #search2 {
     display: block;
@@ -265,7 +259,7 @@ td {
     width: 100px;
     display: inline-flex;
     flex-wrap: nowrap;
-    padding-top: 6px;
+    padding-top: 9px;
 }
 .current-lang .fas {
     margin-top: 2px;
@@ -1555,7 +1549,7 @@ table .wd10 {
     
     .current-lang {
         width: 123px;
-        padding-top: 10px;
+        padding-top: 6px;
     }
     .current-lang .fas {
         margin-top: 2px;
@@ -1578,6 +1572,13 @@ table .wd10 {
         top: 52px;
     }
     
+    .logo-wrap {
+        padding-top: 9px;
+    }
+    .logo-title {
+        font-size: 24px;
+        line-height: 26px;
+    }
     .header-flex-box {
         width: 100%;
     }
@@ -1610,7 +1611,10 @@ table .wd10 {
     #lang-selector {
         height: 42px;
     }
-
+    .current-lang {
+        padding-top: 10px;
+    }
+    
     .page {
       flex-direction: row;
     }
