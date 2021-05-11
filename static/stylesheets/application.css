@@ -88,11 +88,19 @@ td {
 /* -------------------- end of font */
 
 
+/* Frame --------------------- */
+.frame-h1 {
+    font-size: 1em;
+}
+
+/* -------------------- end of Frame */
+
 /* Header -------------------- */
 .header {
     position: fixed;
     top: 0;
     width: 100%;
+    height: 94px;
     user-select: none;
     z-index: 999;
     background: #fff;
@@ -102,7 +110,7 @@ td {
     content: '';
     display: block;
     position: absolute;
-    top: 52px;
+    top: 92px;
     left: 0;
     overflow: hidden;
     width: 100%;
@@ -110,45 +118,45 @@ td {
     z-index: 999;
     background-image: radial-gradient(circle farthest-corner at left bottom, #e94f90 0%, rgba(233, 79, 144, .01) 100%), radial-gradient(circle farthest-corner at right bottom, #287bf4 0%, rgba(40, 123, 244, .01) 100%);
 }
-.header .wrapper {
+.home-header {
+    height: 54px;
+}
+.home-header::before {
+    top: 52px;
+}
+.header-wrap {
     max-width: 1300px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 9px 4px 9px;
-    height: 56px;
+    padding: 5px;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: space-between;
+}
+.header-flex-box {
+     display: flex;
+     justify-content: space-between;
+     width: 100%;
 }
 .logo-wrap {
     display: flex;
     width: 200px;
-    height: 100%;
+    padding-left: 10px;
     padding-top: 9px;
-    padding-left: 5px;
+    padding-bottom: 9px;
     margin-right: 10px;
     font-weight: bold;
+    white-space: nowrap;
 }
 .logo-img {
     width: 36px;
     height: 36px;
     margin-top: -8px;
-}
-.logo-product {
-    color: #222;
-    font-size: 1.3em;
-    line-height: 1.4em;
-    padding-left: .4em;
+    vertical-align: top;
 }
 .logo-title {
     color: #222;
-    font-size: 1em;
-    padding-left: 0.2em;
-    line-height: 2em;
-}
-.logo-title:lang(en) {
-    font-size: 1.3em;
-    line-height: 1.4em;
+    font-size: 16px;
+    line-height: 20px;
 }
 .logo-link{
     color: #000;
@@ -160,23 +168,35 @@ td {
 
 
 /* Searchbox --------------------*/
-.search-wrap {
-    margin: auto;
+#search1 {
+    display: none;
+    margin: 0 5px 0 auto;
 }
+#search2 {
+    display: block;
+    position: absolute;
+    top: 45px;
+    left: 0;
+}
+    
 .searchbox {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
-.searchbox input[type=search]{
+.searchbox input {
     padding-right: .8rem;
     padding-left: .8rem;
-    width: calc(100% - 59px);
+    width: calc(100% - 46px) !important;
     height: 60px;
     border: 1px solid #e6e6e6;
     border-right: none;
     background-color: #ffffff;
+    background-position: 98% 50% !important;
     border-radius: 0;
+}
+.searchbox input::placeholder {
+    color: transparent;
 }
 .search-submit {
     width: 60px;
@@ -201,12 +221,13 @@ td {
 
 /* for header searchbox */
 .header .search-wrap {
-    margin: 0 0 0 auto;
-    width: 300px;
+    padding-left: 20px;
+    width: 100%;
 }
+
 .header .searchbox input[type=search]{
     border: 1px solid #e6e6e6;
-    width: calc(100% - 35px) !important;
+    width: calc(100% - 35px);
     height: 42px !important;
     font-size: .9em;
 }
@@ -223,41 +244,39 @@ td {
 
 /* Language selector -------------------- */
 #lang-selector {
-    display: none;
     white-space: nowrap;
     z-index: 1000;
-    position: relative;
     border: 1px solid #e6e6e6;
     background-color: #f6f6f6;
     height: 36px;
     cursor: pointer;
-    margin-left: 15px;
-    font-size: 0.875rem;
+    font-size: 10px;
 }
 #lang-selector li:hover {
     background: #ddd;
 }
 .current-lang {
-    width: 123px;
+    width: 100px;
     display: inline-flex;
     flex-wrap: nowrap;
-    padding-top: 5px;
-}
-
-.lang-title {
-    display: inline-block;
-    white-space: nowrap;
-    width: 90px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding-top: 9px;
 }
 .current-lang .fas {
-    margin-top: 4px;
+    margin-top: 2px;
     margin-left: 5px;
 }
 .current-lang .fa-chevron-down {
     color: #000;
 }
+.lang-title {
+    display: inline-block;
+    white-space: nowrap;
+    width: 90px;
+    padding-left: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .alter-lang {
     display: none;
     width: 123px;
@@ -312,7 +331,8 @@ td {
     border:none;
 }
 .sect-wrap {
-    margin: 18px auto 0 30px;
+    max-width: 1300px;
+    margin: 0 auto;
     padding: 0 32px 192px;
 }
 .sect-menu {
@@ -408,13 +428,12 @@ td {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: flex-start;
+    max-width: 1300px;
     text-align: center;
-    max-width: 1200px;
     width: 100%;
     position: relative;
     font-size: .75em;
-    margin: 64px auto 0;
-    font-weight: 700;
+    margin: 94px auto 0;
 }
 .g-col:nth-child(3n) {
     border-right: none;
@@ -445,62 +464,58 @@ td {
 }
 .g-col a.current {
     border-bottom: 2px solid #1b72cd;
+    font-weight: bold;
+}
+
+.g-colbutton:hover {
+    color: #1b72cd;
+    border-bottom: 2px solid #1b72cd;
+}
+.g-colbutton.current {
+    border-bottom: 2px solid #1b72cd;
 }
 
 .mega-nav {
     background: #e6f1f4;
     width: 100%;
-    font-size: .688em;
-    position: relative;
-    z-index: 8;    
+    font-size: .688em; 
     border-bottom: 3px solid #b8c5ca;
 }
-.mega-tab {
+.mega-tab-wrap {
+    max-width: 1300px;
+    margin: 0 auto;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-align: center;
 }
-.mega-nav ul {
+
+.mega-tab-head {
+    display:none;
+}
+
+.mega-tab-bar ul {
     width: 100%;
     display: table;
     table-layout: fixed;
-    min-height: 62px;
 }
-
-.mega-nav li {
+.mega-tab-bar li {
     display:table-cell;
     cursor:pointer;
     padding:.5em;
 }
-
-.mega-nav li:first-child {
-    border-left: none;
-}
-
-.mega-nav li:last-child {
-    border-right: none;
-}
-
-.mega-nav li.active {
-    background: #fff;
-    border-bottom: solid 3px #fff;
-}
-
-.mega-nav li:hover {
+.mega-tab-bar li:hover {
     background: #fff;
 }
 
-.mega-guide {
-    display:none;
+.mega-tab {
+    width: 100%;
+    text-align: center;
 }
-
-.mega-item.current {
+.mega-tab.current {
     background-color: #c5e1e9;
     font-weight: bold;
+    width: 100%;
 }
 
-.mega-item > i {
+.mega-tab > i {
     display:block;
     clear:both;
     padding-top: .313em;
@@ -509,7 +524,7 @@ td {
 .mega-panel {
     position: absolute;
     left: 0;
-    top: 74px;
+    top: 150px;
     z-index: 9;
     width:100%;
     background: #fff;
@@ -534,13 +549,22 @@ td {
 }
 .mega-title a {
     font-size: 1.2em;
+    padding: .8em .5em .8em .5em;
+    margin-left: .5em;
 }
 .mega-title a:hover i {
     color: #1b72cd;
 }
+.mega-title h2 {
+    font-weight: normal;
+    font-size: 1em;
+}
+.mega-title h3 {
+    font-weight: normal;
+}
 
 .panel-item {
-    width:auto;
+    width:20%;
     display:block;
     margin:0;
     float:left;
@@ -728,7 +752,7 @@ ul.breadcrumbs {
 
 .contents-wrap {
     padding: 0px 16px 92px;
-    margin-top: 18px;
+    margin-top: 34px;
     position: relative;
     flex-shrink: 0;
 }
@@ -1422,7 +1446,7 @@ table .wd10 {
     margin-bottom: 1rem;
 }
 .footer-links ul li {
-    display: inline-block;
+    float: left;
     margin-right: 1em;
 }
 .footer-links a {
@@ -1517,19 +1541,86 @@ table .wd10 {
 }
 /* -------------------- end of 404 not found page */
 
+/* 370px以上の設定 *****************************************************/
+@media only screen and (min-width:370px){
+    #lang-selector {
+        font-size: 14px;
+    }
+    
+    .current-lang {
+        width: 123px;
+        padding-top: 6px;
+    }
+    .current-lang .fas {
+        margin-top: 2px;
+    }
+}
+
+/* 450px以上の設定 *****************************************************/
+@media only screen and (min-width:450px){
+    .searchbox input::placeholder {
+        color: #000;
+    }
+}
 
 /* 768px以上の設定 *****************************************************/
 @media only screen and (min-width:768px){
-    #lang-selector {
-      display: block;
+    .header {
+        height: 56px;
     }
-
-    .searchbox input[type=search]{
+    .header::before {
+        top: 52px;
+    }
+    
+    .logo-wrap {
+        padding-top: 9px;
+    }
+    .logo-title {
+        font-size: 24px;
+        line-height: 26px;
+    }
+    .header-flex-box {
+        width: 100%;
+    }
+    
+    #search1 {
+        display: block;
+    }
+    #search2 {
+        display: none;
+    }
+    
+    .header .search-wrap {
+        width: calc(100% - 250px - 130px);
+        max-width: 500px;
+        margin: 0;
+    }
+    .header .search-wrap:lang(en) {
+        width: calc(100% - 200px - 120px);
+    }
+    
+    .search-wrap {
+        max-width: 800px;
+        margin: auto;
+    }
+    
+    .searchbox input {
         font-size: 1.2rem;
     }
 
+    #lang-selector {
+        height: 42px;
+    }
+    .current-lang {
+        padding-top: 10px;
+    }
+    
     .page {
       flex-direction: row;
+    }
+
+    .contents-wrap {
+        margin-top: 8px;
     }
 
     .sect-main h1 {
@@ -1548,11 +1639,13 @@ table .wd10 {
     /* mega menu ------------------------- */
     .g-nav {
         font-size: 1.125em;
-        margin-bottom: .2em;
+        margin: 64px auto .2em;
     }
     .g-col {
         border: none;
         border-right: 1px solid #ccc;
+        width: 16.6666%;
+        padding:0;
     }
     .g-col:nth-child(3n) {
         border-right: 1px solid #ccc;;
@@ -1569,10 +1662,6 @@ table .wd10 {
     .g-col a.current {
         border-bottom: 2px solid #1b72cd;
     }
-    .g-col {
-        width: 16.6666%;
-        padding:0;
-    }
 
     .fa-5x {
         font-size: 6em;
@@ -1581,16 +1670,19 @@ table .wd10 {
     .mega-nav {
         font-size: 1em;
     }
-    .mega-nav li {
+    .mega-tab-bar li {
         padding:.5em .625em .5em;
     }
 
     .mega-panel {
-        top: 65px;
+        top: 130px;
     }
 
     .mega-title{
         font-size:1.375em;
+    }
+    .mega-title h3 {
+        font-size: 1em;
     }
 
     .panel-item {
@@ -1643,34 +1735,46 @@ table .wd10 {
 
 /* 1059px以上の設定 ****************************************************************/
 @media only screen and (min-width:1059px) {
-    .search-wrap {
-        width: 800px;
+    .header .search-wrap {
+        width: 600px;
     }
 
     /* mega menu ------------------------------------- */
-    .mega-guide {
-        display:block;
-        width:10%;
+    .mega-tab-head {
+        display: block;
+        width: 150px;
+        margin-left: 1em;
+        padding-right: 10px;
+        overflow: hidden;
+    }
+    .mega-tab-bar {
+        width: calc(100% - 150px);
+    }
+    
+    .mega-tab-guide {
         background: #FFF;
         border: solid 2px #000;
         position: relative;
-        height: 33px;
-        padding: .25em;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+        padding-left: 1em;
+        padding-right: 1em;
         top:16px;
         font-size: 100%;
+        font-weight: normal;
     }
 
-    html[lang="en-JP"] .mega-guide,
-    html[lang="en-CN"] .mega-guide  {
+    html[lang="en-JP"] .mega-tab-guide,
+    html[lang="en-CN"] .mega-tab-guide  {
         font-size:.875em;
         height: 38px;
-        padding: .25em;
-        top:12px;
         line-height: 1em;
+        top:12px;
     }
 
-    .mega-guide:before,
-    .mega-guide:after{
+    .mega-tab-guide:before,
+    .mega-tab-guide:after {
         content: "";
         position: absolute;
         top: 50%;
@@ -1678,36 +1782,26 @@ table .wd10 {
         width: 0px;
         height: 0px;
         border-style: solid;
-        }
+    }
 
-    .mega-guide:before {
+    .mega-tab-guide:before {
         right: -9px;
         margin-top: -.563em;
         border-width: 9px 0 9px 9px;
         border-color: transparent transparent transparent #FFF;
-        z-index: 0;
+        z-index: 1;
     }
         
-    .mega-guide:after {
-        right: -12px;
+    .mega-tab-guide:after {
+        right: -11px;
         margin-top: -.625em;
         border-width: 10px 0 10px 10px;
         border-color: transparent transparent transparent #000;
-        z-index: -1;
-    }
-
-    .mega-nav ul{
-        width: 87%;
-        margin-left: 1.563em;
-        padding-left: 45px\9;
+        z-index: 0;
     }
 
     .mega-title {
         padding: .5em;
-    }
-        
-    .mega-panel{
-        top: 65px
     }
 
     .panel-item:first-child {

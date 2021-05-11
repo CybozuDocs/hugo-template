@@ -1,21 +1,36 @@
 /* Header */
 .logo-wrap {
-  width: 300px;
+  width: 200px;
+  padding-top: 8px;
 }
 .logo-img {
-  width: 200px;
-  height: 56px;
-  padding: 15px 9px 7px 9px;
+  width: 100px;
+  vertical-align: -14px;
 }
 .logo-product {
   display: none;
 }
 .logo-title {
   padding-left: 0;
-  font-size: 1.7em;
-  line-height: 1.6em;
+  padding-top: 9px;
+  font-size: 14px;
   color: #333;
 }
 .logo-title:lang(en) {
-  font-size: 2em;
+  font-size: 20px;
+}
+
+
+/* 768px以上の設定 *****************************************************/
+@media only screen and (min-width:768px){
+    .logo-img {
+        width: 140px;
+        height: 35px;
+        vertical-align: -10px;
+    }
+    
+    .logo-title {
+        padding-top: 0;
+        font-size: 18px;
+    }
 }

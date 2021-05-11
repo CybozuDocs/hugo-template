@@ -206,11 +206,13 @@
   max-height: 130px;
 }
 .tile-icon{
-    padding-top: 1em;
+    padding-top: 10px;
 }
 .tile-text {
     text-align: left;
-    padding: .8em;
+    padding: 5px;
+    height: 250px;
+    overflow: auto;
 }
 .tile-text li {
     list-style-type: none;
@@ -242,7 +244,7 @@
 }
 .col-tile-gr i {
     position: static;
-    font-size: 6em;
+    font-size: 92px;
     color: #1b72cd;
 }
 .col-tile-gr i.nolink {

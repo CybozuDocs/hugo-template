@@ -34,6 +34,11 @@ a,
 .header .search-submit:focus {
     outline: 3px solid rgba(131,192,253,0.5);
 }
+
+#search1 {
+    right: 0;
+}
+
 .g-col a.current {
     border-bottom: 2px solid #d0324b;
 }
@@ -44,7 +49,7 @@ a,
 .mega-nav {
     background-color: #f8c5c5;
 }
-.mega-item.current {
+.mega-tab.current {
     background-color: #ff8e8e;
 }
 
@@ -118,18 +123,17 @@ a,
         width: 350px;
     }
 
+    .header .search-wrap {
+        width: calc(100% - 200px);
+        right: 0;
+    }
+    
     .g-col {
         width: 25%;
     }
     
     .subnavi {
         padding-bottom: 100px;
-    }
-}
-
-@media only screen and (min-width: 1059px) {
-    .col-tile-gr {
-        width: 23%;
     }
 }
 
