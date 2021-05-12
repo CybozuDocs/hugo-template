@@ -508,6 +508,7 @@ td {
 .mega-tab {
     width: 100%;
     text-align: center;
+    cursor:pointer;
 }
 .mega-tab.current {
     background-color: #c5e1e9;
