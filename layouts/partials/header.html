@@ -17,8 +17,8 @@
             {{- end -}}
             {{- $title := printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help -}}
             
-            {{- if eq .Site.Params.product "slash" -}}
-                {{- $title = $.Site.Params.help -}}
+            {{- if or (eq .Site.Params.product "slash") (eq .Site.Params.product "support_guide") -}}
+                {{- $title = printf " %s" $.Site.Params.help -}}
             {{- end -}}
                         <span class="logo-title">{{$title}}</span>
                     </a>
