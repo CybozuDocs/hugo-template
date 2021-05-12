@@ -592,12 +592,12 @@ td {
 }
 
 .mega-list {
-    column-count: 3;
+    column-count: 2;
     width: 90%;
-    padding: 30px 100px 30px 100px;
+    padding-left: 30px;
 }
 .mega-list-line {
-    margin-bottom: 1em;
+    margin-bottom: .5em;
 }
 .mega-list-item {
     width: 100%;
@@ -1690,14 +1690,21 @@ table .wd10 {
     .mega-panel {
         top: 130px;
     }
-
+    
+    .mega-list {
+        column-count: 3;
+        width: 90%;
+        padding: 30px 100px 30px 100px;
+    }
     .mega-title{
         font-size:1.375em;
     }
     .mega-title h3 {
         font-size: 1em;
     }
-
+    .mega-list-line {
+        margin-bottom: 1em;
+    }
     .panel-item {
         margin-right: 1.563em;
     }

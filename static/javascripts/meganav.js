@@ -2,7 +2,7 @@
 (function() {
   $(document).ready(function() {
     /* @media screen min-width */
-    let mobilewidth = 768;
+    let mobileSize = 768;
     let $tabs = $("button.mega-tab");
     let $panels = $("div.mega-panel");
     
@@ -122,11 +122,20 @@
     
     $panels.bind("keydown", function(e) {
         
+        let leftpos = 100;
+        let lnext = 2;
+        let rnext = 2;
+        if($(window).width() < mobileSize) {
+            leftpos = 30;
+            lnext = 1;
+            rnext = 0;
+        }
+        
         let cols = [];
         let $alllinks = $(this).find("a");
         $alllinks.each( function( index, element ) {
             let cl = $(element).position().left;
-            if ((cl >= 100 ) && (cols.indexOf(cl) === -1)) {
+            if ((cl >= leftpos ) && (cols.indexOf(cl) === -1)) {
                 cols.push(cl);
             }
         });
@@ -137,12 +146,12 @@
         let ft = $alllinks.eq(curpos).position().top;
         let fl = $alllinks.eq(curpos).position().left;
         let curcol = cols.indexOf(fl);
-        
+                
         switch(e.which) {
             case 37: // left
                 switch(curcol) {
                     case 0:
-                        moveFocus($alllinks, ft, cols[2]);
+                        moveFocus($alllinks, ft, cols[lnext]);
                         break;
                     case 1:
                         moveFocus($alllinks, ft, cols[0]);
@@ -173,7 +182,7 @@
                         moveFocus($alllinks, ft, cols[1]);
                         break;
                     case 1:
-                        moveFocus($alllinks, ft, cols[2]);
+                        moveFocus($alllinks, ft, cols[rnext]);
                         break;
                     case 2:
                         moveFocus($alllinks, ft, cols[0]);
