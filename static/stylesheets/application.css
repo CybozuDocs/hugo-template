@@ -596,6 +596,9 @@ td {
     width: 90%;
     padding: 30px 100px 30px 100px;
 }
+.mega-list-line {
+    padding-bottom: 10px;
+}
 .mega-list-item {
     width: 100%;
 }
