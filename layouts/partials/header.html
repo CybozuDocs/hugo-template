@@ -12,14 +12,14 @@
             <div class="logo-wrap">
                 <h1 class="frame-h1">
                     <a class="logo-link" href="{{ $.Site.BaseURL }}{{$baselang}}">
-            {{- with .Site.Params.logo }}
-                        <span><img class="logo-img" src="{{ $.Site.BaseURL }}{{.}}" aria-hidden="true"></span>
-            {{- end }}
-            {{- $title := printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help }}
+            {{- with .Site.Params.logo -}}
+                        <img class="logo-img" src="{{ $.Site.BaseURL }}{{.}}" aria-hidden="true">
+            {{- end -}}
+            {{- $title := printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help -}}
             
-            {{- if eq .Site.Params.product "slash"}}
-                {{- $title = $.Site.Params.help }}
-            {{- end }}
+            {{- if eq .Site.Params.product "slash" -}}
+                {{- $title = $.Site.Params.help -}}
+            {{- end -}}
                         <span class="logo-title">{{$title}}</span>
                     </a>
                 </h1>

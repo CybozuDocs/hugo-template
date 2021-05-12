@@ -1,192 +1,205 @@
-'use strict';
+"use strict";
 (function() {
   $(document).ready(function() {
     /* @media screen min-width */
     let mobilewidth = 768;
-
-    let hideMenuPopups = function($menus, duration) {
-        let $activeMenu = $menus.filter(function() {
-            return $(this).hasClass('active');
+    let $tabs = $("button.mega-tab");
+    let $panels = $("div.mega-panel");
+    
+    let hideTabPanels = function(except) {
+        $.each($tabs, function(index, value) {      
+            if (($(this).attr("aria-expanded") === "true") && ($(this).attr("id") !== except)) { 
+                let panel = $(this).attr("aria-controls");
+                $("#"+panel).stop(false, true).fadeOut(0);   
+                $(this).trigger("close");
+            }
         });
-
-        $activeMenu
-        .trigger('deactive')
-        .find('div.mega-panel')
-        .stop(false, true)
-        .fadeOut(duration ? duration : 0);
-
     };
 
-    let togglePanel = function($target) {
-        let $popup = $target.find("div.mega-panel");
-        if ($target.hasClass('active')) {
-            hideMenuPopups($target, 'normal');
+    let togglePanel = function(btn, panel) {
+        let $target = $("#" + btn);
+        if ($target.attr("aria-expanded") === "false") {
+            let $panel = $("#" + panel);
+            $panel.stop(false, true).fadeIn("fast");  
+            $target.trigger("expand");
         } else {
-            let currentMenu = this;
-            hideMenuPopups($menus.filter(function() {
-                return this !== currentMenu;
-            }));
-            
-            $popup
-            .stop(false, true)
-            .fadeIn('fast');
-            
-            $target.trigger('active');
+            btn = undefined;
         }
-    }
     
-    let $menus = $('li.mega-item');
+        hideTabPanels(btn);
+    }
 
-    $menus
-    .bind('active', function() {
-        let $i = $(this).find('i:first-child');
-        $i.removeClass('fa-chevron-down');
-        $i.addClass('fa-chevron-up');
-        $(this).addClass('active');
-        $(this).attr('aria-expanded', 'true');
-        $('#secondNav').css('border-bottom', 'none');
+    $tabs
+    .bind("expand", function() {
+        let $i = $(this).find("i:first-child");
+        $i.removeClass("fa-chevron-down");
+        $i.addClass("fa-chevron-up");
+        $(this).attr("aria-expanded", "true");
     })
 
-    .bind('deactive', function() {
-        let $i = $(this).find('i:first-child');
-        $i.removeClass('fa-chevron-up');
-        $i.addClass('fa-chevron-down');
-        $(this).removeClass('active');
-        $('#secondNav').css('border-bottom', '3px solid #b8c5ca');
-        $(this).attr('aria-expanded', 'false');
+    .bind("close", function() {
+        let $i = $(this).find("i:first-child");
+        $i.removeClass("fa-chevron-up");
+        $i.addClass("fa-chevron-down");
+        $(this).attr("aria-expanded", "false");
     })
 
-    .bind('click', function() {
-        togglePanel($(this));
+    .bind("click", function() {
+        togglePanel($(this).attr("id"), $(this).attr("aria-controls"));
         return false;
     })
-
-    .bind('keyup', function(e) {
-        let menupos = $menus.index($(':focus'));
-        if (menupos != -1) {
-            switch(e.which) {
-                case 13:  // enter
-                    togglePanel($(this));
-                    break;
-            }
-            return false;
-        }
-    })
     
-    .bind('keydown', function(e) {
-        let menupos = $menus.index($(':focus'));
-        
-        let $alllinks = $(this).find("div.mega-panel").find("a");
-        let linklen = $alllinks.length;
-        let curpos = $alllinks.index($(':focus'));
-        let curcol = $alllinks.eq(curpos).parent().parent().prop("id");
-        
-        let $links1 = $(this).find("#menu1").find("a");
-        let $links2 = $(this).find("#menu2").find("a");
-        let $links3 = $(this).find("#menu3").find("a");
-        let fline = -1;
-        
-        switch(e.which) {
-            case 9: // tab
-                let currentMenu = this;
-                hideMenuPopups($menus.filter(function() {
-                    return this !== currentMenu;
-                }));
-                break;
+    .bind("keydown", function(e) {
+        let tabpos = $tabs.index($(":focus"));   
+        let panel = $(this).attr("aria-controls");
 
+        switch(e.which) {
             case 27: // esc
-                hideMenuPopups($(this), 'normal');
+                hideTabPanels();
+                e.preventDefault();
+                e.stopPropagation();
                 break;
 
             case 37: // left
-                if (menupos != -1) {
-                    if(menupos == 0) return false;
-                    
-                    let wasActive = $(this).hasClass('active')
-                    let $prev = $menus.eq(menupos-1);
+                if (tabpos !== -1) {
+                    $tabs.eq(tabpos).attr("tabindex", -1);
+                    tabpos--;
+                    if (tabpos < 0) {
+                        tabpos = $tabs.length - 1;
+                    }
+                    let aex = $(this).attr("aria-expanded");
+                    let $prev = $tabs.eq(tabpos);
+                    $prev.attr("tabindex", 0);
                     $prev.focus();
                     
-                    if(wasActive) {
-                        hideMenuPopups($(this), 'normal');
-                        togglePanel($prev);
+                    if(aex === "true") {
+                        togglePanel($prev.attr("id"), $prev.attr("aria-controls"));
                     }
-                } else {
-                    switch(curcol) {
-                        case "menu2":
-                            fline = $links2.index($(':focus'));
-                            $links1.eq(fline).focus();
-                            break;
-                        case "menu3":
-                            fline = $links3.index($(':focus'));
-                            $links2.eq(fline).focus();
-                            break;
-                        default:
-                            $(this).focus();
-                    }
-                }
-                break;
-
-            case 38: // up
-                if( curpos > 0) {
-                    $alllinks.eq(curpos-1).focus();
-                    e.preventDefault();
-                } else {
-                    $(this).focus();
-                }
+                } 
+                e.stopPropagation();
                 break;
 
             case 39: // right
-                if (menupos != -1) {
-                    if(menupos >= ($menus.length-1)) return false;
+                if (tabpos != -1) {
+                    $tabs.eq(tabpos).attr("tabindex", -1);
+                    tabpos++;
+                    if(tabpos >= ($tabs.length)) {
+                        tabpos = 0;
+                    }
                     
-                    let wasActive = $(this).hasClass('active')
-                    let $next = $menus.eq(menupos+1);
+                    let aex = $(this).attr("aria-expanded");
+                    let $next = $tabs.eq(tabpos);
+                    $next.attr("tabindex", 0);
                     $next.focus();
                     
-                    if(wasActive) {
-                        hideMenuPopups($(this), 'normal');
-                        togglePanel($next);
+                    if(aex === "true") {
+                        togglePanel($next.attr("id"), $next.attr("aria-controls"));
                     }
-                } else {
-                    switch(curcol) {
-                        case "menu1":
-                            fline = $links1.index($(':focus'));
-                            if(fline > $links2.length-1) {fline = $links2.length-1}
-                            $links2.eq(fline).focus();
-                            break;
-                        case "menu2":
-                            fline = $links2.index($(':focus'));
-                            if(fline > $links3.length-1) {fline = $links3.length-1}
-                            $links3.eq(fline).focus();
-                            break;
-                        default:
-                            $(this).focus();
-                    }
-                }
+                } 
+                e.stopPropagation();
                 break;
-
+        }
+    });
+    
+    let moveFocus = function(links, ttop, tleft) {
+        let rows = [];
+        links.each( function( index, element) {
+            if ($(element).position().left === tleft) {
+                rows.push($(element));
+            };
+        });
+        
+        let trow = 0;
+        rows.forEach( function( item, index, array) {
+            if (item.position().top <= ttop) {
+                trow = index;
+                return false;
+            };
+        });
+        
+        rows[trow].focus();
+    }
+    
+    $panels.bind("keydown", function(e) {
+        
+        let cols = [];
+        let $alllinks = $(this).find("a");
+        $alllinks.each( function( index, element ) {
+            let cl = $(element).position().left;
+            if ((cl >= 100 ) && (cols.indexOf(cl) === -1)) {
+                cols.push(cl);
+            }
+        });
+       
+        let linklen = $alllinks.length;
+        let curpos = $alllinks.index($(":focus"));
+        
+        let ft = $alllinks.eq(curpos).position().top;
+        let fl = $alllinks.eq(curpos).position().left;
+        let curcol = cols.indexOf(fl);
+        
+        switch(e.which) {
+            case 37: // left
+                switch(curcol) {
+                    case 0:
+                        moveFocus($alllinks, ft, cols[2]);
+                        break;
+                    case 1:
+                        moveFocus($alllinks, ft, cols[0]);
+                        break;
+                    case 2:
+                        moveFocus($alllinks, ft, cols[1]);
+                        break;
+                    default:
+                        break;
+                }
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                break;
+                
+            case 38: // up
+                if( curpos > 1) {
+                    $alllinks.eq(curpos-1).focus();          
+                } else {
+                    $alllinks.eq(linklen-1).focus();
+                }
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                break;
+                
+            case 39: // right
+                switch(curcol) {
+                    case 0:
+                        moveFocus($alllinks, ft, cols[1]);
+                        break;
+                    case 1:
+                        moveFocus($alllinks, ft, cols[2]);
+                        break;
+                    case 2:
+                        moveFocus($alllinks, ft, cols[0]);
+                        break;
+                    default:
+                        break;
+                }
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                break;
+                
             case 40:  // down
                 if( curpos < linklen - 1 ) {
                     $alllinks.eq(curpos+1).focus();
                 } else {
-                    $(this).focus();
+                    $alllinks.eq(1).focus();
                 }
                 e.preventDefault();
+                e.stopImmediatePropagation();
                 break;
         }
-    })
-    
-    .find('div.mega-panel')
-    .bind('click keyup', function(e) {
-        e.stopPropagation();
     });
     
     $("html")
     .bind("click", function() {
-        hideMenuPopups($menus, 'normal');
-    })
-    .bind("keyup", function() {
-        hideMenuPopups($menus, 'normal');
+        hideTabPanels();
     });
   });
 })();

@@ -589,6 +589,15 @@ td {
 .mega-panel p:last-child {
     padding-bottom:2.188em;
 }
+
+.mega-list {
+    column-count: 3;
+    width: 90%;
+    padding: 30px 100px 30px 100px;
+}
+.mega-list-item {
+    width: 100%;
+}
 /* ------------------------------------ end of mega menu */
 
 

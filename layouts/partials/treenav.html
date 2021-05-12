@@ -3,7 +3,7 @@
 {{- $islastsect := false }}
 {{- $entries = $.Site.Home.Sections}}
 
-<div id="tree-nav" role="navigation" >
+<div id="tree-nav">
 {{- if eq $.Site.Params.meganav true -}}
     {{- $lastpage := (slice) }}
     {{- if eq $.Site.Params.product "Garoon" }}
@@ -67,7 +67,7 @@
     {{- end }}
 {{- end }}
 
-  <nav id="tree-main" role="tree" tabindex="0">
+  <nav id="tree-main" tabindex="0">
     <ul>
 {{- $target := .}}
 {{- range $entries.ByWeight}}

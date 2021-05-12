@@ -47,6 +47,12 @@
     {{- end}}
             </div>
         </div>
+        
+    {{- range $entries.ByWeight}}
+        {{- if eq .CurrentSection $rootsect }}
+            {{- template "megapanel" $rootsect }}
+        {{- end}}
+    {{- end}}
 {{- end }}
     </div>
 </nav>
@@ -77,8 +83,11 @@
                 </li>
     {{- end}}
             </ul>
+{{- end }}
         
-    {{- $menuid = 0}}
+{{- define "megapanel" }}
+    {{- $cursect := . }}
+    {{- $menuid := 0}}
     {{- range $cursect.Pages.ByWeight }}
         {{- $menuid = (add $menuid 1) }}
         <div class="mega-panel" role="tabpanel" id="panel{{$menuid}}" aria-labelledby="tab{{$menuid}}" >
@@ -104,37 +113,13 @@
             {{- end -}}
                 </h3>
             </div>
-        {{- template "pagelist" . }}
+
+            <ul class="mega-list" role="list">
+        {{- range .Pages }}
+                <li role="presentation"><a role="listitem" class="mega-list-item" href="{{.RelPermalink}}">{{- partial "title" . }}</a></li>
+        {{- end }}
+            </ul>
         </div>
     {{- end }}
-    
 {{- end }}
 
-{{- define "pagelist" }}
-    {{- $pageitms := (len .Pages) }}
-    {{- $colitms := (div $pageitms 3) }}
-    {{- if gt $pageitms (mul $colitms 3) }}
-        {{- $colitms = (add $colitms  1) }}
-    {{- end }}
-    
-    {{- $itms := 1 }}
-    {{- $menupart := 1 }}
-    {{- range .Pages }}
-        {{- if eq $itms  1 }}
-              <div class="wrap">
-                <div id="menu{{$menupart}}" class="panel-item" role="menu">
-        {{- end }}
-                    <p><a href="{{.RelPermalink}}" role="menuitem">{{- partial "title" . }}</a></p>
-        {{- $itms = (add $itms 1) }}     
-        {{- if gt $itms $colitms }}
-                </div>
-              </div>
-            {{- $itms = 1 }}
-            {{- $menupart = (add $menupart 1) }}
-        {{- end }}
-    {{- end }}
-    {{- if ne $itms 1 }}
-                </div>
-              </div>
-    {{- end }}
-{{- end }}
