@@ -41,37 +41,25 @@
 
                 switch(e.which) {
                     case 9: // tab
-                        if(altsts === "block") {
-                            let tl = langlist.index($(':focus')) + 1;
-                            if(tl >= langlist.length) {
-                                tl = 0;
-                            }
-                            langlist.eq(tl).focus();
-                            return false;
-                        }
-                        break;
                     case 27: // esc
                         closeAlterLangs();
                         $(this).focus();
                         break;
+                    case 32: // space
+                        if(altsts === "none") {
+                            openAlterLangs();
+                            langlist.eq(0).focus();
+                        }
                     case 38:  // up
                         let cl = langlist.index($(':focus'));
-                        if((altsts === "block") && (cl === 0)) {
-                            closeAlterLangs();
-                            $(this).focus();
-                        } else {
+                        if( cl !== 0 ) {
                             langlist.eq(cl -1).focus();
                         }
                         return false;
                         break;
                     case 40: // down
-                        if(altsts === "none") {
-                            openAlterLangs();
-                            langlist.eq(0).focus();
-                        } else {
-                            let nl = langlist.index($(':focus')) + 1;
-                            langlist.eq(nl).focus();
-                        }
+                        let nl = langlist.index($(':focus')) + 1;
+                        langlist.eq(nl).focus();
                         return false;
                         break;
                 }
