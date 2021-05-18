@@ -42,9 +42,6 @@
     line-height:1.6em;
     font-size: inherit;
 }
-.article code{
-
-}
 
 @media only screen and (min-width: 768px) {
     .logo-wrap {
@@ -52,11 +49,5 @@
     }
     .g-col {
         width: 20%;
-    }
-}
-
-@media only screen and (min-width: 1059px) {
-    .col-tile-gr {
-        width: 18%;
     }
 }
