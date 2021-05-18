@@ -29,9 +29,29 @@
     vertical-align: middle;
 }
 
+.article code,.article pre {
+    background:#F9F9F9;
+    font-family: inherit;
+}
+
+.article pre {
+    padding: .625em;
+    margin-bottom: 1em;
+    border:solid 1px #CBCBCB;
+    font-weight: normal;
+    line-height:1.6em;
+    font-size: inherit;
+}
+.article code{
+
+}
+
 @media only screen and (min-width: 768px) {
     .logo-wrap {
         width: 390px;
+    }
+    .g-col {
+        width: 20%;
     }
 }
 
