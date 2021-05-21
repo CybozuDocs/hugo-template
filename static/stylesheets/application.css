@@ -132,14 +132,9 @@ td {
     display: flex;
     justify-content: space-between;
 }
-.header-flex-box {
-     display: flex;
-     justify-content: space-between;
-     width: 100%;
-}
 .logo-wrap {
     display: flex;
-    width: 200px;
+    width: calc( 100% - 123px );
     padding-left: 10px;
     padding-top: 9px;
     padding-bottom: 9px;
@@ -168,12 +163,7 @@ td {
 
 
 /* Searchbox --------------------*/
-#search1 {
-    display: none;
-    margin: 0 5px 0 auto;
-}
-#search2 {
-    display: block;
+#search {
     position: absolute;
     top: 45px;
     left: 0;
@@ -243,17 +233,26 @@ td {
 
 
 /* Language selector -------------------- */
+.lang-wrap {
+    z-index: 1200;
+    font-size: 10px;
+    width: 100px;
+    text-overflow: ellipsis;
+}
 #lang-selector {
     white-space: nowrap;
     z-index: 1000;
     border: 1px solid #e6e6e6;
     background-color: #f6f6f6;
     height: 36px;
+    width: 100%;
     cursor: pointer;
-    font-size: 10px;
 }
 #lang-selector li:hover {
     background: #ddd;
+}
+#lang-selector:disabled {
+    cursor: wait;
 }
 .current-lang {
     width: 100px;
@@ -262,7 +261,7 @@ td {
     padding-top: 9px;
 }
 .current-lang .fas {
-    margin-top: 2px;
+    margin-top: 0px;
     margin-left: 5px;
 }
 .current-lang .fa-chevron-down {
@@ -273,26 +272,33 @@ td {
     white-space: nowrap;
     width: 90px;
     padding-left: 0px;
-    overflow: hidden;
     text-overflow: ellipsis;
+    padding-top: 2px;
 }
-
+.lang-title:lang(en) {
+    padding-top: 3px;
+}
 .alter-lang {
     display: none;
-    width: 123px;
     background: #f6f6f6;
 }
-.lang-link {
-    display: block;
-    color: #000;
-    padding-left: 20px;
+li .lang-title {
+    padding-left: 30px;
+}
+.lang-item:hover {
+    color: #fff;
+    background-color: #0d7b91;
+}
+.selectlang {
+    color: #fff;
+    background-color: #0d7b91;
 }
 /* -------------------- end of Language selector */
 
 
 .page {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   flex-wrap: : nowrap;
   max-width: 1300px;
   margin: 56px auto 0 auto;
@@ -332,8 +338,7 @@ td {
 }
 .sect-wrap {
     max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 32px 192px;
+
 }
 .sect-menu {
     display: flex;
@@ -341,12 +346,7 @@ td {
     text-align: left;
     margin: 20px 0 60px 30px;
 }
-.sect-col {
-    width: 100%;
-}
-.sect-col p{
-    margin-bottom: .813em;
-}
+
 .guide-link{
     border-bottom: 1px solid rgba(32,0,0,0.1);
     padding-bottom: .625em;
@@ -358,7 +358,6 @@ td {
 }
 .article .inner-index h2{
     border: none;
-    z-index: unset;
 }
 .article .inner-index a{
     text-decoration: none;
@@ -643,8 +642,10 @@ ul.breadcrumbs {
     line-height: 1.2em;
     font-size: .95rem;
     overflow: hidden;
-    width: 320px;
+    width: 310px;
     flex-shrink: 0;
+    padding-left: 20px;
+    padding-bottom: 140px;
 }
 
 #tree-nav {
@@ -765,10 +766,11 @@ ul.breadcrumbs {
 
 
 .contents-wrap {
-    padding: 0px 16px 92px;
+    padding: 0px 16px 32px;
     margin-top: 34px;
     position: relative;
     flex-shrink: 0;
+    border-bottom: solid #b8c5ca 2px;
 }
 
 
@@ -1302,16 +1304,13 @@ table .wd10 {
     font-size:.875em;
     position: relative;
 }
-.heading-link a{
+.heading-button {
     padding-left:.875em;    
-    color:#000!important;
-    text-decoration: none!important;
 }
 
-.heading-link a:hover{
+.heading-button:hover{
     cursor:pointer;
-    color: #1b72cd!important;
-    text-decoration: underline!important;
+    color: #1b72cd;
 }
 .heading-url {
     display: none;
@@ -1492,7 +1491,7 @@ table .wd10 {
 
 /* Enquete -------------------- */
 #enquete {
-    display: none;
+    display: block;
     width: 100%;
     padding: 9px;
     background-color: rgba(29,30,31,0.8);
@@ -1500,11 +1499,14 @@ table .wd10 {
     position: absolute;
     bottom: 0;
     right: 0;
-    z-index: 1;
+    z-index: 2;
     font-size: .9rem;
 }
 .enquete-panel div {
     display: inline;
+}
+.enquete-btn-wrap {
+    white-space: nowrap;
 }
 .enquete-btn {
     color: #333;
@@ -1557,16 +1559,18 @@ table .wd10 {
 
 /* 370px以上の設定 *****************************************************/
 @media only screen and (min-width:370px){
-    #lang-selector {
+    .lang-wrap {
         font-size: 14px;
-    }
-    
-    .current-lang {
         width: 123px;
+    }
+    .current-lang {
         padding-top: 6px;
     }
     .current-lang .fas {
-        margin-top: 2px;
+        margin-top: 3px;
+    }
+    .lang-item {
+        line-height: 28px;
     }
 }
 
@@ -1587,6 +1591,7 @@ table .wd10 {
     }
     
     .logo-wrap {
+        width: 200px;
         padding-top: 9px;
     }
     .logo-title {
@@ -1597,11 +1602,11 @@ table .wd10 {
         width: 100%;
     }
     
-    #search1 {
-        display: block;
-    }
-    #search2 {
-        display: none;
+    #search {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 0 5px 0 auto;
     }
     
     .header .search-wrap {
@@ -1628,15 +1633,15 @@ table .wd10 {
     .current-lang {
         padding-top: 10px;
     }
-    
+
     .page {
-      flex-direction: row;
+        flex-direction: row;
     }
 
-    .contents-wrap {
-        margin-top: 8px;
+    .sect-wrap {
+        margin: 0 auto;
+        padding: 0 32px 192px;
     }
-
     .sect-main h1 {
         font-size: 2.6em;
     }
@@ -1645,11 +1650,7 @@ table .wd10 {
         flex-direction: row;
         margin: 20px 0 60px 30px;
     }
-    .sect-col {
-        width: 30%;
-        padding-right: 20px;
-    }
-
+    
     /* mega menu ------------------------- */
     .g-nav {
         font-size: 1.125em;
@@ -1717,8 +1718,9 @@ table .wd10 {
 
     .tree-wrap {
         position: relative;
-        padding-top: 0px;
-        padding-bottom: 30px;
+        padding-top: 0;
+        padding-bottom: 40px;
+        padding-left: 10px;
         width: 292px;
     }
     #tree-nav {
@@ -1738,10 +1740,15 @@ table .wd10 {
         width: calc(100% - 292px);
         padding-right: 32px;
         padding-left: 32px;
+        padding-bottom: 92px;
+        margin-top: 8px;
         margin-bottom: 3rem;
     }
     .disclaimer {
         float: right;
+    }
+    #enquete {
+        width: calc(100% - 290px);
     }
     .footer-wrap {
         justify-content: space-between;
@@ -1851,6 +1858,13 @@ table .wd10 {
     }
     .enquete-panel div {
         display: block;
+    }
+}
+
+/* for IE */
+@media all and (-ms-high-contrast: none) {
+    .lang-title {
+        margin-top: -6px;
     }
 }
 

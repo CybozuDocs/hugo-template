@@ -65,8 +65,8 @@
 
         // アンケートボタンの表示位置の制御
         function controlDisplayPosition() {
-            if ($window.width() > 1060) {
-                let $triggerNode = $(".footer");
+            let $triggerNode = $(".footer");
+            if ($window.width() > 1059) {
                 let footDisp = $triggerNode.offset().top - $window.height();
                 let windowScrollTop = $window.scrollTop();
 
@@ -78,7 +78,7 @@
                     $enquete.css({position: "fixed", bottom: 0});
                 }
             } else {
-                $enquete.css({position: "absolute", bottom: 0});
+                $enquete.css({position: "absolute", bottom: $triggerNode.height()});
             }
         }
 

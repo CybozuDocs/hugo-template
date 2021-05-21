@@ -67,6 +67,7 @@ td a > .fa:hover{
 
 /* Header -------------------- */
 .logo-wrap {
+    padding-top: 3px;
     padding-left: 10px;
 }
 .logo-title {
@@ -125,6 +126,20 @@ td a > .fa:hover{
 .current-lang .fas {
     margin-top: 6px;
 }
+.lang-title {
+    padding-top: 7px;
+}
+.lang-title:lang(en) {
+    padding-top: 8px;
+}
+.lang-item:hover {
+    color: #000;
+    background-color: #c9cbcc;
+}
+.selectlang {
+    color: #000;
+    background-color: #c9cbcc;
+}
 
 /* Breadcrumb -------------------- */
 .breadcrumb {
@@ -138,6 +153,10 @@ td a > .fa:hover{
 /* -------------------- end of Breadcrumb */
 
 /* tree navigation -------------------- */
+.tree-wrap {
+    padding-bottom: 10px;
+}
+
 #tree-main {
     font-size: 1rem;
     position: relative;
@@ -304,8 +323,8 @@ background: rgba(255, 255, 255, 0.9);
     border-bottom: solid 2px #000;
 }
 .admonition.warning {
-    border-top: solid 3px #f0ad4e;
-    border-bottom: solid 3px #f0ad4e;
+    border-top: solid 3px #ff9d12;
+    border-bottom: solid 3px #ff9d12;
 }
 .admonition-alt {
     font-weight: bold;
@@ -316,7 +335,7 @@ background: rgba(255, 255, 255, 0.9);
     background: #f3f8f3;
 }
 .admonition.warning .admonition-alt {
-    background: #fcf8f2;
+    background: #fce2bd;
 }
 .admonition-content {
     margin: 0 .6em .6em;
@@ -334,16 +353,31 @@ background: rgba(255, 255, 255, 0.9);
 }
 /* -------------------- End of admonition */
 
-.footer {
+#goto-top .fa-stack-1x {
+    color: #015aaa;
+}
+
+#enquete {
+    color: #fff;
+    background-color: #015aaa;
+}
+.enquete-btn {
+    color: #000;
+    background-color: #e6f1f4;
+}
+
+/* footer --------------------------------------*/
+.footer{
+    position: relative;
     border-top: 3px solid #b8c5ca;
+}
+.footer-wrap {
+    height: 16rem;
 }
 .footer::before {
     background-image: none;
 }
-
-#goto-top .fa-stack-1x {
-    color: #015aaa;
-}
+/* -------------------------------------- End of footer */
 
 .subnavi {
     padding-bottom: 0;
@@ -373,15 +407,6 @@ background: rgba(255, 255, 255, 0.9);
 }
 /* -------------------------------------- End of Search opage */
 
-/* footer --------------------------------------*/
-.footer{
-    position: relative;
-}
-.footer-wrap {
-    height: 12rem;
-}
-/* -------------------------------------- End of footer */
-
 /* 404 page */
 .nftitle {
     background-image: none;
@@ -393,6 +418,16 @@ background: rgba(255, 255, 255, 0.9);
     .logo-title {
         font-size: 14px;
         line-height: 14px;
+    }
+    .lang-title {
+        padding-top: 6px;
+    }
+    .lang-title:lang(en) {
+        padding-top: 8px;
+    }
+    
+    .footer-wrap {
+        height: 12rem;
     }
 }
 
@@ -422,16 +457,16 @@ background: rgba(255, 255, 255, 0.9);
     .header .searchbox input {
         font-size: 1.2rem;
     }
-
+    
     .current-lang {
         padding-top: 6px;
     }
     .current-lang .fas {
         margin-top: 6px;
     }
-
+    
     .article h2 {
-        font-size:2.063em;
+        font-size:2.063em;      
     }
     .article h3 {
         font-size: 1.62em;
@@ -439,7 +474,6 @@ background: rgba(255, 255, 255, 0.9);
     .article h4 {
         font-size: 1.25em;
     }
-
     .footer{
         position: absolute;
     }
@@ -459,17 +493,22 @@ background: rgba(255, 255, 255, 0.9);
 }
 
 /* 1059px以上の設定  *************************************************************/
-@media only screen and (min-width: 1180px) {
+@media only screen and (min-width: 1059px) {
+    .search-wrap {
+
+    }
+
     .top-title {
         padding: 1.5em 0 1.5em 0;
         font-size: 3em;
     }
 
+    .contents-wrap {
+        width: calc(100% - 292px);
+    }
+    
     .article img.screenshot {
         max-width: 600px;
-    }
-    .article .graynote img.screenshot {
-        max-width: 100%;
     }
 }
 

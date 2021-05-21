@@ -2,24 +2,27 @@
 (function() {
   $(document).ready(function() {
     /* @media screen min-width */
-    let mobileSize = 768;
-    let $tabs = $("button.mega-tab");
-    let $panels = $("div.mega-panel");
+    const mobileSize = 768;
+    const $tabs = $("button.mega-tab");
+    const $panels = $("div.mega-panel");
     
-    let hideTabPanels = function(except) {
+    const hideTabPanels = function(except) {
         $.each($tabs, function(index, value) {      
             if (($(this).attr("aria-expanded") === "true") && ($(this).attr("id") !== except)) { 
-                let panel = $(this).attr("aria-controls");
+                const panel = $(this).attr("aria-controls");
                 $("#"+panel).stop(false, true).fadeOut(0);   
                 $(this).trigger("close");
             }
         });
     };
 
-    let togglePanel = function(btn, panel) {
-        let $target = $("#" + btn);
+    const togglePanel = function(btn, panel) {
+        const $target = $("#" + btn);
         if ($target.attr("aria-expanded") === "false") {
-            let $panel = $("#" + panel);
+            const mtb = document.getElementById("mega-tab-bar");
+            const tabtop = 5 + mtb.offsetTop + mtb.clientHeight;
+            const $panel = $("#" + panel);
+            $panel.css("top", tabtop);
             $panel.stop(false, true).fadeIn("fast");  
             $target.trigger("expand");
         } else {
@@ -31,14 +34,14 @@
 
     $tabs
     .bind("expand", function() {
-        let $i = $(this).find("i:first-child");
+        const $i = $(this).find("i:first-child");
         $i.removeClass("fa-chevron-down");
         $i.addClass("fa-chevron-up");
         $(this).attr("aria-expanded", "true");
     })
 
     .bind("close", function() {
-        let $i = $(this).find("i:first-child");
+        const $i = $(this).find("i:first-child");
         $i.removeClass("fa-chevron-up");
         $i.addClass("fa-chevron-down");
         $(this).attr("aria-expanded", "false");
@@ -51,7 +54,6 @@
     
     .bind("keydown", function(e) {
         let tabpos = $tabs.index($(":focus"));   
-        let panel = $(this).attr("aria-controls");
 
         switch(e.which) {
             case 27: // esc
@@ -67,8 +69,8 @@
                     if (tabpos < 0) {
                         tabpos = $tabs.length - 1;
                     }
-                    let aex = $(this).attr("aria-expanded");
-                    let $prev = $tabs.eq(tabpos);
+                    const aex = $(this).attr("aria-expanded");
+                    const $prev = $tabs.eq(tabpos);
                     $prev.attr("tabindex", 0);
                     $prev.focus();
                     
@@ -87,8 +89,8 @@
                         tabpos = 0;
                     }
                     
-                    let aex = $(this).attr("aria-expanded");
-                    let $next = $tabs.eq(tabpos);
+                    const aex = $(this).attr("aria-expanded");
+                    const $next = $tabs.eq(tabpos);
                     $next.attr("tabindex", 0);
                     $next.focus();
                     
@@ -101,8 +103,8 @@
         }
     });
     
-    let moveFocus = function(links, ttop, tleft) {
-        let rows = [];
+    const moveFocus = function(links, ttop, tleft) {
+        const rows = [];
         links.each( function( index, element) {
             if ($(element).position().left === tleft) {
                 rows.push($(element));
@@ -131,8 +133,8 @@
             rnext = 0;
         }
         
-        let cols = [];
-        let $alllinks = $(this).find("a");
+        const cols = [];
+        const $alllinks = $(this).find("a");
         $alllinks.each( function( index, element ) {
             let cl = $(element).position().left;
             if ((cl >= leftpos ) && (cols.indexOf(cl) === -1)) {
@@ -140,12 +142,12 @@
             }
         });
        
-        let linklen = $alllinks.length;
-        let curpos = $alllinks.index($(":focus"));
+        const linklen = $alllinks.length;
+        const curpos = $alllinks.index($(":focus"));
         
-        let ft = $alllinks.eq(curpos).position().top;
-        let fl = $alllinks.eq(curpos).position().left;
-        let curcol = cols.indexOf(fl);
+        const ft = $alllinks.eq(curpos).position().top;
+        const fl = $alllinks.eq(curpos).position().left;
+        const curcol = cols.indexOf(fl);
                 
         switch(e.which) {
             case 37: // left

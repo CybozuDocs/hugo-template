@@ -59,32 +59,12 @@
         </h2>
     </div>
     <div class="sect-menu">
-        {{- template "pagelist2" . }}
+        <ul class="mega-list" role="list">
+        {{- range .Pages }}
+            <li class="mega-list-line" role="presentation"><a class="mega-list-item" role="listitem" href="{{.RelPermalink}}">{{- partial "title" . }}</a></li>
+        {{- end }}
+        </ul>
     </div>
     {{- end}}
   </div>
-{{- end }}
-
-{{- define "pagelist2" }}
-    {{- $pageitms := (len .Pages) }}
-    {{- $colitms := (div $pageitms 3) }}
-    {{- if gt $pageitms (mul $colitms 3) }}
-        {{- $colitms = (add $colitms  1) }}
-    {{- end }}
-    
-    {{- $itms := 1 }}
-    {{- range .Pages }}
-        {{- if eq $itms  1 }}
-                <div class="sect-col">
-        {{- end }}
-                    <p><a href="{{.RelPermalink}}">{{- partial "title" . }}</a></p>
-        {{- $itms = (add $itms 1) }}     
-        {{- if gt $itms $colitms }}
-                </div>
-            {{- $itms = 1 }}
-        {{- end }}
-    {{- end }}
-    {{- if ne $itms 1 }}
-                </div>
-    {{- end }}
 {{- end }}

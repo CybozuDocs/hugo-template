@@ -85,3 +85,11 @@ other = "搜索"
 [search_word]
 other = "搜索词"
 
+[Document_type]
+other = "文件类型"
+
+[Bread_crumb]
+other = "面包屑小径"
+
+[Page_selection]
+other = "页面选择"

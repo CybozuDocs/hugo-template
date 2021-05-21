@@ -20,14 +20,14 @@
   {{- $seconditems = 0 }}
 {{- end }}
 
-<nav role="navigation"> 
+<nav role="navigation" aria-label="{{ i18n "Document_type" }}"> 
     <ul class="g-nav" role="none" >
 {{- range $entries.ByWeight}}
     {{- if ne .Params.weight 0 }}
         <li class="g-col" role="none">
                 <a href="{{ .RelPermalink }}"
         {{- if eq .CurrentSection $rootsect -}}
-                    class = "current" aria-current="location"
+                    class = "current" aria-current="page"
         {{- end -}}
 >{{ partial "title" . }}</a>
         </li>
@@ -39,7 +39,7 @@
 {{- if gt $seconditems 0 }}
         <div class="mega-tab-wrap">
             <div class="mega-tab-head"><h2 class="mega-tab-guide">{{ i18n "By_features" }}</h2></div>
-            <div class="mega-tab-bar">
+            <div id="mega-tab-bar" class="mega-tab-bar">
     {{- range $entries.ByWeight}}
         {{- if eq .CurrentSection $rootsect }}
             {{- template "sectbar" (dict "cursect" $rootsect "secondsect" $secondsect) }}
