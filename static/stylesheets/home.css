@@ -140,8 +140,8 @@
 .col-tile {
   margin: 0 0 16px;
   width: 100%;
+  min-height: 250px;
   padding: .9375rem;
-  height: 223px;
   border: 1px solid #e6e6e6;
   position: relative;
   float: left;
@@ -175,8 +175,16 @@
 
 .col-topics {
     height: 100%;
-    min-height: 223px;
+    min-height: 250px;
     padding-bottom: 9px;
+}
+
+.tile-head {
+    height: 50%;
+    overflow: hidden;
+}
+.tile-head2 {
+    height: 45%;
 }
 
 .tile-title {
@@ -211,8 +219,11 @@
 .tile-text {
     text-align: left;
     padding: 5px;
-    height: 250px;
+    height: 50%;
     overflow: auto;
+}
+.tile-text2 {
+    height: 55%;
 }
 .tile-text li {
     list-style-type: none;
@@ -244,7 +255,7 @@
 }
 .col-tile-gr i {
     position: static;
-    font-size: 92px;
+    font-size: 62px;
     color: #1b72cd;
 }
 .col-tile-gr i.nolink {
@@ -252,7 +263,7 @@
 }
 .col-tile-gr2 {
     width: 100%;
-    height: 430px;
+    height: 450px;
     padding: 0;
 }
 .col-tile-gr2 a {
@@ -264,7 +275,7 @@
 i.index-pdf {
   color: #c50102;
   margin-left: 5px;
-  font-size:1.25em;
+  font-size: 1.3em;
 }
 
 /* -------------------- End of Garoon type Tile */
@@ -348,15 +359,22 @@ i.index-pdf {
         height: 350px;
         margin: 10px 0 10px 0;
     }
+    .col-tile-gr i {
+        font-size: 92px;
+    }
     .col-tile-gr2 {
         width: 300px;
-        height: 430px;
+        height: 450px;
         margin: 10px 0 10px 0;
     }
 
     .tile-title {
         font-size: 1.4rem;
     }
+    i.index-pdf {
+        font-size: 1.3em;
+    }
+
 }
 
 /* 1059px以上の設定  *************************************************************/

@@ -35,7 +35,7 @@ a,
     outline: 3px solid rgba(131,192,253,0.5);
 }
 
-#search1 {
+#search {
     right: 0;
 }
 
@@ -59,6 +59,16 @@ a,
 
 .subnavi {
     padding-bottom: 0;
+}
+
+#enquete {
+    /*background-color: #862030;*/
+    color: #000;
+    background-color: #f8c5c5;
+}
+.enquete-btn {
+    color: #fff;
+    background-color: #d0324d;
 }
     
 /*text decration

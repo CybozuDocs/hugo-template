@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         
-                        <div class="page-navigation"  role="navigation" v-bind:class="{ nodisp : pages.length <= 1 }" v-cloak="">
+                        <div class="page-navigation" role="navigation" aria-label="{{ i18n "Page_selection" }}" v-bind:class="{ nodisp : pages.length <= 1 }" v-cloak="">
                             <hr class="partition">
                             <button role="button" class="page-index page-arrow" v-bind:disabled="current <= 0" v-on:click="go_prev" title='{{ i18n "Previous_page"}}' aria-label='{{ i18n "Previous_page"}}'><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
                             <button role="button" v-for="page in pages" v-on:click="page_navigate(page)" class="page-index" v-bind:class="[ page - 1 == current ? 'current-page' : '' ]" v-bind:aria-selected="page - 1 == current" v-bind:title="page" v-bind:aria-label="page">[[page]]</button>

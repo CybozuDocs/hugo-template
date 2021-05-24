@@ -84,3 +84,12 @@ other = "search"
 
 [search_word]
 other = "search word"
+
+[Document_type]
+other = "docyment type"
+
+[Bread_crumb]
+other = "bread crumb"
+
+[Page_selection]
+other = "page selection"

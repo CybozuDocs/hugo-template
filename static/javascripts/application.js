@@ -2,7 +2,7 @@
 (function() {
     window.onload = function() {
         // 768pxは cssにおける@media screen min-width の設定値
-        let mobileSize = 768;
+        const mobileSize = 768;
 
         // ツリーナビゲーションヘッダー有無のフラグ
         let hasTreeHead = false;
@@ -11,7 +11,7 @@
         }
 
         // スクロール停止の検知イベント登録
-        let scrollStop = new $.Event("scrollstop");
+        const scrollStop = new $.Event("scrollstop");
         let timer;
         function scrollStopTrigger() {
           if (timer) { clearTimeout(timer); }
@@ -21,12 +21,20 @@
 
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
-            $("#lang-selector").click(function(e){
-                let altsts = $(".alter-lang").css("display");
-                if(altsts === "none") {
-                    openAlterLangs();
-                } else {
+            const $langbtn = $("#lang-selector");
+            const $langlist = $("#alter-lang");
+            
+            const langs = $('#alter-lang [role="option"]');
+            const $firstitem = langs.eq(0);
+            $langlist.attr("aria-activedescendant", $firstitem.attr("id"));
+            $firstitem.addClass("selectlang");
+            $firstitem.attr("aria-selected", "true");  
+                            
+            $langbtn.click(function(e){
+                if($langbtn.attr("aria-expanded") === "true") {
                     closeAlterLangs();
+                } else {   
+                    openAlterLangs();
                 }
             });
             $(document).click(function(e) {
@@ -34,47 +42,121 @@
                 closeAlterLangs();
               }
             });
-
-            $("#lang-selector").keydown(function (e) {
-                let altsts = $(".alter-lang").css("display");
-                let langlist = $(".lang-link");
-
+            
+            $langbtn.keydown(function (e) {
                 switch(e.which) {
-                    case 9: // tab
                     case 27: // esc
                         closeAlterLangs();
                         $(this).focus();
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
                         break;
+                    case 13: // enter
                     case 32: // space
-                        if(altsts === "none") {
+                        if($langbtn.attr("aria-expanded") === "true") {
+                            closeAlterLangs(); 
+                        } else {
+                            let $curlang = $("#alter-lang .selectlang");
+                            if ($curlang.length <= 0) {
+                                $firstitem.addClass("selectlang");
+                                $firstitem.attr("aria-selected", "true");  
+                            }
+                            
                             openAlterLangs();
-                            langlist.eq(0).focus();
                         }
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        break;
+                }
+            });
+            
+            $langlist.hover(function (e) {
+                const $curlang = $("#alter-lang .selectlang");
+                    
+                if ($curlang.length > 0) {
+                    $curlang.removeClass("selectlang");
+                    $curlang.removeAttr("aria-selected");  
+                }
+            });
+            
+            $langlist.click(function (e) {
+                const $curlang = $("#alter-lang :hover");
+                $("#displang").prop("innerText", $curlang.prop("innerText"));
+                $langbtn.attr("disabled", "true");
+                location.href = $curlang.attr("desturl");
+            });
+            
+            $langlist.keydown(function (e) {
+                const $curlang = $("#alter-lang .selectlang");
+                
+                switch(e.which) {
+                    case 9: // tab
+                    case 27: // esc
+                    case 32: // space
+                        closeAlterLangs();
+                        $langbtn.focus();
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        break;
+                    case 13: // enter
+                        closeAlterLangs();
+                        $("#displang").prop("innerText", $curlang.prop("innerText"));
+                        $langbtn.focus();
+                        $langbtn.attr("disabled", "true");
+                        location.href = $curlang.attr("desturl");
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        break;
                     case 38:  // up
-                        let cl = langlist.index($(':focus'));
-                        if( cl !== 0 ) {
-                            langlist.eq(cl -1).focus();
+                        $curlang.removeClass("selectlang");
+                        $curlang.removeAttr("aria-selected");
+                        
+                        let cl = langs.index($curlang) - 1;
+                        if ( cl < 0 ) {
+                            cl = langs.length - 1;
                         }
+                        langs.eq(cl).addClass("selectlang");
+                        langs.eq(cl).attr("aria-selected", "true");  
+                        
+                        $(this).attr("aria-activedescendant", langs.eq(cl).attr("id"));
+                        
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
                         return false;
                         break;
                     case 40: // down
-                        let nl = langlist.index($(':focus')) + 1;
-                        langlist.eq(nl).focus();
+                        $curlang.removeClass("selectlang");
+                        $curlang.removeAttr("aria-selected");
+                        
+                        let nl = langs.index($curlang) + 1;
+                        if (nl >= langs.length) {
+                            nl = 0;
+                        }
+                        langs.eq(nl).addClass("selectlang");
+                        langs.eq(nl).attr("aria-selected", "true");
+                        
+                        $(this).attr("aria-activedescendant", langs.eq(nl).attr("id"));
+                        
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
                         return false;
                         break;
                 }
             });
-
+            
             function openAlterLangs() {
-                $("#lang-selector").attr("aria-expanded", "true");
-                $(".alter-lang").css("display", "block");
-                $(".alter-lang").attr("aria-hidden", "false");
+                $langbtn.attr("aria-expanded", "true");
+                $langlist.css("display", "block");
+                $langlist.removeAttr("aria-hidden");
+                $langlist.attr("tabindex", "0");
+                $langlist.focus();
             }
 
             function closeAlterLangs() {
-                $(".alter-lang").attr("aria-hidden", "true");
-                $(".alter-lang").css("display", "none");
-                $("#lang-selector").attr("aria-expanded", "false");
+                $langlist.attr("aria-hidden", "true");
+                $langlist.css("display", "none");
+                $langlist.attr("tabindex", "-1");
+                $langbtn.attr("aria-expanded", "false");
             }
         }
 
@@ -89,9 +171,9 @@
                     let bottompos = 30;
                     let postype = "fixed";
                     
-                    let winHeight = $(window).height();
-                    let winScrollTop = $(window).scrollTop();
-                    let footerOffsetTop = $(".footer").offset().top;
+                    const winHeight = $(window).height();
+                    const winScrollTop = $(window).scrollTop();
+                    const footerOffsetTop = $(".footer").offset().top;
                     
                     if ( (footerOffsetTop - winHeight) < winScrollTop ) {
                         bottompos += $(".footer").height();
@@ -129,15 +211,15 @@
 
         $('#tree-main').on("changed.jstree", function (e, data) {
             if (data.action === "select_node") {
-                let pos = $tree.scrollTop();
+                const pos = $tree.scrollTop();
                 // 選択時にスクロール位置をクッキーに保存する
                 // クッキーの有効期間は5秒間（クリックしてから再描画されるまでの時間を想定）
-                let date = new Date();
+                const date = new Date();
                 date.setTime( date.getTime() + ( 5000 ));
                 Cookies.set("dpos", pos, { expires: date, samesite: "Strict"} );
 
                 // リンククリック対応
-                let newurl = data.node.a_attr.href;
+                const newurl = data.node.a_attr.href;
                 if (newurl !== "") {
                     if ((data !== undefined) 
                         && ("originalEvent" in data.event)
@@ -145,7 +227,7 @@
 
                         // キーボード操作で選択されたフラグをクッキーに保存する
                         // クッキーの有効期間は5秒間（クリックしてから再描画されるまでの時間を想定）
-                        let date = new Date();
+                        const date = new Date();
                         date.setTime( date.getTime() + ( 5000 ));
                         Cookies.set("keydn", "true", { expires: date, samesite: "Strict"} );
                     }
@@ -174,9 +256,9 @@
         });
 
         // 本文内のh2とh3
-        let allLinks = $("#main h2, #main h3");
+        const allLinks = $("#main h2, #main h3");
         // 本文内のh2
-        let h2Links = $("#main h2");
+        const h2Links = $("#main h2");
 
         // ページ内アンカーへの移動
         function moveToAnchor(destUrl) {
@@ -197,7 +279,7 @@
         }
 
         // ツリーナビゲーションのスクロール対象div
-        let $tree = $("#tree-main");
+        const $tree = $("#tree-main");
 
         // 本文スクロール時にツリーナビゲーションの高さ調節させるイベントハンドラ
         $(window).on("scrollstop",function(e) {
@@ -212,13 +294,18 @@
             }
 
             resizetimer = setTimeout(function() {
+                let m = false;
+                if (window.innerWidth < mobileSize) {
+                    m = true;
+                }
+                switchParts(m);
                 adjustTreeHeight();
             }, 500);
         }); 
 
         // ツリーナビゲーションの位置と高さの調整
         function adjustTreeHeight(){
-            if($(window).width() < mobileSize) {
+            if(window.innerWidth < mobileSize) {
                 // モバイルサイズにリサイズした場合の設定リセット
                 $("#tree-nav").css("height", "auto");
                 $tree.css("height", "auto");
@@ -229,7 +316,7 @@
             }
 
             if(hasTreeHead === true) {
-                let menuheight = $(".g-nav").height() + $(".mega-nav").height();
+                const menuheight = $(".g-nav").height() + $(".mega-nav").height();
 
                 // メガメニューがスクロールアウトしたらツリーナビゲーションの位置を固定
                 if(menuheight < $(window).scrollTop()) {
@@ -240,9 +327,9 @@
             }
 
             // 高さを調整
-            let winHeight = $(window).height();
-            let footerOffsetTop = $(".footer").offset().top;
-            let winScrollTop = $(window).scrollTop();
+            const winHeight = $(window).height();
+            const footerOffsetTop = $(".footer").offset().top;
+            const winScrollTop = $(window).scrollTop();
             
             // 画面内に表示されているフッターの高さに応じたサイズ調整
             let wrapHeight = 0;
@@ -302,6 +389,36 @@
             return th1 + th2;
         }
 
+        // ツリーナビゲーション位置の入れ替え
+        function switchParts(mobile) {
+            const head = document.getElementById("head");
+            const search = document.getElementById("search");
+            const lang = document.getElementById("lang");
+            
+            if((search != null) && (lang != null)) {
+                if (mobile === true) {
+                    head.insertBefore(lang, search);
+                } else {
+                    head.insertBefore(search, lang);
+                }
+            }
+            
+            const page = document.getElementById("page");
+            const tree = document.getElementById("tree");
+            const contents = document.getElementById("contents");
+            
+            if ((tree != null) && (contents != null)) {
+                if (mobile === true) {
+                    if ($(page).children().first().attr("id") === "tree") {
+                        page.insertBefore(contents,tree);
+                    }
+                } else {
+                    if ($(page).children().first().attr("id") === "contents") {
+                        page.insertBefore(tree, contents);
+                    }
+                }
+            }
+        }
 
     /*** ツリーナビゲーション内TOC ***/
 
@@ -322,10 +439,10 @@
                 }
             });
 
-            let tocMargin = 150;
-            let locbase = location.origin + location.pathname + "#";
+            const tocMargin = 150;
+            const locbase = location.origin + location.pathname + "#";
             // 本文のスクロール位置
-            let cur_pos = $(window).scrollTop() + tocMargin;
+            const cur_pos = $(window).scrollTop() + tocMargin;
 
             if(cur_pos <= tocMargin ) {
                 // ページの先頭
@@ -367,7 +484,7 @@
 
         // ナビゲーション内TOCのハイライト設定
         function setTreeTocHighlight(target) {
-            let toclinks = $("a.toclink");
+            const toclinks = $("a.toclink");
             toclinks.removeClass("current");
 
             toclinks.each(function() {
@@ -454,8 +571,8 @@
 
             // TOC選択による本文スクロール
             $("#page-toc li").click(function() {
-                let href = $(this).find("a").attr("href");
-                let pos = $(href).offset().top;
+                const href = $(this).find("a").attr("href");
+                const pos = $(href).offset().top;
                 $("html, body").stop().animate({ scrollTop:pos });
                 location.href = href;
                 return false;
@@ -468,7 +585,7 @@
 
             // TOCへのハイライト設定
             function moveTocHighlight() {
-                 let cur_pos = $(window).scrollTop() + 80;
+                 const cur_pos = $(window).scrollTop() + 80;
                 $(".article :header").not(".article h1").each(function() {
                     if(cur_pos >= $(this).offset().top) {
                         $("#page-toc li a").removeClass("current");
@@ -481,23 +598,16 @@
         }
 
     /*** 本文内ヘッダータグのパーマリンク  ***/
-
-        if ($('div.heading-link').length > 0 ) {
-            $('div.heading-link').click(function() {
-                let $popurl = $(this).children('div.heading-url');
-                let $popurlInput = $popurl.children();
+    
+        if ($('.heading-button').length > 0 ) {
+            $('.heading-button').click(function() {
+                const $popurl = $(this).parent().children('div.heading-url');
+                const $popurlInput = $popurl.children();
 
                 if ($popurl.css('display') === "block") {
                     $popurl.hide();
-
-                    $('.heading-link > a').attr({
-                        'aria-selected': 'false',
-                        'aria-expanded': 'false'
-                    });
-                    $popurl.attr({
-                        'aria-expanded': 'false',
-                        'aria-hidden': 'true'
-                    });
+                    $popurl.attr('aria-hidden', 'true');
+                    $(this).attr('aria-expanded', 'false');
                 } else {
                     $popurl.show();
                     $popurlInput.select();
@@ -507,14 +617,8 @@
                         $popurl.hide();
                     }).show();
 
-                    $('.heading-link > a').attr({
-                        'aria-selected': 'true',
-                        'aria-expanded': 'true'
-                    });
-                    $popurl.attr({
-                        'aria-expanded': 'true',
-                        'aria-hidden': 'false'
-                    });
+                    $popurl.attr('aria-hidden', 'false');
+                    $(this).attr('aria-expanded', 'true');
                 }
                 return false;
             });
@@ -531,25 +635,17 @@
             });
         }
 
-    /*** ホームページの人気のトピックの開閉  ***/
-
-        if( document.getElementById("hotArticles-showMore") != null ) {
-            $("#hotArticles-showMore").click(function(e){
-                $(this).toggleClass("expand closed") ;
-                $("#hotArticles-others").slideToggle();
-                e.stopPropagation();
-            });
-        }
-
-
     /***  初回表示時の処理 ***/
 
         function initPage() {
-            if($(window).width() >= mobileSize) {
-                // モバイル画面以外の場合、処理を行う
+            if(window.innerWidth < mobileSize) {
+                // モバイル画面ではツリーナビゲーションの位置を変える
+                switchParts(true);
+            } else {
+                // モバイル画面以外の処理
 
-                let topMargin = 90;
-                let $current = $("#tree-nav .current");
+                const topMargin = 90;
+                const $current = $("#tree-nav .current");
                 adjustTreeHeight();
 
                 // ハイライトを持つ場合
@@ -589,7 +685,7 @@
 
     /*** コンテンツ修正 ***/
 
-        let tables = $("article table")
+        const tables = $("article table")
         if( tables != null ) {
             tables.each( function() {
               $(this).wrap("<div class='wrapTable'></div>");

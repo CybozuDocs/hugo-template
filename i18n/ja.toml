@@ -84,3 +84,12 @@ other = "検索"
 
 [search_word]
 other = "検索ワード"
+
+[Document_type]
+other = "文書の種別"
+
+[Bread_crumb]
+other = "パンくずリスト"
+
+[Page_selection]
+other = "ページ選択"

@@ -8,13 +8,13 @@
     </div>
     {{- if le $level 5 }}
     <div class="heading-link">
-        <a tabindex="0">
+        <button class="heading-button" tabindex="0" aria-owns="heading-url-{{$id}}" aria-expanded="false">
             <span>{{ i18n "Permalink" }}</span>
             <i class="fas fa-link" aria-hidden="true"></i>
-        </a>
-    <div class="heading-url">
-        <input readonly="readonly" value="{{ printf "%s#%s" $link $id | safeURL}}" name="headingUrl" type="text" onclick="this.focus(); this.select()">
-    </div>
+        </button>
+        <div id="heading-url-{{$id}}" class="heading-url" aria-hideen="true">
+            <input readonly="readonly" value="{{ printf "%s#%s" $link $id | safeURL}}" name="headingUrl" type="text" onclick="this.focus(); this.select()">
+        </div>
     </div>
     {{- end }}
 {{- end }}

@@ -3,7 +3,7 @@
     {{- $hedclass = "home-header" }}
 {{- end }}
     <header class="header {{$hedclass}}">
-        <div class="header-wrap">
+        <div id="head" class="header-wrap">
         {{- $langlen := len $.AllTranslations }}
         {{- $baselang := "" }}
         {{- if ne $langlen 0 }}
@@ -40,7 +40,7 @@
                 {{- $glang = "zh-TW" }}
             {{- end }}
 
-            <div id="search1" class="search-wrap">
+            <div id="search" class="search-wrap">
                 <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}' role="search" >
                     <div class="searchbox">
                         <input type="search" name="q" id="headerSearchBox_input" class="search-input" role="searchbox" aria-label='{{i18n "search_word"}}' placeholder='{{i18n "Enter_keywords"}}'>
@@ -60,25 +60,6 @@
         {{- if and .IsTranslated (eq .Site.Params.langSelector true) }}
             {{ partial "langselector" . }}
         {{- end}}
-
-        {{- if eq $disp_sbox true }}
-            <div id="search2" class="search-wrap">
-                <form id="headerSearchBox_form2" action="{{ "" | relURL }}{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_input2").value==""){return false;}' role="search" >
-                    <div class="searchbox">
-                        <input type="search" name="q" id="headerSearchBox_input2" class="search-input" role="searchbox" aria-label='{{i18n "search_word"}}' placeholder='{{i18n "Enter_keywords"}}'>
-                        <button type="submit" class="search-submit" data-disable-with="" aria-label='{{i18n "search"}}'></button>
-            {{- if ne .Site.Params.google_search true }}
-                        <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}">
-            {{- end }}
-                    </div>
-                </form>
-                
-            {{- if eq .Site.Params.google_search true }}
-                <script src="https://www.gstatic.com/prose/brand.js" targetId="headerSearchBox_input2" hl="{{$glang}}"></script>
-            {{- end }}
-            </div>
-        {{- end }}
-
-
+        
         </div>
     </header>

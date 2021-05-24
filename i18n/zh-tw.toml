@@ -87,3 +87,11 @@ other = "搜尋"
 [search_word]
 other = "搜尋關鍵詞"
 
+[Document_type]
+other = "文件類型"
+
+[Bread_crumb]
+other = "麵包屑小徑"
+
+[Page_selection]
+other = "頁面選擇"

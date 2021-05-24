@@ -6,11 +6,11 @@
 {{- if eq $.Site.Params.meganav true }}
     {{ partial "meganav" . }}
 {{- end }}
-<div class="page" >
-    <div class="tree-wrap">
+<div id="page" class="page" >
+    <div id="tree" class="tree-wrap">
         {{ partial "treenav" . }}
     </div>
-    <div class="contents-wrap">
+    <div id="contents" class="contents-wrap">
         {{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.Params.languageCode "ja-jp") (ne $.Site.Params.languageCode "ja-cn") }}
             {{ partial "disclaimer" . }}
         {{- end }}
@@ -27,7 +27,6 @@
             {{- end }}
 
         </main>
-        {{- partial "enquete" . -}}
     </div>
     {{- if ne $.Site.Params.meganav true -}}
     <div class="sidebar-wrap">
@@ -38,6 +37,7 @@
     {{- end }}
 </div>
 {{- partial "gototop" . }}
+{{- partial "enquete" . -}}
 {{- partial "footer" . }}
 {{- if and (eq $.Site.Params.product "kintone") (eq $.Site.Params.TargetRegion "JP") }}{{ partial "yahootagmanager" . }}{{- end }}
 {{- end }}
