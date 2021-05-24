@@ -222,7 +222,7 @@
     height: 50%;
     overflow: auto;
 }
-.tile-text {
+.tile-text2 {
     height: 55%;
 }
 .tile-text li {
@@ -255,7 +255,7 @@
 }
 .col-tile-gr i {
     position: static;
-    font-size: 92px;
+    font-size: 62px;
     color: #1b72cd;
 }
 .col-tile-gr i.nolink {
@@ -275,7 +275,7 @@
 i.index-pdf {
   color: #c50102;
   margin-left: 5px;
-  font-size:1.25em;
+  font-size: 1.3em;
 }
 
 /* -------------------- End of Garoon type Tile */
@@ -359,6 +359,9 @@ i.index-pdf {
         height: 350px;
         margin: 10px 0 10px 0;
     }
+    .col-tile-gr i {
+        font-size: 92px;
+    }
     .col-tile-gr2 {
         width: 300px;
         height: 450px;
@@ -368,6 +371,10 @@ i.index-pdf {
     .tile-title {
         font-size: 1.4rem;
     }
+    i.index-pdf {
+        font-size: 1.3em;
+    }
+
 }
 
 /* 1059px以上の設定  *************************************************************/
