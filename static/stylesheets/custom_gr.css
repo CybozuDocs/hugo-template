@@ -385,8 +385,8 @@ background: rgba(255, 255, 255, 0.9);
 
 /* Home page --------------------------------------*/
 .tile-title {
-    margin-top: 1em;
-    font-size: 1.6em;
+    margin-top: 20px;
+    font-size: 26px;
     color: #1b72cd;
 }
 

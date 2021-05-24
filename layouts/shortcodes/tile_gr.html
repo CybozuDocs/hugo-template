@@ -1,10 +1,12 @@
 <div class="col-tile col-tile-gr">
     {{- if and (.Get "tile_title") (and (.Get "link_href") (.Get "fontawesome_icon")) -}}
     <a class="" href="{{- .Get "link_href" -}}" target="_self">
-        <div class="tile-icon">
-            <i class="{{- .Get "fontawesome_icon"}}"></i>
+        <div class="tile-head">
+            <div class="tile-icon">
+                <i class="{{- .Get "fontawesome_icon"}}"></i>
+            </div>
+            <h3 class="tile-title">{{- .Get "tile_title" -}}</h3>
         </div>
-        <h3 class="tile-title">{{- .Get "tile_title" -}}</h3>
         <div class="tile-text">{{- .Inner | markdownify -}}</div>
     </a>
     {{- end -}}

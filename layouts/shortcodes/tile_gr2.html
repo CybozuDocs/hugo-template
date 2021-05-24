@@ -1,5 +1,5 @@
 <div class="col-tile col-tile-gr col-tile-gr2 col-flat">
-    <div>
+    <div class="tile-head tile-head2">
     {{- if and (.Get "tile_title") (.Get "fontawesome_icon") -}}
         {{- if (.Get "link_href") -}}
         <a href="{{- .Get "link_href" -}}" target="_self">
@@ -16,5 +16,5 @@
         {{- end -}}
     {{- end -}}
     </div>
-    <div class="tile-text">{{- .Inner | markdownify -}}</div>
+    <div class="tile-text tile-text2">{{- .Inner | markdownify -}}</div>
 </div>
