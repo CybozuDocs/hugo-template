@@ -395,22 +395,27 @@
             const search = document.getElementById("search");
             const lang = document.getElementById("lang");
             
-            if (mobile === true) {
-                head.insertBefore(lang, search);
-            } else {
-                head.insertBefore(search, lang);
+            if((search != null) && (lang != null)) {
+                if (mobile === true) {
+                    head.insertBefore(lang, search);
+                } else {
+                    head.insertBefore(search, lang);
+                }
             }
             
             const page = document.getElementById("page");
             const tree = document.getElementById("tree");
             const contents = document.getElementById("contents");
-            if (mobile === true) {
-                if ($(page).children().first().attr("id") === "tree") {
-                    page.insertBefore(contents,tree);
-                }
-            } else {
-                if ($(page).children().first().attr("id") === "contents") {
-                    page.insertBefore(tree, contents);
+            
+            if ((tree != null) && (contents != null)) {
+                if (mobile === true) {
+                    if ($(page).children().first().attr("id") === "tree") {
+                        page.insertBefore(contents,tree);
+                    }
+                } else {
+                    if ($(page).children().first().attr("id") === "contents") {
+                        page.insertBefore(tree, contents);
+                    }
                 }
             }
         }
