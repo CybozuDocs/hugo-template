@@ -50,7 +50,11 @@
             {{- partial "title" . -}}
     </div>
     <div class="sect-menu">
-            {{- template "pagelist2" . }}
+        <ul class="mega-list" role="list">
+        {{- range .Pages }}
+            <li class="mega-list-line" role="presentation"><a class="mega-list-item" role="listitem" href="{{.RelPermalink}}">{{- partial "title" . }}</a></li>
+        {{- end }}
+        </ul>
     </div>
         {{- end }}
     {{- end}}
