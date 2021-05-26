@@ -728,8 +728,11 @@ ul.breadcrumbs {
     font-style: normal;
     font-size: .7em;
     line-height: 2rem;
+    padding: 5px;
     cursor: pointer;
-
+}
+.jstree-ocl:hover::before {
+    background-color: #eceaf7;
 }
 .jstree-open > .jstree-ocl::before {
     content: "\f078";
