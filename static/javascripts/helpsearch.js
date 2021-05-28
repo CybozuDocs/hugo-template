@@ -159,21 +159,15 @@ const vm = new Vue({
         if (this.searching == false) {
             this.searching = true;
             let newpath = location.pathname;
+            const words = this.search_words.trim();
 
-            if(this.search_words.length > 0 ) {
-                newpath = newpath + "?c=" + this.cid + "&start=" + vm.start + "&q=" + encodeURIComponent(this.search_words);
-                location.href = newpath;
-            }
+            newpath = newpath + "?c=" + this.cid + "&start=" + vm.start + "&q=" + encodeURIComponent(words);
+            location.href = newpath;
         }
     },
     submit_button: function() {
         this.start = 1;
         this.submit();
-    },
-    search: function () {
-        this.items = [];
-        this.error_message = "";
-        callSearchApi();
     },
     change_category: function(num) {
         this.start = 0;
@@ -207,10 +201,6 @@ const vm = new Vue({
 
 const callSearchApi = function() {
     const words = vm.search_words;
-    if (words.length <= 0) {
-        vm.searching = false;
-        return false;
-    }
 
     const target = searchUrl + "?app=" + vm.app + "&c=" + vm.cid + "&lang=" + vm.lang + "&r=" + vm.region + "&start=" + vm.start  + "&q=" + encodeURIComponent(words);
     vm.searching = true;
@@ -258,11 +248,27 @@ const callSearchApi = function() {
                     vm.error_message = jd["error"].message;
                 }
                 vm.initial = false;
-            } else {
-                vm.error_message = "Error: status=" + xhr.status;
             }
             vm.resetButton();
         } 
+    }
+    
+    xhr.onerror = function() {
+        if (xhr.status === 0) {
+            vm.error_message = "Network error.";
+        } else {
+            vm.error_message = "Error: status=" + xhr.status;
+        }
+        vm.initial = false;
+        vm.resetButton();
+    }
+    
+    xhr.onabort = function() {
+        vm.resetButton();
+    }
+    
+    xhr.ontimeout = function() {
+        vm.resetButton();
     }
 
     xhr.send();
