@@ -494,10 +494,6 @@ background: rgba(255, 255, 255, 0.9);
 
 /* 1059px以上の設定  *************************************************************/
 @media only screen and (min-width: 1059px) {
-    .search-wrap {
-
-    }
-
     .top-title {
         padding: 1.5em 0 1.5em 0;
         font-size: 3em;
@@ -506,9 +502,13 @@ background: rgba(255, 255, 255, 0.9);
     .contents-wrap {
         width: calc(100% - 292px);
     }
-    
+
     .article img.screenshot {
         max-width: 600px;
+    }
+
+    .article .graynote img.screenshot {
+        max-width: 100%;
     }
 }
 
