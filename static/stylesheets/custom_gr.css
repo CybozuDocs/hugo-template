@@ -230,7 +230,7 @@ td a > .fa:hover{
 }
 .article a {
     color: #1b72cd;
-    text-decoration: underline; 
+    text-decoration: underline;
     line-height: 1.5em;
 }
 .article ul ul{
@@ -425,7 +425,6 @@ background: rgba(255, 255, 255, 0.9);
     .lang-title:lang(en) {
         padding-top: 8px;
     }
-    
     .footer-wrap {
         height: 12rem;
     }
@@ -457,16 +456,14 @@ background: rgba(255, 255, 255, 0.9);
     .header .searchbox input {
         font-size: 1.2rem;
     }
-    
     .current-lang {
         padding-top: 6px;
     }
     .current-lang .fas {
         margin-top: 6px;
     }
-    
     .article h2 {
-        font-size:2.063em;      
+        font-size:2.063em;
     }
     .article h3 {
         font-size: 1.62em;
