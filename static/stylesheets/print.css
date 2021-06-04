@@ -1,4 +1,4 @@
-@page { 
+@page {
     /*size: A4;*/
     size: 215mm 297mm;
     margin: 18mm 15mm 16mm 15mm;
@@ -107,7 +107,7 @@
     .chapter  {
         page-break-before: always;
     }
-    
+
     .section {
         page-break-after: always;
     }
@@ -115,15 +115,15 @@
     .admonition-alt  {
         page-break-after: avoid;
     }
-    
+
     h1 {
         line-height: 2.5em;
     }
-    
+
     img {
         page-break-inside: avoid;
     }
-    
+
     h1, h2, h3, h4, h5, h6, table tr:first-of-type, tbody tr:first-of-type {
         page-break-after: avoid;
     }
@@ -237,7 +237,7 @@
 
 .article img.screenshot {
     max-width: 600px;
-    height: auto;
+    max-height: 746px;
 }
 
 .article img {
