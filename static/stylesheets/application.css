@@ -358,6 +358,7 @@ li .lang-title {
 }
 .article .inner-index h2{
     border: none;
+    z-index: unset;
 }
 .article .inner-index a{
     text-decoration: none;
