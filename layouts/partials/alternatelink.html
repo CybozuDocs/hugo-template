@@ -54,9 +54,6 @@
         {{- else if eq . "CN" }}
             {{- range $.AllTranslations }}
                 {{- $disp :=  "true" }}
-                {{- if eq .Site.Language.Lang "en" }}
-                    {{- $disp = "false" }}
-                {{- end }}
                 {{- if eq $product "Garoon" }}
                     {{- if eq $.Site.Params.service_type_id "cloud" }} 
                         {{- $disp = "true" }}
