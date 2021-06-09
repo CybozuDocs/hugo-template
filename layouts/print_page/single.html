@@ -16,13 +16,13 @@
 
     <link rel="stylesheet" href="https://js.cybozu.com/font-awesome/v4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application.css" $buildnum | relURL }}">
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/print.css" $buildnum | relURL }}">
     {{- with .Site.Params.custom_css }}
         {{- $files := split . "," }}
         {{- range $files }}
     <link rel="stylesheet" href="{{ printf "%s?%s" . $buildnum | relURL }}">
         {{- end }}
     {{- end}}
-    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/print.css" $buildnum | relURL }}">
 
     <!-- language resource depended styles -->
     <style>
