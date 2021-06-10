@@ -51,3 +51,9 @@
         width: 20%;
     }
 }
+
+@media print {
+    .book-title {
+        width: 80%;
+    }
+}
