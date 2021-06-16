@@ -906,7 +906,7 @@ ul.breadcrumbs {
 }
 .article ol>li {
     padding: 5px 0 5px 10px;
-    margin: 0 0 15px 5px;
+    margin: 0 0 15px 30px;
     border-left: solid 1px #e6e6e6;
 }
 .article ol>li::marker {
