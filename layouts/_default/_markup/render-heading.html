@@ -11,7 +11,7 @@
     <div class="h6-anc" id="{{.Anchor | safeURL}}">{{.Text | safeHTML}}</div>
 </div>
         {{- else }}
-<h6>{{.Text | safeHTML}}</h6>
+<div class="h6-noanc">{{.Text | safeHTML}}</div>
         {{- end }}
     {{- else }}
         {{- $link := (printf "https://%s%s" .Page.Site.Params.domain .Page.RelPermalink) }}

@@ -247,16 +247,15 @@ td a > .fa:hover{
 }
 .article ol>li  {
     font-size: 1.12em;
+    border: 0;
 }
 .article ol>li .listtext {
     font-size: .9em;
 }
-.article ol>li:before {
-    content: counter(li)".";
+.article ol>li::marker {
     font-size: 1.12em;
     font-family: "Arial Black", Arial, Times, serif;
     color: #000;
-    border: 0;
 }
 .article table {
     width: 100%;

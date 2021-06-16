@@ -307,6 +307,12 @@ li .lang-title {
   overflow: hidden;
 }
 
+.h6-noanc {
+    position: relative;
+    font-weight:bold;
+    margin-top: 0;
+    padding-top: 20px;
+}
 .h6-anc {
     margin:2.188em 0 .313em 0;
     padding:0 0 0 22px;
@@ -891,36 +897,26 @@ ul.breadcrumbs {
     list-style-type: disc;
 }
 .article ol {
-    margin: 30px 0;
-    counter-reset: li;
-    list-style: none;
+    margin: 30px 0 0 40px;
+    padding-left: 40px;
 }
 .article ol ol {
     margin-top: 0;
+    padding: 0;
 }
 .article ol>li {
-    position: relative;
-    padding: 5px 0 5px 53px;
+    padding: 5px 0 5px 10px;
     margin: 0 0 15px 5px;
+    border-left: solid 1px #e6e6e6;
 }
-.article ol>li:before {
-    content: counter(li);
-    counter-increment: li;
-    position: absolute;
-    height: 100%;
-    width: 45px;
-    top: 0;
-    left: 0;
-    padding-right: 10px;
+.article ol>li::marker {
     color: #888;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     font-weight: 600;
     line-height: 33px;
-    text-align: right;
-    border-right: 1px solid #e6e6e6;
 }
-.article ol>li>ol>li:before {
-    font-size: 1.3rem;
+.article ol>li>ol>li::marker {
+    font-size: 1.2rem;
 }
 .article li p {
     display: inline
