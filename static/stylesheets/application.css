@@ -1077,7 +1077,7 @@ table .wd10 {
 
 /* graynote -------------------- */
 .graynote {
-    padding: .625em;
+    padding: .625em .625em .625em 2em;
     margin-bottom: 1em;
     border:solid 1px #CBCBCB;
     background:#F9F9F9;
