@@ -59,9 +59,9 @@
         </h2>
     </div>
     <div class="sect-menu">
-        <ul class="mega-list" role="list">
+        <ul class="mega-list">
         {{- range .Pages }}
-            <li class="mega-list-line" role="presentation"><a class="mega-list-item" role="listitem" href="{{.RelPermalink}}">{{- partial "title" . }}</a></li>
+            <li class="mega-list-line"><a class="mega-list-item" href="{{.RelPermalink}}">{{- partial "title" . }}</a></li>
         {{- end }}
         </ul>
     </div>
