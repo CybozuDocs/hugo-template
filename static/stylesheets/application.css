@@ -604,6 +604,7 @@ li .lang-title {
     padding-left: 30px;
 }
 .mega-list-line {
+    page-break-inside: avoid;
     margin-bottom: .5em;
 }
 .mega-list-item {
