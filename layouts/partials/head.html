@@ -42,7 +42,8 @@
     {{- if or (eq .Params.type "search_result") (eq .Params.nolink true) }}
     <meta name="robots" content="noindex">
     {{- end }}
-    <meta name="description" content="{{$desc}}">
+    <meta name="description" content="{{.Description}}">
+    <meta name="keywords" content="{{ delimit .Keywords ", " }}">
     <meta name="thumbnail" content="https://{{.Site.Params.domain}}{{ .Site.Params.og_img | relURL }}">
     <meta property="og:url" content="https://{{.Site.Params.domain}}{{.Permalink | relURL }}">
     {{- if .IsHome}}
@@ -53,7 +54,7 @@
     <meta property="og:site_name" content="{{$sitename}}">
     <meta property="og:title" content="{{$title}}">
     <meta property="og:image" content="https://{{.Site.Params.domain}}{{ .Site.Params.og_img | relURL }}">
-    <meta property="og:description" content="{{$desc}}">
+    <meta property="og:description" content="{{.Description}}">
     <meta property="og:locale" content="{{.Site.LanguageCode}}">
     <meta name="apple-mobile-web-app-title" content="{{$title}}">
     <meta name="apple-mobile-web-app-capable" content="yes">
