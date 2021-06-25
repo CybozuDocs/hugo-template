@@ -86,7 +86,7 @@ other = "search"
 other = "search word"
 
 [Document_type]
-other = "docyment type"
+other = "menu"
 
 [Bread_crumb]
 other = "bread crumb"
