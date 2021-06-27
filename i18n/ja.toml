@@ -86,7 +86,7 @@ other = "検索"
 other = "検索ワード"
 
 [Document_type]
-other = "文書の種別"
+other = "メニュー"
 
 [Bread_crumb]
 other = "パンくずリスト"
