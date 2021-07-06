@@ -109,7 +109,7 @@
                   {{- else }}
             <a href="{{.RelPermalink}}">
                   {{- end }}
-                  {{- partial "title" . -}}</a>
+                  {{- partial "title" . | safeHTML -}}</a>
             <ul> 
                     {{- $entries := ""}}
                     {{- if .Sections}}
@@ -145,11 +145,10 @@
                 {{- else -}}
             <li role="presentation">
                 {{- end -}}
-
                 {{- if eq $selected "true" -}}
-                <a href="#" data-jstree='{ "selected" : true }' class="toclink current">{{ partial "title" .}}</a>
+                <a href="#" data-jstree='{ "selected" : true }' class="toclink current">{{ partial "title" . | safeHTML }}</a>
                 {{- else -}}
-                <a href="{{.RelPermalink}}" class="toclink">{{ partial "title" .}}</a>
+                <a href="{{.RelPermalink}}" class="toclink">{{ partial "title" . | safeHTML }}</a>
                 {{- end }}
 
                 {{- if gt $toclen 0 }}
@@ -233,7 +232,7 @@
     {{- $txt = (strings.TrimPrefix ">" $txt ) }}
     {{- $txt = (strings.TrimSuffix "<" $txt ) }}
                         <li role="presentation">
-                            <a href="{{$pageurl}}#{{$anc}}" class="toclink">{{$txt}}</a>
+                            <a href="{{$pageurl}}#{{$anc}}" class="toclink">{{$txt | safeHTML}}</a>
     {{- if ne $haschild true -}}
                         </li>
     {{- end -}}
