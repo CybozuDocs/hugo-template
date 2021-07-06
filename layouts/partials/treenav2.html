@@ -37,7 +37,7 @@
                             {{- $txt = (strings.TrimPrefix ">" $txt ) }}
                             {{- $txt = (strings.TrimSuffix "<" $txt ) }}
 
-                         <li><a href="{{$pageurl}}#{{$anc}}" class="toclink">{{$txt}}</a></li>
+                         <li><a href="{{$pageurl}}#{{$anc}}" class="toclink">{{$txt | safeHTML}}</a></li>
                         {{- end }}
                 </ul>
                     {{- end }}
