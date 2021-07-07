@@ -635,6 +635,15 @@
             });
         }
 
+    /*** ホームページの人気のトピックの開閉  ***/
+        if( document.getElementById("hotArticles-showMore") != null ) {
+            $("#hotArticles-showMore").click(function(e){
+                $(this).toggleClass("expand closed") ;
+                $("#hotArticles-others").slideToggle();
+                e.stopPropagation();
+            });
+        }
+        
     /***  初回表示時の処理 ***/
 
         function initPage() {
