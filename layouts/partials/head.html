@@ -22,7 +22,7 @@
 
     {{- $desc := "" }}
     {{- if .Description }}
-        {{- $desc = .Description }}
+        {{- $desc = partial "applyparams" (dict "target" .Description "params" .Site.Params) }}
     {{- else }}
         {{- $post := "" }}
         {{- if and (not .IsHome) (or (eq .Site.Params.product "Garoon") (eq .Site.Params.product "Mailwise") (eq .Site.Params.product "Office")) }}
