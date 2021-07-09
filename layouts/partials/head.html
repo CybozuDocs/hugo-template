@@ -21,22 +21,26 @@
     {{- $sitename = printf "%s %s" $sitename .Site.Params.help -}}
 
     {{- $desc := "" }}
-    {{- if and (not .IsHome) (or (eq .Site.Params.product "Garoon") (eq .Site.Params.product "Mailwise") (eq .Site.Params.product "Office")) }}
-        {{- $title = printf "%s | %s" $title $sitename }}
-        {{- $contents := split .Content "\n" }}
-        {{- $first := "" }}
-        {{- range first 1 $contents }}
-            {{- $desc = strings.TrimLeft "<p>" . }}
-            {{- $desc = strings.TrimRight "<br>" $desc }}
-            {{- $desc = (strings.TrimRight "</p>" $desc) | html }}
+    {{- if .Description }}
+        {{- $desc = .Description }}
+    {{- else }}
+        {{- $post := "" }}
+        {{- if and (not .IsHome) (or (eq .Site.Params.product "Garoon") (eq .Site.Params.product "Mailwise") (eq .Site.Params.product "Office")) }}
+            {{- $title = printf "%s | %s" $title $sitename }}
+            {{- $contents := split .Content "\n" }}
+            {{- $first := "" }}
+            {{- range first 1 $contents }}
+                {{- $post = strings.TrimLeft "<p>" . }}
+                {{- $post = strings.TrimRight "<br>" $post }}
+                {{- $post = (strings.TrimRight "</p>" $post) | html }}
+            {{- end }}
+        {{- end -}}
+        {{- $desc_base := (i18n "og_desc1" .) }}
+        {{- with .Site.Params.service_type }}
+            {{- $desc_base = (i18n "og_desc1_service" $) }}
         {{- end }}
-    {{- end -}}
-
-    {{- $desc_base := (i18n "og_desc1" .) }}
-    {{- with .Site.Params.service_type }}
-        {{- $desc_base = (i18n "og_desc1_service" $) }}
+        {{- $desc = printf "%s %s %s" $desc_base (i18n "og_desc2" .) $post }}
     {{- end }}
-    {{- $desc = printf "%s %s %s" $desc_base (i18n "og_desc2" .) $desc }}
     <title>{{ $title }}</title>
     <link rel="canonical" href="https://{{.Site.Params.domain}}{{ .Permalink | relURL }}">
     {{- if or (eq .Params.type "search_result") (eq .Params.nolink true) }}
