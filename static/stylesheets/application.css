@@ -1737,6 +1737,10 @@ table .wd10 {
     #tree-main a {
         width: 190px;
     }
+    #tree-main > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > a {
+        width: 185px;
+    }
+    
     .contents-wrap {
         width: calc(100% - 292px);
         padding-right: 32px;
