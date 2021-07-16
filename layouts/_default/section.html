@@ -29,18 +29,27 @@
                 {{ .Content }}
             </article>
             {{- if ne $.Site.Params.meganav true -}}
+                {{- $pages := (.Pages | union .Sections) }}
+                {{- $disppage := 0 }}
+                {{- range $pages.ByWeight }}
+                    {{- if in .Params.disabled $.Site.Params.TargetRegion}}
+                    {{- else }}
+                        {{- $disppage = (add $disppage 1) }}
+                    {{- end }}
+                {{- end }}
+                {{- if gt $disppage 0 }}
             <nav class="section-pagelist">
                 <div class="section-pagelist-heading">{{ i18n "Articles_in_this_category" }}</div>
-                {{- $pages := (.Pages | union .Sections) }}
                 <ul>
-                {{- range $pages.ByWeight }}
+                  {{- range $pages.ByWeight }}
                     {{- if in .Params.disabled $.Site.Params.TargetRegion}}
                     {{- else}}
                     <li><a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{ partial "title" . }}{{safeHTML .Params.Post}}</a></li>
                     {{- end}}
-                {{- end}}
+                  {{- end}}
                 </ul>
             </nav>
+                {{- end }}
             {{- end }}
         </main>
     </div>
