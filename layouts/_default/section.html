@@ -55,8 +55,10 @@
     </div>
 
     {{- if ne $.Site.Params.meganav true -}}
-    <div class="wrap_sidebar">
-        <div id="sidebar-toc"></div>
+    <div class="sidebar-wrap">
+        <nav id="rightside-bar">
+            <h2 class="toc-title">{{ i18n "In_this_article" }}</h2>
+        </nav>
     </div>
     {{- end }}
 </div>
