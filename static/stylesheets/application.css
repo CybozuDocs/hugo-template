@@ -1139,6 +1139,13 @@ table .wd10 {
 /* -------------------- End of pickup */
 
 
+/* video thumbnails -------------------- */
+.videocomment{
+    display: none;
+}
+/* --------------------  video thumbnails */
+
+
 /* pdf -------------------- */
 .pdf td{
     text-align: center;
@@ -1883,5 +1890,16 @@ table .wd10 {
     }
     pre {
         white-space: pre-wrap;
+    }
+    iframe{
+        display: none;
+    }
+    .videocomment{
+        display: table-cell;
+        border:#000 1px solid;
+        width:450px;
+        height:200px;
+        text-align: center;
+        vertical-align: middle;
     }
 }
