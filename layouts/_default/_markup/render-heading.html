@@ -18,6 +18,10 @@
         {{- template "anchorlink" (dict "level" .Level "link" $link "id" .Anchor "title" .Text ) }}
     {{- end }}
 {{- else }}
+    {{- if and (eq .Page.Site.Params.product "slash") (eq .Level 6) }}
+<div class="h6-noanc">{{.Text | safeHTML}}</div>
+    {{- else }}
 <h{{.Level}} id="{{.Anchor | safeURL}}" role="heading">{{.Text | safeHTML }}</h{{.Level}}>
+    {{- end }}
 {{- end }}
 
