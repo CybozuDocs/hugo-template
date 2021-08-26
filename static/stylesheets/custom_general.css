@@ -20,6 +20,14 @@
   font-size: 20px;
 }
 
+.article table {
+    margin-bottom: 40px;
+}
+
+.article ul li {
+    margin-bottom: 7px;
+}
+
 
 /* 768px以上の設定 *****************************************************/
 @media only screen and (min-width:768px){
