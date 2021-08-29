@@ -948,6 +948,31 @@ ul.breadcrumbs {
 .home-article {
     padding-bottom: 150px;
 }
+
+.proc1 {
+    margin:0 4px 0 0;
+    padding:4px 8px;
+    color:#FFF;
+    background-color: #00823B;
+    display:inline-block;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    font-weight:bold;
+}
+
+.proc2 {
+    margin:0 4px 0 0;
+    padding:4px 8px;
+    color:#FFF;
+    background-color: #4169e1;
+    display:inline-block;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    font-weight:bold;
+}
+
 /* -------------------- end of Article */
 
 
