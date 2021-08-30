@@ -726,7 +726,7 @@ ul.breadcrumbs {
 .jstree-ocl {
     display: inline-block;
     vertical-align: top;
-    padding: 5px 5px 0 5px;
+    padding: 5px 5px 0 0;
     width: 14px;
 }
 
