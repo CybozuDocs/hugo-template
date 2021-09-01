@@ -948,6 +948,26 @@ ul.breadcrumbs {
 .home-article {
     padding-bottom: 150px;
 }
+
+.proc1,.proc2 {
+    margin:0 4px 0 0;
+    padding:4px 8px;
+    color:#FFF;
+    display:inline-block;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    font-weight:bold;
+}
+
+.proc1 {
+    background-color: #00823B;
+}
+
+.proc2 {
+    background-color: #4169e1;
+}
+
 /* -------------------- end of Article */
 
 
