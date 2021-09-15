@@ -74,6 +74,12 @@
   color: #fff;
 }
 
+.h6-noanc {
+    margin-top: 0px;
+    margin-bottom: 7px;
+    padding-top: 0px;
+}
+
 /* Tiles of the top page */
 .col-tile {
   border-radius: 10px;
