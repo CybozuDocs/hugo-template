@@ -1,0 +1,10 @@
+version: 2.1
+
+orbs:
+    circleci-orb: cytc/circleci-orb@volatile
+
+workflows:
+    normal:
+        jobs:
+            - circleci-orb/template_check:
+                context: github-context
