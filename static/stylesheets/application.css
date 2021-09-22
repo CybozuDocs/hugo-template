@@ -60,21 +60,6 @@ td {
     vertical-align: middle;
 }
 
-dl {
-    margin: 5px;
-}
-
-dt {
-    margin-bottom: 7px;
-    font-weight: bold;
-}
-
-dd {
-    margin-bottom: 7px;
-    padding-left: 20px;
-}
-
-
 :focus:not(:focus-visible) {
     outline: 0;
 }
