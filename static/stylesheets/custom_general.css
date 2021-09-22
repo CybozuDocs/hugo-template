@@ -34,6 +34,20 @@
     padding-top: 0px;
 }
 
+.article dl {
+  margin: 5px;
+}
+
+.article dt {
+  margin-bottom: 7px;
+  font-weight: bold;
+}
+
+.article dd {
+  margin-bottom: 7px;
+  padding-left: 20px;
+}
+
 /* 768px以上の設定 *****************************************************/
 @media only screen and (min-width:768px){
     .logo-img {
