@@ -92,7 +92,6 @@ td {
 .frame-h1 {
     font-size: 1em;
 }
-
 /* -------------------- end of Frame */
 
 /* Header -------------------- */
@@ -168,7 +167,6 @@ td {
     top: 45px;
     left: 0;
 }
-    
 .searchbox {
     display: flex;
     justify-content: flex-start;
@@ -202,19 +200,15 @@ td {
     font-size: 2.2em;
     color: #0d7b91;
 }
-
 .search-logo {
     float: right;
     padding-top: 10px;
 }
-
-
 /* for header searchbox */
 .header .search-wrap {
     padding-left: 20px;
     width: 100%;
 }
-
 .header .searchbox input[type=search]{
     border: 1px solid #e6e6e6;
     width: calc(100% - 35px);
@@ -230,7 +224,6 @@ td {
     line-height: 1em;
 }
 /* -------------------- end of Searchbox */
-
 
 /* Language selector -------------------- */
 .lang-wrap {
@@ -295,18 +288,16 @@ li .lang-title {
 }
 /* -------------------- end of Language selector */
 
-
 .page {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: : nowrap;
-  max-width: 1300px;
-  margin: 56px auto 0 auto;
-  padding: 0 0 3rem;
-  width: 100%;
-  overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    max-width: 1300px;
+    margin: 56px auto 0 auto;
+    padding: 0 0 3rem;
+    width: 100%;
+    overflow: hidden;
 }
-
 .h6-noanc {
     position: relative;
     font-weight:bold;
@@ -329,7 +320,6 @@ li .lang-title {
     bottom: 7px;
 }
 
-
 /* Section top page -------------------------------------- */
 .sect-main {
     max-width: 1300px;
@@ -344,7 +334,6 @@ li .lang-title {
 }
 .sect-wrap {
     max-width: 1300px;
-
 }
 .sect-menu {
     display: flex;
@@ -352,12 +341,10 @@ li .lang-title {
     text-align: left;
     margin: 20px 0 60px 30px;
 }
-
 .guide-link{
     border-bottom: 1px solid rgba(32,0,0,0.1);
     padding-bottom: .625em;
 }
-
 .inner-index:last-child .guide-link{
     border-bottom: none;
     margin-bottom:3.125em;
@@ -372,7 +359,6 @@ li .lang-title {
 .article .inner-index a:hover{
     text-decoration: underline;
 }
-
 .section-pagelist a {
     color: #0d7b91;
     text-decoration: underline;
@@ -392,7 +378,6 @@ li .lang-title {
     margin-bottom: 18px;
 }
 /* -------------------------------------- End of Section top page */
-
 
 /* disclaimer ---------------------------- */
 .disclaimer-wrap {
@@ -428,7 +413,6 @@ li .lang-title {
 }
 /* -------------------------end of disclaimer */
 
-
 /* mega menu -------------------------------------------- */
 .g-nav {
     display: flex;
@@ -448,7 +432,6 @@ li .lang-title {
 .g-col:nth-child(n+4) {
     border-top: none;
 }
-
 .g-col {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
@@ -473,7 +456,6 @@ li .lang-title {
     border-bottom: 2px solid #1b72cd;
     font-weight: bold;
 }
-
 .g-colbutton:hover {
     color: #1b72cd;
     border-bottom: 2px solid #1b72cd;
@@ -481,11 +463,10 @@ li .lang-title {
 .g-colbutton.current {
     border-bottom: 2px solid #1b72cd;
 }
-
 .mega-nav {
     background: #e6f1f4;
     width: 100%;
-    font-size: .688em; 
+    font-size: .688em;
     border-bottom: 3px solid #b8c5ca;
 }
 .mega-tab-wrap {
@@ -493,11 +474,9 @@ li .lang-title {
     margin: 0 auto;
     display: flex;
 }
-
 .mega-tab-head {
     display:none;
 }
-
 .mega-tab-bar ul {
     width: 100%;
     display: table;
@@ -511,7 +490,6 @@ li .lang-title {
 .mega-tab-bar li:hover {
     background: #fff;
 }
-
 .mega-tab {
     width: 100%;
     text-align: center;
@@ -522,13 +500,11 @@ li .lang-title {
     font-weight: bold;
     width: 100%;
 }
-
 .mega-tab > i {
     display:block;
     clear:both;
     padding-top: .313em;
 }
-
 .mega-panel {
     position: absolute;
     left: 0;
@@ -542,10 +518,9 @@ li .lang-title {
     cursor:default;
     text-align: left;
 }
-
 .mega-title{
     font-weight:normal;
-    border-bottom:#b8c5ca 1px solid; 
+    border-bottom:#b8c5ca 1px solid;
 }
 .mega-title .fa-stack {
     font-size: 1.6em;
@@ -570,7 +545,6 @@ li .lang-title {
 .mega-title h3 {
     font-weight: normal;
 }
-
 .panel-item {
     width:20%;
     display:block;
@@ -580,15 +554,12 @@ li .lang-title {
     margin-top: 1em;
     font-weight: normal;
 }
-
 .panel-item:first-child {
     margin-left: .5em;
 }
-
 .panel-item:last-child {
     border-right: 0px;
 }
-
 .mega-panel p {
     padding:.938em .938em .375em;
     font-size:1em;
@@ -597,7 +568,6 @@ li .lang-title {
 .mega-panel p:last-child {
     padding-bottom:2.188em;
 }
-
 .mega-list {
     column-count: 2;
     width: 90%;
@@ -611,7 +581,6 @@ li .lang-title {
     width: 100%;
 }
 /* ------------------------------------ end of mega menu */
-
 
 /* Breadcrumb -------------------- */
 .breadcrumb {
@@ -643,7 +612,6 @@ ul.breadcrumbs {
 }
 /* -------------------- end of Breadcrumb */
 
-
 /* tree navigation -------------------- */
 .tree-wrap {
     height: 100%;
@@ -655,7 +623,6 @@ ul.breadcrumbs {
     padding-left: 20px;
     padding-bottom: 140px;
 }
-
 #tree-nav {
     display: block;
     margin: 0 12px 30px 0;
@@ -664,27 +631,22 @@ ul.breadcrumbs {
     width: auto;
     height: auto;
 }
-
 .tree-title, .tree-subtitle {
     font-weight: normal;
     min-height: 60px;
     padding-top: 1em;
     padding-left: 3px;
 }
-
 .tree-title {
     font-size:1.250em;
     border-bottom:solid #b8c5ca 2px;
 }
-
 .tree-subtitle {
     font-size:1.125em;
 }
-
 .tree-title a, .tree-subtitle a {
     color: #1b72cd;
 }
-
 #tree-main {
     display: none;
     width: auto;
@@ -718,18 +680,15 @@ ul.breadcrumbs {
 #tree-main a.opened, #tree-main li a.current {
     font-weight: bold;
 }
-
 .jstree-node {
     display: inline-block;
 }
-
 .jstree-ocl {
     display: inline-block;
     vertical-align: top;
     padding: 5px 5px 0 0;
     width: 14px;
 }
-
 .jstree-ocl::before {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
@@ -752,7 +711,6 @@ ul.breadcrumbs {
 .dummy-node > i {
     display: none;
 }
-
 .jstree-anchor {
     display: inline-block;
     margin: 0;
@@ -767,14 +725,11 @@ ul.breadcrumbs {
 .dummy-node > .jstree-anchor {
     display: none;
 }
-
 .fixed-tree {
     top: 46px;
     position: fixed;
 }
-
 /* -------------------- end of tree navigation */
-
 
 .contents-wrap {
     padding: 0px 16px 32px;
@@ -783,14 +738,24 @@ ul.breadcrumbs {
     flex-shrink: 0;
     border-bottom: solid #b8c5ca 2px;
 }
-
+.top-wrap {
+    display: flex;
+    flex-direction: column;
+}
+.first-row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 20px 12px 80px 12px;
+    width: 100%;
+    height: auto;
+}
 
 /* Article -------------------- */
 .article {
     width: 100%;
     flex-shrink: 0;
 }
-
 .article h1 {
     font-size: 2.4rem;
     line-height: 1.2em;
@@ -840,7 +805,6 @@ ul.breadcrumbs {
     position: relative;
     z-index: -1;
 }
-
 .article blockquote {
     border-left: 2px solid rgba(0,0,0,.54);
     color: rgba(0,0,0,.54);
@@ -944,11 +908,9 @@ ul.breadcrumbs {
 .article iframe {
     max-width: 100%;
 }
-
 .home-article {
     padding-bottom: 150px;
 }
-
 .proc1,.proc2 {
     margin:0 4px 4px 0;
     padding:4px 8px;
@@ -959,15 +921,22 @@ ul.breadcrumbs {
     -moz-border-radius: 5px;
     font-weight:bold;
 }
-
 .proc1 {
     background-color: #00823B;
 }
-
 .proc2 {
     background-color: #4169e1;
 }
-
+.article .col-tile ol>li {
+    list-style: decimal;
+    padding: 0;
+    margin: 0 0 0 2rem;
+    margin-bottom: .4rem;
+    position: relative
+}
+  .article .col-tile ol>li:before {
+    content: none;
+}
 /* -------------------- end of Article */
 
 
@@ -1323,6 +1292,143 @@ table .wd10 {
 }
 /* -------------------------------- end of step list */
 
+/* tile style -------------------------------------- */
+.col-tile {
+    margin: 0 0 16px;
+    width: 100%;
+    min-height: 250px;
+    padding: .9375rem;
+    border: 1px solid #e6e6e6;
+    position: relative;
+    float: left;
+}
+.col-tile:not(.col-flat):hover {
+    transform: scale(1.015);
+    background-color: #FFFFFF;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+}
+.col-tile > a {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-bottom:none;
+    z-index: 2;
+    top: 0;
+    left: 0;
+}
+.col-tile .fa-chevron-right {
+    margin-left: 6px;
+    color: #333;
+}
+.col-tile i {
+    position: absolute;
+    bottom: 18px;
+    right: 8%;
+    font-size: 105px;
+    color: #a1a1a1;
+}
+.col-topics {
+    height: 100%;
+    min-height: 250px;
+    padding-bottom: 9px;
+}
+.tile-head {
+    height: 50%;
+    overflow: hidden;
+}
+.tile-head2 {
+    height: 45%;
+}
+.tile-title {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 12px;
+}
+.tile-link {
+    margin-top: 45px;
+    z-index: 1;
+    width: 50%;
+}
+.tile-img {
+    position: absolute;
+    margin-right: 6px;
+    margin-bottom: 20px;
+}
+.tile-img-wrap {
+    height: 140px;
+    text-align: left;
+}
+.tile-img-entity {
+    position: absolute;
+    bottom: 10px;
+    max-height: 130px;
+}
+.tile-icon{
+    padding-top: 10px;
+}
+.tile-text {
+    text-align: left;
+    padding: 5px;
+    height: 50%;
+    overflow: auto;
+}
+.tile-text2 {
+    height: 55%;
+}
+.tile-text li {
+    list-style-type: none;
+}
+.tile-text li:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1em;
+    content: "\f0a9";
+    text-align: center;
+    padding-right: .5em;
+    color: #1b72cd;
+}
+/* -------------------------------------- tile style */
+/* Garoon type Tile  ------------------------------- */
+.col-tile-gr {
+    text-align: center;
+    width: 100%;
+    height: 270px;
+    padding: 0;
+}
+.col-tile-gr a {
+    color: #000;
+}
+.col-tile-gr a:hover {
+    text-decoration: none;
+}
+.col-tile-gr i {
+    position: static;
+    font-size: 62px;
+    color: #1b72cd;
+}
+.col-tile-gr i.nolink {
+    color: #000;
+}
+.col-tile-gr2 {
+    width: 100%;
+    height: 450px;
+    padding: 0;
+}
+.col-tile-gr2 a {
+    color: #1b72cd;
+}
+.col-tile-gr2 li a:hover {
+    text-decoration: underline;
+}
+i.index-pdf {
+    color: #c50102;
+    margin-left: 5px;
+    font-size: 1.3em;
+}
+/* ------------------------ End of Garoon type Tile */
 
 /* heading link ----------------------------------- */
 .heading-link {
@@ -1617,7 +1723,6 @@ table .wd10 {
     .header::before {
         top: 52px;
     }
-    
     .logo-wrap {
         width: 200px;
         padding-top: 9px;
@@ -1629,14 +1734,12 @@ table .wd10 {
     .header-flex-box {
         width: 100%;
     }
-    
     #search {
         position: relative;
         top: auto;
         left: auto;
         margin: 0 5px 0 auto;
     }
-    
     .header .search-wrap {
         width: calc(100% - 250px - 130px);
         max-width: 500px;
@@ -1645,27 +1748,22 @@ table .wd10 {
     .header .search-wrap:lang(en) {
         width: calc(100% - 200px - 120px);
     }
-    
     .search-wrap {
         max-width: 800px;
         margin: auto;
     }
-    
     .searchbox input {
         font-size: 1.2rem;
     }
-
     #lang-selector {
         height: 42px;
     }
     .current-lang {
         padding-top: 10px;
     }
-
     .page {
         flex-direction: row;
     }
-
     .sect-wrap {
         margin: 0 auto;
         padding: 0 32px 192px;
@@ -1678,7 +1776,7 @@ table .wd10 {
         flex-direction: row;
         margin: 20px 0 60px 30px;
     }
-    
+
     /* mega menu ------------------------- */
     .g-nav {
         font-size: 1.125em;
@@ -1705,22 +1803,18 @@ table .wd10 {
     .g-col a.current {
         border-bottom: 2px solid #1b72cd;
     }
-
     .fa-5x {
         font-size: 6em;
     }
-
     .mega-nav {
         font-size: 1em;
     }
     .mega-tab-bar li {
         padding:.5em .625em .5em;
     }
-
     .mega-panel {
         top: 130px;
     }
-    
     .mega-list {
         column-count: 3;
         width: 90%;
@@ -1738,7 +1832,6 @@ table .wd10 {
     .panel-item {
         margin-right: 1.563em;
     }
-
     .panel-item:first-child {
         margin-left: 1.5em;
     }
@@ -1767,7 +1860,6 @@ table .wd10 {
     #tree-main > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > a {
         width: 185px;
     }
-    
     .contents-wrap {
         width: calc(100% - 292px);
         padding-right: 32px;
@@ -1775,6 +1867,38 @@ table .wd10 {
         padding-bottom: 92px;
         margin-top: 8px;
         margin-bottom: 3rem;
+    }
+    .first-row {
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    /* tile style -------------------------------------- */
+    .col-tile {
+        width: 46.8%;
+        margin: 0 1.6% 16px;
+    }
+    .col-tile-gr {
+        width: 250px;
+        height: 350px;
+        margin: 10px 0 10px 0;
+    }
+    .col-tile-gr i {
+        font-size: 92px;
+    }
+    .col-tile-gr2 {
+        width: 300px;
+        height: 450px;
+        margin: 10px 0 10px 0;
+    }
+    .tile-title {
+        font-size: 1.4rem;
+    }
+    /* -------------------------------- end of tile style */
+
+    i.index-pdf {
+        font-size: 1.3em;
     }
     .disclaimer {
         float: right;
@@ -1786,7 +1910,7 @@ table .wd10 {
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
-        height: 6rem; 
+        height: 6rem;
     }
     .footer-links {
         margin-bottom: 0
@@ -1810,7 +1934,6 @@ table .wd10 {
     .mega-tab-bar {
         width: calc(100% - 150px);
     }
-    
     .mega-tab-guide {
         background: #FFF;
         border: solid 2px #000;
@@ -1824,7 +1947,6 @@ table .wd10 {
         font-size: 100%;
         font-weight: normal;
     }
-
     html[lang="en-JP"] .mega-tab-guide,
     html[lang="en-CN"] .mega-tab-guide  {
         font-size:.875em;
@@ -1832,7 +1954,6 @@ table .wd10 {
         line-height: 1em;
         top:12px;
     }
-
     .mega-tab-guide:before,
     .mega-tab-guide:after {
         content: "";
@@ -1843,7 +1964,6 @@ table .wd10 {
         height: 0px;
         border-style: solid;
     }
-
     .mega-tab-guide:before {
         right: -9px;
         margin-top: -.563em;
@@ -1851,7 +1971,6 @@ table .wd10 {
         border-color: transparent transparent transparent #FFF;
         z-index: 1;
     }
-        
     .mega-tab-guide:after {
         right: -11px;
         margin-top: -.625em;
@@ -1859,11 +1978,9 @@ table .wd10 {
         border-color: transparent transparent transparent #000;
         z-index: 0;
     }
-
     .mega-title {
         padding: .5em;
     }
-
     .panel-item:first-child {
         padding-left: 2.5em;
     }
@@ -1880,6 +1997,20 @@ table .wd10 {
         width: 200px;
         display: block;
     }
+
+    /* tile style -------------------------------------- */
+    .tile-title {
+        font-size:1.55rem;
+    }
+   .col-tile {
+       width: 31.7%;
+       margin: 0 .8% 16px;
+   }
+   .col-tile-gr,
+   .col-tile-gr2 {
+       width: 28%;
+   }
+    /* -------------------------------- end of tile style */
 
     .footer-copyright {
         float: left;

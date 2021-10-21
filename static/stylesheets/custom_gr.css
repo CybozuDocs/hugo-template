@@ -383,13 +383,13 @@ background: rgba(255, 255, 255, 0.9);
 }
 
 /* Home page --------------------------------------*/
-.tile-title {
+.col-tile-gr .tile-title {
     margin-top: 20px;
     font-size: 26px;
     color: #1b72cd;
 }
 
-.tile-title.nolink {
+.col-tile-gr .tile-title.nolink {
     color: #000;
 }
 /* -------------------------------------- End of Home page */

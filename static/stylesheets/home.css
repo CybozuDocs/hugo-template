@@ -38,20 +38,6 @@
     line-height: 1.3em;
 }
 
-.top-wrap {
-    display: flex;
-    flex-direction: column;
-}
-
-.first-row {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 20px 12px 80px 12px;
-    width: 100%;
-    height: auto;
-}
-
 .second-header {
     width: 100%;
     font-size: 2em;
@@ -121,7 +107,6 @@
 }
 /* -------------------- end of article  */
 
-
 .col-flex {
   margin-top:72px;
 }
@@ -134,152 +119,6 @@
   padding-top: 0;
   margin-top: 0;
 }
-
-
-/* Tile -------------------- */
-.col-tile {
-  margin: 0 0 16px;
-  width: 100%;
-  min-height: 250px;
-  padding: .9375rem;
-  border: 1px solid #e6e6e6;
-  position: relative;
-  float: left;
-}
-.col-tile:not(.col-flat):hover {
-    transform: scale(1.015);
-    background-color: #FFFFFF;
-    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
-}
-.col-tile > a {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-bottom:none;
-  z-index: 2;
-  top: 0;
-  left: 0;
-}
-.col-tile .fa-chevron-right {
-  margin-left: 6px;
-  color: #333;
-}
-.col-tile i {
-  position: absolute;
-  bottom: 18px;
-  right: 8%;
-  font-size: 105px;
-  color: #a1a1a1;
-}
-
-.col-topics {
-    height: 100%;
-    min-height: 250px;
-    padding-bottom: 9px;
-}
-
-.tile-head {
-    height: 50%;
-    overflow: hidden;
-}
-.tile-head2 {
-    height: 45%;
-}
-
-.tile-title {
-  font-size: 1.4rem;
-  line-height: 1.2;
-  position: relative;
-  z-index: 1;
-  margin-bottom: 12px;
-}
-.tile-link {
-  margin-top: 45px;
-  z-index: 1;
-  width: 50%;
-}
-.tile-img {
-  position: absolute;
-  margin-right: 6px;
-  margin-bottom: 20px;
-}
-.tile-img-wrap {
-  height: 140px;
-  text-align: left;
-}
-.tile-img-entity {
-  position: absolute;
-  bottom: 10px;
-  max-height: 130px;
-}
-.tile-icon{
-    padding-top: 10px;
-}
-.tile-text {
-    text-align: left;
-    padding: 5px;
-    height: 50%;
-    overflow: auto;
-}
-.tile-text2 {
-    height: 55%;
-}
-.tile-text li {
-    list-style-type: none;
-}
-.tile-text li:before {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 1em;
-    content: "\f0a9";
-    text-align: center;
-    padding-right: .5em;
-    color: #1b72cd;
-}
-/* -------------------- End of Tile */
-
-
-/* Garoon type Tile  -------------------- */
-.col-tile-gr {
-    text-align: center;
-    width: 100%;
-    height: 270px;
-    padding: 0;
-}
-.col-tile-gr a {
-    color: #000;
-}
-.col-tile-gr a:hover {
-    text-decoration: none;
-}
-.col-tile-gr i {
-    position: static;
-    font-size: 62px;
-    color: #1b72cd;
-}
-.col-tile-gr i.nolink {
-    color: #000;
-}
-.col-tile-gr2 {
-    width: 100%;
-    height: 450px;
-    padding: 0;
-}
-.col-tile-gr2 a {
-    color: #1b72cd;
-}
-.col-tile-gr2 li a:hover {
-  text-decoration: underline;
-}
-i.index-pdf {
-  color: #c50102;
-  margin-left: 5px;
-  font-size: 1.3em;
-}
-
-/* -------------------- End of Garoon type Tile */
-
 
 /* Hot article -------------------- */
 .hotArticle {
@@ -314,12 +153,10 @@ i.index-pdf {
 }
 /* -------------------- End of Hot article */
 
-
 .article .fa-search {
   margin-left: 12px;
   font-size: 1.5rem;
 }
-
 
 /* 768px以上の設定  **************************************************************/
 @media only screen and (min-width:768px){
@@ -337,44 +174,16 @@ i.index-pdf {
         padding: 1.2em 0 1.2em 0;
         font-size: 2.5em;
     }
-
     .first-row {
         flex-wrap: wrap;
         flex-direction: row;
         justify-content: space-around;
-
     }
     .second-row {
         flex-wrap: wrap;
         flex-direction: row;
         justify-content: space-around;
     }
-
-    .col-tile {
-        width: 46.8%;
-        margin: 0 1.6% 16px;
-    }
-    .col-tile-gr {
-        width: 250px;
-        height: 350px;
-        margin: 10px 0 10px 0;
-    }
-    .col-tile-gr i {
-        font-size: 92px;
-    }
-    .col-tile-gr2 {
-        width: 300px;
-        height: 450px;
-        margin: 10px 0 10px 0;
-    }
-
-    .tile-title {
-        font-size: 1.4rem;
-    }
-    i.index-pdf {
-        font-size: 1.3em;
-    }
-
 }
 
 /* 1059px以上の設定  *************************************************************/
@@ -382,20 +191,6 @@ i.index-pdf {
     .hero {
       height: 180px;
     }
-
-    .tile-title {
-         font-size:1.55rem;
-     }
-
-    .col-tile {
-        width: 31.7%;
-        margin: 0 .8% 16px;
-    }
-    .col-tile-gr,
-    .col-tile-gr2 {
-        width: 28%;
-    }
-
     .main {
       top: 0;
     }
