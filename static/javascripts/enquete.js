@@ -12,7 +12,7 @@
             return true; // すでに回答済みの場合は終了
         }
 
-        let url = "https://2504194e.form.kintoneapp.com/public/";
+        let url = "https://cybozu-help.form.kintoneapp.com/public/";
         let formid = "2a7268574abefeca37c34f2e89c1dad558239925266fe18a3ee9499e6c2b0590";
 
         let cururl = location.pathname;
