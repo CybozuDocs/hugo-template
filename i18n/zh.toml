@@ -64,6 +64,9 @@ other = "有"
 [No]
 other = "没有"
 
+[Close]
+other = "关闭"
+
 [Permalink]
 other = "固定链接"
 
@@ -93,3 +96,36 @@ other = "面包屑小径"
 
 [Page_selection]
 other = "页面选择"
+
+[Copy_parma_link]
+other = "复制参数链接"
+
+[Link_was_copied]
+other = "永久链接已复制"
+
+[Help_site]
+other = "帮助网站"
+
+[Article_number]
+other = "文章编号"
+
+[Article_number_search]
+other = "文章编号搜索"
+
+[Input_article_number]
+other = "请输入文章编号。"
+
+[ID_error_1]
+other = "请输入 4 位或更多的数字。"
+
+[ID_error_2]
+other = "请以数字形式输入文章编号。"
+
+[ID_error_3]
+other = "对应的文章编号不存在。"
+
+[ID_error_4]
+other = "连接超时。"
+
+[ID_error_5]
+other = "发生网络错误。"

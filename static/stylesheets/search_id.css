@@ -1,0 +1,52 @@
+.contents-wrap {
+    border: 0;
+}
+
+/* ID search -------------------- */
+.id-panel {
+    padding: 1.5rem;
+    border: 1px solid #e6e6e6;
+    border-radius: .25rem;
+    display: inline-block;
+}
+
+.id-label {
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.id-panel div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+}
+
+.id-input {
+    padding: .375rem .75rem;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    background-clip: padding-box;
+    display: block;
+    min-width: 12rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+.id-message {
+    margin-top: 1rem;
+    color: #dc3545;
+}
+
+.id-button {
+    padding: .375rem 1.75rem;
+    background-color: #0d7b91;
+    color: #fff;
+    line-height: 1.5;
+    cursor: pointer;
+    letter-spacing: .2rem;
+}
+.id-button-disabled {
+    background-color: #999;
+}
+/* -------------------- End of ID search */

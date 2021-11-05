@@ -1,0 +1,8 @@
+{{- define "articlenumber" }}
+    {{- $alias := index .Params.aliases 0 }}
+    {{- $a1 := split $alias "/" }}
+    {{- $docid := index $a1 (sub (len $a1) 1) }}
+    <div class="id-bar">
+        <div class="id-str">{{ i18n "Article_number" }}:{{$docid}}</div>
+    </div>
+{{- end }}
