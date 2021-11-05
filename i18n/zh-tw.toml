@@ -65,6 +65,9 @@ other = "是"
 [No]
 other = "否"
 
+[Close]
+other = "關閉"
+
 [Permalink]
 other = "永久連結"
 
@@ -95,3 +98,36 @@ other = "麵包屑小徑"
 
 [Page_selection]
 other = "頁面選擇"
+
+[Copy_parma_link]
+other = "複製參數鏈接"
+
+[Link_was_copied]
+other = "永久鏈接已復制"
+
+[Help_site]
+other = "說明網站"
+
+[Article_number]
+other = "文章編號"
+
+[Article_number_search]
+other = "文章編號搜尋"
+
+[Input_article_number]
+other = "請輸入文章編號。"
+
+[ID_error_1]
+other = "請輸入 4 位或更多的數字。"
+
+[ID_error_2]
+other = "請以數字形式輸入文章編號。"
+
+[ID_error_3]
+other = "對應的文章編號不存在。"
+
+[ID_error_4]
+other = "連接超時。"
+
+[ID_error_5]
+other = "發生網絡錯誤。"

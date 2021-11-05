@@ -1,11 +1,65 @@
-<footer class="footer">
+{{- $footerLinks_Ex := "" }}
+{{- if eq $.Site.Params.id_search true }}
+    {{- $footerLinks_Ex = "footer-links-ex" }}
+{{- end }}
+<footer id="page-footer" class="footer">
     <div class="footer-wrap">
-        <div class="footer-links">
-          <ul>
-            {{ range $i, $r := getCSV "," $.Site.Params.footer_links }}
-            <li><a href="{{- index $r 1 -}}" target="_blank">{{- index $r 0 -}}</a></li>
-            {{ end }}
-          </ul>
+        <div class="footer-col-links">
+            <div class="footer-links {{$footerLinks_Ex}}">
+              {{- if eq $.Site.Params.id_search true }}
+              <div class="footer-link-title">
+                {{- if eq $.Site.Params.TargetRegion "US" }}
+                    Kintone
+                {{- else }}
+                    Cybozu
+                {{- end }}
+              </div>
+              {{- end }}
+              <ul>
+                {{- range $i, $r := getCSV "," $.Site.Params.footer_links }}
+                    {{- $href := "" }}
+                    {{- $target := "_blank" }}
+                    {{- $text := "" }}
+                    {{- $disp := true }}
+                    {{- if ne (index $r 3) nil }}
+                        {{- if eq (index $r 0) "1" }}
+                            {{- $target = index $r 3 }}
+                            {{- $href = index $r 2 }}
+                            {{- $text = index $r 1 }}
+                            {{- if ne $.Site.Params.id_search true }}
+                                {{- $filename := path.Base $target }}
+                                {{- if eq $filename "search_id.html" }}
+                                    {{- $disp = false }}
+                                {{- end }}
+                            {{- end }}
+                        {{- else }}
+                            {{- $disp = false }}
+                        {{- end }}
+                    {{- else }}
+                        {{- $href = index $r 1 }}
+                        {{- $text = index $r 0 }}
+                    {{- end }}
+                    {{- if eq $disp true }}
+                <li><a href="{{$href}}" target="{{$target}}">{{$text}}</a></li>
+                    {{- end }}
+                {{- end }}
+              </ul>
+            </div>
+            {{- if eq $.Site.Params.id_search true }}
+            <div class="footer-links {{$footerLinks_Ex}}">
+              <div class="footer-link-title">{{ i18n "Help_site" }}</div>
+              <ul>
+                {{- range $i, $r := getCSV "," $.Site.Params.footer_links }}
+                    {{- $href := index $r 2 }}
+                    {{- if and (eq (index $r 0) "2") (not (and (eq $.Page.Type "search_id") (eq (strings.Count "search_id" $href) 1))) }}
+                        {{- $target := index $r 3 }}
+                        {{- $text := index $r 1 }}
+                <li><a href="{{$href}}" target="{{$target}}">{{$text}}</a></li>
+                    {{- end }}
+                {{- end }}
+              </ul>
+            </div>
+            {{- end }}
         </div>
         <div id="footercopyright">
         {{ i18n "Footer_copyright" }}<br>

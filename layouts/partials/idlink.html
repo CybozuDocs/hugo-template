@@ -1,0 +1,20 @@
+{{- define "idlink" }}
+    {{- $alias := index .Params.aliases 0 }}
+    {{- $a1 := split $alias "/" }}
+    {{- $docid := index $a1 (sub (len $a1) 1) }}
+    {{- $relpath := strings.TrimRight ".html" .Page.RelPermalink }}
+    {{- $relpath = strings.TrimRight .File.ContentBaseName $relpath }}
+    {{- $docurl := printf "%s%sid/%s.html" .Site.BaseURL $relpath $docid}}
+    <div class="idbar">
+        <div class="idstr">Document ID:{{$docid}}</div>
+        <div class="id-link">
+            <button class="heading-button" tabindex="0" aria-owns="doc-id" aria-expanded="false">
+                <span>{{ i18n "Permalink" }}</span>
+                <i class="fas fa-link" aria-hidden="true"></i>
+            </button>
+            <div id="doc-id" class="heading-url" aria-hideen="true">
+                <input readonly="readonly" value="" name="headingUrl" idpath="{{$alias}}" type="text" onclick="this.focus(); this.select()">
+            </div>
+        </div>
+    </div>
+{{- end }}

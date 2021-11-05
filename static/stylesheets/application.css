@@ -294,7 +294,6 @@ li .lang-title {
     flex-wrap: nowrap;
     max-width: 1300px;
     margin: 56px auto 0 auto;
-    padding: 0 0 3rem;
     width: 100%;
     overflow: hidden;
 }
@@ -612,16 +611,69 @@ ul.breadcrumbs {
 }
 /* -------------------- end of Breadcrumb */
 
+.id-bar {
+    margin-top: -25px;
+    margin-bottom: 2rem;
+    font-size: 14px;
+    color: #888;
+}
+.id-title {
+    display: flex;
+}
+.id-header {
+    display: flex;
+}
+.id-link-button {
+    cursor: pointer;
+    width: 1.5em;
+    height: 1.5em;
+    margin-top: 3.5em;
+    margin-left: .5em;
+    padding: .3em;
+}
+.id-link-button:hover {
+    background-color: #ECEAF7;
+}
+h1 + .id-link-button {
+    margin-top: 5em;
+}
+h2 + .id-link-button {
+    margin-top: 3.2em;
+}
+h3 + .id-link-button {
+    margin-top: 2.1em;
+}
+h4 + .id-link-button {
+    margin-top: 2em;
+}
+h5 + .id-link-button {
+    margin-top: 1.3em;
+}
+h6 + .id-link-button {
+    margin-top: .8em;
+}
+
+.id-link-message {
+    display: none;
+    position: absolute;
+    right: 0;
+    padding: .5em;
+    color: #fff;
+    background-color: rgba(29,30,29,0.8);
+    z-index: 999;
+}
+
 /* tree navigation -------------------- */
 .tree-wrap {
     height: 100%;
     line-height: 1.2em;
     font-size: .95rem;
     overflow: hidden;
-    width: 310px;
+    width: 350px;
     flex-shrink: 0;
     padding-left: 20px;
-    padding-bottom: 140px;
+    padding-top: 20px;
+    padding-bottom: 50px;
 }
 #tree-nav {
     display: block;
@@ -732,7 +784,7 @@ ul.breadcrumbs {
 /* -------------------- end of tree navigation */
 
 .contents-wrap {
-    padding: 0px 16px 32px;
+    padding: 0px 16px 50px;
     margin-top: 34px;
     position: relative;
     flex-shrink: 0;
@@ -755,6 +807,7 @@ ul.breadcrumbs {
 .article {
     width: 100%;
     flex-shrink: 0;
+    padding-bottom: 100px;
 }
 .article h1 {
     font-size: 2.4rem;
@@ -1540,7 +1593,7 @@ i.index-pdf {
 #goto-top {
     display: none;
     position: fixed;
-    right: 30px;
+    right: 10px;
     bottom: 30px;
     cursor: pointer;
     z-index: 99;
@@ -1557,7 +1610,6 @@ i.index-pdf {
 
 /* Footer -------------------- */
 .footer {
-    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
@@ -1582,24 +1634,41 @@ i.index-pdf {
 }
 .footer-wrap {
     margin: 0 auto;
-    padding: 0 18px;
+    padding: 2.5em 18px;
     max-width: 1300px;
-    height: 8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.footer-links {
-    margin-bottom: 1rem;
+.footer-col-links {
+    display: flex;
+    flex-direction: column;
 }
+.footer-link-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+}
+.footer-links-ex {
+    margin-bottom: 3em;
+}
+
 .footer-links ul li {
     float: left;
     margin-right: 1em;
+}
+.footer-links-ex ul li {
+    clear: both;
 }
 .footer-links a {
     padding-right: 0.3em;
     text-decoration: underline;
     line-height: 2em;
+    white-space: nowrap;
+}
+.footer-links-ex {
+    margin-right: 4em;
 }
 .footer-copyright {
 }
@@ -1627,7 +1696,7 @@ i.index-pdf {
 #enquete {
     display: block;
     width: 100%;
-    padding: 9px;
+    padding: 3px 0 9px 6px;
     background-color: rgba(29,30,31,0.8);
     color: #fff;
     position: absolute;
@@ -1638,6 +1707,19 @@ i.index-pdf {
 }
 .enquete-panel div {
     display: inline;
+}
+.close-enquete {
+    display: none;
+    float: right;
+    width: 2em;
+    height: 2em;
+    line-height: 1.5em;
+    cursor: pointer;
+}
+.close-enquete i {
+    color: #fff;
+    font-size: 1.8em;
+    margin-right: 3px;
 }
 .enquete-btn-wrap {
     white-space: nowrap;
@@ -1864,9 +1946,8 @@ i.index-pdf {
         width: calc(100% - 292px);
         padding-right: 32px;
         padding-left: 32px;
-        padding-bottom: 92px;
         margin-top: 8px;
-        margin-bottom: 3rem;
+        border-bottom: 0;
     }
     .first-row {
         flex-wrap: wrap;
@@ -1910,10 +1991,12 @@ i.index-pdf {
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
-        height: 6rem;
+    }
+    .footer-col-links {
+        flex-direction: row;
     }
     .footer-links {
-        margin-bottom: 0
+        margin-bottom: 0;
     }
 }
 
@@ -2018,8 +2101,12 @@ i.index-pdf {
 
     #enquete {
         width: 230px;
+        font-size: .8em;
     }
     .enquete-panel div {
+        display: block;
+    }
+    .close-enquete {
         display: block;
     }
 }
@@ -2033,7 +2120,7 @@ i.index-pdf {
 
 /* for print out */
 @media print {
-    nav, header, footer, #enquete, #tree-nav, #goto-top {
+    nav, header, footer, iframe, #enquete, #tree-nav, #goto-top, .id-headding-button {
         display: none !important;
     }
     .font-ja, html[lang="ja-jp"], html[lang="ja-cn"] {
@@ -2041,9 +2128,6 @@ i.index-pdf {
     }
     pre {
         white-space: pre-wrap;
-    }
-    iframe{
-        display: none;
     }
     .videocomment{
         display: table-cell;

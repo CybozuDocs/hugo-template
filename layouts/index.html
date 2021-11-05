@@ -10,7 +10,7 @@
                 <div class="search-wrap">
                     <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html"　onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}' role="search">
                         <div class="searchbox">
-                            <input type="search" name="q" id="headerSearchBox_input" class="search-input" placeholder='{{ i18n "Enter_keywords" }}' aria-label='{{i18n "search_word"}}'>
+                            <input type="search" name="q" id="topSearchBox_input" class="search-input" placeholder='{{ i18n "Enter_keywords" }}' aria-label='{{i18n "search_word"}}'>
                             <button type="submit" name="commit" value="" class="search-submit" data-disable-with="" aria-label='{{i18n "search"}}'></button>
                         {{- if ne .Site.Params.google_search true }}
                             <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}">

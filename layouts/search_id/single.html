@@ -1,0 +1,30 @@
+{{- partial "head" . }}
+<link rel="stylesheet" href="{{ "stylesheets/search_id.css" | relURL }}">
+{{- partial "header" . }}
+{{- if eq $.Site.Params.meganav true -}}
+    {{- partial "meganav" . }}
+{{- end -}}
+<div class="page" >
+    <div class="contents-wrap">
+        <main class="main" role="main">
+            {{- partial "breadcrumb" . }}
+            <article class="article" >
+                <h1>{{ partial "title" . }}</h1>
+                <div id="id-panel" class="id-panel">
+                    <div class="id-label">{{ i18n "Input_article_number" }}</div>
+                    <div>
+                        <input id="id-input" class="id-input" size="5" type="text" inputmode="numeric" pattern="\d*" aria-label='{{i18n "Article_number"}}'>
+                        <button role="button" id="id-search-disp" class="id-button" type="button">{{ i18n "search" }}</button>
+                    </div>
+                </div>
+                <div id="id-message" class="id-message"></div>
+            </article>
+        </main>
+    </div>
+</div>
+<script>
+var id_error_msg=['{{i18n "ID_error_1"}}','{{i18n "ID_error_2"}}','{{i18n "ID_error_3"}}','{{i18n "ID_error_4"}}','{{i18n "ID_error_5"}}'];
+</script>
+    {{ partial "footer" . }}
+  </body>
+</html>

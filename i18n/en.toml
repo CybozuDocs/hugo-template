@@ -64,6 +64,9 @@ other = "Yes"
 [No]
 other = "No"
 
+[Close]
+other = "Close"
+
 [Permalink]
 other = "Permalink"
 
@@ -93,3 +96,37 @@ other = "bread crumb"
 
 [Page_selection]
 other = "page selection"
+
+[Copy_parma_link]
+other = "Copy the parmanet link."
+
+[Link_was_copied]
+other = "The parmanent link has been copied."
+
+[Help_site]
+other = "Help Site"
+
+[Article_number]
+other = "Article Number"
+
+[Article_number_search]
+other = "Search Help by Article Number"
+
+[Input_article_number]
+other = "Enter the article number you want to search for."
+
+[ID_error_1]
+other = "Please enter a number of 4 digits or more."
+
+[ID_error_2]
+other = "Please enter the article number in numbers."
+
+[ID_error_3]
+other = "The corresponding article number does not exist."
+
+[ID_error_4]
+other = "The connection has timed out."
+
+[ID_error_5]
+other = "A network error has occurred."
+

@@ -3,6 +3,9 @@
     window.onload = function() {
         // 768pxは cssにおける@media screen min-width の設定値
         const mobileSize = 768;
+        
+        // 対応言語
+        const languages = ["en", "ja", "zh", "zh-tw"];
 
         // ツリーナビゲーションヘッダー有無のフラグ
         let hasTreeHead = false;
@@ -18,6 +21,129 @@
           timer = setTimeout(function() { $(window).trigger(scrollStop) }, 10);
         }
         $(window).on("scroll", scrollStopTrigger);
+
+        // ID検索
+        if( document.getElementById("id-panel") != null ) {
+            let searching = false;
+            const $idp = $("#id-panel");
+            const $idinput = $("#id-input");
+            const $idbtn = $("#id-search-disp");
+            const $idmsg = $("#id-message");
+            $idinput.focus();
+
+            $idinput.keydown(function(e) {
+                switch(e.which) {
+                case 13: 
+                    dispTarget();
+                }
+            });
+
+            $idbtn.click(function(e) {
+                dispTarget();
+            });
+
+            function resetForm() {
+                $idinput.prop("disabled", false);
+                $idbtn.prop("disabled", false);
+                $idbtn.removeClass("id-button-disabled");
+                searching = false;
+                $idinput.focus();
+            }
+
+            function setmessage(msgid) {
+                if((typeof id_error_msg !== 'undefined') && (id_error_msg.length > msgid)){
+                    $idmsg.text(id_error_msg[msgid - 1])
+                } else {
+                    $idmsg.text("");
+                }
+            }
+
+            function zenToHan(orgStr) {
+                return orgStr.replace(/[０-９]/g, function(str) {
+                    return String.fromCharCode(str.charCodeAt(0) - 0xFEE0);
+                });
+            }
+
+            function dispTarget() {
+                if (searching === true) {
+                    return false;
+                }
+
+                $idinput.prop("disabled", true);
+                $idbtn.prop("disabled", true);
+                $idbtn.addClass("id-button-disabled");
+                searching = true;
+                let idval = ($idinput.val());
+
+                idval = zenToHan(idval);
+
+                if(Number.isNaN(Number(idval))) {
+                    setmessage(2);
+                    resetForm();
+                    return false;
+                }
+
+                if((idval === "") || (idval.length < 4 )) {
+                    setmessage(1);
+                    resetForm();
+                    return false;
+                }
+
+                const prodid = idval.substring(0, 3);
+                let prodpath = "";
+                switch(prodid) {
+                    case "010":
+                        prodpath = "/";
+                        break;
+                    case "020":
+                        prodpath = "/general/";
+                        break;
+                    case "030":
+                        prodpath = "/k/";
+                        break;
+                }
+
+                const uri = new URL(window.location.href);
+                const pname = uri.pathname;
+                const pathes = pname.split("/");
+
+                if(pathes.length >= 3) {
+                    let langid = "";
+                    if (languages.includes(pathes[1])) {
+                        // URLの２階層目が言語情報（製品IDを含まない）
+                        langid = pathes[1];
+                    } else {
+                        langid = pathes[2];
+                    }
+
+                    let tg = prodpath + langid + "/id/" + idval + ".html";
+
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("GET", tg);
+                    xhr.onload = function() {
+                        if(this.status !== 200) {
+                            setmessage(3);
+                            resetForm();
+                        } else {
+                            location.href = tg;
+                        }
+                    };
+
+                    xhr.ontimeout = function() {
+                        setmessage(4);
+                        resetForm();
+                    };
+
+                    xhr.onerror = function() {
+                        setmessage(5);
+                        resetForm();
+                    };
+
+                    xhr.send();
+
+                }
+            }
+        }
 
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
@@ -168,7 +294,7 @@
 
             $(window).on("scrollstop",function(e) {
                 if($(window).scrollTop() > 100) {
-                    let bottompos = 30;
+                    let bottompos = 20;
                     let postype = "fixed";
                     
                     const winHeight = $(window).height();
@@ -176,14 +302,14 @@
                     const footerOffsetTop = $(".footer").offset().top;
                     
                     if ( (footerOffsetTop - winHeight) < winScrollTop ) {
-                        bottompos += $(".footer").height();
+                        bottompos += $(".footer").outerHeight();
                         postype = "absolute";
                     }
                     
                     if( document.getElementById("enquete") != null) {
                         if($("#enquete").css("display") === "block") {
                             if($("#enquete").css("position") === "fixed") {
-                                bottompos += $("#enquete").height() + 10;
+                                bottompos += $("#enquete").outerHeight();
                             }
                         }
                     }
@@ -347,7 +473,7 @@
                     // ツリーナビゲーションの高さを本文に合わせる(スクロール時のリサイズループ防止)
 
                     // ヘッダーとフッターを除いた表示領域の高さ
-                    let dh = winHeight - $(".header").height() - getTreeHeadHeight() - $(".footer").height() - 30;
+                    let dh = winHeight - $(".header").height() - getTreeHeadHeight() - $(".footer").outerHeight() - 30;
                     if(mh > dh) {
                         wrapHeight = mh;
                     } else {
@@ -542,7 +668,7 @@
             let curlevel = 0;
             let existsToc = 0;
             $(".article h2,.article h3,.article h4").each(function() {
-                let href = $(this).attr("id");
+                let href = $(this).attr("pid");
                 let val = $(this).text();
                 let taglevel = Number($(this).prop("tagName").substr(1,1));
 
@@ -573,7 +699,7 @@
             $("#page-toc li").click(function() {
                 const href = $(this).find("a").attr("href");
                 const pos = $(href).offset().top;
-                $("html, body").stop().animate({ scrollTop:pos });
+                $("html, body").stop().animate({ scrollTop:pos - 20 });
                 location.href = href;
                 return false;
             });
@@ -590,8 +716,8 @@
                     if(cur_pos >= $(this).offset().top) {
                         $("#page-toc li a").removeClass("current");
                         $("#page-toc li a").attr("aria-selected", "false");
-                        $("#page-toc li a[href='#" + $(this).attr("id") +"']").addClass("current");
-                        $("#page-toc li a[href='#" + $(this).attr("id") +"']").attr("aria-selected", "true");
+                        $("#page-toc li a[href='#" + $(this).attr("pid") +"']").addClass("current");
+                        $("#page-toc li a[href='#" + $(this).attr("pid") +"']").attr("aria-selected", "true");
                     }
                 });
             }
@@ -632,6 +758,48 @@
             .children('div.heading-url')
             .bind('click', function(e) {
                 e.stopPropagation();
+            });
+        }
+        
+        // IDリンク
+        const hids = $(".id-link-button");
+        if(hids.length > 0) {
+            hids.click(function() {
+                const idpath = $(this).attr('idpath');
+                if(idpath !== undefined) {
+                    const url = location.href;
+                    const pathes = url.split("/");
+                    
+                    let prodpath = "";
+                    if (languages.indexOf(pathes[3]) === -1) {
+                        // URLの２階層目が言語情報ではない（＝製品ID）
+                        prodpath = "//" + pathes[2] + "/" + pathes[3];
+                    } else {
+                        prodpath = "//" + pathes[2];
+                    }
+                    
+                    let desturl = pathes[0] + prodpath + idpath + ".html";
+                    const anc = $(this).parent().attr('id');
+                    if((anc !== undefined) && (anc !== "")) {
+                        desturl = desturl + "#" + anc;
+                    }
+                    
+                    let cpdflg = false;
+                    if(navigator.clipboard){
+                        navigator.clipboard.writeText(desturl);
+                        cpdflg = true;
+                    } else if(window.clipboardData){
+                        //for IE
+                        window.clipboardData.setData("Text" , desturl);
+                        cpdflg = true;
+                    }
+                    
+                    if (cpdflg === true ) {
+                        const msgid = $(this).attr('aria-owns');
+                        $("#"+msgid).show();
+                        $("#"+msgid).fadeOut(3000);
+                    }
+                }
             });
         }
 

@@ -25,7 +25,15 @@
         <main id="main" role="main"> 
             {{- partial "breadcrumb" . -}}
             <article class="article">
+              <div class="id-title">
                 <h1>{{ partial "title" . }}</h1>
+                {{- if and (eq $.Site.Params.id_search true) (.Params.aliases) }}
+                    {{- template "articlelink" . }} 
+                {{- end }}
+              </div>
+                {{- if and (eq $.Site.Params.id_search true) (.Params.aliases) }}
+                    {{- template "articlenumber" . }} 
+                {{- end }}
                 {{ .Content }}
             </article>
             {{- if ne $.Site.Params.meganav true -}}
