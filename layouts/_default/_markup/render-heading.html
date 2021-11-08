@@ -24,7 +24,7 @@
         {{- if and (ne .Page.IsHome true) (ne .Page.Params.aliases nil) }}
             {{- template "anchorlink2" (dict "ti" . "link" .Page.RelPermalink "al" (index .Page.Params.aliases 0) "ids" .Page.Site.Params.id_search) }}
         {{- else }}
-<h{{.Level}} id="{{.Anchor | safeURL}}" role="heading">{{.Text | safeHTML }}</h{{.Level}}>
+<h{{.Level}} pid="{{.Anchor | safeURL}}" role="heading">{{.Text | safeHTML }}</h{{.Level}}>
         {{- end }}
     {{- end }}
 {{- end }}
