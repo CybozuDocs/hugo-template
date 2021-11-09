@@ -118,16 +118,16 @@ other = "文章編號搜尋"
 other = "請輸入文章編號。"
 
 [ID_error_1]
-other = "請輸入 4 位或更多的數字。"
+other = "請輸入4位以上的數字。"
 
 [ID_error_2]
-other = "請以數字形式輸入文章編號。"
+other = "文章編號請輸入數字。"
 
 [ID_error_3]
-other = "對應的文章編號不存在。"
+other = "該文章編號不存在。"
 
 [ID_error_4]
-other = "連接超時。"
+other = "連線已逾時。"
 
 [ID_error_5]
-other = "發生網絡錯誤。"
+other = "網路發生錯誤。"

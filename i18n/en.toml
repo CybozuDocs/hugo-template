@@ -116,17 +116,17 @@ other = "Search Help by Article Number"
 other = "Enter the article number you want to search for."
 
 [ID_error_1]
-other = "Please enter a number of 4 digits or more."
+other = "Enter a number that contains 4 digits or more."
 
 [ID_error_2]
-other = "Please enter the article number in numbers."
+other = "The article number must contain numbers only."
 
 [ID_error_3]
-other = "The corresponding article number does not exist."
+other = "The specified article number cannot be found."
 
 [ID_error_4]
-other = "The connection has timed out."
+other = "Connection timed out."
 
 [ID_error_5]
-other = "A network error has occurred."
+other = "A network error occurred."
 

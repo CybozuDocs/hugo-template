@@ -116,13 +116,13 @@ other = "文章编号搜索"
 other = "请输入文章编号。"
 
 [ID_error_1]
-other = "请输入 4 位或更多的数字。"
+other = "请输入至少4位数字。"
 
 [ID_error_2]
-other = "请以数字形式输入文章编号。"
+other = "文章编号请输入数字。"
 
 [ID_error_3]
-other = "对应的文章编号不存在。"
+other = "该文章编号不存在。"
 
 [ID_error_4]
 other = "连接超时。"
