@@ -371,7 +371,9 @@
                         {{- if eq $serviceType "on-premise" }}
                             {{- $prod = "g5" }}
                         {{- end }}
-                        {{- if eq $weight 200 -}}
+                        {{- if eq $weight 100 -}}
+                            {{- $targeturl = (printf "/%s/%s/intro" $prod $lang) -}}
+                        {{- else if eq $weight 200 -}}
                             {{- $targeturl = (printf "/%s/%s/admin" $prod $lang) -}}
                         {{- else if eq $weight 300 -}}
                             {{- $targeturl = (printf "/%s/%s/user" $prod $lang) -}}
