@@ -97,11 +97,11 @@ other = "bread crumb"
 [Page_selection]
 other = "page selection"
 
-[Copy_parma_link]
-other = "Copy the parmanent link."
+[Copy_perma_link]
+other = "Copy the permanent link."
 
 [Link_was_copied]
-other = "The parmanent link has been copied."
+other = "The permanent link has been copied."
 
 [Help_site]
 other = "Help Site"

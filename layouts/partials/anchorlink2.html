@@ -3,7 +3,7 @@
     <div class="id-header" id="{{$ti.Anchor}}">
         <h{{$ti.Level}} class="h{{$ti.Level}}-contents" pid="{{$ti.Anchor}}">{{$ti.Text | safeHTML}}</h{{$ti.Level}}>
     {{- if .ids }}
-        <button class="id-link-button " title="{{ i18n "Copy_parma_link" }}" idpath="{{.al}}" tabindex="0" aria-owns="message-{{$ti.Anchor}}" >
+        <button class="id-link-button " title="{{ i18n "Copy_perma_link" }}" idpath="{{.al}}" tabindex="0" aria-owns="message-{{$ti.Anchor}}" >
             <i class="fas fa-link" aria-hidden="true"></i>
         </button>
     {{- end }}

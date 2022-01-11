@@ -97,11 +97,11 @@ other = "面包屑小径"
 [Page_selection]
 other = "页面选择"
 
-[Copy_parma_link]
-other = "复制参数链接"
+[Copy_perma_link]
+other = "复制固定链接"
 
 [Link_was_copied]
-other = "永久链接已复制"
+other = "固定链接已复制"
 
 [Help_site]
 other = "帮助网站"
