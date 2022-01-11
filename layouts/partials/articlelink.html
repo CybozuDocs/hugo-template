@@ -5,7 +5,7 @@
     {{- $relpath := strings.TrimRight ".html" .Page.RelPermalink }}
     {{- $relpath = strings.TrimRight .File.ContentBaseName $relpath }}
     {{- $docurl := printf "%s%sid/%s.html" .Site.BaseURL $relpath $docid}}
-    <button class="id-link-button id-link-button-title" title="{{ i18n "Copy_parma_link" }}" idpath="{{$alias}}" tabindex="0" aria-owns="message-aid" >
+    <button class="id-link-button id-link-button-title" title="{{ i18n "Copy_perma_link" }}" idpath="{{$alias}}" tabindex="0" aria-owns="message-aid" >
             <i class="fas fa-link" aria-hidden="true"></i>
     </button>
     <div id="message-aid" class="id-link-message">{{ i18n "Link_was_copied" }}</div>

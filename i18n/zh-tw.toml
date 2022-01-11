@@ -99,11 +99,11 @@ other = "麵包屑小徑"
 [Page_selection]
 other = "頁面選擇"
 
-[Copy_parma_link]
-other = "複製參數鏈接"
+[Copy_perma_link]
+other = "複製鏈接"
 
 [Link_was_copied]
-other = "永久鏈接已復制"
+other = "鏈接已復制"
 
 [Help_site]
 other = "說明網站"
