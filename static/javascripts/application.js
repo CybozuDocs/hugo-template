@@ -98,6 +98,9 @@
                     case "020":
                         prodpath = "/general/";
                         break;
+                    case "030":
+                        prodpath = "/store/";
+                        break;
                     case "040":
                         prodpath = "/k/";
                         break;
