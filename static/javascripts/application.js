@@ -104,6 +104,9 @@
                     case "040":
                         prodpath = "/k/";
                         break;
+                    case "050":
+                        prodpath = "/s/";
+                        break;
                 }
 
                 const uri = new URL(window.location.href);
