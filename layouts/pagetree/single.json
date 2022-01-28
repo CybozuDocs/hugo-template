@@ -1,0 +1,193 @@
+{{- $entries := "" }}
+{{- $needtoc := false }}
+{{- $islastsect := false }}
+{{- $entries = $.Site.Home.Sections -}}
+
+{{- if eq $.Site.Params.toc_in_tree true -}}
+
+    {{- $parenttree := false -}}
+    
+    {{- if eq $.Site.Params.toc_in_tree true -}}
+        {{- $parenttree = true }}
+        {{- $needtoc = true }}
+        {{- if in .RelPermalink "/application.html" }}
+            {{- $needtoc = false }}
+        {{- end }}
+    {{- end -}}
+
+    {{- if eq $parenttree true }}
+        {{- $entries = (.Parent.Pages | union .Parent.Sections) }}
+    {{- else }}
+        {{- $entries = (.Pages | union .Sections) }}
+    {{- end }}
+{{- end -}}
+
+{{- $scs := newScratch }}
+{{- $scs.Set "sectcnt" 0 }}
+{{- range $entries.ByWeight }}
+    {{- if in .Params.disabled .Site.Params.TargetRegion}}
+    {{- else }}
+        {{- $scs.Add "sectcnt" 1 }}
+    {{- end }}
+{{- end }}
+
+[
+{{- $target := .}}
+{{- $dispcnt := 1 }}
+{{- $sccnt := ($scs.Get "sectcnt") }}
+{{- $last := false }}
+{{- range $entries.ByWeight}}
+    {{- if eq $dispcnt $sccnt }}
+        {{- $last = true }}
+    {{- end }}
+    {{- if in .Params.disabled .Site.Params.TargetRegion}}
+    {{- else -}}
+        {{- template "jsontree" (dict "curnode" . "target" $target "needtoc" $needtoc "lastent" $last)}}
+
+        {{- $dispcnt = (add $dispcnt 1) }}
+    {{- end }}
+{{- end }}
+]
+
+{{- define "jsontree" }}
+    {{- $target := .target}}
+    {{- $curnode := .curnode}}
+    {{- $needtoc := .needtoc}}
+    {{- $lastent := .lastent }}
+    {{- with $curnode -}}
+        {{- if .IsSection }}
+                {{- $pages := (cond .IsHome (where .Site.RegularPages "Section" "") .Pages) }}
+                {{- $numberOfPages := (add (len $pages) (len .Sections)) }}
+                {{- if ne $numberOfPages 0 }}
+{
+"text"   : {{ partial "title" . | jsonify }},
+"a_attr" : {"href" : "{{.RelPermalink}}"},
+"children" : [
+                    {{- $entries := ""}}
+                    {{- if .Sections}}
+                        {{- $entries = ($pages | union .Sections) }}
+                    {{- else}}
+                        {{- $entries = $pages }}
+                    {{- end}}
+
+                    {{- $pcs := newScratch }}
+                    {{- $pcs.Set "pagecnt" 0 }}
+                    {{- range $entries.ByWeight }}
+                        {{- if in .Params.disabled .Site.Params.TargetRegion}}
+                        {{- else -}}
+                            {{- $pcs.Add "pagecnt" 1 }}
+                        {{- end }}
+                    {{- end }}
+                    {{- $pgcnt := 1 }}
+                    {{- $pc := ($pcs.Get "pagecnt")}}
+                    {{- $last := false }}
+                    {{- range $entries.ByWeight }}
+                        {{- if eq $pgcnt $pc }}
+                            {{- $last = true }}
+                        {{- end }}
+                        {{- if in .Params.disabled .Site.Params.TargetRegion}}
+                        {{- else -}}
+                            {{- template "jsontree" (dict "curnode" . "target" $target "needtoc" $needtoc "lastent" $last) }}
+                            {{- $pgcnt = (add $pgcnt 1) }}
+                        {{- end -}} {{/* TargetRegion */}}
+                    {{- end }}
+]
+                {{- end -}} {{/* ne $numberOfPages 0 */}}
+                {{- if eq $lastent true }}
+}
+                {{- else }}
+},
+                {{- end -}}
+        {{- else -}} {{/* isSection */}}
+{
+                {{- $tocs := "" }}
+                {{- $toclen := 0 }}
+                {{- if eq $needtoc true -}}
+                    {{- $cont := .Content }}
+                    {{- $tocs = findRE "<h[23].*?>(.|\n)*?</h[23]>" $cont }}
+                    {{- $toclen = (len $tocs) }}
+                {{- end }}
+"text"   : {{ partial "title" . | jsonify }},
+"a_attr" : { "href" : "{{.RelPermalink}}"}
+                {{- if gt $toclen 0 -}}
+,
+"children" : [
+                    {{- $pageurl := .RelPermalink}}
+                    {{- $previtem := "" }}
+                    {{- $open_h3 := false }}
+
+                    {{- range $idx, $ent := $tocs }}
+                        {{- $loopcnt := (add $idx 1) }}
+
+                        {{- $last_toc := false }}
+                        {{- if eq $loopcnt $toclen }}
+                            {{- $last_toc = true }}
+                        {{- end -}}
+
+                        {{- if and (in $previtem "<h2") (in $ent "<h3") -}}
+,
+"children" : [
+                            {{- $open_h3 = true }}
+                        {{- else }}
+                            {{- if and (in $previtem "<h3") (in $ent "<h2") }}
+]
+                                {{- $open_h3 = false }}
+                            {{- end }}
+},
+                        {{- end }}
+
+                        {{- template "jsontoc" (dict "tocitem" $ent "pageurl" $pageurl ) }}
+
+
+                        {{- if eq $last_toc true -}}
+}
+                            {{- if eq $open_h3 true }}
+]
+                            {{- end }}
+                        {{- end -}}
+
+                        {{- $previtem = $ent }}
+
+                    {{- end }}{{/* range $tocs */}}
+]
+                {{- end -}} {{/* ne $toclen 0 */}}
+                {{- if eq $lastent true }}
+}
+                {{- else }}
+},
+                {{- end -}}
+        {{- end -}} {{/* IsSection */}}
+    {{- end -}}
+{{- end -}}
+
+{{- define "jsontoc" }}
+    {{- $tocitem := .tocitem }}
+    {{- $pageurl := .pageurl }}
+     
+    {{- $anc := "" }}
+    {{- $params := split $tocitem " " }}
+    {{- range $params }}
+        {{- if in . "pid=" }}
+            {{- $params2 := split . ">" }}
+            {{- range $params2 }}
+                {{- if in . "pid=" }}
+                    {{- $anc = (strings.TrimPrefix "pid=\"" . ) }}
+                    {{- $anc = (strings.TrimSuffix "\"" $anc ) }}
+                {{- end }}
+            {{- end }}
+        {{- else if in . "id=" }}
+            {{- $anc = (strings.TrimPrefix "id=\"" . ) }}
+            {{- $anc = (strings.TrimSuffix "\"" $anc ) }}
+        {{- end }}
+    {{- end }}
+    {{- $txts := (findRE ">.+<" $tocitem 1) }}
+    {{- $txt := "" }}
+    {{- range first 1 $txts }}
+       {{- $txt = . }}
+    {{- end }}
+    {{- $txt = (strings.TrimPrefix ">" $txt ) }}
+    {{- $txt = (strings.TrimSuffix "<" $txt ) }}
+{
+"text"   : {{ $txt | jsonify }},
+"a_attr" : { "href" : "{{$pageurl}}#{{$anc}}" }
+{{- end }}

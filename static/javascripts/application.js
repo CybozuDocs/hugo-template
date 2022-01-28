@@ -3,14 +3,27 @@
     window.onload = function() {
         // 768pxは cssにおける@media screen min-width の設定値
         const mobileSize = 768;
-        
+
+        // 現在のURL
+        const cururl = location.pathname;
+        const url_parts = cururl.split("/");
+
         // 対応言語
         const languages = ["en", "ja", "zh", "zh-tw"];
+
+        // ツリーナビゲーションのdiv
+        const $tree = $("#tree-main");
 
         // ツリーナビゲーションヘッダー有無のフラグ
         let hasTreeHead = false;
         if( document.getElementById("tree-head") != null) {
             hasTreeHead = true;
+        }
+
+        // ツリーナビゲーションJSONモード
+        let json_mode = false;
+        if(location.pathname.indexOf("/k/") !== -1) {
+            json_mode = true;
         }
 
         // スクロール停止の検知イベント登録
@@ -332,16 +345,23 @@
     /*** ツリーナビゲーション ***/
 
         // jsTree.js の初期化
-        $('#tree-main').jstree();
+        if (json_mode === true) {
+            const jsonurl = "/" + url_parts[1] + "/" + url_parts[2] + "/pagetree.json";
+            $tree.jstree({"core": { "data" : { "url" : jsonurl } } });
+        }
+        else
+        {
+            $tree.jstree();
+        }
 
-        $('#tree-main').on("ready.jstree", function (e, data) {
+        $tree.on("ready.jstree", function (e, data) {
             // jsTreeの初期化処理完了後に画面表示
-            $('#tree-main').css("display", "block");
+            $tree.css("display", "block");
 
             initPage();
         });
 
-        $('#tree-main').on("changed.jstree", function (e, data) {
+        $tree.on("changed.jstree", function (e, data) {
             if (data.action === "select_node") {
                 const pos = $tree.scrollTop();
                 // 選択時にスクロール位置をクッキーに保存する
@@ -380,7 +400,7 @@
             }
         });
 
-        $("#tree-main").keydown(function (e) {
+        $tree.keydown(function (e) {
             // Tabキーでツリーナビゲーションから抜けるとき、キー操作フラグを消す
             if(e.which === 9) {
                 Cookies.remove("keydn");
@@ -409,9 +429,6 @@
                 }
             });
         }
-
-        // ツリーナビゲーションのスクロール対象div
-        const $tree = $("#tree-main");
 
         // 本文スクロール時にツリーナビゲーションの高さ調節させるイベントハンドラ
         $(window).on("scrollstop",function(e) {
@@ -491,7 +508,6 @@
                 wrapHeight = wrapHeight - getTreeHeadHeight() - 35;
             } else {
                 wrapHeight = winHeight - $(".header").height() - gap;
-                $("#tree-nav").height(wrapHeight);
             }
 
             $tree.height(wrapHeight);
@@ -552,6 +568,50 @@
             }
         }
 
+        // 現在ページのノードまでツリーを展開する
+        function expandCurrentNode() {
+            const parts_len = url_parts.length;
+            let target_node = $tree;
+            let target_url = "/" + url_parts[1] + "/" + url_parts[2];
+            let links = null;
+
+            for(let i=3; i<parts_len; i++) {
+                links = target_node.find(".jstree-anchor");
+
+                if(links.lenght <= 0) {
+                    return false;
+                }
+
+                target_url = target_url + "/" + url_parts[i];
+                let param_url = target_url;
+                let last = false;
+                if(i >= (parts_len - 1)) {
+                    last = true;
+                } else {
+                    param_url = param_url + ".html"
+                }
+                target_node = openNode(links, param_url, last);
+            }
+        }
+
+        // 対象のURLのAタグを含むノードを展開する
+        // 最終ノードの場合はハイライトを設定する
+        function openNode(links, url, last) {
+            let reto = null;
+            links.each(function() {
+                if ($(this).attr("href") === url) {
+                    if(last === true) {
+                        $(this).addClass("current");
+                    } else {
+                        $tree.jstree("open_node", $(this).parent().attr("id"))
+                        reto = $(this).parent();
+                    }
+                    return false;
+                }
+            });
+            return reto;
+        }
+
     /*** ツリーナビゲーション内TOC ***/
 
         // ツリーナビゲーションヘッダーを持つ(=ツリー内TOCを保つ場合)
@@ -567,7 +627,7 @@
             // ツリーの第一階層が展開されてなければ展開させる
             $("a.toclink").each(function() {
                 if ($(this).attr("href") === "#") {
-                    $('#tree-main').jstree("open_node", $(this).prop("id"));
+                    $tree.jstree("open_node", $(this).prop("id"));
                 }
             });
 
@@ -658,7 +718,7 @@
                         // ツリーが展開されてなければ展開させる
                         if (litag.hasClass("jstree-closed")) {
                             let lid = litag.prop("id");
-                            $('#tree-main').jstree("open_node", lid);
+                            $tree.jstree("open_node", lid);
                         }
                     }
                     return false;
@@ -821,6 +881,11 @@
     /***  初回表示時の処理 ***/
 
         function initPage() {
+            if( json_mode === true ) {
+                // JSONモード時のツリー展開とハイライト設定
+                expandCurrentNode();
+            }
+
             if(window.innerWidth < mobileSize) {
                 // モバイル画面ではツリーナビゲーションの位置を変える
                 switchParts(true);
@@ -844,7 +909,7 @@
                     if(hasTreeHead === true) {
                         moveTreeTocHighlight();
                     } else {
-                        $tree.scrollTop(dpos);
+                        $tree.animate({scrollTop:dpos},300);
                     }
 
                     // キーボード操作で遷移してきた場合は、ハイライトされたノードにフォーカスも当てる

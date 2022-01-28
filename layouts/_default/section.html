@@ -3,6 +3,7 @@
 {{- else}}
 {{- partial "head" . }}
 {{- partial "header" . }}
+<div class="page-pad"></div>
 {{- if eq $.Site.Params.meganav true -}}
     {{ partial "meganav" . }}
 {{- end -}}
@@ -15,7 +16,11 @@
                 {{ partial "treenav2" . }}
             {{- end }}
         {{- else }}
-            {{ partial "treenav" . }}
+            {{- if eq $.Site.Params.product "kintone" }}
+                {{ partial "treenav3" . }}
+            {{- else }}
+                {{ partial "treenav" . }}
+            {{- end }}
         {{- end }}
     </div>
     <div id="contents" class="contents-wrap">
@@ -36,7 +41,7 @@
                 {{- end }}
                 {{ .Content }}
             </article>
-            {{- if ne $.Site.Params.meganav true -}}
+            {{- if ne $.Site.Params.toc_in_tree true -}}
                 {{- $pages := (.Pages | union .Sections) }}
                 {{- $disppage := 0 }}
                 {{- range $pages.ByWeight }}
@@ -62,7 +67,7 @@
         </main>
     </div>
 
-    {{- if ne $.Site.Params.meganav true -}}
+    {{- if ne $.Site.Params.toc_in_tree true -}}
     <div class="sidebar-wrap">
         <nav id="rightside-bar">
             <h2 class="toc-title">{{ i18n "In_this_article" }}</h2>

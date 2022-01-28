@@ -78,7 +78,7 @@
             const $footer = $("#page-footer");
             const footerHeight = $footer.outerHeight();
             if ($window.width() > 1059) {
-                const footDisp = $footer.offset().top - $window.height();
+                const footDisp = $footer.offset().top - $window.outerHeight();
                 const windowScrollTop = $window.scrollTop();
 
                 if (enq_closed === true) {
