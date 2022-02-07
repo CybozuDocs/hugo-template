@@ -34,6 +34,10 @@
     padding-top: 0px;
 }
 
+:not(div.id-link-message) + .h6-noanc {
+  margin-top: 24px;
+}
+
 .article dl {
   margin: 5px;
 }
@@ -41,6 +45,10 @@
 .article dt {
   margin-bottom: 7px;
   font-weight: bold;
+}
+
+.article dl > dt:nth-child(n + 2) {
+  margin-top: 14px;
 }
 
 .article dd {
