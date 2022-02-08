@@ -1,5 +1,7 @@
 {{- $target := .Title }}
 {{- if and (eq .Site.Params.TargetRegion "US") .Params.title_us }}
     {{- $target = .Params.title_us }}
+{{- else if and (eq .Site.Params.TargetRegion "CN") .Params.title_cn }}
+    {{- $target = .Params.title_cn }}
 {{- end }}
 {{- partial "applyparams" (dict "target" $target "params" .Site.Params) }}
