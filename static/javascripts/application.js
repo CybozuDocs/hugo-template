@@ -346,7 +346,8 @@
 
         // jsTree.js の初期化
         if (json_mode === true) {
-            const jsonurl = "/" + url_parts[1] + "/" + url_parts[2] + "/pagetree.json";
+            const date = $('meta[name="date"]').attr("content");
+            const jsonurl = "/" + url_parts[1] + "/" + url_parts[2] + "/pagetree.json?" + date;
             $tree.jstree({"core": { "data" : { "url" : jsonurl } } });
         }
         else
