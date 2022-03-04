@@ -425,6 +425,9 @@ li .lang-title {
     font-size: .75em;
     margin: 94px auto 0;
 }
+.g-nav-title-wrap {
+    white-space: nowrap;
+}
 .g-col:nth-child(3n) {
     border-right: none;
 }
@@ -578,6 +581,51 @@ li .lang-title {
 }
 .mega-list-item {
     width: 100%;
+}
+.pickup-video {
+    margin: 0 0 2em 2em;
+    padding: 1em;
+    background-color: #e6f1f4;
+    width: 90%;
+}
+.pickup-video-head {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1em;
+}
+.pickup-video-head h2 {
+    white-space: nowrap;
+}
+.pickup-video-desc {
+    padding: .3em 0 0 .5em;
+    font-weight: bold;
+}
+.pickup-video-icon {
+    font-size: 1.2em;
+    padding: 2px 4px 2px 4px;
+}
+.video-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.video-card {
+    text-align : left;
+    white-space: nowrap;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.video-card-sum {
+    width: 50px;
+}
+.video-card-title {
+    display: inline-block;
+    margin-left: .5em;
+    vertical-align: .6em;
+}
+.video-card-title:hover {
+    border-bottom: solid 1px #1b72cd;
 }
 /* ------------------------------------ end of mega menu */
 
@@ -799,6 +847,15 @@ h6 + .id-link-button {
     flex-direction: column;
     flex-wrap: wrap;
     padding: 20px 12px 80px 12px;
+    width: 100%;
+    height: auto;
+}
+.video-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 12px 0 12px;
+    margin-top: -40px;
     width: 100%;
     height: auto;
 }
@@ -1355,12 +1412,12 @@ table .wd10 {
     position: relative;
     float: left;
 }
-.col-tile:not(.col-flat):hover {
+.col-tile:not(.col-flat):hover,.col-video:hover {
     transform: scale(1.015);
     background-color: #FFFFFF;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
 }
-.col-tile > a {
+.col-tile > a,.col-video > a {
     display: block;
     position: absolute;
     width: 100%;
@@ -1442,6 +1499,27 @@ table .wd10 {
     text-align: center;
     padding-right: .5em;
     color: #1b72cd;
+}
+.col-video {
+    margin: 16px;
+    border: 1px solid #e6e6e6;
+    position: relative;
+    width: 190px;
+    padding: 10px;
+    float: left;
+}
+.col-video-title {
+    font-size: 1em;
+    line-height: 1.2;
+    text-decoration: none;
+    min-height: 6em;
+}
+.col-video-time {
+    font-size: .8rem;
+    line-height: 1;
+}
+.col-video-img {
+    max-height: 130px;
 }
 /* -------------------------------------- tile style */
 /* Garoon type Tile  ------------------------------- */
@@ -1846,6 +1924,30 @@ i.index-pdf {
     .page {
         flex-direction: row;
     }
+
+    .pickup-video {
+        margin: 0 0 2em 4em;
+        width: auto;
+    }
+    .pickup-video-head {
+        flex-direction: row;
+        padding-bottom: 2em;
+    }
+    .pickup-video-desc {
+        padding: .3em 0 0 2em;
+    }
+    .video-list {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .video-card {
+        text-align : center;
+        white-space: normal;
+    }
+    .video-card-sum {
+        width: 105px;
+    }
+
     .sect-wrap {
         margin: 0 auto;
         padding: 0 32px 192px;
