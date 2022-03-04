@@ -29,7 +29,7 @@
         {{- if eq .CurrentSection $rootsect -}}
                     class = "current" aria-current="page"
         {{- end -}}
->{{ partial "title" . }}</a>
+><span class="g-nav-title-wrap">{{ template "titleicon" .RelPermalink }}{{ partial "title" . }}</span></a>
         </li>
     {{- end }}
 {{- end}}
@@ -123,3 +123,11 @@
     {{- end }}
 {{- end }}
 
+{{- define "titleicon" }}
+    {{- $targetlink := . }}
+    {{- range $i, $r := getCSV "," "csv/icon_images.csv" }}
+        {{- if in $targetlink (index $r 0)}}
+            <i class="{{ index $r 1 }}" aria-hidden="true"></i>
+        {{- end }}
+    {{- end }}
+{{- end }}

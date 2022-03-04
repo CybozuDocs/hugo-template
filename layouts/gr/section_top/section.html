@@ -15,16 +15,15 @@
     <main class="sect-main">
         <h1>{{ partial "title" . }}</h1>
 
+{{ .Content }}
+
 {{- $entries := $.Site.Home.Pages }}
 {{- $rootsect := .FirstSection }}
-                    
 {{- range $entries.ByWeight}}
     {{- if eq .CurrentSection $rootsect }}
         {{- template "sectmenu" (dict "cursect" $rootsect ) }}
     {{- end}}
 {{- end}}
-
-{{ .Content }}
     </main>
 </div>
 {{- partial "footer" . }}
