@@ -603,6 +603,10 @@
                 if ($(this).attr("href") === url) {
                     if(last === true) {
                         $(this).addClass("current");
+                        // 子ノードを保つ場合は展開させる
+                        if ($(this).parent().hasClass("jstree-closed")) {
+                            $tree.jstree("open_node", $(this).parent().attr("id"));
+                        }
                     } else {
                         $tree.jstree("open_node", $(this).parent().attr("id"))
                         reto = $(this).parent();
