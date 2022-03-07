@@ -612,7 +612,6 @@ li .lang-title {
 .video-card {
     text-align : left;
     white-space: nowrap;
-    max-width: 200px;
     display: flex;
     flex-direction: column;
 }
@@ -1943,6 +1942,7 @@ i.index-pdf {
     .video-card {
         text-align : center;
         white-space: normal;
+        max-width: 200px;
     }
     .video-card-sum {
         width: 105px;
