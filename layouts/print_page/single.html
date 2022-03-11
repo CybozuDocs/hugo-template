@@ -377,6 +377,8 @@
                             {{- $targeturl = (printf "/%s/%s/admin" $prod $lang) -}}
                         {{- else if eq $weight 300 -}}
                             {{- $targeturl = (printf "/%s/%s/user" $prod $lang) -}}
+                        {{- else if eq $weight 600 -}}
+                            {{- $targeturl = (printf "/%s/%s/option" $prod $lang) -}}
                         {{- end -}}
                     {{- else if eq $product "Mailwise" -}}
                         {{- $prod := "m" }}
