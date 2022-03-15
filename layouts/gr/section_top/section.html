@@ -3,6 +3,7 @@
 {{- else }}
 {{- partial "head" . }}
 {{- partial "header" . }}
+<div class="page-pad"></div>
 {{- if eq $.Site.Params.meganav true -}}
     {{ partial "meganav" . }}
 {{- end -}}
@@ -14,11 +15,11 @@
     {{- partial "breadcrumb" . -}}
     <main class="sect-main">
         <h1>{{ partial "title" . }}</h1>
-
 {{ .Content }}
 
 {{- $entries := $.Site.Home.Pages }}
 {{- $rootsect := .FirstSection }}
+                    
 {{- range $entries.ByWeight}}
     {{- if eq .CurrentSection $rootsect }}
         {{- template "sectmenu" (dict "cursect" $rootsect ) }}

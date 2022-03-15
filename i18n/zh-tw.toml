@@ -131,3 +131,7 @@ other = "連線已逾時。"
 
 [ID_error_5]
 other = "網路發生錯誤。"
+
+[Tab_menu]
+other = "標籤菜單"
+

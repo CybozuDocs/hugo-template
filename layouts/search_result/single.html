@@ -1,5 +1,6 @@
 {{- partial "head" . }}
 {{- partial "header" . }}
+<div class="page-pad page-pad-search"></div>
 {{- if eq $.Site.Params.meganav true -}}
     {{- partial "meganav" . }}
 {{- end -}}
@@ -8,7 +9,9 @@
         <main class="main" role="main">
             {{- partial "breadcrumb" . }}
             <article class="article" >
+            {{/* - if ne $.Site.Params.TargetRegion "US" */}}
                 <h1>{{ partial "title" . }}</h1>
+            {{/* - end */}}
                 <div id="searchResultContainer">
                     {{- if eq $.Site.Params.google_search true -}}
                     <div id="main_form">

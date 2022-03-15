@@ -16,6 +16,13 @@
   font-size: 11px;
 }
 
+.footer-wrap {
+    height: 12rem;
+}
+.footer-wrap:lang(en) {
+    height: 15rem;
+}
+
 #tree-nav {
     margin-bottom: 70px;
 }
@@ -35,6 +42,13 @@
     }
     .logo-title:lang(en) {
         font-size: 12px;
+    }
+
+    .footer-wrap {
+        height: 6rem;
+    }
+    .footer-wrap:lang(en) {
+        height: 6rem;
     }
 }
 

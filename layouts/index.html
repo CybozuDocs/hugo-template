@@ -1,12 +1,21 @@
 {{- partial "head" . }}
 {{- partial "header" . }}
+<div class="page-pad"></div>
+{{- if eq $.Site.Params.meganav true -}}
+<div class="mnav-pad"></div>
+    {{ partial "meganav" . }}
+{{- end -}}
     <div class="eye-catching">
         <div class="hero" style="background-image: url('{{ "images/hero_common.png" | relURL}}');"></div>
     </div>
     <main class="main">
         <article class="article home-article" >
             <div class="wrapper">
-                <div class="welcome_message">{{ i18n "Welcome" . }}</div>
+                {{- $toptitle := (i18n "Welcome" .) }}
+                {{- if eq $.Site.Params.TargetRegion "US" }}
+                    {{ $toptitle = printf "%s %s" .Site.Params.kintone (i18n "Help_site") }}
+                {{- end }}
+                <div class="welcome_message">{{$toptitle}}</div>
                 <div class="search-wrap">
                     <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html"　onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}' role="search">
                         <div class="searchbox">

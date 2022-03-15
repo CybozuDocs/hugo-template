@@ -11,6 +11,16 @@
         // 対応言語
         const languages = ["en", "ja", "zh", "zh-tw"];
 
+        // メガメニュー有無のフラグ
+        let hasMegaNav = false;
+        let hasMegaNavSecond = false;
+        if( document.getElementsByClassName("mega-nav").length > 0) {
+            hasMegaNav = true;
+            if( document.getElementsByClassName("mega-tab-short").length > 0) {
+                hasMegaNavSecond = true;
+            }
+        }
+
         // ツリーナビゲーションのdiv
         const $tree = $("#tree-main");
 
@@ -38,7 +48,6 @@
         // ID検索
         if( document.getElementById("id-panel") != null ) {
             let searching = false;
-            const $idp = $("#id-panel");
             const $idinput = $("#id-input");
             const $idbtn = $("#id-search-disp");
             const $idmsg = $("#id-message");
@@ -365,11 +374,8 @@
         $tree.on("changed.jstree", function (e, data) {
             if (data.action === "select_node") {
                 const pos = $tree.scrollTop();
-                // 選択時にスクロール位置をクッキーに保存する
-                // クッキーの有効期間は5秒間（クリックしてから再描画されるまでの時間を想定）
-                const date = new Date();
-                date.setTime( date.getTime() + ( 5000 ));
-                Cookies.set("dpos", pos, { expires: date, samesite: "Strict"} );
+                // 選択時にスクロール位置を保存する
+                setSessionValue("dpos", pos);
 
                 // リンククリック対応
                 const newurl = data.node.a_attr.href;
@@ -378,11 +384,8 @@
                         && ("originalEvent" in data.event)
                         && (data.event.originalEvent.key === "Enter")) {
 
-                        // キーボード操作で選択されたフラグをクッキーに保存する
-                        // クッキーの有効期間は5秒間（クリックしてから再描画されるまでの時間を想定）
-                        const date = new Date();
-                        date.setTime( date.getTime() + ( 5000 ));
-                        Cookies.set("keydn", "true", { expires: date, samesite: "Strict"} );
+                        // キーボード操作で選択されたフラグを保存する
+                        setSessionValue("keydn", "true");
                     }
 
                     if (newurl.indexOf("#") !== -1) {
@@ -404,7 +407,7 @@
         $tree.keydown(function (e) {
             // Tabキーでツリーナビゲーションから抜けるとき、キー操作フラグを消す
             if(e.which === 9) {
-                Cookies.remove("keydn");
+                sessionStorage.removeItem("keydn");
             }
         });
 
@@ -455,17 +458,21 @@
 
         // ツリーナビゲーションの位置と高さの調整
         function adjustTreeHeight(){
+            if($tree.length <= 0) return false;
+
             if(window.innerWidth < mobileSize) {
                 // モバイルサイズにリサイズした場合の設定リセット
                 $("#tree-nav").css("height", "auto");
                 $tree.css("height", "auto");
-                if(hasTreeHead === true) {
+                if(hasMegaNav === true) {
                     $("#tree-nav").removeClass("fixed-tree");
                 }
                 return false;
             }
 
-            if(hasTreeHead === true) {
+            if(hasMegaNavSecond === true) {
+                $("#tree-nav").addClass("fixed-tree");
+            } else if(hasMegaNav === true) {
                 const menuheight = $(".g-nav").height() + $(".mega-nav").height();
 
                 // メガメニューがスクロールアウトしたらツリーナビゲーションの位置を固定
@@ -477,47 +484,38 @@
             }
 
             // 高さを調整
-            const winHeight = $(window).height();
+            const winHeight = $(window).outerHeight();
             const footerOffsetTop = $(".footer").offset().top;
             const winScrollTop = $(window).scrollTop();
             
             // 画面内に表示されているフッターの高さに応じたサイズ調整
             let wrapHeight = 0;
-            let gap = 0;
-            if(winScrollTop+winHeight-footerOffsetTop > 0) {
-                gap = (winScrollTop+winHeight-footerOffsetTop);
+            let footHeight = 0;
+            if(winScrollTop + winHeight - footerOffsetTop > 0) {
+                footHeight = (winScrollTop + winHeight - footerOffsetTop);
             }
 
-            if(hasTreeHead === true) {
-                wrapHeight = winHeight - ($("#tree-nav").offset().top - winScrollTop) - gap;
+            if(hasMegaNav === true) {
+                // pageの高さ
+                const pageHeight = $("#page").outerHeight();
 
-                let mh = $("#main").height();
-                if(wrapHeight > mh ) {
-                    // 本文の高さがツリーナビゲーションより小さい場合
-                    // ツリーナビゲーションの高さを本文に合わせる(スクロール時のリサイズループ防止)
-
-                    // ヘッダーとフッターを除いた表示領域の高さ
-                    let dh = winHeight - $(".header").height() - getTreeHeadHeight() - $(".footer").outerHeight() - 30;
-                    if(mh > dh) {
-                        wrapHeight = mh;
-                    } else {
-                        wrapHeight = dh;
-                    }
-                }
+                // treeの表示領域域の高さ
+                wrapHeight = winHeight - ($("#tree-nav").offset().top - winScrollTop) - footHeight;
 
                 $("#tree-nav").height(wrapHeight);
-                wrapHeight = wrapHeight - getTreeHeadHeight() - 35;
+                wrapHeight = wrapHeight - getTreeHeadHeight();
             } else {
-                wrapHeight = winHeight - $(".header").height() - gap;
+                wrapHeight = winHeight - $(".header").outerHeight() - footHeight;
+                $("#tree-nav").height(wrapHeight);
             }
 
             $tree.height(wrapHeight);
 
             // 右ペインTOCのサイズ調整
             if( document.getElementById("page-toc") != null ) {
-                let sbh = winHeight - $(".header").height() - 48 - gap;
+                let sbh = winHeight - $(".header").outerHeight() - footHeight;
                 if( document.getElementById("enquete") != null ) {
-                    sbh -= ($("#enquete").height() + 20);
+                    sbh -= ($("#enquete").outerHeight());
                 }
                 $("#rightside-bar").height(sbh);
 
@@ -526,13 +524,17 @@
 
         // ツリーナビゲーションヘッダーの高さ取得
         function getTreeHeadHeight() {
+            if (hasTreeHead == false) {
+                return 0;
+            }
+
             let th1 = 0;
             let th2 = 0;
             if($(".tree-title").length) {
-                th1 = $(".tree-title").height();
+                th1 = $(".tree-title").outerHeight();
             }
             if($(".tree-subtitle").length) {
-                th2 = $(".tree-subtitle").height();
+                th2 = $(".tree-subtitle").outerHeight();
             }
 
             return th1 + th2;
@@ -608,7 +610,7 @@
                             $tree.jstree("open_node", $(this).parent().attr("id"));
                         }
                     } else {
-                        $tree.jstree("open_node", $(this).parent().attr("id"))
+                        $tree.jstree("open_node", $(this).parent().attr("id"));
                         reto = $(this).parent();
                     }
                     return false;
@@ -688,7 +690,7 @@
                 if($(this).prop("href") === target) {
                     $(this).addClass("current");
 
-                    let keydn = Cookies.get("keydn");
+                    const keydn = getSessionValue("keydn");
                     if (keydn === "true") {
                         $(this).focus();
                     }
@@ -729,6 +731,38 @@
                     return false;
                 }
             });
+        }
+
+        // データをセッションストレージに保存
+        function setSessionValue(key, val) {
+            const newval = JSON.stringify({
+                value: val,
+                timestamp: new Date().getTime()
+            });
+
+            sessionStorage.setItem(key, newval);
+        }
+
+        // セッションストレージの更新が5秒以内であればvalueの値を返す
+        // 5秒は、クリックしてから再描画までの間を想定
+        function getSessionValue(key) {
+            let retval = null;
+            const strval = sessionStorage.getItem(key);
+
+            if(strval !== null) {
+                const d = JSON.parse(strval);
+                const intval = Number(d.timestamp);
+                const now =  new Date().getTime();
+
+                if(now - intval < 5000) {
+                    retval = d.value;
+                } 
+
+                // 使用後は削除
+                sessionStorage.removeItem(key);
+            }
+
+            return retval;
         }
 
     /*** 右ペインTOC ***/  
@@ -897,16 +931,20 @@
             } else {
                 // モバイル画面以外の処理
 
-                const topMargin = 90;
+                let topMargin = $("#head").outerHeight();
+                if($(".mega-nav").length > 0) {
+                    topMargin += $(".mega-nav").outerHeight()
+                }
+
                 const $current = $("#tree-nav .current");
                 adjustTreeHeight();
 
                 // ハイライトを持つ場合
                 if($current.length > 0) {
-                    // 選択されたアイテムのスクロール位置をクッキーから取り出す
-                    let dpos = Cookies.get("dpos");
-                    if(dpos === undefined) {
-                        // クッキーを持たない場合(=直リンクで開かれた場合)
+                    // 選択されたアイテムのスクロール位置を取り出す
+                    let dpos = getSessionValue("dpos");
+                    if(dpos === null) {
+                        // セッション情報を持たない場合(=直リンクで開かれた場合)
                         // 表示ページのメニュー位置をスクロール位置と設定
                         dpos = $current.offset().top - topMargin;
                     }
@@ -918,7 +956,7 @@
                     }
 
                     // キーボード操作で遷移してきた場合は、ハイライトされたノードにフォーカスも当てる
-                    let keydn = Cookies.get("keydn");
+                    const keydn = getSessionValue("keydn");
                     if (keydn === "true") {
                         $current.focus();
                     }
