@@ -3,7 +3,11 @@
 {{- if .Get "id" }}
     {{- $id = .Get "id" }}
 {{- end }}
-<div class="step-wrap" id="{{$id}}">
+{{- if ne $id "" }}
+  <div class="step-wrap" id="{{$id}}">
+{{- else }}
+  <div class="step-wrap">
+{{- end }}
     <div class="step-label">
 {{- $number := "" }}
 {{- if .Get "number" }}
