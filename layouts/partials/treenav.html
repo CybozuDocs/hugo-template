@@ -4,7 +4,7 @@
 {{- $entries = $.Site.Home.Sections}}
 
 <div id="tree-nav">
-{{- if eq $.Site.Params.meganav true -}}
+{{- if eq $.Site.Params.toc_in_tree true -}}
     {{- $lastpage := (slice) }}
     {{- if eq $.Site.Params.product "Garoon" }}
         {{- $lastpage = (slice "/purpose/" "/user/basic/" "/user/mobile/" "/user/personal/" "/admin/spec/" "/glossary/" "/intro/" "/option/fullsearch/") }}

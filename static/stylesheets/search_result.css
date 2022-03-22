@@ -16,7 +16,7 @@
 body { overflow-y: scroll; }
 
 .g-nav {
-    margin: 64px auto .2em;
+    margin: 0 auto 0;
 }
 
 .page {

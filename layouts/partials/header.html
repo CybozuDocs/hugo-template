@@ -1,6 +1,8 @@
 {{- $hedclass := "" }}
 {{- if and .IsHome (ne .Site.Params.meganav true)}}
     {{- $hedclass = "home-header" }}
+{{- else if and .IsHome (eq $.Site.Params.TargetRegion "US") }}
+    {{- $hedclass = "home-header" }}
 {{- end }}
     <header class="header {{$hedclass}}">
         <div id="head" class="header-wrap">
@@ -12,8 +14,14 @@
             <div class="logo-wrap">
                 <h1 class="frame-h1">
                     <a class="logo-link" href="{{ $.Site.BaseURL }}{{$baselang}}">
-            {{- with .Site.Params.logo -}}
-                        <img class="logo-img" src="{{ $.Site.BaseURL }}{{.}}" aria-hidden="true">
+            {{- with $.Site.Params.logo -}}
+                {{- $alt := "" }}
+                {{- $hidden := "true" }}
+                {{- with $.Site.Params.logo_alt -}}
+                    {{- $alt = $.Site.Params.logo_alt }}
+                    {{- $hidden = "false" }}
+                {{- end }}
+                        <img class="logo-img" src="{{ $.Site.BaseURL }}{{.}}" alt="{{$alt}}" title="{{$alt}}" aria-hidden="{{$hidden}}">
             {{- end -}}
             {{- $title := printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help -}}
             
@@ -30,6 +38,8 @@
         {{- if eq .Params.type "search_result" }}
             {{- $disp_sbox = false }}
         {{- else if and (ne $.Site.Params.meganav true) .IsHome }}
+            {{- $disp_sbox = false }}
+        {{- else if and (eq $.Site.Params.TargetRegion "US") .IsHome }}
             {{- $disp_sbox = false }}
         {{- end }}
 

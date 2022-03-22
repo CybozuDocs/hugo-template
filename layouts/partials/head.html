@@ -68,6 +68,8 @@
     <link rel="icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
 
     {{- if eq .Site.Params.TargetRegion "US" }}
+    <link rel="stylesheet" href="https://use.typekit.net/fmt1ojn.css">
+
     <!-- OneTrust Cookies Consent Notice start -->
     <script type="text/javascript" src="https://cookie-cdn.cookiepro.com/consent/9d6098cc-90be-4d07-a9ef-6e07312a3016/OtAutoBlock.js"></script>
     <script src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="9d6098cc-90be-4d07-a9ef-6e07312a3016"></script>
@@ -79,7 +81,7 @@
 
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application.css" $buildnum | relURL }}">
     <link rel="stylesheet" href="{{ "stylesheets/zoom.css" | relURL }}">
-    <!--link rel="stylesheet" href="https://js.cybozu.com/font-awesome/v5.0.13/css/fontawesome-all.min.css"-->
+
     <script src="https://kit.fontawesome.com/5b68479252.js" crossorigin="anonymous"></script>
     {{- if .IsHome}}
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/home.css" $buildnum | relURL }}">
@@ -99,7 +101,6 @@
     {{- end}}
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ "javascripts/js.cookie.js" | relURL }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js"></script>
     <script src="{{ "javascripts/zoom.js" | relURL }}"></script>
     <script src="{{ printf "%s?%s" "javascripts/application.js" $buildnum | relURL }}"></script>
@@ -123,6 +124,7 @@
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-5N49D3');</script>
     <!-- End Google Tag Manager -->
+
     {{- if and (eq $.Site.Params.product "kintone") (eq $.Site.Params.TargetRegion "JP") }}
     <!-- Google Tag Manager for kintone hive -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -132,5 +134,6 @@
       })(window,document,'script','dataLayer','GTM-WQ8K7Z8');</script>
     <!-- End Google Tag Manager for kintone hive -->
     {{- end }}
+
   </head>
   <body class="font-{{.Lang}}">

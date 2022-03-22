@@ -1,0 +1,133 @@
+{{- define "getsecond" }}
+    {{- if and .p1.Parent (ne .p1 .p1.FirstSection) }}
+        {{- .scratch.Set "second" .p1  }}
+        {{- template "getsecond" (dict "p1" .p1.Parent "scratch" .scratch ) -}}
+    {{- end -}}
+{{- end }}
+
+{{- $scratch := newScratch }}
+{{- template "getsecond" (dict "p1" . "scratch" $scratch ) }}
+{{- $secondsect := ($scratch.Get "second") }}
+
+{{- $entries := $.Site.Home.Sections }}
+{{- $rootsect := .FirstSection }}
+{{- $seconditems := len $rootsect.Pages }}
+{{- if .IsHome}}
+  {{- $seconditems = 0 }}
+{{- else if or (in $rootsect "purpose") (in $rootsect "guide") (in $rootsect "pdf") (in $rootsect "glossary")}}
+  {{- $seconditems = 0 }}
+{{- else if or (eq $.Params.type "search_result") (eq $.Params.type "gr/sitemap")}}
+  {{- $seconditems = 0 }}
+{{- end }}
+
+<nav role="navigation" aria-label="{{ i18n "Document_type" }}"> 
+    <ul class="g-nav" role="none" >
+{{- range $entries.ByWeight}}
+    {{- if ne .Params.weight 0 }}
+        <li class="g-col" role="none">
+                <a href="{{ .RelPermalink }}"
+        {{- if eq .CurrentSection $rootsect -}}
+                    class = "current" aria-current="page"
+        {{- end -}}
+><span class="g-nav-title-wrap">{{ template "titleicon" .RelPermalink }}{{ partial "title" . }}</span></a>
+        </li>
+    {{- end }}
+{{- end}}
+    </ul>
+
+    <div class="mega-nav">
+{{- if gt $seconditems 0 }}
+        <div class="mega-tab-wrap">
+            <div class="mega-tab-head"><h2 class="mega-tab-guide">{{ i18n "By_features" }}</h2></div>
+            <div id="mega-tab-bar" class="mega-tab-bar">
+    {{- range $entries.ByWeight}}
+        {{- if eq .CurrentSection $rootsect }}
+            {{- template "sectbar" (dict "cursect" $rootsect "secondsect" $secondsect) }}
+        {{- end}}
+    {{- end}}
+            </div>
+        </div>
+        
+    {{- range $entries.ByWeight}}
+        {{- if eq .CurrentSection $rootsect }}
+            {{- template "megapanel" $rootsect }}
+        {{- end}}
+    {{- end}}
+{{- end }}
+    </div>
+</nav>
+
+{{- define "sectbar" }}
+    {{- $cursect := .cursect }}
+    {{- $secondsect := .secondsect }}
+            <ul role="tablist">
+    {{- $menuid := 0}}
+    {{- range $cursect.Pages.ByWeight }}
+        {{- $curclass := "" }}
+        {{- $tabsts := "false" }}
+        {{- if eq $secondsect . }}
+            {{- $curclass = "current" }}
+            {{- $tabsts = "true" }}
+        {{- end }}
+        
+        {{- $menuid = (add $menuid 1)}}
+        {{- $tabidx := "-1" }}
+        {{- if eq $menuid 1 }}
+            {{- $tabidx = "0" }}
+        {{- end }}
+                <li role="presentation" >
+                    <button class="mega-tab {{$curclass}}" id="tab{{$menuid}}" tabindex="{{$tabidx}}" role="tab" aria-controls="panel{{$menuid}}" aria-selected="{{$tabsts}}" aria-expanded="false">
+                        {{- partial "title" . -}}
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                </li>
+    {{- end}}
+            </ul>
+{{- end }}
+        
+{{- define "megapanel" }}
+    {{- $cursect := . }}
+    {{- $menuid := 0}}
+    {{- range $cursect.Pages.ByWeight }}
+        {{- $menuid = (add $menuid 1) }}
+        <div class="mega-panel" role="tabpanel" id="panel{{$menuid}}" aria-labelledby="tab{{$menuid}}" >
+            <div class="mega-title">
+                <h3>
+        {{- if ne .Params.nolink true -}}
+                    <a href="{{.RelPermalink}}">
+        {{- end -}}
+                      <span class="fa-stack" tabindex="-1" aria-hidden="true">
+        {{- $iconface := "" }}
+        {{- $targetlink := .RelPermalink }}
+        {{- range $i, $r := getCSV "," "csv/icon_images.csv" }}
+            {{- if in $targetlink (index $r 0)}}
+                {{- $iconface = (index $r 1) }}
+            {{- end }}
+        {{- end }}
+                          <i class="far fa-circle fa-stack-2x" aria-hidden="true"></i>
+                          <i class="{{$iconface}} fa-stack-1x" aria-hidden="true"></i>
+                      </span>
+        {{- partial "title" . -}}
+            {{- if ne .Params.nolink true -}}
+                    </a>
+            {{- end -}}
+                </h3>
+            </div>
+
+            <ul class="mega-list">
+        {{- range .Pages }}
+                <li class="mega-list-line"><a class="mega-list-item" href="{{.RelPermalink}}">{{- partial "title" . }}</a></li>
+        {{- end }}
+            </ul>
+        </div>
+    {{- end }}
+{{- end }}
+
+{{- define "titleicon" }}
+    {{- $targetlink := . }}
+    {{- range $i, $r := getCSV "," "csv/icon_images.csv" }}
+        {{- if in $targetlink (index $r 0)}}
+            <i class="{{ index $r 1 }}" aria-hidden="true"></i>
+        {{- end }}
+    {{- end }}
+{{- end }}

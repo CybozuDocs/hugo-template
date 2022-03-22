@@ -17,7 +17,9 @@
         <a href="{{- .p1.Permalink -}}">
             {{- if and (.p1.IsHome) (or (eq .p1.Site.Params.product "Garoon") (eq .p1.Site.Params.product "Mailwise") (eq .p1.Site.Params.product "Office")) -}}
                 {{- i18n "Top_page" -}}
-            {{- else -}}
+            {{- else if and (.p1.IsHome) (eq .p1.Site.Params.TargetRegion "US") -}}
+                {{ .p1.Site.Params.kintone }}&nbsp;{{- i18n "Help_site" -}}
+            {{- else }}
                 {{- partial "title" .p1 -}}
             {{- end -}}
         </a>

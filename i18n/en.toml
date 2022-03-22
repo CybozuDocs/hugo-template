@@ -130,3 +130,6 @@ other = "Connection timed out."
 [ID_error_5]
 other = "A network error occurred."
 
+[Tab_menu]
+other = "Tab menu"
+

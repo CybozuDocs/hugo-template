@@ -8,8 +8,75 @@
         if (!$enquete[0]) {
             return true; // アンケートがなければ終了
         }
-        if (Cookies.get('answered') === location.pathname) {
-            return true; // すでに回答済みの場合は終了
+
+        // アンケートデータの接頭辞
+        const enqPrefix = "enq_";
+
+        // アンケート結果の有効期限(24時間)
+        const limit = 86400000;
+
+        // 回答済みのパスをlocalStorageに保存
+        function setStorageValue(key) {
+            key = enqPrefix + key;
+
+            let enqKeys = 0;
+            let oldKey = "";
+            let oldTime = 0;
+            for (let key in localStorage) {
+                if(key.substr(0,4) === enqPrefix) {
+                    const strval = localStorage.getItem(key);
+                    const timestamp = Number(strval);
+
+                    if(oldTime === 0) {
+                        oldTime = timestamp;
+                    } else if(oldTime > timestamp) {
+                        oldTime = timestamp;
+                        oldKey = key;
+                    }
+                    enqKeys = enqKeys + 1;
+                }
+            }
+
+            // 保存済パスが10個以上ある場合
+            if(enqKeys > 10) {
+                // 最古のものを削除
+                localStorage.removeItem(oldKey);
+            }
+
+            const timestamp = new Date().getTime();
+            localStorage.setItem(key, String(timestamp));
+        }
+
+        // localStorageに保存された回答済みのパスが有効ならtrueを返す
+        function checkStorageValue(key) {
+            key = enqPrefix + key;
+            let retval = false;
+            const strval = localStorage.getItem(key);
+
+            if(strval !== null) {
+                const intval = Number(strval);
+                const now =  new Date().getTime();
+
+                // 24時間以内であればtrueを返す
+                if(now - intval < limit) {
+                    retval = true;
+                }
+            }
+
+            return retval;
+        }
+
+        // 期限切れ回答済みデータの削除
+        const now = new Date().getTime();
+        for (let key in localStorage) {
+            if(key.substr(0,4) === enqPrefix) {
+                const strval = localStorage.getItem(key);
+                const timestamp = Number(strval);
+
+                if(now - timestamp >= limit) {
+                    localStorage.removeItem(key);
+                }
+            }
         }
 
         let enq_closed = false;
@@ -66,17 +133,20 @@
         // 別ウィンドウで送信画面を表示
         function openForm() {
             const winopen = window.open(url + $.param(queryObj), 'feedback', 'width=620, height=460, scrollbars=1, menubar=1, resizable=1');
-            winopen.opener = null;
+            if(winopen !== null) {
+                winopen.opener = null;
+            }
             $enquete.fadeOut();
 
-            // クッキーに回答済フラグを書き込む（有効期限は1日）
-            Cookies.set("answered", location.pathname, {path:"/",expires:1});
+            // 回答済フラグをlocal storage書き込む
+            setStorageValue(location.pathname);
         }
 
         // アンケートボタンの表示位置の制御
         function controlDisplayPosition() {
             const $footer = $("#page-footer");
             const footerHeight = $footer.outerHeight();
+
             if ($window.width() > 1059) {
                 const footDisp = $footer.offset().top - $window.outerHeight();
                 const windowScrollTop = $window.scrollTop();
@@ -86,6 +156,7 @@
                 } else {
                     if (footDisp < windowScrollTop) {
                         let gap = windowScrollTop - footDisp;
+
                         $enquete.css({position: "fixed", bottom: gap});
                         $close.css("display", "none");
                     } else {
@@ -112,7 +183,11 @@
             }, 100);
         });
 
-        $enquete.fadeIn();
-        controlDisplayPosition();
+        if (checkStorageValue(location.pathname)) {
+            return true; // すでに回答済みの場合は終了
+        } else {
+            $enquete.fadeIn();
+            controlDisplayPosition();
+        }
   });
 })();

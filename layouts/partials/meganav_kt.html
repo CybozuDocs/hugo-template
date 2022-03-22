@@ -1,0 +1,93 @@
+{{- $tabnum := 0 }}
+{{- if eq $.Site.Params.product "kintone"}}
+    {{- $tabnum = 1 }}
+{{- end }}
+{{- if eq $.Site.Params.product "slash"}}
+    {{- $tabnum = 2 }}
+{{- end }}
+{{- if eq $.Site.Params.product "store"}}
+    {{- $tabnum = 3 }}
+{{- end }}
+{{- $strtabnum := printf "%d" $tabnum}}
+{{- $curtab := "" }}
+{{- $menu_ids := (slice "") }}
+{{- $menu_titles := (slice "") }}
+{{- $menu_urls := (slice "") }}
+{{- $menufile := printf "csv/menuitems_%s_%s.csv" $.Site.Language.Lang $.Site.Params.TargetRegion}}
+{{- range $i, $r := getCSV "," $menufile }}
+    {{- $menu_ids = $menu_ids | append (index $r 0) }}
+    {{- $menu_titles = $menu_titles | append (index $r 1) }}
+    {{- $menu_urls = $menu_urls | append (index $r 2) }}
+    {{- if and (not $.IsHome) (ne $.Params.type "search_result") (ne $.Params.type "search_id") (eq $curtab "") (eq (index $r 0) $strtabnum) }}
+        {{- $curtab = (index $r 1) }}
+    {{- end }}
+{{- end }}
+<nav class="mega-nav-bar" role="navigation" aria-label="{{ i18n "Document_type" }}">
+    <ul class="g-nav" role="none" ></ul>
+    <div id="mega-nav" class="mega-nav">
+        <div class="mega-tab-wrap">
+            <div id="mega-tab-short" class="mega-tab-short"><span class="mega-tab-short-wrap"><button id="mega-tab-switch" class="mega-tab-switch" aria-label="{{ i18n "Tab_menu" }}" aria-controls="mega-tab-bar" aria-expanded="false"><i id="mega-tab-switch-icon" class="fas fa-bars mega-tab-switch-icon" aria-hidden="true"></i></button><span id="mega-tab-short-text" >{{$curtab}}</span></div>
+            <div id="mega-tab-bar" class="mega-tab-bar">
+            <ul role="tablist">
+    {{- $menuid := 1}}
+    {{- $firstitem := true }}
+    {{- range $i, $r := $menu_ids }}
+        {{- $current := "" }}
+        {{- if and (not $.IsHome) (eq $menuid $tabnum) (ne $.Site.Params.product "support_guide") (ne $.Params.type "search_result") (ne $.Params.type "search_id")}}
+            {{- $current = "current" }}
+        {{- end }}
+        {{- $tx := "-1"}}
+        {{- if eq $firstitem true }}
+            {{- $tx = "0"}}
+        {{- end }}
+        {{$strid := printf "%d" $menuid }}
+        {{- if eq $r $strid }}
+                <li id="menuitem{{$menuid}}" role="presentation" >
+                    <button class="mega-tab {{$current}}" id="tab{{$menuid}}" tabindex="{{$tx}}" role="tab" aria-controls="panel{{$menuid}}" aria-expanded="false">
+                        <span class="mega-tab-text">
+                        {{- index $menu_titles $i }}
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                    <div class="mega-panelplace"></div>
+                </li>
+            {{- $menuid = (add $menuid 1)}}
+            {{- $firstitem = false }}
+        {{- end }}
+    {{- end }}
+            </ul>
+            </div>
+        </div>
+
+    {{- $baseurl := (strings.TrimSuffix ".html" .RelPermalink) }}
+    {{- $baseparts := split $baseurl "/" }}
+    {{- $partslen := len $baseparts }}
+    {{- $panelcnt := (add $menuid -1) }}
+    {{- range $i, $curpan := seq $panelcnt }}
+        {{- $tabid := (add $i 1) }}
+        <div class="mega-panel" role="tabpanel" id="panel{{$curpan}}" aria-labelledby="tab{{$tabid}}" >
+            <ul class="mega-list">
+        {{- $strid := printf "%d" $curpan }}
+        {{- $first := true}}
+        {{- range $i, $r := $menu_ids }}
+            {{- if eq $r $strid }}
+                {{- if ne $first true }}
+                    {{- $current := "" }}
+                    {{- $href := (index $menu_urls $i) }}
+                    {{- $menuhref := (strings.TrimSuffix ".html" $href) }}
+                    {{- if and (not $.IsHome) (ge $partslen 3) (ge (strings.Count $menuhref $baseurl) 1) }}
+                        {{- $href = "#" }}
+                        {{- $current = "current" }}
+                    {{- end }}
+                <li class="mega-list-line {{$current}}"><a class="mega-list-item" href="{{$href}}" tabindex="0">{{index $menu_titles $i}}</a></li>
+                {{- end }}
+                {{- $first = false }}
+            {{- end }}
+        {{- end }}
+            </ul>
+        </div>
+    {{- end -}}
+
+    </div>
+</nav>
+

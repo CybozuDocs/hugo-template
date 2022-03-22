@@ -25,8 +25,8 @@ const vm = new Vue({
     error_message: ""
   },
   created: function() {  
-    const gcon = Cookies.get("gcon");
-    if(gcon !== undefined) {
+    const gcon = sessionStorage.getItem("gcon");
+    if(gcon !== null) {
         this.connected = gcon;
     }
   },
@@ -41,7 +41,7 @@ const vm = new Vue({
                     xhr.open("GET", chkurl);
                     
                     xhr.onload = function() {
-                        Cookies.set("gcon", "1");
+                        sessionStorage.setItem("gcon", "1");
                         vm.connected = "1";            
                         vm.searching = false;
                         vm.first_call();
@@ -49,13 +49,13 @@ const vm = new Vue({
                     
                     xhr.ontimeout = function() {
                         vm.unavailable();
-                        Cookies.set("gcon", "2");
+                        sessionStorage.setItem("gcon", "2");
                         vm.connected = "2";
                     };
                     
                     xhr.onerror = function() {
                         vm.error_message = "Error: "+this.status;
-                        Cookies.set("gcon", "3");
+                        sessionStorage.setItem("gcon", "3");
                         vm.connected = 3;
                         vm.searching = false;
                     };
@@ -274,5 +274,4 @@ const callSearchApi = function() {
     xhr.send();
 
 }
-
 }());
