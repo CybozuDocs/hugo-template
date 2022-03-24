@@ -1332,16 +1332,29 @@ table .wd10 {
     padding: 0 .5em;
     margin-bottom: 2.5em;
 }
+.step-list-check {
+    appearance: checkbox;
+    float: left;
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
+}
+.step-list-check:checked + label {
+    filter: opacity(40%);
+}
 .step-index {
     float: left;
-    width: 4.688em;
     font-size: .875em;
     line-height: 1.6em;
+    margin-top: .4em;
+}
+.step-index-label {
+    cursor: pointer;
 }
 .step-link {
-    margin-left: 4.688em;
+    margin-left: 5.5em;
     margin-bottom: .1em;
-    line-height: 1em;
+    line-height: 2em;
 }
 
 .step-wrap {
@@ -1361,10 +1374,24 @@ table .wd10 {
 .step-label strong { 
     font-size:1.125em;
 }
+.step-check {
+    appearance: checkbox;
+    float: left;
+    margin-left: 0;
+    width: 1.2em;
+    height: 1.2em;
+    margin-top: 1.2em;
+    cursor: pointer;
+}
+.step-check:checked + label {
+    filter: opacity(40%);
+}
 .step-num {
     font-size: 1em;
     line-height: 1.2em;
     margin-top: -.2em;
+    margin-left: .2em;
+    margin-right: .3em;
     background: #FFF; 
     width: 5em;
     color: #000;
@@ -1373,6 +1400,7 @@ table .wd10 {
     float: left;
     text-align: center;
     display:block;
+    cursor: pointer;
 }
 .step-num span {
     display: block;

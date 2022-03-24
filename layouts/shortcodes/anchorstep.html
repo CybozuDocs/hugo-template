@@ -12,7 +12,10 @@
 {{- $number := "" }}
 {{- if .Get "number" }}
     {{- $number = .Get "number" }}
-        <div class="step-num">Step<span>{{$number}}</span></div>
+        {{- if ne $id "" }}
+        <input type="checkbox" class="step-check" id="sbodyid_{{$id}}"></input>
+        {{- end }}
+        <label for="sbodyid_{{$id}}"><div class="step-num">Step<span>{{$number}}</span></div></label>
 {{- end }}
         <div class="step-desc">
 {{- $section := "" }}

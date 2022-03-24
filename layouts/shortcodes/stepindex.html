@@ -9,8 +9,9 @@
     {{- if not (modBool $lc 2)}}
         {{- $href = . }}
     {{- else }}
-        {{-  $idx = (add $idx 1) }}
-        <dt class="step-index">Step {{$idx}}</dt>
+        {{- $idx = (add $idx 1) }}
+        {{- $sid := (strings.TrimLeft "#" $href) }}
+        <dt class="step-index"><input type="checkbox" class="step-list-check" id="sindexid_{{$sid}}"><label for="sindexid_{{$sid}}" class="step-index-label">Step {{$idx}}</label></dt>
         <dd class="step-link"><a href="{{$href}}">{{partial "applyparams" (dict "target" . "params" $.Site.Params)}}</a></dd>
     {{- end }}
 {{- end }}
