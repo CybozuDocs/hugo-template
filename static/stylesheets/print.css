@@ -155,9 +155,6 @@
     -webkit-text-fill-color: initial;
 }
 
-.admonition.reference {
-    display: none;
-}
 
 .index a {
     color: #000;
@@ -264,7 +261,7 @@
     font-size: 1.3rem;
 }
 
-.admonition.referrence .fa {
+.admonition.reference .fa {
     color: #228b22;
     font-size: 1.3rem;
 }
