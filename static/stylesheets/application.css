@@ -1153,8 +1153,9 @@ table .wd10 {
     background: #f0fff0;
     border-radius: 10px;
 }
-.admonition.referrence .fas {
+.admonition.reference .fas {
     color: #228b22;
+    font-size: 1.3rem;
 }
 .admonition.hint {
     border: 1px solid #ffd700;
