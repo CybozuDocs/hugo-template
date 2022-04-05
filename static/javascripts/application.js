@@ -908,6 +908,254 @@
             });
         }
 
+    /*** ステップリストのチェックボックス ***/
+
+        // ステップ索引
+        const stepListCheck = document.getElementsByClassName("step-list-check");
+        let stepListLen = 0;
+        if(stepListCheck !== null) {
+            stepListLen = stepListCheck.length;
+        }
+
+        // ステップ本文
+        const stepCheck = document.getElementsByClassName("step-check");
+        let stepLen = 0;
+        if(stepCheck !== null) {
+            stepLen = stepCheck.length;
+        }
+
+        // 製品別のID
+        const pathname = location.pathname;
+        const pathes = pathname.split("/");
+        const productid = pathes[1] + "_";
+
+        // local storage key の接頭辞
+        const storagePrefix = "slist_";
+
+        // 索引チェックボックスidの接頭辞
+        const indexPrefix = "sindexid_";
+
+        // 本文チェックボックスidの接頭辞
+        const bodyPrefix = "sbodyid_";
+
+        for(let sl = 0; sl < stepListLen; sl++) {
+            const id = $(stepListCheck[sl]).attr("id");
+            if((id === "") || (id.startsWith(indexPrefix) !== true)) {
+                continue;
+            }
+
+            // 索引チェックボックスのイベントハンドラ
+            $(stepListCheck[sl]).click(function () {
+                const cid = id.slice(indexPrefix.length);
+                const sts = $(stepListCheck[sl]).prop("checked");
+                checkBodyStep(cid, sts);
+                updateStorage(cid, sts);
+            });
+        }
+
+        for(let sl = 0; sl < stepLen; sl++) {
+            const id = $(stepCheck[sl]).attr("id");
+            if((id === "") || (id.startsWith(bodyPrefix) !== true)) {
+                continue;
+            }
+
+            // 本文チェックボックスのイベントハンドラ
+            $(stepCheck[sl]).click(function () {
+                const cid = id.slice(bodyPrefix.length);
+                const sts = $(stepCheck[sl]).prop("checked");
+                checkIndexStep(cid, sts);
+                updateStorage(cid, sts);
+            });
+        }
+
+        // ステータスチェック状態の画面への反映
+        function updateDisplay() {
+            let curPrefix = "";
+            let checkSts = "";
+            let stsPos = 0;
+
+            for(let sl = 0; sl < stepLen; sl++) {
+                let id = $(stepCheck[sl]).attr("id");
+                if(id !== "") {
+                    const prefix = getPrefix(id.slice(bodyPrefix.length));
+
+                    if(curPrefix !== prefix) {
+                        const strval = localStorage.getItem(storagePrefix+productid+prefix);
+                        if(strval !== null) {
+                            const d = JSON.parse(strval);
+                            checkSts = d.checksts;
+                            stsPos = 0;
+                        }
+
+                        curPrefix = prefix;
+                    }
+
+                    const tgsts = checkSts.slice(stsPos,stsPos+1);
+                    if(tgsts === "1") {
+                        $(stepListCheck[sl]).prop("checked", true);
+                        $(stepCheck[sl]).prop("checked", true);
+                    }
+
+                    stsPos++;
+                }
+            }
+        }
+
+        // ステータス永続化情報の更新
+        function updateStorage(id, sts) {
+            if(!window.localStorage) {
+                return false;
+            }
+
+            const prefix = getPrefix(id);
+            const strval = localStorage.getItem(storagePrefix+productid+prefix);
+            let checksts = "";
+            if(strval !== null) {
+                const d = JSON.parse(strval);
+                checksts = d.checksts;
+
+                const cklen = getStepLength(prefix);
+
+                if (checksts.length !== cklen) {
+                    checksts = adjustStatusList(checksts, cklen);
+                }
+            } else {
+                checksts = initStatusList(prefix);
+            }
+
+            let nextsts = "1";
+            if(sts === false) nextsts = "0";
+
+            const num = getNumPart(id);
+            const point = Number(num);
+            const p1 = checksts.slice(0, point-1);
+            const p2 = checksts.slice(point);
+            const newsts = p1 + nextsts + p2;
+
+            const newval = JSON.stringify({
+                checksts: newsts,
+                timestamp: new Date().getTime()
+            });
+
+            localStorage.setItem(storagePrefix+productid+prefix, newval);
+        }
+
+        // idから文字列部分を抜き出す
+        function getPrefix(id) {
+            if(id.includes("#")) {
+                const ids = id.split("#");
+                id = ids[1];
+            }
+            const num = getNumPart(id);
+            const brk = num.length;
+            const prefix = id.slice(0, id.length - brk);
+
+            return prefix;
+        }
+
+        // 期限切れデータの削除
+        function removeExpired() {
+            const now = new Date().getTime();
+
+            for (let key in localStorage) {
+                if(key.startsWith(storagePrefix)) {
+                    const strval = localStorage.getItem(key);
+                    const d = JSON.parse(strval);
+                    const timestamp = d.timestamp;
+                    const limit = 2592000000; // 30日
+
+                    if((timestamp !== null) && (now - timestamp >= limit)) {
+                        localStorage.removeItem(key);
+                    }
+                }
+            }
+        }
+
+        // 索引チェックボックスのON/OFF
+        function checkIndexStep(id, sts) {
+            const stepid = indexPrefix + id;
+            const tg = $("#" + stepid);
+            if(tg.length > 0) {
+                tg.prop("checked", sts);
+            }
+        }
+
+        // 本文チェックボックスのON/OFF
+        function checkBodyStep(id, sts) {
+            const stepid = bodyPrefix + id;
+            const tg = $("#" + stepid);
+            if(tg.length > 0) {
+                tg.prop("checked", sts);
+            }
+        }
+
+        // idから数字部分の取り出し（末尾2桁以内）
+        function getNumPart(idstr) {
+            let retnum = 0;
+            const las1 = idstr.slice(idstr.length-1);
+
+            if (!isNaN(Number(las1))) {
+                const las2 = idstr.slice(idstr.length-2);
+                if (!isNaN(Number(las2))) {
+                    retnum = las2;
+                } else {
+                    retnum = las1;
+                }
+            }
+
+            return retnum;
+        }
+
+        // ステップリストの件数取得
+        function getStepLength(prefix) {
+            let retval = 0;
+            const pflen = prefix.length;
+            for(let sl = 0; sl < stepLen; sl++) {
+                let id = $(stepCheck[sl]).attr("id");
+                id = id.slice(bodyPrefix.length);
+                if(id.startsWith(prefix)) {
+                    retval = retval + 1;
+                }
+            }
+
+            return retval;
+        }
+
+        // ステータスリスト初期登録
+        function initStatusList(prefix) {
+            let retstr = "";
+            const pflen = prefix.length;
+            for(let sl = 0; sl < stepLen; sl++) {
+                let id = $(stepCheck[sl]).attr("id");
+                id = id.slice(bodyPrefix.length);
+                if(id.startsWith(prefix)) {
+                    retstr += "0";
+                }
+            }
+
+            return retstr;
+        }
+
+        // ステータスリスト過不足の調整
+        function adjustStatusList(stslist, listlen) {
+            if(stslist.length < listlen) {
+                const luck = listlen - stslist.length;
+                for(let ll=0; ll < luck; ll++) {
+                    stslist += "0";
+                }
+            } else if (stslist.length > listlen) {
+                stslist = stslist.slice(0, listlen);
+            }
+
+            return stslist;
+        }
+
+        // 期限切れデータの削除
+        removeExpired();
+
+        // ステータスチェック状態の画面への反映
+        updateDisplay();
+
     /*** ホームページの人気のトピックの開閉  ***/
         if( document.getElementById("hotArticles-showMore") != null ) {
             $("#hotArticles-showMore").click(function(e){
