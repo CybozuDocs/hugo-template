@@ -1,7 +1,7 @@
 "use strict";
 
 (function () {
-const searchUrl = "https://yc83ph1yui.execute-api.ap-northeast-1.amazonaws.com/helpsearch";
+const searchUrl = "https://ae4gbmw2xi.execute-api.ap-northeast-1.amazonaws.com/help/search";
 
 const vm = new Vue({
   delimiters: ['[[', ']]'],
