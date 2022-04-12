@@ -1346,7 +1346,7 @@ table .wd10 {
 .step-index {
     float: left;
     font-size: .875em;
-    line-height: 1.6em;
+    line-height: 1em;
     margin-top: .4em;
 }
 .step-index-label {
@@ -2263,7 +2263,7 @@ i.index-pdf {
 
 /* for print out */
 @media print {
-    nav, header, footer, iframe, #enquete, #tree-nav, #goto-top, .id-headding-button, .id-link-button, .id-bar {
+    nav, header, footer, iframe, #enquete, #tree-nav, #goto-top, .id-headding-button, .id-link-button, .id-bar, .step-list-check, .step-check {
         display: none !important;
     }
     .font-ja, html[lang="ja-jp"], html[lang="ja-cn"] {
