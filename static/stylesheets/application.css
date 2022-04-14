@@ -2266,6 +2266,15 @@ i.index-pdf {
     .step-index {
         width: 4em;
     }
+    .step-label {
+        padding-top: 0;
+    }
+    .step-num {
+        margin-top: .6em;
+    }
+    .step-desc {
+        margin-top: -.8em;
+    }
     .font-ja, html[lang="ja-jp"], html[lang="ja-cn"] {
         font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     }
