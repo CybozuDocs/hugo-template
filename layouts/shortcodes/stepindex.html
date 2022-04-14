@@ -1,6 +1,6 @@
 <div>
 <strong>Steps:</strong>
-    <dl class="step-list">
+    <table class="step-list">
 {{- $lc := 0}}
 {{- $idx := 0}}
 {{- $href := ""}}
@@ -11,9 +11,9 @@
     {{- else }}
         {{- $idx = (add $idx 1) }}
         {{- $sid := (strings.TrimLeft "#" $href) }}
-        <dt class="step-index"><input type="checkbox" class="step-list-check" id="sindexid_{{$sid}}"><label for="sindexid_{{$sid}}" class="step-index-label">Step {{$idx}}</label></dt>
-        <dd class="step-link"><a href="{{$href}}">{{partial "applyparams" (dict "target" . "params" $.Site.Params)}}</a></dd>
+        <tr class="step-line"><th class="step-index"><input type="checkbox" class="step-list-check" id="sindexid_{{$sid}}"><label for="sindexid_{{$sid}}" class="step-index-label">Step {{$idx}}</label></th>
+        <td class="step-link"><a href="{{$href}}">{{partial "applyparams" (dict "target" . "params" $.Site.Params)}}</a></td></tr>
     {{- end }}
 {{- end }}
-    </dl>
+    </table>
 </div>

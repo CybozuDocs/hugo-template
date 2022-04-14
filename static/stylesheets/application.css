@@ -1329,33 +1329,30 @@ table .wd10 {
 
 
 /* step list ----------------------------- */
-.step-list {
-    padding: 0 .5em;
-    margin-bottom: 2.5em;
-}
+
 .step-list-check {
     appearance: checkbox;
     float: left;
     width: 1em;
     height: 1em;
+    margin-top: .6em;
     cursor: pointer;
 }
 .step-list-check:checked + label {
     filter: opacity(40%);
 }
 .step-index {
-    float: left;
-    font-size: .875em;
-    line-height: 1em;
-    margin-top: .4em;
+    white-space: nowrap;
+    line-height: 2em;
+    width: 6em;
+    vertical-align: top;
 }
 .step-index-label {
+    float: left;
+    margin-left: .5em;
+    font-size: .875em;
+    font-weight: initial;
     cursor: pointer;
-}
-.step-link {
-    margin-left: 5.5em;
-    margin-bottom: .1em;
-    line-height: 2em;
 }
 
 .step-wrap {
