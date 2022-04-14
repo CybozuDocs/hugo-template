@@ -356,6 +356,18 @@ background: rgba(255, 255, 255, 0.9);
 }
 /* -------------------- End of admonition */
 
+/* step list ----------------------------- */
+.step-list {
+    width: auto !important;
+}
+.step-list, .step-line, .step-link {
+    border: 0 !important;
+}
+.step-index, .step-link {
+    padding: 0 !important;
+}
+/* ---------------------- end of step list */
+
 #goto-top .fa-stack-1x {
     color: #015aaa;
 }
