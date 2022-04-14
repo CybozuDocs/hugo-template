@@ -1349,7 +1349,7 @@ table .wd10 {
 }
 .step-index-label {
     float: left;
-    margin-left: .5em;
+    margin-left: .2em;
     font-size: .875em;
     font-weight: initial;
     cursor: pointer;
@@ -2262,6 +2262,9 @@ i.index-pdf {
 @media print {
     nav, header, footer, iframe, #enquete, #tree-nav, #goto-top, .id-headding-button, .id-link-button, .id-bar, .step-list-check, .step-check {
         display: none !important;
+    }
+    .step-index {
+        width: 4em;
     }
     .font-ja, html[lang="ja-jp"], html[lang="ja-cn"] {
         font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
