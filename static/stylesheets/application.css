@@ -612,7 +612,11 @@ li .lang-title {
 .video-list {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: start;
+}
+.video-list li {
+    width: 25%;
 }
 .video-card a {
     white-space: nowrap;
@@ -1973,6 +1977,9 @@ i.index-pdf {
     .video-list {
         flex-direction: row;
         justify-content: space-around;
+    }
+    .video-card {
+        padding-bottom: 1.25em;
     }
     .video-card a {
         text-align : center;
