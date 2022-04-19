@@ -27,6 +27,21 @@
     padding-bottom: 170px;
 }
 
+/* step list ----------------------------- */
+.step-list {
+    width: auto !important;
+}
+.step-list, .step-line, .step-link {
+    border: 0 !important;
+}
+.step-index, .step-link {
+    padding: 0 !important;
+    border: 0 !important;
+    background-color: unset !important;
+}
+/* ---------------------- end of step list */
+
+
 /* 768px以上の設定 *****************************************************/
 @media only screen and (min-width:768px){
     .logo-title {
