@@ -24,10 +24,6 @@
                         <img class="logo-img" src="{{ $.Site.BaseURL }}{{.}}" alt="{{$alt}}" title="{{$alt}}" aria-hidden="{{$hidden}}">
             {{- end -}}
             {{- $title := printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help -}}
-            
-            {{- if eq .Site.Params.product "slash" -}}
-                {{- $title = printf " %s" $.Site.Params.help -}}
-            {{- end -}}
                         <span class="logo-title">{{$title}}</span>
                     </a>
                 </h1>
