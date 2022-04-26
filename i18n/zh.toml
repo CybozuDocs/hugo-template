@@ -103,6 +103,12 @@ other = "复制固定链接"
 [Link_was_copied]
 other = "固定链接已复制"
 
+[Copy_codeblock_button]
+other = "复制"
+
+[Codeblock_was_copied]
+other = "内容已复制"
+
 [Help_site]
 other = "帮助网站"
 

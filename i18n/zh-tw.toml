@@ -105,6 +105,12 @@ other = "複製鏈接"
 [Link_was_copied]
 other = "鏈接已復制"
 
+[Copy_codeblock_button]
+other = "複製"
+
+[Codeblock_was_copied]
+other = "內容已復制"
+
 [Help_site]
 other = "說明網站"
 

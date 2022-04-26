@@ -103,6 +103,12 @@ other = "Copy the permanent link."
 [Link_was_copied]
 other = "The permanent link has been copied."
 
+[Copy_codeblock_button]
+other = "Copy"
+
+[Codeblock_was_copied]
+other = "The content has been copied."
+
 [Help_site]
 other = "Help Site"
 
