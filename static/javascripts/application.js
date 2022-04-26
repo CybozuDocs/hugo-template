@@ -908,6 +908,33 @@
             });
         }
 
+        // コードブロックのコピーボタン
+        if($('.codeblock-copy-button').length > 0) {
+            $('.codeblock-copy-button').click(function() {
+                const codeblockContent = $('.codeblock--content');
+                if(!codeblockContent) {
+                    return;
+                }
+                let cpdflg = false;
+                // text() を使うと末尾に2つスペースが入るので除去する
+                const text = codeblockContent.text().replace(/  $/g,'');
+                if(navigator.clipboard){
+                    navigator.clipboard.writeText(text);
+                    cpdflg = true;
+                } else if(window.clipboardData){
+                    // for IE
+                    window.clipboardData.setData("Text" , text);
+                    cpdflg = true;
+                }
+                if (cpdflg) {
+                    const msg = $(this).next(".codeblock-copy-message");
+                    if(msg) {
+                        msg.show();
+                        msg.fadeOut(3000);
+                    }
+                }
+            });
+        }
     /*** ステップリストのチェックボックス ***/
 
         // ステップ索引
