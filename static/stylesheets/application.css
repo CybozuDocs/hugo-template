@@ -2298,7 +2298,7 @@ i.index-pdf {
 
 /* for print out */
 @media print {
-    nav, header, footer, iframe, #enquete, #tree-nav, #goto-top, .id-headding-button, .id-link-button, .id-bar, .step-list-check, .step-check {
+    nav, header, footer, iframe, #enquete, #tree-nav, #goto-top, .id-headding-button, .id-link-button, .id-bar, .step-list-check, .step-check, .codeblock-copy-button {
         display: none !important;
     }
     .step-index {
