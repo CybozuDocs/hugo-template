@@ -24,6 +24,10 @@
     margin-bottom: 40px;
 }
 
+.article li p + ul {
+    margin-top: .9em;
+}
+
 .article ul li {
     margin-bottom: 7px;
 }
