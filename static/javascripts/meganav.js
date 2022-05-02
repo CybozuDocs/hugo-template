@@ -82,6 +82,12 @@
     const toggleMobileMenu = function(force) {
         const $txt = $("#mega-tab-short-text");
         const $mtb = $("#mega-tab-bar");
+
+        let mts = false;
+        if( document.getElementsByClassName("mega-tab-short").length > 0) {
+            mts = true;
+        }
+
         if (force === true) {
             $mtb.css("display", "block");
             $swbtn.attr("aria-expanded", "true");
@@ -90,7 +96,9 @@
             $swicon.addClass("fa-times");
             $("#tab1").focus();
         } else {
-            $mtb.css("display", "none");
+            if (mts === true) {
+                $mtb.css("display", "none");
+            }
             $swbtn.attr("aria-expanded", "false");
             $txt.css("visibility", "");
             $swicon.removeClass("fa-times");
