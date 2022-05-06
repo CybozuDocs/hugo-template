@@ -114,6 +114,9 @@ td a > .fa:hover{
 .btn-mail {
     color: #015aaa;
 }
+.page-pad {
+    height: 94px;
+}
 .page {
     margin-top: 0;
     word-wrap:break-word;
@@ -476,6 +479,9 @@ background: rgba(255, 255, 255, 0.9);
     }
     .current-lang .fas {
         margin-top: 6px;
+    }
+    .page-pad {
+        height: 54px;
     }
     .article h2 {
         font-size:2.063em;
