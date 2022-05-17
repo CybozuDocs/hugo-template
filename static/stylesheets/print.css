@@ -191,7 +191,8 @@
 }
 
 .trademark li {
-    padding-left: 14px;
+    list-style: disc;
+    margin-left: 30px;
 }
 
 .index-title {
