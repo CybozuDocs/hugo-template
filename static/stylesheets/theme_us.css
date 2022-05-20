@@ -38,13 +38,23 @@
 .page-pad-search {
   height: 56px;
 }
+.welcome_message {
+  display: block;
+  text-align: center;
+  padding-top: 0;
+  font-weight: normal;
+  font-size: 2rem;
+  /* line-height: 1.2em; */
+  margin-bottom: 10px;
+}
 .hero {
-  background-image: url("../images/kt_thinking.png") !important;
+  display: block;
+  /* background-image: url("../images/kt_thinking.png") !important; */
   background-size: 300px;
   background-position: 100% -30%;
-  height: 290px;
+  height: 150px;
   background-color: #ee3e23;
-  max-width: 1300px;
+  /* max-width: 1300px; */
   margin-left: auto;
   margin-right: auto;
 }
@@ -197,8 +207,10 @@
     margin-bottom: 7px;
     padding-top: 0px;
 }
-
 /* Tiles of the top page */
+.col-flex {
+    margin-top: 10px;
+}
 .col-tile {
   border-radius: 10px;
 }
@@ -214,6 +226,16 @@
     @media only screen and (min-width:768px){
     .logo-img {
         margin-top: -4px;
+    }
+    .hero {
+      background-image: url("../images/kt_thinking.png") !important;
+      background-size: 300px;
+      background-position: 100% -30%;
+      height: 290px;
+      background-color: #ee3e23;
+      max-width: 1300px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .mnav-pad {
         height:41px;
@@ -261,6 +283,10 @@
     }
     .main {
       top: -182px;
+    }
+    /* Tiles of the top page */
+    .col-flex {
+      margin-top: 100px;
     }
 }
 
