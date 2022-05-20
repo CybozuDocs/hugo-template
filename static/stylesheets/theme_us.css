@@ -44,17 +44,14 @@
   padding-top: 0;
   font-weight: normal;
   font-size: 2rem;
-  /* line-height: 1.2em; */
   margin-bottom: 10px;
 }
 .hero {
   display: block;
-  /* background-image: url("../images/kt_thinking.png") !important; */
   background-size: 300px;
   background-position: 100% -30%;
   height: 150px;
   background-color: #ee3e23;
-  /* max-width: 1300px; */
   margin-left: auto;
   margin-right: auto;
 }
