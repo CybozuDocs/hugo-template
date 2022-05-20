@@ -227,12 +227,8 @@
     .hero {
       background-image: url("../images/kt_thinking.png") !important;
       background-size: 300px;
-      background-position: 100% -30%;
       height: 290px;
-      background-color: #ee3e23;
       max-width: 1300px;
-      margin-left: auto;
-      margin-right: auto;
     }
     .mnav-pad {
         height:41px;
