@@ -219,6 +219,14 @@
     top: 98px;
 }
 
+/* 古いiPhone向けの設定 ************************************************/
+    @media only screen and (max-width:320px){
+    .font-ja, .font-ja .welcome_message {
+        font-size: 1.7rem;
+        font-style: normal;
+      }
+    }
+
 /* 768px以上の設定 *****************************************************/
     @media only screen and (min-width:768px){
     .logo-img {
