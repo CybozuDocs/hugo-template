@@ -221,7 +221,7 @@
 
 /* 古いiPhone向けの設定 ************************************************/
     @media screen and (min-width:320px) and (max-width:428px){
-      .font-ja .welcome_message {
+      .welcome_message:lang(ja) {
         font-size: 1.7rem;
       }
     }
