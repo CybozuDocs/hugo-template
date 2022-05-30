@@ -520,6 +520,9 @@ background: rgba(255, 255, 255, 0.9);
     .contents-wrap {
         width: calc(100% - 292px);
     }
+    .contents-with-chat {
+        width: calc(100% - 492px);
+    }
 
     .article img.screenshot {
         max-width: 600px;
