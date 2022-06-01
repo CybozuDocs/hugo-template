@@ -324,9 +324,16 @@
             $("#contents").addClass("contents-with-chat");
 
             let ctpos = 0;
-            if($("#enquete").css("bottom") == "0px") {
-                // アンケートボタンの上の位置
-                ctpos =  $("#enquete").css("height");
+            if (window.innerWidth > 1052) {
+                if($("#enquete").css("bottom") == "0px") {
+                    // アンケートボタンの上の位置
+                    ctpos =  $("#enquete").css("height");
+                }
+
+                if(document.body.scrollHeight - $(window).outerHeight() <= 1 ) {
+                    // スクロールが発生していない画面
+                    ctpos =  $("#page-footer").outerHeight() + $("#enquete").outerHeight();
+                }
             }
 
             // チャットボタンの初期設定
