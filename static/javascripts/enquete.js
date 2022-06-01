@@ -184,7 +184,23 @@
         });
 
         if (checkStorageValue(location.pathname)) {
-            return true; // すでに回答済みの場合は終了
+            // すでに回答済みの場合はアンケートボタンは表示しない
+
+            if(typeof zE === "function") {
+                // チャットボタンの位置修正
+                zE("webWidget", "updateSettings", {
+                    webWidget: {
+                        offset: { 
+                            vertical: "0px",
+                            mobile: {
+                                vertical: "0px"
+                            }
+                        }
+                    }
+                });
+            }
+
+            return true; 
         } else {
             $enquete.fadeIn();
             controlDisplayPosition();

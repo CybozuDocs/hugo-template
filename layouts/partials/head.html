@@ -135,5 +135,15 @@
     <!-- End Google Tag Manager for kintone hive -->
     {{- end }}
 
+    {{- $chats := .Site.Params.chat }}
+    {{- $chat := split .Site.Params.chat "," }}
+    {{- $curpage := .Page.RelPermalink }}
+    {{- range $chat }}
+        {{- $target := printf "/%s/" . }}
+        {{- if gt (strings.Count $target $curpage) 0 }}
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=6549c743-a6eb-40ac-a71f-c479b0759f1c"> </script>
+        {{- end }}
+    {{- end }}
+
   </head>
   <body class="font-{{.Lang}}">

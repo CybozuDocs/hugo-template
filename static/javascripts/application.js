@@ -314,42 +314,102 @@
             }
         }
 
-        // Topに戻るボタン
-        if( document.getElementById("goto-top") != null) {
-            $("#goto-top").click(function () {
-                $("html, body").stop().animate({ scrollTop:0 });
-            });
+        // チャットボタン
+        let ct_enabled = false;
+        if(typeof zE === "function") {
+            // ZendeskAPI関数が存在すればチャットが有効
+            ct_enabled = true;
 
-            $(window).on("scrollstop",function(e) {
-                if($(window).scrollTop() > 100) {
-                    let bottompos = 20;
-                    let postype = "fixed";
-                    
-                    const winHeight = $(window).height();
-                    const winScrollTop = $(window).scrollTop();
-                    const footerOffsetTop = $(".footer").offset().top;
-                    
-                    if ( (footerOffsetTop - winHeight) < winScrollTop ) {
-                        bottompos += $(".footer").outerHeight();
-                        postype = "absolute";
-                    }
-                    
-                    if( document.getElementById("enquete") != null) {
-                        if($("#enquete").css("display") === "block") {
-                            if($("#enquete").css("position") === "fixed") {
-                                bottompos += $("#enquete").outerHeight();
-                            }
+            // 右ペイン余白確保
+            $("#contents").addClass("contents-with-chat");
+
+            let ctpos = 0;
+            if($("#enquete").css("bottom") == "0px") {
+                // アンケートボタンの上の位置
+                ctpos =  $("#enquete").css("height");
+            }
+
+            // チャットボタンの初期設定
+            zE("webWidget", "updateSettings", {
+                webWidget: {
+                    offset: {
+                        horizontal: "40px",
+                        vertical: ctpos,
+                        mobile: {
+                            horizontal: "left",
+                            vertical: "bottom"
                         }
+                    },
+                    launcher: {
+                        chatLabel: {'ja': 'チャット サポート'}
+                    },
+                    color: {
+                        launcher: "#ff9900",
+                        launcherText: "#000"
                     }
-                    
-                    $("#goto-top").css({position: postype, bottom: bottompos+"px"});
-                    $("#goto-top").fadeIn('fast');
-                } else {
-                    $("#goto-top").fadeOut('fast');
                 }
             });
         }
 
+        // Topに戻るボタンのクリックイベント
+        $("#goto-top").click(function () {
+            $("html, body").stop().animate({ scrollTop:0 });
+        });
+
+        $(window).on("scrollstop",function(e) {
+            let bottompos = 20;
+
+            const winHeight = $(window).height();
+            const winScrollTop = $(window).scrollTop();
+            let footadjust = true;
+
+            // 表示されてるアンケートボタン分の補正
+            if($("#enquete").css("display") !== "none") {
+                if($("#enquete").css("position") === "absolute") {
+                    const enqOffsetTop = $("#enquete").offset().top;
+                    if ( (enqOffsetTop - winHeight) < winScrollTop ) {
+                        bottompos += winScrollTop - (enqOffsetTop - winHeight);
+                    }
+                    footadjust = false;
+                } else {
+                    bottompos += $("#enquete").outerHeight();
+                }
+            }
+
+            if(footadjust === true) {
+                // 表示されてるフッター分の補正
+                const footerOffsetTop = $(".footer").offset().top;
+                if ( (footerOffsetTop - winHeight) < winScrollTop ) {
+                    bottompos += winScrollTop - (footerOffsetTop - winHeight);
+                }
+            }
+
+            if($(window).scrollTop() > 100) {
+                // Topへ戻るボタンの位置修正
+                $("#goto-top").css({position: "fixed", bottom: bottompos+"px"});
+                $("#goto-top").fadeIn('fast');
+            } else {
+                $("#goto-top").fadeOut('fast');
+            }
+
+            if(ct_enabled === true) {
+                // チャットボタンの位置修正
+                bottompos -= 26;
+
+                zE("webWidget", "updateSettings", {
+                    webWidget: {
+                        offset: { 
+                            horizontal: "40px",
+                            vertical: bottompos+"px",
+                            mobile: {
+                                horizontal: "left",
+                                vertical: bottompos+"px"
+                            }
+                        },
+                    }
+                });
+            }
+        });
 
     /*** ツリーナビゲーション ***/
 
@@ -453,6 +513,11 @@
                 }
                 switchParts(m);
                 adjustTreeHeight();
+
+                if(ct_enabled === true) {
+                    // チャットをボタンに戻す
+                    zE("webWidget", "close");
+                }
             }, 500);
         }); 
 
