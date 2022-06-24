@@ -74,8 +74,21 @@
   margin-left: 1em;
 }
 
+.audit h4 {
+  margin-left: 0.5em;
+}
+
+.audit h5 {
+  margin-left: 1.5em;  
+}
+
 .audit ul {
   list-style-position : inside;
+  margin-left: 5em;
+}
+
+.audit > .id-header~p {
+  margin-left: 4em;
 }
 
 /* 768px以上の設定 *****************************************************/
