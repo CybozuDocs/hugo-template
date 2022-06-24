@@ -64,6 +64,20 @@
   padding-left: 20px;
 }
 
+.article h5 {
+  font-weight: normal;
+}
+
+/* 「監査ログの一覧」で使用する設定 **************************************/
+
+.audit > * {
+  margin-left: 1em;
+}
+
+.audit ul {
+  list-style-position : inside;
+}
+
 /* 768px以上の設定 *****************************************************/
 @media only screen and (min-width:768px){
     .logo-img {
