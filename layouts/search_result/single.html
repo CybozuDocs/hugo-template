@@ -25,7 +25,7 @@
                         <div class="category-bar" v-bind:class="{ nodisp : initial }" v-cloak>
                             <span class="ctab" v-for="(ctab, index) in ctabs">
                                 <input type="radio" name="category" class="category-tab" :id="'category'+(index)" v-model="cid" v-on:click="change_category(index)" :value="index">
-                                <label :for="'category'+(index)" role="tab" tabindex="0">[[ctab]]</label>
+                                <label :for="'category'+(index)" v-on:keydown.enter="key_down" role="tab" tabindex="0">[[ctab]]</label>
                             </span>
                         </div>
 

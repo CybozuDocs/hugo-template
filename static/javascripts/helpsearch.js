@@ -174,6 +174,11 @@ const vm = new Vue({
         this.cid = num;
         this.submit();
     },
+    key_down: function(e) {
+        const pl = e.target.htmlFor;
+        const pi = pl.slice(-1);
+        this.change_category(pi);
+    },
     page_navigate: function(page) {
         if (this.current + 1 != page) {
             this.start = page * 10 - 9;
