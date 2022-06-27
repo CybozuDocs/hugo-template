@@ -87,6 +87,10 @@
   margin-left: 5em;
 }
 
+.audit dl {
+  margin-left: 5em;
+}
+
 .audit > .id-header~p {
   margin-left: 4em;
 }
