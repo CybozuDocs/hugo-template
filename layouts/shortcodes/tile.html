@@ -4,8 +4,9 @@
     {{- if eq (.Get "external") "true" -}}
         {{- $.Scratch.Set "target" "_blank" -}}
     {{- end -}}
-    <a class="{{- .Get "link_class" -}}" href="{{- .Get "link_href" -}}" target="{{ .Scratch.Get "target" }}"></a>
+    <a class="{{- .Get "link_class" -}}" href="{{- .Get "link_href" -}}" target="{{ .Scratch.Get "target" }}">
         <div class="tile-title">{{ printf "%s" .Inner | markdownify }}</div>
+    </a>
         <div class="tile-link">
             {{- if (.Get "link_text") -}}
                 {{- .Get "link_text" -}}

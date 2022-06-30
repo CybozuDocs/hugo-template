@@ -670,7 +670,7 @@ ul.breadcrumbs {
     margin-top: -25px;
     margin-bottom: 2rem;
     font-size: 14px;
-    color: #888;
+    color: #767676;
 }
 .id-title {
     display: flex;
@@ -1490,6 +1490,11 @@ table .wd10 {
     position: relative;
     z-index: 1;
     margin-bottom: 12px;
+    padding: .5em;
+}
+.col-tile a {
+    color: #333;
+    text-decoration: none;
 }
 .tile-link {
     margin-top: 45px;
@@ -1690,6 +1695,10 @@ i.index-pdf {
     font-size: .875rem;
 }
 #page-toc a.current {
+    background-color: #ECEAF7;
+    font-weight: bold;
+}
+#page-toc a:hover {
     background-color: #ECEAF7;
 }
 #page-toc ul > ul > ul > ul > ul {

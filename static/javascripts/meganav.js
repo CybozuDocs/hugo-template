@@ -185,8 +185,6 @@
                 } else {
                     hideTabPanels();
                 }
-                e.preventDefault();
-                e.stopPropagation();
                 break;
 
             case "Enter":
