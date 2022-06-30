@@ -11,7 +11,7 @@ other = "找不到您尋找的頁面"
 other = "非常抱歉。我們並沒有找到您尋找的頁面。"
 
 [Previous_page]
-other = "回到上一頁"
+other = "返回上一頁"
 
 [Next_page]
 other = "前往下一頁"
@@ -20,10 +20,10 @@ other = "前往下一頁"
 other = "文章目錄"
 
 [Go_back_to_previous]
-other = "回到上一頁"
+other = "返回上一頁"
 
 [Go_back_to_top]
-other = "回到首頁"
+other = "返回首頁"
 
 [Articles_in_this_category]
 other = "同類文章"
