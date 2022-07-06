@@ -1024,7 +1024,9 @@ h6 + .id-link-button {
     display: block;
 }
 .article iframe {
-    max-width: 100%;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
 }
 .home-article {
     padding-bottom: 150px;
