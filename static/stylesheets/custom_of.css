@@ -3,30 +3,8 @@
     background: #dbe2e4;
 }
 
-.blue {
-    color: #0066CC;
-    padding: 0 5px;
-    font-weight: bold;
-}
-
-.red{
-	color:#DD0000;
-}
-
-.btn {
-    margin: .188em .313em;
-    padding: .250em;
-    border: 1px solid #000;
-    background: #FFF;
-    display: inline-block;
-}
-
 .mega-title a {
     font-size: 1em;
-}
-
-.article img {
-    vertical-align: middle;
 }
 
 .article code,.article pre {
