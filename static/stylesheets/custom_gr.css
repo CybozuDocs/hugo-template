@@ -39,7 +39,6 @@ h2 {
 img.icon,
 img.svgicon16{
     padding:0 2px;
-    vertical-align:middle;
 }
 img.svg {
     width:30px;
@@ -49,6 +48,29 @@ img.svgicon16{
     width:16px;
     height:16px;
 }
+
+.article img {
+    vertical-align: middle;
+}
+
+.blue {
+    color: #0066CC;
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+.red{
+	color:#DD0000;
+}
+
+.btn {
+    margin: .188em .313em;
+    padding: .250em;
+    display: inline-block;
+    border: 1px solid #000;
+    background: #FFF;
+}
+
 .t-check{
     color:#00823B;
 }
@@ -298,6 +320,7 @@ td a > .fa:hover{
     display: block;
     max-width: 100%;
 }
+
 .zoom-overlay {
 background: rgba(255, 255, 255, 0.9);
 }

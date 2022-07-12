@@ -70,37 +70,6 @@ a,
     color: #fff;
     background-color: #d0324d;
 }
-    
-/*text decration
----------------------------------------------------*/
-.txtblue,
-.txtred{
-    margin: 0 2px;
-    font-weight: bold;
-}
-
-.txtblue {
-    color: #0066CC;
-}
-
-.txtred{
-    color:#FF0000;
-}
-
-.txtblue img,
-.txtred img,
-.txtbtn img{
-    vertical-align:middle;
-    margin-right:3px;
-}
-
-.txtbtn{
-    margin:0 3px 2px 3px;
-    padding:2px 6px;
-    border: 1px solid #999999;
-    background-color: #EEEEEE;
-    display:inline-block;
-}
 
 /* Home page --------------------------------------*/
 .top-title {
@@ -137,11 +106,11 @@ a,
         width: calc(100% - 200px);
         right: 0;
     }
-    
+
     .g-col {
         width: 25%;
     }
-    
+
     .subnavi {
         padding-bottom: 100px;
     }
