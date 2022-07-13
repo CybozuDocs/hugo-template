@@ -1,0 +1,11 @@
+<div class="codeblock-wrapper">
+  {{- if .Attributes.copy }}
+    <button class="codeblock-copy-button" title="{{ i18n "Copy_codeblock_button" }}">
+      <i class="fas fa-copy" aria-hidden="true"></i>{{ i18n "Copy_codeblock_button" }}
+    </button>
+    <div class="codeblock-copy-message">{{ i18n "Codeblock_was_copied" }}</div>
+  {{- end -}}
+  <div class="codeblock--content">
+    {{- highlight ( .Inner | safeHTML ) .Type .Options }}
+  </div>
+</div>

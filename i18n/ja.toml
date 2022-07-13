@@ -103,6 +103,12 @@ other = "固定リンクをコピーします"
 [Link_was_copied]
 other = "固定リンクがコピーされました"
 
+[Copy_codeblock_button]
+other = "コピー"
+
+[Codeblock_was_copied]
+other = "コピーされました"
+
 [Help_site]
 other = "ヘルプサイト"
 
