@@ -49,10 +49,6 @@ img.svgicon16{
     height:16px;
 }
 
-.article img {
-    vertical-align: middle;
-}
-
 .blue {
     color: #0066CC;
     padding: 0 5px;
@@ -69,6 +65,13 @@ img.svgicon16{
     display: inline-block;
     border: 1px solid #000;
     background: #FFF;
+}
+
+.blue,
+.red,
+img.icon,
+img.svgicon16{
+    vertical-align: middle;
 }
 
 .t-check{
