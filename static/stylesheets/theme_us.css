@@ -232,9 +232,8 @@
         margin-top: -4px;
     }
     .hero {
-      background-image: url("../images/kt_thinking.png") !important;
       background-size: 300px;
-      height: 290px;
+      height: 250px;
       max-width: 1300px;
     }
     .mnav-pad {
