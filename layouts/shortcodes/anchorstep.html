@@ -29,11 +29,13 @@
         <span class="step-section" style="{{$bc}}">{{$section}}</span>
 {{- end }}
 {{- $title := "" }}
-{{- if .Get "title" }}
-    {{- $title = .Get "title" }}
-    {{- $title = (partial "applyparams" (dict "target" $title "params" .Site.Params)) }}
-    {{- $title | markdownify }}
+{{- $divs := findRE "<div class=\"step-title\">(.|\n)*?</div>" .Inner }}
+{{- range first 1 $divs }}
+    {{- $title = (strings.TrimPrefix "<div class=\"step-title\">" .) }}
 {{- end }}
+{{- $title = (strings.TrimSuffix "</div>" $title) }}
+
+{{- $title }}
         </div>
     </div>
 </div>

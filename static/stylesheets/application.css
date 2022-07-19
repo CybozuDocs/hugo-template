@@ -1467,6 +1467,9 @@ table .wd10 {
 .article .step-memo ol>li:before {
     content: none;
 }
+.step-title {
+    display: none;
+}
 /* -------------------------------- end of step list */
 
 /* tile style -------------------------------------- */
