@@ -1467,7 +1467,10 @@ table .wd10 {
 .article .step-memo ol>li:before {
     content: none;
 }
-.step-title {
+.hidden-step-section {
+    display: none;
+}
+.hidden-step-title {
     display: none;
 }
 /* -------------------------------- end of step list */

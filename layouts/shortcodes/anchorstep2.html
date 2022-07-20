@@ -19,21 +19,25 @@
 {{- end }}
         <div class="step-desc">
 {{- $section := "" }}
-{{- if .Get "section" }}
-    {{- $section = .Get "section" }}
-    {{- $section = (partial "applyparams" (dict "target" $section "params" .Site.Params)) }}
-    {{- $bc := "" }}
-    {{- if .Get "bgcolor" }}
-        {{- $bc = printf "%s%s" "background-color:" (.Get "bgcolor") }}
-    {{- end }}
+{{- $div1 := findRE "<div class=\"hidden-step-section\">(.|\n)*?</div>" .Inner }}
+{{- range first 1 $div1 }}
+    {{- $section = (strings.TrimPrefix "<div class=\"hidden-step-section\">" .) }}
+{{- end }}
+{{- $section = (strings.TrimSuffix "</div>" $section) }}
+{{- $bc := "" }}
+{{- if .Get "bgcolor" }}
+    {{- $bc = printf "%s%s" "background-color:" (.Get "bgcolor") }}
+{{- end }}
+{{- if ne $section "" }}
         <span class="step-section" style="{{$bc}}">{{$section}}</span>
 {{- end }}
 {{- $title := "" }}
-{{- if .Get "title" }}
-    {{- $title = .Get "title" }}
-    {{- $title = (partial "applyparams" (dict "target" $title "params" .Site.Params)) }}
-    {{- $title | markdownify }}
+{{- $div2 := findRE "<div class=\"hidden-step-title\">(.|\n)*?</div>" .Inner }}
+{{- range first 1 $div2 }}
+    {{- $title = (strings.TrimPrefix "<div class=\"hidden-step-title\">" .) }}
 {{- end }}
+{{- $title = (strings.TrimSuffix "</div>" $title) }}
+            <span class="step-title-body">{{$title}}</span>
         </div>
     </div>
 </div>

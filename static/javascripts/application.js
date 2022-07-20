@@ -1008,6 +1008,22 @@
             });
         }
     /*** ステップリストのチェックボックス ***/
+        // local storage key の接頭辞
+        const storagePrefix = "slist_";
+
+        // 索引チェックボックスidの接頭辞
+        const indexPrefix = "sindexid_";
+
+        // 本文チェックボックスidの接頭辞
+        const bodyPrefix = "sbodyid_";
+
+        // 製品別のID
+        const pathname = location.pathname;
+        const pathes = pathname.split("/");
+        const productid = pathes[1] + "_";
+
+        // ステップ一覧索引の作成
+        makeSteplistIndex();
 
         // ステップ索引
         const stepListCheck = document.getElementsByClassName("step-list-check");
@@ -1022,20 +1038,6 @@
         if(stepCheck !== null) {
             stepLen = stepCheck.length;
         }
-
-        // 製品別のID
-        const pathname = location.pathname;
-        const pathes = pathname.split("/");
-        const productid = pathes[1] + "_";
-
-        // local storage key の接頭辞
-        const storagePrefix = "slist_";
-
-        // 索引チェックボックスidの接頭辞
-        const indexPrefix = "sindexid_";
-
-        // 本文チェックボックスidの接頭辞
-        const bodyPrefix = "sbodyid_";
 
         for(let sl = 0; sl < stepListLen; sl++) {
             const id = $(stepListCheck[sl]).attr("id");
@@ -1065,6 +1067,27 @@
                 checkIndexStep(cid, sts);
                 updateStorage(cid, sts);
             });
+        }
+
+        // ステップリスト索引の作成
+        function makeSteplistIndex() {
+            const targets = $(".list-place");
+            for(let tl = 0; tl < targets.length; tl++) {
+                const tid = $(targets[tl]).attr("id");
+                const divs = $("div[id^="+tid);
+
+                for(let dl = 0; dl < divs.length; dl++) {
+                    const ancstr = $(divs[dl]).attr("id");
+                    let numstr = $(divs[dl]).find(".step-num").first().text();
+                    numstr = numstr.replace("Step", "Step ");
+                    const descstr = $(divs[dl]).find(".step-desc").find(".step-title-body").first().text();
+
+                    if(descstr.length > 0) {
+                        const newel = '<tr class="step-line"><th class="step-index"><input type="checkbox" class="step-list-check" id="'+ indexPrefix + ancstr + '"><label for="' + indexPrefix + ancstr + '" class="step-index-label">' + numstr + '</label></th><td class="step-link"><a href="#' + ancstr + '">' + descstr + '</a></td></tr>';
+                        $(newel).appendTo($(targets[tl]));
+                    }
+                }
+            }
         }
 
         // ステータスチェック状態の画面への反映
@@ -1255,17 +1278,7 @@
         // ステータスチェック状態の画面への反映
         updateDisplay();
 
-    /*** ホームページの人気のトピックの開閉  ***/
-        if( document.getElementById("hotArticles-showMore") != null ) {
-            $("#hotArticles-showMore").click(function(e){
-                $(this).toggleClass("expand closed") ;
-                $("#hotArticles-others").slideToggle();
-                e.stopPropagation();
-            });
-        }
-        
     /***  初回表示時の処理 ***/
-
         function initPage() {
             if( json_mode === true ) {
                 // JSONモード時のツリー展開とハイライト設定
