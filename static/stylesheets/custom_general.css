@@ -107,4 +107,13 @@
         padding-top: 0;
         font-size: 18px;
     }
+
+    .main {
+        top: 0px;
+    }
+
+    .hero {
+        height: 180px;
+  }
+
 }
