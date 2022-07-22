@@ -19,9 +19,11 @@
 {{- end }}
         <div class="step-desc">
 {{- $section := "" }}
-{{- $div1 := findRE "<div class=\"hidden-step-section\">(.|\n)*?</div>" .Inner }}
+{{- $tmpsect_pref := "<div class=\"tmp-step-section\">" }}
+{{- $tmpsect := printf "%s(.|\n)*?</div>" $tmpsect_pref}}
+{{- $div1 := findRE $tmpsect .Inner }}
 {{- range first 1 $div1 }}
-    {{- $section = (strings.TrimPrefix "<div class=\"hidden-step-section\">" .) }}
+    {{- $section = (strings.TrimPrefix $tmpsect_pref .) }}
 {{- end }}
 {{- $section = (strings.TrimSuffix "</div>" $section) }}
 {{- $bc := "" }}
@@ -29,16 +31,20 @@
     {{- $bc = printf "%s%s" "background-color:" (.Get "bgcolor") }}
 {{- end }}
 {{- if ne $section "" }}
-        <span class="step-section" style="{{$bc}}">{{$section}}</span>
+            <span class="step-section" style="{{$bc}}">{{$section}}</span>
 {{- end }}
 {{- $title := "" }}
-{{- $div2 := findRE "<div class=\"hidden-step-title\">(.|\n)*?</div>" .Inner }}
+{{- $tmptitle_pref := "<div class=\"tmp-step-title\">" }}
+{{- $tmptitle := printf "%s(.|\n)*?</div>" $tmptitle_pref}}
+{{- $div2 := findRE $tmptitle .Inner }}
 {{- range first 1 $div2 }}
-    {{- $title = (strings.TrimPrefix "<div class=\"hidden-step-title\">" .) }}
+    {{- $title = (strings.TrimPrefix $tmptitle_pref .) }}
 {{- end }}
 {{- $title = (strings.TrimSuffix "</div>" $title) }}
             <span class="step-title-body">{{$title}}</span>
         </div>
     </div>
 </div>
-<div class="step-memo">{{ printf "%s" .Inner | markdownify }}</div>
+{{- $inner := replaceRE $tmpsect "" .Inner }}
+{{- $inner = replaceRE $tmptitle "" $inner }}
+<div class="step-memo">{{ $inner | markdownify }}</div>

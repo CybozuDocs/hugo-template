@@ -1007,6 +1007,7 @@
                 }
             });
         }
+
     /*** ステップリストのチェックボックス ***/
         // local storage key の接頭辞
         const storagePrefix = "slist_";
