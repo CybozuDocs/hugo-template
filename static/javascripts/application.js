@@ -983,7 +983,7 @@
         // コードブロックのコピーボタン
         if($('.codeblock-copy-button').length > 0) {
             $('.codeblock-copy-button').click(function() {
-                const codeblockContent = $('.codeblock--content');
+                const codeblockContent = $(this).nextAll().filter('.codeblock--content');
                 if(!codeblockContent) {
                     return;
                 }
