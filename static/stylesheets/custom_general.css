@@ -95,6 +95,11 @@
   margin-left: 4em;
 }
 
+/* コードブロックで利用する設定 ********************************************/
+.codeblock-wrapper + p {
+  margin-top: 0.9em;
+}
+
 /* 768px以上の設定 *****************************************************/
 @media only screen and (min-width:768px){
     .logo-img {
