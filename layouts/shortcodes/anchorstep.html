@@ -3,6 +3,12 @@
 {{- if .Get "id" }}
     {{- $id = .Get "id" }}
 {{- end }}
+{{- $checkbox := true }}
+{{- if .Get "checkbox" }}
+    {{- if eq (.Get "checkbox") "false" }}
+        {{- $checkbox = false }}
+    {{- end }}
+{{- end }}
 {{- if ne $id "" }}
   <div class="step-wrap" id="{{$id}}">
 {{- else }}
@@ -12,7 +18,7 @@
 {{- $number := "" }}
 {{- if .Get "number" }}
     {{- $number = .Get "number" }}
-        {{- if ne $id "" }}
+        {{- if and (ne $id "") (eq $checkbox true) }}
         <input type="checkbox" class="step-check" id="sbodyid_{{$id}}"></input>
         {{- end }}
         <label for="sbodyid_{{$id}}"><div class="step-num">Step<span>{{$number}}</span></div></label>
