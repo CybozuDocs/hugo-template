@@ -1,0 +1,17 @@
+{{- $_hugo_config := `{ "version": 1 }` -}}
+{{- $tmptile_title_pref := "<div class=\"tmp-tile_img-title\">" }}
+{{- $tmptile_title := printf "%s(.|\n)*?</div>" $tmptile_title_pref}}
+{{- $div_tile_title := findRE $tmptile_title .Inner }}
+{{- $title := strings.TrimPrefix $tmptile_title_pref (index $div_tile_title 0) }}
+{{- $title = strings.TrimSuffix "</div>" $title }}
+{{- $tmptile_time_pref := "<div class=\"tmp-tile_img-time\">" }}
+{{- $tmptile_time := printf "%s(.|\n)*?</div>" $tmptile_time_pref }}
+{{- $div_tile_time := findRE $tmptile_time .Inner }}
+{{- $time := strings.TrimPrefix $tmptile_time_pref (index $div_tile_time 0) }}
+{{- $time = strings.TrimSuffix "</div>" $time }}
+<div class="col-video">
+  <a class="col-video-link" href="{{ .Get "link_href" }}" target="_self"></a>
+    <div class="col-video-title">{{ $title | markdownify }}</div>
+    <img class="col-video-img" src="{{- .Get "img_src" -}}" alt="">
+    <div class="col-video-time">{{ $time -}}</div>
+</div>
