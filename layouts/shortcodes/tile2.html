@@ -1,0 +1,27 @@
+{{- $_hugo_config := `{ "version": 1 }` -}}
+{{- $tmptitle_pref := "<div class=\"tmp-tile-title\">" }}
+{{- $tmptitle := printf "%s(.|\n)*?</div>" $tmptitle_pref }}
+{{- $div_title := findRE $tmptitle .Inner }}
+{{- $title := strings.TrimPrefix $tmptitle_pref (index $div_title 0) }}
+{{- $title = strings.TrimSuffix "</div>" $title }}
+{{- $tmptext_pref := "<div class=\"tmp-tile-text\">" }}
+{{- $tmptext := printf "%s(.|\n)*?</div>" $tmptext_pref }}
+{{- $div_text := findRE $tmptext .Inner }}
+{{- $text := strings.TrimPrefix $tmptext_pref (index $div_text 0) }}
+{{- $text = strings.TrimSuffix "</div>" $text }}
+<div class="col-tile">
+    {{- .Scratch.Set "target" "_self" -}}
+    {{- if eq (.Get "external") "true" -}}
+        {{- $.Scratch.Set "target" "_blank" -}}
+    {{- end -}}
+    <a class="{{- .Get "link_class" -}}" href="{{- .Get "link_href" -}}" target="{{ .Scratch.Get "target" }}">
+        <div class="tile-title">{{ $title }}</div>
+    </a>
+    <div class="tile-link">
+        {{- with $text -}}
+            {{- . | markdownify -}}
+        {{- end -}}
+    </div>
+    {{- if (.Get "img_src") -}}<img class="tile-img" src="{{- .Get "img_src" -}}" alt="">{{- end -}}
+    {{- if (.Get "fontawesome_icon") -}}<i class="{{ .Get "fontawesome_icon" }}"{{- if (.Get "fontawesome_color") -}} style="color:{{ .Get "fontawesome_color" }};"{{- end -}}></i>{{- end -}}
+</div>
