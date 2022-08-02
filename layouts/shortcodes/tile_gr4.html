@@ -1,9 +1,9 @@
-{{- $tmptitle_pref := "<div class=\"tmp-tile_gr-title\">" }}
+{{- $tmptitle_pref := "<div class=\"tmp-tile-title\">" }}
 {{- $tmptitle := printf "%s(.|\n)*?</div>" $tmptitle_pref }}
 {{- $div_title := findRE $tmptitle .Inner }}
 {{- $title := strings.TrimPrefix $tmptitle_pref (index $div_title 0) }}
 {{- $title = strings.TrimSuffix "</div>" $title }}
-{{- $tmptext_pref := "<div class=\"tmp-tile_gr-text\">" }}
+{{- $tmptext_pref := "<div class=\"tmp-tile-text\">" }}
 {{- $tmptext := printf "%s(.|\n)*?</div>" $tmptext_pref }}
 {{- $div_text := findRE $tmptext .Inner }}
 {{- $text := strings.TrimPrefix $tmptext_pref (index $div_text 0) }}
