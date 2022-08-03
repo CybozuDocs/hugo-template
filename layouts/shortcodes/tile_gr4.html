@@ -15,13 +15,13 @@
         {{- if $link_href -}}
         <a href="{{- $link_href -}}" target="_self">
             <div class="tile-icon">
-                <i class="{{- .Get "fontawesome_icon" -}}"></i>
+                <i class="{{- .Get "fontawesome_icon" -}}" aria-hidden="true"></i>
             </div>
             <h3 class="tile-title">{{- $title -}}</h3>
         </a>
         {{- else -}}
         <div class="tile-icon">
-            <i class="{{ .Get "fontawesome_icon" }} nolink"></i>
+            <i class="{{ .Get "fontawesome_icon" }} nolink" aria-hidden="true"></i>
         </div>
         <h3 class="tile-title nolink">{{- $title -}}</h3>
         {{- end -}}

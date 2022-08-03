@@ -22,5 +22,5 @@
             {{- . | markdownify -}}
         {{- end -}}
     </div>
-    {{- if (.Get "fontawesome_icon") -}}<i class="{{ .Get "fontawesome_icon" }}"{{- if (.Get "fontawesome_color") -}} style="color:{{ .Get "fontawesome_color" }};"{{- end -}}></i>{{- end -}}
+    {{- if (.Get "fontawesome_icon") -}}<i class="{{ .Get "fontawesome_icon" }}"{{- if (.Get "fontawesome_color") -}} style="color:{{ .Get "fontawesome_color" }};"{{- end -}} aria-hidden="true"></i>{{- end -}}
 </div>
