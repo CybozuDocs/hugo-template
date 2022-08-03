@@ -10,11 +10,11 @@
 {{- $text := strings.TrimPrefix $tmptext_pref (index $div_text 0) }}
 {{- $text = strings.TrimSuffix "</div>" $text }}
 <div class="col-tile">
-    {{- .Scratch.Set "target" "_self" -}}
+    {{ $target := "_self" }}
     {{- if eq (.Get "external") "true" -}}
-        {{- $.Scratch.Set "target" "_blank" -}}
+        {{ $target = "_blank" }}
     {{- end -}}
-    <a class="{{- .Get "link_class" -}}" href="{{- .Get "link_href" -}}" target="{{ .Scratch.Get "target" }}">
+    <a class="{{- .Get "link_class" -}}" href="{{- .Get "link_href" -}}" target="{{ $target }}">
         <div class="tile-title">{{ $title }}</div>
     </a>
     <div class="tile-link">
