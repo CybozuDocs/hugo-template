@@ -22,6 +22,5 @@
             {{- . | markdownify -}}
         {{- end -}}
     </div>
-    {{- if (.Get "img_src") -}}<img class="tile-img" src="{{- .Get "img_src" -}}" alt="">{{- end -}}
     {{- if (.Get "fontawesome_icon") -}}<i class="{{ .Get "fontawesome_icon" }}"{{- if (.Get "fontawesome_color") -}} style="color:{{ .Get "fontawesome_color" }};"{{- end -}}></i>{{- end -}}
 </div>
