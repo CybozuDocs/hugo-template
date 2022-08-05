@@ -71,6 +71,33 @@ a,
     background-color: #d0324d;
 }
 
+/* infomation -------------------- */
+.article .mw-info {
+    margin: 0 0 1em;
+    padding: 1em;
+    background: #F3F1E8;
+}
+.article .mw-info h3{
+    margin-bottom: .313em;
+    font-size: 1.5em;
+    border:none;
+    margin-top: 0;
+    z-index: 0;
+}
+.article .mw-info-txt {
+    background: #fff;
+    padding: 1em 1em 0.5em 1em;
+}
+.article .mw-info a{
+    text-decoration: none;
+}
+.article .mw-info a:hover{
+    text-decoration: underline;
+}
+.fa-lightbulb{
+    font-size: 1.5em;
+}
+
 /* Home page --------------------------------------*/
 .top-title {
     background: #d0324b;
