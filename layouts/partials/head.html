@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=11" />
     {{- $buildnum := (now.Format "200601020304") }}
     <meta name="date" content="{{$buildnum}}" scheme="YYYYMMDDmmhh">
-    {{- $title := partial "title" .}}
     {{- $sitename := "" }}
     {{- $servicetype := "" }}
     {{- with .Site.Params.service_type }}
@@ -21,13 +20,17 @@
     {{- .Scratch.Set "sitename" $sitename}}
     {{- $sitename = printf "%s %s" $sitename .Site.Params.help -}}
 
+    {{- $title := partial "title" . }}
+    {{ if (not .IsHome) }}
+        {{- $title = printf "%s | %s" $title $sitename }}
+    {{ end }}
+
     {{- $desc := "" }}
     {{- if .Description }}
         {{- $desc = partial "applyparams" (dict "target" .Description "params" .Site.Params) }}
     {{- else }}
         {{- $post := "" }}
         {{- if and (not .IsHome) (or (eq .Site.Params.product "Garoon") (eq .Site.Params.product "Mailwise") (eq .Site.Params.product "Office")) }}
-            {{- $title = printf "%s | %s" $title $sitename }}
             {{- $contents := split .Content "\n" }}
             {{- $first := "" }}
             {{- range first 1 $contents }}
