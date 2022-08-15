@@ -13,7 +13,7 @@
     {{- $simple = "true" }}
 {{- end }}
 {{- if eq $simple "true" }}
-<img src="{{.Destination | safeURL}}" alt="{{.Text}}" {{ with .Title}} title="{{ . }}"{{ end }} role="img" />
+<img src="{{.Destination | safeURL}}" alt="{{ .Text | safeHTML }}" {{ with .Title}} title="{{ . }}"{{ end }} role="img" />
 {{- else }}
-<img class="screenshot" src="{{.Destination | safeURL}}" alt="{{.Text}}" {{ with .Title}} title="{{ . }}"{{ end }} data-action="zoom" role="img" />
+<img class="screenshot" src="{{.Destination | safeURL}}" alt="{{ .Text | safeHTML }}" {{ with .Title}} title="{{ . }}"{{ end }} data-action="zoom" role="img" />
 {{- end }}
