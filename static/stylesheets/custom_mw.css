@@ -149,3 +149,12 @@ a,
         width: 18%;
     }
 }
+
+@media print {
+    .admonition.info {
+        border: 3px solid #b8c5ca;
+    }
+    .admonition.info .admonition-content {
+        padding: 0;
+    }
+}
