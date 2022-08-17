@@ -91,28 +91,12 @@ a,
 /* -------------------------------------- End of Search opage */
 
 /* admonition -------------------- */
-
-.admonition.info .admonition-alt {
-    margin-bottom: 0px;
-}
-
 .admonition.info {
-    margin: 0 0 1em;
-    border-radius: 0;
-    border: none;
-    padding: 1em;
     background: #F3F1E8;
 }
-
-.admonition.info .admonition-content {
-    padding: 1em 1em 0.5em;
-    background: #fff;
-}
-
 .admonition.info a {
     text-decoration: none;
 }
-
 .admonition.info a:hover {
     text-decoration: underline;
 }
@@ -147,14 +131,5 @@ a,
 @media only screen and (min-width:1059px) {
     .col-tile-gr {
         width: 18%;
-    }
-}
-
-@media print {
-    .admonition.info {
-        border: 3px solid #b8c5ca;
-    }
-    .admonition.info .admonition-content {
-        padding: 0;
     }
 }
