@@ -90,6 +90,17 @@ a,
 }
 /* -------------------------------------- End of Search opage */
 
+/* admonition -------------------- */
+.admonition.info {
+    background: #F3F1E8;
+}
+.admonition.info a {
+    text-decoration: none;
+}
+.admonition.info a:hover {
+    text-decoration: underline;
+}
+
 /* 404 page */
 .nftitle {
     background-image: none;

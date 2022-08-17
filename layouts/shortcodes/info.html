@@ -1,0 +1,17 @@
+{{- $tmptitle_pref := "<div class=\"tmp-admonition-title\">" }}
+{{- $tmptitle := printf "%s(.|\n)*?</div>" $tmptitle_pref }}
+{{- $div_title := findRE $tmptitle .Inner }}
+{{- $title := strings.TrimPrefix $tmptitle_pref (index $div_title 0) }}
+{{- $title = strings.TrimSuffix "</div>" $title }}
+{{- $tmptext_pref := "<div class=\"tmp-admonition-text\">" }}
+{{- $tmptext := printf "%s(.|\n)*?</div>" $tmptext_pref }}
+{{- $div_text := findRE $tmptext .Inner }}
+{{- $text := strings.TrimPrefix $tmptext_pref (index $div_text 0) }}
+{{- $text = strings.TrimSuffix "</div>" $text }}
+<aside class="admonition info" style="{{- with (.Get "outer_color") }}background-color: {{ . }};{{ end -}}">
+  <div class="admonition-alt">
+    <i class="{{ .Get "fontawesome_icon" }}" style="{{- with (.Get "icon_color") }}color: {{ . }};{{ end -}}" aria-hidden="true"></i>
+    <span>{{- $title -}}</span>
+  </div>
+  <div class="admonition-content" style="{{- with (.Get "inner_color") }}background-color:{{ . }}; {{ end -}}">{{- $text | markdownify -}}</div>
+</aside>

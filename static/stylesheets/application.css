@@ -1203,6 +1203,20 @@ table .wd10 {
     color: #ffa500;
     font-size: 1.3rem;
 }
+.admonition.info {
+    margin: 0 0 1em;
+    border-radius: 0;
+    border: none;
+    padding: 1em;
+    background: #b8c5ca;
+}
+.admonition.info .admonition-alt {
+    margin-bottom: 0px;
+}
+.admonition.info .admonition-content {
+    padding: 1em 1em 0.5em;
+    background: #fff;
+}
 .admonition-alt {
     font-size: 1rem;
     margin-bottom: 10px;
@@ -2337,5 +2351,11 @@ i.index-pdf {
         height:200px;
         text-align: center;
         vertical-align: middle;
+    }
+    .admonition.info {
+        border: 3px solid #b8c5ca;
+    }
+    .admonition.info .admonition-content {
+        padding: 0;
     }
 }
