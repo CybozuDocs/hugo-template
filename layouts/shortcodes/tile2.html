@@ -1,4 +1,3 @@
-{{- $_hugo_config := `{ "version": 1 }` -}}
 {{- $tmptitle_pref := "<div class=\"tmp-tile-title\">" }}
 {{- $tmptitle := printf "%s(.|\n)*?</div>" $tmptitle_pref }}
 {{- $div_title := findRE $tmptitle .Inner }}
