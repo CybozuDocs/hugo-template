@@ -1279,6 +1279,68 @@
         // ステータスチェック状態の画面への反映
         updateDisplay();
 
+        // お知らせ全体の高さを計算する
+        function calcAnnnouncesHeight() {
+            const announcements = $('.announcement-banner');
+            let height = 0;
+            for (let i = 0; i < announcements.length; i++ ) {
+                height += announcements[i].offsetHeight;
+            }
+            return height;
+        }
+        // お知らせの位置を調整する
+        function justifyAnnouncementPosition() {
+            const announcements = $('.announcement-banner');
+            if (announcements) {
+                let currentTop = 0;
+                for (let i = 0; i < announcements.length; i++) {
+                    $(announcements[i]).css('top', currentTop);
+                    currentTop += announcements[i].offsetHeight;
+                }
+            }
+        }
+
+        const storagePrefixForAnnouncement = 'announce_' + productid;
+        // お知らせの表示/非表示
+        const announcements = $('.announcement-banner');
+        if (announcements) {
+            let currentTop = 0;
+            for (let i = 0; i < announcements.length; i++) {
+                const $announcement = $(announcements[i]);
+                const identifer = $announcement.attr('id').replace('announcement-banner-', '');
+                const localStorageKey = storagePrefixForAnnouncement + identifer;
+                if (localStorage.getItem(localStorageKey) !== '1') {
+                    $announcement.css('top', currentTop);
+                    $announcement.show();
+                    currentTop += $announcement.outerHeight();
+                }
+            }
+            const announceHeight = calcAnnnouncesHeight();
+            $('header').css('top', announceHeight);
+        }
+
+        // 閉じるボタンを押したときの処理
+        if($('.announcement-banner-content-button-close').length > 0) {
+            $('.announcement-banner-content-button-close').click(function() {
+                const identifer = $(this).attr('id').replace('announcement-', '');
+                const localStorageKey = storagePrefixForAnnouncement + identifer;
+                const $banner = $('.announcement-banner.' + identifer);
+                if ($banner) {
+                    $banner.hide();
+                    localStorage.setItem(localStorageKey, '1');
+                    const announceHeight = calcAnnnouncesHeight();
+                    justifyAnnouncementPosition();
+                    $('header').css('top', announceHeight);
+                }
+            });
+        }
+        // 画面幅を調整したときの処理
+        $(window).resize(function() {
+            if (announcements) {
+                const announceHeight = calcAnnnouncesHeight();
+                $('header').css('top', announceHeight);
+            }
+        });
     /***  初回表示時の処理 ***/
         function initPage() {
             if( json_mode === true ) {

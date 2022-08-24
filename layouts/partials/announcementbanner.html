@@ -1,0 +1,18 @@
+{{- range $key, $value := $.Site.Params.announcement -}}
+<nav class="announcement-banner {{ $key }}" id="announcement-banner-{{ $key }}" style="display: none;
+    {{ with $value.bg_color }}background-color: {{ . }};{{ end }}">
+    <div class="announcement-banner-wrapper">
+        <div class="announcement-banner-icon">
+            <i class="{{ $value.fontawesome_icon }}" style="{{ with $value.icon_color }}color: {{ . }};{{ end }}" aria-hidden="true"></i>
+        </div>
+        <div class="announcement-banner-content">
+            <div class="announcement-banner-content-text">{{ $value.text | markdownify }}</div>
+            <div class="announcement-banner-content-button">
+                <button type="submit" id="announcement-{{ $key }}" class="announcement-banner-content-button-close" title="{{ i18n "Announcement_button_close" }}" tabindex="0">
+                    <span>{{ i18n "Close" }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+{{- end -}}
