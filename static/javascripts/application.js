@@ -1177,16 +1177,15 @@
         }
 
         // 期限切れデータの削除
-        function removeExpired() {
+        function removeExpired(prefix) {
             const now = new Date().getTime();
 
             for (let key in localStorage) {
-                if(key.startsWith(storagePrefix)) {
+                if(key.startsWith(prefix)) {
                     const strval = localStorage.getItem(key);
                     const d = JSON.parse(strval);
                     const timestamp = d.timestamp;
-                    const limit = 2592000000; // 30日
-
+                    const limit = d.limit || 2592000000; // 30日
                     if((timestamp !== null) && (now - timestamp >= limit)) {
                         localStorage.removeItem(key);
                     }
@@ -1274,7 +1273,7 @@
         }
 
         // 期限切れデータの削除
-        removeExpired();
+        removeExpired(storagePrefix);
 
         // ステータスチェック状態の画面への反映
         updateDisplay();
