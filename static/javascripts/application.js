@@ -1308,7 +1308,8 @@
                 const $announcement = $(announcements[i]);
                 const identifer = $announcement.attr('id').replace('announcement-banner-', '');
                 const localStorageKey = storagePrefixForAnnouncement + identifer;
-                if (localStorage.getItem(localStorageKey) !== '1') {
+                const strval = localStorage.getItem(localStorageKey);
+                if(strval === null) {
                     $announcement.css('top', currentTop);
                     $announcement.show();
                     currentTop += $announcement.outerHeight();
@@ -1326,7 +1327,11 @@
                 const $banner = $('.announcement-banner.' + identifer);
                 if ($banner) {
                     $banner.hide();
-                    localStorage.setItem(localStorageKey, '1');
+                    const statusWithTimestamp = JSON.stringify({
+                        timestamp: new Date().getTime(),
+                        limit: 10368000000, // 120日
+                    });
+                    localStorage.setItem(localStorageKey, statusWithTimestamp);
                     const announceHeight = calcAnnnouncesHeight();
                     justifyAnnouncementPosition();
                     $('header').css('top', announceHeight);
@@ -1340,6 +1345,9 @@
                 $('header').css('top', announceHeight);
             }
         });
+        // 期限切れデータの削除
+        removeExpired(storagePrefixForAnnouncement);
+
     /***  初回表示時の処理 ***/
         function initPage() {
             if( json_mode === true ) {
