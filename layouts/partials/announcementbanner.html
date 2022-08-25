@@ -1,5 +1,5 @@
 {{- range $key, $value := $.Site.Params.announcement -}}
-<nav class="announcement-banner {{ $key }}" id="announcement-banner-{{ $key }}" style="display: none;
+<aside class="announcement-banner {{ $key }}" id="announcement-banner-{{ $key }}" style="display: none;
     {{ with $value.bg_color }}background-color: {{ . }};{{ end }}">
     <div class="announcement-banner-wrapper">
         <div class="announcement-banner-icon">
@@ -14,5 +14,5 @@
             </div>
         </div>
     </div>
-</nav>
+</aside>
 {{- end -}}
