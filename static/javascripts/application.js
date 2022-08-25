@@ -1282,9 +1282,10 @@
         function sumAllAnnnounceHeight() {
             const announcements = $('.announcement-banner');
             let height = 0;
-            for (let i = 0; i < announcements.length; i++ ) {
-                height += announcements[i].offsetHeight;
-            }
+            announcements.each(function() {
+                // 非表示のお知らせの高さは 0 とする
+                height += this.offsetHeight;
+            });
             return height;
         }
         // お知らせの位置を調整する
@@ -1292,30 +1293,29 @@
             const announcements = $('.announcement-banner');
             if (announcements) {
                 let currentTop = 0;
-                for (let i = 0; i < announcements.length; i++) {
-                    $(announcements[i]).css('top', currentTop);
-                    currentTop += announcements[i].offsetHeight;
-                }
+                announcements.each(function() {
+                    $(this).css('top', currentTop);
+                    // 非表示のお知らせの高さは 0 とする
+                    currentTop += this.offsetHeight;
+                });
             }
         }
-
         const storagePrefixForAnnouncement = 'announce_' + productid;
         // お知らせの表示
         function showAnnouncements() {
             const announcements = $('.announcement-banner');
             if (announcements) {
                 let currentTop = 0;
-                for (let i = 0; i < announcements.length; i++) {
-                    const $announcement = $(announcements[i]);
-                    const identifer = $announcement.attr('id').replace('announcement-banner-', '');
+                announcements.each(function () {
+                    const identifer = $(this).attr('id').replace('announcement-banner-', '');
                     const localStorageKey = storagePrefixForAnnouncement + identifer;
                     const strval = localStorage.getItem(localStorageKey);
                     if(strval === null) {
-                        $announcement.css('top', currentTop);
-                        $announcement.show();
-                        currentTop += $announcement.outerHeight();
+                        $(this).css('top', currentTop);
+                        $(this).show();
+                        currentTop += $(this).outerHeight();
                     }
-                }
+                });
                 const announceHeight = sumAllAnnnounceHeight();
                 $('header').css('top', announceHeight);
             }
