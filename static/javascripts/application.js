@@ -1279,7 +1279,7 @@
         updateDisplay();
 
         // お知らせ全体の高さを計算する
-        function calcAnnnouncesHeight() {
+        function sumAllAnnnounceHeight() {
             const announcements = $('.announcement-banner');
             let height = 0;
             for (let i = 0; i < announcements.length; i++ ) {
@@ -1315,7 +1315,7 @@
                     currentTop += $announcement.outerHeight();
                 }
             }
-            const announceHeight = calcAnnnouncesHeight();
+            const announceHeight = sumAllAnnnounceHeight();
             $('header').css('top', announceHeight);
         }
 
@@ -1332,7 +1332,7 @@
                         limit: 10368000000, // 120日
                     });
                     localStorage.setItem(localStorageKey, statusWithTimestamp);
-                    const announceHeight = calcAnnnouncesHeight();
+                    const announceHeight = sumAllAnnnounceHeight();
                     justifyAnnouncementPosition();
                     $('header').css('top', announceHeight);
                 }
@@ -1341,7 +1341,7 @@
         // 画面幅を調整したときの処理
         $(window).resize(function() {
             if (announcements) {
-                const announceHeight = calcAnnnouncesHeight();
+                const announceHeight = sumAllAnnnounceHeight();
                 $('header').css('top', announceHeight);
             }
         });
