@@ -1278,7 +1278,7 @@
         // ステータスチェック状態の画面への反映
         updateDisplay();
 
-        // お知らせ全体の高さを計算する
+        // お知らせ全体の高さを合計する処理
         function sumAllAnnnounceHeight() {
             const $announcements = $('.announcement-banner');
             let height = 0;
@@ -1288,7 +1288,7 @@
             });
             return height;
         }
-        // お知らせの位置を調整する
+        // お知らせを表示する位置を調整する処理
         function justifyAnnouncementPosition() {
             const $announcements = $('.announcement-banner');
             if ($announcements) {
@@ -1300,8 +1300,9 @@
                 });
             }
         }
+        // お知らせの表示状態のプレフィックス
         const storagePrefixForAnnouncement = 'announce_' + productid;
-        // お知らせの表示
+        // お知らせを表示する処理
         function showAnnouncements() {
             const $announcements = $('.announcement-banner');
             if ($announcements) {
@@ -1322,7 +1323,7 @@
         }
         showAnnouncements();
 
-        // 閉じるボタンを押したときの処理
+        // 閉じるボタンを押したときのイベントハンドラー
         if($('.announcement-banner-content-button-close').length > 0) {
             $('.announcement-banner-content-button-close').click(function() {
                 const identifer = $(this).attr('id').replace('announcement-', '');
@@ -1341,7 +1342,7 @@
                 }
             });
         }
-        // 画面幅を調整したときの処理
+        // ブラウザの幅を調整したときのヘッダーの位置を調整するイベントハンドラー
         $(window).resize(function() {
             const $announcements = $('.announcement-banner');
             if ($announcements) {
