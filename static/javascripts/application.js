@@ -1300,24 +1300,27 @@
         }
 
         const storagePrefixForAnnouncement = 'announce_' + productid;
-        // お知らせの表示/非表示
-        const announcements = $('.announcement-banner');
-        if (announcements) {
-            let currentTop = 0;
-            for (let i = 0; i < announcements.length; i++) {
-                const $announcement = $(announcements[i]);
-                const identifer = $announcement.attr('id').replace('announcement-banner-', '');
-                const localStorageKey = storagePrefixForAnnouncement + identifer;
-                const strval = localStorage.getItem(localStorageKey);
-                if(strval === null) {
-                    $announcement.css('top', currentTop);
-                    $announcement.show();
-                    currentTop += $announcement.outerHeight();
+        // お知らせの表示
+        function showAnnouncements() {
+            const announcements = $('.announcement-banner');
+            if (announcements) {
+                let currentTop = 0;
+                for (let i = 0; i < announcements.length; i++) {
+                    const $announcement = $(announcements[i]);
+                    const identifer = $announcement.attr('id').replace('announcement-banner-', '');
+                    const localStorageKey = storagePrefixForAnnouncement + identifer;
+                    const strval = localStorage.getItem(localStorageKey);
+                    if(strval === null) {
+                        $announcement.css('top', currentTop);
+                        $announcement.show();
+                        currentTop += $announcement.outerHeight();
+                    }
                 }
+                const announceHeight = sumAllAnnnounceHeight();
+                $('header').css('top', announceHeight);
             }
-            const announceHeight = sumAllAnnnounceHeight();
-            $('header').css('top', announceHeight);
         }
+        showAnnouncements();
 
         // 閉じるボタンを押したときの処理
         if($('.announcement-banner-content-button-close').length > 0) {
@@ -1340,6 +1343,7 @@
         }
         // 画面幅を調整したときの処理
         $(window).resize(function() {
+            const announcements = $('.announcement-banner');
             if (announcements) {
                 const announceHeight = sumAllAnnnounceHeight();
                 $('header').css('top', announceHeight);
