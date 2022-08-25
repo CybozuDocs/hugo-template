@@ -1280,9 +1280,9 @@
 
         // お知らせ全体の高さを計算する
         function sumAllAnnnounceHeight() {
-            const announcements = $('.announcement-banner');
+            const $announcements = $('.announcement-banner');
             let height = 0;
-            announcements.each(function() {
+            $announcements.each(function() {
                 // 非表示のお知らせの高さは 0 とする
                 height += this.offsetHeight;
             });
@@ -1290,30 +1290,30 @@
         }
         // お知らせの位置を調整する
         function justifyAnnouncementPosition() {
-            const announcements = $('.announcement-banner');
-            if (announcements) {
-                let currentTop = 0;
-                announcements.each(function() {
-                    $(this).css('top', currentTop);
+            const $announcements = $('.announcement-banner');
+            if ($announcements) {
+                let position = 0;
+                $announcements.each(function() {
+                    $(this).css('top', position);
                     // 非表示のお知らせの高さは 0 とする
-                    currentTop += this.offsetHeight;
+                    position += this.offsetHeight;
                 });
             }
         }
         const storagePrefixForAnnouncement = 'announce_' + productid;
         // お知らせの表示
         function showAnnouncements() {
-            const announcements = $('.announcement-banner');
-            if (announcements) {
-                let currentTop = 0;
-                announcements.each(function () {
+            const $announcements = $('.announcement-banner');
+            if ($announcements) {
+                let position = 0;
+                $announcements.each(function () {
                     const identifer = $(this).attr('id').replace('announcement-banner-', '');
                     const localStorageKey = storagePrefixForAnnouncement + identifer;
                     const strval = localStorage.getItem(localStorageKey);
                     if(strval === null) {
-                        $(this).css('top', currentTop);
+                        $(this).css('top', position);
                         $(this).show();
-                        currentTop += $(this).outerHeight();
+                        position += $(this).outerHeight();
                     }
                 });
                 const announceHeight = sumAllAnnnounceHeight();
@@ -1330,11 +1330,11 @@
                 const $banner = $('.announcement-banner.' + identifer);
                 if ($banner) {
                     $banner.hide();
-                    const statusWithTimestamp = JSON.stringify({
+                    const strval = JSON.stringify({
                         timestamp: new Date().getTime(),
                         limit: 10368000000, // 120日
                     });
-                    localStorage.setItem(localStorageKey, statusWithTimestamp);
+                    localStorage.setItem(localStorageKey, strval);
                     const announceHeight = sumAllAnnnounceHeight();
                     justifyAnnouncementPosition();
                     $('header').css('top', announceHeight);
@@ -1343,8 +1343,8 @@
         }
         // 画面幅を調整したときの処理
         $(window).resize(function() {
-            const announcements = $('.announcement-banner');
-            if (announcements) {
+            const $announcements = $('.announcement-banner');
+            if ($announcements) {
                 const announceHeight = sumAllAnnnounceHeight();
                 $('header').css('top', announceHeight);
             }
