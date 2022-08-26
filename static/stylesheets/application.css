@@ -1259,10 +1259,7 @@ table .wd10 {
     padding: 12px 0px;
 }
 .announcement-banner-content-button-close {
-    padding: 4px 8px;
     white-space: nowrap;
-    background-color: #fff;
-    font-size: 0.9rem;
     cursor: pointer;
 }
 
