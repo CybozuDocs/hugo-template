@@ -1,23 +1,32 @@
-{{- range $key, $value := $.Site.Params.announcement -}}
-<aside class="announcement-banner {{ $key }}" id="announcement-banner-{{ $key }}" style="display: none;
-    {{ with $value.bg_color }}background-color: {{ . }};{{ end }}">
-    <div class="announcement-banner-wrapper">
-        <div class="announcement-banner-icon">
-            <i class="{{ $value.fontawesome_icon }}" style="{{ with $value.icon_color }}color: {{ . }};{{ end }}" aria-hidden="true"></i>
-        </div>
-        <div class="announcement-banner-content">
-            <div class="announcement-banner-content-content">
-                {{- with $value.title -}}
-                    <div class="announcement-banner-content-title">{{ . }}</div>
-                {{- end -}}
-                <div class="announcement-banner-content-description">{{ $value.text | markdownify }}</div>
+{{- $announcementfile := printf "csv/%s/announcement_%s.csv" $.Site.Language.Lang $.Site.Params.TargetRegion }}
+{{- if os.FileExists $announcementfile }}
+    {{- range $i, $r := (getCSV "," $announcementfile) }}
+        {{- $key := index $r 0 }}
+        {{- $bg_color := index $r 1 }}
+        {{- $fontawesome_icon := index $r 2 }}
+        {{- $icon_color := index $r 3 }}
+        {{- $title := index $r 4 }}
+        {{- $text := index $r 5 }}
+        <aside class="announcement-banner {{ $key }}" id="announcement-banner-{{ $key }}" style="display: none;
+            {{ with $bg_color }}background-color: {{ . }};{{ end }}">
+            <div class="announcement-banner-wrapper">
+                <div class="announcement-banner-icon">
+                    <i class="{{ $fontawesome_icon }}" style="{{ with $icon_color }}color: {{ . }};{{ end }}" aria-hidden="true"></i>
+                </div>
+                <div class="announcement-banner-content">
+                    <div class="announcement-banner-content-content">
+                        {{- with $title -}}
+                            <div class="announcement-banner-content-title">{{ . }}</div>
+                        {{- end -}}
+                        <div class="announcement-banner-content-description">{{ $text | markdownify }}</div>
+                    </div>
+                    <div class="announcement-banner-content-button">
+                        <button type="submit" id="announcement-{{ $key }}" class="announcement-banner-content-button-close" title="{{ i18n "Announcement_button_close" }}" tabindex="0">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i> <span>{{ i18n "Close" }}</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="announcement-banner-content-button">
-                <button type="submit" id="announcement-{{ $key }}" class="announcement-banner-content-button-close" title="{{ i18n "Announcement_button_close" }}" tabindex="0">
-                    <i class="fa fa-times-circle" aria-hidden="true"></i> <span>{{ i18n "Close" }}</span>
-                </button>
-            </div>
-        </div>
-    </div>
-</aside>
+        </aside>
+    {{- end -}}
 {{- end -}}
