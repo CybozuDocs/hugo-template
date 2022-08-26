@@ -9,7 +9,7 @@
             <div class="announcement-banner-content-text">{{ $value.text | markdownify }}</div>
             <div class="announcement-banner-content-button">
                 <button type="submit" id="announcement-{{ $key }}" class="announcement-banner-content-button-close" title="{{ i18n "Announcement_button_close" }}" tabindex="0">
-                    <span>{{ i18n "Close" }}</span>
+                    <i class="fa fa-times-circle" aria-hidden="true"></i> <span>{{ i18n "Close" }}</span>
                 </button>
             </div>
         </div>
