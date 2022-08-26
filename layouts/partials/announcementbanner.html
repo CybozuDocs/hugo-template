@@ -6,7 +6,12 @@
             <i class="{{ $value.fontawesome_icon }}" style="{{ with $value.icon_color }}color: {{ . }};{{ end }}" aria-hidden="true"></i>
         </div>
         <div class="announcement-banner-content">
-            <div class="announcement-banner-content-text">{{ $value.text | markdownify }}</div>
+            <div class="announcement-banner-content-content">
+                {{- with $value.title -}}
+                    <div class="announcement-banner-content-title">{{ . }}</div>
+                {{- end -}}
+                <div class="announcement-banner-content-description">{{ $value.text | markdownify }}</div>
+            </div>
             <div class="announcement-banner-content-button">
                 <button type="submit" id="announcement-{{ $key }}" class="announcement-banner-content-button-close" title="{{ i18n "Announcement_button_close" }}" tabindex="0">
                     <i class="fa fa-times-circle" aria-hidden="true"></i> <span>{{ i18n "Close" }}</span>

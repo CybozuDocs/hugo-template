@@ -1250,17 +1250,13 @@ table .wd10 {
     display: block;
     justify-content: space-between;
     width: 100%;
-    margin: 0 12px;
+    margin: 0 0 0 12px;
 }
-.announcement-banner-content-text {
-    padding-right: 0;
-}
-.announcement-banner-content-text > ul {
-    list-style: disc;
-    margin-left: 24px;
+.announcement-banner-content-title {
+    font-weight: bold;
 }
 .announcement-banner-content-button {
-    padding: 12px 0 4px;
+    padding: 12px 0px;
 }
 .announcement-banner-content-button-close {
     padding: 4px 8px;
@@ -2244,8 +2240,8 @@ i.index-pdf {
     .announcement-banner-content {
         display: flex;
     }
-    .announcement-banner-content-text {
-        padding-right: 12px;
+    .announcement-banner-content-content {
+        margin-right: 32px;
     }
     .announcement-banner-content-button {
         padding: 0;
