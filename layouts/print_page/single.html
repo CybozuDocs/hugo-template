@@ -33,15 +33,15 @@
     }
     </style>
 
-    <title>{{ partial "title" . }}</title>
+    <title>{{ partial "title" . }} {{ .Params.title2 }} {{.Params.title3}}</title>
   </head>
   <body class="font-{{.Lang}}">
         <div class="section">
             <div class="book-title">
-            {{ partial "title" . }}
-                <div class="sub-title">
-                {{ .Params.version }}
-                </div>
+                {{ partial "title" . }}
+                <div class="book-title2">{{ .Params.title2 }}</div>
+                <div class="book-title3">{{ .Params.title3 }}</div>
+                <div class="sub-title">{{ .Params.version }}</div>
             </div>
         </div>
 
@@ -266,7 +266,12 @@
 
                 <!-- body -->
                 {{- $title := partial "title" . -}}
-                {{- template "contentbody" (dict "sectList" $sectList "sectStr" $sectStr "content" .Content "product" $parent.Site.Params.product "serviceType" $parent.Site.Params.service_type_id "weight" $parent.Params.weight "ancid" .RelPermalink "title" $title "lang" .Language) }}
+                {{- $product := $parent.Site.Params.product -}}
+                {{- with $parent.Site.Params.sub_product }}
+                  <!-- prefer using sub_product -->
+                  {{ $product = . }}
+                {{- end }}
+                {{- template "contentbody" (dict "sectList" $sectList "sectStr" $sectStr "content" .Content "product" $product "serviceType" $parent.Site.Params.service_type_id "weight" $parent.Params.weight "ancid" .RelPermalink "title" $title "lang" .Language) }}
                 
                 <!-- add a sub section （go down the section tree） -->
                 {{- $sectList = $sectList | append 1 -}}
@@ -407,6 +412,40 @@
                             {{- $targeturl = (printf "/%s/%s/user" $prod $lang) -}}
                         {{- else if eq $weight 400 -}}
                             {{- $targeturl = (printf "/%s/%s/option" $prod $lang) -}}
+                        {{- end -}}
+                    {{- else if eq $product "cypn-docs" -}}
+                        {{- if eq $weight 200 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/cloud_partner" $lang) -}}
+                        {{- else if eq $weight 300 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/converter" $lang) -}}
+                        {{- else if eq $weight 600 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/customapp" $lang) -}}
+                        {{- else if eq $weight 100 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/db_distributed" $lang) -}}
+                        {{- else if eq $weight 700 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/dezie" $lang) -}}
+                        {{- else if eq $weight 1500 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/gr2tc_application" $lang) -}}
+                        {{- else if eq $weight 1600 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/gr2tc_ldap" $lang) -}}
+                        {{- else if eq $weight 400 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/grnmigration" $lang) -}}
+                        {{- else if eq $weight 500 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/groupmail" $lang) -}}
+                        {{- else if eq $weight 1100 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/ldapauth" $lang) -}}
+                        {{- else if eq $weight 900 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/onlinebackup" $lang) -}}
+                        {{- else if eq $weight 1300 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/openauth" $lang) -}}
+                        {{- else if eq $weight 1400 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/password" $lang) -}}
+                        {{- else if eq $weight 800 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/scalebench" $lang) -}}
+                        {{- else if eq $weight 1000 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/trouble" $lang) -}}
+                        {{- else if eq $weight 1200 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/windowsauth" $lang) -}}
                         {{- end -}}
                     {{- end -}}
 
