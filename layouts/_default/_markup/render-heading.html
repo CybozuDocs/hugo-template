@@ -18,7 +18,7 @@
         {{- template "anchorlink" (dict "level" .Level "link" $link "id" .Anchor "title" .Text ) }}
     {{- end }}
 {{- else }}
-    {{- if and (eq .Page.Site.Params.product "slash") (eq .Level 6) }}
+    {{- if and ( or (eq .Page.Site.Params.product "slash") (eq .Page.Site.Params.product "store") (eq .Page.Site.Params.product "store-jp") ) (eq .Level 6) }}
 <div class="h6-noanc">{{.Text | safeHTML}}</div>
     {{- else }}
         {{- if and (ne .Page.IsHome true) (ne .Page.Params.aliases nil) }}
@@ -28,4 +28,3 @@
         {{- end }}
     {{- end }}
 {{- end }}
-
