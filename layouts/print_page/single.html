@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="robots" content="noindex,nofollow">
-    <meta name="document-title" content="{{ partial "title" . }}"/>
+    <meta name="document-title" content="{{ partial "title" . }} {{ .Params.title2 }} {{ .Params.title3 }}"/>
     <meta name="author" content="{{ .Params.company }}"/>
     <meta name="copyright-status" content="Copyrighted"/>
     <meta name="copyright-notice" content="© Cybozu"/>
@@ -33,7 +33,7 @@
     }
     </style>
 
-    <title>{{ partial "title" . }} {{ .Params.title2 }} {{.Params.title3}}</title>
+    <title>{{ partial "title" . }} {{ .Params.title2 }} {{ .Params.title3 }}</title>
   </head>
   <body class="font-{{.Lang}}">
         <div class="section">
