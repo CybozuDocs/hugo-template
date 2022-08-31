@@ -251,6 +251,12 @@
    {{- $curnode := .curnode -}}
    {{- $parent := .parent -}}
 
+   {{- $product := $parent.Site.Params.product -}}
+   {{- with $parent.Site.Params.sub_product }}
+        <!-- prefer using sub_product -->
+        {{ $product = . }}
+   {{- end }}
+                
    {{- with $curnode -}}
         {{- if .IsSection -}}
             {{- $pages := .Pages -}}
@@ -266,11 +272,6 @@
 
                 <!-- body -->
                 {{- $title := partial "title" . -}}
-                {{- $product := $parent.Site.Params.product -}}
-                {{- with $parent.Site.Params.sub_product }}
-                  <!-- prefer using sub_product -->
-                  {{ $product = . }}
-                {{- end }}
                 {{- template "contentbody" (dict "sectList" $sectList "sectStr" $sectStr "content" .Content "product" $product "serviceType" $parent.Site.Params.service_type_id "weight" $parent.Params.weight "ancid" .RelPermalink "title" $title "lang" .Language) }}
                 
                 <!-- add a sub section （go down the section tree） -->
@@ -308,7 +309,7 @@
 
                 <!-- body -->
                 {{- $title := partial "title" . -}}
-                {{- template "contentbody" (dict "sectList" $sectList "sectStr" $sectStr "content" .Content "product" $parent.Site.Params.product "serviceType" $parent.Site.Params.service_type_id "weight" $parent.Params.weight "ancid" .RelPermalink "title" $title "lang" .Language) }}
+                {{- template "contentbody" (dict "sectList" $sectList "sectStr" $sectStr "content" .Content "product" $product "serviceType" $parent.Site.Params.service_type_id "weight" $parent.Params.weight "ancid" .RelPermalink "title" $title "lang" .Language) }}
         
                 <!-- increment the section number -->
                 {{- template "nextsection" $parent -}}
