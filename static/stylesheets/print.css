@@ -247,7 +247,7 @@
 }
 
 .article pre {
-    word-break: break-all;
+    white-space: pre-wrap;
 } 
 
 .imprint {
