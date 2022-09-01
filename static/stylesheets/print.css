@@ -246,6 +246,10 @@
     max-width: 400px;
 }
 
+.article pre {
+    word-break: break-all;
+} 
+
 .imprint {
     page-break-before: always;
     margin-top: 220mm;
