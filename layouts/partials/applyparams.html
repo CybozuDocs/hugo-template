@@ -22,4 +22,4 @@
 {{- $t20 := replaceRE "{{<\\s*service_type\\s*>}}" $params.service_type $t19 }}
 {{- $t21 := replaceRE "{{<\\s*help\\s*>}}" $params.help $t20 }}
 {{- $t22 := replaceRE "{{<\\s*product_name\\s*>}}" $params.product_name $t21 }}
-{{- return $t22 }}
+{{- return ( $t22 | safeHTML ) }}
