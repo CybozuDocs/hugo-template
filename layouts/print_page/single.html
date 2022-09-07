@@ -433,6 +433,8 @@
                             {{- $targeturl = (printf "/cypn-docs/%s/grnmigration" $lang) -}}
                         {{- else if eq $weight 500 -}}
                             {{- $targeturl = (printf "/cypn-docs/%s/groupmail" $lang) -}}
+                        {{- else if eq $weight 1700 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/JMeter" $lang) -}}
                         {{- else if eq $weight 1100 -}}
                             {{- $targeturl = (printf "/cypn-docs/%s/ldapauth" $lang) -}}
                         {{- else if eq $weight 900 -}}
