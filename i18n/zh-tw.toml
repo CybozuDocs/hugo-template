@@ -100,10 +100,10 @@ other = "麵包屑小徑"
 other = "頁面選擇"
 
 [Copy_perma_link]
-other = "複製鏈接"
+other = "複製連結"
 
 [Link_was_copied]
-other = "鏈接已復制"
+other = "連結已複製"
 
 [Help_site]
 other = "說明網站"
