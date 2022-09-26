@@ -9,8 +9,9 @@
   <script>
   window.onload = function() {
       const url = {{ .Permalink | relURL }};
+      const query = window.location.search;
       const hash = window.location.hash;
-      window.location.href = url + hash;
+      window.location.href = url + query + hash;
   }
   </script>
 </html>
