@@ -11,7 +11,7 @@
 {{- $time = strings.TrimSuffix "</div>" $time }}
 <div class="col-video">
   <a class="col-video-link" href="{{ .Get "link_href" }}" target="_self"></a>
-    <div class="col-video-title">{{ $title | markdownify }}</div>
+    <div class="col-video-title">{{ $title | markdownify | safeHTML }}</div>
     <img class="col-video-img" src="{{- .Get "img_src" -}}" alt="">
     <div class="col-video-time">{{ $time -}}</div>
 </div>

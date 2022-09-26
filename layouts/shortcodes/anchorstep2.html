@@ -37,7 +37,7 @@
     {{- $bc = printf "%s%s" "background-color:" (.Get "bgcolor") }}
 {{- end }}
 {{- if ne $section "" }}
-            <span class="step-section" style="{{$bc}}">{{$section}}</span>
+            <span class="step-section" style="{{$bc}}">{{ $section | safeHTML }}</span>
 {{- end }}
 {{- $title := "" }}
 {{- $tmptitle_pref := "<div class=\"tmp-step-title\">" }}
@@ -47,7 +47,7 @@
     {{- $title = (strings.TrimPrefix $tmptitle_pref .) }}
 {{- end }}
 {{- $title = (strings.TrimSuffix "</div>" $title) }}
-            <span class="step-title-body">{{$title}}</span>
+            <span class="step-title-body">{{ $title | safeHTML }}</span>
         </div>
     </div>
 </div>

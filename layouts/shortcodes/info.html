@@ -11,7 +11,7 @@
 <aside class="admonition info" style="{{- with (.Get "outer_color") }}background-color: {{ . }};{{ end -}}">
   <div class="admonition-alt">
     <i class="{{ .Get "fontawesome_icon" }}" style="{{- with (.Get "icon_color") }}color: {{ . }};{{ end -}}" aria-hidden="true"></i>
-    <span>{{- $title -}}</span>
+    <span>{{- $title | safeHTML -}}</span>
   </div>
-  <div class="admonition-content" style="{{- with (.Get "inner_color") }}background-color:{{ . }}; {{ end -}}">{{- $text | markdownify -}}</div>
+  <div class="admonition-content" style="{{- with (.Get "inner_color") }}background-color:{{ . }}; {{ end -}}">{{- $text | markdownify | safeHTML -}}</div>
 </aside>
