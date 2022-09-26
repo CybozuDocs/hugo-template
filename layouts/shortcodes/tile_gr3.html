@@ -16,9 +16,9 @@
             <div class="tile-icon">
                 <i class="{{- .Get "fontawesome_icon"}}" aria-hidden="true"></i>
             </div>
-            <h3 class="tile-title">{{- $title -}}</h3>
+            <h3 class="tile-title">{{- $title | safeHTML -}}</h3>
         </div>
-        <div class="tile-text">{{- $text | markdownify -}}</div>
+        <div class="tile-text">{{- $text | markdownify | safeHTML -}}</div>
     </a>
     {{- end -}}
 </div>
