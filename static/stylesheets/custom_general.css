@@ -63,7 +63,7 @@ h3.h3-contents {
     padding-top: 0px;
 } */
 
-:not(div.id-link-message) {
+:not(div.id-link-message) + .h6-noanc {
   margin-top: 24px;
 }
 
