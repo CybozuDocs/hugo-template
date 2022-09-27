@@ -36,13 +36,34 @@
     margin-top: 7px;
 }
 
+h2, h3, h4, h5 {
+  font-weight: 700
+}
+
+h2.h2-contents {
+  margin-top: 3rem;
+  margin-bottom: 0;
+  border-top: 1px solid #ddd;
+  width: 100%;
+  font-size: 1.75rem
+}
+
+h3.h3-contents {
+  padding-top: 36px;
+  font-size: 1.25rem
+}
+
 .h6-noanc {
+  font-size: 1.1rem
+}
+
+/* .h6-noanc {
     margin-top: 0px;
     margin-bottom: 7px;
     padding-top: 0px;
-}
+} */
 
-:not(div.id-link-message) + .h6-noanc {
+:not(div.id-link-message) {
   margin-top: 24px;
 }
 
@@ -64,9 +85,9 @@
   padding-left: 20px;
 }
 
-.article h5 {
+/* .article h5 {
   font-weight: normal;
-}
+} */
 
 /* 「監査ログの一覧」で使用する設定 **************************************/
 
