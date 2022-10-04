@@ -1385,19 +1385,6 @@ table .wd10 {
 .annotation p {
     margin-bottom: 0;
 }
-.referrence h1 {
-    font-size: 1.5rem;
-    font-weight: normal;
-    margin-bottom: 12px;
-}
-.referrence {
-    margin-top: 72px;
-    border-top: 1px solid #e6e6e6;
-}
-.referrence > a {
-    display: block;
-    border-bottom: none;
-}
 
 .seealso {
     font-size: 1em;
