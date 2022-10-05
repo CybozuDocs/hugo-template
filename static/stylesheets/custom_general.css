@@ -157,6 +157,29 @@ h3 + .id-link-button {
 .article dl {
   margin: 0
 }
+.sidebar-wrap {
+  background-color: #fff
+}
+#tree-main a {
+margin-top: 0;
+  margin-bottom: 0
+}
+#tree-main a[aria-expanded="true"] {
+font-weight: 700
+}
+.jstree-ocl {
+  padding: 0 5px 0 0
+}
+#rightside-bar {
+  margin-top: 6rem
+}
+#tree-main ul {
+  padding-inline-start: 0
+}
+.footer-wrap {
+  padding-right: 16px;
+padding-left: 16px
+}
 
 /* 768px以上の設定 *******************************************************/
 @media (min-width:768px) {
@@ -211,27 +234,4 @@ h3 + .id-link-button {
   .article h2:after {
     width: calc(100vw - 542px)
   }
-}
-.sidebar-wrap {
-    background-color: #fff
-}
-#tree-main a {
-	margin-top: 0;
-    margin-bottom: 0
-}
-#tree-main a[aria-expanded="true"] {
-	font-weight: 700
-}
-.jstree-ocl {
-    padding: 0 5px 0 0
-}
-#rightside-bar {
-    margin-top: 6rem
-}
-#tree-main ul {
-    padding-inline-start: 0
-}
-.footer-wrap {
-    padding-right: 16px;
-  padding-left: 16px
 }
