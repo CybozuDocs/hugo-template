@@ -100,29 +100,7 @@
   margin-top: 0.9em;
 }
 
-/* 768px以上の設定 *****************************************************/
-@media only screen and (min-width:768px){
-    .logo-img {
-        width: 140px;
-        height: 35px;
-        vertical-align: -10px;
-    }
-    
-    .logo-title {
-        padding-top: 0;
-        font-size: 18px;
-    }
-
-    .main {
-        top: 0px;
-    }
-
-    .hero {
-        height: 180px;
-  }
-
-}
-/* 20221003 */
+/* 見出し部分の設定 *******************************************************/
 h2, h3, h4, h5 {
 	font-weight: 700
 }
@@ -179,7 +157,24 @@ h3 + .id-link-button {
 .article dl {
     margin: 0
 }
+
+/* 768px以上の設定 *******************************************************/
 @media (min-width:768px) {
+  .logo-img {
+    width: 140px;
+    height: 35px;
+    vertical-align: -10px;
+  }
+  .logo-title {
+    padding-top: 0;
+    font-size: 18px;
+  }
+  .main {
+    top: 0px;
+  }
+  .hero {
+    height: 180px;
+  }
 	.page {
 		padding-right: 16px
 	}
@@ -198,7 +193,15 @@ h3 + .id-link-button {
 		width: auto;
 		flex: auto
 	}
+	#tree-main ul {
+    padding-inline-start: 10px;
+  }
+	.jstree-container-ul {
+		padding-top: 18px
+	}
 }
+
+/* 1059px以上の設定 *****************************************************/
 @media (min-width:1059px) {
 	.sidebar-wrap {
 		float: none;
@@ -231,12 +234,4 @@ h3 + .id-link-button {
 .footer-wrap {
     padding-right: 16px;
 	padding-left: 16px
-}
-@media (min-width:768px) {
-	#tree-main ul {
-    padding-inline-start: 10px;
-}
-	.jstree-container-ul {
-		padding-top: 18px
-	}
 }
