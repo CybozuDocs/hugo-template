@@ -9,7 +9,7 @@
   font-style: normal;
 }
 
-/* Header */
+/* Header ***************************************************************/
 .header::before {
   content: none;
 }
@@ -31,7 +31,7 @@
   background-color: #e6e6e6;
 }
 
-/* Eye-catching of the top page */
+/* Eye-catching of the top page *****************************************/
 .main {
   top: -100px;
 }
@@ -204,7 +204,8 @@
     margin-bottom: 7px;
     padding-top: 0px;
 }
-/* Tiles of the top page */
+
+/* Tiles of the top page **********************************************/
 .col-flex {
     margin-top: 10px;
 }
@@ -217,6 +218,97 @@
 
 .fixed-tree {
     top: 98px;
+}
+
+/* 見出し部分の設定 *******************************************************/
+h2, h3, h4, h5 {
+	font-weight: 700
+}
+.header-wrap {
+  padding: 5px 16px 5px 6px
+}
+.article h1 {
+  padding-top: 3rem;
+  font-size: 2.2rem
+}
+.article h2 {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  font-size: 1.6rem;
+  position: relative
+}
+.article h2:after {
+  content: "";
+  border-top: 1px solid #ddd;
+  position: absolute;
+  width: calc(100vw - 32px);
+	top: 0;
+  left: 0
+}
+h3.h3-contents {
+	margin-top: -36px;
+  padding-top: 76px;
+	margin-bottom: 1.5rem;
+	padding-left: .8rem;
+	font-size: 1.4rem;
+	position: relative
+}
+h3.h3-contents:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 76px;
+  bottom: 0;
+	border-left: 4px solid #e94f90;
+  border-image: linear-gradient(to top, #287bf4 0%, #e94f90 100%);
+  border-image-slice: 1
+}
+.article h4 {
+  font-size: 1.3rem
+}
+h1 + .id-link-button {
+  margin-top: 3.5rem
+}
+h2 + .id-link-button {
+  margin-top: 4.2rem
+}
+h3 + .id-link-button {
+  margin-top: 2.5rem
+}
+h4 + .id-link-button {
+  margin-top: 1.8rem
+}
+h5 + .id-link-button {
+  margin-top: 1.4rem
+}
+.article ol {
+  padding-left: 0
+}
+.sidebar-wrap {
+  background-color: #fff
+}
+#tree-main a {
+	margin-top: 0;
+  margin-bottom: 0
+}
+#tree-main a[aria-expanded="true"] {
+  font-weight: 700
+}
+.jstree-ocl {
+  padding: 0 5px 0 0
+}
+#rightside-bar {
+  margin-top: 6rem
+}
+#tree-main ul {
+  padding-inline-start: 0
+}
+.footer-wrap {
+  padding-right: 16px;
+	padding-left: 16px
+}
+.article code, .article pre {
+  white-space: inherit
 }
 
 /* 古いiPhone向けの設定 ************************************************/
@@ -288,5 +380,3 @@
       margin-top: 100px;
     }
 }
-
-
