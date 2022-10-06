@@ -91,30 +91,7 @@
   margin-top: 0.9em;
 }
 
-/* 768px以上の設定 *****************************************************/
-@media only screen and (min-width:768px){
-  .logo-img {
-    width: 140px;
-    height: 35px;
-    vertical-align: -10px;
-  }
-  
-  .logo-title {
-    padding-top: 0;
-    font-size: 18px;
-  }
-
-  .main {
-    top: 0px;
-  }
-
-  .hero {
-    height: 180px;
-  }
-}
-
-
-/* 20221003 */
+/* 見出し部分の設定 *******************************************************/
 h2, h3, h4, h5 {
 	font-weight: 700
 }
@@ -204,7 +181,24 @@ h5 + .id-link-button {
 .article code, .article pre {
   white-space: inherit
 }
+
+/* 768px以上の設定 *****************************************************/
 @media (min-width:768px) {
+  .logo-img {
+    width: 140px;
+    height: 35px;
+    vertical-align: -10px;
+  }
+  .logo-title {
+    padding-top: 0;
+    font-size: 18px;
+  }
+  .main {
+    top: 0px;
+  }
+  .hero {
+    height: 180px;
+  }
   .page {
     padding-right: 16px
   }
@@ -230,6 +224,8 @@ h5 + .id-link-button {
     padding-top: 18px
   }
 }
+
+/* 1059px以上の設定 *****************************************************/
 @media (min-width:1059px) {
   .sidebar-wrap {
     float: none;
