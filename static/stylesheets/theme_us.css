@@ -404,3 +404,15 @@ h5 + .id-link-button {
       margin-top: 100px;
     }
 }
+
+/* 1059px以上の設定 *****************************************************/
+@media (min-width:1059px) {
+  .sidebar-wrap {
+    float: none;
+    flex: 0 0 232px;
+    padding-left: 32px
+  }
+  .article h2:after {
+    width: calc(100vw - 542px)
+  }
+}
