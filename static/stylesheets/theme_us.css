@@ -375,6 +375,30 @@ h5 + .id-link-button {
     .main {
       top: -182px;
     }
+    .page {
+      padding-right: 16px
+    }
+    .tree-wrap {
+      padding-left: 6px;
+      flex: 0 0 292px
+    }
+    .article h2:after {
+      width: calc(100vw - 342px)
+    }
+    #tree-nav {
+      border-right: none
+    }
+    .contents-wrap {
+      border-left: 1px solid #e6e6e6;
+      width: auto;
+      flex: auto
+    }
+    #tree-main ul {
+      padding-inline-start: 10px;
+    }
+    .jstree-container-ul {
+      padding-top: 18px
+    }
     /* Tiles of the top page */
     .col-flex {
       margin-top: 100px;
