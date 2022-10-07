@@ -250,7 +250,6 @@ h5 + .id-link-button {
   }
 
   .contents-wrap {
-    border-left: 1px solid #e6e6e6;
     width: auto;
     flex: auto;
   }
