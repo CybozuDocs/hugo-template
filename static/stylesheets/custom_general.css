@@ -149,6 +149,10 @@ h3.h3-contents:after {
   font-size: 1.3rem;
 }
 
+.contents-wrap h5 {
+  font-weight: 700;
+}
+
 h1 + .id-link-button {
   margin-top: 3.5rem;
 }
