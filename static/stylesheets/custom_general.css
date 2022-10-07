@@ -104,19 +104,19 @@ h2, h3, h4, h5 {
   padding: 5px 16px 5px 6px;
 }
 
-.article h1 {
+.contents-wrap h1 {
   padding-top: 3rem;
   font-size: 2.2rem;
 }
 
-.article h2 {
+.contents-wrap h2 {
   margin-top: 2rem;
   padding-top: 2rem;
   font-size: 1.6rem;
   position: relative;
 }
 
-.article h2:after {
+.contents-wrap h2:after {
   content: "";
   border-top: 1px solid #ddd;
   position: absolute;
@@ -145,7 +145,7 @@ h3.h3-contents:after {
   border-image-slice: 1;
 }
 
-.article h4 {
+.contents-wrap h4 {
   font-size: 1.3rem;
 }
 
@@ -169,7 +169,7 @@ h5 + .id-link-button {
   margin-top: 1.4rem;
 }
 
-.article ol {
+.contents-wrap ol {
   padding-left: 0;
 }
 
@@ -203,7 +203,7 @@ h5 + .id-link-button {
 	padding-left: 16px;
 }
 
-.article code, .article pre {
+.contents-wrap code, .contents-wrap pre {
   white-space: inherit;
 }
 
