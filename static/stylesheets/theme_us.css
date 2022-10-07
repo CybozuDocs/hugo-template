@@ -307,7 +307,7 @@ h3.h3-contents:after {
   border-image-slice: 1;
 }
 
-.article h4 {
+.contents-wrap h4 {
   font-size: 1.3rem;
 }
 
@@ -331,7 +331,7 @@ h5 + .id-link-button {
   margin-top: 1.4rem;
 }
 
-.article ol {
+.contents-wrap ol {
   padding-left: 0;
 }
 
@@ -365,7 +365,7 @@ h5 + .id-link-button {
 	padding-left: 16px;
 }
 
-.article code, .article pre {
+.contents-wrap code, .contents-wrap pre {
   white-space: inherit;
 }
 
