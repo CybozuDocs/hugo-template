@@ -365,10 +365,6 @@ h5 + .id-link-button {
 	padding-left: 16px;
 }
 
-.contents-wrap code, .contents-wrap pre {
-  white-space: inherit;
-}
-
 /* 古いiPhone向けの設定 ************************************************/
     @media screen and (min-width:320px) and (max-width:428px){
       .welcome_message:lang(ja) {

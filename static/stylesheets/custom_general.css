@@ -203,7 +203,7 @@ h5 + .id-link-button {
 	padding-left: 16px;
 }
 
-.contents-wrap code, .contents-wrap pre {
+.codeblock-wrapper code {
   white-space: inherit;
 }
 
