@@ -36,16 +36,6 @@
     margin-top: 7px;
 }
 
-.h6-noanc {
-    margin-top: 0px;
-    margin-bottom: 7px;
-    padding-top: 0px;
-}
-
-:not(div.id-link-message) + .h6-noanc {
-  margin-top: 24px;
-}
-
 .article dl {
   margin: 5px;
 }

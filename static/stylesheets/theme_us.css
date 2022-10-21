@@ -206,11 +206,6 @@
     border-left-color: #A42F29;
     border-image-source: linear-gradient(to top, #4A4B4C 0%, #EF3F24 100%);
 }
-.h6-noanc {
-    margin-top: 0px;
-    margin-bottom: 7px;
-    padding-top: 0px;
-}
 
 /* Tiles of the top page */
 .col-flex {
