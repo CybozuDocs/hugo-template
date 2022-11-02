@@ -103,7 +103,7 @@ other = "頁面選擇"
 other = "複製連結"
 
 [Link_was_copied]
-other = "內容已複製"
+other = "連結已複製"
 
 [Copy_codeblock_button]
 other = "複製"
