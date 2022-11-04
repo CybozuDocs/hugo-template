@@ -91,10 +91,10 @@ other = "搜尋"
 other = "搜尋關鍵詞"
 
 [Document_type]
-other = "菜單"
+other = "選單"
 
 [Bread_crumb]
-other = "麵包屑小徑"
+other = "路徑導覽列"
 
 [Page_selection]
 other = "頁面選擇"
@@ -109,7 +109,7 @@ other = "連結已複製"
 other = "複製"
 
 [Codeblock_was_copied]
-other = "內容已復制"
+other = "內容已複製"
 
 [Help_site]
 other = "說明網站"
@@ -139,5 +139,5 @@ other = "連線已逾時。"
 other = "網路發生錯誤。"
 
 [Tab_menu]
-other = "標籤菜單"
+other = "標籤選單"
 
