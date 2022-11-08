@@ -1491,6 +1491,11 @@ table .wd10 {
     margin-top: -20px;
     margin-bottom: 20px;
 }
+.step-memo-blank {
+    border: 0;
+    visibility: hidden;
+    padding: 0;
+}
 .article .step-memo ol>li {
     list-style: decimal;
     margin: .25em 0 0 1.5em;
