@@ -52,4 +52,5 @@
 </div>
 {{- $inner := replaceRE $tmpsect "" .Inner }}
 {{- $inner = replaceRE $tmptitle "" $inner }}
-<div class="step-memo">{{ $inner | markdownify }}</div>
+{{- $hasInner := (findRE "\\S+" $inner) }}
+<div class="step-memo{{ if not $hasInner }} step-memo-blank{{ end }}">{{ $inner | markdownify }}</div>
