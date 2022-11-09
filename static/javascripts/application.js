@@ -234,7 +234,7 @@
             });
             
             $langlist.click(function (e) {
-                const $curlang = $("#alter-lang :hover");
+                const $curlang = $("#" + e.target.parentElement.id);
                 $("#displang").prop("innerText", $curlang.prop("innerText"));
                 $langbtn.attr("disabled", "true");
                 location.href = $curlang.attr("desturl");
