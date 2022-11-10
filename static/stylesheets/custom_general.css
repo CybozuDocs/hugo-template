@@ -245,11 +245,6 @@ h5 + .id-link-button {
     border-right: none;
   }
 
-  .contents-wrap {
-    width: auto;
-    flex: auto;
-  }
-
   #tree-main ul {
     padding-inline-start: 10px;
   }
