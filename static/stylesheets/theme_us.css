@@ -228,6 +228,7 @@
 
 .contents-wrap {
   margin-top: 8px;
+  width: calc(100% - 524px);
 }
 
 .article .welcome_message {
