@@ -219,15 +219,23 @@ td a > .fa:hover{
 }
 .article h2 {
     font-size:1.5em;
-    border-bottom: solid 3px #b8c5ca;
-    margin-bottom: 0;
     font-weight: normal;
+    border-bottom: solid 3px #b8c5ca;
+    margin-top: -24px;
+    margin-bottom: 0;
+    padding-top: 66px;
+}
+.article h2:before {
+    border-top: none;
 }
 .article h3 {
     font-size: 1.25em;
+    font-weight: inherit;
     padding:.313em;
     margin-top: 1.5em;
+    margin-bottom: 0;
     border-left:#505050 solid 5px;
+    border-image: none;
 }
 .article h4 {
     font-size: 1.125em;
