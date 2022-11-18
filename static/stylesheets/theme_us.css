@@ -194,7 +194,10 @@
 .contents-wrap {
   margin-top: 8px;
 }
-
+.id-header {
+    margin-top: -50px;
+    padding-top: 50px;
+}
 .article .welcome_message {
   color: #fff;
 }
