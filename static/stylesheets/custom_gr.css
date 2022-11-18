@@ -436,6 +436,7 @@ background: rgba(255, 255, 255, 0.9);
 .col-tile-gr .tile-title {
     margin-top: 20px;
     font-size: 26px;
+    font-weight: inherit;
     color: #1b72cd;
 }
 
