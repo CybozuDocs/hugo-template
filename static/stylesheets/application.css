@@ -694,7 +694,7 @@ h1 + .id-link-button {
     margin-top: 3.55em;
 }
 h2 + .id-link-button {
-    margin-top: 4.2rem;
+    margin-top: 2.2rem;
 }
 h3 + .id-link-button {
     margin-top: 2.3rem;
@@ -913,20 +913,17 @@ h6 + .id-link-button {
     padding-top: 3rem;
     font-weight: 700;
 }
+.section-delimiter {
+    margin-top: 3rem;
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+}
 .article h2 {
     font-size: 1.6rem;
     line-height: 1.2em;
     margin-bottom: 24px;
-    margin-top: 2rem;
     padding-top: 2rem;
-}
-.article h2:before {
-    content: "";
-    border-top: 1px solid #ddd;
-    position: absolute;
-    width: calc(100vw - 32px);
-    top: 0;
-    left: 0;
 }
 .article h3 {
     font-size: 1.4rem;
@@ -2187,9 +2184,6 @@ i.index-pdf {
         margin-top: 8px;
         border-bottom: 0;
     }
-    .article h2:before {
-        width: calc(100vw - 372px);
-    }
     .first-row {
         flex-wrap: wrap;
         flex-direction: row;
@@ -2322,9 +2316,6 @@ i.index-pdf {
 
     .contents-wrap {
         width: calc(100% - 492px);
-    }
-    .article h2:before {
-        width: calc(100vw - 592px);
     }
     .article {
         width: 100%;

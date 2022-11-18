@@ -225,9 +225,6 @@ td a > .fa:hover{
     margin-bottom: 0;
     padding-top: 66px;
 }
-.article h2:before {
-    border-top: none;
-}
 .article h3 {
     font-size: 1.25em;
     font-weight: inherit;

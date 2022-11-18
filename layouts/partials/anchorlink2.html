@@ -1,5 +1,8 @@
 {{- define "anchorlink2" }}
     {{- $ti := .ti }}
+    {{- if eq $ti.Level 2 }}
+    <div class="section-delimiter"></div>
+    {{- end }}
     <div class="id-header" id="{{$ti.Anchor}}">
         <h{{$ti.Level}} class="h{{$ti.Level}}-contents" pid="{{$ti.Anchor}}">{{$ti.Text | safeHTML}}</h{{$ti.Level}}>
     {{- if .ids }}
