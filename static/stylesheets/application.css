@@ -1754,7 +1754,6 @@ i.index-pdf {
     height: 100%;
     overflow: auto;
     font-size: .95rem;
-    background-color: #fff;
 }
 #rightside-bar .toc-title {
     display: none;
