@@ -678,8 +678,8 @@ ul.breadcrumbs {
 }
 .id-header {
     display: flex;
-    margin-top: -10px;
-    padding-top: 10px;
+    margin-top: -30px;
+    padding-top: 30px;
 }
 .id-link-button {
     cursor: pointer;
