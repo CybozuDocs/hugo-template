@@ -139,3 +139,8 @@ other = "A network error occurred."
 [Tab_menu]
 other = "Tab menu"
 
+[Unsupported_browser]
+other = "Your Web browser is not supported."
+
+[Unsupported_message]
+other = "Some functions may not work correctly."

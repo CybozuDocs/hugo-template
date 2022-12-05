@@ -1,32 +1,39 @@
+{{- $msg := slice "session-notice-1" "#f9aeb6" "fas fa-exclamation-triangle" "#cd1b49" (i18n "Unsupported_browser") (i18n "Unsupported_message") }}
+{{- template "makeannouncebanner" $msg }}
+
 {{- $announcementfile := printf "csv/%s/announcement_%s.csv" $.Site.Language.Lang $.Site.Params.TargetRegion }}
 {{- if os.FileExists $announcementfile }}
     {{- range $i, $r := (getCSV "," $announcementfile) }}
-        {{- $key := index $r 0 }}
-        {{- $bg_color := index $r 1 }}
-        {{- $fontawesome_icon := index $r 2 }}
-        {{- $icon_color := index $r 3 }}
-        {{- $title := index $r 4 }}
-        {{- $text := index $r 5 }}
-        <aside class="announcement-banner {{ $key }}" id="announcement-banner-{{ $key }}" style="display: none;
-            {{ with $bg_color }}background-color: {{ . }};{{ end }}">
-            <div class="announcement-banner-wrapper">
-                <div class="announcement-banner-icon">
-                    <i class="{{ $fontawesome_icon }}" style="{{ with $icon_color }}color: {{ . }};{{ end }}" aria-hidden="true"></i>
+        {{- template "makeannouncebanner" $r }}
+    {{- end }}
+{{- end }}
+
+{{- define "makeannouncebanner" }}
+    {{- $key := index . 0 }}
+    {{- $bg_color := index . 1 }}
+    {{- $fontawesome_icon := index . 2 }}
+    {{- $icon_color := index . 3 }}
+    {{- $title := index . 4 }}
+    {{- $text := index . 5 }}
+    <aside class="announcement-banner {{ $key }}" id="announcement-banner-{{ $key }}" style="display: none;
+        {{ with $bg_color }}background-color: {{ . }};{{ end }}">
+        <div class="announcement-banner-wrapper">
+            <div class="announcement-banner-icon">
+                <i class="{{ $fontawesome_icon }}" style="{{ with $icon_color }}color: {{ . }};{{ end }}" aria-hidden="true"></i>
+            </div>
+            <div class="announcement-banner-content">
+                <div class="announcement-banner-content-content">
+                    {{- with $title -}}
+                        <div class="announcement-banner-content-title">{{ . }}</div>
+                    {{- end -}}
+                    <div class="announcement-banner-content-description">{{ $text | markdownify }}</div>
                 </div>
-                <div class="announcement-banner-content">
-                    <div class="announcement-banner-content-content">
-                        {{- with $title -}}
-                            <div class="announcement-banner-content-title">{{ . }}</div>
-                        {{- end -}}
-                        <div class="announcement-banner-content-description">{{ $text | markdownify }}</div>
-                    </div>
-                    <div class="announcement-banner-content-button">
-                        <button type="submit" id="announcement-{{ $key }}" class="announcement-banner-content-button-close" title="{{ i18n "Announcement_button_close" }}" tabindex="0">
-                            <i class="fa fa-times-circle" aria-hidden="true"></i> <span>{{ i18n "Close" }}</span>
-                        </button>
-                    </div>
+                <div class="announcement-banner-content-button">
+                    <button type="submit" id="announcement-{{ $key }}" class="announcement-banner-content-button-close" title="{{ i18n "Announcement_button_close" }}" tabindex="0">
+                        <i class="fa fa-times-circle" aria-hidden="true"></i> <span>{{ i18n "Close" }}</span>
+                    </button>
                 </div>
             </div>
-        </aside>
-    {{- end -}}
-{{- end -}}
+        </div>
+    </aside>
+{{- end }}
