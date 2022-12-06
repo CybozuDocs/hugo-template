@@ -60,6 +60,9 @@
                     }
 
                     if(strval === null) {
+                        if(unsupportedBrowser()) {
+                            $(this).css('position', 'fixed');
+                        }
                         $(this).css('top', position);
                         $(this).show();
                         position += $(this).outerHeight();
