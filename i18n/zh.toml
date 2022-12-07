@@ -139,3 +139,9 @@ other = "发生网络错误。"
 [Tab_menu]
 other = "标签菜单"
 
+[Unsupported_browser]
+other = "不支持此Web浏览器。"
+
+[Unsupported_message]
+other = "部分功能可能运行异常。"
+

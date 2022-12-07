@@ -141,3 +141,9 @@ other = "網路發生錯誤。"
 [Tab_menu]
 other = "標籤選單"
 
+[Unsupported_browser]
+other = "不支持此Web瀏覽器。"
+
+[Unsupported_message]
+other = "部分功能可能運行異常。"
+

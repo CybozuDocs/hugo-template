@@ -139,3 +139,8 @@ other = "ネットワークエラーが発生しました。"
 [Tab_menu]
 other = "タブメニュー"
 
+[Unsupported_browser]
+other = "非対応のWebブラウザです。"
+
+[Unsupported_message]
+other = "一部の機能が正常に動作しない場合があります。"

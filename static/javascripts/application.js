@@ -1,6 +1,6 @@
 'use strict';
 (function() {
-    window.onload = function() {
+    window.addEventListener('load', function() {
         // 768pxは cssにおける@media screen min-width の設定値
         const mobileSize = 768;
 
@@ -1181,7 +1181,7 @@
             const now = new Date().getTime();
 
             for (let key in localStorage) {
-                if(key.startsWith(prefix)) {
+                if(key.indexOf(prefix) !== -1) {
                     const strval = localStorage.getItem(key);
                     const d = JSON.parse(strval);
                     const timestamp = d.timestamp;
@@ -1278,81 +1278,6 @@
         // ステータスチェック状態の画面への反映
         updateDisplay();
 
-        // お知らせ全体の高さを合計する処理
-        function sumAllAnnnounceHeight() {
-            const $announcements = $('.announcement-banner');
-            let height = 0;
-            $announcements.each(function() {
-                // 非表示のお知らせの高さは 0 とする
-                height += this.offsetHeight;
-            });
-            return height;
-        }
-        // お知らせを表示する位置を調整する処理
-        function justifyAnnouncementPosition() {
-            const $announcements = $('.announcement-banner');
-            if ($announcements) {
-                let position = 0;
-                $announcements.each(function() {
-                    $(this).css('top', position);
-                    // 非表示のお知らせの高さは 0 とする
-                    position += this.offsetHeight;
-                });
-            }
-        }
-        // お知らせの表示状態のプレフィックス
-        const storagePrefixForAnnouncement = 'announce_' + productid;
-        // お知らせを表示する処理
-        function showAnnouncements() {
-            const $announcements = $('.announcement-banner');
-            if ($announcements) {
-                let position = 0;
-                $announcements.each(function () {
-                    const identifer = $(this).attr('id').replace('announcement-banner-', '');
-                    const localStorageKey = storagePrefixForAnnouncement + identifer;
-                    const strval = localStorage.getItem(localStorageKey);
-                    if(strval === null) {
-                        $(this).css('top', position);
-                        $(this).show();
-                        position += $(this).outerHeight();
-                    }
-                });
-                const announceHeight = sumAllAnnnounceHeight();
-                $('header').css('top', announceHeight);
-            }
-        }
-        showAnnouncements();
-
-        // 閉じるボタンを押したときのイベントハンドラー
-        if($('.announcement-banner-content-button-close').length > 0) {
-            $('.announcement-banner-content-button-close').click(function() {
-                const identifer = $(this).attr('id').replace('announcement-', '');
-                const localStorageKey = storagePrefixForAnnouncement + identifer;
-                const $banner = $('.announcement-banner.' + identifer);
-                if ($banner) {
-                    $banner.hide();
-                    const strval = JSON.stringify({
-                        timestamp: new Date().getTime(),
-                        limit: 10368000000, // 120日
-                    });
-                    localStorage.setItem(localStorageKey, strval);
-                    const announceHeight = sumAllAnnnounceHeight();
-                    justifyAnnouncementPosition();
-                    $('header').css('top', announceHeight);
-                }
-            });
-        }
-        // ブラウザの幅を調整したときのヘッダーの位置を調整するイベントハンドラー
-        $(window).resize(function() {
-            const $announcements = $('.announcement-banner');
-            if ($announcements) {
-                const announceHeight = sumAllAnnnounceHeight();
-                $('header').css('top', announceHeight);
-            }
-        });
-        // 期限切れデータの削除
-        removeExpired(storagePrefixForAnnouncement);
-
     /***  初回表示時の処理 ***/
         function initPage() {
             if( json_mode === true ) {
@@ -1417,6 +1342,6 @@
               $(this).wrap("<div class='wrapTable'></div>");
             });
         }
-    }
+    });
 
 })();
