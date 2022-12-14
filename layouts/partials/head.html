@@ -66,7 +66,9 @@
     <meta name="apple-mobile-web-app-title" content="{{$title}}">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    {{- if or (ne .Site.Params.product "office") (ne .Site.Params.product "mailwise") }}
     {{- partial "alternatelink" . }}
+    {{- end }}
     <link rel="shortcut icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
     <link rel="icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
 
@@ -96,13 +98,17 @@
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/mf_search.css" $buildnum | relURL }}">
         {{- end }}
     {{- end}}
+
+{{- if eq .Params.type "gr/section_top_video"}}
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/video_list.css" $buildnum | relURL }}">
+{{- end}}
+
     {{- with .Site.Params.custom_css }}
         {{- $files := split . "," }}
         {{- range $files }}
     <link rel="stylesheet" href="{{ printf "%s?%s" . $buildnum | relURL }}">
         {{- end }}
     {{- end}}
-    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
     <script src="{{ "javascripts/zoom.js" | relURL }}"></script>
@@ -115,6 +121,11 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
     {{- end }}
     
+
+{{- if eq .Params.type "gr/section_top_video"}}
+    <script src="{{ printf "%s?%s" "javascripts/videolist.js" $buildnum | relURL }}"></script>
+{{- end}}
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
