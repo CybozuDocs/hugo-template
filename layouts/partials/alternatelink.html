@@ -1,72 +1,63 @@
 {{- $product := $.Site.Params.product }}
+
 {{- $targetregion := $.Site.Params.TargetRegion }}
+
 {{- $regions := slice "JP" "US" "CN" }}
 {{- $deflang := "en" }}
-
 {{- if eq $targetregion "US" }}
     {{- $regions = slice "JP" "US" }}
 {{- else if eq $targetregion "CN" }}
-    {{- $deflang = "zh" }}
     {{- $regions = slice "JP" "CN" }}
 {{- end }}
 
 {{- if eq $product "Garoon" }}
-    {{- $regions = slice "JP" "CN" }}
+    {{- $regions = slice "jp" "cn" }}
 {{- else if eq $product "store" }}
-    {{- $regions = slice "US" }}
-{{- else if eq $product "Mailwise" }}
-    {{- $regions = slice "JP" }}
-{{- else if eq $product "Office" }}
-    {{- $regions = slice "JP" }}
+    {{- $regions = slice "us" }}
+{{- else if eq $product "store-jp" }}
+    {{- $regions = slice "jp" }}
 {{- end }}
 
 {{- $diabled := .Params.disabled }}
 
 {{- range $.AllTranslations }}
     {{- if eq .Site.Language.Lang $deflang }}
-        {{- $domain := "jp.cybozu.help" }}
-        {{- if eq $product "store" }}
-            {{- $domain = "get.kintone.help" }}
-        {{- end }}
-    <link rel="alternate" href="https://{{$domain}}{{.RelPermalink}}" hreflang="x-default" />
+    <link rel="alternate" href="https://{{.Site.Params.domain}}{{.RelPermalink}}" hreflang="x-default" />
     {{- end }}
 {{- end }}
 
 {{- range $regions }}
     {{- if in $diabled . }}
     {{- else }}
-        {{- if eq . "JP" }}
-            {{- range $.AllTranslations }}
-                {{- $lang := printf "%s-jp" .Site.Language.Lang }}
-                {{- if eq $lang "zh-tw-jp" }}
-                    {{- $lang = "zh-Hant-tw" }}
-                {{- end }}
-    <link rel="alternate" href="https://jp.cybozu.help{{ .RelPermalink }}" hreflang="{{$lang}}" />
-            {{- end }}
-        {{- else if eq . "US" }}
-            {{- range $.AllTranslations }}
-                {{- $thislang := .Site.Language.Lang }}
-                {{- if or (eq $thislang "en") (eq $thislang "ja")}}
-                    {{- $lang := (printf "%s-us" $thislang) }}
-    <link rel="alternate" href="https://get.kintone.help{{ .RelPermalink }}" hreflang="{{$lang}}" />
-                {{- end }}
-            {{- end }}
-        {{- else if eq . "CN" }}
-            {{- range $.AllTranslations }}
-                {{- $disp :=  "true" }}
-                {{- if eq $product "Garoon" }}
-                    {{- if eq $.Site.Params.service_type_id "cloud" }} 
-                        {{- $disp = "true" }}
-                    {{- else }}
-                        {{- $disp = "false" }}
-                    {{- end }}
+        {{- $curregion := ( . | lower ) }}
+        {{- $domain := "jp.cybozu.help" }}
+        {{- if eq $curregion "us" }}
+            {{- $domain = "get.kintone.help" }}
+        {{- else if eq $curregion "cn" }}
+            {{- $domain = "help.cybozu.cn" }}
+        {{- end -}}
+
+        {{- range $.AllTranslations }}
+            {{- $disp := "true" }}
+            {{- $thislang := .Site.Language.Lang }}
+            {{- if eq $thislang "zh" }}
+                {{- $thislang = "zh-Hans" }}
+            {{- else if eq $thislang "zh-tw" }}
+                {{- $thislang = "zh-Hant" }}
+            {{- end -}}
+
+            {{- if eq $curregion "cn" }}
+                {{- if and (eq $product "Garoon") (eq $.Site.Params.service_type_id "on-premise") }}
+                    {{- $disp = "false" }}
                 {{- end }}
                 {{- if eq .Site.Language.Lang "zh-tw" }}
                     {{- $disp = "false" }}
                 {{- end }}
-                {{- if eq $disp "true" }}
-    <link rel="alternate" href="https://help.cybozu.cn{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}-cn" />
-                {{- end }}
+            {{- end -}}
+
+            {{- if eq $disp "true" }}
+                {{- $lang := (printf "%s-%s" $thislang $curregion) }}
+    <link rel="alternate" href="https://{{$domain}}{{.RelPermalink}}" hreflang="{{$lang}}" />
             {{- end }}
         {{- end }}
     {{- end }}
