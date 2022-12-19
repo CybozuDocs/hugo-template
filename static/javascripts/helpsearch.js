@@ -111,6 +111,9 @@ const vm = new Vue({
         if (htmllang === "zh-tw") {
             this.region = "jp";
             this.lang = "zhtw";
+        } else if (htmllang === "zh-tw-us") {
+            this.region = "us";
+            this.lang = "zhtw";
         } else {
             this.region = htmllang.substr(3,2);
         }
