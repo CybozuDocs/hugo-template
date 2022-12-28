@@ -1,0 +1,11 @@
+<nav id="video-filter" class="video-filter">
+    <h2 class="video-filter-title">[[filter]]</h2>
+    <ul>
+        <li v-for="tag in tags" :key="tag.key">
+            <span>
+                <input type="checkbox" class="video-filter-check" v-bind:id="'video-filter-'+tag.key" v-on:click="changetag()">
+                <label v-bind:for="'video-filter-'+tag.key">[[tag.text]]</label>
+            </span>
+        </li>
+    </ul>
+</nav>

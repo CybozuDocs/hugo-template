@@ -116,7 +116,14 @@
     {{- if and (eq .Params.type "search_result") (eq .Site.Params.google_search true) }}
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
     {{- end }}
-    
+
+    <!-- Video list page -->
+    {{- if eq .Params.type "gr/section_top_video"}}
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/video_list.css" $buildnum | relURL }}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    {{- end}}
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

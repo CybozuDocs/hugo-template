@@ -1,0 +1,63 @@
+{{- if in .Params.disabled $.Site.Params.TargetRegion }}
+<meta http-equiv="refresh" content="0; URL=/" />
+{{- else }}
+{{ partial "head" . }}
+{{ partial "announcementbanner.html" . -}}
+{{ partial "header" . }}
+<div class="page-pad"></div>
+{{ partial "meganav" . }}
+{{ partial "videonav" . }}
+<div id="page" class="page">
+    <div id="tree" class="tree-wrap"></div>
+    <div id="contents" class="contents-wrap">
+{{ partial "breadcrumb" . }}
+        <main id="main">
+            <h1>{{ partial "title" . }}</h1>
+            <div class="article">
+                <template v-if="viewall">
+                    {{- $link := (printf "https://%s%s" $.Site.Params.domain $.RelPermalink) }}
+                    <template v-for="category in categories" :key="category.id">
+                        <div class="adjustAnchor" v-bind:id="category.id">
+                            <template v-if="category.level === '2'">
+                                <h2 class="h2-contents" v-bind:pid="category.id">[[category.name]]</h2>
+                            </template>
+                            <template v-if="category.level === '3'">
+                                <h3 class="h3-contents" v-bind:id="category.pid">[[category.name]]</h3>
+                            </template>
+                        </div>
+                        <div class="heading-link">
+                            <button v-bind:id="'heading-button-'+(category.id)" class="heading-button" tabindex="0" v-bind:aria-owns="'heading-url-'+(category.id)" aria-expanded="false" v-on:click.stop="expandlink('heading-button-'+(category.id))">
+                                <span>{{ i18n "Permalink" }}</span>
+                                <i class="fas fa-link" aria-hidden="true"></i>
+                            </button>
+                            <div v-bind:id="'heading-url-'+(category.id)" class="heading-url" aria-hidden="true">
+                                <input readonly="readonly" type="text" v-bind:value="'{{$link|safeURL}}#'+(category.id)" name="headingUrl" onclick="this.focus(); this.select()">
+                            </div>
+                        </div>
+                        <div class="video-row">
+                            <template v-for="video in category.videos" :key="video.title">
+                                <video-card :video="video"></video-card>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+                <template v-else>
+                    <div class="video-page-pad"></div>
+                    <div class="video-row">
+                        <template v-for="video in videos" :key="video.title">
+                            <video-card :video="video"></video-card>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </main>
+    </div>
+</div>
+<script type="text/javascript" src="{{ printf "%s" "javascripts/videolist.js" | relURL }}"></script>
+{{ partial "gototop" . }}
+{{ partial "enquete" . }}
+{{ partial "footer" . }}
+{{- end }}
+</body>
+</html>
+
