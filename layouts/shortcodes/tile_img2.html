@@ -1,7 +1,0 @@
-{{- $_hugo_config := `{ "version": 1 }` -}}
-<div class="col-video">
-  <a class="col-video-link" href="{{ .Get "link_href" }}" target="_self"></a>
-    <div class="col-video-title">{{ printf "%s" .Inner | markdownify }}</div>
-    <img class="col-video-img" src="{{- .Get "img_src" -}}" alt="{{- .Get "img_alt" -}}"></img>
-    <div class="col-video-time">{{- .Get "time" -}}</div>
-</div>
