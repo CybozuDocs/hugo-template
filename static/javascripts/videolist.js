@@ -107,9 +107,13 @@
                     // 選択状態を再現
                     const taglist = strTags.split(",");
                     taglist.forEach(tag => {
+                        // ゴミ文字を削除
+                        tag = tag.replace(/[&'`"<>]/g, "");
                         const tagid = "#video-filter-" + tag;
-                        $(tagid).prop('checked', true);
-                        setopts++;
+                        if($(tagid).length !== 0) {
+                            $(tagid).prop('checked', true);
+                            setopts++;
+                        }
                     })
                 }
 
@@ -254,7 +258,7 @@
                 const child = $btn.attr('aria-owns');
                 const $popurl = $("#"+child);
 
-                if ($popurl.css('display') == "block") {
+                if ($popurl.css('display') === "block") {
                     $popurl.hide();
                     $popurl.attr('aria-hidden', 'true');
                     $btn.attr('aria-expanded', 'false');

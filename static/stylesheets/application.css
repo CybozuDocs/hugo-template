@@ -1708,6 +1708,7 @@ i.index-pdf {
     width:250px;
     text-align:left;
     right: 0;
+    z-index: 2;
 }
 .heading-url input{
     background:#FFF;
