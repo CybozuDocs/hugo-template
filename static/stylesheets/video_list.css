@@ -1,0 +1,100 @@
+.page {
+    position: inherit;
+    top: 0;
+    border-top: solid 1px #999;
+    margin-top: 50px;
+}
+
+.contents-wrap {
+    margin-top: 0;
+}
+
+.tree-wrap {
+    width: 200px;
+}
+.video-filter {
+    padding-top: 0;
+    position: inherit;
+    top: 0;
+    left: 0;
+    padding-left: 2em;
+    width: 100%;
+    z-index: 999;
+    font-size: .8em;
+}
+.video-filter-title {
+    font-size: 1.2em;
+    padding: 1em 0 0;
+}
+.video-filter-check {
+    appearance: checkbox;
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
+}
+.video-filter label {
+    cursor: pointer;
+}
+.video-filter span:hover {
+    border-bottom: solid 2px #333;
+}
+.video-filter input {
+    font-size: .7rem;
+}
+.video-filter ul li {
+    float: left;
+    margin-right: 1em;
+}
+
+.video-page-pad {
+    margin-top: 50px;
+}
+
+.col-video-title {
+    white-space: pre-wrap;
+}
+
+.video-tag-list {
+    padding-top: 1em;
+}
+.video-tag {
+    font-size: .8em;
+    padding: .3em;
+    border-radius: 4px;
+    margin: 2px;
+    white-space: nowrap;
+}
+
+.heading-link span {
+    padding-right: .5em;
+}
+
+@media only screen and (min-width:768px){
+    .page {
+        top: -180px;
+        border-top: none;
+        margin-top: 0;
+    }
+
+    .contents-wrap {
+        margin-top: 8px;
+    }
+
+    .video-filter {
+        padding-top: 20px;
+        position: sticky;
+        top: 30px;
+        width: 250px;
+        font-size: 1em;
+    }
+    .video-filter input {
+        font-size: .8rem;
+    }
+    .video-filter ul li {
+        float: none;
+    }
+
+    .video-filter-title {
+        padding-bottom: 1em;
+    }
+}
