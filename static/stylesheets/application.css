@@ -1955,6 +1955,54 @@ i.index-pdf {
 /* -------------------- end of Enquete */
 
 
+/* locale modal -------------------- */
+.locale-modal {
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+}
+
+.locale-modal a {
+    color: #0d7b91;
+    text-decoration: underline;
+}
+
+.locale-modal-close {
+    text-align: right;
+}
+
+.locale-modal-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.locale-modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 16px;
+    border: 1px solid #888;
+    width: 90%;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.locale-modal-text div {
+    padding: 0.75rem 0;
+}
+
+.locale-modal-current-text {
+    font-size: 0.8rem;
+}
+/* -------------------- locale modal */
+
+
 /* 404 not found page -------------------- */
 .nftitle {
     font-size: 3rem;
@@ -2246,6 +2294,11 @@ i.index-pdf {
     }
     .announcement-banner-content-button {
         padding: 0;
+    }
+
+    /* locale-modal */
+    .locale-modal-content {
+        width: 500px;
     }
 }
 

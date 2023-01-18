@@ -4,6 +4,7 @@
 {{- partial "head" . }}
 {{- partial "header" . }}
 {{- partial "announcementbanner.html" . -}}
+{{- if eq $.Site.Params.TargetRegion "US" }}{{- partial "localemodal" . }}{{- end -}}
 <div class="page-pad"></div>
 {{- if eq $.Site.Params.meganav true -}}
 <div class="mnav-pad"></div>
@@ -80,6 +81,9 @@
 {{- partial "gototop" . }}
 {{- partial "enquete" . -}}
 {{- partial "footer" . }}
+{{- if eq $.Site.Params.TargetRegion "US" }}
+    <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
+{{- end -}}
 {{- if and (eq $.Site.Params.product "kintone") (eq $.Site.Params.TargetRegion "JP") }}{{ partial "yahootagmanager" . }}{{- end }}
 {{- end }}
 </body>

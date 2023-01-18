@@ -144,3 +144,15 @@ other = "Your Web browser is not supported."
 
 [Unsupported_message]
 other = "Some functions may not work correctly."
+
+[Locale_modal_message]
+other = ""
+
+[Locale_modal_description]
+other = ""
+
+[Locale_modal_not_current_text]
+other = ""
+
+[Locale_modal_current_text]
+other = ""

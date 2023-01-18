@@ -1,0 +1,20 @@
+{{- $domain := "help.cybozu.com" }}
+<div class="locale-modal">
+  <div class="locale-modal-content">
+    <div class="locale-modal-close">
+      <button type="submit" class="locale-modal-close-button">
+        <span><i class="fa fa-times-circle" aria-hidden="true"></i> {{ i18n "Close" }}</span>
+      </button>
+    </div>
+    <div class="locale-modal-title">{{ i18n "Locale_modal_message" }}</div>
+    <div class="locale-modal-text">
+      <div>{{ i18n "Locale_modal_description" }}</div>
+      <div class="locale-modal-not-current-text">
+        <a href="https://{{$domain}}{{ .RelPermalink }}">{{ i18n "Locale_modal_not_current_text" }}</a>
+      </div>
+      <div class="locale-modal-current-text">
+        <a href="{{ .Permalink | relURL }}">{{ i18n "Locale_modal_current_text" }}</a>
+      </div>
+    </div>
+  </div>
+</div>

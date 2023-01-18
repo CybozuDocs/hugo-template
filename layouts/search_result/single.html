@@ -1,6 +1,7 @@
 {{- partial "head" . }}
 {{- partial "announcementbanner.html" . -}}
 {{- partial "header" . }}
+{{- if eq $.Site.Params.TargetRegion "US" }}{{- partial "localemodal" . }}{{- end -}}
 <div class="page-pad page-pad-search"></div>
 {{- if eq $.Site.Params.meganav true -}}
     {{- partial "meganav" . }}
@@ -74,6 +75,9 @@
     {{ .Content }}
 </div>
     {{ partial "footer" . }}
+    {{- if eq $.Site.Params.TargetRegion "US" }}
+    <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
+    {{- end -}}
     {{- if eq $.Site.Params.google_search true }}
         {{- $categories := (slice) }}
         {{- with $.Site.Params.google_search_tabs }}

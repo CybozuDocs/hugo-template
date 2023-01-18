@@ -147,3 +147,14 @@ other = "不支持此Web瀏覽器。"
 [Unsupported_message]
 other = "部分功能可能運行異常。"
 
+[Locale_modal_message]
+other = ""
+
+[Locale_modal_description]
+other = ""
+
+[Locale_modal_not_current_text]
+other = ""
+
+[Locale_modal_current_text]
+other = ""
