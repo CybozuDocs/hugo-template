@@ -1,7 +1,7 @@
 {{- partial "head" . }}
+{{- if eq $.Site.Params.TargetRegion "US" }}{{- partial "localemodal" . }}{{- end -}}
 {{- partial "announcementbanner.html" . -}}
 {{- partial "header" . }}
-{{- if eq $.Site.Params.TargetRegion "US" }}{{- partial "localemodal" . }}{{- end -}}
 <div class="page-pad"></div>
 {{- if eq $.Site.Params.meganav true -}}
 <div class="mnav-pad"></div>
