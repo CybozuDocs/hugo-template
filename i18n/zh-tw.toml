@@ -150,11 +150,8 @@ other = "部分功能可能運行異常。"
 [Locale_modal_message]
 other = ""
 
-[Locale_modal_description]
-other = ""
+[Locale_modal_button_yes]
+other = "是"
 
-[Locale_modal_not_current_text]
-other = ""
-
-[Locale_modal_current_text]
-other = ""
+[Locale_modal_button_no]
+other = "否"

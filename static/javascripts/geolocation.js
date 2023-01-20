@@ -11,15 +11,15 @@
     sessionStorage.setItem(storageKey, strval);
   }
 
-  if ($(".locale-modal-close-button").length > 0) {
-    $(".locale-modal-close-button").click(function () {
-      $(".locale-modal").hide();
-      setSessionStorage();
+  if ($(".locale-modal-button-yes").length > 0) {
+    $(".locale-modal-button-yes").click(function () {
+      window.location.href = "https://help.cybozu.com" + window.location.pathname;
     });
   }
 
-  if($(".locale-modal-current-text").length > 0) {
-    $(".locale-modal-current-text").click(function () {
+  if ($(".locale-modal-button-no").length > 0) {
+    $(".locale-modal-button-no").click(function () {
+      $(".locale-modal").hide();
       setSessionStorage();
     });
   }

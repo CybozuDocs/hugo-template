@@ -146,13 +146,10 @@ other = "非対応のWebブラウザです。"
 other = "一部の機能が正常に動作しない場合があります。"
 
 [Locale_modal_message]
-other = "タイトル"
+other = "このページは、日本国外のお客様向けです。<br>日本のお客様に適したページに移動しますか？"
 
-[Locale_modal_description]
-other = "なにか説明"
+[Locale_modal_button_yes]
+other = "はい"
 
-[Locale_modal_not_current_text]
-other = "cybozu.com ヘルプサイトに移動する"
-
-[Locale_modal_current_text]
-other = "Kintone ヘルプサイトを見る"
+[Locale_modal_button_no]
+other = "いいえ"
