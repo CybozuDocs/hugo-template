@@ -35,6 +35,12 @@
   }
 
   async function showModal() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const disabled = searchParams.get("disabled_modal");
+    if (disabled ||disabled === "") {
+      return;
+    }
+
     const strval = sessionStorage.getItem(storageKey);
     if (strval !== null) {
       return;
