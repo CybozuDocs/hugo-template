@@ -1,26 +1,20 @@
 "use strict";
 
 (async function () {
-  let country = "";
-  const storageKey = "locale";
-
-  function setSessionStorage() {
-    const strval = JSON.stringify({
-      country,
-    });
-    sessionStorage.setItem(storageKey, strval);
-  }
+  const localeSessionKey = "locale";
+  const localeModalSessionKey = "locale_modal";
 
   if ($(".locale-modal-button-yes").length > 0) {
     $(".locale-modal-button-yes").click(function () {
-      window.location.href = "https://help.cybozu.com" + window.location.pathname;
+      window.location.href =
+        "https://help.cybozu.com" + window.location.pathname;
     });
   }
 
   if ($(".locale-modal-button-no").length > 0) {
     $(".locale-modal-button-no").click(function () {
       $(".locale-modal").hide();
-      setSessionStorage();
+      setSessionValue(localeModalSessionKey, { disabled: "1" });
     });
   }
 
@@ -34,21 +28,46 @@
     }
   }
 
-  async function showModal() {
-    const searchParams = new URLSearchParams(window.location.search);
-    const disabled = searchParams.get("disabled_modal");
-    if (disabled ||disabled === "") {
-      return;
+  function getSessionValue(key) {
+    const strval = sessionStorage.getItem(key);
+    if (strval) {
+      return JSON.parse(strval);
     }
+    return {};
+  }
 
-    const strval = sessionStorage.getItem(storageKey);
-    if (strval !== null) {
+  function setSessionValue(key, target) {
+    const strval = JSON.stringify(target);
+    sessionStorage.setItem(key, strval);
+  }
+
+  function disabledModal() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const disabledQueryString = searchParams.get("disabled_modal");
+    if (disabledQueryString === "1") {
+      setSessionValue(localeModalSessionKey, { disabled: "1" });
+      return true;
+    }
+    const localeModalSessionValue = getSessionValue(localeModalSessionKey);
+    return localeModalSessionValue.disabled === "1";
+  }
+
+  async function showModal() {
+    if (disabledModal()) {
       return;
     }
-    const geo = await getGeolocation();
-    if (geo && geo.country.code.toUpperCase() === "JP") {
-      country = geo.country.code;
+    const localeSessionValue = getSessionValue(localeSessionKey);
+    if (localeSessionValue?.country?.code?.toUpperCase() === "JP") {
       $(".locale-modal").show();
+    } else {
+      const geo = await getGeolocation();
+      if (!geo) {
+        return;
+      }
+      if (geo.country?.code?.toUpperCase() === "JP") {
+        $(".locale-modal").show();
+      }
+      setSessionValue(localeSessionKey, { country: geo.country });
     }
   }
 
