@@ -146,7 +146,7 @@ other = "Your Web browser is not supported."
 other = "Some functions may not work correctly."
 
 [Locale_modal_message]
-other = ""
+other = "This site is intended for customers outside Japan.<br>Would you like to visit a site for Japan customers?"
 
 [Locale_modal_button_yes]
 other = "Yes"
