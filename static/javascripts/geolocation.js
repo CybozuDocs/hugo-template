@@ -20,7 +20,7 @@
 
   async function getGeolocation() {
     try {
-      const resp = await fetch("https://resplendent-gecko-62f981.netlify.app/geolocation");
+      const resp = await fetch("/geolocation");
       const json = await resp.json();
       return json;
     } catch (err) {
