@@ -59,10 +59,10 @@ other = "显示更多"
 other = "此信息对您是否有帮助？"
 
 [Yes]
-other = "有"
+other = "是"
 
 [No]
-other = "没有"
+other = "否"
 
 [Close]
 other = "关闭"
