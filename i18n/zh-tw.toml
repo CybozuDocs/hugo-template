@@ -149,9 +149,3 @@ other = "部分功能可能運行異常。"
 
 [Locale_modal_message]
 other = "本網站適用於日本國外的客戶。<br>您是否要前往適用於日本國內的網站？"
-
-[Locale_modal_button_yes]
-other = "Yes"
-
-[Locale_modal_button_no]
-other = "No"
