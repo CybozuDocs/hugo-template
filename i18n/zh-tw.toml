@@ -148,7 +148,7 @@ other = "不支持此Web瀏覽器。"
 other = "部分功能可能運行異常。"
 
 [Locale_modal_message]
-other = "This site is intended for customers outside Japan.<br>Would you like to visit a site for Japan customers?"
+other = "本網站適用於日本國外的客戶。<br>您是否要前往適用於日本國內的網站？"
 
 [Locale_modal_button_yes]
 other = "Yes"
