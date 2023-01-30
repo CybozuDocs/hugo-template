@@ -1075,7 +1075,7 @@
             const targets = $(".list-place");
             for(let tl = 0; tl < targets.length; tl++) {
                 const tid = $(targets[tl]).attr("id");
-                const divs = $("div[id^="+tid);
+                const divs = $("div[id^="+tid+"]");
 
                 for(let dl = 0; dl < divs.length; dl++) {
                     const ancstr = $(divs[dl]).attr("id");
