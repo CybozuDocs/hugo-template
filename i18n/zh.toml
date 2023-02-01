@@ -59,10 +59,10 @@ other = "显示更多"
 other = "此信息对您是否有帮助？"
 
 [Yes]
-other = "有"
+other = "是"
 
 [No]
-other = "没有"
+other = "否"
 
 [Close]
 other = "关闭"
@@ -145,3 +145,5 @@ other = "不支持此Web浏览器。"
 [Unsupported_message]
 other = "部分功能可能运行异常。"
 
+[Locale_modal_message]
+other = "此页面面向日本以外的客户。<br>是否前往面向日本客户的页面？"

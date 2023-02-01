@@ -2,6 +2,7 @@
 <meta http-equiv="refresh" content="0; URL=/" />
 {{- else}}
 {{- partial "head" . }}
+{{- if eq $.Site.Params.TargetRegion "US" }}{{- partial "localemodal" . }}{{- end -}}
 {{- partial "header" . }}
 {{- partial "announcementbanner.html" . -}}
 <div class="page-pad"></div>
@@ -80,6 +81,9 @@
 {{- partial "gototop" . }}
 {{- partial "enquete" . -}}
 {{- partial "footer" . }}
+{{- if eq $.Site.Params.TargetRegion "US" }}
+    <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
+{{- end -}}
 {{- if and (eq $.Site.Params.product "kintone") (eq $.Site.Params.TargetRegion "JP") }}{{ partial "yahootagmanager" . }}{{- end }}
 {{- end }}
 </body>

@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="{{ "stylesheets/search_id.css" | relURL }}">
 {{- partial "announcementbanner.html" . -}}
 {{- partial "header" . }}
+{{- if eq $.Site.Params.TargetRegion "US" }}{{- partial "localemodal" . }}{{- end -}}
 <div class="page-pad"></div>
 {{- if eq $.Site.Params.meganav true -}}
     {{- partial "meganav" . }}
@@ -28,5 +29,8 @@
 var id_error_msg=['{{i18n "ID_error_1"}}','{{i18n "ID_error_2"}}','{{i18n "ID_error_3"}}','{{i18n "ID_error_4"}}','{{i18n "ID_error_5"}}'];
 </script>
     {{ partial "footer" . }}
+    {{- if eq $.Site.Params.TargetRegion "US" }}
+    <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
+    {{- end -}}
   </body>
 </html>
