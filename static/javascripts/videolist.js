@@ -36,7 +36,9 @@
                     const hashBody = hash.replace("#", "");
                     setTimeout(() => {
                         const el = document.getElementById(hashBody);
-                        el.scrollIntoView();
+                        if(el !== null) {
+                            el.scrollIntoView();
+                        }
                     }, 500);
                 }
             })
