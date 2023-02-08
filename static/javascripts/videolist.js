@@ -32,7 +32,7 @@
             // コンマ5秒待ってから移動させる
             this.$nextTick(function () {
                 const hash = window.location.hash;
-                if(hash !== undefined) {
+                if(hash) {
                     const hashBody = hash.replace("#", "");
                     setTimeout(() => {
                         const el = document.getElementById(hashBody);
