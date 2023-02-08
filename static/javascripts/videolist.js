@@ -29,7 +29,7 @@
                 .catch((error) => console.log(error));
 
             // アンカー付きURL対応
-            // コンマ5秒待ってから移動させる
+            // 1秒待ってから移動させる
             this.$nextTick(function () {
                 const hash = window.location.hash;
                 if(hash) {
@@ -39,7 +39,7 @@
                         if(el !== null) {
                             el.scrollIntoView();
                         }
-                    }, 500);
+                    }, 1000);
                 }
             })
         },
