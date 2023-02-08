@@ -27,6 +27,21 @@
                         this.filter = response.data.title;
                 })
                 .catch((error) => console.log(error));
+
+            // アンカー付きURL対応
+            // コンマ5秒待ってから移動させる
+            this.$nextTick(function () {
+                const hash = window.location.hash;
+                if(hash) {
+                    const hashBody = hash.replace("#", "");
+                    setTimeout(() => {
+                        const el = document.getElementById(hashBody);
+                        if(el !== null) {
+                            el.scrollIntoView();
+                        }
+                    }, 500);
+                }
+            })
         },
         methods: {
             // タグ一覧の選択状態の変更
