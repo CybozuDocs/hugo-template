@@ -14,9 +14,6 @@
         <article class="article home-article" >
             <div class="wrapper">
                 {{- $toptitle := (i18n "Welcome" .) }}
-                {{- if eq $.Site.Params.TargetRegion "US" }}
-                    {{ $toptitle = printf "%s %s" .Site.Params.kintone (i18n "Help_site") }}
-                {{- end }}
                 <div class="welcome_message">{{$toptitle}}</div>
                 <div class="search-wrap">
                     <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html"　onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}' role="search">
