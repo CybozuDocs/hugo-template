@@ -13,13 +13,13 @@
     {{- if eq (.Get "external") "true" -}}
         {{ $target = "_blank" }}
     {{- end -}}
-    <a class="{{- .Get "link_class" -}}" href="{{- .Get "link_href" -}}" target="{{ $target }}">
-        <div class="tile-title">{{ $title | safeHTML }}</div>
-    </a>
-    <div class="tile-link">
+    <a class="tile2 {{ .Get "link_class" -}}" href="{{- .Get "link_href" -}}" target="{{ $target }}">
+        <div class="tile-title tile2-title-title">{{ $title | safeHTML }}</div>
+    <div class="tile-link tile2-title-link">
         {{- with $text -}}
             {{- . | markdownify | safeHTML -}}
         {{- end -}}
     </div>
     {{- if (.Get "fontawesome_icon") -}}<i class="{{ .Get "fontawesome_icon" }}"{{ if (.Get "fontawesome_color") }} style="color:{{ .Get "fontawesome_color" }};"{{ end }} aria-hidden="true"></i>{{- end -}}
+    </a>
 </div>

@@ -1679,6 +1679,20 @@ i.index-pdf {
     margin-left: 5px;
     font-size: 1.3em;
 }
+
+.tile2 {
+    padding: 0 1em;
+}
+
+.tile2-title-title {
+    margin-bottom: 0;
+    padding: 0.5em 0rem;
+}
+
+.tile2-title-link {
+    margin-top: 0;
+    padding: 0rem;
+}
 /* ------------------------ End of Garoon type Tile */
 
 /* heading link ----------------------------------- */
