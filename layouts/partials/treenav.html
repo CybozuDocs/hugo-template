@@ -7,7 +7,7 @@
 {{- if eq $.Site.Params.toc_in_tree true -}}
     {{- $lastpage := (slice) }}
     {{- if eq $.Site.Params.product "Garoon" }}
-        {{- $lastpage = (slice "/purpose/" "/user/basic/" "/user/mobile/" "/user/personal/" "/admin/spec/" "/admin/system/" "/glossary/" "/intro/" "/option/fullsearch/") }}
+        {{- $lastpage = (slice "/purpose/" "/user/basic/" "/user/mobile/" "/user/personal/" "/admin/spec/" "/admin/system/" "/glossary/" "/intro/" "/option/fullsearch/" "/error/") }}
     {{- else if eq $.Site.Params.product "Mailwise" }}
         {{- $lastpage = (slice "/user/basic/" "/user/personal/" "/admin/spec/" "/admin/system/" "/option/migration/" "/intro/first/" "/intro/install/" "/intro/verup/" "/intro/uninstall/") }}
     {{- else if eq $.Site.Params.product "Office" }}
