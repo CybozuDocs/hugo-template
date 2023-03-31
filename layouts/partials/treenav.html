@@ -90,7 +90,7 @@
             {{- $numberOfPages := (add (len $pages) (len .Sections)) }}
             {{- if in .Params.disabled .Site.Params.TargetRegion}}
             {{- else}}
-                {{- if .IsAncestor $target }}
+                {{- if  or ( .IsAncestor $target ) ( eq . $target ) }}
                     {{- $opened = "true" }}
                 {{- end }}
                 {{- if eq .RelPermalink $target.RelPermalink}}
