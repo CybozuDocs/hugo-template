@@ -237,7 +237,8 @@ const callSearchApi = function() {
 
                         // page navigation bar
                         const pages = [];
-                        const lastnum = vm.total + 10;
+                        // The number of pages should be 1 when the number of search items is 10
+                        const lastnum = vm.total + 9;
                         for (let i = 10; lastnum >= i; i = i + 10) {
                             pages.push(i/10);
 
