@@ -153,19 +153,24 @@
     {{- $curpage := .Page.RelPermalink }}
     {{- range $chat }}
         {{- $target := printf "/%s/" . }}
+        {{- $menus := split (index $.Site.Params (printf "chat_menu_%s" . )) "," -}}
         {{- if gt (strings.Count $target $curpage) 0 }}
     <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=6549c743-a6eb-40ac-a71f-c479b0759f1c"> </script>
+    {{- /* $menus makes sure to return 1 */ -}}
+    {{- if and (gt (len $menus) 0) (not (eq (index $menus 0) "")) }}
     <script type="text/javascript">
         window.zESettings = {
             webWidget: {
                 chat: {
                     departments: {
-                        select: "Garoonの機能や操作",
+                        enabled: {{ $menus }},
+                        {{ if eq (len $menus) 1 }}select: "{{ (index $menus 0) }}",{{ end -}}
                     }
                 }
             }
         };
     </script>
+    {{- end }}
         {{- end }}
     {{- end }}
 
