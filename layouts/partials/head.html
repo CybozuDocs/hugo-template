@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{.Site.LanguageCode}}" prefix="og: https://ogp.me/ns#"> 
+<html lang="{{.Site.LanguageCode}}" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -104,7 +104,7 @@
     <link rel="stylesheet" href="{{ printf "%s?%s" . $buildnum | relURL }}">
         {{- end }}
     {{- end}}
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
     <script src="{{ "javascripts/zoom.js" | relURL }}"></script>
@@ -153,8 +153,24 @@
     {{- $curpage := .Page.RelPermalink }}
     {{- range $chat }}
         {{- $target := printf "/%s/" . }}
+        {{- $menus := split (index $.Site.Params (printf "chat_menu_%s" . )) "," -}}
         {{- if gt (strings.Count $target $curpage) 0 }}
     <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=6549c743-a6eb-40ac-a71f-c479b0759f1c"> </script>
+    {{- /* $menus makes sure to return 1 */ -}}
+    {{- if and (gt (len $menus) 0) (not (eq (index $menus 0) "")) }}
+    <script type="text/javascript">
+        window.zESettings = {
+            webWidget: {
+                chat: {
+                    departments: {
+                        enabled: {{ $menus }},
+                        {{ if eq (len $menus) 1 }}select: "{{ (index $menus 0) }}",{{ end -}}
+                    }
+                }
+            }
+        };
+    </script>
+    {{- end }}
         {{- end }}
     {{- end }}
 
