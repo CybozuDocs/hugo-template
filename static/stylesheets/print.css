@@ -10,18 +10,19 @@
     margin-top: 20px;
     margin-bottom: 25px;
     border-bottom: solid 2px #000;
+    width: 100%;
   }
   @bottom-right {
     content: string(title);
     margin-bottom: 25px;
     margin-top: 10px;
     border-top: solid 2px #000;
+    width: 100%;
   }
   @bottom-left {
     content: counter(page);
     margin-bottom: 25px;
     margin-top: 10px;
-    border-top: solid 2px #000;
   }
 }
 @page :right {  /* right page setting */
@@ -30,18 +31,20 @@
     margin-top: 20px;
     margin-bottom: 25px;
     border-bottom: solid 2px #000;
+    width: 100%;
   }
   @bottom-left {
     margin-bottom: 25px;
     margin-top: 10px;
     border-top: solid 2px #000;
     content: string(title);
+    border-bottom: solid 2px #000;
+    width: 100%;
   }
   @bottom-right {
     content: counter(page);
     margin-bottom: 25px;
     margin-top: 10px;
-    border-top: solid 2px #000;
   }
 }
 
@@ -274,4 +277,18 @@
 .admonition.hint .fa {
     color: #ffa500;
     font-size: 1.3rem;
+}
+
+.step-wrap {
+    margin-top: 0;
+    padding-top: 0;
+}
+.step-label {
+    page-break-inside: avoid;
+}
+.step-desc {
+    margin-top: 1.5em;
+}
+.step-num {
+    page-break-inside: avoid;
 }
