@@ -38,7 +38,6 @@
     margin-top: 10px;
     border-top: solid 2px #000;
     content: string(title);
-    border-bottom: solid 2px #000;
     width: 100%;
   }
   @bottom-right {
