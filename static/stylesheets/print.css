@@ -278,16 +278,27 @@
     font-size: 1.3rem;
 }
 
+.step-line {
+    border: solid 1px #000;
+}
 .step-wrap {
     margin-top: 0;
     padding-top: 0;
 }
 .step-label {
+    padding-bottom: 2em;
     page-break-inside: avoid;
 }
 .step-desc {
-    margin-top: 1.5em;
+    margin-top: 0.5em;
 }
 .step-num {
     page-break-inside: avoid;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
 }
+.step-link {
+    line-height: 1em;
+}
+
