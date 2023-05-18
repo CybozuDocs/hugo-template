@@ -32,6 +32,6 @@
 
 @media print {
     .book-title {
-        width: 80%;
+        width: 600px;
     }
 }
