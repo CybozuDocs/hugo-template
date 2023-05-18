@@ -1,0 +1,9 @@
+@media print {
+    .book-title {
+        font-size: 2.5em;
+        white-space: nowrap;
+    }
+    .wd10 {
+        word-break: break-all
+    }
+}
