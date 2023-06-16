@@ -10,18 +10,19 @@
     margin-top: 20px;
     margin-bottom: 25px;
     border-bottom: solid 2px #000;
+    width: 100%;
   }
   @bottom-right {
     content: string(title);
     margin-bottom: 25px;
     margin-top: 10px;
     border-top: solid 2px #000;
+    width: 100%;
   }
   @bottom-left {
     content: counter(page);
     margin-bottom: 25px;
     margin-top: 10px;
-    border-top: solid 2px #000;
   }
 }
 @page :right {  /* right page setting */
@@ -30,18 +31,19 @@
     margin-top: 20px;
     margin-bottom: 25px;
     border-bottom: solid 2px #000;
+    width: 100%;
   }
   @bottom-left {
     margin-bottom: 25px;
     margin-top: 10px;
     border-top: solid 2px #000;
     content: string(title);
+    width: 100%;
   }
   @bottom-right {
     content: counter(page);
     margin-bottom: 25px;
     margin-top: 10px;
-    border-top: solid 2px #000;
   }
 }
 
@@ -170,10 +172,10 @@
 .book-title {
     margin-left: auto;
     margin-right: auto;
-    font-size: 4em;
-    line-height: 1.3em;
+    font-size: 54px;
+    line-height: 1.3;
     margin-top: 50%;
-    width: 60%;
+    width: 520px;
     text-align:center;
     word-break: keep-all;
 }
@@ -275,3 +277,28 @@
     color: #ffa500;
     font-size: 1.3rem;
 }
+
+.step-line {
+    border: solid 1px #000;
+}
+.step-wrap {
+    margin-top: 0;
+    padding-top: 0;
+}
+.step-label {
+    padding-bottom: 2em;
+    page-break-inside: avoid;
+}
+.step-desc {
+    margin-top: 0.5em;
+}
+.step-num {
+    page-break-inside: avoid;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+}
+.step-link {
+    line-height: 1em;
+}
+
