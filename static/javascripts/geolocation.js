@@ -20,7 +20,7 @@
 
   async function getGeolocation() {
     try {
-      const resp = await fetch("/geolocation");
+      const resp = await fetch("https://get.kintone.help/geolocation");
       const json = await resp.json();
       return json;
     } catch (err) {
