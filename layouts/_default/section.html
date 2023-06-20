@@ -19,7 +19,7 @@
                 {{ partial "treenav2" . }}
             {{- end }}
         {{- else }}
-            {{- if eq $.Site.Params.product "kintone" }}
+            {{- if eq $.Site.Params.json_tree true }}
                 {{ partial "treenav3" . }}
             {{- else }}
                 {{ partial "treenav" . }}

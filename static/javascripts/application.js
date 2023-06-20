@@ -32,7 +32,7 @@
 
         // ツリーナビゲーションJSONモード
         let json_mode = false;
-        if(location.pathname.indexOf("/k/") !== -1) {
+        if( document.getElementsByClassName("tree-base").length > 0) {
             json_mode = true;
         }
 
@@ -175,6 +175,12 @@
 
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
+            if (typeof WOVN !== 'undefined') {
+                return false;
+            }
+
+            $("#lang-selector").css("display", "block");
+
             const $langbtn = $("#lang-selector");
             const $langlist = $("#alter-lang");
             

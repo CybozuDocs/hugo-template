@@ -11,7 +11,29 @@
                 -->
             {{- range .Translations }}
                 <li id="lang_item_{{ .Site.Language.Params.LanguageCode }}" class="lang-item" role="option" desturl="{{ .RelPermalink }}"><span class="lang-title">{{ .Site.Language.Params.LanguageName }}</span></li>
+            {{- end -}}
+
+            {{- if eq .Site.Params.wovn_translation true }}
+                {{- $urlParts := split .RelPermalink "/" }}
+                {{- $additionalLangs := index .Site.Data "language_list" }}
+                {{- range $additionalLangs.languages }}
+                    {{- $languageCode := .language_code }}
+                    {{- $idx := 0 }}
+                    {{- $newTarget := "" }}
+                    {{- range $urlParts }}
+                        {{- if ne . "" }}
+                            {{- if eq $idx 2 }}
+                                {{- $newTarget = printf "%s/%s" $newTarget $languageCode }}
+                            {{- else }}
+                                {{- $newTarget = printf "%s/%s" $newTarget . }}
+                            {{- end }}
+                        {{- end }}
+                        {{- $idx = add $idx 1 }}
+                    {{- end }}
+                <li id="lang_item_{{$languageCode}}" class="lang-item" role="option" desturl="{{$newTarget}}"><span class="lang-title">{{ .display_name }}</span></li>
+                {{- end }}
             {{- end }}
+
         </ul>
     </div>
 </div>
