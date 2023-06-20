@@ -13,7 +13,7 @@
                 <li id="lang_item_{{ .Site.Language.Params.LanguageCode }}" class="lang-item" role="option" desturl="{{ .RelPermalink }}"><span class="lang-title">{{ .Site.Language.Params.LanguageName }}</span></li>
             {{- end -}}
 
-            {{- if eq .Site.Params.wovn_translation true }}
+            {{- if eq .Site.Params.use_wovn true }}
                 {{- $urlParts := split .RelPermalink "/" }}
                 {{- $additionalLangs := index .Site.Data "language_list" }}
                 {{- range $additionalLangs.languages }}
