@@ -187,11 +187,13 @@
 
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
-            if (window.WOVN && WOVN.io && WOVN.io.isApiReady()) {
+            if (typeof WOVN !== 'undefined') {
                 window.addEventListener('wovnLangChanged', function () {
+console.log("path 1");
                     initLanguageSelector();
                 });
             } else {
+console.log("path 2");
                 setTimeout(() => {
                   initLanguageSelector();
                 }, "2000")
@@ -199,6 +201,7 @@
         }
 
         function initLanguageSelector() {
+console.log("initLanguageSelector");
             const $langbtn = $("#lang-selector");
             const $langlist = $("#alter-lang");
             let langs = $('#alter-lang [role="option"]');
