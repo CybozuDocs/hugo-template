@@ -175,12 +175,22 @@
 
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
+            if (window.WOVN && WOVN.io && WOVN.io.isApiReady()) {
+                window.addEventListener('wovnLangChanged', function () {
+                    initLanguageSelector();
+                });
+            } else {
+                initLanguageSelector();
+            }
+        }
+
+        function initLanguageSelector() {
             const $langbtn = $("#lang-selector");
             const $langlist = $("#alter-lang");
             let langs = $('#alter-lang [role="option"]');
             let $firstitem = langs.eq(0);
 
-            if (typeof WOVN !== 'undefined') {
+            if (window.WOVN && WOVN.io && WOVN.io.isApiReady()) {
                 const wovnobj = WOVN.io.getCurrentLang();
                 const wovnlang = wovnobj.name;
 
@@ -329,7 +339,7 @@
                         break;
                 }
             });
-            
+
             function openAlterLangs() {
                 $langbtn.attr("aria-expanded", "true");
                 $langlist.css("display", "block");
@@ -345,6 +355,8 @@
                 $langbtn.attr("aria-expanded", "false");
             }
         }
+
+
 
         // チャットボタン
         let ct_enabled = false;
