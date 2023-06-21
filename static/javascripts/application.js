@@ -193,8 +193,9 @@
             if (typeof WOVN !== 'undefined') {
                 const wovnobj = WOVN.io.getCurrentLang();
                 const wovnlang = wovnobj.name;
+                const wovncode = wovnobj.code;
 
-                if(wovnlang !== "en") {
+                if(wovncode !== "en") {
                     // ボタンの文字に現在表示中の言語を設定
                     const $displang = $("#displang");
                     $displang[0].innerText = wovnlang;
@@ -213,7 +214,7 @@
                     }).appendTo($enli);
 
                     // 表示中の言語を言語リストから削除
-                    const $deltarget = $("#lang_item_"+wovnlang);
+                    const $deltarget = $("#lang_item_" + wovncode);
                     $deltarget.remove();
 
                     // 言語リストの再設定
