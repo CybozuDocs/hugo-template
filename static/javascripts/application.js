@@ -178,6 +178,7 @@
             if (typeof WOVN !== 'undefined') {
                 window.addEventListener('wovnLangChanged', function () {
                     initLanguageSelector();
+                    WOVN.io.triggerAudit();
                 });
             } else {
                 initLanguageSelector();
