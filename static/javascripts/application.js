@@ -173,41 +173,24 @@
             }
         }
 
-
-        console.log(window.WOVN);
-
-        window.addEventListener('wovnApiReady', function () {
-            console.log("wovnApiReady");
-        });
-
-        window.addEventListener('wovnLangChanged', function () {
-            console.log("wovnLangChanged");
-        });
-
-
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
             if (typeof WOVN !== 'undefined') {
                 window.addEventListener('wovnLangChanged', function () {
-console.log("path 1");
                     initLanguageSelector();
                 });
             } else {
-console.log("path 2");
-                setTimeout(() => {
-                  initLanguageSelector();
-                }, "2000")
+                initLanguageSelector();
             }
         }
 
         function initLanguageSelector() {
-console.log("initLanguageSelector");
             const $langbtn = $("#lang-selector");
             const $langlist = $("#alter-lang");
             let langs = $('#alter-lang [role="option"]');
             let $firstitem = langs.eq(0);
 
-            if (window.WOVN && WOVN.io && WOVN.io.isApiReady()) {
+            if (typeof WOVN !== 'undefined') {
                 const wovnobj = WOVN.io.getCurrentLang();
                 const wovnlang = wovnobj.name;
 
