@@ -173,6 +173,18 @@
             }
         }
 
+
+        console.log(window.WOVN);
+
+        window.addEventListener('wovnApiReady', function () {
+            console.log("wovnApiReady");
+        });
+
+        window.addEventListener('wovnLangChanged', function () {
+            console.log("wovnLangChanged");
+        });
+
+
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
             if (window.WOVN && WOVN.io && WOVN.io.isApiReady()) {
