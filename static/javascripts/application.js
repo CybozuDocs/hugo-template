@@ -180,7 +180,9 @@
                     initLanguageSelector();
                 });
             } else {
-                initLanguageSelector();
+                setTimeout(() => {
+                  initLanguageSelector();
+                }, "2000")
             }
         }
 
