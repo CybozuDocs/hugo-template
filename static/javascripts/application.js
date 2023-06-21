@@ -173,12 +173,17 @@
             }
         }
 
+if (typeof WOVN !== 'undefined') {
+    setTimeout(() => {
+      WOVN.io.triggerAudit();
+    }, "10000")
+}
+
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
             if (typeof WOVN !== 'undefined') {
                 window.addEventListener('wovnLangChanged', function () {
                     initLanguageSelector();
-                    WOVN.io.triggerAudit();
                 });
             } else {
                 initLanguageSelector();
