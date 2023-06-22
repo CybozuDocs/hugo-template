@@ -309,37 +309,6 @@
                 }
             });
 
-            function changeSelectedLang() {
-                if (typeof WOVN !== 'undefined') {
-                    const wovnobj = WOVN.io.getCurrentLang();
-                    const wovnlang = wovnobj.name;
-                    const wovncode = wovnobj.code;
-
-                    if(wovncode !== "en") {
-                        // ボタンの文字に現在表示中の言語を設定
-                        const $displang = $("#displang");
-                        $displang[0].innerText = wovnlang;
-
-                        // 言語リストの先頭に英語を追加
-                        const $enli = $("<li>", {
-                          id: "lang_item_en-us",
-                          class: "lang-item",
-                          role: "option",
-                          desturl: "/k/en/"
-                        }).insertBefore($firstitem);
-
-                        $("<span>", {
-                          class: "lang-title",
-                          text: "English"
-                        }).appendTo($enli);
-
-                        // 表示中の言語を言語リストから削除
-                        const $deltarget = $("#lang_item_" + wovncode);
-                        $deltarget.remove();
-                    }
-                }
-            }
-
             function openAlterLangs() {
                 $langbtn.attr("aria-expanded", "true");
                 $langlist.css("display", "block");
@@ -356,7 +325,36 @@
             }
         }
 
+        function changeSelectedLang() {
+            if (typeof WOVN !== 'undefined') {
+                const wovnobj = WOVN.io.getCurrentLang();
+                const wovnlang = wovnobj.name;
+                const wovncode = wovnobj.code;
 
+                if(wovncode !== "en") {
+                    // ボタンの文字に現在表示中の言語を設定
+                    const $displang = $("#displang");
+                    $displang[0].innerText = wovnlang;
+
+                    // 言語リストの先頭に英語を追加
+                    const $enli = $("<li>", {
+                      id: "lang_item_en-us",
+                      class: "lang-item",
+                      role: "option",
+                      desturl: "/k/en/"
+                    }).insertBefore($firstitem);
+
+                    $("<span>", {
+                      class: "lang-title",
+                      text: "English"
+                    }).appendTo($enli);
+
+                    // 表示中の言語を言語リストから削除
+                    const $deltarget = $("#lang_item_" + wovncode);
+                    $deltarget.remove();
+                }
+            }
+        }
 
         // チャットボタン
         let ct_enabled = false;
