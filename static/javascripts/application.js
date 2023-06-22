@@ -187,8 +187,8 @@
         function initLanguageSelector() {
             const $langbtn = $("#lang-selector");
             const $langlist = $("#alter-lang");
-            let langs = $('#alter-lang [role="option"]');
-            let $firstitem = langs.eq(0);
+            const $alllangs = $('#alter-lang [role="option"]');
+            const $firstitem = $alllangs.eq(0);
 
             $langlist.attr("aria-activedescendant", $firstitem.attr("id"));
             $firstitem.addClass("selectlang");
@@ -335,6 +335,7 @@
                     // ボタンの文字に現在表示中の言語を設定
                     const $displang = $("#displang");
                     $displang[0].innerText = wovnlang;
+                    const $alllangs = $('#alter-lang [role="option"]');
 
                     // 言語リストの先頭に英語を追加
                     const $enli = $("<li>", {
@@ -342,7 +343,7 @@
                       class: "lang-item",
                       role: "option",
                       desturl: "/k/en/"
-                    }).insertBefore($firstitem);
+                    }).insertBefore($alllangs[0]);
 
                     $("<span>", {
                       class: "lang-title",
