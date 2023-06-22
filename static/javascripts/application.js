@@ -176,17 +176,12 @@
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
             if (typeof WOVN !== 'undefined') {
-                const curLang = WOVN.io.getCurrentLang();
-                const translated = WOVN.io.isPublished("es");
-
                 window.addEventListener('wovnLangChanged', function () {
-                    initLanguageSelector();
-                    const tree = document.getElementById("tree-main")
-                    WOVN.io.swap(tree);
+                    changeSelectedLang();
                 });
-            } else {
-                initLanguageSelector();
             }
+
+            initLanguageSelector();
         }
 
         function initLanguageSelector() {
@@ -194,39 +189,6 @@
             const $langlist = $("#alter-lang");
             let langs = $('#alter-lang [role="option"]');
             let $firstitem = langs.eq(0);
-
-            if (typeof WOVN !== 'undefined') {
-                const wovnobj = WOVN.io.getCurrentLang();
-                const wovnlang = wovnobj.name;
-                const wovncode = wovnobj.code;
-
-                if(wovncode !== "en") {
-                    // ボタンの文字に現在表示中の言語を設定
-                    const $displang = $("#displang");
-                    $displang[0].innerText = wovnlang;
-
-                    // 言語リストの先頭に英語を追加
-                    const $enli = $("<li>", {
-                      id: "lang_item_en-us",
-                      class: "lang-item",
-                      role: "option",
-                      desturl: "/k/en/"
-                    }).insertBefore($firstitem);
-
-                    $("<span>", {
-                      class: "lang-title",
-                      text: "English"
-                    }).appendTo($enli);
-
-                    // 表示中の言語を言語リストから削除
-                    const $deltarget = $("#lang_item_" + wovncode);
-                    $deltarget.remove();
-
-                    // 言語リストの再設定
-                    $firstitem = $enli;
-                    langs = $('#alter-lang [role="option"]');
-                }
-            }
 
             $langlist.attr("aria-activedescendant", $firstitem.attr("id"));
             $firstitem.addClass("selectlang");
@@ -290,6 +252,7 @@
             
             $langlist.keydown(function (e) {
                 const $curlang = $("#alter-lang .selectlang");
+                const langs = $('#alter-lang [role="option"]');
                 
                 switch(e.which) {
                     case 9: // tab
@@ -345,6 +308,37 @@
                         break;
                 }
             });
+
+            function changeSelectedLang() {
+                if (typeof WOVN !== 'undefined') {
+                    const wovnobj = WOVN.io.getCurrentLang();
+                    const wovnlang = wovnobj.name;
+                    const wovncode = wovnobj.code;
+
+                    if(wovncode !== "en") {
+                        // ボタンの文字に現在表示中の言語を設定
+                        const $displang = $("#displang");
+                        $displang[0].innerText = wovnlang;
+
+                        // 言語リストの先頭に英語を追加
+                        const $enli = $("<li>", {
+                          id: "lang_item_en-us",
+                          class: "lang-item",
+                          role: "option",
+                          desturl: "/k/en/"
+                        }).insertBefore($firstitem);
+
+                        $("<span>", {
+                          class: "lang-title",
+                          text: "English"
+                        }).appendTo($enli);
+
+                        // 表示中の言語を言語リストから削除
+                        const $deltarget = $("#lang_item_" + wovncode);
+                        $deltarget.remove();
+                    }
+                }
+            }
 
             function openAlterLangs() {
                 $langbtn.attr("aria-expanded", "true");
