@@ -177,11 +177,11 @@
         if( document.getElementById("lang-selector") != null ) {
             if (typeof WOVN !== 'undefined') {
                 const curLang = WOVN.io.getCurrentLang();
-                const translated = WOVN.io.isPublished(curLang.code);
-                console.log("translated="+translated);
+                const translated = WOVN.io.isPublished("es");
+
                 window.addEventListener('wovnLangChanged', function () {
                     initLanguageSelector();
-                    const tree = document.querySelector('#tree-main')
+                    const tree = document.getElementById("tree-main")
                     WOVN.io.swap(tree);
                 });
             } else {
