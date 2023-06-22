@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{.Site.LanguageCode}}" prefix="og: https://ogp.me/ns#">
   <head>
+    {{- if eq .Site.Params.use_wovn true }}
+    <script src="https://j.wovn.io/1" data-wovnio="key={{ .Site.Params.data_wovnio }}" async></script>
+    {{- end }}
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=11" />
