@@ -338,11 +338,13 @@
                     const $alllangs = $('#alter-lang [role="option"]');
 
                     // 言語リストの先頭に英語を追加
+                    const cururl = location.href;
+                    const enurl = cururl.replace("/"+wovncode+"/", "/en/");
                     const $enli = $("<li>", {
                       id: "lang_item_en-us",
                       class: "lang-item",
                       role: "option",
-                      desturl: "/k/en/"
+                      desturl: enurl
                     }).insertBefore($alllangs[0]);
 
                     $("<span>", {
