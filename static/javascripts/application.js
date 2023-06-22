@@ -176,8 +176,13 @@
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
             if (typeof WOVN !== 'undefined') {
+                const curLang = WOVN.io.getCurrentLang();
+                const translated = WOVN.io.isPublished(curLang.code);
+                console.log("translated="+translated);
                 window.addEventListener('wovnLangChanged', function () {
                     initLanguageSelector();
+                    const tree = document.querySelector('#tree-main')
+                    WOVN.io.swap(tree);
                 });
             } else {
                 initLanguageSelector();
