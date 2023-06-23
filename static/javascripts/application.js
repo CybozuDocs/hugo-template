@@ -1,6 +1,22 @@
 'use strict';
 (function() {
     window.addEventListener('load', function() {
+
+        if (typeof WOVN !== 'undefined') {
+            if (document.getElementById("wovn-additional-buttons") !== null) {
+                setTimeout(() => {
+                    if (typeof OneTrust !== 'undefined') {
+                        OneTrust.Close();
+                    }
+
+                    if( document.getElementsByClassName("locale-modal").length > 0) {
+                        $(".locale-modal").hide();
+                        setSessionValue("locale_modal", { disabled: "1" });
+                    }
+                }, "1000");
+            }
+        }
+
         // 768pxは cssにおける@media screen min-width の設定値
         const mobileSize = 768;
 
