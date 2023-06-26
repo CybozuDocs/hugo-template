@@ -9,11 +9,19 @@
                         OneTrust.Close();
                     }
 
+                    if( document.getElementById("enquete") !== null) {
+                        $("#enquete").css("display", "none");
+                    }
+
+                    if( document.getElementById("goto-top") !== null) {
+                        $("#goto-top").css("display", "none");
+                    }
+
                     if( document.getElementsByClassName("locale-modal").length > 0) {
                         $(".locale-modal").hide();
                         setSessionValue("locale_modal", { disabled: "1" });
                     }
-                }, "1000");
+                }, "3000");
             }
         }
 
@@ -192,9 +200,16 @@
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
             if (typeof WOVN !== 'undefined') {
-                window.addEventListener('wovnLangChanged', function () {
-                    changeSelectedLang();
-                });
+                const wovnobj = WOVN.io.getCurrentLang();
+                const wovnlang = wovnobj.name;
+                const wovncode = wovnobj.code;
+
+                if (wovncode !== "en") {
+                    window.addEventListener('wovnLangChanged', function () {
+                        changeSelectedLang(wovncode, wovnlang);
+                        setDisclamer(wovncode);
+                    });
+                }
             }
 
             initLanguageSelector();
@@ -341,37 +356,42 @@
             }
         }
 
-        function changeSelectedLang() {
-            if (typeof WOVN !== 'undefined') {
-                const wovnobj = WOVN.io.getCurrentLang();
-                const wovnlang = wovnobj.name;
-                const wovncode = wovnobj.code;
+        function changeSelectedLang(langcode, langtext) {
+            // ボタンの文字に現在表示中の言語を設定
+            const $displang = $("#displang");
+            $displang[0].innerText = langtext;
+            const $alllangs = $('#alter-lang [role="option"]');
 
-                if(wovncode !== "en") {
-                    // ボタンの文字に現在表示中の言語を設定
-                    const $displang = $("#displang");
-                    $displang[0].innerText = wovnlang;
-                    const $alllangs = $('#alter-lang [role="option"]');
+            // 言語リストの先頭に英語を追加
+            const cururl = location.href;
+            const enurl = cururl.replace("/"+langcode+"/", "/en/");
+            const $enli = $("<li>", {
+              id: "lang_item_en-us",
+              class: "lang-item",
+              role: "option",
+              desturl: enurl
+            }).insertBefore($alllangs[0]);
 
-                    // 言語リストの先頭に英語を追加
-                    const cururl = location.href;
-                    const enurl = cururl.replace("/"+wovncode+"/", "/en/");
-                    const $enli = $("<li>", {
-                      id: "lang_item_en-us",
-                      class: "lang-item",
-                      role: "option",
-                      desturl: enurl
-                    }).insertBefore($alllangs[0]);
+            $("<span>", {
+              class: "lang-title",
+              text: "English"
+            }).appendTo($enli);
 
-                    $("<span>", {
-                      class: "lang-title",
-                      text: "English"
-                    }).appendTo($enli);
+            // 表示中の言語を言語リストから削除
+            const $deltarget = $("#lang_item_" + langcode);
+            $deltarget.remove();
+        }
 
-                    // 表示中の言語を言語リストから削除
-                    const $deltarget = $("#lang_item_" + wovncode);
-                    $deltarget.remove();
-                }
+        function setDisclamer(langcode) {
+            const disc2 = document.getElementById("disclaimer2");
+            if (disc2 !== null) {
+                const paths = location.pathname.split("/");
+                fetch("/" + paths[1] + "/data/" + langcode + "/message.json")
+                    .then(response => response.json())
+                    .then((data) => { 
+                        disc2.innerText = data.disclamer;
+                        disc2.style.display = "block";
+                    });
             }
         }
 

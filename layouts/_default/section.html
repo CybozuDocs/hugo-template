@@ -30,6 +30,9 @@
         {{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.Params.languageCode "ja-jp") (ne $.Site.Params.languageCode "ja-cn") }}
             {{ partial "disclaimer" . }}
         {{- end }}
+        {{- if eq $.Site.Params.use_wovn true }}
+            {{ partial "disclaimer2" . }}
+        {{- end }}
         <main id="main" role="main"> 
             {{- partial "breadcrumb" . -}}
             <article class="article">
