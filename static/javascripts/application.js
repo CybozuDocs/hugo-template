@@ -1,28 +1,28 @@
 'use strict';
 (function() {
     window.addEventListener('load', function() {
-
+console.log(document.cookie)
         if (typeof WOVN !== 'undefined') {
-            if (document.getElementById("wovn-additional-buttons") !== null) {
                 setTimeout(() => {
-                    if (typeof OneTrust !== 'undefined') {
-                        OneTrust.Close();
-                    }
+                    if (document.getElementById("wovn-additional-buttons") !== null) {
+                        if (typeof OneTrust !== 'undefined') {
+                            OneTrust.Close();
+                        }
 
-                    if( document.getElementById("enquete") !== null) {
-                        $("#enquete").css("display", "none");
-                    }
+                        if( document.getElementById("enquete") !== null) {
+                            $("#enquete").css("display", "none");
+                        }
 
-                    if( document.getElementById("goto-top") !== null) {
-                        $("#goto-top").css("display", "none");
-                    }
+                        if( document.getElementById("goto-top") !== null) {
+                            $("#goto-top").css("display", "none");
+                        }
 
-                    if( document.getElementsByClassName("locale-modal").length > 0) {
-                        $(".locale-modal").hide();
-                        setSessionValue("locale_modal", { disabled: "1" });
+                        if( document.getElementsByClassName("locale-modal").length > 0) {
+                            $(".locale-modal").hide();
+                            setSessionValue("locale_modal", { disabled: "1" });
+                        }
                     }
                 }, "3000");
-            }
         }
 
         // 768pxは cssにおける@media screen min-width の設定値
