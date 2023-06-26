@@ -386,7 +386,9 @@
             const disc2 = document.getElementById("disclaimer2");
             if (disc2 !== null) {
                 const paths = location.pathname.split("/");
-                fetch("/" + paths[1] + "/data/" + langcode + "/message.json")
+                //fetch("/" + paths[1] + "/data/" + langcode + "/message.json")
+
+                fetch("/" + paths[1] + "/javascripts/" + langcode + "/message.json")
                     .then(response => response.json())
                     .then((data) => { 
                         disc2.innerText = data.disclamer;
