@@ -1,7 +1,7 @@
 'use strict';
 (function() {
     window.addEventListener('load', function() {
-console.log(document.cookie)
+
         if (typeof WOVN !== 'undefined') {
                 setTimeout(() => {
                     if (document.getElementById("wovn-additional-buttons") !== null) {
@@ -200,16 +200,16 @@ console.log(document.cookie)
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
             if (typeof WOVN !== 'undefined') {
-                const wovnobj = WOVN.io.getCurrentLang();
-                const wovnlang = wovnobj.name;
-                const wovncode = wovnobj.code;
+                window.addEventListener('wovnLangChanged', function () {
+                    const wovnobj = WOVN.io.getCurrentLang();
+                    const wovnlang = wovnobj.name;
+                    const wovncode = wovnobj.code;
 
-                if (wovncode !== "en") {
-                    window.addEventListener('wovnLangChanged', function () {
+                    if (wovncode !== "en") {
                         changeSelectedLang(wovncode, wovnlang);
                         setDisclamer(wovncode);
-                    });
-                }
+                    }
+                });
             }
 
             initLanguageSelector();
