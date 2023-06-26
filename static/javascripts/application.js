@@ -22,7 +22,7 @@
                             setSessionValue("locale_modal", { disabled: "1" });
                         }
                     }
-                }, "3000");
+                }, "2000");
         }
 
         // 768pxは cssにおける@media screen min-width の設定値
