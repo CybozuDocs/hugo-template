@@ -8,7 +8,14 @@
   </head>
   <script>
   window.onload = function() {
-      const url = {{ .Permalink | relURL }};
+      let url = {{ .Permalink | relURL }};
+
+      if (typeof WOVN !== 'undefined') {
+        const wovnobj = WOVN.io.getCurrentLang();
+        const wovncode = wovnobj.code;
+        url = url.replace("/en/", "/" + wovncode + "/");
+      }
+
       const query = window.location.search;
       const hash = window.location.hash;
       window.location.href = url + query + hash;
