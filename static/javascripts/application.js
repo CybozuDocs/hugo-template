@@ -197,8 +197,6 @@
             }
         }
 
-setDisclamer("es");
-
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
             if (typeof WOVN !== 'undefined') {
@@ -358,6 +356,7 @@ setDisclamer("es");
             }
         }
 
+        // WOVN 言語選択メニューの更新
         function changeSelectedLang(langcode, langtext) {
             // ボタンの文字に現在表示中の言語を設定
             const $displang = $("#displang");
@@ -384,12 +383,12 @@ setDisclamer("es");
             $deltarget.remove();
         }
 
+        // WOVN 機械翻訳免責文言の表示
         function setDisclamer(langcode) {
             const disc2 = document.getElementById("disclaimer2");
             if (disc2 !== null) {
                 const paths = location.pathname.split("/");
                 fetch("/" + paths[1] + "/javascripts/resources/" + langcode + "/message.json")
-                //fetch("/" + paths[1] + "/javascripts/" + langcode + "/message.json")
                     .then(response => response.json())
                     .then((data) => { 
                         disc2.innerText = data.disclamer;
