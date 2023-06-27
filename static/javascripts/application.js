@@ -197,6 +197,8 @@
             }
         }
 
+setDisclamer("es");
+
         // 言語切り替え
         if( document.getElementById("lang-selector") != null ) {
             if (typeof WOVN !== 'undefined') {
@@ -386,7 +388,7 @@
             const disc2 = document.getElementById("disclaimer2");
             if (disc2 !== null) {
                 const paths = location.pathname.split("/");
-                fetch("/" + paths[1] + "/resources/" + langcode + "/message.json")
+                fetch("/" + paths[1] + "/javascripts/resources/" + langcode + "/message.json")
                 //fetch("/" + paths[1] + "/javascripts/" + langcode + "/message.json")
                     .then(response => response.json())
                     .then((data) => { 
