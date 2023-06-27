@@ -114,7 +114,7 @@
     <script src="{{ printf "%s?%s" "javascripts/meganav.js" $buildnum | relURL }}"></script>
     {{- end }}
     {{- if and (eq .Params.type "search_result") (eq .Site.Params.google_search true) }}
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://unpkg.com/vue@3.3.4/dist/vue.global.prod.js"></script>
     {{- end }}
 
     <!-- Video list page -->
