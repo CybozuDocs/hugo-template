@@ -9,16 +9,20 @@
   <script>
   window.onload = function() {
       let url = {{ .Permalink | relURL }};
+      const query = window.location.search;
+      const hash = window.location.hash;
 
       if (typeof WOVN !== 'undefined') {
         const wovnobj = WOVN.io.getCurrentLang();
         const wovncode = wovnobj.code;
         url = url.replace("/en/", "/" + wovncode + "/");
-      }
 
-      const query = window.location.search;
-      const hash = window.location.hash;
-      window.location.href = url + query + hash;
+        window.addEventListener('wovnLangChanged', function () {
+            window.location.href = url + query + hash;
+        }
+      } else {
+        window.location.href = url + query + hash;
+      }
   }
   </script>
 </html>
