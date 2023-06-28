@@ -1,226 +1,218 @@
 "use strict";
 
 (function () {
-const searchUrl = "https://ae4gbmw2xi.execute-api.ap-northeast-1.amazonaws.com/help/search";
+    const searchUrl = "https://ae4gbmw2xi.execute-api.ap-northeast-1.amazonaws.com/help/search";
 
-const vm = new Vue({
-  delimiters: ['[[', ']]'],
-  el: '#main_form',
-  data: {
-    ctabs: [],
-    items: [],
-    search_words: "",
-    total: 0,
-    start: 1,
-    last: 1,
-    current: 0,
-    pages: [],
-    searching: true,
-    lang: "en",
-    region: "jp",
-    app: "",
-    cid: 0,
-    initial: true,
-    connected: "0",
-    error_message: ""
-  },
-  created: function() {  
-    const gcon = sessionStorage.getItem("gcon");
-    if(gcon !== null) {
-        this.connected = gcon;
-    }
-  },
-  mounted: function () {
-        this.$nextTick(function () {
-            switch (vm.connected) {
-                case "0":
-                    // confirm api connection
-                    const chkurl = "https://www.googleapis.com/customsearch/v1";
-           
-                    const xhr = new XMLHttpRequest();
-                    xhr.open("GET", chkurl);
-                    
-                    xhr.onload = function() {
-                        sessionStorage.setItem("gcon", "1");
-                        vm.connected = "1";            
-                        vm.searching = false;
-                        vm.first_call();
-                    };
-                    
-                    xhr.ontimeout = function() {
-                        vm.unavailable();
-                        sessionStorage.setItem("gcon", "2");
-                        vm.connected = "2";
-                    };
-                    
-                    xhr.onerror = function() {
-                        vm.error_message = "Error: "+this.status;
-                        sessionStorage.setItem("gcon", "3");
-                        vm.connected = 3;
-                        vm.searching = false;
-                    };
-                    
-                    xhr.send();
-                    break;
-                case "1":
-                    vm.searching = false;
-                    vm.first_call();
-                    break;
-                case "2":
-                    vm.unavailable();
-                    break;
-                default:
-                    vm.searching = false;
-                    break;
+    const vm = Vue.createApp({
+        delimiters: ['[[', ']]'],
+        data: () => ({
+            ctabs: [],
+            items: [],
+            search_words: "",
+            total: 0,
+            start: 1,
+            last: 1,
+            current: 0,
+            pages: [],
+            searching: true,
+            lang: "en",
+            region: "jp",
+            app: "",
+            cid: 0,
+            initial: true,
+            connected: "0",
+            error_message: ""
+        }),
+        created: function() {  
+            const gcon = sessionStorage.getItem("gcon");
+            if(gcon !== null) {
+                this.connected = gcon;
             }
-        });
-  },
-  methods: {
-    first_call: function() {
-        vm.set_environment();
+        },
+        mounted: function() {
+            this.$nextTick(function () {
+                switch (this.connected) {
+                    case "0":
+                        // confirm api connection
+                        confirmApiConnection();
+                        break;
+                    case "1":
+                        this.searching = false;
+                        this.first_call();
+                        break;
+                    case "2":
+                        this.unavailable();
+                        break;
+                    default:
+                        this.searching = false;
+                        break;
+                }
+            });
+        },
+        methods: {
+            first_call: function() {
+                this.set_environment();
 
-        if (vm.set_options() === false) {
-            return false;
-        }
+                if (this.set_options() === false) {
+                    return false;
+                }
 
-        callSearchApi();
-    },
-    set_environment: function() {
-        const this_url = location.pathname;
-        const url_parts = this_url.split("/");
-        
-        // get application name from url
-        this.app = url_parts[1];
-        
-        // get language code from url
-        this.lang = url_parts[2];
-        
-        // 'common' does not have app section
-        switch (this.app) {
-            case "en":
-            case "ja":
-            case "zh":
-            case "zh-tw":
-                this.lang = this.app;
-                this.app = "common";
-                break;
-        }
-        
-        // get region code from html lang
-        const htmllang = document.documentElement.lang;
-        if (htmllang === "zh-tw") {
-            this.region = "jp";
-            this.lang = "zhtw";
-        } else if (htmllang === "zh-tw-us") {
-            this.region = "us";
-            this.lang = "zhtw";
-        } else {
-            this.region = htmllang.substr(3,2);
-        }
-    },
-    set_options: function () {
-        const qstr = location.search;
-        if (qstr.length <= 0) return false;
+                callSearchApi();
+            },
+            set_environment: function() {
+                const this_url = location.pathname;
+                const url_parts = this_url.split("/");
 
-        // parse query string
-        // because we have to support IE, we can not use URLSearchParams()
-        const qs = [];
-        const qlist = qstr.substring(1).split('&');
-        for (let i = 0; i < qlist.length; i++) {
-            let pi = qlist[i].split('=');
-            qs[pi[0]] = pi[1];
-        }
+                // get application name from url
+                this.app = url_parts[1];
 
-        if("c" in qs) {
-            // category tab number
-            this.cid = Number(qs.c);
-        }
+                // get language code from url
+                this.lang = url_parts[2];
 
-        if("start" in qs) {
-            // start page
-            this.start = Number(qs.start);
-        }
+                // 'common' does not have app section
+                switch (this.app) {
+                    case "en":
+                    case "ja":
+                    case "zh":
+                    case "zh-tw":
+                        this.lang = this.app;
+                        this.app = "common";
+                        break;
+                }
 
-        if(("q" in qs) && (qs.q.length > 0)){
-            // search text
-            this.search_words = decodeURIComponent(qs.q);
-        } else {
-            return false;
-        }
- 
-        // category_list should be defined Global
-        if (category_list != null ) {
-            this.ctabs = category_list;
-        }
-            
-        return true;
-    },
-    unavailable: function() {
-        this.error_message = "This feature is not available in this environment.";
-    },
-    submit: function() {
-        if (this.searching == false) {
-            this.searching = true;
-            let newpath = location.pathname;
-            const words = this.search_words.trim();
+                // get region code from html lang
+                const htmllang = document.documentElement.lang;
+                if (htmllang === "zh-tw") {
+                    this.region = "jp";
+                    this.lang = "zhtw";
+                } else if (htmllang === "zh-tw-us") {
+                    this.region = "us";
+                    this.lang = "zhtw";
+                } else {
+                    this.region = htmllang.substr(3,2);
+                }
+            },
+            set_options: function () {
+                const qstr = location.search;
+                if (qstr.length <= 0) return false;
 
-            newpath = newpath + "?c=" + this.cid + "&start=" + vm.start + "&q=" + encodeURIComponent(words);
-            location.href = newpath;
+                const params = new URLSearchParams(qstr);
+
+                if(params.has("c")) {
+                    // category tab number
+                    this.cid = Number(params.get("c"));
+                }
+
+                if(params.has("start")) {
+                    // start page
+                    this.start = Number(params.get("start"));
+                }
+
+                if((params.has("q")) && (params.get("q").length > 0)){
+                    // search text
+                    this.search_words = decodeURIComponent(params.get("q"));
+                } else {
+                    return false;
+                }
+
+                // category_list is defined Global by Hugo template
+                if (category_list !== null ) {
+                    this.ctabs = category_list;
+                }
+
+                return true;
+            },
+            unavailable: function() {
+                this.error_message = "This feature is not available in this environment.";
+            },
+            submit: function() {
+                if (this.searching == false) {
+                    this.searching = true;
+                    let newpath = location.pathname;
+                    const words = this.search_words.trim();
+                    newpath = newpath + "?c=" + this.cid + "&start=" + this.start + "&q=" + encodeURIComponent(words);
+                    location.href = newpath;
+                }
+            },
+            submit_button: function() {
+                this.start = 1;
+                this.submit();
+            },
+            change_category: function(num) {
+                this.start = 0;
+                this.cid = num;
+                this.submit();
+            },
+            key_down: function(e) {
+                const pl = e.target.htmlFor;
+                const pi = pl.slice(-1);
+                this.change_category(pi);
+            },
+            page_navigate: function(page) {
+                if (this.current + 1 != page) {
+                    this.start = page * 10 - 9;
+                    this.submit();
+                }
+            },
+            go_prev: function() {
+                if (this.start > 10) {
+                    this.start = this.start - 10;
+                    this.submit();
+                }
+            },
+            go_next: function() {
+                const next_start = this.start + 10;
+                if (next_start < this.total) {
+                    this.start = next_start;
+                    this.submit();
+                }
+            },
+            resetButton: function () {
+                this.searching = false;
+            }
         }
-    },
-    submit_button: function() {
-        this.start = 1;
-        this.submit();
-    },
-    change_category: function(num) {
-        this.start = 0;
-        this.cid = num;
-        this.submit();
-    },
-    key_down: function(e) {
-        const pl = e.target.htmlFor;
-        const pi = pl.slice(-1);
-        this.change_category(pi);
-    },
-    page_navigate: function(page) {
-        if (this.current + 1 != page) {
-            this.start = page * 10 - 9;
-            this.submit();
-        }
-    },
-    go_prev: function() {
-        if (this.start > 10) {
-            this.start = this.start - 10;
-            this.submit();
-        }
-    },
-    go_next: function() {
-        const next_start = this.start + 10;
-        if (next_start < this.total) {
-            this.start = next_start;
-            this.submit();
-        }
-    },
-    resetButton: function () {
-        this.searching = false;
+    }).mount('#main_form')
+
+    // to confirm Google API is enabled
+    // call it without token
+    const confirmApiConnection = () => {
+        const chkurl = "https://www.googleapis.com/customsearch/v1";
+
+        fetch(chkurl, { cache: 'no-cache' })
+            .then(response => {
+                if(response.status === 403) {
+                    // call the url without token, 'forbidden' is a correct status
+                    vm.connected = "1";
+                    vm.first_call();
+                    vm.resetButton();
+                } else {
+                    throw new Error(response);
+                }
+            })
+            .catch((e) => { 
+                vm.unavailable();
+                vm.connected = "2";
+                vm.initial = false;
+            })
+            .finally(() => {
+                sessionStorage.setItem("gcon", vm.connected);
+            });
     }
-  }
-})
 
-const callSearchApi = function() {
-    const words = vm.search_words;
+    const callSearchApi = () => {
+        const words = vm.search_words;
 
-    const target = searchUrl + "?app=" + vm.app + "&c=" + vm.cid + "&lang=" + vm.lang + "&r=" + vm.region + "&start=" + vm.start  + "&q=" + encodeURIComponent(words);
-    vm.searching = true;
+        const target = searchUrl + "?app=" + vm.app + "&c=" + vm.cid + "&lang=" + vm.lang + "&r=" + vm.region + "&start=" + vm.start  + "&q=" + encodeURIComponent(words);
+        vm.searching = true;
 
-    // because we have to support IE, we can not use fetch()
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", target);
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4) {
-            if(this.status == 200) {
-                const jd = JSON.parse(this.response);
-
+        fetch(target, { cache: 'no-cache' })
+            .then(response => {
+                if(!response.ok) {
+                    throw new Error(response.statusText);
+                }
+                return response.json()
+            })
+            .then(jd => {
                 if (jd.hasOwnProperty("error") === false) {
                     if("searchInformation" in jd) {
                         vm.total = Number(jd["searchInformation"].totalResults);
@@ -256,31 +248,13 @@ const callSearchApi = function() {
                 } else {
                     vm.error_message = jd["error"].message;
                 }
+            })
+            .catch(error => {
+                vm.error_message = "Error: status=" + error.status;
+            })
+            .finally(() => {
                 vm.initial = false;
-            }
-            vm.resetButton();
-        } 
+                vm.resetButton();
+            });
     }
-    
-    xhr.onerror = function() {
-        if (xhr.status === 0) {
-            vm.error_message = "Network error.";
-        } else {
-            vm.error_message = "Error: status=" + xhr.status;
-        }
-        vm.initial = false;
-        vm.resetButton();
-    }
-    
-    xhr.onabort = function() {
-        vm.resetButton();
-    }
-    
-    xhr.ontimeout = function() {
-        vm.resetButton();
-    }
-
-    xhr.send();
-
-}
 }());
