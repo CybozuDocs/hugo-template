@@ -18,11 +18,11 @@ console.log(WOVN)
 console.log(wovncode)
             const wovnurl = url.replace("/en/", "/" + wovncode + "/");
 console.log(wovnurl)
-            //window.location.href = wovnurl + query + hash;
+            window.location.href = wovnurl + query + hash;
         });
       } else {
         const url = {{ .Permalink | relURL }};
-        //window.location.href = url + query + hash;
+        window.location.href = url + query + hash;
       }
   }
   </script>
