@@ -209,7 +209,7 @@
                         setTimeout(() => {
                             changeSelectedLang(wovncode, wovnlang);
                             setDisclamer(wovncode);
-                        }, "2000"}
+                        }, "2000");
                     }
                 });
             }
