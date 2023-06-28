@@ -204,7 +204,7 @@
                     const wovnobj = WOVN.io.getCurrentLang();
                     const wovnlang = wovnobj.name;
                     const wovncode = wovnobj.code;
-
+console.log(wovncode)
                     if (wovncode !== "en") {
                         setTimeout(() => {
                             changeSelectedLang(wovncode, wovnlang);
