@@ -388,7 +388,7 @@
             const $disc2 = $("#disclaimer2");
             if ($disc2.length > 0) {
                 const paths = location.pathname.split("/");
-                fetch("/" + paths[1] + "/javascripts/resources/" + langcode + "/message.json")
+                fetch("/" + paths[1] + "/json/" + langcode + "/message.json")
                     .then(response => response.json())
                     .then((data) => { 
                         $disc2.text(data.disclamer);
