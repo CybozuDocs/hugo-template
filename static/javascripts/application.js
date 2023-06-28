@@ -206,8 +206,10 @@
                     const wovncode = wovnobj.code;
 
                     if (wovncode !== "en") {
-                        changeSelectedLang(wovncode, wovnlang);
-                        setDisclamer(wovncode);
+                        setTimeout(() => {
+                            changeSelectedLang(wovncode, wovnlang);
+                            setDisclamer(wovncode);
+                        }, "2000"}
                     }
                 });
             }
