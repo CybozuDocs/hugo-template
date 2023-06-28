@@ -385,14 +385,14 @@
 
         // WOVN 機械翻訳免責文言の表示
         function setDisclamer(langcode) {
-            const disc2 = document.getElementById("disclaimer2");
-            if (disc2 !== null) {
+            const $disc2 = $("#disclaimer2");
+            if ($disc2.length > 0) {
                 const paths = location.pathname.split("/");
                 fetch("/" + paths[1] + "/javascripts/resources/" + langcode + "/message.json")
                     .then(response => response.json())
                     .then((data) => { 
-                        disc2.innerText = data.disclamer;
-                        disc2.style.display = "block";
+                        $disc2.text(data.disclamer);
+                        $disc2.css("display", "block");
                     });
             }
         }
