@@ -8,20 +8,18 @@
   </head>
   <script>
   window.onload = function() {
+      const url = {{ .Permalink | relURL }};
       const query = window.location.search;
       const hash = window.location.hash;
-console.log(WOVN)
+
       if (typeof WOVN !== 'undefined') {
         window.addEventListener('wovnLangChanged', function () {
             const wovnobj = WOVN.io.getCurrentLang();
             const wovncode = wovnobj.code;
-console.log(wovncode)
             const wovnurl = url.replace("/en/", "/" + wovncode + "/");
-console.log(wovnurl)
             window.location.href = wovnurl + query + hash;
         });
       } else {
-        const url = {{ .Permalink | relURL }};
         window.location.href = url + query + hash;
       }
   }
