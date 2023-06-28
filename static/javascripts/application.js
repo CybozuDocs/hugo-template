@@ -206,11 +206,8 @@
                     const wovncode = wovnobj.code;
 
                     if (wovncode !== "en") {
-                        setTimeout(() => {
-console.log("timeout")
-                            changeSelectedLang(wovncode, wovnlang);
-                            setDisclamer(wovncode);
-                        }, "5000");
+                        changeSelectedLang(wovncode, wovnlang);
+                        setDisclamer(wovncode);
                     }
                 });
             }
