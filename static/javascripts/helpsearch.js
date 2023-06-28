@@ -115,25 +115,6 @@
                     return false;
                 }
 
-                // category_list is defined Global by Hugo template
-                if (category_list !== null ) {
-                    this.ctabs = category_list;
-                }
-
-
-                window.addEventListener('wovnLangChanged', function () {
-                    if (typeof WOVN !== 'undefined') {
-                        const paths = location.pathname.split("/");
-                        const wovncode = WOVN.io.getCurrentLang().code;
-                        const resourcefile = "/" + paths[1] + "/json/" + wovncode + "/category_list.json";
-                        fetch(resourcefile)
-                            .then(response => response.json())
-                            .then((data) => { 
-                                this.ctabs = data.us;
-                            });
-                    }
-                });
-
                 return true;
             },
             unavailable: function() {
@@ -253,6 +234,23 @@
                             if (i >= 100) break;
                         }
                         vm.pages = pages;
+
+                        if (typeof WOVN !== 'undefined') {
+                            const paths = location.pathname.split("/");
+                            const wovncode = WOVN.io.getCurrentLang().code;
+                            const resourcefile = "/" + paths[1] + "/json/" + wovncode + "/category_list.json";
+                            fetch(resourcefile)
+                                .then(response => response.json())
+                                .then((data) => { 
+                                    vm.ctabs = data.us;
+                                });
+                        } else {
+                            // category_list is defined Global by Hugo template
+                            if (category_list !== null ) {
+                                vm.ctabs = category_list;
+                            }
+                        }
+
                     }
 
                     if(jd.hasOwnProperty("items")) {
