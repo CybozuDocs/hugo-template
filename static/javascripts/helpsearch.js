@@ -120,20 +120,19 @@
                     this.ctabs = category_list;
                 }
 
-                setTimeout(() => {
+
+                window.addEventListener('wovnLangChanged', function () {
                     if (typeof WOVN !== 'undefined') {
-                        window.addEventListener('wovnLangChanged', function () {
-                            const paths = location.pathname.split("/");
-                            const wovncode = WOVN.io.getCurrentLang().code;
-                            const resourcefile = "/" + paths[1] + "/json/" + wovncode + "/category_list.json";
-                            fetch(resourcefile)
-                                .then(response => response.json())
-                                .then((data) => { 
-                                    this.ctabs = data.us;
-                                });
-                        });
+                        const paths = location.pathname.split("/");
+                        const wovncode = WOVN.io.getCurrentLang().code;
+                        const resourcefile = "/" + paths[1] + "/json/" + wovncode + "/category_list.json";
+                        fetch(resourcefile)
+                            .then(response => response.json())
+                            .then((data) => { 
+                                this.ctabs = data.us;
+                            });
                     }
-                }, "3000");
+                });
 
                 return true;
             },
