@@ -115,23 +115,25 @@
                     return false;
                 }
 
-                if (typeof WOVN !== 'undefined') {
-                    window.addEventListener('wovnLangChanged', function () {
-                        const paths = location.pathname.split("/");
-                        const wovncode = WOVN.io.getCurrentLang().code;
-                        const resourcefile = "/" + paths[1] + "/json/" + wovncode + "/category_list.json";
-                        fetch(resourcefile)
-                            .then(response => response.json())
-                            .then((data) => { 
-                                this.ctabs = data.us;
-                            });
-                    });
-                } else {
-                    // category_list is defined Global by Hugo template
-                    if (category_list !== null ) {
-                        this.ctabs = category_list;
-                    }
+                // category_list is defined Global by Hugo template
+                if (category_list !== null ) {
+                    this.ctabs = category_list;
                 }
+
+                setTimeout(() => {
+                    if (typeof WOVN !== 'undefined') {
+                        window.addEventListener('wovnLangChanged', function () {
+                            const paths = location.pathname.split("/");
+                            const wovncode = WOVN.io.getCurrentLang().code;
+                            const resourcefile = "/" + paths[1] + "/json/" + wovncode + "/category_list.json";
+                            fetch(resourcefile)
+                                .then(response => response.json())
+                                .then((data) => { 
+                                    this.ctabs = data.us;
+                                });
+                        });
+                    }
+                }, "3000");
 
                 return true;
             },
