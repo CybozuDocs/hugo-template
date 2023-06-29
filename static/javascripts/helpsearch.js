@@ -75,6 +75,7 @@
                     case "ja":
                     case "zh":
                     case "zh-tw":
+                    case "es":
                         this.lang = this.app;
                         this.app = "common";
                         break;

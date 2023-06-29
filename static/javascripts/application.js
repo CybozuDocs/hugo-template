@@ -33,7 +33,7 @@
         const url_parts = cururl.split("/");
 
         // 対応言語
-        const languages = ["en", "ja", "zh", "zh-tw"];
+        const languages = ["en", "ja", "zh", "zh-tw", "es"];
 
         // メガメニュー有無のフラグ
         let hasMegaNav = false;
