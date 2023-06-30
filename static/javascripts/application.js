@@ -529,6 +529,12 @@
 
                 // リンククリック対応
                 const newurl = data.node.a_attr.href;
+
+                if (typeof WOVN !== 'undefined') {
+                    const wovncode = WOVN.io.getCurrentLang().code;
+                    newurl = newurl.replace("/en/", "/" + wovncode + "/");
+                }
+
                 if (newurl !== "") {
                     if ((data !== undefined) 
                         && ("originalEvent" in data.event)
