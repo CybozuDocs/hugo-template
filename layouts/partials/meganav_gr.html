@@ -20,7 +20,7 @@
   {{- $seconditems = 0 }}
 {{- end }}
 
-<nav role="navigation" aria-label="{{ i18n "Document_type" }}"> 
+<nav role="navigation" aria-label="{{ i18n "Document_type" }}">
     <ul class="g-nav" role="none" >
 {{- range $entries.ByWeight}}
     {{- if ne .Params.weight 0 }}
@@ -54,7 +54,7 @@
     {{- end}}
             </div>
         </div>
-        
+
     {{- range $entries.ByWeight}}
         {{- if eq .CurrentSection $rootsect }}
             {{- template "megapanel" $rootsect }}
@@ -76,7 +76,7 @@
             {{- $curclass = "current" }}
             {{- $tabsts = "true" }}
         {{- end }}
-        
+
         {{- $menuid = (add $menuid 1)}}
         {{- $tabidx := "-1" }}
         {{- if eq $menuid 1 }}
@@ -91,7 +91,7 @@
     {{- end}}
             </ul>
 {{- end }}
-        
+
 {{- define "megapanel" }}
     {{- $cursect := . }}
     {{- $menuid := 0}}

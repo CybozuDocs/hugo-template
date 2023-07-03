@@ -72,6 +72,11 @@
 .mega-nav-home {
   border-bottom: 0;
 }
+
+.header-search-wrap {
+  display: block;
+}
+
 .g-col {
   width: 33.333%;
 }

@@ -15,6 +15,7 @@
             <div class="wrapper">
                 {{- $toptitle := (i18n "Welcome" .) }}
                 <div class="welcome_message">{{$toptitle}}</div>
+                {{- if and (eq $.Site.Params.product "Garoon") (eq $.Site.Params.service_type_id "on-premise") -}}{{ else}}
                 <div class="search-wrap">
                     <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html"　onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}' role="search">
                         <div class="searchbox">
@@ -24,9 +25,10 @@
                             <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}">
                         {{- end }}
                         </div>
-                    </form> 
+                    </form>
                     <div id="logo_place" class="search-logo"></div>
                 </div>
+                {{end}}
               <nav class="col-flex">
                     {{ .Content }}
               </nav>
