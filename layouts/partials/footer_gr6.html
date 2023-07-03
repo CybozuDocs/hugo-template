@@ -1,6 +1,6 @@
 {{ $legal_menu := slice }}
 {{- $mega_menus := dict }}
-{{- range $i, $r := getCSV "," $.Site.Params.footer_megalinks }}
+{{- range $i, $r := getCSV "," $.Site.Params.footer_links }}
     {{- $id := (index $r 0 ) }}{{ $item := printf "%s,%s" (index $r 1 ) (index $r 2) }}
     {{- if (eq $id "999" ) }}
         <!-- id = 999 is special footer -->
