@@ -9,6 +9,25 @@
   --grn-color: #0e74dd;
 }
 
+.home-search {
+  display: none;
+  background-color: var(--grn-color);
+}
+
+.home-search-input {
+  height: 25px;
+  width: 263px;
+  background: url("https://www.google.com/cse/static/images/1x/ja/branding.png") left 9px top 50% no-repeat rgb(255, 255, 255);
+}
+
+.home-search-submit {
+  background-color: #e6e6e6;
+  border: 0;
+}
+
+.home-search-submit::after {
+  color: var(--color-secondary);
+}
 .footer {
   border-top: 0;
   position: relative;
@@ -145,6 +164,15 @@
 
   .g-col {
     width: 33.333%;
+  }
+
+  .home-search {
+    display: block;
+    padding: 40px 0;
+  }
+
+  .header-search-wrap {
+    display: none;
   }
 
 }
