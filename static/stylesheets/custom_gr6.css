@@ -1,3 +1,73 @@
+:root {
+  --color-body: #222;
+  --color-secondary: #666;
+  --bg-primary-color: #fff;
+  --bg-secondary-color: #f3f3f3;
+  --link-primary-color: #1b72cd;
+  --link-secondary-color: #fff;
+  --border-color: #c9c9c9;
+  --grn-color: #0e74dd;
+}
+
+.footer {
+  border-top: 0;
+  position: relative;
+}
+
+.footer-mega {
+  background-color: var(--bg-secondary-color);
+  color: var(--color-secondary);
+  padding: 16px;
+}
+
+.footer-mega-list {
+  display: block;
+}
+
+.footer-mega-item {
+  margin-top: 16px;
+}
+
+.footer-mega-list-title {
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  gap: 8px;
+  line-height: 1;
+}
+
+.footer-mega-list-title-img {
+  width: 16px;
+  height: 16px;
+  background-size: contain;
+  align-self: center;
+}
+
+.footer-mega-list-list {
+  list-style: inside;
+  margin: 8px 0 0 24px;
+  color: var(--link-primary-color);
+}
+
+.footer-legal {
+  padding: 16px;
+  background-color: var(--color-secondary);
+  color: var(--link-secondary-color);
+  display: block;
+}
+
+.footer-legal-item a {
+  color: var(--link-secondary-color);
+}
+
+.footer-legal-list {
+  display: block;
+  list-style: inside;
+}
+
+.footer-legal-item {
+  padding-bottom: 1rem;
+}
 
 .mega-nav-home {
   border-bottom: 0;
@@ -19,6 +89,54 @@
 }
 
 @media only screen and (min-width: 768px) {
+
+  .footer-mega {
+    padding: 40px 0px;
+  }
+
+  .footer-mega-list {
+    display: flex;
+    column-gap: 64px;
+    list-style: none;
+    white-space: nowrap;
+    justify-content: center;
+  }
+
+  .footer-mega-list-title {
+    font-size: 20px;
+  }
+
+  .footer-mega-item {
+    margin-top: 0px;
+  }
+
+  .footer-mega-list-list {
+    list-style: inside;
+    margin: 16px 0 0 32px;
+    color: var(--link-primary-color);
+  }
+
+  .footer-legal {
+    padding: 32px 40px;
+    display: flex;
+    row-gap: 24px;
+    justify-content: space-between;
+  }
+
+  .footer-legal-list {
+    display: flex;
+    column-gap: 32px;
+    margin-left: 0;
+    white-space: nowrap;
+  }
+
+  .footer-legal-item {
+    padding-bottom: 0rem;
+  }
+
+  .footer-legal-copyright {
+    text-align: right;
+  }
 
   .g-col {
     width: 33.333%;
