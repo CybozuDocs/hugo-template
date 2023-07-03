@@ -33,9 +33,16 @@
         </li>
     {{- end }}
 {{- end}}
+    {{- with $.Site.Params.faq_link -}}
+        <li class="g-col" role="none">
+            <a href="{{ . | relURL }}"><span class="g-nav-title-wrap">
+                {{ i18n "Header_nav_faq" }}
+                <img src="{{ $.Site.Params.icon_external | relURL }}" alt="">
+            </span></a>
+        </li>
+    {{- end -}}
     </ul>
-
-    <div class="mega-nav">
+<div class="mega-nav {{ if and (eq $.Site.Params.product "Garoon") (eq $.Site.Params.service_type_id "on-premise") }}mega-nav-home{{ end -}}">
 {{- if gt $seconditems 0 }}
         <div class="mega-tab-wrap">
             <div class="mega-tab-head"><h2 class="mega-tab-guide">{{ i18n "By_features" }}</h2></div>

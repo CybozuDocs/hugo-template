@@ -147,3 +147,6 @@ other = "部分功能可能运行异常。"
 
 [Locale_modal_message]
 other = "此页面面向日本以外的客户。<br>是否前往面向日本客户的页面？"
+
+[Header_nav_faq]
+other = "常见问题"
