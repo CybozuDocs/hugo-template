@@ -251,7 +251,7 @@
 
   .footer-mega-list {
     display: flex;
-    column-gap: 64px;
+    column-gap: 16px;
     list-style: none;
     white-space: nowrap;
     justify-content: center;
@@ -274,7 +274,7 @@
   .footer-legal {
     padding: 32px 40px;
     display: flex;
-    row-gap: 24px;
+    gap: 24px;
     justify-content: space-between;
   }
 
@@ -416,5 +416,9 @@
   }
   .g-col:nth-child(n+4) {
     width: 14%;
+  }
+
+  .footer-mega-list {
+    column-gap: 64px;
   }
 }
