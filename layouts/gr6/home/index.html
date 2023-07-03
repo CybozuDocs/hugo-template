@@ -44,10 +44,44 @@
                 </div>
             </div>
             <div class="content-wrap">
+                {{- template "content" (dict "icon_main" $.Site.Params.icon_home_main "icon_sub" $.Site.Params.icon_home_sub ) -}}
             </div>
         </main>
     </div>
     {{- partial "footer" . -}}
 {{- end -}}
+<script type="text/javascript" src="{{ printf "%s" "javascripts/gr6home.js" | relURL }}"></script>
 </body>
 </html>
+
+{{ define "content" }}
+    <div id="content">
+        <template v-for="menu in menus" :key="menu.id">
+            <section class="home-menu">
+                <div class="home-menu-title">
+                    <div v-bind:pid="menu.id" class="home-menu-maintitle">
+                        <div
+                            class="home-menu-maintitle-img"
+                            style="background-image: url('{{ .icon_main | relURL }}')"
+                        ></div>
+                        <h2 class="home-menu-maintitle-text">[[menu.name]]</h2>
+                    </div>
+                    <div v-if="menu.sub" class="home-menu-subtitle">
+                        <div
+                            class="home-menu-subtitle-img"
+                            style="background-image: url('{{ .icon_sub | relURL }}')"
+                        ></div>
+                        <div class="home-menu-subtitle-text">
+                            <a v-bind:href="menu.sub.link_href">[[menu.sub.title]]</a>
+                        </div>
+                    </div>
+                </div>
+                <ul class="home-menu-list">
+                    <li v-for="item in menu.items" :key="item.title" class="home-menu-item">
+                        <menu-card :type="menu.type" :admin="menu.admin" :item="item"></menu-card>
+                    </li>
+                </ul>
+            </section>
+        </template>
+    </div>
+{{ end }}

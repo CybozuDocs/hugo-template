@@ -28,6 +28,137 @@
 .home-search-submit::after {
   color: var(--color-secondary);
 }
+
+.home-menu {
+  color: var(--color-body);
+}
+
+.home-menu-title {
+  display: flex;
+  background-color: var(--bg-secondary-color);
+  padding: 16px;
+}
+
+.home-menu-maintitle {
+  display: flex;
+  gap: 8px;
+  align-self: center;
+}
+
+.home-menu-maintitle-text {
+  font-size: 14px;
+  color: var(--color-secondary);
+  align-self: center;
+}
+
+.home-menu-maintitle-img {
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  align-self: center;
+}
+
+.home-menu-subtitle {
+  margin-left: 32px;
+  display: flex;
+  align-self: center;
+}
+
+.home-menu-subtitle-img {
+  display: none;
+  align-self: center;
+}
+
+.home-menu-subtitle-text {
+  font-size: 12px;
+  align-self: center;
+}
+
+.home-menu-list {
+  gap: 0px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.home-menu-item {
+  width: 50%;
+  min-width: 0;
+  padding: 16px;
+}
+
+.home-menu-item:nth-child(odd) {
+  border-right: 1px dashed var(--border-color);
+}
+
+.home-menu-item:hover {
+  background-color: #eef4fc;
+}
+
+.home-menu-item {
+  font-size: 14px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.home-menu-item:last-child,
+.home-menu-item:nth-last-child(2):nth-child(odd) {
+  border-bottom: 0;
+}
+
+.home-menu-item-title {
+  display: flex;
+  gap: 8px;
+  align-self: center;
+}
+
+.home-menu-item-text {
+  background-repeat: no-repeat;
+  line-height: 1;
+  flex: 1;
+  padding-top: 4px;
+}
+
+.home-menu-item-title-img {
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
+}
+
+.home-menu-item-title-img-normal {
+  display: none;
+}
+
+.home-menu-item-description {
+  display: none;
+}
+
+.home-menu-item-admin {
+  font-size: 12px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 8px 0 0 0;
+  line-height: 1;
+}
+
+.home-menu-item-admin-img {
+  width: 16px;
+  height: 16px;
+  background-size: contain;
+  align-self: center;
+}
+
+.home-menu-item-admin-text {
+  align-self: center;
+  margin: 0;
+}
+
 .footer {
   border-top: 0;
   position: relative;
@@ -175,6 +306,108 @@
     display: none;
   }
 
+  .home-menu {
+    padding: 40px;
+    max-width: 1320px;
+    margin: 0 auto;
+    color: var(--color-body);
+  }
+
+  .home-menu-title {
+    display: flex;
+    background-color: var(--bg-primary-color);
+    padding: 0;
+  }
+
+  .home-menu-maintitle {
+    gap: 12px;
+  }
+
+  .home-menu-maintitle-text {
+    font-size: 24px;
+  }
+
+  .home-menu-maintitle-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .home-menu-subtitle {
+    margin-left: 32px;
+    display: flex;
+    align-self: center;
+    gap: 12px;
+  }
+
+  .home-menu-subtitle-img {
+    display: block;
+    width: 32px;
+    height: 32px;
+    align-self: center;
+  }
+
+
+  .home-menu-subtitle-text {
+    font-size: 24px;
+  }
+
+  .home-menu-list {
+    margin: 24px 0 0 52px;
+    gap: 16px;
+    border-bottom: 0px;
+  }
+
+  .home-menu-item {
+    width: calc(25% - 16px);
+    min-width: 250px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+  }
+
+  .home-menu-item:last-child,
+  .home-menu-item:nth-last-child(2):nth-child(odd) {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .home-menu-item:nth-child(odd) {
+    border-right: 1px solid var(--border-color);
+  }
+
+  .home-menu-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 24px;
+  }
+
+  .home-menu-item-title {
+    width: 100%;
+  }
+
+  .home-menu-item-title-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .home-menu-item-title-img-normal {
+    display: block;
+  }
+
+  .home-menu-item-title-text {
+    flex: 1;
+  }
+
+  .home-menu-item-admin {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .home-menu-item-description {
+    display: block;
+    margin: 8px 0 0 40px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
 }
 
 @media only screen and (min-width:1059px) {
