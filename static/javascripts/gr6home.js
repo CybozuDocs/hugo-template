@@ -60,10 +60,6 @@
             }).catch(error => {
                 console.log(error);
             });
-        },
-        methods: {
-            show: function() {
-            }
         }
     }).mount('#content');
 
@@ -92,6 +88,4 @@
 
         return prodid;
     }
-
-    vm.show();
 })();
