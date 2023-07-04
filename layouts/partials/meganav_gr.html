@@ -134,7 +134,7 @@
     {{- $targetlink := . }}
     {{- range $i, $r := getCSV "," "csv/icon_images.csv" }}
         {{- if in $targetlink (index $r 0)}}
-            <i class="{{ index $r 1 }}" aria-hidden="true"></i>
+            <i class="{{ index $r 1 }} gcol-title-icon" aria-hidden="true"></i>
         {{- end }}
     {{- end }}
 {{- end }}
