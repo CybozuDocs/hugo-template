@@ -122,7 +122,6 @@
 }
 
 .home-menu-item-text {
-  background-repeat: no-repeat;
   line-height: 1;
   flex: 1;
   padding-top: 2px;
@@ -131,6 +130,7 @@
 .home-menu-item-title-img {
   width: 20px;
   height: 20px;
+  background-repeat: no-repeat;
   background-size: contain;
   background-repeat: no-repeat;
   background-repeat: no-repeat;
