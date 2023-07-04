@@ -5,12 +5,9 @@
     // Menu component
     const MenuCardTitle = {
         props: ["type", "item"],
-        template: `<div class="home-menu-item-title">
-                        <div v-bind:class="'home-menu-item-title-img home-menu-item-title-img-' + this.type" v-bind:style="{ backgroundImage: 'url(' + this.item.icon + ')' }"></div>
-                        <div class="home-menu-item-text">
-                                {{ this.item.title }}
-                        </div>
-                    </div>`
+        template: `<div v-bind:class="'home-menu-item-title-img home-menu-item-title-img-' + this.type"
+                        v-bind:style="{ backgroundImage: 'url(' + this.item.icon + ')' }"></div>
+                    <div class="home-menu-item-text">{{ this.item.title }}</div>`
     }
     const MenuCard = {
         props: ["type", "item", "admin"],
@@ -18,19 +15,21 @@
             MenuCardTitle
         },
         template: `<div>
-                        <a v-if="this.item.link_href" v-bind:href="this.item.link_href" target="_self" class="home-menu-item-title-container">
-                            <menu-card-title :item="item" :type="type" />
-                        </a>
-                        <div v-else class="home-menu-item-title-container">
-                            <menu-card-title :item="item" :type="type" />
+                        <div class="home-menu-item-title-container">
+                            <a v-if="this.item.link_href" v-bind:href="this.item.link_href" target="_self" class="home-menu-item-title">
+                                <menu-card-title :item="item" :type="type" />
+                            </a>
+                            <div v-else class="home-menu-item-title">
+                                <menu-card-title :item="item" :type="type" />
+                            </div>
                         </div>
                         <div class="home-menu-item-description">{{ this.item.description }}</div>
                     </div>
-                    <div v-if="this.item.admin_href" class="home-menu-item-admin" >
-                        <div class="home-menu-item-admin-img" v-bind:style="{ backgroundImage: 'url(' + this.admin.icon + ')' }"></div>
-                        <div class="home-menu-item-admin-text" >
-                            <a v-bind:href="this.item.admin_href">{{ this.admin.title }}</a>
-                        </div>
+                    <div class="home-menu-item-admin-container">
+                        <a v-if="this.item.admin_href" v-bind:href="this.item.admin_href" class="home-menu-item-admin" >
+                            <div class="home-menu-item-admin-img" v-bind:style="{ backgroundImage: 'url(' + this.admin.icon + ')' }"></div>
+                            <div class="home-menu-item-admin-text" >{{ this.admin.title }}</div>
+                        </a>
                     </div>`
     };
     const vm = Vue.createApp({
