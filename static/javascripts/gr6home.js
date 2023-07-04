@@ -3,7 +3,7 @@
 (function() {
 
     // Menu component
-    const MenuTitle = {
+    const MenuCardTitle = {
         props: ["type", "item"],
         template: `<div class="home-menu-item-title">
                         <div v-bind:class="'home-menu-item-title-img home-menu-item-title-img-' + this.type" v-bind:style="{ backgroundImage: 'url(' + this.item.icon + ')' }"></div>
@@ -15,14 +15,14 @@
     const MenuCard = {
         props: ["type", "item", "admin"],
         components:{
-            MenuTitle
+            MenuCardTitle
         },
         template: `<div>
                         <a v-if="this.item.link_href" v-bind:href="this.item.link_href" target="_self" class="home-menu-item-title-container">
-                            <menu-title :item="item" :type="type" />
+                            <menu-card-title :item="item" :type="type" />
                         </a>
                         <div v-else class="home-menu-item-title-container">
-                            <menu-title :item="item" :type="type" />
+                            <menu-card-title :item="item" :type="type" />
                         </div>
                         <div class="home-menu-item-description">{{ this.item.description }}</div>
                     </div>
