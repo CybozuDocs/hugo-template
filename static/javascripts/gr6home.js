@@ -17,7 +17,7 @@
                     <div v-if="this.item.admin_href" class="home-menu-item-admin" >
                         <div class="home-menu-item-admin-img" v-bind:style="{ backgroundImage: 'url(' + this.admin.icon + ')' }"></div>
                         <div class="home-menu-item-admin-text" >
-                            <a v-bind:href="this.admin.link_href">{{ this.admin.title }}</a>
+                            <a v-bind:href="this.item.admin_href">{{ this.admin.title }}</a>
                         </div>
                     </div>`
     };
