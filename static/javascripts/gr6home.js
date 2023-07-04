@@ -6,7 +6,7 @@
     const MenuTitle = {
         props: ["type", "item"],
         template: `<div class="home-menu-item-title">
-                        <div v-bind:class="'home-menu-item-title-img home-menu-item-title-img-' + this.type" v-bind:style="{ backgroundImage: 'url(' + this.item.img_src + ')' }"></div>
+                        <div v-bind:class="'home-menu-item-title-img home-menu-item-title-img-' + this.type" v-bind:style="{ backgroundImage: 'url(' + this.item.icon + ')' }"></div>
                         <div class="home-menu-item-text">
                                 {{ this.item.title }}
                         </div>
