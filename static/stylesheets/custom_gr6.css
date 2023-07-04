@@ -314,6 +314,7 @@
 
   .g-col:nth-child(4){
     border-right: 1px solid #ccc;
+    border-top: 0;
   }
 
   .gcol-title-icon {
