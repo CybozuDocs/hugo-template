@@ -129,7 +129,9 @@
     h1, h2, h3, h4, h5, h6, table tr:first-of-type, tbody tr:first-of-type {
         page-break-after: avoid;
     }
-
+    h2, h3, h4, h5, h6 {
+        bookmark-level: none;
+    }
     .bm-1 {
         bookmark-level: 1;
         bookmark-state: closed;
