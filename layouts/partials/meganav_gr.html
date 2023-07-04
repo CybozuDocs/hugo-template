@@ -35,7 +35,7 @@
 {{- end}}
     {{- with $.Site.Params.faq_link -}}
         <li class="g-col" role="none">
-            <a href="{{ . | relURL }}"><span class="g-nav-title-wrap">
+            <a href="{{ . | relURL }}" target="_blank"><span class="g-nav-title-wrap">
                 {{ i18n "Header_nav_faq" }}
                 <img src="{{ $.Site.Params.icon_external | relURL }}" alt="">
             </span></a>
