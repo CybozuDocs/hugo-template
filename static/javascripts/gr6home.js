@@ -3,15 +3,27 @@
 (function() {
 
     // Menu component
+    const MenuTitle = {
+        props: ["type", "item"],
+        template: `<div class="home-menu-item-title">
+                        <div v-bind:class="'home-menu-item-title-img home-menu-item-title-img-' + this.type" v-bind:style="{ backgroundImage: 'url(' + this.item.img_src + ')' }"></div>
+                        <div class="home-menu-item-text">
+                                {{ this.item.title }}
+                        </div>
+                    </div>`
+    }
     const MenuCard = {
         props: ["type", "item", "admin"],
+        components:{
+            MenuTitle
+        },
         template: `<div>
-                        <a v-bind:href="this.item.link_href" target="_self" class="home-menu-item-title">
-                            <div v-bind:class="'home-menu-item-title-img home-menu-item-title-img-' + this.type" v-bind:style="{ backgroundImage: 'url(' + this.item.img_src + ')' }"></div>
-                            <div class="home-menu-item-text">
-                                    {{ this.item.title }}
-                            </div>
+                        <a v-if="this.item.link_href" v-bind:href="this.item.link_href" target="_self" class="home-menu-item-title-container">
+                            <menu-title :item="item" :type="type" />
                         </a>
+                        <div v-else class="home-menu-item-title-container">
+                            <menu-title :item="item" :type="type" />
+                        </div>
                         <div class="home-menu-item-description">{{ this.item.description }}</div>
                     </div>
                     <div v-if="this.item.admin_href" class="home-menu-item-admin" >
@@ -35,7 +47,7 @@
             this.productid = getProductId();
         },
         components: {
-            MenuCard
+            MenuCard,
         },
         async mounted() {
             fetch(`/${this.productid}/${this.langid}/home.json`, { cache: 'no-cache' }).then((resp) => {
