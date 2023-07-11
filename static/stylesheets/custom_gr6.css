@@ -410,12 +410,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .home-menu-item-title-img {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
   }
 
   .home-menu-item-title-img-normal {
