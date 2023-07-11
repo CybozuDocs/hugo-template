@@ -2,10 +2,11 @@
 {{- if eq $.Site.Params.id_search true }}
     {{- $footerLinks_Ex = "footer-links-ex" }}
 {{- end }}
+
+{{- if and (eq $.Site.Params.product "Garoon") (eq $.Site.Params.service_type_id "on-premise") -}}
+    {{ partial "footer_gr6.html" . }}
+{{- else -}}
 <footer id="page-footer" class="footer">
-    {{- if and (eq $.Site.Params.product "Garoon") (eq $.Site.Params.service_type_id "on-premise") -}}
-        {{ partial "footer_gr6.html" . }}
-    {{- else -}}
     <div class="footer-wrap">
         <div class="footer-col-links">
             <div class="footer-links {{$footerLinks_Ex}}">
@@ -73,5 +74,5 @@
         {{- end }}
         </div>
     </div>
-    {{- end -}}
 </footer>
+{{- end -}}

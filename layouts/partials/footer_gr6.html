@@ -11,7 +11,9 @@
     {{- end }}
 {{- end -}}
 
-<div>
+<footer id="page-footer" class="footer{{- if .IsHome }} footer-home{{- end }}">
+<div class="footer-home">
+    {{- if .IsHome -}}
     <div class="footer-mega">
         <ul class="footer-mega-list">
             {{- range $mega_menus }}
@@ -42,6 +44,7 @@
             {{ end -}}
         </ul>
     </div>
+    {{- end -}}
     <div class="footer-legal">
         <ul class="footer-legal-list">
             {{- range $legal_menu }}
@@ -57,3 +60,4 @@
         </div>
     </div>
 </div>
+</footer>
