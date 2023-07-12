@@ -59,21 +59,13 @@
         <template v-for="menu in menus" :key="menu.id">
             <section class="home-menu">
                 <div class="home-menu-title">
-                    <div v-bind:pid="menu.id" class="home-menu-maintitle">
-                        <div
-                            class="home-menu-maintitle-img"
-                            v-bind:style="{ backgroundImage: 'url(' + menu.icon + ')' }"
-                        ></div>
-                        <h2 class="home-menu-maintitle-text">[[menu.name]]</h2>
-                    </div>
+                    <h2 v-bind:pid="menu.id" class="home-menu-maintitle">
+                        <i v-bind:class="menu.fontawesome_icon + ' home-menu-maintitle-icon'" aria-hidden="true"></i>
+                        <span class="home-menu-maintitle-text">[[menu.name]]</span>
+                    </h2>
                     <div v-if="menu.sub" class="home-menu-subtitle">
-                        <div
-                            class="home-menu-subtitle-img"
-                            v-bind:style="{ backgroundImage: 'url(' + menu.sub.icon + ')' }"
-                        ></div>
-                        <div class="home-menu-subtitle-text">
-                            <a v-bind:href="menu.sub.link_href">[[menu.sub.title]]</a>
-                        </div>
+                        <i v-bind:class="menu.sub.fontawesome_icon + ' home-menu-subtitle-icon'" aria-hidden="true"></i>
+                        <span class="home-menu-subtitle-text"><a v-bind:href="menu.sub.link_href">[[menu.sub.title]]</a></span>
                     </div>
                 </div>
                 <ul class="home-menu-list">
