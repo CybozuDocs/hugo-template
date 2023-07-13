@@ -93,10 +93,6 @@
   border-right: 1px dashed var(--border-color);
 }
 
-.home-menu-item:hover {
-  background-color: #eef4fc;
-}
-
 .home-menu-item {
   font-size: 14px;
   border-bottom: 1px dashed var(--border-color);
