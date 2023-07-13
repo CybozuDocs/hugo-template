@@ -255,6 +255,10 @@
   border-right: 1px solid #ccc;
 }
 
+.g-col a {
+  border-bottom: 2px solid #fff;
+}
+
 .g-col:nth-child(4),
 .g-col:last-child {
   border-right: 0;
