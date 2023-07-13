@@ -117,6 +117,7 @@
 
 .home-menu-item-title-text {
   line-height: 1.2;
+  font-size: 1.25rem;
   flex: 1;
 }
 
@@ -402,7 +403,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 1.5rem;
   }
 
   .home-menu-item-title-img {
