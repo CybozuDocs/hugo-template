@@ -264,6 +264,15 @@
   border-right: 0;
 }
 
+.g-nav-title-wrap {
+  vertical-align: middle;
+}
+
+.g-nav-title-wrap-external-icon {
+  margin: 0 0 0 4px;
+  width: 12px;
+}
+
 .gcol-title-icon {
   display: none;
 }
@@ -329,6 +338,10 @@
 
   .gcol-title-icon {
     display: inline;
+  }
+
+  .g-nav-title-wrap-external-icon {
+    margin: 0 0 1px 4px;
   }
 
   .home-search {
@@ -444,17 +457,17 @@
 }
 
 @media only screen and (min-width: 1059px) {
-  .g-col:nth-child(n+1) {
-    width: 14%;
-    border-bottom: 0;
-  }
-
   .footer-mega-list {
     column-gap: 64px;
   }
 }
 
 @media only screen and (min-width: 1232px) {
+  .g-col:nth-child(n+1) {
+    width: 14.28%;
+    border-bottom: 0;
+  }
+
   .home-menu-item {
     width: calc(25% - 16px);
   }
