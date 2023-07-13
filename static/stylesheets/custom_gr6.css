@@ -45,13 +45,13 @@
 
 .home-menu-maintitle-icon {
   margin-right: 8px;
-  font-size: 20px;
+  font-size: 1.5rem;
   color: var(--color-secondary);
   vertical-align: middle;
 }
 
 .home-menu-maintitle-text {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--color-secondary);
   vertical-align: middle;
 }
@@ -94,7 +94,7 @@
 }
 
 .home-menu-item {
-  font-size: 14px;
+  font-size: 0.875rem;
   border-bottom: 1px dashed var(--border-color);
 }
 
@@ -146,7 +146,7 @@
 
 .home-menu-item-admin {
   display: flex;
-  font-size: 12px;
+  font-size: 0.75rem;
   gap: 8px;
   margin: 8px 0 0 0;
   line-height: 1;
@@ -187,7 +187,7 @@
 }
 
 .footer-mega-list-title {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 800;
   display: flex;
   gap: 8px;
@@ -276,7 +276,7 @@
   }
 
   .footer-mega-list-title {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   .footer-mega-item {
@@ -348,11 +348,11 @@
 
   .home-menu-maintitle-icon {
     margin-right: 12px;
-    font-size: 40px;
+    font-size: 2.5rem;
   }
 
   .home-menu-maintitle-text {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   .home-menu-subtitle {
@@ -361,13 +361,13 @@
 
   .home-menu-subtitle-icon {
     display: inline-block;
-    font-size: 32px;
+    font-size: 2rem;
     color: var(--link-primary-color);
     margin-right: 12px;
   }
 
   .home-menu-subtitle-text {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   .home-menu-list {
@@ -396,7 +396,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 20px;
+    font-size: 1.5rem;
   }
 
   .home-menu-item-title-img {
@@ -413,14 +413,14 @@
   }
 
   .home-menu-item-admin {
-    font-size: 14px;
+    font-size: 0.875rem;
     margin: 0;
   }
 
   .home-menu-item-description {
     display: block;
     margin: 8px 0 0 40px;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.4;
   }
 }
