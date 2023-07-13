@@ -7,7 +7,7 @@
         props: ["type", "item"],
         template: `<div v-bind:class="'home-menu-item-title-img home-menu-item-title-img-' + this.type"
                         v-bind:style="{ backgroundImage: 'url(' + this.item.icon + ')' }"></div>
-                    <div class="home-menu-item-text">{{ this.item.title }}</div>`
+                    <div class="home-menu-item-title-text">{{ this.item.title }}</div>`
     }
     const MenuCardAdmin = {
         props: ["admin"],
