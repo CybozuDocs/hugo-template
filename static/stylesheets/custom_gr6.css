@@ -147,7 +147,7 @@
 .home-menu-item-admin {
   display: flex;
   font-size: 0.75rem;
-  gap: 8px;
+  gap: 4px;
   margin: 8px 0 0 0;
   line-height: 1;
 }
@@ -192,6 +192,9 @@
   display: flex;
   gap: 8px;
   line-height: 1;
+}
+.footer-mega-list-title-text {
+  align-self: center;
 }
 
 .footer-mega-list-title-img {
