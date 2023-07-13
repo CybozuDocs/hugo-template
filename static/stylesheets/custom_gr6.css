@@ -115,8 +115,8 @@
   align-self: center;
 }
 
-  line-height: 1;
 .home-menu-item-title-text {
+  line-height: 1.2;
   flex: 1;
   padding-top: 2px;
 }
