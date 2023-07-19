@@ -6,12 +6,11 @@
   --link-primary-color: #1b72cd;
   --link-secondary-color: #fff;
   --border-color: #c9c9c9;
-  --grn-color: #0e74dd;
 }
 
 .home-search {
   display: none;
-  background-color: var(--grn-color);
+  background-color: #015aaa;
 }
 
 .home-search-input {
