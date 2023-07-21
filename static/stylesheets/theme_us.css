@@ -230,6 +230,9 @@
     }
 
 /* コードブロックで利用する設定 ********************************************/
+.highlight pre {
+  border-radius: 4px;
+}
 .codeblock-wrapper + p {
   margin-top: 0.9em;
 }

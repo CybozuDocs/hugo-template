@@ -1,8 +1,9 @@
 /* コードブロックで利用する設定 ********************************************/
-.codeblock-wrapper {
+.highlight pre {
     border-radius: 4px;
 }
 .codeblock-copy-button {
+    right: 4px;
     top: 10px;
 }
 .codeblock-wrapper + p {
