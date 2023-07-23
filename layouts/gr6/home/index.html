@@ -63,10 +63,10 @@
                         <i v-bind:class="menu.fontawesome_icon + ' home-menu-maintitle-icon'" aria-hidden="true"></i>
                         <span class="home-menu-maintitle-text">[[menu.name]]</span>
                     </h2>
-                    <div v-if="menu.sub" class="home-menu-subtitle">
+                    <a v-if="menu.sub" class="home-menu-subtitle" v-bind:href="menu.sub.link_href">
                         <i v-bind:class="menu.sub.fontawesome_icon + ' home-menu-subtitle-icon'" aria-hidden="true"></i>
-                        <span class="home-menu-subtitle-text"><a v-bind:href="menu.sub.link_href">[[menu.sub.title]]</a></span>
-                    </div>
+                        <span class="home-menu-subtitle-text">[[menu.sub.title]]</span>
+                    </a>
                 </div>
                 <ul class="home-menu-list">
                     <li v-for="item in menu.items" :key="item.title" class="home-menu-item">

@@ -387,6 +387,10 @@
     margin-left: 32px;
   }
 
+  .home-menu-subtitle:hover {
+    text-decoration: none;
+  }
+
   .home-menu-subtitle-icon {
     display: inline-block;
     font-size: 2rem;
@@ -396,6 +400,11 @@
 
   .home-menu-subtitle-text {
     font-size: 1.5rem;
+  }
+
+  .home-menu-subtitle-text:hover {
+    text-decoration: underline solid var(--link-primary-color);
+    text-underline-offset: 0.1ex;
   }
 
   .home-menu-list {
