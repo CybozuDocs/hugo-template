@@ -475,7 +475,7 @@
         if (typeof $tree.jstree !== "function") {
             setTimeout(() => {
                 initJstree();
-            }, "2000")
+            }, "1000")
         } else {
             initJstree();
         }
