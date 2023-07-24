@@ -230,6 +230,12 @@
     }
 
 /* コードブロックで利用する設定 ********************************************/
+.article pre {
+  border-radius: 4px;
+}
+.codeblock-copy-button {
+  top: 10px;
+}
 .codeblock-wrapper + p {
   margin-top: 0.9em;
 }
