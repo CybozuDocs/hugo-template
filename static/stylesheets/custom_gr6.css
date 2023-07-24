@@ -388,7 +388,8 @@
   }
 
   .home-menu-subtitle:hover {
-    text-decoration: none;
+    text-decoration: underline solid var(--link-primary-color);
+    text-underline-offset: 0.7ex;
   }
 
   .home-menu-subtitle-icon {
@@ -398,13 +399,12 @@
     margin-right: 4px;
   }
 
-  .home-menu-subtitle-text {
-    font-size: 1.5rem;
+  .home-menu-subtitle-icon:hover {
+    text-decoration: none;
   }
 
-  .home-menu-subtitle-text:hover {
-    text-decoration: underline solid var(--link-primary-color);
-    text-underline-offset: 0.1ex;
+  .home-menu-subtitle-text {
+    font-size: 1.5rem;
   }
 
   .home-menu-list {
