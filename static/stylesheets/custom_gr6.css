@@ -395,7 +395,7 @@
     display: inline-block;
     font-size: 2rem;
     color: var(--link-primary-color);
-    margin-right: 8px;
+    margin-right: 4px;
   }
 
   .home-menu-subtitle-text {
