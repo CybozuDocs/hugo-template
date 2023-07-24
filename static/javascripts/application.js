@@ -419,57 +419,66 @@
         });
 
     /*** ツリーナビゲーション ***/
-
         // jsTree.js の初期化
-        if (json_mode === true) {
-            const date = $('meta[name="date"]').attr("content");
-            const jsonurl = "/" + url_parts[1] + "/" + url_parts[2] + "/pagetree.json?" + date;
-            $tree.jstree({"core": { "data" : { "url" : jsonurl } } });
-        }
-        else
-        {
-            $tree.jstree();
-        }
+        function initJstree() {
+            if (json_mode === true) {
+                const date = $('meta[name="date"]').attr("content");
+                const jsonurl = "/" + url_parts[1] + "/" + url_parts[2] + "/pagetree.json?" + date;
+                $tree.jstree({"core": { "data" : { "url" : jsonurl } } });
+            }
+            else
+            {
+                $tree.jstree();
+            }
 
-        $tree.on("ready.jstree", function (e, data) {
-            // jsTreeの初期化処理完了後に画面表示
-            $tree.css("display", "block");
+            $tree.on("ready.jstree", function (e, data) {
+                // jsTreeの初期化処理完了後に画面表示
+                $tree.css("display", "block");
 
-            initPage();
-        });
+                initPage();
+            });
 
-        $tree.on("changed.jstree", function (e, data) {
-            if (data.action === "select_node") {
-                const pos = $tree.scrollTop();
-                // 選択時にスクロール位置を保存する
-                setSessionValue("dpos", pos);
+            $tree.on("changed.jstree", function (e, data) {
+                if (data.action === "select_node") {
+                    const pos = $tree.scrollTop();
+                    // 選択時にスクロール位置を保存する
+                    setSessionValue("dpos", pos);
 
-                // リンククリック対応
-                const newurl = data.node.a_attr.href;
-                if (newurl !== "") {
-                    if ((data !== undefined) 
-                        && ("originalEvent" in data.event)
-                        && (data.event.originalEvent.key === "Enter")) {
+                    // リンククリック対応
+                    const newurl = data.node.a_attr.href;
+                    if (newurl !== "") {
+                        if ((data !== undefined) 
+                            && ("originalEvent" in data.event)
+                            && (data.event.originalEvent.key === "Enter")) {
 
-                        // キーボード操作で選択されたフラグを保存する
-                        setSessionValue("keydn", "true");
-                    }
+                            // キーボード操作で選択されたフラグを保存する
+                            setSessionValue("keydn", "true");
+                        }
 
-                    if (newurl.indexOf("#") !== -1) {
-                        let newParts = newurl.split("#");
-                        let curParts = location.pathname.split("#");
-                        if (newParts[0] === curParts[0]) {
-                            // ページ内アンカーへ移動
-                            moveToAnchor(newurl);
+                        if (newurl.indexOf("#") !== -1) {
+                            let newParts = newurl.split("#");
+                            let curParts = location.pathname.split("#");
+                            if (newParts[0] === curParts[0]) {
+                                // ページ内アンカーへ移動
+                                moveToAnchor(newurl);
+                            } else {
+                                location.href = newurl;
+                            }
                         } else {
                             location.href = newurl;
                         }
-                    } else {
-                        location.href = newurl;
                     }
                 }
-            }
-        });
+            });
+        }
+
+        if (typeof $tree.jstree !== "function") {
+            setTimeout(() => {
+                initJstree();
+            }, "2000")
+        } else {
+            initJstree();
+        }
 
         $tree.keydown(function (e) {
             // Tabキーでツリーナビゲーションから抜けるとき、キー操作フラグを消す
