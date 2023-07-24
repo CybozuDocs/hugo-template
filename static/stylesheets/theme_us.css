@@ -230,7 +230,7 @@
     }
 
 /* コードブロックで利用する設定 ********************************************/
-.highlight pre {
+.article pre {
   border-radius: 4px;
 }
 .codeblock-copy-button {
