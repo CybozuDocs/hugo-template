@@ -5,7 +5,15 @@
     </button>
     <div class="codeblock-copy-message">{{ i18n "Codeblock_was_copied" }}</div>
   {{- end -}}
-  <div class="codeblock--content">
-    {{- highlight ( .Inner | safeHTML ) .Type .Options }}
-  </div>
+  {{- if .Attributes.notrans }}
+    <div class="codeblock--content">
+      <div class="no-trans">
+        {{- highlight ( .Inner | safeHTML ) .Type .Options }}
+      </div>
+    </div>
+  {{- else -}}
+    <div class="codeblock--content">
+      {{- highlight ( .Inner | safeHTML ) .Type .Options }}
+    </div>
+  {{- end -}}
 </div>
