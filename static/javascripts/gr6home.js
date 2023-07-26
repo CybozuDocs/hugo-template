@@ -69,9 +69,22 @@
             }).catch(error => {
                 console.log(error);
             });
+            // アンカー付きURL対応
+            // 1秒待ってから移動させる
+            this.$nextTick(function () {
+                const hash = window.location.hash;
+                if(hash) {
+                    const hashBody = hash.replace("#", "");
+                    setTimeout(() => {
+                        const el = document.getElementById(hashBody);
+                        if(el !== null) {
+                            el.scrollIntoView();
+                        }
+                    }, 1000);
+                }
+            })
         }
     }).mount('#content');
-
 
     // URLから対象言語を取り出す
     function getLangId() {

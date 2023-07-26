@@ -57,7 +57,7 @@
 {{ define "content" }}
     <div id="content">
         <template v-for="menu in menus" :key="menu.id">
-            <section class="home-menu">
+            <section class="home-menu" v-bind:id="menu.id">
                 <div class="home-menu-title">
                     <h2 v-bind:pid="menu.id" class="home-menu-maintitle">
                         <i v-bind:class="menu.fontawesome_icon + ' home-menu-maintitle-icon'" aria-hidden="true"></i>
