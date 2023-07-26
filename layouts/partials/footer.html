@@ -3,9 +3,9 @@
     {{- $footerLinks_Ex = "footer-links-ex" }}
 {{- end }}
 
-{{- if and (eq $.Site.Params.product "Garoon") (eq $.Site.Params.service_type_id "on-premise") -}}
+{{- if and (eq $.Site.Params.product "Garoon") (eq $.Site.Params.service_type_id "on-premise") }}
     {{ partial "footer_gr6.html" . }}
-{{- else -}}
+{{- else }}
 <footer id="page-footer" class="footer">
     <div class="footer-wrap">
         <div class="footer-col-links">

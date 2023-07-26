@@ -1,12 +1,12 @@
-{{- if in .Params.disabled $.Site.Params.TargetRegion }}
+{{- if in .Params.disabled $.Site.Params.TargetRegion -}}
     <meta http-equiv="refresh" content="0; URL=/" />
-{{- else }}
-    {{- partial "head" . }}
+{{- else -}}
+    {{- partial "head" . -}}
     {{- partial "announcementbanner.html" . -}}
-    {{- partial "header" . }}
+    {{- partial "header" . -}}
     <div class="page-pad"></div>
     {{- if eq $.Site.Params.meganav true -}}
-        {{ partial "meganav" . }}
+        {{- partial "meganav" . -}}
     {{- end -}}
     <div class="wrapper">
         <main id="main">
@@ -35,9 +35,9 @@
                                 data-disable-with=""
                                 aria-label="{{ i18n "search" }}"
                             ></button>
-                            {{- if ne .Site.Params.google_search true }}
+                            {{- if ne .Site.Params.google_search true -}}
                                 <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}" />
-                            {{- end }}
+                            {{- end -}}
                         </div>
                     </form>
                     <div id="logo_place" class="search-logo"></div>
@@ -54,7 +54,7 @@
 </body>
 </html>
 
-{{ define "content" }}
+{{- define "content" -}}
     <div id="content">
         <template v-for="menu in menus" :key="menu.id">
             <section class="home-menu" v-bind:id="menu.id">
@@ -76,4 +76,4 @@
             </section>
         </template>
     </div>
-{{ end }}
+{{- end -}}

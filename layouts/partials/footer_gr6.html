@@ -1,14 +1,14 @@
-{{ $legal_menu := slice }}
-{{- $mega_menus := dict }}
-{{- range $i, $r := getCSV "," $.Site.Params.footer_links }}
-    {{- $id := (index $r 0 ) }}{{ $item := printf "%s,%s" (index $r 1 ) (index $r 2) }}
-    {{- if (eq $id "999" ) }}
+{{- $legal_menu := slice -}}
+{{- $mega_menus := dict -}}
+{{- range $i, $r := getCSV "," $.Site.Params.footer_links -}}
+    {{- $id := (index $r 0 ) }}{{ $item := printf "%s,%s" (index $r 1 ) (index $r 2) -}}
+    {{- if (eq $id "999" ) -}}
         <!-- id = 999 is special footer -->
-        {{ $legal_menu = $legal_menu | append $item }}
-    {{- else }}
-        {{- $menu_items := index $mega_menus $id }}{{ $menu_items = $menu_items | append $item }}
-        {{- $mega_menus = merge $mega_menus (dict $id $menu_items) }}
-    {{- end }}
+        {{- $legal_menu = $legal_menu | append $item -}}
+    {{- else -}}
+        {{- $menu_items := index $mega_menus $id }}{{ $menu_items = $menu_items | append $item -}}
+        {{- $mega_menus = merge $mega_menus (dict $id $menu_items) -}}
+    {{- end -}}
 {{- end -}}
 
 <footer id="page-footer" class="footer{{- if .IsHome }} footer-home{{- end }}">
@@ -21,31 +21,31 @@
                     {{- $category_title := "" }}{{ $links := slice }}
                     {{- range $i, $r := . }}
                         {{- if eq $i 0 }}
-                            {{ $category_title = index (split $r ",") 0 }}
-                        {{ else }}
-                            {{ $links = $links | append $r }}
-                        {{ end }}
-                    {{ end }}
+                            {{- $category_title = index (split $r ",") 0 }}
+                        {{- else }}
+                            {{- $links = $links | append $r }}
+                        {{- end }}
+                    {{- end }}
                     <div class="footer-mega-list-title">
                         <i class="fa fa-book" aria-hidden="true"></i>
                         <span class="footer-mega-list-title-text">{{ $category_title }}</span>
                     </div>
                     <ul class="footer-mega-list-list">
                         {{- range $links }}
-                            {{ $link := (split . ",") }}
+                            {{- $link := (split . ",") }}
                             {{- $text := index $link 0 }}{{ $href := index $link 1 }}
                             <li class="footer-mega-list-item"><a href="{{ $href }}">{{ $text }}</a></li>
                         {{- end -}}
                     </ul>
                 </li>
-            {{ end -}}
+            {{- end -}}
         </ul>
     </div>
-    {{- end -}}
+    {{- end }}
     <div class="footer-legal">
         <ul class="footer-legal-list">
             {{- range $legal_menu }}
-                {{ $link := (split . ",") }}
+                {{- $link := (split . ",") }}
                 {{- $text := index $link 0 }}{{ $href := index $link 1 }}{{- $target := index $link 2 | default "_blank" }}
                 <li class="footer-legal-item">
                     <a href="{{ $href }}" target="{{ $target }}">{{ $text }}</a>
