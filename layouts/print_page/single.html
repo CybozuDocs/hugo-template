@@ -256,7 +256,10 @@
         <!-- prefer using sub_product -->
         {{ $product = . }}
    {{- end }}
-                
+
+   {{- $baseParts := split $parent.Site.BaseURL "/" }}
+   {{- $productId := index $baseParts (sub (len $baseParts) 2) }}
+
    {{- with $curnode -}}
         {{- if .IsSection -}}
             {{- $pages := .Pages -}}
@@ -272,7 +275,7 @@
 
                 <!-- body -->
                 {{- $title := partial "title" . -}}
-                {{- template "contentbody" (dict "sectList" $sectList "sectStr" $sectStr "content" .Content "product" $product "serviceType" $parent.Site.Params.service_type_id "weight" $parent.Params.weight "ancid" .RelPermalink "title" $title "lang" .Language) }}
+                {{- template "contentbody" (dict "sectList" $sectList "sectStr" $sectStr "content" .Content "product" $product "productId" $productId "weight" $parent.Params.weight "ancid" .RelPermalink "title" $title "lang" .Language) }}
                 
                 <!-- add a sub section （go down the section tree） -->
                 {{- $sectList = $sectList | append 1 -}}
@@ -309,7 +312,7 @@
 
                 <!-- body -->
                 {{- $title := partial "title" . -}}
-                {{- template "contentbody" (dict "sectList" $sectList "sectStr" $sectStr "content" .Content "product" $product "serviceType" $parent.Site.Params.service_type_id "weight" $parent.Params.weight "ancid" .RelPermalink "title" $title "lang" .Language) }}
+                {{- template "contentbody" (dict "sectList" $sectList "sectStr" $sectStr "content" .Content "product" $product "productId" $productId "weight" $parent.Params.weight "ancid" .RelPermalink "title" $title "lang" .Language) }}
         
                 <!-- increment the section number -->
                 {{- template "nextsection" $parent -}}
@@ -324,7 +327,7 @@
     {{- $sectStr := .sectStr -}}
     {{- $cont := .content -}}
     {{- $product := .product -}}
-    {{- $serviceType := .serviceType -}}
+    {{- $productId := .productId -}}
     {{- $title := .title -}}
     {{- $weight := .weight -}}
     {{- $ancid := .ancid -}}
@@ -373,46 +376,34 @@
                             {{- $targeturl = (printf "/general/%s/login" $lang) -}}
                         {{- end -}}
                     {{- else if eq $product "Garoon" -}}
-                        {{- $prod := "g" }}
-                        {{- if eq $serviceType "on-premise" }}
-                            {{- $prod = "g5" }}
-                        {{- end }}
                         {{- if eq $weight 100 -}}
-                            {{- $targeturl = (printf "/%s/%s/intro" $prod $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/intro" $productId $lang) -}}
                         {{- else if eq $weight 200 -}}
-                            {{- $targeturl = (printf "/%s/%s/admin" $prod $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/admin" $productId $lang) -}}
                         {{- else if eq $weight 300 -}}
-                            {{- $targeturl = (printf "/%s/%s/user" $prod $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/user" $productId $lang) -}}
                         {{- else if eq $weight 600 -}}
-                            {{- $targeturl = (printf "/%s/%s/option" $prod $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/option" $productId $lang) -}}
                         {{- end -}}
                     {{- else if eq $product "Mailwise" -}}
-                        {{- $prod := "m" }}
-                        {{- if eq $serviceType "on-premise" }}
-                            {{- $prod = "mw5" }}
-                        {{- end }}
                         {{- if eq $weight 100 -}}
-                            {{- $targeturl = (printf "/%s/%s/intro" $prod $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/intro" $productId $lang) -}}
                         {{- else if eq $weight 200 -}}
-                            {{- $targeturl = (printf "/%s/%s/admin" $prod $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/admin" $productId $lang) -}}
                         {{- else if eq $weight 300 -}}
-                            {{- $targeturl = (printf "/%s/%s/user" $prod $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/user" $productId $lang) -}}
                         {{- else if eq $weight 400 -}}
-                            {{- $targeturl = (printf "/%s/%s/option" $prod $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/option" $productId $lang) -}}
                         {{- end -}}
                     {{- else if eq $product "Office" -}}
-                        {{- $prod := "o" }}
-                        {{- if eq $serviceType "on-premise" }}
-                            {{- $prod = "of10" }}
-                        {{- end }}
                         {{- if eq $weight 100 -}}
-                            {{- $targeturl = (printf "/%s/%s/intro" $prod $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/intro" $productId $lang) -}}
                         {{- else if eq $weight 200 -}}
-                            {{- $targeturl = (printf "/%s/%s/admin" $prod $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/admin" $productId $lang) -}}
                         {{- else if eq $weight 300 -}}
-                            {{- $targeturl = (printf "/%s/%s/user" $prod $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/user" $productId $lang) -}}
                         {{- else if eq $weight 400 -}}
-                            {{- $targeturl = (printf "/%s/%s/option" $prod $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/option" $productId $lang) -}}
                         {{- end -}}
                     {{- else if eq $product "cypn-docs" -}}
                         {{- if eq $weight 200 -}}
