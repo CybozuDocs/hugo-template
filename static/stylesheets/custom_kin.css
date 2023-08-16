@@ -12,7 +12,7 @@
 /* 「監査ログの一覧」で使用する設定 **************************************/
 
 .audit h2 {
-    font-size:2.0625rem;
+    font-size:1.875rem;
 }
 
 .audit .id-header:has(h3){
@@ -24,6 +24,7 @@
 }
 
 .audit h3 {
+    font-size: 1.6rem;
     line-height: 1.2rem;
     /* border-left: 12px solid #ffbf00;*/
     margin-bottom: 0.5rem;
@@ -35,7 +36,7 @@
 }
 
 .audit h4 {
-    font-size: 1.125rem;
+    font-size: 1.4rem;
     border-left: 4px solid #e94f90;
     border-image: linear-gradient(to top, #287bf4 0%, #e94f90 100%);
     border-image-slice: 1;
@@ -47,7 +48,11 @@
 
 }
 .audit h5 {
-    font-size: 1rem;
+    font-size: 1.125rem;
     padding-bottom: 0.4em;
     line-height: 1.6em;
+}
+
+.article h6 {
+    font-weight: normal;
 }
