@@ -8,3 +8,63 @@
 .codeblock-wrapper + p {
     margin-top: 0.9em;
 }
+
+/* 「監査ログの一覧」で使用する設定 **************************************/
+
+/* .audit [class*="-contents"] {
+    font-weight: normal;
+} */
+
+/* .audit h5 {
+    font-weight: normal;
+} */
+
+.audit h2 {
+    font-size:2.0625rem;
+    /* line-height: 1em;
+    margin-bottom: 1.5rem;
+    margin-top: 1em;
+    padding-top: 0;
+    padding-left: 0.3em;
+    border-left: 10px solid #ffbf00; */
+}
+
+/* .audit .id-header:has(h3){
+    border-bottom: 3px solid #ffbf00;
+    margin-bottom: 1.4rem;
+
+} */
+
+.audit h3 {
+    line-height: 1.2rem;
+    border-left: 12px solid #ffbf00;
+    margin-bottom: 1rem;
+    padding-top: 0.2em;
+    padding-left: 0.4em;
+    border-image: none;
+    border-image-slice: 0;
+}
+
+.audit h4 {
+    font-size: 1.125rem;
+    border-left: 4px solid #ffbf00;
+    line-height: 1em;
+    margin-top: 1.5em;
+    padding-top: 0.4em;
+    padding-left: 0.4em;
+    padding-bottom: 0.4em;
+
+}
+
+.audit h5 {
+    font-size: 1rem;
+    padding-bottom: 0.4em;
+    line-height: 1.6em;
+    /* border-left: 15px solid #ffbf00;
+    line-height: 0.6em;
+    margin-top: 1.5em;
+    padding-top: 0.4em;
+    padding-left: 0.4em;
+    padding-bottom: 0.4em; */
+
+}
