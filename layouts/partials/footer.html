@@ -3,7 +3,8 @@
     {{- $footerLinks_Ex = "footer-links-ex" }}
 {{- end }}
 
-{{- if and (eq $.Site.Params.product "Garoon") (eq $.Site.Params.service_type_id "on-premise") }}
+{{- $u := urls.Parse $.Site.BaseURL }}
+{{- if ( hasPrefix $u.Path "/g6/" ) }}
     {{ partial "footer_gr6.html" . }}
 {{- else }}
 <footer id="page-footer" class="footer">

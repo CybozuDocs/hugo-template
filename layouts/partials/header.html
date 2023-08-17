@@ -45,8 +45,8 @@
             {{- else if eq $glang "zh-tw" }}
                 {{- $glang = "zh-TW" }}
             {{- end }}
-
-            <div id="search" class="search-wrap {{ if and (eq $.Site.Params.product "Garoon") (eq $.Site.Params.service_type_id "on-premise") (eq .Params.type "gr6/home" ) }}header-search-wrap {{ end }}">
+            {{- $u := urls.Parse $.Site.BaseURL }}
+            <div id="search" class="search-wrap {{ if and ( hasPrefix $u.Path "/g6/" ) (eq .Params.type "gr6/home" ) }}header-search-wrap {{ end }}">
                 <form id="searchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}' role="search" >
                     <div class="searchbox">
                         <input type="search" name="q" id="headerSearchBox_input" class="search-input home-search-input" role="searchbox" aria-label='{{i18n "search_word"}}' placeholder='{{i18n "Enter_keywords"}}'>

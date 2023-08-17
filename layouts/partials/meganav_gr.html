@@ -44,7 +44,8 @@
         </li>
     {{- end -}}
     </ul>
-<div class="mega-nav {{ if and (eq $.Site.Params.product "Garoon") (eq $.Site.Params.service_type_id "on-premise") ( .IsHome ) }}mega-nav-home{{ end -}}">
+{{- $u := urls.Parse $.Site.BaseURL }}
+<div class="mega-nav {{ if and ( hasPrefix $u.Path "/g6/" ) ( .IsHome ) }}mega-nav-home{{ end -}}">
 {{- if gt $seconditems 0 }}
         <div class="mega-tab-wrap">
             <div class="mega-tab-head"><h2 class="mega-tab-guide">{{ i18n "By_features" }}</h2></div>

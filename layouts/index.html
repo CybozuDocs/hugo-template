@@ -15,7 +15,8 @@
             <div class="wrapper">
                 {{- $toptitle := (i18n "Welcome" .) }}
                 <div class="welcome_message">{{$toptitle}}</div>
-                {{- if and (eq $.Site.Params.product "Garoon") (eq $.Site.Params.service_type_id "on-premise") -}}{{- else -}}
+                {{- $u := urls.Parse $.Site.BaseURL }}
+                {{- if ( hasPrefix $u.Path "/g6/" ) -}}{{- else -}}
                 <div class="search-wrap">
                     <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html"　onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}' role="search">
                         <div class="searchbox">
