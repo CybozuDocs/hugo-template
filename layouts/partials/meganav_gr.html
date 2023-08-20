@@ -20,7 +20,7 @@
   {{- $seconditems = 0 }}
 {{- end }}
 
-<nav role="navigation" aria-label="{{ i18n "Document_type" }}"> 
+<nav role="navigation" aria-label="{{ i18n "Document_type" }}">
     <ul class="g-nav" role="none" >
 {{- range $entries.ByWeight}}
     {{- if ne .Params.weight 0 }}
@@ -33,9 +33,19 @@
         </li>
     {{- end }}
 {{- end}}
+    {{- with $.Site.Params.faq_link -}}
+        <li class="g-col" role="none">
+            <a href="{{ . | relURL }}" target="_blank">
+                <span class="g-nav-title-wrap">
+                    {{- i18n "Header_nav_faq" -}}
+                    <img class="g-nav-title-wrap-external-icon" src="{{ $.Site.Params.icon_external | relURL }}" alt="">
+                </span>
+            </a>
+        </li>
+    {{- end -}}
     </ul>
-
-    <div class="mega-nav">
+{{- $u := urls.Parse $.Site.BaseURL }}
+<div class="mega-nav {{ if and ( hasPrefix $u.Path "/g6/" ) ( .IsHome ) }}mega-nav-home{{ end -}}">
 {{- if gt $seconditems 0 }}
         <div class="mega-tab-wrap">
             <div class="mega-tab-head"><h2 class="mega-tab-guide">{{ i18n "By_features" }}</h2></div>
@@ -47,7 +57,7 @@
     {{- end}}
             </div>
         </div>
-        
+
     {{- range $entries.ByWeight}}
         {{- if eq .CurrentSection $rootsect }}
             {{- template "megapanel" $rootsect }}
@@ -69,7 +79,7 @@
             {{- $curclass = "current" }}
             {{- $tabsts = "true" }}
         {{- end }}
-        
+
         {{- $menuid = (add $menuid 1)}}
         {{- $tabidx := "-1" }}
         {{- if eq $menuid 1 }}
@@ -84,7 +94,7 @@
     {{- end}}
             </ul>
 {{- end }}
-        
+
 {{- define "megapanel" }}
     {{- $cursect := . }}
     {{- $menuid := 0}}
@@ -127,7 +137,7 @@
     {{- $targetlink := . }}
     {{- range $i, $r := getCSV "," "csv/icon_images.csv" }}
         {{- if in $targetlink (index $r 0)}}
-            <i class="{{ index $r 1 }}" aria-hidden="true"></i>
+            <i class="{{ index $r 1 }} gcol-title-icon" aria-hidden="true"></i>
         {{- end }}
     {{- end }}
 {{- end }}

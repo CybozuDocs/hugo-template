@@ -147,3 +147,6 @@ other = "Some functions may not work correctly."
 
 [Locale_modal_message]
 other = "This site is intended for customers outside Japan.<br>Would you like to visit a site for Japan customers?"
+
+[Header_nav_faq]
+other = "Frequently Asked Questions"

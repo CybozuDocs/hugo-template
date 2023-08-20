@@ -1,0 +1,79 @@
+{{- if in .Params.disabled $.Site.Params.TargetRegion -}}
+    <meta http-equiv="refresh" content="0; URL=/" />
+{{- else -}}
+    {{- partial "head" . -}}
+    {{- partial "announcementbanner.html" . -}}
+    {{- partial "header" . -}}
+    <div class="page-pad"></div>
+    {{- if eq $.Site.Params.meganav true -}}
+        {{- partial "meganav" . -}}
+    {{- end -}}
+    <div class="wrapper">
+        <main id="main">
+            <div class="home-search">
+                <div class="search-wrap">
+                    <form
+                        id="homeSearchBox_form"
+                        action="{{ "" | relURL }}{{ .Lang }}/search_result.html"
+                        onsubmit='if(document.getElementById("homeSearchBox_form").value==""){return false;}'
+                        role="search"
+                    >
+                        <div class="searchbox">
+                            <input
+                                type="search"
+                                name="q"
+                                id="topSearchBox_input"
+                                class="search-input home-search-input"
+                                placeholder="{{ i18n "Enter_keywords" }}"
+                                aria-label="{{ i18n "search_word" }}"
+                            />
+                            <button
+                                type="submit"
+                                name="commit"
+                                value=""
+                                class="search-submit home-search-submit"
+                                data-disable-with=""
+                                aria-label="{{ i18n "search" }}"
+                            ></button>
+                            {{- if ne .Site.Params.google_search true -}}
+                                <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}" />
+                            {{- end -}}
+                        </div>
+                    </form>
+                    <div id="logo_place" class="search-logo"></div>
+                </div>
+            </div>
+            <div class="content-wrap">
+                {{- template "content" -}}
+            </div>
+        </main>
+    </div>
+    {{- partial "footer" . -}}
+{{- end -}}
+<script type="text/javascript" src="{{ printf "%s" "javascripts/gr6home.js" | relURL }}"></script>
+</body>
+</html>
+
+{{- define "content" -}}
+    <div id="content">
+        <template v-for="menu in menus" :key="menu.id">
+            <section class="home-menu" v-bind:id="menu.id">
+                <div class="home-menu-title">
+                    <h2 v-bind:pid="menu.id" class="home-menu-maintitle">
+                        <i v-bind:class="menu.fontawesome_icon + ' home-menu-maintitle-icon'" aria-hidden="true"></i>
+                        <span class="home-menu-maintitle-text">[[menu.name]]</span>
+                    </h2>
+                    <a v-if="menu.sub" class="home-menu-subtitle" v-bind:href="menu.sub.link_href">
+                        <i v-bind:class="menu.sub.fontawesome_icon + ' home-menu-subtitle-icon'" aria-hidden="true"></i>
+                        <span class="home-menu-subtitle-text">[[menu.sub.title]]</span>
+                    </a>
+                </div>
+                <ul class="home-menu-list">
+                    <li v-for="item in menu.items" :key="item.title" class="home-menu-item">
+                        <menu-card :type="menu.type" :admin="menu.admin" :item="item"></menu-card>
+                    </li>
+                </ul>
+            </section>
+        </template>
+    </div>
+{{- end -}}
