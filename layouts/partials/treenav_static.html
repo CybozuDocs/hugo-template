@@ -1,0 +1,53 @@
+{{- $entries := $.Site.Home.Sections}}
+  <nav class="static_tree" tabindex="0">
+    <ul>
+{{- $target := .}}
+{{- range $entries.ByWeight}}
+    {{- template "staticmenu" (dict "curnode" . "target" $target)}}
+{{- end}}
+    </ul>
+  </nav>
+
+{{- define "staticmenu" }}
+    {{- $target := .target}}
+    {{- $curnode := .curnode}}
+    {{- with $curnode}}
+        {{- $selected := "false" }}
+        {{- if .IsSection }}
+            {{- if eq .RelPermalink $target.RelPermalink}}
+                {{- $selected = "true" }}
+            {{- end }}
+        <li role="presentation">
+            {{- if eq $selected "true" }}
+            <a href="#" class="current">
+            {{- else }}
+            <a href="{{.RelPermalink}}">
+            {{- end }}
+            {{- partial "title" . | safeHTML -}}</a>
+            <ul> 
+            {{- $entries := ""}}
+            {{- if .Sections}}
+                {{- $entries = (.Pages | union .Sections) }}
+            {{- else}}
+                {{- $entries = .Pages }}
+            {{- end}}
+            {{- range $entries.ByWeight }}
+                {{- template "staticmenu" (dict "curnode" . "target" $target) }}
+            {{- end}}
+            </ul>
+        </li>
+        {{- else}}
+            {{- if eq .RelPermalink $target.RelPermalink -}}
+                {{- $selected = "true" }}
+            {{- end }}
+        <li role="presentation">
+            {{- if eq $selected "true" -}}
+            <a href="#" class="toclink current">{{ partial "title" . | safeHTML }}</a>
+            {{- else -}}
+            <a href="{{.RelPermalink}}" class="toclink">{{ partial "title" . | safeHTML }}</a>
+            {{- end }}
+        </li>
+        {{- end }}
+    {{- end }}
+{{- end }}
+
