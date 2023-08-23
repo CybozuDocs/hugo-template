@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="{{.Site.LanguageCode}}">
+  <head>
+    <meta name="robots" content="noindex">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
+    {{- $buildnum := (now.Format "200601020304") }}
+    {{- $sitename := .Site.Params.product_name }}
+    {{- $title := partial "title" . }}
+    {{- $title = printf "%s | %s" $title $sitename }}
+    <title>{{ $title }}</title>
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application.css" $buildnum | relURL }}">
+    <script src="https://kit.fontawesome.com/5b68479252.js" crossorigin="anonymous"></script>
+    {{- with .Site.Params.custom_css }}
+        {{- $files := split . "," }}
+        {{- range $files }}
+    <link rel="stylesheet" href="{{ printf "%s?%s" . $buildnum | relURL }}">
+        {{- end }}
+    {{- end}}
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="{{ printf "%s?%s" "javascripts/kintone-tutorial.js" $buildnum | relURL }}"></script>
+  </head>
+  <body class="font-{{.Lang}}">
+    <div class="tutorial-page" >
+        <div class="tutorial-index-wrap">
+            <div class="tutorial-title-wrap">
+                {{- $langlen := len $.AllTranslations }}
+                {{- $baselang := "" }}
+                {{- if ne $langlen 0 }}
+                    {{- $baselang = $.Lang }}
+                {{- end }}
+                <button id="tutorial-index-switch" class="tutorial-index-switch" aria-label="" aria-controls="" aria-expanded="false">
+                    <i id="tutorial-switch-button" class="fas fa-bars mega-tab-switch-icon" aria-hidden="true"></i>
+                </button>
+                <a class="tutorial-logo" href="{{ $.Site.BaseURL }}{{$baselang}}">
+                    {{- with $.Site.Params.logo -}}
+                        {{- $alt := "" }}
+                        {{- $hidden := "true" }}
+                        {{- with $.Site.Params.logo_alt -}}
+                            {{- $alt = $.Site.Params.logo_alt }}
+                            {{- $hidden = "false" }}
+                        {{- end }}
+                    <img class="logo-img" src="{{ $.Site.BaseURL }}{{.}}" alt="{{$alt}}" title="{{$alt}}" aria-hidden="{{$hidden}}">
+                    {{- end -}}
+                    <h1 class="tutorial-title ">{{.Site.Params.product_name}}</h1>
+                </a>
+        </div>
+            <div id="tutorial-index" class="tutorial-index">
+            {{ partial "treenav_static" . }}
+            </div>
+        </div>
+        <div class="tutorial-contents-wrap">
+            <main id="main" role="main">
+                <article class="article" role="article">
+                {{- block "main" . }}
+                {{- end }}
+                </article>
+                {{- partial "pagenav2" .}}
+            </main>
+        </div>
+    </div>
+  </body>
+</html>

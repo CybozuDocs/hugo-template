@@ -1,0 +1,18 @@
+<nav class="pagination">
+    {{- with .Site.Pages.Next . }}
+        {{ if.IsHome}}
+    <div class="pagination-previous"></div>
+        {{ else }}
+    <div class="pagination-previous">
+        <i class="fas fa-caret-left"></i>
+        <a href="{{ .Permalink }}">{{ i18n "Previous_page" }}</a>
+    </div>
+        {{- end }}
+    {{- end }}
+    {{- with .Site.Pages.Prev . }}
+    <div class="pagination-next">
+        <a href="{{ .Permalink }}">{{ i18n "Next_page" }}</a>
+        <i class="fas fa-caret-right"></i>
+    </div>
+    {{- end }}
+</nav>
