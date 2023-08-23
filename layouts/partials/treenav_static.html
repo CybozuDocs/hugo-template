@@ -14,7 +14,6 @@
     {{- with $curnode}}
         {{- $selected := "false" }}
         {{- if .IsSection }}
-            {{- $pages := .Pages }}
             {{- if eq .RelPermalink $target.RelPermalink}}
                 {{- $selected = "true" }}
             {{- end }}
@@ -28,12 +27,12 @@
             <ul> 
             {{- $entries := ""}}
             {{- if .Sections}}
-                {{- $entries = ($pages | union .Sections) }}
+                {{- $entries = (.Pages | union .Sections) }}
             {{- else}}
-                {{- $entries = $pages }}
+                {{- $entries = .Pages }}
             {{- end}}
             {{- range $entries.ByWeight }}
-                {{- template "mainmenu" (dict "curnode" . "target" $target) }}
+                {{- template "staticmenu" (dict "curnode" . "target" $target) }}
             {{- end}}
             </ul>
         </li>
