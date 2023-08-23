@@ -202,9 +202,9 @@
   color: #fff;
 }
 
-.article h3.h3-contents {
-    border-left-color: #A42F29;
-    border-image-source: linear-gradient(to top, #4A4B4C 0%, #EF3F24 100%);
+.article h3 {
+  border-left-color: #A42F29;
+  border-image-source: linear-gradient(to top, #4A4B4C 0%, #EF3F24 100%);
 }
 
 /* Tiles of the top page */
@@ -228,17 +228,6 @@
         font-size: 1.7rem;
       }
     }
-
-/* コードブロックで利用する設定 ********************************************/
-.article pre {
-  border-radius: 4px;
-}
-.codeblock-copy-button {
-  top: 10px;
-}
-.codeblock-wrapper + p {
-  margin-top: 0.9em;
-}
 
 /* 768px以上の設定 *****************************************************/
     @media only screen and (min-width:768px){

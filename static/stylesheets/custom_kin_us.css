@@ -1,0 +1,28 @@
+/* Section audit logs -------------------------------------- */
+.audit .id-header:has(h3){
+    border-bottom: 3px solid #A42F29;
+    border-image: linear-gradient(to right, #4A4B4C 0%, #EF3F24 100%);
+    border-image-slice: 1;
+}
+
+.audit h3 {
+    font-size: 1.625rem;
+    line-height: 1.2em;
+    margin-bottom: 0.5rem;
+    padding-top: 0.2em;
+    padding-left: 0;
+    border-left: none;
+    border-image: none;
+    border-image-slice: 0;
+}
+
+.audit h4 {
+    border-left: 4px solid #A42F29;
+    border-image: linear-gradient(to top, #4A4B4C 0%, #EF3F24 100%);
+    border-image-slice: 1;
+    line-height: 1em;
+    margin-top: 1.5em;
+    padding-top: 0.4em;
+    padding-left: 0.4em;
+    padding-bottom: 0.4em;
+}
