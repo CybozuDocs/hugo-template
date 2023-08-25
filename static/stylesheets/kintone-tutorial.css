@@ -1,3 +1,7 @@
+html {
+    color: #000;
+}
+
 .tutorial-page {
     display: flex;
     flex-direction: column;
@@ -7,7 +11,7 @@
     position: fixed;
     flex-shrink: 0;
     width: 100%;
-    height: 60px;
+    height: 70px;
     padding: 20px;
     z-index: 999;
     background-color: #fff;
@@ -17,6 +21,7 @@
     display: block;
     cursor: pointer;
 }
+
 #tutorial-switch-button {
     color: #999;
     vertical-align: 3px;
@@ -25,29 +30,34 @@
 .tutorial-title-wrap {
     display: flex;
     flex-direction: row;
+    padding: 10px 0 10px 10px;
     border: solid #999 1px;
-    padding: 10px 0 0 10px;
     white-space: nowrap;
     overflow: hidden;
 }
-.tutorial-logo {
+
+.logo-img{
+    width: 40px;
 }
+
 .tutorial-title {
     display: inline;
     font-weight: bold;
     font-size: 1.2em;
-
 }
+
 .tutorial-index {
     display: none;
-    line-height: 1em;
+    line-height: 1.125em;
     border: solid #999 1px;
     border-top: 0;
     padding: 0;
 }
+
 .tutorial-index ul {
     padding-inline-start: 20px;
 }
+
 .tutorial-index li {
     padding: 0;
     list-style: none;
@@ -56,13 +66,15 @@
     opacity     .1s linear .1s,
     visibility  .1s linear .1s;
 }
+
 .tutorial-index a {
     display: inline-block;
     padding: 8px 4px 8px 4px;
     margin-top: 3px 0 4px 2px;
 }
+
 .tutorial-index a:hover, .tutorial-index li a.current {
-    background-color: #ECEAF7;
+    background: rgba(255,191,3,0.3);
 }
 
 .static_tree {
@@ -76,16 +88,13 @@
     padding: 60px 20px 20px 0;
 }
 
-
 /* Override application.css settings */
 
 #main {
     padding: 20px;
     height: 100%;
-
     border: solid #999 1px;
     border-top: 0;
-
     overflow: auto;
 }
 
@@ -94,13 +103,150 @@
 }
 
 .article h1 {
-    padding-top: 0;
+    padding-top: 20px;
+    font-size: 1.8755rem;
+}
+
+.article h2,
+.article h3{
+    padding-bottom: 0.2em;
+}
+
+.article h2,
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
+    font-weight: normal;
+}
+
+.article h2 {
+    font-size:1.5625rem;
+    border-bottom: 6px solid #ffbf00;
+}
+
+.article h3{
+    font-size: 1.4375em;
+    margin-bottom: 1.375em;
+    line-height: 1.2em;
+    padding-left: 0;
+    border-left: none;
+    border-image: none;
+    border-image-slice: 0;
+    padding: 1em 0 0.375em 0;
+    background-image: repeating-linear-gradient(45deg, transparent 0 3px, #ffbf00 3px 6px);
+    background-repeat: no-repeat;
+    background-size: 100% 5px;
+    background-position: bottom;
+}
+
+.article h4 {
+    font-size: 1.25rem;
+    border-left: 6px solid #ffbf00;
+    line-height: 1em;
+    margin-top: 1.5em;
+    padding-top: 0.4em;
+    padding-left: 0.4em;
+    padding-bottom: 0.4em;
+}
+
+.article h5 {
+    font-size: 1.125rem;
+    padding-bottom: 0.4em;
 }
 
 .pagination {
-    margin-top: 2em;
+    margin-top: 3.125em;
 }
 
+.pagination-next,
+.pagination-previous {
+    font-size: 1.125rem;
+    background: linear-gradient(transparent 80%, #ffbf00 80%);
+    background-repeat: no-repeat;
+    background-size: 0;
+    transition: 0.6s;
+}
+
+.pagination-next:hover,
+.pagination-previous:hover {
+    background-size: 100%;
+}
+
+.pagination-next > i,
+.pagination-previous > i {
+    color: #000;
+    font-size: 1.25rem;
+    margin: 1em 0.125em;
+}
+
+.article ol {
+    padding-left: 0;
+}
+
+.article ol > li::marker {
+    color: #ffbf00;
+}
+
+.article ol > li {
+    border-left:none;
+    padding: 5px 0 0;
+    margin: 0 0 8px 30px;
+}
+
+.article ol > li:last-child {
+    margin: 0 0 30px 30px;
+}
+
+.step-wrap {
+    padding-top: 5px;
+    margin-top: -5px;
+}
+
+.step-label{
+    background: none;
+    padding: 0.5em;
+}
+
+.step-num{
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    font-size: 0.875rem;
+    line-height: 1.2em;
+    margin: 0;
+    background: #ffbf00;
+    color: #FFF;
+    font-weight: 900;
+    padding: 0.875em;
+}
+
+.step-desc {
+    font-weight: bold;
+    margin-top: 0;
+    margin-left: 4.0625em;
+    padding: 0.5em 0 0.375em 0;
+    background-image: repeating-linear-gradient(45deg, transparent 0 3px, #ffbf00 3px 6px);
+    background-repeat: no-repeat;
+    background-size: 100% 5px;
+    background-position: bottom;
+}
+
+.step-title-body{
+    font-size: 1.25rem;
+    display: inline-block;
+}
+
+.step-memo {
+    border: none;
+    padding: 30px 20px;
+    margin-bottom: 0;
+    margin-left: 3.5em;
+}
+
+.step-memo-blank{
+    padding-bottom: 1em;
+}
 
 /* 768px以上の設定 *****************************************************/
 @media only screen and (min-width:768px){
@@ -113,7 +259,7 @@
         width: 350px;
         height: 100%;
         padding-right: 0;
-        padding-bottom: 60px;
+        padding-bottom: 5.25em
     }
 
     .tutorial-index-switch {
@@ -127,8 +273,25 @@
         height: 100%;
     }
 
+    .tutorial-index ul {
+        padding-inline-start: 0;
+    }
+
+    .tutorial-index li li{
+        margin-left: 1.375em;
+    }
+
+    .tutorial-index li:last-child {
+        margin-bottom: 1.375em;
+    }
+
+    .logo-img{
+        width: 60px;
+    }
+
     .tutorial-title-wrap {
         border-bottom: 0;
+        padding: 25px 0 10px 10px;
     }
 
     .tutorial-contents-wrap {
@@ -142,4 +305,7 @@
         border-left: 0;
     }
 
+    .article ol {
+        padding-left: 1em;
+    }
 }
