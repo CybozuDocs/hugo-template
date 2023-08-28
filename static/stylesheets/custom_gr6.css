@@ -208,6 +208,10 @@
 .footer-mega-list-list {
   list-style: inside;
   margin: 8px 0 0 24px;
+  color: var(--link-primary-color);
+}
+
+.footer-mega-list-list a {
   color: var(--link-tertiary-color);
 }
 
@@ -307,6 +311,10 @@
   .footer-mega-list-list {
     list-style: inside;
     margin: 16px 0 0 32px;
+    color: var(--link-primary-color);
+  }
+
+  .footer-mega-list-list a {
     color: var(--link-tertiary-color);
   }
 
