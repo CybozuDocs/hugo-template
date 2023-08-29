@@ -2,9 +2,10 @@
   --color-body: #222;
   --color-secondary: #666;
   --bg-primary-color: #fff;
-  --bg-secondary-color: #f3f3f3;
+  --bg-secondary-color: #f6f6f6;
   --link-primary-color: #1b72cd;
   --link-secondary-color: #fff;
+  --link-tertiary-color: #1b70cc;
   --border-color: #c9c9c9;
 }
 
@@ -208,6 +209,10 @@
   list-style: inside;
   margin: 8px 0 0 24px;
   color: var(--link-primary-color);
+}
+
+.footer-mega-list-list a {
+  color: var(--link-tertiary-color);
 }
 
 .footer-legal {
