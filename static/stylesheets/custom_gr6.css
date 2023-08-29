@@ -314,10 +314,6 @@
     color: var(--link-primary-color);
   }
 
-  .footer-mega-list-list a {
-    color: var(--link-tertiary-color);
-  }
-
   .footer-legal {
     padding: 32px 40px;
     display: flex;
