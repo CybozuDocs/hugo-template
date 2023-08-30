@@ -1,17 +1,29 @@
 "use strict";
 (function () {
-  const headerHideWidth = 768;
-  window.addEventListener("load", function () {
-    const $headerSearch = $('.header-search-wrap');
+
+  function fixHomeSearchBoxToHeader() {
+    const $search = $('.search-wrap');
+    const $searchInput = $('.searchbox > input');
+    const $searchSubmit = $('.searchbox > button');
     $(window).on("scrollstop", function () {
-      if ($headerSearch.length === 0 ){
+      if ($search.length === 0 ){
         return;
       }
+      const headerHideWidth = 768;
       if ($(window).scrollTop() > 200 || $(window).width() < headerHideWidth ) {
-        $headerSearch.css('display', 'block');
+        $search.addClass('home-search-fixed');
+        $searchInput.addClass('home-search-fixed-input');
+        $searchSubmit.addClass('home-search-fixed-submit');
       } else {
-        $headerSearch.css('display', 'none');
+        $search.removeClass('home-search-fixed');
+        $searchInput.removeClass('home-search-fixed-input');
+        $searchSubmit.removeClass('home-search-fixed-submit');
       }
     });
+  }
+
+
+  window.addEventListener("load", function () {
+    fixHomeSearchBoxToHeader();
   });
 })();
