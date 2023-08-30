@@ -12,4 +12,5 @@
 {{- $t10 := replaceRE "{{<\\s*help\\s*>}}" $params.help $t9 }}
 {{- $t11 := replaceRE "{{<\\s*product_name\\s*>}}" $params.product_name $t10 }}
 {{- $t12 := replaceRE "{{<\\s*slash_ui\\s*>}}" $params.slash_ui $t11 }}
-{{- return ( $t12 | safeHTML ) }}
+{{- $t13 := replaceRE "{{<\\s*slash_admin\\s*>}}" $params.slash_admin $t12 }}
+{{- return ( $t13 | safeHTML ) }}
