@@ -11,7 +11,7 @@
     {{- $title = printf "%s | %s" $title $sitename }}
     <title>{{ $title }}</title>
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application.css" $buildnum | relURL }}">
-    <script src="https://kit.fontawesome.com/5b68479252.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     {{- with .Site.Params.custom_css }}
         {{- $files := split . "," }}
         {{- range $files }}
