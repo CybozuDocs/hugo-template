@@ -6,7 +6,7 @@
     <div class="adjustAnchor" id="{{$id}}">
         <h{{$level}} class="h{{$level}}-contents" pid="{{$id}}">{{$title | safeHTML}}</h{{$level}}>
     </div>
-    {{- if le $level 5 }}
+    {{- if and (le $level 5) (ne $link "") }}
     <div class="heading-link">
         <button class="heading-button" tabindex="0" aria-owns="heading-url-{{$id}}" aria-expanded="false">
             <span>{{ i18n "Permalink" }}</span>
