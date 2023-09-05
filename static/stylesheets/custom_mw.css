@@ -122,16 +122,11 @@ a,
 .audit h3 {
     font-size: 1.125rem;
     margin-top: 1.5em;
-    margin-bottom: 0.125em;
+    margin-bottom: 1em;
     border-bottom:#d0324b solid 2px;
     border-left: none;
     font-weight: bold;
 }
-
-/* .audit > p{
-    margin-left: 1.5em;
-    margin-left: 1.5em;
-} */
 
 .audit ol {
     margin: 0 0 0;
