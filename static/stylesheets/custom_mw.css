@@ -107,6 +107,45 @@ a,
     background-color: #d0324b;
 }
 
+/* Section audit logs -------------------------------------- */
+.audit h2 {
+    font-size:1.25rem;
+    border-left: solid 8px #d0324b;
+    border-bottom: none;
+    background-color: #F3F1E8;
+    margin-top: 2.5em;
+    margin-bottom: 0.125em;
+    padding: 12px;
+    line-height: 1.5em;
+}
+
+.audit h3 {
+    font-size: 1.125rem;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    border-bottom:#d0324b solid 2px;
+    border-left: none;
+    font-weight: bold;
+}
+
+.audit ol {
+    margin: 0 0 0;
+    padding-left: 0;
+}
+
+.audit ol > li > p {
+    font-weight: normal;
+}
+
+.audit ol > li {
+    font-size: 1rem;
+}
+
+.audit  ol > li::marker {
+    font-size: 1rem;
+    font-weight: normal;
+    font-family: initial;
+}
 
 @media only screen and (min-width: 768px) {
     .logo-wrap {
