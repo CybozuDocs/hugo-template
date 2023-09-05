@@ -12,7 +12,7 @@
 {{- end -}}
 <div id="page" class="page">
     <div id="tree" class="tree-wrap">
-        {{- if in .RelPermalink "/pdf.html" }}
+        {{- if or (in .RelPermalink "/pdf.html") (and (eq $.Site.Params.product "Mailwise") (in .RelPermalink "/error.html")) }}
             {{- if and (eq $.Site.Params.product "Office") (eq $.Site.Params.service_type_id "on-premise") }}
                 {{ partial "treenav" . }}
             {{- else }}

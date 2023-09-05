@@ -41,7 +41,7 @@
         let timer;
         function scrollStopTrigger() {
           if (timer) { clearTimeout(timer); }
-          timer = setTimeout(function() { $(window).trigger(scrollStop) }, 10);
+          timer = setTimeout(function() { $(window).trigger(scrollStop) }, 20);
         }
         $(window).on("scroll", scrollStopTrigger);
 
@@ -686,7 +686,7 @@
                 if ($(this).attr("href") === url) {
                     if(last === true) {
                         $(this).addClass("current");
-                        // 子ノードを保つ場合は展開させる
+                        // 子ノードを持つ場合は展開させる
                         if ($(this).parent().hasClass("jstree-closed")) {
                             $tree.jstree("open_node", $(this).parent().attr("id"));
                         }
@@ -769,6 +769,7 @@
 
             toclinks.each(function() {
                 if($(this).prop("href") === target) {
+
                     $(this).addClass("current");
 
                     const keydn = getSessionValue("keydn");
@@ -777,16 +778,21 @@
                     }
 
                     // ハイライトが画面内に収まっていない場合の表示補正
-                    let topMargin = 150;
-                    let curpos = $(this).offset().top;
-                    let dtop = $tree.offset().top;
-                    let ch = $(this).prop("offsetHeight");
+                    const hilightTop = $(this).offset().top;
+                    const treeTop = $tree.offset().top;
+                    const hilightHeight = $(this).prop("offsetHeight");
 
-                    if ((curpos + ch) > (dtop + $tree.height())) {
-                        $tree.scrollTop(curpos - topMargin);
-                    } else if (curpos < dtop) {
-                        let st = $tree.scrollTop();
-                        $tree.scrollTop(st - ch);
+                    if ((hilightTop + hilightHeight) > (treeTop + $tree.height())) {
+                        // ツリーの下にはみ出す場合
+                        if ($tree.scrollTop() <= 0) {
+                            $tree.scrollTop(hilightTop - treeTop);
+                        } else {
+                            $tree.scrollTop($tree.scrollTop() + hilightHeight);
+                        }
+                        
+                    } else if (hilightTop < treeTop) {
+                        // ツリーの上にはみ出す場合
+                        $tree.scrollTop($tree.scrollTop() - hilightHeight);
                     }
 
                     return false;
@@ -1307,7 +1313,6 @@
 
                 const $current = $("#tree-nav .current");
                 adjustTreeHeight();
-
                 // ハイライトを持つ場合
                 if($current.length > 0) {
                     // 選択されたアイテムのスクロール位置を取り出す
@@ -1330,8 +1335,14 @@
                         $current.focus();
                     }
                 } else {
-                    // ハイライトを持たない場合、先頭に位置付け
-                    $tree.scrollTop(0);
+                    const anc = location.hash;
+                    if (anc.length > 1) {
+                        // アンカーを持つ場合
+                        setTreeTocHighlight(location.href);
+                    } else {
+                        // ハイライトもアンカーも持たない場合、先頭に位置付け
+                        $tree.scrollTop(0);
+                    }
                 }
 
                 if( document.getElementById("page-toc") != null ) {
