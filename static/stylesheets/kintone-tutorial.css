@@ -118,6 +118,7 @@ html {
 .article h5,
 .article h6 {
     font-weight: normal;
+
 }
 
 .article h2 {
@@ -168,6 +169,10 @@ html {
     transition: 0.6s;
 }
 
+.pagination-next a,
+.pagination-previous a{
+    padding: 10px 0;
+}
 .pagination-next:hover,
 .pagination-previous:hover {
     background-size: 100%;
@@ -298,6 +303,7 @@ html {
         position: fixed;
         margin-left:350px;
         padding-top: 20px;
+        width: calc(100% - 350px);
     }
 
     #main {
