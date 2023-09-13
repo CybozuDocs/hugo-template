@@ -2,15 +2,12 @@
     <div>
         <button id="lang-selector" class="current-lang" aria-haspopup="listbox" aria-expanded="false">
             <i class="fas fa-globe" aria-hidden="true"></i>
-            <span id="displang" class="lang-title">{{ .Site.Params.LanguageName }}</span>
+            <span id="displang" class="lang-title">{{ .Site.Language.LanguageName }}</span>
             <i class="fas fa-chevron-down" aria-hidden="true"></i>
         </button>
         <ul id="alter-lang" class="alter-lang" role="listbox" tabindex="-1" aria-hidden="true">
-        <!--
-                <li id="lang_item_{{ .Site.Params.LanguageCode }}" class="lang-item selectlang" role="option" desturl="{{ .RelPermalink }}"><span class="lang-title">{{ .Site.Params.LanguageName }}</span></li>
-                -->
             {{- range .Translations }}
-                <li id="lang_item_{{ .Site.Params.LanguageCode }}" class="lang-item" role="option" desturl="{{ .RelPermalink }}"><span class="lang-title">{{ .Site.Params.LanguageName }}</span></li>
+                <li id="lang_item_{{ .Site.LanguageCode }}" class="lang-item" role="option" desturl="{{ .RelPermalink }}"><span class="lang-title">{{ .Site.Language.LanguageName }}</span></li>
             {{- end }}
         </ul>
     </div>
