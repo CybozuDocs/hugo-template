@@ -527,7 +527,7 @@
                     setSessionValue("dpos", pos);
 
                     // リンククリック対応
-                    const newurl = data.node.a_attr.href;
+                    let newurl = data.node.a_attr.href;
                     
                     if (typeof WOVN !== 'undefined') {
                         const wovncode = WOVN.io.getCurrentLang().code;
