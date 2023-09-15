@@ -13,9 +13,9 @@
 {{- $menu_ids := (slice "") }}
 {{- $menu_titles := (slice "") }}
 {{- $menu_urls := (slice "") }}
-{{- $menufile := printf "csv/%s/menuitems_%s.csv" $.Site.Language.Lang $.Site.Params.TargetRegion}}
+{{- $menufile := printf "csv/%s/menuitems_%s.csv" $.Lang $.Site.Params.TargetRegion}}
 {{- if ne (os.FileExists $menufile) true }}
-  {{- $menufile = printf "csv/menuitems_%s_%s.csv" $.Site.Language.Lang $.Site.Params.TargetRegion}}
+  {{- $menufile = printf "csv/menuitems_%s_%s.csv" $.Lang $.Site.Params.TargetRegion}}
 {{- end }}
 {{- range $i, $r := getCSV "," $menufile }}
     {{- $menu_ids = $menu_ids | append (index $r 0) }}

@@ -1,7 +1,7 @@
 <div class="disclaimer-wrap">
     <div class="disclaimer">
 {{- $pdf_url := "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf" }}
-{{- if or (eq $.Site.Params.languageCode "zh-cn") (eq $.Site.Params.languageCode "zh-jp") }}
+{{- if or (eq $.Site.LanguageCode "zh-cn") (eq $.Site.LanguageCode "zh-jp") }}
     {{- $pdf_url = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf" }}
 {{- end }}
         <a href="{{$pdf_url}}" target="_blank">

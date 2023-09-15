@@ -29,7 +29,7 @@
                 </h1>
             </div>
 
-        {{- $glang := $.Site.Language.Lang}}
+        {{- $glang := $.Lang}}
         {{- $disp_sbox := true }}
         {{- if eq .Params.type "search_result" }}
             {{- $disp_sbox = false }}
@@ -52,7 +52,7 @@
                         <input type="search" name="q" id="headerSearchBox_input" class="search-input home-search-input" role="searchbox" aria-label='{{i18n "search_word"}}' placeholder='{{i18n "Enter_keywords"}}'>
                         <button type="submit" class="search-submit" data-disable-with="" aria-label='{{i18n "search"}}'></button>
             {{- if ne .Site.Params.google_search true }}
-                        <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}">
+                        <input type="hidden" name="ct" value="{{ .Site.Params.search_all }}">
             {{- end }}
                     </div>
                 </form>

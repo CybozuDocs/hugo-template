@@ -36,7 +36,7 @@
                                 aria-label="{{ i18n "search" }}"
                             ></button>
                             {{- if ne .Site.Params.google_search true -}}
-                                <input type="hidden" name="ct" value="{{ .Site.Language.Params.search_all }}" />
+                                <input type="hidden" name="ct" value="{{ .Site.Params.search_all }}" />
                             {{- end -}}
                         </div>
                     </form>

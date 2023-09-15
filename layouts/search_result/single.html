@@ -54,8 +54,8 @@
                             <mf-search-box ajax-url="//mf2ap005.marsflag.com/cybozu__support__help/x_search.x"
                             imgsize-default="0"
 
-                            category-default="{{ .Site.Language.Params.search_all }}"
-                            force-category-csv="{{ .Site.Language.Params.search_categories }}"
+                            category-default="{{ .Site.Params.search_all }}"
+                            force-category-csv="{{ .Site.Params.search_categories }}"
 
                             doctype-hidden="true"
                             sort-hidden="true"
@@ -86,7 +86,7 @@
     <script>var category_list = {{$categories}};</script>
         {{- $buildnum := (now.Format "2006010203") }}
     <script type="text/javascript" src="{{ printf "%s?%s" "javascripts/helpsearch.js" $buildnum | relURL }}"></script>
-    {{- $glang := $.Site.Language.Lang}}
+    {{- $glang := $.Lang}}
     {{- if eq $glang "zh" }}
         {{- $glang = "zh-CN" }}
     {{- else if eq $glang "zh-tw" }}

@@ -21,7 +21,7 @@
 {{- $diabled := .Params.disabled }}
 
 {{- range $.AllTranslations }}
-    {{- if eq .Site.Language.Lang $deflang }}
+    {{- if eq .Lang $deflang }}
     <link rel="alternate" href="https://{{.Site.Params.domain}}{{.RelPermalink}}" hreflang="x-default" />
     {{- end }}
 {{- end }}
@@ -39,7 +39,7 @@
 
         {{- range $.AllTranslations }}
             {{- $disp := "true" }}
-            {{- $thislang := .Site.Language.Lang }}
+            {{- $thislang := .Lang }}
             {{- if eq $thislang "zh" }}
                 {{- $thislang = "zh-Hans" }}
             {{- else if eq $thislang "zh-tw" }}
@@ -50,7 +50,7 @@
                 {{- if and (eq $product "Garoon") (eq $.Site.Params.service_type_id "on-premise") }}
                     {{- $disp = "false" }}
                 {{- end }}
-                {{- if eq .Site.Language.Lang "zh-tw" }}
+                {{- if eq .Lang "zh-tw" }}
                     {{- $disp = "false" }}
                 {{- end }}
             {{- end -}}

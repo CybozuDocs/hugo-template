@@ -8,7 +8,7 @@
 {{- partial "meganav" . }}
 <div class="article clearfix">
     <div class="sect-wrap">
-    {{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.Params.languageCode "ja-jp") (ne $.Site.Params.languageCode "ja-cn") }}
+    {{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.LanguageCode "ja-jp") (ne $.Site.LanguageCode "ja-cn") }}
         {{ partial "disclaimer" . }}
     {{- end }}
     {{- partial "breadcrumb" . -}}
