@@ -12,7 +12,7 @@
 {{- end }}
 <div id="page" class="page" >
     <div id="tree" class="tree-wrap">
-        {{- if eq $.Site.Params.product "kintone" }}
+        {{- if eq $.Site.Params.json_tree true }}
             {{ partial "treenav3" . }}
         {{- else }}
             {{ partial "treenav" . }}
@@ -21,6 +21,9 @@
     <div id="contents" class="contents-wrap">
         {{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.LanguageCode "ja-jp") (ne $.Site.LanguageCode "ja-cn") }}
             {{ partial "disclaimer" . }}
+        {{- end }}
+        {{- if eq $.Site.Params.use_wovn true }}
+            {{ partial "disclaimer2" . }}
         {{- end }}
         <main id="main" role="main">
             {{- partial "breadcrumb" . -}}

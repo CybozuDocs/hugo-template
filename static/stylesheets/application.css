@@ -413,6 +413,13 @@ li .lang-title {
     margin-left: 5px;
     font-size:1.25em;
 }
+.disclaimer-note {
+    display: none;
+    padding: 0.5em 1em;
+    background-color: #eceaf7;
+    border-radius: 6px;
+    border: solid 1px #a298dc;
+}
 /* -------------------------end of disclaimer */
 
 /* mega menu -------------------------------------------- */

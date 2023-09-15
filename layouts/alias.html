@@ -11,7 +11,17 @@
       const url = {{ .Permalink | relURL }};
       const query = window.location.search;
       const hash = window.location.hash;
-      window.location.href = url + query + hash;
+
+      if (typeof WOVN !== 'undefined') {
+        window.addEventListener('wovnLangChanged', function () {
+            const wovnobj = WOVN.io.getCurrentLang();
+            const wovncode = wovnobj.code;
+            const wovnurl = url.replace("/en/", "/" + wovncode + "/");
+            window.location.href = wovnurl + query + hash;
+        });
+      } else {
+        window.location.href = url + query + hash;
+      }
   }
   </script>
 </html>
