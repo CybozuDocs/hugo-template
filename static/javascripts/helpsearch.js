@@ -75,6 +75,7 @@
                     case "ja":
                     case "zh":
                     case "zh-tw":
+                    case "es":
                         this.lang = this.app;
                         this.app = "common";
                         break;
@@ -239,6 +240,23 @@
                             if (i >= 100) break;
                         }
                         vm.pages = pages;
+
+                        if (typeof WOVN !== 'undefined') {
+                            const paths = location.pathname.split("/");
+                            const wovncode = WOVN.io.getCurrentLang().code;
+                            const resourcefile = "/" + paths[1] + "/json/" + wovncode + "/category_list.json";
+                            fetch(resourcefile)
+                                .then(response => response.json())
+                                .then((data) => { 
+                                    vm.ctabs = data.us;
+                                });
+                        } else {
+                            // category_list is defined Global by Hugo template
+                            if (category_list !== null ) {
+                                vm.ctabs = category_list;
+                            }
+                        }
+
                     }
 
                     if(jd.hasOwnProperty("items")) {

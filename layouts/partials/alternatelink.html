@@ -18,7 +18,7 @@
     {{- $regions = slice "jp" }}
 {{- end }}
 
-{{- $diabled := .Params.disabled }}
+{{- $disabled := .Params.disabled }}
 
 {{- range $.AllTranslations }}
     {{- if eq .Lang $deflang }}
@@ -27,7 +27,7 @@
 {{- end }}
 
 {{- range $regions }}
-    {{- if in $diabled . }}
+    {{- if in $disabled . }}
     {{- else }}
         {{- $curregion := ( . | lower ) }}
         {{- $domain := "jp.cybozu.help" }}
@@ -60,5 +60,27 @@
     <link rel="alternate" href="https://{{$domain}}{{.RelPermalink}}" hreflang="{{$lang}}" />
             {{- end }}
         {{- end }}
+
+        {{- if eq $curregion "us" }}
+            {{- $urlParts := split $.RelPermalink "/" }}
+            {{- $additionalLangs := index $.Site.Data "language_list" }}
+            {{- range $additionalLangs.languages }}
+                {{- $languageCode := .language_code }}
+                {{- $idx := 0 }}
+                {{- $newTarget := "" }}
+                {{- range $urlParts }}
+                    {{- if ne . "" }}
+                        {{- if eq $idx 2 }}
+                            {{- $newTarget = printf "%s/%s" $newTarget $languageCode }}
+                        {{- else }}
+                            {{- $newTarget = printf "%s/%s" $newTarget . }}
+                        {{- end }}
+                    {{- end }}
+                    {{- $idx = add $idx 1 }}
+                {{- end }}
+    <link rel="alternate" href="https://{{$domain}}{{$newTarget}}" hreflang="{{$languageCode}}" />
+            {{- end }}
+        {{- end }}
+
     {{- end }}
 {{- end }}
