@@ -1,18 +1,23 @@
 <nav class="pagination">
-    {{- with .Site.Pages.Next . }}
-        {{ if.IsHome}}
+{{ if eq (.Site.Pages.Next .) nil }}
     <div class="pagination-previous"></div>
-        {{ else }}
+{{ else }}
+    {{- with .Site.Pages.Next . }}
     <div class="pagination-previous">
         <i class="fas fa-caret-left" aria-hidden="true"></i>
         <a href="{{ .Permalink }}">{{ i18n "Previous_page" }}</a>
     </div>
-        {{- end }}
     {{- end }}
+{{- end }}
+
+{{- if ne (.Site.Pages.Prev .) nil }}
     {{- with .Site.Pages.Prev . }}
+      {{- if ne .IsHome true }} <!-- home page of kintone tutorial is not visible -->
     <div class="pagination-next">
         <a href="{{ .Permalink }}">{{ i18n "Next_page" }}</a>
         <i class="fas fa-caret-right" aria-hidden="true"></i>
     </div>
+      {{- end }}
     {{- end }}
+{{- end }}
 </nav>
