@@ -12,7 +12,7 @@
 
 {{- if ne (.Site.Pages.Prev .) nil }}
     {{- with .Site.Pages.Prev . }}
-      {{- if ne .IsHome true }} <<!-- home page of kintone tutorial is not visible -->
+      {{- if ne .IsHome true }} <!-- home page of kintone tutorial is not visible -->
     <div class="pagination-next">
         <a href="{{ .Permalink }}">{{ i18n "Next_page" }}</a>
         <i class="fas fa-caret-right" aria-hidden="true"></i>
