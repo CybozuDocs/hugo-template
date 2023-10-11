@@ -2,6 +2,10 @@ html {
     color: #000;
 }
 
+.tutorial-page-header, .tutorial-page-footer {
+    display: none;
+}
+
 .tutorial-page {
     display: flex;
     flex-direction: column;
@@ -255,6 +259,27 @@ html {
 
 /* 768px以上の設定 *****************************************************/
 @media only screen and (min-width:768px){
+    .tutorial-page-header, .tutorial-page-footer {
+        display: block;
+        position: fixed;
+        height: 21px;
+        z-index: 999;
+        background-color: #fff;
+    }
+
+    .tutorial-page-header {
+        top: 0;
+        width: calc(100% - 20px);
+        border-bottom: solid #999 1px;
+    }
+
+    .tutorial-page-footer {
+        bottom: 0;
+        margin-left: 350px;
+        width: calc(100% - 370px);
+        border-top: solid #999 1px;
+    }
+
     .tutorial-page {
         flex-direction: row;
     }
@@ -300,15 +325,14 @@ html {
     }
 
     .tutorial-contents-wrap {
-        position: fixed;
         margin-left:350px;
         padding-top: 20px;
         width: calc(100% - 350px);
     }
 
     #main {
-        border: solid #999 1px;
         border-left: 0;
+        border-bottom: 0;
     }
 
     .article ol {
