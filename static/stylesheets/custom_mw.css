@@ -157,8 +157,11 @@ a,
         right: 0;
     }
 
+    .g-nav {
+        flex-wrap: nowrap;
+    }
     .g-col {
-        width: 25%;
+        width: 100%;
     }
 
     .subnavi {
