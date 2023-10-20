@@ -422,6 +422,8 @@
                             {{- $targeturl = (printf "/cypn-docs/%s/gr2tc_ldap" $lang) -}}
                         {{- else if eq $weight 400 -}}
                             {{- $targeturl = (printf "/cypn-docs/%s/grnmigration" $lang) -}}
+                        {{- else if eq $weight 450 -}}
+                            {{- $targeturl = (printf "/cypn-docs/%s/grnmigration_appendix" $lang) -}}
                         {{- else if eq $weight 500 -}}
                             {{- $targeturl = (printf "/cypn-docs/%s/groupmail" $lang) -}}
                         {{- else if eq $weight 1700 -}}
