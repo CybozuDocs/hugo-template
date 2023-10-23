@@ -11,7 +11,7 @@
     {{- else if eq $.Site.Params.product "Mailwise" }}
         {{- $lastpage = (slice "/user/basic/" "/user/personal/" "/admin/spec/" "/admin/system/" "/option/migration/" "/intro/first/" "/intro/install/" "/intro/verup/" "/intro/uninstall/") }}
     {{- else if eq $.Site.Params.product "Office" }}
-        {{- $lastpage = (slice "/intro/first/" "/intro/install/" "/intro/uninstall/" "/option/migration/" "/guide/" "/pdf/" "/error/") }}
+        {{- $lastpage = (slice "/intro/first/" "/intro/install/" "/intro/uninstall/" "/option/migration/" "/guide/" "/pdf/") }}
     {{- end }}
     {{- range $lastpage }}
         {{- if in $.RelPermalink . }}
