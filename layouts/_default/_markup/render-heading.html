@@ -15,7 +15,7 @@
         {{- end }}
     {{- else }}
         {{- $link := (printf "https://%s%s" .Page.Site.Params.domain .Page.RelPermalink) }}
-        {{- if and (eq .Page.Site.Params.product "Mailwise") (in $link "/error.html") (gt .Level 2)}}
+        {{- if or (eq .Page.Site.Params.product "Mailwise") (in $link "/error.html") (gt .Level 2) (and (eq .Page.Site.Params.product "Office") (in $link "/error/") (gt .Level 2))}}
             {{- $link = "" }}
         {{- end }}
         {{- template "anchorlink" (dict "level" .Level "link" $link "id" .Anchor "title" .Text ) }}
