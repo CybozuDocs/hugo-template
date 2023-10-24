@@ -1,0 +1,8 @@
+{{- $pdf_url := "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf" }}
+{{- if or (eq .LanguageCode "zh-cn") (eq .LanguageCode "zh-jp") }}
+    {{- $pdf_url = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf" }}
+{{- end }}
+<li class="footer-mega-list-item">
+  <a href="{{$pdf_url}}" target="_blank">{{ i18n "MT_Disclaimer" }}</a>
+  <i class="far fa-file-pdf index-pdf" aria-hidden="true"></i>
+</li>

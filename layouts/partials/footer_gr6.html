@@ -12,15 +12,21 @@
     {{- end -}}
 {{- end -}}
 
+{{- $pdf_url := "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf" }}
+{{- if or (eq $.Site.LanguageCode "zh-cn") (eq $.Site.LanguageCode "zh-jp") }}
+    {{- $pdf_url = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf" }}
+{{- end }}
+{{- $legal_menu = $legal_menu | append (printf "%s%s%s%s%s" "999" $sep (i18n "MT_Disclaimer") $sep $pdf_url) -}}
+
 <footer id="page-footer" class="footer{{- if .IsHome }} footer-home{{- end }}">
 <div class="footer-home">
     {{- if .IsHome -}}
     <div class="footer-mega">
         <ul class="footer-mega-list">
-            {{- range $mega_menus }}
+            {{- range $index, $val := $mega_menus }}
                 <li class="footer-mega-item">
                     {{- $category_title := "" }}{{ $links := slice }}
-                    {{- range $i, $r := . }}
+                    {{- range $i, $r := $val }}
                         {{- if eq $i 0 }}
                             {{- $category_title = index (split $r $sep) 0 }}
                         {{- else }}
@@ -37,6 +43,10 @@
                             {{- $text := index $link 0 }}{{ $href := index $link 1 }}
                             <li class="footer-mega-list-item"><a href="{{ $href }}">{{ $text }}</a></li>
                         {{- end -}}
+                        {{/* Insert disclaimer into last menu */}}
+                        {{- if and ( eq $index "3" ) (ne $.Site.LanguageCode "ja-jp") (ne $.Site.LanguageCode "ja-cn") }}
+                            {{- partial "disclaimer3" (dict "LanguageCode" $.Site.LanguageCode ) }}
+                        {{- end }}
                     </ul>
                 </li>
             {{- end -}}
