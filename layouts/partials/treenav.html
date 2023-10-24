@@ -1,7 +1,9 @@
 {{- $entries := "" }}
 {{- $needtoc := false }}
 {{- $islastsect := false }}
-{{- $entries = $.Site.Home.Sections}}
+{{- $tocregex := "<h[23].*?>(.|\n)*?</h[23]>" }}
+{{- $entries = $.Site.Home.Sections }}
+{{- $currentSection := .CurrentSection.Section }}
 
 <div id="tree-nav">
 {{- if eq $.Site.Params.toc_in_tree true -}}
@@ -11,7 +13,7 @@
     {{- else if eq $.Site.Params.product "Mailwise" }}
         {{- $lastpage = (slice "/user/basic/" "/user/personal/" "/admin/spec/" "/admin/system/" "/option/migration/" "/intro/first/" "/intro/install/" "/intro/verup/" "/intro/uninstall/") }}
     {{- else if eq $.Site.Params.product "Office" }}
-        {{- $lastpage = (slice "/intro/first/" "/intro/install/" "/intro/uninstall/" "/option/migration/" "/guide/" "/pdf/") }}
+        {{- $lastpage = (slice "/intro/first/" "/intro/install/" "/intro/uninstall/" "/option/migration/" "/guide/" "/pdf/" "/error/") }}
     {{- end }}
     {{- range $lastpage }}
         {{- if in $.RelPermalink . }}
@@ -22,9 +24,12 @@
     {{- $title1 := . }}
     {{- $link2  := "" }}
     {{- $title2 := . }}
-    
+
     {{- $parenttree := false }}
-    
+
+    {{- if and ( eq $.Site.Params.product "Office" ) ( eq $currentSection "error" ) }}
+        {{- $tocregex = "<h2.*?>(.|\n)*?</h2>" }}
+    {{- end }}
     {{- if or (eq $.Site.Params.product "Garoon") (eq $.Site.Params.product "Mailwise") (eq $.Site.Params.product "Office")}}
         {{- $needtoc = true }}
         {{- if in .RelPermalink "/application.html" }}
@@ -71,7 +76,7 @@
     <ul>
 {{- $target := .}}
 {{- range $entries.ByWeight}}
-    {{- template "mainmenu" (dict "curnode" . "target" $target "needtoc" $needtoc)}}
+    {{- template "mainmenu" (dict "curnode" . "target" $target "needtoc" $needtoc "tocregex" $tocregex )}}
 {{- end}}
     </ul>
   </nav>
@@ -81,6 +86,9 @@
     {{- $target := .target}}
     {{- $curnode := .curnode}}
     {{- $needtoc := .needtoc}}
+    {{- $tocregex := .tocregex }}
+    {{ "aaa" }}
+    {{ $tocregex }}
     {{- with $curnode}}
         {{- $opened := "false" }}
         {{- $selected := "false" }}
@@ -110,16 +118,16 @@
             <a href="{{.RelPermalink}}">
                   {{- end }}
                   {{- partial "title" . | safeHTML -}}</a>
-            <ul> 
+            <ul>
                     {{- $entries := ""}}
                     {{- if .Sections}}
                         {{- $entries = ($pages | union .Sections) }}
                     {{- else}}
                         {{- $entries = $pages }}
                     {{- end}}
-                    
+
                     {{- range $entries.ByWeight }}
-                        {{- template "mainmenu" (dict "curnode" . "target" $target "needtoc" $needtoc) }}
+                        {{- template "mainmenu" (dict "curnode" . "target" $target "needtoc" $needtoc "tocregex" $tocregex ) }}
                     {{- end}}
             </ul>
                 {{- end}}
@@ -136,7 +144,7 @@
                 {{- $toclen := 0 }}
                 {{- if eq $needtoc true -}}
                     {{- $cont := .Content }}
-                    {{- $tocs = findRE "<h[23].*?>(.|\n)*?</h[23]>" $cont }}
+                    {{- $tocs = findRE $tocregex $cont }}
                     {{- $toclen = (len $tocs) }}
                 {{- end }}
 
@@ -158,40 +166,40 @@
                     {{- $curitem := "" }}
                     {{- $prevtitem := "" }}
                     {{- $ulopen := false }}
-                    
+
                     {{- range $tocs }}
                         {{- $curitem = . }}
                         {{- $haschild := false }}
-                        
+
                         {{- if ne $prevtitem "" }}
                             {{- if and (in $prevtitem "<h2") (in $curitem "<h3") }}
                                 {{- $haschild = true }}
                             {{- end }}
                             {{- template "treeitem" (dict "tocitem" $prevtitem "haschild" $haschild "pageurl" $pageurl ) }}
                         {{- end }}
-                        
+
                         {{- if eq $haschild true }}
                         <ul class="twig-parent">
                             {{- $haschild = false }}
                             {{- $ulopen = true }}
                         {{- end }}
-                        
+
                         {{- if ne $prevtitem "" }}
                             {{- if and (in $prevtitem "<h3") (in $curitem "<h2") }}
                         </ul>
                                 {{- $ulopen = false }}
                             {{- end }}
                         {{- end }}
-                        
+
                         {{- $loopcnt = (add $loopcnt 1) }}
-                        
+
                         {{- if eq $loopcnt $toclen }}
                             {{- template "treeitem" (dict "tocitem" $curitem "haschild" false "pageurl" $pageurl ) }}
                             {{- if eq $ulopen true }}
                         </ul>
                             {{- end }}
                         {{- end }}
-                        
+
                         {{- $prevtitem = $curitem }}
                     {{- end }}
                     </ul>
@@ -206,7 +214,7 @@
     {{- $tocitem := .tocitem }}
     {{- $haschild := .haschild }}
     {{- $pageurl := .pageurl }}
-     
+
     {{- $anc := "" }}
     {{- $params := split $tocitem " " }}
     {{- range $params }}
