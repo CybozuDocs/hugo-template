@@ -1,0 +1,6 @@
+{{- $pdf_url := "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf" }}
+{{- if or (eq $.Site.LanguageCode "zh-cn") (eq $.Site.LanguageCode "zh-jp") }}
+    {{- $pdf_url = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf" }}
+{{- end }}
+{{- $html := (printf "<li><a href=\"%s\" target=\"_blank\">%s</a><i class=\"far fa-file-pdf index-pdf\" aria-hidden=\"true\"></i></li>" $pdf_url (i18n "MT_Disclaimer") ) }}
+{{- return $html }}

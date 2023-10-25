@@ -1,0 +1,41 @@
+{{- $tmptitle_pref := "<div class=\"tmp-tile-title\">" }}
+{{- $tmptitle := printf "%s(.|\n)*?</div>" $tmptitle_pref }}
+{{- $div_title := findRE $tmptitle .Inner }}
+{{- $title := strings.TrimPrefix $tmptitle_pref (index $div_title 0) }}
+{{- $title = strings.TrimSuffix "</div>" $title }}
+{{- $tmptext_pref := "<div class=\"tmp-tile-text\">" }}
+{{- $tmptext := printf "%s(.|\n)*?</div>" $tmptext_pref }}
+{{- $div_text := findRE $tmptext .Inner }}
+{{- $text := strings.TrimPrefix $tmptext_pref (index $div_text 0) }}
+{{- $text = strings.TrimSuffix "</div>" $text }}
+{{- $link_href := .Get "link_href" -}}
+<div class="col-tile col-tile-gr col-tile-gr2 col-flat">
+    <div class="tile-head tile-head2">
+    {{- if and $title (.Get "fontawesome_icon") -}}
+        {{- if $link_href -}}
+        <a href="{{- $link_href -}}" target="_self">
+            <div class="tile-icon">
+                <i class="{{- .Get "fontawesome_icon" -}}" aria-hidden="true"></i>
+            </div>
+            <h3 class="tile-title">{{- $title | safeHTML -}}</h3>
+        </a>
+        {{- else -}}
+        <div class="tile-icon">
+            <i class="{{ .Get "fontawesome_icon" }} nolink" aria-hidden="true"></i>
+        </div>
+        <h3 class="tile-title nolink">{{- $title | safeHTML  -}}</h3>
+        {{- end -}}
+    {{- end -}}
+    </div>
+    <div class="tile-text tile-text2">
+        {{- if and (ne $.Site.LanguageCode "ja-jp") (ne $.Site.LanguageCode "ja-cn") }}
+            {{/* Insert into ul tag */}}
+            {{- $disclaimer := partial "disclaimer4.html" . -}}
+            {{- $content := ( $text | markdownify ) }}
+            {{- $html := replaceRE "</ul>" (printf "%s</ul>" $disclaimer ) $content }}
+            {{- $html  | safeHTML }}
+        {{- else -}}
+            {{- $text | markdownify | safeHTML -}}
+        {{- end -}}
+    </div>
+</div>
