@@ -4,6 +4,7 @@
 }
 .codeblock-copy-button {
     top: 10px;
+    right: 10px;
 }
 .codeblock-wrapper + p {
     margin-top: 0.9em;
