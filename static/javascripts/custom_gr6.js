@@ -34,7 +34,14 @@
     $(window).on("scrollstop", function () {
       if ($(window).scrollTop() > 200 || $(window).width() < headerHideWidth ) {
         moveSearchBoxToHeader();
-      } else if ( $(window).width() < headerHideWidth ) {
+      } else {
+        moveSearchBoxToMain();
+      }
+    });
+
+    $(window).resize(function() {
+      if ($(window).width() < headerHideWidth ) {
+        moveSearchBoxToHeader();
       } else {
         moveSearchBoxToMain();
       }
