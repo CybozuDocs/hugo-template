@@ -27,10 +27,14 @@
 
   window.addEventListener("load", function () {
     const headerHideWidth = 768;
+    if ($(window).width() < headerHideWidth) {
+      moveSearchBoxToHeader();
+    }
 
     $(window).on("scrollstop", function () {
       if ($(window).scrollTop() > 200 || $(window).width() < headerHideWidth ) {
         moveSearchBoxToHeader();
+      } else if ( $(window).width() < headerHideWidth ) {
       } else {
         moveSearchBoxToMain();
       }

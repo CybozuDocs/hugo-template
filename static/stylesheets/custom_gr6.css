@@ -10,7 +10,6 @@
 }
 
 .home-search {
-  display: none;
   background-color: #015aaa;
 }
 
@@ -32,9 +31,9 @@
 .home-search-fixed {
   position: fixed;
   z-index: 9999;
-  right: 130px;
-  top: 5px;
-  max-width: 320px;
+  left: 16px;
+  top: 48px;
+  min-width: calc(100% - 16px);
 }
 
 .home-search-fixed-input {
@@ -380,8 +379,15 @@
   }
 
   .home-search {
-    display: block;
     padding: 40px 0;
+  }
+
+  .home-search-fixed {
+    left: initial !important;
+    right: 130px;
+    top: 5px !important;
+    max-width: 320px;
+    min-width: auto;
   }
 
   .home-menu {
