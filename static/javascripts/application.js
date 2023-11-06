@@ -520,6 +520,17 @@
                 initPage();
             });
 
+            $tree.on("open_node.jstree", function(e, data) {
+                // 開閉しても現在位置のハイライトを維持する
+                const currentNodeId = data.node.children.find(function(id) {
+                    const currentNodeHref = $("#" + id).find(".jstree-anchor").attr("href");
+                    return currentNodeHref === location.pathname;
+                });
+                if (currentNodeId) {
+                    $("#" + currentNodeId).find(".jstree-anchor").addClass("current");
+                }
+            });
+
             $tree.on("changed.jstree", function (e, data) {
                 if (data.action === "select_node") {
                     const pos = $tree.scrollTop();
