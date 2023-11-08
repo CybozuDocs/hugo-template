@@ -18,7 +18,7 @@
                     {{- if eq $.Site.Params.google_search true -}}
                     <div id="main_form">
                         <div role="search" class="search-part">
-                            <input type="search" v-model="search_words" v-on:keyup.enter="submit" class="search-words" v-bind:disabled="searching == true" aria-label='{{i18n "search_word"}}'>
+                            <input type="search" v-model="search_words" v-on:keyup.enter="submit_button" class="search-words" v-bind:disabled="searching == true" aria-label='{{i18n "search_word"}}'>
                             <button role="button" class="search-button" v-on:click="submit_button" v-bind:disabled="searching == true" title='{{i18n "search"}}' aria-label='{{i18n "search"}}'><i class="fa fa-search" aria-hidden="true"></i>
                             </button> 
                         </div>
