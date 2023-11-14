@@ -27,5 +27,16 @@
         {{- end -}}
     {{- end -}}
     </div>
-    <div class="tile-text tile-text2">{{- $text | markdownify | safeHTML  -}}</div>
+    <div class="tile-text tile-text2">
+        {{- if and (eq (.Get "has_disclaimer") "true")
+            (ne $.Site.LanguageCode "ja-jp") (ne $.Site.LanguageCode "ja-cn") -}}
+            {{/* Insert into ul tag */}}
+            {{- $disclaimer := partial "disclaimer4.html" . -}}
+            {{- $content := ( $text | markdownify ) }}
+            {{- $html := replaceRE "</ul>" (printf "%s</ul>" $disclaimer ) $content }}
+            {{- $html  | safeHTML }}
+        {{- else }}
+            {{- $text | markdownify | safeHTML  -}}
+        {{- end -}}
+    </div>
 </div>
