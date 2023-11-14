@@ -1,0 +1,6 @@
+{{- $languageCode := .languageCode }}
+{{- $pdf_url := "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf" }}
+{{- if or (eq $languageCode "zh-cn") (eq $languageCode "zh-jp") }}
+    {{- $pdf_url = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf" }}
+{{- end }}
+{{- return $pdf_url -}}

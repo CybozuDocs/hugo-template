@@ -1,9 +1,6 @@
 <div class="disclaimer-wrap">
     <div class="disclaimer">
-{{- $pdf_url := "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf" }}
-{{- if or (eq $.Site.LanguageCode "zh-cn") (eq $.Site.LanguageCode "zh-jp") }}
-    {{- $pdf_url = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf" }}
-{{- end }}
+    {{- $pdf_url := partial "disclaimer_pdf_url" (dict "languageCode" $.Site.LanguageCode )}}
         <a href="{{$pdf_url}}" target="_blank">
             <i class="fas fa-chevron-right" aria-hidden="true"></i>
             {{ i18n "MT_Disclaimer" }}

@@ -71,11 +71,7 @@
 </footer>
 
 {{- define "disclaimer" }}
-    {{- $languageCode := .languageCode }}
-    {{- $pdf_url := "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf" }}
-    {{- if or (eq $languageCode "zh-cn") (eq $languageCode "zh-jp") }}
-        {{- $pdf_url = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf" }}
-    {{- end }}
+    {{- $pdf_url := partial "disclaimer_pdf_url" (dict "languageCode" .languageCode )}}
     <li class="footer-mega-list-item">
     <a href="{{ $pdf_url }}" target="_blank">{{ i18n "MT_Disclaimer" }}</a>
     <i class="far fa-file-pdf index-pdf" aria-hidden="true"></i>
