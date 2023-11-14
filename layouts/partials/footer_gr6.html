@@ -45,7 +45,7 @@
                         {{- end -}}
                         {{/* Insert disclaimer into last menu */}}
                         {{- if and ( eq $index "3" ) (ne $.Site.LanguageCode "ja-jp") (ne $.Site.LanguageCode "ja-cn") }}
-                            {{- partial "disclaimer3" (dict "LanguageCode" $.Site.LanguageCode ) }}
+                            {{- template "disclaimer" (dict "languageCode" $.Site.LanguageCode ) }}
                         {{- end }}
                     </ul>
                 </li>
@@ -69,3 +69,15 @@
     </div>
 </div>
 </footer>
+
+{{- define "disclaimer" }}
+    {{- $languageCode := .languageCode }}
+    {{- $pdf_url := "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf" }}
+    {{- if or (eq $languageCode "zh-cn") (eq $languageCode "zh-jp") }}
+        {{- $pdf_url = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf" }}
+    {{- end }}
+    <li class="footer-mega-list-item">
+    <a href="{{ $pdf_url }}" target="_blank">{{ i18n "MT_Disclaimer" }}</a>
+    <i class="far fa-file-pdf index-pdf" aria-hidden="true"></i>
+    </li>
+{{- end -}}
