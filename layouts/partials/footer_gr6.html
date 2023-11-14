@@ -12,12 +12,6 @@
     {{- end -}}
 {{- end -}}
 
-{{- $pdf_url := "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf" }}
-{{- if or (eq $.Site.LanguageCode "zh-cn") (eq $.Site.LanguageCode "zh-jp") }}
-    {{- $pdf_url = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf" }}
-{{- end }}
-{{- $legal_menu = $legal_menu | append (printf "%s%s%s%s%s" "999" $sep (i18n "MT_Disclaimer") $sep $pdf_url) -}}
-
 <footer id="page-footer" class="footer{{- if .IsHome }} footer-home{{- end }}">
 <div class="footer-home">
     {{- if .IsHome -}}
