@@ -4,7 +4,7 @@
 {{- range first 1 $ancs}}
     {{- $preanc = .}}
 {{- end}}
-{{- if or (eq .Page.Site.Params.product "Garoon") (eq .Page.Site.Params.product "Mailwise") (eq .Page.Site.Params.product "Office") }}
+{{- if or (eq .Page.Site.Params.product "Garoon") (eq .Page.Site.Params.product "Mailwise") (eq .Page.Site.Params.product "Office") (eq .Page.Site.Params.product "Remote")}}
     {{- if eq .Level 6 }}
         {{- if eq $preanc "" }}
 <div class="adjustAnchor">

@@ -37,7 +37,7 @@
         {{- $desc = partial "applyparams" (dict "target" .Description "params" .Site.Params) }}
     {{- else }}
         {{- $post := "" }}
-        {{- if and (not .IsHome) (or (eq .Site.Params.product "Garoon") (eq .Site.Params.product "Mailwise") (eq .Site.Params.product "Office")) }}
+        {{- if and (not .IsHome) (or (eq .Site.Params.product "Garoon") (eq .Site.Params.product "Mailwise") (eq .Site.Params.product "Office") (eq .Site.Params.product "Remote")) }}
             {{- $contents := split .Content "\n" }}
             {{- $first := "" }}
             {{- range first 1 $contents }}
@@ -73,7 +73,7 @@
     <meta name="apple-mobile-web-app-title" content="{{$title}}">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    {{- if and (ne .Site.Params.product "Office") (ne .Site.Params.product "Mailwise") }}
+    {{- if and (ne .Site.Params.product "Office") (ne .Site.Params.product "Mailwise") (eq .Site.Params.product "Remote")}}
     {{- partial "alternatelink" . }}
     {{- end }}
     <link rel="shortcut icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
