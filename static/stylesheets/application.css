@@ -1064,7 +1064,7 @@ h6 + .id-link-button {
     overflow: auto;
 }
 .article img {
-    max-width: 600px;
+    max-width: 100%;
 }
 .article img.screenshot {
     margin: 21px 0;
@@ -2421,6 +2421,11 @@ i.index-pdf {
     }
     .close-enquete {
         display: block;
+    }
+    /* -------------------------------- article style */
+
+    .article img.screenshot {
+        max-width: 600px;
     }
 }
 
