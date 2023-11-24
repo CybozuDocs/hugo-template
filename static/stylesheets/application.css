@@ -2161,11 +2161,12 @@ i.index-pdf {
     /* mega menu ------------------------- */
     .g-nav {
         font-size: 1.125em;
+        flex-wrap: nowrap;
     }
     .g-col {
         border: none;
         border-right: 1px solid #ccc;
-        width: 16.6666%;
+        width: 100%;
         padding:0;
     }
     .g-col:nth-child(3n) {

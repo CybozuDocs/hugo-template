@@ -395,6 +395,14 @@
                         {{- else if eq $weight 400 -}}
                             {{- $targeturl = (printf "/%s/%s/option" $productId $lang) -}}
                         {{- end -}}
+                    {{- else if eq $product "Remote" -}}
+                        {{- if eq $weight 100 -}}
+                            {{- $targeturl = (printf "/%s/%s/intro" $productId $lang) -}}
+                        {{- else if eq $weight 200 -}}
+                            {{- $targeturl = (printf "/%s/%s/admin" $productId $lang) -}}
+                        {{- else if eq $weight 300 -}}
+                            {{- $targeturl = (printf "/%s/%s/user" $productId $lang) -}}
+                        {{- end -}}
                     {{- else if eq $product "Office" -}}
                         {{- if eq $weight 100 -}}
                             {{- $targeturl = (printf "/%s/%s/intro" $productId $lang) -}}

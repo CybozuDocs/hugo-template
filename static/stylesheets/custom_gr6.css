@@ -374,6 +374,10 @@
     display: inline;
   }
 
+  .g-nav {
+      flex-wrap: wrap;
+  }
+
   .g-nav-title-wrap-external-icon {
     margin: 0 0 1px 4px;
   }

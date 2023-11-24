@@ -101,6 +101,9 @@
             case "of10":
                 formid= "b171044e8835b86f44f794671a2c2ab7d5b85240677b2b83bd4ec5f42eccff85";
                 break;
+            case "remote":
+                formid="2a7268574abefeca37c34f2e89c1dad558239925266fe18a3ee9499e6c2b0590";
+                break;
         }
 
         url = url + formid + "?";
