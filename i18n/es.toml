@@ -1,0 +1,152 @@
+[Welcome]
+other = "Bienvenido a la {{$.Site.Params.product_name}} de {{$.Site.Params.help}}"
+
+[Enter_keywords]
+other = "Introduzca palabras clave para buscar ayuda."
+
+[Page_not_found]
+other = "The page you are looking for could not be found"
+
+[I_am_sorry_page_not_found]
+other = "I'm sorry. The page you are looking for can not be found."
+
+[Previous_page]
+other = "Página anterior"
+
+[Next_page]
+other = "Página siguiente"
+
+[In_this_article]
+other = "En este artículo"
+
+[Go_back_to_previous]
+other = "Volver a la página anterior"
+
+[Go_back_to_top]
+other = "Volver a la página de inicio"
+
+[Articles_in_this_category]
+other = "Artículos de esta categoría"
+
+[Footer_copyright]
+other = "Los nombres de los servicios y productos aquí utilizados son marcas registradas o marcas comerciales de sus respectivas empresas."
+
+[See_also]
+other = "See also"
+
+[Title_tips]
+other = "Tips"
+
+[Title_note]
+other = "Note"
+
+[Title_references]
+other = "References"
+
+[Title_caution]
+other = "Caution"
+
+[By_features]
+other = "Search by Features"
+
+[Top_page]
+other = "Top"
+
+[Read_more]
+other = "Más"
+
+[Was_it_helpful]
+other = "Was this information helpful?"
+
+[Yes]
+other = "Yes"
+
+[No]
+other = "No"
+
+[Close]
+other = "Close"
+
+[Permalink]
+other = "Permalink"
+
+[MT_Disclaimer]
+other = "Machine-Translations Disclaimer"
+
+[og_desc1]
+other = "This is the {{$.Site.Params.help}} for {{$.Site.Params.product_name}}."
+
+[og_desc1_service]
+other = "This is the {{$.Site.Params.help}} for {{$.Site.Params.product_name}} {{$.Site.Params.service_type}}. "
+
+[og_desc2]
+other = "This guide describes how to set up and operate {{$.Site.Params.product_name}}."
+
+[search]
+other = "search"
+
+[search_word]
+other = "search word"
+
+[Document_type]
+other = "menu"
+
+[Bread_crumb]
+other = "bread crumb"
+
+[Page_selection]
+other = "page selection"
+
+[Copy_perma_link]
+other = "Copy the permanent link."
+
+[Link_was_copied]
+other = "The permanent link has been copied."
+
+[Copy_codeblock_button]
+other = "Copy"
+
+[Codeblock_was_copied]
+other = "The content has been copied."
+
+[Help_site]
+other = "Help Site"
+
+[Article_number]
+other = "Article Number"
+
+[Article_number_search]
+other = "Search Help by Article Number"
+
+[Input_article_number]
+other = "Enter the article number you want to search for."
+
+[ID_error_1]
+other = "Enter a number that contains 4 digits or more."
+
+[ID_error_2]
+other = "The article number must contain numbers only."
+
+[ID_error_3]
+other = "The specified article number cannot be found."
+
+[ID_error_4]
+other = "Connection timed out."
+
+[ID_error_5]
+other = "A network error occurred."
+
+[Tab_menu]
+other = "Tab menu"
+
+[Unsupported_browser]
+other = "Your Web browser is not supported."
+
+[Unsupported_message]
+other = "Some functions may not work correctly."
+
+[Locale_modal_message]
+other = "This site is intended for customers outside Japan.<br>Would you like to visit a site for Japan customers?"
+
+[Header_nav_faq]
+other = "Frequently Asked Questions"
