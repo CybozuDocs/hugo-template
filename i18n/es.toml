@@ -119,7 +119,7 @@ other = "Article Number"
 other = "Search Help by Article Number"
 
 [Input_article_number]
-other = "Enter the article number you want to search for."
+other = "Introduzca el número de artículo que desea buscar.."
 
 [ID_error_1]
 other = "Enter a number that contains 4 digits or more."
