@@ -83,7 +83,7 @@ other = "This is the {{$.Site.Params.help}} for {{$.Site.Params.product_name}} {
 other = "This guide describes how to set up and operate {{$.Site.Params.product_name}}."
 
 [search]
-other = "search"
+other = "buscar"
 
 [search_word]
 other = "search word"
