@@ -3,7 +3,20 @@
   font-weight: 400;
   font-style: normal;
 }
+
+.font-es, .mega-tab {
+  font-family: proxima-nova, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .font-en .article table th, .font-en .article .admonition .admonition-alt, .font-en .article h1,.font-en .article h2, .font-en .article h5, .font-en .article h6, .font-en .article ol>li:before, .font-en .article caption, .font-en #mainmenu a.expand, .font-en #mainmenu li a.current, .font-en .welcome_message {
+  font-family: proxima-nova, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-es .article table th, .font-es .article .admonition .admonition-alt, .font-es .article h1,.font-es .article h2, .font-es .article h5, .font-es .article h6, .font-es .article ol>li:before, .font-es .article caption, .font-es #mainmenu a.expand, .font-es #mainmenu li a.current, .font-es .welcome_message {
   font-family: proxima-nova, sans-serif;
   font-weight: 700;
   font-style: normal;
