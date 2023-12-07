@@ -8,10 +8,10 @@
     {{- if eq .Level 6 }}
         {{- if eq $preanc "" }}
 <div class="adjustAnchor">
-    <div class="h6-anc" id="{{.Anchor | safeURL}}">{{.Text | safeHTML}}</div>
+    <div class="h6-anc {{ .Attributes.class }}" id="{{.Anchor | safeURL}}">{{.Text | safeHTML}}</div>
 </div>
         {{- else }}
-<div class="h6-noanc">{{.Text | safeHTML}}</div>
+<div class="h6-noanc {{ .Attributes.class }}">{{.Text | safeHTML}}</div>
         {{- end }}
     {{- else }}
         {{- $link := (printf "https://%s%s" .Page.Site.Params.domain .Page.RelPermalink) }}
@@ -21,10 +21,10 @@
                   ( and (eq .Page.Site.Params.product "Office") (eq $section "error") (gt .Level 2) ) -}}
             {{- $link = "" }}
         {{- end }}
-        {{- template "anchorlink" (dict "level" .Level "link" $link "id" .Anchor "title" .Text ) }}
+        {{- template "anchorlink" (dict "level" .Level "link" $link "id" .Anchor "title" .Text "attributes" .Attributes ) }}
     {{- end }}
 {{- else if and (ne .Page.IsHome true) (ne .Page.Params.aliases nil) }}
-    {{- template "anchorlink2" (dict "ti" . "link" .Page.RelPermalink "al" (index .Page.Params.aliases 0) "ids" .Page.Site.Params.id_search) }}
+    {{- template "anchorlink2" (dict "ti" . "link" .Page.RelPermalink "al" (index .Page.Params.aliases 0) "ids" .Page.Site.Params.id_search ) }}
 {{- else }}
-<h{{.Level}} id="{{.Anchor | safeURL}}" pid="{{.Anchor | safeURL}}" role="heading">{{.Text | safeHTML }}</h{{.Level}}>
+<h{{.Level}} id="{{.Anchor | safeURL}}" pid="{{.Anchor | safeURL}}" role="heading" class="{{ .Attributes.class }}">{{.Text | safeHTML }}</h{{.Level}}>
 {{- end }}
