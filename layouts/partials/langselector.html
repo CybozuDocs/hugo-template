@@ -20,7 +20,7 @@
                     {{- range $urlParts }}
                         {{- if ne . "" }}
                             {{- if eq $idx 2 }}
-                                {{- $newTarget = printf "%s/%s" $newTarget $languageCode }}
+                                {{- $newTarget = printf "%s/%s/" $newTarget $languageCode }}
                             {{- else }}
                                 {{- $newTarget = printf "%s/%s" $newTarget . }}
                             {{- end }}
