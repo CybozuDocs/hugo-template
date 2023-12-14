@@ -22,7 +22,7 @@
                         {{- if ne . "" }}
                             {{- if eq $idx 2 }}
                                 {{- $newTarget = printf "%s/%s" $newTarget $languageCode }}
-                                {{- if eq $partsLen 4 }}
+                                {{- if le $partsLen 4 }}
                                     {{- $newTarget = printf "%s/" $newTarget }}
                                 {{- end }}
                             {{- else }}
