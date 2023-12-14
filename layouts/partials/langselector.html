@@ -17,10 +17,14 @@
                     {{- $languageCode := .language_code }}
                     {{- $idx := 0 }}
                     {{- $newTarget := "" }}
+                    {{- $partsLen := $urlParts | len }}
                     {{- range $urlParts }}
                         {{- if ne . "" }}
                             {{- if eq $idx 2 }}
-                                {{- $newTarget = printf "%s/%s/" $newTarget $languageCode }}
+                                {{- $newTarget = printf "%s/%s" $newTarget $languageCode }}
+                                {{- if le $partsLen 4 }}
+                                    {{- $newTarget = printf "%s/" $newTarget }}
+                                {{- end }}
                             {{- else }}
                                 {{- $newTarget = printf "%s/%s" $newTarget . }}
                             {{- end }}
