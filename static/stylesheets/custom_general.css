@@ -56,32 +56,45 @@
 
 /* 「監査ログの一覧」で使用する設定 **************************************/
 
-.audit > * {
-  margin-left: 1em;
+.id-header:has(h3.audit){
+  border-bottom: 3px solid #e94f90;
+  border-image: linear-gradient(to right, #287bf4 0%, #e94f90 100%);
+  border-image-slice: 1;
+  margin-bottom: 1.4rem;
 }
 
-.audit h4 {
-  margin-left: 0.5em;
+h3.audit {
+  margin-bottom: 0.5rem;
+  padding-left: 0;
+  border-left: none;
+  border-image: none;
+  border-image-slice: 0;
 }
 
-.audit h5 {
-  margin-left: 1.5em;  
+h4.audit {
+  border-left: 4px solid #e94f90;
+  border-image: linear-gradient(to top, #287bf4 0%, #e94f90 100%);
+  border-image-slice: 1;
+  line-height: 1em;
+  margin-top: 1.5em;
+  padding-top: 0.4em;
+  padding-left: 0.4em;
+  padding-bottom: 0.4em;
 }
 
-.audit ul {
-  list-style-position : inside;
-  margin-left: 5em;
-}
-
-.audit dl {
-  margin-left: 5em;
-}
-
-.audit > .id-header~p {
-  margin-left: 4em;
+h4.audit + .id-link-button {
+  margin-top: 2.2rem;
 }
 
 /* コードブロックで利用する設定 ********************************************/
+
+.article pre {
+  border-radius: 4px;
+}
+.codeblock-copy-button {
+  top: 10px;
+  right: 10px;
+}
 .codeblock-wrapper + p {
   margin-top: 0.9em;
 }
