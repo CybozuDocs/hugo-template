@@ -38,6 +38,9 @@
                             {{- if ne .Site.Params.google_search true -}}
                                 <input type="hidden" name="ct" value="{{ .Site.Params.search_all }}" />
                             {{- end -}}
+                            {{- if eq .Site.Params.google_search true }}
+                                <script src="https://www.gstatic.com/prose/brand.js" targetId="topSearchBox_input" hl="{{$.Lang}}"></script>
+                            {{- end }}
                         </div>
                     </form>
                     <div id="logo_place" class="search-logo"></div>

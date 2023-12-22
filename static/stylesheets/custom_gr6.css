@@ -14,9 +14,8 @@
 }
 
 .home-search-input {
-  height: 25px;
-  width: 263px;
-  background: url("https://www.google.com/cse/static/images/1x/ja/branding.png") left 9px top 50% no-repeat rgb(255, 255, 255);
+  height: 60px !important;
+  width: 263px !important;
 }
 
 .home-search-submit {
