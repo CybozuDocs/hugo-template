@@ -21,6 +21,21 @@
                             $(".locale-modal").hide();
                             setSessionValue("locale_modal", { disabled: "1" });
                         }
+
+                        const wovnCode = WOVN.io.getCurrentLang().code;
+                        const atags = document.getElementsByTagName("a");
+                        if (atags.length > 0) {
+                            const curProd = location.pathname.split("/");
+                            const tgProd = curProd[1] === "k" ? "general" : "k";
+                            const basePath = `/${tgProd}/en/`;
+                            const destPath = `/${tgProd}/${wovnCode}/`;
+                            const atagArr = Array.from(atags);
+                            atagArr.forEach((a) => {
+                                if (a.href.includes(basePath)) {
+                                    a.href = a.href.replace(basePath, destPath);
+                                };
+                            });
+                        }
                     }
                 }, "2000");
         }
