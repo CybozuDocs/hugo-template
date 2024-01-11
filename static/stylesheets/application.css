@@ -441,6 +441,9 @@ li .lang-title {
 .g-nav-title-wrap:lang(en) {
     white-space: normal;
 }
+.g-nab-title-icon-right {
+    margin-left: 0.5rem;
+}
 .g-col:nth-child(3n) {
     border-right: none;
 }
