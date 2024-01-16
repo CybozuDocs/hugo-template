@@ -220,6 +220,25 @@
   border-image-source: linear-gradient(to top, #4A4B4C 0%, #EF3F24 100%);
 }
 
+/* /general/の「監査ログの一覧」で使用する設定 **************************************/
+
+.id-header:has(h3.audit){
+  border-bottom: 3px solid #A42F29;
+  border-image: linear-gradient(to right, #4A4B4C 0%, #EF3F24 100%);
+  border-image-slice: 1;
+}
+
+h4.audit {
+  border-left: 4px solid #A42F29;
+  border-image: linear-gradient(to top, #4A4B4C 0%, #EF3F24 100%);
+  border-image-slice: 1;
+  line-height: 1em;
+  margin-top: 1.5em;
+  padding-top: 0.4em;
+  padding-left: 0.4em;
+  padding-bottom: 0.4em;
+}
+
 /* Tiles of the top page */
 .col-flex {
     margin-top: 10px;
