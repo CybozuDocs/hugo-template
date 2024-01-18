@@ -83,7 +83,7 @@
 
                 // get region code from html lang
                 const htmllang = document.documentElement.lang;
-                if (htmllang === "zh-tw") {
+                if (htmllang === "zh-tw" || htmllang === "zh-tw-jp") {
                     this.region = "jp";
                     this.lang = "zhtw";
                 } else if (htmllang === "zh-tw-us") {
