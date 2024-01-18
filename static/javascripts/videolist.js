@@ -21,10 +21,11 @@
         },
         async mounted() {
             // 文言リソースファイルの読み込み
-            await axios.get("/" + this.productid + "/" + this.langid + "/video/resource.json")
-                .then(response => {
-                        this.tags = response.data.tags;
-                        this.filter = response.data.title;
+            await fetch("/" + this.productid + "/" + this.langid + "/video/resource.json")
+                .then(response => response.json())
+                .then(data => {
+                    this.tags = data.tags;
+                    this.filter = data.title;
                 })
                 .catch((error) => console.log(error));
 
@@ -202,16 +203,18 @@
         },
         async mounted() {
             // 文言リソースファイルの読み込み
-            await axios.get("/" + this.productid + "/" + this.langid + "/video/resource.json")
-                .then(response => {
-                    this.tags = response.data.tags;
+            await fetch("/" + this.productid + "/" + this.langid + "/video/resource.json")
+                .then(response => response.json())
+                .then(data => {
+                    this.tags = data.tags;
                 })
                 .catch((error) => console.log(error));
 
             // データファイルの読み込み
-            await axios.get("/" + this.productid + "/" + this.langid + "/video/list.json")
-                .then(response => {
-                    this.alllist = response.data;
+            await fetch("/" + this.productid + "/" + this.langid + "/video/list.json")
+                .then(response => response.json())
+                .then(data => {
+                    this.alllist = data;
                 })
                 .catch((error) => console.log(error));
         },
