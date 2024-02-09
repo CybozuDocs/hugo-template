@@ -124,7 +124,7 @@
     {{- if eq .Params.type "gr/section_top_video"}}
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/video_list.css" $buildnum | relURL }}">
     {{- end}}
-    {{- $u := urls.Parse $.Site.BaseURL }}
+
     {{- if eq .Params.type "gr6/home" -}}
     <script src="{{ printf "%s?%s" "javascripts/custom_gr6.js" $buildnum | relURL }}"></script>
     {{- end -}}

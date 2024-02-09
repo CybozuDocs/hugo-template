@@ -49,17 +49,20 @@
                 menus: [],
                 langid: "en",
                 productid: "",
+                jsonfile: "",
             }
         },
         created() {
             this.langid = getLangId();
             this.productid = getProductId();
+            const region = getRegionId();
+            this.jsonfile = (this.productid === "g") ? `home_${region}.json` : "home.json";
         },
         components: {
             MenuCard,
         },
         async mounted() {
-            fetch(`/${this.productid}/${this.langid}/home.json`, { cache: 'no-cache' }).then((resp) => {
+            fetch(`/${this.productid}/${this.langid}/${this.jsonfile}`, { cache: 'no-cache' }).then((resp) => {
                 if(!resp.ok) {
                     throw new Error(resp.statusText);
                 }
@@ -109,5 +112,14 @@
         }
 
         return prodid;
+    }
+
+    // htmlのlangからリージョンコードを取り出す
+    // 取れない場合はjpを返す
+    function getRegionId() {
+        const htmlLang = document.documentElement.lang;
+        const langParts = htmlLang.split("-");
+        const partsLen = langParts.length;
+        return partsLen > 1 ? langParts[partsLen-1] : "jp";
     }
 })();

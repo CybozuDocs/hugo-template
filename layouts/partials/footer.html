@@ -4,7 +4,7 @@
 {{- end }}
 
 {{- $u := urls.Parse $.Site.BaseURL }}
-{{- if ( hasPrefix $u.Path "/g6/" ) }}
+{{- if or (hasPrefix $u.Path "/g/") (hasPrefix $u.Path "/g6/") }}
     {{ partial "footer_gr6.html" . }}
 {{- else }}
 <footer id="page-footer" class="footer">
