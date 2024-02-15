@@ -47,6 +47,5 @@
 {{- if eq $.Site.Params.TargetRegion "US" }}
     <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
 {{- end -}}
-{{- if and (eq $.Site.Params.product "kintone") (eq $.Site.Params.TargetRegion "JP") }}{{ partial "yahootagmanager" . }}{{- end }}
 </body>
 </html>
