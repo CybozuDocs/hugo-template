@@ -89,6 +89,8 @@
                 } else if (htmllang === "zh-tw-us") {
                     this.region = "us";
                     this.lang = "zhtw";
+                } else if (window.location.host === "get.kintone.help") {
+                    this.region = "us";
                 } else {
                     this.region = htmllang.substr(3,2);
                 }
