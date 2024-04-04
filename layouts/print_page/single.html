@@ -451,6 +451,10 @@
                         {{- else if eq $weight 1200 -}}
                             {{- $targeturl = (printf "/cypn-docs/%s/windowsauth" $lang) -}}
                         {{- end -}}
+                    {{- else if eq $product "kmso-beta" -}}
+                        {{- if eq $weight 100 -}}
+                            {{- $targeturl = (printf "/%s/%s/admin" $productId $lang) -}}
+                        {{- end -}}
                     {{- end -}}
 
                     {{- if ne $targeturl "" }}
