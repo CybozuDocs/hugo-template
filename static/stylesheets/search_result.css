@@ -38,14 +38,26 @@ body { overflow-y: scroll; }
     margin-top: 8px;
 }
 
-.article {
+.search-result {
     margin-left: 0;
     width: 100%
 }
-.article h1 {
+
+.search-result h1 {
+    line-height: 1.2em;
+    margin-bottom: 30px;
+    padding-top: 3rem;
     font-size: 1.8em;
+    font-weight: 700;
 }
-.article .wrapper {
+
+.search-result a {
+    color: #0d7b91;
+    text-decoration: underline;
+    line-height: 1.5em;
+}
+
+.search-result .wrapper {
     padding-right: 0;
     padding-left: 0;
 }

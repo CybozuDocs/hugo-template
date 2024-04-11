@@ -334,6 +334,16 @@ background: rgba(255, 255, 255, 0.9);
 }
 /* -------------------- End of article */
 
+/* search-result  -------------------- */
+.search-result h1 {
+    padding-top: 0;
+}
+
+.search-result a {
+    color: #1b72cd;
+}
+/* -------------------- End of search-result */
+
 /* admonition -------------------- */
 .admonition {
     padding: 0;
