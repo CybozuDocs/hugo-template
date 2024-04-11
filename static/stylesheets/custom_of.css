@@ -21,10 +21,6 @@
     font-size: inherit;
 }
 
-.search-result a {
-    color: #1b72cd;
-}
-
 /* Section audit logs -------------------------------------- */
 .audit h2 {
     font-size:1.25rem;
