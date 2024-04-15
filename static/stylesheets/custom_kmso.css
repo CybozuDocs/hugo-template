@@ -1,0 +1,5 @@
+@media print {
+    .book-title {
+        width: 600px;
+    }
+}
