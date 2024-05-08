@@ -455,6 +455,9 @@
                         {{- if eq $weight 100 -}}
                             {{- $targeturl = (printf "/%s/%s/admin" $productId $lang) -}}
                         {{- end -}}
+                    {{- else if eq $product "kep" -}}
+                        {{ $dir := (replace .Page.File.BaseFileName "print_" "") }}
+                        {{- $targeturl = (printf "/%s/%s/%s" $productId $lang $dir) -}}
                     {{- end -}}
 
                     {{- if ne $targeturl "" }}
