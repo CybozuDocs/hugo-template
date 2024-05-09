@@ -1040,10 +1040,9 @@ h6 + .id-link-button {
 .article ol>li {
     padding: 5px 0 5px 10px;
     margin: 0 0 15px 30px;
-    border-left: solid 1px #e6e6e6;
 }
 .article ol>li::marker {
-    color: #888;
+    color: #000000;
     font-size: 1.6rem;
     font-weight: 600;
     line-height: 33px;
@@ -1053,6 +1052,15 @@ h6 + .id-link-button {
 }
 .article li p {
     display: inline
+}
+.article li p + ul {
+    margin-top: .9em;
+}
+.article ul li {
+    margin-bottom: 7px;
+}
+.article li > ul {
+    margin-top: 7px;
 }
 .article p>code {
     white-space: nowrap;
