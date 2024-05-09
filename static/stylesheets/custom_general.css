@@ -24,18 +24,6 @@
     margin-bottom: 40px;
 }
 
-.article li p + ul {
-    margin-top: .9em;
-}
-
-.article ul li {
-    margin-bottom: 7px;
-}
-
-.article li > ul {
-    margin-top: 7px;
-}
-
 .article dl {
   margin: 5px;
 }
