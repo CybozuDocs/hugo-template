@@ -5,34 +5,34 @@ other = "歡迎來到{{$.Site.Params.product_name}}{{$.Site.Params.help}}"
 other = "在尋找什麼呢？"
 
 [Page_not_found]
-other = "找不到您尋找的頁面"
+other = "找不到您要尋找的頁面"
 
 [I_am_sorry_page_not_found]
-other = "非常抱歉。我們並沒有找到您尋找的頁面。"
+other = "非常抱歉。我們找不到您要尋找的頁面。"
 
 [Previous_page]
-other = "返回上一頁"
+other = "上一頁"
 
 [Next_page]
-other = "前往下一頁"
+other = "下一頁"
 
 [In_this_article]
 other = "文章目錄"
 
 [Go_back_to_previous]
-other = "返回上一頁"
+other = "回到上一頁"
 
 [Go_back_to_top]
-other = "返回首頁"
+other = "回到首頁"
 
 [Articles_in_this_category]
-other = "同類文章"
+other = "此類別內的文章"
 
 [Footer_copyright]
-other = "文章記載的商品及各類產品名稱為各家公司的註冊或非註冊商標。 © Cybozu"
+other = "文章中記載的商品名稱及各產品名稱皆為各公司註冊商標或商標。 © Cybozu"
 
 [See_also]
-other = "也請參閱以下頁面"
+other = "另請參閱"
 
 [Title_tips]
 other = "提示"
@@ -88,7 +88,7 @@ other = "說明使用{{.Site.Params.product_name}}須知的設定及操作方法
 other = "搜尋"
 
 [search_word]
-other = "搜尋關鍵詞"
+other = "搜尋關鍵字"
 
 [Document_type]
 other = "選單"
@@ -142,7 +142,7 @@ other = "網路發生錯誤。"
 other = "標籤選單"
 
 [Unsupported_browser]
-other = "不支持此Web瀏覽器。"
+other = "不支援此網路瀏覽器。"
 
 [Unsupported_message]
 other = "部分功能可能運行異常。"
