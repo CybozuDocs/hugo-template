@@ -145,7 +145,7 @@ other = "標籤選單"
 other = "不支援此網路瀏覽器。"
 
 [Unsupported_message]
-other = "部分功能可能運行異常。"
+other = "部分功能可能無法正常運作。"
 
 [Locale_modal_message]
 other = "本網站適用於日本國外的客戶。<br>您是否要前往適用於日本國內的網站？"
