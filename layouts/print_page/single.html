@@ -459,6 +459,12 @@
                         {{- if eq $weight 100 -}}
                             {{- $targeturl = (printf "/%s/%s/kep1" $productId $lang) -}}
                         {{- end -}}
+                        {{- if eq $weight 200 -}}
+                            {{- $targeturl = (printf "/%s/%s/kep2" $productId $lang) -}}
+                        {{- end -}}
+                        {{- if eq $weight 400 -}}
+                            {{- $targeturl = (printf "/%s/%s/kep4" $productId $lang) -}}
+                        {{- end -}}
                     {{- end -}}
 
                     {{- if ne $targeturl "" }}
