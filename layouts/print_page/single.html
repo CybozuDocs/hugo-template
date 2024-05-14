@@ -455,6 +455,10 @@
                         {{- if eq $weight 100 -}}
                             {{- $targeturl = (printf "/%s/%s/admin" $productId $lang) -}}
                         {{- end -}}
+                    {{- else if eq $product "kep" -}}
+                        {{- if eq $weight 100 -}}
+                            {{- $targeturl = (printf "/%s/%s/kep1" $productId $lang) -}}
+                        {{- end -}}
                     {{- end -}}
 
                     {{- if ne $targeturl "" }}
