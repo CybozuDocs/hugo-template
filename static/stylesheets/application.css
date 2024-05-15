@@ -422,6 +422,18 @@ li .lang-title {
 }
 /* -------------------------end of disclaimer */
 
+
+/* latest page guide ------------------------ */
+.latest-page-guide {
+    background-color: #fff6b6;
+    padding: 10px 20px;
+}
+.latest-page-guide a {
+    color: #0d7b91;
+    text-decoration: underline;
+}
+/* ------------------------ end of latest page guide */
+
 /* mega menu -------------------------------------------- */
 .g-nav {
     display: flex;
