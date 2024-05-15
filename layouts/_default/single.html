@@ -25,6 +25,7 @@
         {{- if eq $.Site.Params.use_wovn true }}
             {{ partial "disclaimer2" . }}
         {{- end }}
+        {{- partial "latestpageguide" . }}
         <main id="main" role="main">
             {{- partial "breadcrumb" . -}}
             <article class="article" role="article">

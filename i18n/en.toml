@@ -150,3 +150,18 @@ other = "This site is intended for customers outside Japan.<br>Would you like to
 
 [Header_nav_faq]
 other = "Frequently Asked Questions"
+
+[This_page_is_not_latest]
+other = "This page is not the latest version. "
+
+[Latest_page_is_1]
+other = "Please refer to the "
+
+[Latest_page_is_2]
+other = " for the latest version."
+
+[Page_ja]
+other = "Japanese page"
+
+[Page_en]
+other = "English page"

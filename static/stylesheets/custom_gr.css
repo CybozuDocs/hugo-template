@@ -169,6 +169,12 @@ td a > .fa:hover{
     background-color: #c9cbcc;
 }
 
+/* latest page guide ------------------------ */
+.latest-page-guide a {
+    color: #1b72cd;
+}
+/* ------------------------ end of latest page guide */
+
 /* Breadcrumb -------------------- */
 .breadcrumb {
     padding: 10px 0 40px;

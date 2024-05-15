@@ -13,6 +13,7 @@
     {{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.LanguageCode "ja-jp") (ne $.Site.LanguageCode "ja-cn") }}
         {{ partial "disclaimer" . }}
     {{- end }}
+    {{- partial "latestpageguide" . }}
     {{- partial "breadcrumb" . -}}
     <main class="sect-main">
         <h1>{{ partial "title" . }}</h1>

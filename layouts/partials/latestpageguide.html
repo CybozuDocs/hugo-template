@@ -1,0 +1,19 @@
+{{- if isset .Params "latest_page" }}
+  {{- $url := .Params.latest_page }}
+  {{- $urlParts := split  $url "/" }}
+  {{- $newPageLang := index $urlParts 2 }}
+  {{- $langPageKey := "" }}
+  {{- if ne $newPageLang .Lang }}
+    {{- if eq $newPageLang "ja" }}
+      {{- $langPageKey = "Page_ja" }}
+    {{- else if eq $newPageLang "en" }}
+      {{- $langPageKey = "Page_en" }}
+    {{- end }}
+    {{- $langPage := i18n $langPageKey }}
+    {{- if ne $langPage "" }}
+<div class="latest-page-guide">
+{{i18n "This_page_is_not_latest"}}{{i18n "Latest_page_is_1"}}<a href="{{$url}}">{{$langPage}}</a>{{i18n "Latest_page_is_2"}}
+</div>
+    {{- end }}
+  {{- end }}
+{{- end }}
