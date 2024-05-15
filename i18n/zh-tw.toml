@@ -152,3 +152,18 @@ other = "本網站適用於日本國外的客戶。<br>您是否要前往適用�
 
 [Header_nav_faq]
 other = "Frequently Asked Questions"
+
+[This_page_is_not_latest]
+other = "此頁面不是最新版本。"
+
+[Latest_page_is_1]
+other = "最新版本請參閱"
+
+[Latest_page_is_2]
+other = "。"
+
+[Page_ja]
+other = "日文頁面"
+
+[Page_en]
+other = "英文頁面"
