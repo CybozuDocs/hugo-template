@@ -36,7 +36,7 @@
 {{- define "sectmenu" }}
     {{- $cursect := .cursect }}
   <div>
-    {{- range $cursect.Pages.ByWeight }}
+    {{- range $cursect.Sections.ByWeight }}
     <div class="mega-title">
         <h2>
             {{- if ne .Params.nolink true -}}

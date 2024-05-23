@@ -35,7 +35,7 @@
     {{- $cursect := .cursect }}
     {{- $target := .target }}
   <div>
-    {{- range $cursect.Pages.ByWeight }}
+    {{- range $cursect.Sections.ByWeight }}
         {{- if in . $target }}
     <div class="mega-title">
             <span class="fa-stack">

@@ -72,7 +72,7 @@
     {{- $secondsect := .secondsect }}
             <ul role="tablist">
     {{- $menuid := 0}}
-    {{- range $cursect.Pages.ByWeight }}
+    {{- range $cursect.Sections.ByWeight }}
         {{- $curclass := "" }}
         {{- $tabsts := "false" }}
         {{- if eq $secondsect . }}
