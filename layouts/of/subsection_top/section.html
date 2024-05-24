@@ -33,7 +33,7 @@
 
 {{- define "sectmenu_single" }}
     {{- $cursect := .cursect }}
-    {{- $target := .target }}
+    {{- $target := strings.TrimRight "/" .target }}
   <div>
     {{- range $cursect.Pages.ByWeight }}
         {{- if in . $target }}
