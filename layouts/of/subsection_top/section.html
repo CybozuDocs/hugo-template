@@ -19,7 +19,7 @@
 
 {{- range $entries.ByWeight}}
     {{- if eq .CurrentSection $rootsect }}
-        {{- template "sectmenu_single" (dict "cursect" $rootsect "target" "/app/") }}
+        {{- template "sectmenu_single" (dict "cursect" $rootsect "target" "/app") }}
     {{- end}}
 {{- end}}
 
