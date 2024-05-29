@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+{{- $title := partial "title" . }}
+<title>{{$title}} | {{.Site.Params.product_name}} {{.Site.Params.help}}</title>
+<meta name="robots" content="noindex">
+<meta charset="utf-8" />
+{{- template "gtm" dict "key" "GTM-5ZR5GF" }}
+{{- $urlParts := split .Page.RelPermalink "/"}}
+<script src="/{{index $urlParts 1}}/{{index $urlParts 2}}/redirect/{{.Params.jsname}}.js"></script>
+</head>
+</html>
