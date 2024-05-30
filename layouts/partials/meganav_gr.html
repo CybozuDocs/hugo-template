@@ -73,6 +73,7 @@
             <ul role="tablist">
     {{- $menuid := 0}}
     {{- range $cursect.Pages.ByWeight }}
+      {{- if ne .Params.weight 0 }}
         {{- $curclass := "" }}
         {{- $tabsts := "false" }}
         {{- if eq $secondsect . }}
@@ -91,6 +92,7 @@
                         <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </button>
                 </li>
+      {{- end }}
     {{- end}}
             </ul>
 {{- end }}
@@ -99,6 +101,7 @@
     {{- $cursect := . }}
     {{- $menuid := 0}}
     {{- range $cursect.Pages.ByWeight }}
+      {{- if ne .Params.weight 0 }}
         {{- $menuid = (add $menuid 1) }}
         <div class="mega-panel" role="tabpanel" id="panel{{$menuid}}" aria-labelledby="tab{{$menuid}}" >
             <div class="mega-title">
@@ -130,6 +133,7 @@
         {{- end }}
             </ul>
         </div>
+      {{- end }}
     {{- end }}
 {{- end }}
 

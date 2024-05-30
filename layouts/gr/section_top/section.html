@@ -38,6 +38,7 @@
     {{- $cursect := .cursect }}
   <div>
     {{- range $cursect.Pages.ByWeight }}
+      {{- if ne .Params.weight 0 }}
     <div class="mega-title">
         <h2>
             {{- if ne .Params.nolink true -}}
@@ -67,6 +68,7 @@
         {{- end }}
         </ul>
     </div>
+       {{- end }}
     {{- end}}
   </div>
 {{- end }}
