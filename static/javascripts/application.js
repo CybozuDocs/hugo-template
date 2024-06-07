@@ -40,7 +40,9 @@
 
                 }, "2000");
         }
-        // 768pxは cssにおける@media screen min-width の設定値
+
+        // 1059px と 768px は css における@media screen min-width の設定値
+        const pcSize = 1059;
         const mobileSize = 768;
 
         // 現在のURL
@@ -456,6 +458,25 @@
             });
         }
 
+        // サポートボタン
+        if ($("#support-inquiry").length > 0) {
+            let sipos = 0;
+            if (window.innerWidth > pcSize) {
+                if($("#enquete").css("bottom") == "0px") {
+                    // アンケートボタンの上の位置
+                    sipos =  $("#enquete").css("height");
+                }
+
+                if(document.body.scrollHeight - $(window).outerHeight() <= 1 ) {
+                    // スクロールが発生していない画面
+                    sipos =  $("#page-footer").outerHeight() + $("#enquete").outerHeight();
+                }
+            } else {
+                sipos = $("#page-footer").outerHeight() + $("#enquete").outerHeight();
+            }
+            $("#support-inquiry").css({bottom: sipos + 10 });
+        }
+
         // Topに戻るボタンのクリックイベント
         $("#goto-top").click(function () {
             $("html, body").stop().animate({ scrollTop:0 });
@@ -487,6 +508,11 @@
                 if ( (footerOffsetTop - winHeight) < winScrollTop ) {
                     bottompos += winScrollTop - (footerOffsetTop - winHeight);
                 }
+            }
+
+            if (($("#support-inquiry").length > 0) && (window.innerWidth > pcSize)) {
+                // サポートボタンの位置修正
+                $("#support-inquiry").css({bottom: bottompos - 10});
             }
 
             if($(window).scrollTop() > 100) {
@@ -638,17 +664,20 @@
             }
 
             resizetimer = setTimeout(function() {
-                let m = false;
-                if (window.innerWidth < mobileSize) {
-                    m = true;
-                }
-                switchParts(m);
+                switchParts(window.innerWidth < mobileSize);
                 adjustTreeHeight();
 
                 if(ct_enabled === true) {
                     // チャットをボタンに戻す
                     zE("webWidget", "close");
                 }
+
+                if ($("#support-inquiry") && (window.innerWidth < pcSize) ) {
+                    $("#tree-nav").css({paddingBottom: "60px"});
+                    const sipos = $("#page-footer").outerHeight() + $("#enquete").outerHeight() + 10;
+                    $("#support-inquiry").css({bottom: sipos });
+                }
+
             }, 500);
         }); 
 
@@ -708,13 +737,18 @@
             $tree.height(wrapHeight);
 
             // 右ペインTOCのサイズ調整
-            if( document.getElementById("page-toc") != null ) {
-                let sbh = winHeight - $(".header").outerHeight() - footHeight;
+            if( document.getElementById("rightside-bar") != null ) {
+                let sbh = winHeight - $(".header").outerHeight(true) - footHeight - 10;
+                if( document.getElementsByClassName("mega-nav-bar").length ) {
+                   sbh -= ($(".mega-nav-bar").outerHeight(true) + 10);
+                }
                 if( document.getElementById("enquete") != null ) {
-                    sbh -= ($("#enquete").outerHeight());
+                   sbh -= ($("#enquete").outerHeight(true));
+                }
+                if( document.getElementById("support-inquiry") != null ) {
+                    sbh -= ($("#support-inquiry").outerHeight(true) + 10);
                 }
                 $("#rightside-bar").height(sbh);
-
             }
         }
 
@@ -1464,6 +1498,13 @@
                     // 右ペインTOCの先頭にハイライト設定
                     $("#page-toc li a").eq(0).addClass("current");
                     $("#page-toc li a").eq(0).attr("aria-selected", "true");
+                }
+            }
+
+            // 英語の場合のみサポートボタンを表示
+            if (document.documentElement.lang === "en-us") {
+                if ($("#support-inquiry").length > 0) {
+                    $("#support-inquiry").css("display", "block");
                 }
             }
         }

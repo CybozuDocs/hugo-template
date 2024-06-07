@@ -1999,6 +1999,38 @@ i.index-pdf {
 }
 /* -------------------- end of Enquete */
 
+/* Support inquiry -------------------- */
+#support-inquiry {
+    display: none;
+    width: calc(100% - 70px);
+    height: 42px;
+    padding: 3px 0 9px 6px;
+
+    position: absolute;
+    right: 60px;
+    bottom: 70px;
+    z-index: 99;
+
+    font-size: .9rem;
+}
+
+.inquiry-btn {
+    background-color: #EF3F24;
+    border-radius: 8px;
+    width: 100%;
+    padding: 0 10px 10px 0;
+    color: #fff;
+    cursor: pointer;
+}
+.inquiry-btn:hover {
+    background-color: #f47865;
+}
+.inquiry-icon {
+    padding-top: 10px;
+    padding-left: 10px;
+    color: #fff;
+}
+/* -------------------- end of Support inquiry */
 
 /* locale modal -------------------- */
 .locale-modal {
@@ -2307,6 +2339,9 @@ i.index-pdf {
     .disclaimer {
         float: right;
     }
+    #support-inquiry {
+        width: calc(100% - 350px);
+    }
     #enquete {
         width: calc(100% - 290px);
     }
@@ -2437,6 +2472,11 @@ i.index-pdf {
         float: left;
     }
 
+    #support-inquiry {
+        position: fixed;
+        width: 170px;
+        font-size: .8em;
+    }
     #enquete {
         width: 230px;
         font-size: .8em;
@@ -2463,7 +2503,7 @@ i.index-pdf {
 
 /* for print out */
 @media print {
-    nav, header, footer, iframe, #enquete, #tree-nav, #goto-top, .id-headding-button, .id-link-button, .id-bar, .step-list-check, .step-check, .codeblock-copy-button {
+    nav, header, footer, iframe, #support-inquiry, #enquete, #tree-nav, #goto-top, .id-headding-button, .id-link-button, .id-bar, .step-list-check, .step-check, .codeblock-copy-button {
         display: none !important;
     }
     .step-index {
