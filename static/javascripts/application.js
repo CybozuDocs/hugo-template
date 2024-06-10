@@ -481,7 +481,7 @@
             $("#contents").addClass("contents-with-chat");
 
             let ctpos = 0;
-            if (window.innerWidth > pcSizeS) {
+            if (window.innerWidth > pcSize) {
                 if($("#enquete").css("bottom") == "0px") {
                     // アンケートボタンの上の位置
                     ctpos =  $("#enquete").css("height");
