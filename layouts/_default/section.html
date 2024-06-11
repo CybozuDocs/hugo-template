@@ -83,6 +83,9 @@
     {{- end }}
 </div>
 {{- partial "gototop" . }}
+{{- if and $.Site.Params.support_inquiry (eq $.Site.LanguageCode "en-us") }}
+    {{- partial "support_inquiry" $.Site.Params.support_inquiry }}
+{{- end }}
 {{- partial "enquete" . -}}
 {{- partial "footer" . }}
 {{- if eq $.Site.Params.TargetRegion "US" }}

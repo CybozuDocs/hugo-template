@@ -131,6 +131,11 @@
             $close.css("display", "none");
             enq_closed = true;
             controlDisplayPosition();
+
+            // サポートボタンがある場合は画面下に移動
+            if ($("#support-inquiry").length > 0) {
+              $("#support-inquiry").css({bottom: "10px" });
+            }
         });
 
 
@@ -160,7 +165,6 @@
                 } else {
                     if (footDisp < windowScrollTop) {
                         let gap = windowScrollTop - footDisp;
-
                         $enquete.css({position: "fixed", bottom: gap});
                         $close.css("display", "none");
                     } else {
