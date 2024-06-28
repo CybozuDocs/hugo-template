@@ -375,7 +375,7 @@
         }
 
         if( document.getElementById("lang-selector") != null ) {
-            if (typeof WOVN !== 'undefined') {
+            if (window.WOVN && WOVN.io && WOVN.io.isApiReady()) {
                 window.addEventListener('wovnLangChanged', function () {
                     const wovnobj = WOVN.io.getCurrentLang();
                     const wovnlang = wovnobj.name;
@@ -571,7 +571,7 @@
                     // リンククリック対応
                     let newurl = data.node.a_attr.href;
                     
-                    if (typeof WOVN !== 'undefined') {
+                    if (window.WOVN && WOVN.io && WOVN.io.isApiReady()) {
                         const wovncode = WOVN.io.getCurrentLang().code;
                         newurl = newurl.replace("/en/", "/" + wovncode + "/");
                     }
