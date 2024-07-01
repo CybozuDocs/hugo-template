@@ -226,7 +226,7 @@
         </li>
             {{- end -}}
         {{- else -}}
-            {{- if in .Params.disabled .Site.Params.TargetRegion -}}
+            {{- if or ( in .Params.disabled .Site.Params.TargetRegion ) ( eq .Type "redirect_js" ) -}}
             {{- else -}}
 
                 <!-- make a section string -->
@@ -301,8 +301,8 @@
                 {{- template "nextsection" $parent -}}
 
             {{- end -}}
-        {{- else -}}      
-            {{- if in .Params.disabled .Site.Params.TargetRegion -}}
+        {{- else -}}
+            {{- if or ( in .Params.disabled .Site.Params.TargetRegion ) ( eq .Type "redirect_js" ) -}}
             {{- else -}}
                 {{- $sectList := ($parent.Scratch.Get "sectList") -}}
 
