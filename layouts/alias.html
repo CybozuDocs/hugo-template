@@ -13,7 +13,7 @@
       const hash = window.location.hash;
 
       if (typeof WOVN !== 'undefined') {
-        window.addEventListener('wovnLangChanged', function () {
+        window.addEventListener('wovnApiReady', function () {
             const wovnobj = WOVN.io.getCurrentLang();
             const wovncode = wovnobj.code;
             const wovnurl = url.replace("/en/", "/" + wovncode + "/");
