@@ -2,6 +2,31 @@
 (function() {
     window.addEventListener('load', function() {
 
+console.log(window.WOVN);
+if (window.WOVN) {
+  console.log(WOVN.io);
+  console.log(WOVN.io.isApiReady());
+}
+
+setTimeout(() => {
+  console.log("check2");
+  console.log(window.WOVN);
+  if (window.WOVN) {
+    console.log(WOVN.io);
+    console.log(WOVN.io.isApiReady());
+  }
+}, "2000");
+
+
+window.addEventListener('wovnLangChanged', function () {
+  console.log("wovnLangChanged");
+});
+
+window.addEventListener('wovnApiReady',function(){
+  console.log("wovnApiReady");
+});
+
+
         if (typeof WOVN !== 'undefined') {
                 setTimeout(() => {
                     if (document.getElementById("wovn-additional-buttons") !== null) {
