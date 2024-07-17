@@ -1,46 +1,6 @@
 'use strict';
 (function() {
     window.addEventListener('load', function() {
-
-        if (typeof WOVN !== 'undefined') {
-                setTimeout(() => {
-                    if (document.getElementById("wovn-additional-buttons") !== null) {
-                        if (typeof OneTrust !== 'undefined') {
-                            OneTrust.Close();
-                        }
-
-                        if( document.getElementById("enquete") !== null) {
-                            $("#enquete").css("display", "none");
-                        }
-
-                        if( document.getElementById("goto-top") !== null) {
-                            $("#goto-top").css("display", "none");
-                        }
-
-                        if( document.getElementsByClassName("locale-modal").length > 0) {
-                            $(".locale-modal").hide();
-                            setSessionValue("locale_modal", { disabled: "1" });
-                        }
-                    }
-
-                    const wovnCode = WOVN.io.getCurrentLang().code;
-                    const atags = document.getElementsByTagName("a");
-                    if (atags.length > 0) {
-                        const curProd = location.pathname.split("/");
-                        const tgProd = curProd[1] === "k" ? "general" : "k";
-                        const basePath = `/${tgProd}/en/`;
-                        const destPath = `/${tgProd}/${wovnCode}/`;
-                        const atagArr = Array.from(atags);
-                        atagArr.forEach((a) => {
-                            if (a.href.includes(basePath)) {
-                                a.href = a.href.replace(basePath, destPath);
-                            };
-                        });
-                    }
-
-                }, "2000");
-        }
-
         // 1059px と 768px は css における@media screen min-width の設定値
         const pcSize = 1059;
         const mobileSize = 768;
@@ -215,23 +175,6 @@
         }
 
         // 言語切り替え
-        if( document.getElementById("lang-selector") != null ) {
-            if (typeof WOVN !== 'undefined') {
-                window.addEventListener('wovnLangChanged', function () {
-                    const wovnobj = WOVN.io.getCurrentLang();
-                    const wovnlang = wovnobj.name;
-                    const wovncode = wovnobj.code;
-
-                    if (wovncode !== "en") {
-                        changeSelectedLang(wovncode, wovnlang);
-                        setDisclamer(wovncode);
-                    }
-                });
-            }
-
-            initLanguageSelector();
-        }
-
         function initLanguageSelector() {
             const $langbtn = $("#lang-selector");
             const $langlist = $("#alter-lang");
@@ -373,6 +316,10 @@
             }
         }
 
+        if( document.getElementById("lang-selector") != null ) {
+            initLanguageSelector();
+        }
+
         // WOVN 言語選択メニューの更新
         function changeSelectedLang(langcode, langtext) {
             // ボタンの文字に現在表示中の言語を設定
@@ -414,6 +361,57 @@
             }
         }
 
+        // 本文中の他プロダクトの言語付きURLを置き換える
+        function replaceLanguageURL(langcode) {
+            const atags = document.getElementsByTagName("a");
+            if (atags.length > 0) {
+                const curProd = location.pathname.split("/");
+                const tgProd = curProd[1] === "k" ? "general" : "k";
+                const basePath = `/${tgProd}/en/`;
+                const destPath = `/${tgProd}/${langcode}/`;
+                const atagArr = Array.from(atags);
+                atagArr.forEach((a) => {
+                    if (a.href.includes(basePath)) {
+                        a.href = a.href.replace(basePath, destPath);
+                    };
+                });
+            }
+        }
+
+
+        window.addEventListener('wovnApiReady',function(){
+            setTimeout(() => {
+                // WOVN管理者の場合、他のパーツを非表示にする
+                if (document.getElementById("wovn-additional-buttons") !== null) {
+                    if (typeof OneTrust !== 'undefined') {
+                        OneTrust.Close();
+                    }
+
+                    if( document.getElementById("enquete") !== null) {
+                        $("#enquete").css("display", "none");
+                    }
+
+                    if( document.getElementById("goto-top") !== null) {
+                        $("#goto-top").css("display", "none");
+                    }
+
+                    if( document.getElementsByClassName("locale-modal").length > 0) {
+                        $(".locale-modal").hide();
+                        setSessionValue("locale_modal", { disabled: "1" });
+                    }
+                }
+            }, "3000");
+
+            const wovnobj = WOVN.io.getCurrentLang();
+            const wovnlang = wovnobj.name;
+            const wovncode = wovnobj.code;
+
+            if (wovncode !== "en") {
+                changeSelectedLang(wovncode, wovnlang);
+                setDisclamer(wovncode);
+                replaceLanguageURL(wovncode);
+            }
+        });
 
         function calculateBottomPosition() {
             let bottompos = 20;
@@ -563,7 +561,7 @@
                     // リンククリック対応
                     let newurl = data.node.a_attr.href;
                     
-                    if (typeof WOVN !== 'undefined') {
+                    if (window.WOVN && WOVN.io && WOVN.io.isApiReady()) {
                         const wovncode = WOVN.io.getCurrentLang().code;
                         newurl = newurl.replace("/en/", "/" + wovncode + "/");
                     }

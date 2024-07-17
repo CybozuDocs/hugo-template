@@ -12,14 +12,14 @@
       const query = window.location.search;
       const hash = window.location.hash;
 
-      if (typeof WOVN !== 'undefined') {
-        window.addEventListener('wovnLangChanged', function () {
-            const wovnobj = WOVN.io.getCurrentLang();
-            const wovncode = wovnobj.code;
-            const wovnurl = url.replace("/en/", "/" + wovncode + "/");
-            window.location.href = wovnurl + query + hash;
-        });
-      } else {
+      window.addEventListener('wovnApiReady', function () {
+          const wovnobj = WOVN.io.getCurrentLang();
+          const wovncode = wovnobj.code;
+          const wovnurl = url.replace("/en/", "/" + wovncode + "/");
+          window.location.href = wovnurl + query + hash;
+      });
+
+      if (typeof WOVN === 'undefined') {
         window.location.href = url + query + hash;
       }
   }
