@@ -61,3 +61,23 @@
 .audit h4 + .id-link-button {
     margin-top: 2.5rem;
 }
+
+/* definition listの設定 -------------------------------------- */
+
+.article dl {
+    margin: 5px;
+  }
+  
+  .article dt {
+    margin-bottom: 7px;
+    font-weight: bold;
+  }
+  
+  .article dl > dt:nth-child(n + 2) {
+    margin-top: 14px;
+  }
+  
+  .article dd {
+    margin-bottom: 7px;
+    padding-left: 20px;
+  }
