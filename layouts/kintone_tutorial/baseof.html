@@ -36,7 +36,7 @@
                 <button id="tutorial-index-switch" class="tutorial-index-switch" aria-label="" aria-controls="" aria-expanded="false">
                     <i id="tutorial-switch-button" class="fas fa-bars mega-tab-switch-icon" aria-hidden="true"></i>
                 </button>
-                <a class="tutorial-logo" href="{{ $.Site.BaseURL }}{{$baselang}}">
+                <button class="tutorial-logo">
                     {{- with $.Site.Params.logo -}}
                         {{- $alt := "" }}
                         {{- $hidden := "true" }}
@@ -47,7 +47,7 @@
                     <img class="logo-img" src="{{ $.Site.BaseURL }}{{.}}" alt="{{$alt}}" title="{{$alt}}" aria-hidden="{{$hidden}}">
                     {{- end -}}
                     <h1 class="tutorial-title ">{{.Site.Params.product_name}}</h1>
-                </a>
+                </button>
         </div>
             <div id="tutorial-index" class="tutorial-index">
             {{ partial "treenav_static" . }}

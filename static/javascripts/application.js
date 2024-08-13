@@ -10,7 +10,7 @@
         const url_parts = cururl.split("/");
 
         // 対応言語
-        const languages = ["en", "ja", "zh", "zh-tw"];
+        const languages = ["en", "ja", "zh", "zh-tw", "es"];
 
         // メガメニュー有無のフラグ
         let hasMegaNav = false;
@@ -378,6 +378,25 @@
             }
         }
 
+        // ロゴ
+        const $headerLogo = $(".logo-link");
+        if($headerLogo.length > 0) {
+            $headerLogo.on("click", function(e) {
+                const pathes = location.pathname.split("/");
+                let language = "";
+                let productId = "";
+                if(pathes.length >= 3) {
+                    if (languages.includes(pathes[1])) {
+                        language = pathes[1];
+                        window.location.href = `/${language}/`;
+                    } else {
+                        productId = pathes[1];
+                        language = pathes[2];
+                        window.location.href = `/${productId}/${language}/`;
+                    }
+                }
+            });
+        }
 
         window.addEventListener('wovnApiReady',function(){
             setTimeout(() => {
