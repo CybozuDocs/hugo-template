@@ -2,7 +2,7 @@
 other = "Le damos la bienvenida a la ayuda de {{$.Site.Params.product_name}}"
 
 [Enter_keywords]
-other = "Introduzca palabras clave para buscar ayuda."
+other = "Ingrese palabras clave para buscar ayuda."
 
 [Page_not_found]
 other = "The page you are looking for could not be found"
@@ -29,7 +29,7 @@ other = "Volver a la página de inicio"
 other = "Artículos de esta categoría"
 
 [Footer_copyright]
-other = "Los nombres de los servicios y productos utilizados en este documento son marcas comerciales registradas o marcas comerciales de sus respectivas empresas."
+other = "Los nombres de los productos y servicios utilizados en el presente portal son marcas comerciales o marcas registradas de sus respectivas empresas. No vender ni compartir mis datos personales."
 
 [See_also]
 other = "See also"
