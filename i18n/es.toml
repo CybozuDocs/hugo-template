@@ -1,5 +1,5 @@
 [Welcome]
-other = "Bienvenido a la {{$.Site.Params.help}} de {{$.Site.Params.product_name}}"
+other = "Le damos la bienvenida a la ayuda de {{$.Site.Params.product_name}}"
 
 [Enter_keywords]
 other = "Introduzca palabras clave para buscar ayuda."
