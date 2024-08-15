@@ -154,9 +154,12 @@ td {
 }
 .logo-link{
     color: #000;
+    font-weight: 600;
 }
-.logo-link:hover {
+.logo-link:hover,
+.tutorial-logo {
     text-decoration: none;
+    cursor: pointer;
 }
 /* -------------------- end of Header */
 

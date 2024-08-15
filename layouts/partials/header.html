@@ -13,7 +13,7 @@
         {{- end }}
             <div class="logo-wrap">
                 <h1 class="frame-h1">
-                    <a class="logo-link" href="{{ $.Site.BaseURL }}{{$baselang}}">
+                    <button class="logo-link">
             {{- with $.Site.Params.logo -}}
                 {{- $alt := "" }}
                 {{- $hidden := "true" }}
@@ -25,7 +25,7 @@
             {{- end -}}
             {{- $title := printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help -}}
                         <span class="logo-title">{{$title}}</span>
-                    </a>
+                    </button>
                 </h1>
             </div>
 

@@ -14,7 +14,7 @@
         {{- if eq .p1 .p2 -}}
             {{- partial "title" .p1 -}}
         {{- else -}}
-        <a href="{{- .p1.Permalink -}}">
+        <a href="{{- .p1.RelPermalink -}}">
             {{- if and (.p1.IsHome) (or (eq .p1.Site.Params.product "Garoon") (eq .p1.Site.Params.product "Mailwise") (eq .p1.Site.Params.product "Office") (eq .p1.Site.Params.product "Remote") ) -}}
                 {{- i18n "Top_page" -}}
             {{- else }}
