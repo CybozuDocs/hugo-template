@@ -1,0 +1,19 @@
+{{- define "headerlabel" }}
+    {{- $labels := .Params.labels }}
+    {{- if $labels }}
+        {{- $label_colors := $.Site.Params.label_colors }}
+        {{- $label_lead := $.Site.Params.label_lead }}
+        {{- $label_contents := $.Site.Params.label_contents }}
+        {{- if $label_contents }}
+    <div class="header-label-bar">
+        <span class="header-label-lead">{{$label_lead}}:</span>
+            {{- range $labels }}
+                {{- $labelidx := int . }}
+                {{- $labelidx = sub $labelidx 1 }}
+                {{- $color := index $label_colors $labelidx }}
+                <span class="header-label" style="background-color: {{$color}}">{{index $label_contents $labelidx }}</span>
+            {{- end }}
+        {{- end }}
+    </div>
+    {{- end }}
+{{- end }}
