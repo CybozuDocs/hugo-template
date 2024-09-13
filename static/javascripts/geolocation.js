@@ -20,9 +20,9 @@
 
   async function getGeolocation() {
     try {
-      const resp = await fetch("https://get.kintone.help/geolocation");
+      const resp = await fetch("https://3q5rgl4n37.execute-api.ap-northeast-1.amazonaws.com/geolocation");
       const json = await resp.json();
-      return json;
+      return json.body;
     } catch (err) {
       console.log(err);
     }
