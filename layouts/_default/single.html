@@ -38,6 +38,9 @@
                 {{- if and (eq $.Site.Params.id_search true) (.Params.aliases) }}
                     {{- template "articlenumber" . }} 
                 {{- end }}
+                {{- if .Params.labels }}
+                    {{- template "headerlabel" . }}
+                {{- end }}
                 {{ .Content }}
             </article>
             {{- partial "related" .}}
