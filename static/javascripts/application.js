@@ -1042,7 +1042,7 @@
 
         // TOCへのハイライト設定
         function moveTocHighlight() {
-             const cur_pos = $(window).scrollTop() + 80;
+             const cur_pos = $(window).scrollTop() + 100;
             $(".article :header").not(".article h1").each(function() {
                 if(cur_pos >= $(this).offset().top) {
                     $("#page-toc li a").removeClass("current");
