@@ -1,0 +1,8 @@
+{{- $region := $.Site.Params.TargetRegion | lower }}
+{{- $path := printf "home_%s.json" $region }}
+{{- with .Resources.Get $path }}
+  {{- with . | transform.Unmarshal }}
+    {{- $data := ( . | jsonify (dict "noHTMLEscape" true )) }}
+    {{- partial "applyparams" (dict "target" $data "params" $.Site.Params) }}
+  {{- end -}}
+{{- end -}}

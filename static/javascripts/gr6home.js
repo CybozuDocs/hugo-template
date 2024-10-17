@@ -55,8 +55,7 @@
         created() {
             this.langid = getLangId();
             this.productid = getProductId();
-            const region = getRegionId();
-            this.jsonfile = (this.productid === "g") ? `home_${region}.json` : "home.json";
+            this.jsonfile = "home.json";
         },
         components: {
             MenuCard,
