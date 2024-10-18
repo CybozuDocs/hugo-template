@@ -23,13 +23,16 @@
                             {{- if eq $idx 2 }}
                                 {{- $newTarget = printf "%s/%s" $newTarget $languageCode }}
                                 {{- if le $partsLen 4 }}
-                                    {{- $newTarget = printf "%s/" $newTarget }}
+                                    {{- $newTarget = printf "%s" $newTarget }}
                                 {{- end }}
                             {{- else }}
                                 {{- $newTarget = printf "%s/%s" $newTarget . }}
                             {{- end }}
                         {{- end }}
                         {{- $idx = add $idx 1 }}
+                    {{- end }}
+                    {{- if and (ne (hasSuffix $newTarget ".html") true) (ne (hasSuffix $newTarget "/") true) }}
+                        {{- $newTarget = printf "%s%s" $newTarget "/" }}
                     {{- end }}
                 <li id="lang_item_{{$languageCode}}" class="lang-item" role="option" desturl="{{$newTarget}}"><span class="lang-title">{{ .display_name }}</span></li>
                 {{- end }}
