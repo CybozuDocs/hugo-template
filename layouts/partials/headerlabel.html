@@ -10,8 +10,11 @@
             {{- range $labels }}
                 {{- $labelidx := int . }}
                 {{- $labelidx = sub $labelidx 1 }}
+                {{- $labelcontent := index $label_contents $labelidx }}
                 {{- $color := index $label_colors $labelidx }}
-                <span class="header-label" style="background-color: {{$color}}">{{index $label_contents $labelidx }}</span>
+                {{- if $labelcontent}}
+                <span class="header-label" style="background-color: {{$color}}">{{ $labelcontent }}</span>
+                {{- end }}
             {{- end }}
         {{- end }}
     </div>
