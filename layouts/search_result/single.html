@@ -15,15 +15,15 @@
                 <h1>{{ partial "title" . }}</h1>
             {{/* - end */}}
                 <div id="searchResultContainer">
-                    {{- if eq $.Site.Params.google_search true -}}
+                    {{- if or ( eq $.Site.Params.google_search true ) ( eq $.Site.Params.bing_search true ) -}}
                     <div id="main_form">
                         <div role="search" class="search-part">
                             <input type="search" v-model="search_words" v-on:keyup.enter="submit_button" class="search-words" v-bind:disabled="searching == true" aria-label='{{i18n "search_word"}}'>
                             <button role="button" class="search-button" v-on:click="submit_button" v-bind:disabled="searching == true" title='{{i18n "search"}}' aria-label='{{i18n "search"}}'><i class="fa fa-search" aria-hidden="true"></i>
-                            </button> 
+                            </button>
                         </div>
                         <div id="logo_place" class="search-logo"></div>
-                        
+
                         <div class="category-bar" v-bind:class="{ nodisp : initial }" v-cloak>
                             <span class="ctab" v-for="(ctab, index) in ctabs">
                                 <input type="radio" name="category" class="category-tab" :id="'category'+(index)" v-model="cid" v-on:click="change_category(index)" :value="index">
@@ -34,19 +34,25 @@
                         <div class="result" v-bind:class="{ nodisp : initial }" v-cloak>
                             <div class="item-total">[[total]] results<span class="current-position" v-bind:class="{ nodisp : pages.length <= 1 }">([[start]]-[[last]])</span></div>
                             <div v-for="item in items" class="items">
-                                <div class="item-title"><a v-bind:href="item.link" v-html="item.htmlTitle"></a></div>
-                                <div class="item-url">[[item.link]]</div>
-                                <div class="item-snippet" v-html="item.htmlSnippet"></div>
+                                {{- if or ( eq $.Site.Params.google_search true ) }}
+                                    <div class="item-title"><a v-bind:href="item.link" v-html="item.htmlTitle"></a></div>
+                                    <div class="item-url">[[item.link]]</div>
+                                    <div class="item-snippet" v-html="item.htmlSnippet"></div>
+                                {{- else if eq $.Site.Params.bing_search true }}
+                                    <div class="item-title"><a v-bind:href="item.url" v-html="item.name"></a></div>
+                                    <div class="item-url">[[item.url]]</div>
+                                    <div class="item-snippet" v-html="item.snippet"></div>
+                                {{- end }}
                             </div>
                         </div>
-                        
+
                         <div class="page-navigation" role="navigation" aria-label="{{ i18n "Page_selection" }}" v-bind:class="{ nodisp : pages.length <= 1 }" v-cloak>
                             <hr class="partition">
                             <button role="button" class="page-index page-arrow" v-bind:disabled="current <= 0" v-on:click="go_prev" title='{{ i18n "Previous_page"}}' aria-label='{{ i18n "Previous_page"}}'><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
                             <button role="button" v-for="page in pages" v-on:click="page_navigate(page)" class="page-index" v-bind:class="[ page - 1 == current ? 'current-page' : '' ]" v-bind:aria-selected="page - 1 == current" v-bind:title="page" v-bind:aria-label="page">[[page]]</button>
                             <button role="button" class="page-index page-arrow" v-bind:disabled="total == 0 || pages.length - 1 == current" v-on:click="go_next" title='{{ i18n "Next_page"}}' aria-label='{{ i18n "Next_page"}}'><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
                         </div>
-                        
+
                         <div class="errmsg" v-bind:class="{ nodisp : initial }" v-cloak>[[error_message]]</div>
                     </div>
                     {{- else }}
@@ -78,10 +84,13 @@
     {{- if eq $.Site.Params.TargetRegion "US" }}
     <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
     {{- end -}}
-    {{- if eq $.Site.Params.google_search true }}
+    {{- if or  ( eq $.Site.Params.google_search true ) ( eq $.Site.Params.bing_search true ) }}
         {{- $categories := (slice) }}
         {{- with $.Site.Params.google_search_tabs }}
             {{- $categories = trim $.Site.Params.google_search_tabs "\"" | safeJS}}
+        {{- end }}
+        {{- with $.Site.Params.bing_search_tabs }}
+            {{- $categories = trim $.Site.Params.bing_search_tabs "\"" | safeJS}}
         {{- end }}
     <script>var category_list = {{$categories}};</script>
         {{- $buildnum := (now.Format "2006010203") }}
@@ -92,7 +101,8 @@
     {{- else if eq $glang "zh-tw" }}
         {{- $glang = "zh-TW" }}
     {{- end }}
-    <script src="https://www.gstatic.com/prose/brand.js" targetId="logo_place" hl="{{$glang}}"></script>
+    {{- else if eq $.Site.Params.google_search true }}
+        <script src="https://www.gstatic.com/prose/brand.js" targetId="logo_place" hl="{{$glang}}"></script>
     {{- else }}
     <script type="text/javascript">
     !function(){
