@@ -35,7 +35,7 @@
                                 data-disable-with=""
                                 aria-label="{{ i18n "search" }}"
                             ></button>
-                            {{- if ne .Site.Params.google_search true -}}
+                            {{- if and ( ne .Site.Params.google_search true ) ( ne .Site.Params.bing_search true ) -}}
                                 <input type="hidden" name="ct" value="{{ .Site.Params.search_all }}" />
                             {{- end -}}
                             {{- if eq .Site.Params.google_search true }}

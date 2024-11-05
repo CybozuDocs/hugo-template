@@ -20,7 +20,7 @@
                         <div class="searchbox">
                             <input type="search" name="q" id="topSearchBox_input" class="search-input" placeholder='{{ i18n "Enter_keywords" }}' aria-label='{{i18n "search_word"}}'>
                             <button type="submit" name="commit" value="" class="search-submit" data-disable-with="" aria-label='{{i18n "search"}}'></button>
-                        {{- if ne .Site.Params.google_search true }}
+                        {{- if and ( ne .Site.Params.google_search true ) ( ne .Site.Params.bing_search true ) }}
                             <input type="hidden" name="ct" value="{{ .Site.Params.search_all }}">
                         {{- end }}
                         </div>
