@@ -115,19 +115,19 @@
                 const prodid = idval.substring(0, 3);
                 let prodpath = "";
                 switch(prodid) {
-                    case "010":
+                    case "01":
                         prodpath = "/";
                         break;
-                    case "020":
+                    case "02":
                         prodpath = "/general/";
                         break;
-                    case "030":
+                    case "03":
                         prodpath = "/store/";
                         break;
-                    case "040":
+                    case "04":
                         prodpath = "/k/";
                         break;
-                    case "050":
+                    case "05":
                         prodpath = "/s/";
                         break;
                 }
