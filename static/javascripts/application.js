@@ -112,7 +112,7 @@
                     return false;
                 }
 
-                const prodid = idval.substring(0, 3);
+                const prodid = idval.substring(0, 2);
                 let prodpath = "";
                 switch(prodid) {
                     case "01":
