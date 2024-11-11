@@ -65,6 +65,11 @@
         return;
       }
       if (geo.country?.code?.toUpperCase() === "JP") {
+        // for WOVN admin
+        if ((document.getElementById("wovn-additional-buttons") !== null) || (document.getElementById("app-live-editor") !== null)){ 
+           setSessionValue(localeModalSessionKey, { disabled: "1" });
+           return; 
+        }
         $(".locale-modal").show();
       }
       setSessionValue(localeSessionKey, { country: geo.country });
