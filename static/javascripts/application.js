@@ -399,9 +399,10 @@
         }
 
         window.addEventListener('wovnApiReady',function(){
-            setTimeout(() => {
+            if ((document.getElementById("wovn-additional-buttons") !== null) || (document.getElementById("app-live-editor") !== null)){
                 // WOVN管理者の場合、他のパーツを非表示にする
-                if (document.getElementById("wovn-additional-buttons") !== null) {
+                let hideCalled = 0;
+                setTimeout(hideParts = () => {
                     if (typeof OneTrust !== 'undefined') {
                         OneTrust.Close();
                     }
@@ -414,12 +415,17 @@
                         $("#goto-top").css("display", "none");
                     }
 
-                    if( document.getElementsByClassName("locale-modal").length > 0) {
-                        $(".locale-modal").hide();
-                        setSessionValue("locale_modal", { disabled: "1" });
+                    if( document.getElementById("support-inquiry") !== null) {
+                        $("#support-inquiry").css("display", "none");
                     }
-                }
-            }, "3000");
+
+                    hideCalled++;
+                    // 表示遅延を考慮し2秒間隔で5回実行
+                    if (hideCalled < 5) {
+                      setTimeout(hideParts, 2000);
+                    }
+                }, 2000);
+            }
 
             const wovnobj = WOVN.io.getCurrentLang();
             const wovnlang = wovnobj.name;
