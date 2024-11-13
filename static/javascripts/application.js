@@ -399,9 +399,9 @@
         }
 
         window.addEventListener('wovnApiReady',function(){
-            // WOVN管理者の場合、他のパーツを非表示にする
             let hideCalled = 0;
-            setTimeout(hideParts = () => {
+            // WOVN管理者の場合、他のパーツを非表示にする
+            const hideParts = () => {
               if ((document.getElementById("wovn-additional-buttons") !== null) || (document.getElementById("app-live-editor") !== null)){
                   if (typeof OneTrust !== 'undefined') {
                       OneTrust.Close();
@@ -427,8 +427,9 @@
                 setTimeout(hideParts, 2000);
               }
 
-            }, 2000);
+            };
 
+            setTimeout(hideParts, 2000);
 
             const wovnobj = WOVN.io.getCurrentLang();
             const wovnlang = wovnobj.name;
