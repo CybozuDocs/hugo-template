@@ -43,7 +43,11 @@
                             {{- end }}
                         </div>
                     </form>
-                    <div id="logo_place" class="search-logo"></div>
+                    <div id="logo_place" class="search-logo {{ if eq .Site.Params.bing_search true }} search-logo-bing home-search-logo-text{{ end }}">
+                        {{- if eq .Site.Params.bing_search true }}
+                            <span>{{ i18n "search_bing" }} (<a href="https://www.microsoft.com/en-gb/privacy/privacystatement" target="_blank" class="home-search-logo-text">{{ i18n "search_bing_legal" }}</a>)</span>
+                        {{- end }}
+                    </div>
                 </div>
             </div>
             <div class="content-wrap">

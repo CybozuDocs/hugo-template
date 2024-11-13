@@ -22,8 +22,11 @@
                             <button role="button" class="search-button" v-on:click="submit_button" v-bind:disabled="searching == true" title='{{i18n "search"}}' aria-label='{{i18n "search"}}'><i class="fa fa-search" aria-hidden="true"></i>
                             </button>
                         </div>
-                        <div id="logo_place" class="search-logo"></div>
-
+                        <div id="logo_place" class="search-logo {{ if eq .Site.Params.gogole_search true }} search-logo-google{{ end }}{{ if eq .Site.Params.bing_search true }} search-logo-bing{{ end }}">
+                            {{- if eq .Site.Params.bing_search true }}
+                                <span>{{ i18n "search_bing" }} (<a href="https://www.microsoft.com/en-gb/privacy/privacystatement" target="_blank">{{ i18n "search_bing_legal" }}</a>)</span>
+                            {{- end }}
+                        </div>
                         <div class="category-bar" v-bind:class="{ nodisp : initial }" v-cloak>
                             <span class="ctab" v-for="(ctab, index) in ctabs">
                                 <input type="radio" name="category" class="category-tab" :id="'category'+(index)" v-model="cid" v-on:click="change_category(index)" :value="index">

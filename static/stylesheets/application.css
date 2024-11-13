@@ -206,9 +206,14 @@ td {
     color: #0d7b91;
 }
 .search-logo {
-    float: right;
+    text-align: right;
     padding-top: 10px;
 }
+
+.search-logo-bing {
+    font-size: 0.8rem;
+}
+
 /* for header searchbox */
 .header .search-wrap {
     padding-left: 20px;
@@ -1487,7 +1492,7 @@ table .wd10 {
 }
 
 .step-wrap {
-    padding-top: 70px; 
+    padding-top: 70px;
     margin-top: -70px;
 }
 .step-desc {
@@ -1500,7 +1505,7 @@ table .wd10 {
     padding: 1em 1em 1.8em 1em;
     background: #E8E5E5;
 }
-.step-label strong { 
+.step-label strong {
     font-size:1.125em;
 }
 .step-check {
@@ -1521,7 +1526,7 @@ table .wd10 {
     margin-top: -.2em;
     margin-left: .2em;
     margin-right: .3em;
-    background: #FFF; 
+    background: #FFF;
     width: 5em;
     color: #000;
     font-weight: bold;
@@ -1755,7 +1760,7 @@ i.index-pdf {
     position: relative;
 }
 .heading-button {
-    padding-left:.875em;    
+    padding-left:.875em;
 }
 
 .heading-button:hover{
