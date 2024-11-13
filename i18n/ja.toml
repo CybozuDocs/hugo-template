@@ -88,6 +88,12 @@ other = "検索"
 [search_word]
 other = "検索ワード"
 
+[search_bing]
+other = "Emhanced by Bing"
+
+[search_bing_legal]
+other = "Microsoft Privacy Statement"
+
 [Document_type]
 other = "メニュー"
 

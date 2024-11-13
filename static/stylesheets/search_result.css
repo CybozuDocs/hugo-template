@@ -5,14 +5,14 @@
 .header {
     height: 56px;
 }
-    
+
 .header .wrapper {
     justify-content: space-between;
 }
 .header::before {
     top: 52px;
 }
-    
+
 body { overflow-y: scroll; }
 
 .g-nav {
@@ -167,13 +167,20 @@ body { overflow-y: scroll; }
     background-color: #eee;
 }
 
-.search-logo {
+.search-logo-google {
     width: 124px;
     height: 15px;
-    float: right;
     margin-right: 20px;
     padding-top: 5px;
     padding-bottom: 20px;
+}
+
+.search-logo-bing {
+    float: none;
+    width: 600px;
+    text-align: right;
+    margin: 0 auto 0 auto;
+    padding: .4rem;
 }
 
 .category-bar {
@@ -312,7 +319,7 @@ body { overflow-y: scroll; }
 }
 
 /* 768px以上の設定 *****************************************************/
-@media only screen and (min-width:768px){    
+@media only screen and (min-width:768px){
     .search-part {
         width: 600px;
     }
@@ -337,7 +344,7 @@ body { overflow-y: scroll; }
     .contents-wrap {
         width: calc(100% - 300px);
     }
-    
+
     .page {
         flex-direction: row;
     }

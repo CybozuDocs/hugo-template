@@ -53,6 +53,13 @@
   line-height: 1em;
 }
 
+.home-search-logo-text {
+  color: var(--link-secondary-color);
+}
+.home-search-logo-text a {
+  text-decoration: underline;
+}
+
 .home-menu {
   color: var(--color-body);
 }

@@ -88,6 +88,12 @@ other = "搜索"
 [search_word]
 other = "搜索词"
 
+[search_bing]
+other = "Emhanced by Bing"
+
+[search_bing_legal]
+other = "Microsoft Privacy Statement"
+
 [Document_type]
 other = "菜单"
 

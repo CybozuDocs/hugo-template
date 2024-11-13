@@ -112,22 +112,22 @@
                     return false;
                 }
 
-                const prodid = idval.substring(0, 3);
+                const prodid = idval.substring(0, 2);
                 let prodpath = "";
                 switch(prodid) {
-                    case "010":
+                    case "01":
                         prodpath = "/";
                         break;
-                    case "020":
+                    case "02":
                         prodpath = "/general/";
                         break;
-                    case "030":
+                    case "03":
                         prodpath = "/store/";
                         break;
-                    case "040":
+                    case "04":
                         prodpath = "/k/";
                         break;
-                    case "050":
+                    case "05":
                         prodpath = "/s/";
                         break;
                 }
@@ -399,27 +399,37 @@
         }
 
         window.addEventListener('wovnApiReady',function(){
-            setTimeout(() => {
-                // WOVN管理者の場合、他のパーツを非表示にする
-                if (document.getElementById("wovn-additional-buttons") !== null) {
-                    if (typeof OneTrust !== 'undefined') {
-                        OneTrust.Close();
-                    }
+            let hideCalled = 0;
+            // WOVN管理者の場合、他のパーツを非表示にする
+            const hideParts = () => {
+              if ((document.getElementById("wovn-additional-buttons") !== null) || (document.getElementById("app-live-editor") !== null)){
+                  if (typeof OneTrust !== 'undefined') {
+                      OneTrust.Close();
+                      hideCalled = 999;
+                  }
 
-                    if( document.getElementById("enquete") !== null) {
-                        $("#enquete").css("display", "none");
-                    }
+                  if( document.getElementById("enquete") !== null) {
+                      $("#enquete").css("display", "none");
+                  }
 
-                    if( document.getElementById("goto-top") !== null) {
-                        $("#goto-top").css("display", "none");
-                    }
+                  if( document.getElementById("goto-top") !== null) {
+                      $("#goto-top").css("display", "none");
+                  }
 
-                    if( document.getElementsByClassName("locale-modal").length > 0) {
-                        $(".locale-modal").hide();
-                        setSessionValue("locale_modal", { disabled: "1" });
-                    }
-                }
-            }, "3000");
+                  if( document.getElementById("support-inquiry") !== null) {
+                      $("#support-inquiry").css("display", "none");
+                  }
+              }
+
+              hideCalled++;
+              // 表示遅延を考慮し2秒間隔で5回実行
+              if (hideCalled < 5) {
+                setTimeout(hideParts, 2000);
+              }
+
+            };
+
+            setTimeout(hideParts, 2000);
 
             const wovnobj = WOVN.io.getCurrentLang();
             const wovnlang = wovnobj.name;
