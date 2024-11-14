@@ -34,8 +34,12 @@
                 this.set_environment();
                 switch (this.connected) {
                     case "0":
-                        // confirm api connection
-                        confirmApiConnection(this.region);
+                        if(this.region === "cn") {
+                            enableSearch();
+                        } else {
+                            // confirm api connection
+                            confirmApiConnection();
+                        }
                         break;
                     case "1":
                         this.searching = false;
@@ -179,21 +183,22 @@
         }
     }).mount('#main_form')
 
+    const enableSearch = () => {
+        vm.connected = "1";
+        vm.first_call();
+        vm.resetButton();
+    }
+
     // to confirm Google API is enabled
     // call it without token
-    const confirmApiConnection = (region) => {
-        let chkurl = "https://www.googleapis.com/customsearch/v1";
-        if (region === "cn") {
-            chkurl = "https://api.bing.microsoft.com/v7.0/custom/search";
-        }
+    const confirmApiConnection = () => {
+        const chkurl = "https://www.googleapis.com/customsearch/v1";
 
         fetch(chkurl, { cache: 'no-cache' })
             .then(response => {
-                if(response.status === 403 || (region === "cn" && response.status === 401)) {
+                if(response.status === 403) {
                     // call the url without token, 'forbidden' is a correct status
-                    vm.connected = "1";
-                    vm.first_call();
-                    vm.resetButton();
+                    enableSearch();
                 } else {
                     throw new Error(response);
                 }
