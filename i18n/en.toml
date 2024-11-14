@@ -89,7 +89,7 @@ other = "search"
 other = "search word"
 
 [search_bing]
-other = "Emhanced by Bing"
+other = "Enhanced by Bing"
 
 [search_bing_legal]
 other = "Microsoft Privacy Statement"
