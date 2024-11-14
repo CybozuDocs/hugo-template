@@ -23,7 +23,7 @@
             connected: "0",
             error_message: ""
         }),
-        created: function() {  
+        created: function() {
             const gcon = sessionStorage.getItem("gcon");
             if(gcon !== null) {
                 this.connected = gcon;
@@ -31,10 +31,15 @@
         },
         mounted: function() {
             this.$nextTick(function () {
+                this.set_environment();
                 switch (this.connected) {
                     case "0":
-                        // confirm api connection
-                        confirmApiConnection();
+                        if(this.region === "cn") {
+                            enableSearch();
+                        } else {
+                            // confirm api connection
+                            confirmApiConnection();
+                        }
                         break;
                     case "1":
                         this.searching = false;
@@ -51,7 +56,6 @@
         },
         methods: {
             first_call: function() {
-                this.set_environment();
 
                 if (this.set_options() === false) {
                     return false;
@@ -88,6 +92,9 @@
                     this.lang = "zhtw";
                 } else if (htmllang === "zh-tw-us") {
                     this.region = "us";
+                    this.lang = "zhtw";
+                } else if (htmllang === "zh-tw-cn") {
+                    this.region = "cn";
                     this.lang = "zhtw";
                 } else if (window.location.host === "get.kintone.help") {
                     this.region = "us";
@@ -176,6 +183,12 @@
         }
     }).mount('#main_form')
 
+    const enableSearch = () => {
+        vm.connected = "1";
+        vm.first_call();
+        vm.resetButton();
+    }
+
     // to confirm Google API is enabled
     // call it without token
     const confirmApiConnection = () => {
@@ -185,14 +198,12 @@
             .then(response => {
                 if(response.status === 403) {
                     // call the url without token, 'forbidden' is a correct status
-                    vm.connected = "1";
-                    vm.first_call();
-                    vm.resetButton();
+                    enableSearch();
                 } else {
                     throw new Error(response);
                 }
             })
-            .catch((e) => { 
+            .catch((e) => {
                 vm.unavailable();
                 vm.connected = "2";
                 vm.initial = false;
@@ -217,54 +228,68 @@
             })
             .then(jd => {
                 if (jd.hasOwnProperty("error") === false) {
+                    // Google
                     if("searchInformation" in jd) {
                         vm.total = Number(jd["searchInformation"].totalResults);
                     }
-
-                    const queries = jd["queries"];
-                    if("request" in queries) {
-                        vm.start = Number(queries["request"][0]["startIndex"]);
-                        vm.last = vm.start + 9;
-                        if ( vm.last > vm.total ) {
-                            vm.last = vm.total;
+                    // Bing
+                    if (jd.hasOwnProperty("webPages")) {
+                        const rec_items = jd["webPages"]["value"];
+                        vm.items = rec_items;
+                        vm.total = jd["webPages"]["totalEstimatedMatches"];
+                    }
+                    if (jd.hasOwnProperty("queries")) {
+                        const queries = jd["queries"];
+                        if("request" in queries) {
+                            vm.start = Number(queries["request"][0]["startIndex"]);
                         }
-                        vm.current = Math.floor(vm.start / 10);
-
-                        // page navigation bar
-                        const pages = [];
-                        // The number of pages should be 1 when the number of search items is 10
-                        const lastnum = vm.total + 9;
-                        for (let i = 10; lastnum >= i; i = i + 10) {
-                            pages.push(i/10);
-
-                            // because the maximum number of search items is 100
-                            // the maximum number of pages is 10
-                            if (i >= 100) break;
-                        }
-                        vm.pages = pages;
-
-                        if (typeof WOVN !== 'undefined') {
-                            const paths = location.pathname.split("/");
-                            const wovncode = WOVN.io.getCurrentLang().code;
-                            const resourcefile = "/" + paths[1] + "/json/" + wovncode + "/category_list.json";
-                            fetch(resourcefile)
-                                .then(response => response.json())
-                                .then((data) => { 
-                                    vm.ctabs = data.us;
-                                });
-                        } else {
-                            // category_list is defined Global by Hugo template
-                            if (category_list !== null ) {
-                                vm.ctabs = category_list;
-                            }
-                        }
-
+                    } else {
+                        const qstr = window.location.search;
+                        const params = new URLSearchParams(qstr);
+                        vm.start = Number(params.get("start")) || 1;
                     }
 
+                    vm.last = vm.start + 9;
+                    if ( vm.last > vm.total ) {
+                        vm.last = vm.total;
+                    }
+                    vm.current = Math.floor(vm.start / 10);
+
+                    // page navigation bar
+                    const pages = [];
+                    // The number of pages should be 1 when the number of search items is 10
+                    const lastnum = vm.total + 9;
+                    for (let i = 10; lastnum >= i; i = i + 10) {
+                        pages.push(i/10);
+
+                        // because the maximum number of search items is 100
+                        // the maximum number of pages is 10
+                        if (i >= 100) break;
+                    }
+                    vm.pages = pages;
+
+                    if (typeof WOVN !== 'undefined') {
+                        const paths = location.pathname.split("/");
+                        const wovncode = WOVN.io.getCurrentLang().code;
+                        const resourcefile = "/" + paths[1] + "/json/" + wovncode + "/category_list.json";
+                        fetch(resourcefile)
+                            .then(response => response.json())
+                            .then((data) => {
+                                vm.ctabs = data.us;
+                            });
+                    } else {
+                        // category_list is defined Global by Hugo template
+                        if (category_list !== null ) {
+                            vm.ctabs = category_list;
+                        }
+                    }
+
+                    // Google
                     if(jd.hasOwnProperty("items")) {
                         const rec_items = jd["items"];
                         vm.items = rec_items;
                     }
+
                 } else {
                     vm.error_message = jd["error"].message;
                 }

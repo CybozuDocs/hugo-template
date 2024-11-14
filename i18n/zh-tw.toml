@@ -50,6 +50,12 @@ other = "注意"
 other = "Search by Features"
 # 翻訳対象外とのことで確認済（https://bozuman.cybozu.com/k/#/space/22/thread/39194/2678532/4308687）
 
+[search_bing]
+other = "Emhanced by Bing"
+
+[search_bing_legal]
+other = "Microsoft Privacy Statement"
+
 [Top_page]
 other = "首頁"
 

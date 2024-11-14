@@ -20,12 +20,16 @@
                         <div class="searchbox">
                             <input type="search" name="q" id="topSearchBox_input" class="search-input" placeholder='{{ i18n "Enter_keywords" }}' aria-label='{{i18n "search_word"}}'>
                             <button type="submit" name="commit" value="" class="search-submit" data-disable-with="" aria-label='{{i18n "search"}}'></button>
-                        {{- if ne .Site.Params.google_search true }}
+                        {{- if and ( ne .Site.Params.google_search true ) ( ne .Site.Params.bing_search true ) }}
                             <input type="hidden" name="ct" value="{{ .Site.Params.search_all }}">
                         {{- end }}
                         </div>
                     </form>
-                    <div id="logo_place" class="search-logo"></div>
+                    <div id="logo_place" class="search-logo {{ if eq .Site.Params.bing_search true }} search-logo-bing{{ end }}">
+                        {{- if eq .Site.Params.bing_search true }}
+                            <span>{{ i18n "search_bing" }} (<a href="https://www.microsoft.com/en-gb/privacy/privacystatement" target="_blank">{{ i18n "search_bing_legal" }}</a>)</span>
+                        {{- end }}
+                    </div>
                 </div>
               <nav class="col-flex">
                     {{ .Content }}
