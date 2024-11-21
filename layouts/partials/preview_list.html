@@ -2,7 +2,9 @@
     <div class="preview_list_container">
 {{- range .Sections.ByWeight}}
       <div class="preview_list_item" role="presentation">
-        <a href="{{.RelPermalink}}">{{- partial "title" . -}}</a>
+        <div class="preview_list_title">
+          <a href="{{.RelPermalink}}">{{- partial "title" . -}}</a>
+        </div>
         <ul>
         {{- range .Pages.ByWeight}}
         <li>
