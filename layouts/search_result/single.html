@@ -11,18 +11,15 @@
         <main class="main" role="main">
             {{- partial "breadcrumb" . }}
             <article class="search-result" >
-            {{/* - if ne $.Site.Params.TargetRegion "US" */}}
                 <h1>{{ partial "title" . }}</h1>
-            {{/* - end */}}
                 <div id="searchResultContainer">
-                    {{- if or ( eq $.Site.Params.google_search true ) ( eq $.Site.Params.bing_search true ) -}}
                     <div id="main_form">
                         <div role="search" class="search-part">
                             <input type="search" v-model="search_words" v-on:keyup.enter="submit_button" class="search-words" v-bind:disabled="searching == true" aria-label='{{i18n "search_word"}}'>
                             <button role="button" class="search-button" v-on:click="submit_button" v-bind:disabled="searching == true" title='{{i18n "search"}}' aria-label='{{i18n "search"}}'><i class="fa fa-search" aria-hidden="true"></i>
                             </button>
                         </div>
-                        <div id="logo_place" class="search-logo {{ if eq .Site.Params.gogole_search true }} search-logo-google{{ end }}{{ if eq .Site.Params.bing_search true }} search-logo-bing{{ end }}">
+                        <div id="logo_place" class="search-logo">
                             {{- if eq .Site.Params.bing_search true }}
                                 <span>{{ i18n "search_bing" }} (<a href="https://www.microsoft.com/en-gb/privacy/privacystatement" target="_blank">{{ i18n "search_bing_legal" }}</a>)</span>
                             {{- end }}
@@ -58,25 +55,6 @@
 
                         <div class="errmsg" v-bind:class="{ nodisp : initial }" v-cloak>[[error_message]]</div>
                     </div>
-                    {{- else }}
-         　　　        <div class="mf_finder_container">
-                            <mf-search-box ajax-url="//mf2ap005.marsflag.com/cybozu__support__help/x_search.x"
-                            imgsize-default="0"
-
-                            category-default="{{ .Site.Params.search_all }}"
-                            force-category-csv="{{ .Site.Params.search_categories }}"
-
-                            doctype-hidden="true"
-                            sort-hidden="true"
-                            pagemax-hidden="true"
-                            imgsize-hidden="true"
-                            use-links="true"
-                            :suggest-max="0"
-                            ></mf-search-box>
-                            <mf-zubaken></mf-zubaken>
-                            <mf-search-results></mf-search-results>
-                    </div>
-                    {{- end }}
                 </div>
             </article>
         </main>
@@ -87,7 +65,6 @@
     {{- if eq $.Site.Params.TargetRegion "US" }}
     <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
     {{- end -}}
-    {{- if or  ( eq $.Site.Params.google_search true ) ( eq $.Site.Params.bing_search true ) }}
         {{- $categories := (slice) }}
         {{- with $.Site.Params.google_search_tabs }}
             {{- $categories = trim $.Site.Params.google_search_tabs "\"" | safeJS}}
@@ -98,24 +75,14 @@
     <script>var category_list = {{$categories}};</script>
         {{- $buildnum := (now.Format "2006010203") }}
     <script type="text/javascript" src="{{ printf "%s?%s" "javascripts/helpsearch.js" $buildnum | relURL }}"></script>
-    {{- $glang := $.Lang}}
-    {{- if eq $glang "zh" }}
-        {{- $glang = "zh-CN" }}
-    {{- else if eq $glang "zh-tw" }}
-        {{- $glang = "zh-TW" }}
-    {{- end }}
-    {{- else if eq $.Site.Params.google_search true }}
-        <script src="https://www.gstatic.com/prose/brand.js" targetId="logo_place" hl="{{$glang}}"></script>
-    {{- else }}
-    <script type="text/javascript">
-    !function(){
-      var G = GALFSRAM = window.GALFSRAM || {}
-      G.mfx = G.mfx || {}
-      G.mfx.router_mode = 'history'
-      GALFSRAM.mfx.ajaxUrlRegExp = /^\/\/mf2ap005\.marsflag\.com\/cybozu__support__help\/x_search\.x$/;
-    }();
-    </script>
-    <script src="//c.marsflag.com/mf/mfx/1.0/js/mfx-serp.js" charset="UTF-8"></script>
+    {{- if eq $.Site.Params.google_search true }}
+      {{- $glang := $.Lang}}
+      {{- if eq $glang "zh" }}
+          {{- $glang = "zh-CN" }}
+      {{- else if eq $glang "zh-tw" }}
+          {{- $glang = "zh-TW" }}
+      {{- end }}
+      <script src="https://www.gstatic.com/prose/brand.js" targetId="logo_place" hl="{{$glang}}"></script>
     {{- end }}
   </body>
 </html>
