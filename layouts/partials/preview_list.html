@@ -1,0 +1,19 @@
+<nav>
+    <div class="preview_list_container">
+{{- range .Sections.ByWeight}}
+      <div class="preview_list_item" role="presentation">
+        <a href="{{.RelPermalink}}">{{- partial "title" . -}}</a>
+        <ul>
+        {{- range .Pages.ByWeight}}
+        <li>
+          <a href="{{.RelPermalink}}">{{- partial "title" . -}}</a>
+        </li>
+        {{- end }}
+        </ul>
+      </div>
+{{- end }}
+    </div>
+</nav>
+
+
+
