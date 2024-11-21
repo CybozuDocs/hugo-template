@@ -7,12 +7,17 @@
 <div class="mnav-pad"></div>
     {{ partial "meganav" . }}
 {{- end -}}
+{{- if ne $.Site.Params.preview_site true }}
     <div class="eye-catching">
         <div class="hero" style="background-image: url('{{ "images/hero_common.png" | relURL}}');"></div>
     </div>
+{{- end }}
     <main class="main">
         <article class="article home-article" >
             <div class="wrapper">
+              {{- if eq $.Site.Params.preview_site true }}
+                {{ partial "preview_list" . }}
+              {{- else }}
                 {{- $toptitle := (i18n "Welcome" .) }}
                 <div class="welcome_message">{{$toptitle}}</div>
                 <div class="search-wrap">
@@ -34,6 +39,7 @@
               <nav class="col-flex">
                     {{ .Content }}
               </nav>
+              {{- end }}
             </div>
         </article>
     </main>

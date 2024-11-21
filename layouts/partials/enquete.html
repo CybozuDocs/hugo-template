@@ -1,3 +1,4 @@
+{{- if ne $.Site.Params.preview_site true }}
 <aside id="enquete">
     <div class="enquete-panel">
       <div>{{ i18n "Was_it_helpful" }}<button class="close-enquete" id="close-enquete" title='{{ i18n "Close" }}'><i class="far fa-window-close"></i></button></div>
@@ -9,3 +10,4 @@
 </aside>
 {{- $buildnum := (now.Format "2006010203") }}
 <script src="{{ printf "%s?%s" "javascripts/enquete.js" $buildnum | relURL }}"></script>
+{{- end }}

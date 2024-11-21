@@ -77,8 +77,15 @@
   <nav id="tree-main" tabindex="0">
     <ul>
 {{- $target := .}}
+
 {{- range $entries.ByWeight}}
-    {{- template "mainmenu" (dict "curnode" . "target" $target "needtoc" $needtoc "tocregex" $tocregex )}}
+    {{- $disp := true }}
+    {{- if and (eq $.Site.Params.preview_site true) (ne $target.FirstSection .) }}
+        {{- $disp = false }}
+    {{- end }}
+    {{ if eq $disp true }} 
+        {{- template "mainmenu" (dict "curnode" . "target" $target "needtoc" $needtoc "tocregex" $tocregex )}}
+    {{- end }}
 {{- end}}
     </ul>
   </nav>

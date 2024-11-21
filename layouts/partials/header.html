@@ -23,7 +23,12 @@
                 {{- end }}
                         <img class="logo-img" src="{{ $.Site.BaseURL }}{{.}}" alt="{{$alt}}" title="{{$alt}}" aria-hidden="{{$hidden}}">
             {{- end -}}
-            {{- $title := printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help -}}
+            {{- $title := "" }}
+            {{- if eq $.Site.Params.preview_site true }}
+                {{- $title = $.Site.Params.product_name }}
+            {{- else }}
+                {{- $title = printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help -}}
+            {{- end }}
                         <span class="logo-title">{{$title}}</span>
                     </button>
                 </h1>
@@ -38,6 +43,8 @@
         {{- else if and (eq $.Site.Params.TargetRegion "US") .IsHome }}
             {{- $disp_sbox = false }}
         {{- else if eq .Params.type "gr6/home" }}
+            {{- $disp_sbox = false }}
+        {{- else if eq $.Site.Params.preview_site true }}
             {{- $disp_sbox = false }}
         {{- end }}
 

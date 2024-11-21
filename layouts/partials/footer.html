@@ -1,3 +1,4 @@
+{{- if ne $.Site.Params.preview_site true }}
 {{- $footerLinks_Ex := "" }}
 {{- if eq $.Site.Params.id_search true }}
     {{- $footerLinks_Ex = "footer-links-ex" }}
@@ -76,4 +77,5 @@
         </div>
     </div>
 </footer>
+{{- end -}}
 {{- end -}}
