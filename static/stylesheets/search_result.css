@@ -166,21 +166,13 @@ body { overflow-y: scroll; }
     cursor: wait;
     background-color: #eee;
 }
-
-.search-logo-google {
-    width: 124px;
-    height: 15px;
-    margin-right: 20px;
-    padding-top: 5px;
-    padding-bottom: 20px;
-}
-
-.search-logo-bing {
-    float: none;
-    width: 600px;
+.search-logo {
     text-align: right;
     margin: 0 auto 0 auto;
     padding: .4rem;
+}
+.search-logo a {
+    white-space: nowrap;
 }
 
 .category-bar {
@@ -333,7 +325,9 @@ body { overflow-y: scroll; }
     .search-words {
         width: 496px;
     }
-
+    .search-logo {
+        width: 600px;
+    }
     .search-result {
         padding-bottom: 100px;
     }
