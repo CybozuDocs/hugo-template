@@ -141,7 +141,7 @@
         </li>
             {{- end }}
         {{- else}}
-            {{- if in .Params.disabled .Site.Params.TargetRegion}}
+            {{- if or (in .Params.disabled .Site.Params.TargetRegion) (eq .Type "print_page") }}
             {{- else}}
                 {{- $tocs := "" }}
                 {{- if eq .RelPermalink $target.RelPermalink -}}
