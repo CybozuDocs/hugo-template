@@ -76,5 +76,5 @@
     }
   }
 
-  await showModal();
+  //await showModal();
 })();
