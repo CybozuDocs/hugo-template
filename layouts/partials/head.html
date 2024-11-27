@@ -2,10 +2,7 @@
 <html lang="{{.Site.LanguageCode}}" prefix="og: https://ogp.me/ns#">
   <head>
     {{- if eq .Site.Params.use_wovn true }}
-        {{- $baseUrl := split .Site.BaseURL "/" }}
-        {{- $num := sub (len $baseUrl) 2 }}
-        {{- $prefix := index $baseUrl $num }}
-    <script src="https://j.wovn.io/1" data-wovnio="key={{.Site.Params.data_wovnio}}&amp;defaultLang=en&amp;currentLang=en&amp;urlPattern=path&amp;backend=true&amp;langCodeAliases={&quot;en&quot;:&quot;en&quot;}&amp;sitePrefixPath={{$prefix}}&amp;langParamName=wovn&amp;backendVersion=WOVN.proxy_0.9.0" async></script>
+    <script src="https://j.wovn.io/1" data-wovnio="key=avzrFk" async></script>
     {{- end }}
 
     <meta charset="utf-8">
