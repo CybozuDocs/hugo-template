@@ -11,14 +11,14 @@
     {{- $title = printf "%s | %s" $title $sitename }}
     <title>{{ $title }}</title>
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application.css" $buildnum | relURL }}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     {{- with .Site.Params.custom_css }}
         {{- $files := split . "," }}
         {{- range $files }}
     <link rel="stylesheet" href="{{ printf "%s?%s" . $buildnum | relURL }}">
         {{- end }}
     {{- end}}
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="{{ printf "%s?%s" "javascripts/kintone-tutorial.js" $buildnum | relURL }}"></script>
     {{- template "gtm" dict "key" "GTM-5ZR5GF" }}
     {{- template "gtm" dict "key" "GTM-5N49D3" }}
