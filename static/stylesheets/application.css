@@ -1428,6 +1428,37 @@ table .wd10 {
 }
 /* -------------------- End of sitemap */
 
+.article .listsummary ol {
+    margin: 0 0 0.9rem 0;
+    padding-left: 0;
+    counter-reset: procedure;
+    list-style-type: none;
+}
+
+.article .listsummary ol > li {
+    padding: 0;
+    margin-bottom: 0.5rem;
+}
+
+.article .listsummary ol > li::marker {
+    font-size: 1rem;
+    font-weight: normal;
+}
+.article .listsummary ol > li::before {
+    counter-increment: procedure;
+    content: counter(procedure);
+    border-radius: 24px;
+    color: #333333;
+    background-color: #cccccc;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    padding: 4px 8px;
+    margin-right: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+}
+
 .listtext {
     font-weight: normal;
 }

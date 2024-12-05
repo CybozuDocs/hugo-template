@@ -87,6 +87,12 @@ h4.audit + .id-link-button {
   margin-top: 0.9em;
 }
 
+/* listsummary shortcode -------------------------------------- */
+.article .listsummary ol > li::before {
+  color: #ffffff;
+  background-color: #0d7b91;
+}
+
 /* 768px以上の設定 *****************************************************/
 @media only screen and (min-width:768px){
     .logo-img {
@@ -94,7 +100,7 @@ h4.audit + .id-link-button {
         height: 35px;
         vertical-align: -10px;
     }
-    
+
     .logo-title {
         padding-top: 0;
         font-size: 18px;

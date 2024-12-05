@@ -60,3 +60,9 @@ h4.audit + .id-link-button {
     margin-bottom: 7px;
     padding-left: 20px;
   }
+
+/* list shortcode -------------------------------------- */
+.article .listsummary ol > li::before {
+    color: #ffffff;
+    background-color: #0d7b91;
+}

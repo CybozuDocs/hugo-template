@@ -26,3 +26,9 @@
     padding-left: 0.4em;
     padding-bottom: 0.4em;
 }
+
+/* listsummary shortcode -------------------------------------- */
+.article .listsummary ol > li::before {
+    color: #ffffff;
+    background-color: #0d7b91;
+}
