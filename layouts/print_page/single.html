@@ -465,6 +465,9 @@
                         {{- if eq $weight 400 -}}
                             {{- $targeturl = (printf "/%s/%s/kep4" $productId $lang) -}}
                         {{- end -}}
+                        {{- if eq $weight 500 -}}
+                            {{- $targeturl = (printf "/%s/%s/kep5" $productId $lang) -}}
+                        {{- end -}}
                     {{- else if eq $product "kop" -}}
                         {{- if eq $weight 100 -}}
                             {{- $targeturl = (printf "/%s/%s/kop1_overview" $productId $lang) -}}
