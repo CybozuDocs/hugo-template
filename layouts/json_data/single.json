@@ -1,0 +1,14 @@
+{{- $region := $.Site.Params.TargetRegion | lower }}
+{{- $lang := $.Site.LanguageCode }}
+{{- if ne $lang "zh-tw" }}
+  {{- $lang = substr $lang 0 2 }}
+{{- end }}
+{{- $assetfile := strings.Replace .File.Path ".md" ".json" }}
+{{- $assetfile = strings.Replace $assetfile "\\" "/" }}
+{{- $path := (printf "%s/%s" $lang $assetfile) }}
+{{- with resources.Get $path }}
+  {{- with . | transform.Unmarshal }}
+    {{- $data := ( . | jsonify (dict "noHTMLEscape" true "prefix" " " "indent" "  " )) }}
+    {{- partial "applyparams" (dict "target" $data "params" $.Site.Params) }}
+  {{- end -}}
+{{- end -}}
