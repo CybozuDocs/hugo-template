@@ -25,7 +25,7 @@
                         {{- $idnum := 1 }}
                         {{- $entries := $.Site.Home.Sections }}
                         {{- range $entries.ByWeight }}
-                            {{- if (ne .Params.weight 0) }}
+                            {{- if and (ne .Params.weight 0) (not ( in .Params.disabled $.Site.Params.TargetRegion )) }}
                                 {{- $title := (partial "title" . ) }}
                                 {{- $link := (printf "https://%s%s" $.Site.Params.domain $.RelPermalink) }}
                                 {{- $id := printf "sitemap_index_%02d" $idnum }}
@@ -59,10 +59,12 @@
 {{- define "site_map" }}
     <ul role="group">
     {{- range .Pages.ByWeight }}
-        <li role="presentation">
-            <a role="treeitem" href="{{ .RelPermalink }}">{{- partial "title" . -}}</a>
-        </li>
-        {{- template "site_map" . }}
+        {{- if and (ne .Params.weight 0) (not ( in .Params.disabled $.Site.Params.TargetRegion )) }}
+            <li role="presentation">
+                <a role="treeitem" href="{{ .RelPermalink }}">{{- partial "title" . -}}</a>
+            </li>
+            {{- template "site_map" . }}
+        {{- end }}
     {{- end }}
     </ul>
 {{- end }}
