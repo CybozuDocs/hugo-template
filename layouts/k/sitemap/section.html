@@ -1,0 +1,68 @@
+{{- if in .Params.disabled $.Site.Params.TargetRegion }}
+<meta http-equiv="refresh" content="0; URL=/" />
+{{- else }}
+{{- partial "head" . }}
+{{- if eq $.Site.Params.TargetRegion "US" }}{{- partial "localemodal" . }}{{- end -}}
+{{- partial "header" . }}
+{{- partial "announcementbanner.html" . -}}
+    <div class="page-pad"></div>
+    {{- if eq $.Site.Params.meganav true -}}
+    <div class="mnav-pad"></div>
+        {{ partial "meganav" . }}
+    {{- end -}}
+    <div id="page" class="page">
+        <div class="contents-wrap contents-wrap-wide">
+            <main class="main" role="main">
+                {{- partial "breadcrumb" . }}
+                <article class="article">
+                    <div class="id-title">
+                        <h1>{{ partial "title" . }}</h1>
+                        {{- if and (eq $.Site.Params.id_search true) (.Params.aliases) }}
+                            {{- template "articlelink" . }}
+                        {{- end }}
+                    </div>
+                    <div class="sitemap">
+                        {{- $idnum := 1 }}
+                        {{- $entries := $.Site.Home.Sections }}
+                        {{- range $entries.ByWeight }}
+                            {{- if (ne .Params.weight 0) }}
+                                {{- $title := (partial "title" . ) }}
+                                {{- $link := (printf "https://%s%s" $.Site.Params.domain $.RelPermalink) }}
+                                {{- $id := printf "sitemap_index_%02d" $idnum }}
+                                {{- $ti := (dict "Level" 2 "Text" $title "Anchor" $id ) -}}
+                                {{- template "anchorlink2" (dict "ti" $ti "ids" .Page.Site.Params.id_search ) }}
+                                <div class="sitemap">
+                                    {{- template "site_map" .}}
+                                </div>
+                                {{- $idnum = (add $idnum 1) }}
+                            {{- end }}
+                        {{- end }}
+                    </div>
+                </article>
+            </main>
+        </div>
+        <div class="sidebar-wrap">
+            <nav id="rightside-bar">
+                <h2 class="toc-title">{{ i18n "In_this_article" }}</h2>
+            </nav>
+        </div>
+    </div>
+    {{- partial "gototop" . }}
+    {{- partial "footer" . }}
+    {{- if eq $.Site.Params.TargetRegion "US" }}
+        <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
+    {{- end -}}
+    {{- end }}
+    </body>
+</html>
+
+{{- define "site_map" }}
+    <ul role="group">
+    {{- range .Pages.ByWeight }}
+        <li role="presentation">
+            <a role="treeitem" href="{{ .RelPermalink }}">{{- partial "title" . -}}</a>
+        </li>
+        {{- template "site_map" . }}
+    {{- end }}
+    </ul>
+{{- end }}
