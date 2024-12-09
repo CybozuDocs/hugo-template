@@ -2502,6 +2502,9 @@ i.index-pdf {
     .contents-wrap {
         width: calc(100% - 492px);
     }
+    .contents-wrap-wide {
+        width: calc(100% - 300px);
+    }
     .article {
         width: 100%;
     }
