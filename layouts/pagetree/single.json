@@ -1,12 +1,12 @@
 {{- $entries := "" }}
 {{- $needtoc := false }}
 {{- $islastsect := false }}
-{{- $entries = $.Site.Home.Sections -}}
+{{- $entries = where $.Site.Home.Sections "Type" "ne" "k/sitemap" -}}
 
 {{- if eq $.Site.Params.toc_in_tree true -}}
 
     {{- $parenttree := false -}}
-    
+
     {{- if eq $.Site.Params.toc_in_tree true -}}
         {{- $parenttree = true }}
         {{- $needtoc = true }}
@@ -163,7 +163,7 @@
 {{- define "jsontoc" }}
     {{- $tocitem := .tocitem }}
     {{- $pageurl := .pageurl }}
-     
+
     {{- $anc := "" }}
     {{- $params := split $tocitem " " }}
     {{- range $params }}
