@@ -31,8 +31,13 @@
                                 {{- $id := printf "sitemap_index_%02d" $idnum }}
                                 {{- $ti := (dict "Level" 2 "Text" $title "Anchor" $id ) -}}
                                 {{- template "anchorlink2" (dict "ti" $ti "ids" .Page.Site.Params.id_search ) }}
-                                <div class="sitemap">
-                                    {{- template "site_map" .}}
+                                <div class="sitemap k-sitemap">
+                                    <ul role="group">
+                                        <li>
+                                            <a role="treeitem" href="{{ .RelPermalink }}">{{ $title }}</a>
+                                        {{- template "site_map" . }}
+                                        </li>
+                                    </ul>
                                 </div>
                                 {{- $idnum = (add $idnum 1) }}
                             {{- end }}
@@ -57,14 +62,14 @@
 </html>
 
 {{- define "site_map" }}
-    <ul role="group">
     {{- range .Pages.ByWeight }}
+    <ul role="group">
         {{- if and (ne .Params.weight 0) (not ( in .Params.disabled $.Site.Params.TargetRegion )) }}
             <li role="presentation">
                 <a role="treeitem" href="{{ .RelPermalink }}">{{- partial "title" . -}}</a>
             </li>
             {{- template "site_map" . }}
         {{- end }}
-    {{- end }}
     </ul>
+    {{- end }}
 {{- end }}

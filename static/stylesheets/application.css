@@ -1426,6 +1426,9 @@ table .wd10 {
 .sitemap li a {
     text-decoration: none;
 }
+.k-sitemap > ul {
+    margin-left: 0;
+}
 /* -------------------- End of sitemap */
 
 .article .listsummary ol {
