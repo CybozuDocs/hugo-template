@@ -350,6 +350,13 @@ background: rgba(255, 255, 255, 0.9);
 }
 /* -------------------- End of search-result */
 
+/* mega  -------------------- */
+.mega-title a {
+    padding: 0 0 0 0;
+    margin-left: 0;
+}
+/* -------------------- End of mega */
+
 /* admonition -------------------- */
 .admonition {
     padding: 0;
