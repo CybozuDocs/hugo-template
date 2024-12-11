@@ -352,6 +352,7 @@ background: rgba(255, 255, 255, 0.9);
 
 /* mega  -------------------- */
 .mega-title a {
+    font-size: 1em;
     padding: 0 0 0 0;
     margin-left: 0;
 }
