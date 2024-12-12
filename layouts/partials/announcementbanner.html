@@ -3,8 +3,14 @@
 
 {{- $announcementfile := printf "csv/%s/announcement_%s.csv" $.Lang $.Site.Params.TargetRegion }}
 {{- if os.FileExists $announcementfile }}
-    {{- range $i, $r := (getCSV "," $announcementfile) }}
-        {{- template "makeannouncebanner" $r }}
+    {{- $p := "common/csv/icon_images.csv" }}
+    {{- with resources.Get $p }}
+        {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
+        {{- range $i, $r := $data }}
+            {{- template "makeannouncebanner" $r }}
+        {{- end }}
+    {{- else }}
+        {{- warnf "Unable to get resource %q" $p }}
     {{- end }}
 {{- end }}
 

@@ -112,10 +112,16 @@
                       <span class="fa-stack" tabindex="-1" aria-hidden="true">
         {{- $iconface := "" }}
         {{- $targetlink := .RelPermalink }}
-        {{- range $i, $r := getCSV "," "csv/icon_images.csv" }}
-            {{- if in $targetlink (index $r 0)}}
-                {{- $iconface = (index $r 1) }}
+        {{- $p := "common/csv/icon_images.csv" }}
+        {{- with resources.Get $p }}
+            {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
+            {{- range $i, $r := $data }}
+                {{- if in $targetlink (index $r 0)}}
+                    {{- $iconface = (index $r 1) }}
+                {{- end }}
             {{- end }}
+        {{- else }}
+            {{- warnf "Unable to get resource %q" $p }}
         {{- end }}
                           <i class="far fa-circle fa-stack-2x" aria-hidden="true"></i>
                           <i class="{{$iconface}} fa-stack-1x" aria-hidden="true"></i>
@@ -139,9 +145,15 @@
 
 {{- define "titleicon" }}
     {{- $targetlink := . }}
-    {{- range $i, $r := getCSV "," "csv/icon_images.csv" }}
-        {{- if in $targetlink (index $r 0)}}
-            <i class="{{ index $r 1 }} gcol-title-icon" aria-hidden="true"></i>
+    {{- $p := "common/csv/icon_images.csv" }}
+    {{- with resources.Get $p }}
+        {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
+        {{- range $i, $r :=  $data }}
+            {{- if in $targetlink (index $r 0)}}
+                <i class="{{ index $r 1 }} gcol-title-icon" aria-hidden="true"></i>
+            {{- end }}
         {{- end }}
+    {{- else }}
+        {{- warnf "Unable to get resource %q" $p }}
     {{- end }}
 {{- end }}
