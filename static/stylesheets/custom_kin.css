@@ -66,3 +66,9 @@ h4.audit + .id-link-button {
     color: #ffffff;
     background-color: #0d7b91;
 }
+
+.wv-brk::before {
+  content: '「';
+}
+.wv-brk::after {
+  content: "」";
