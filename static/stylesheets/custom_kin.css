@@ -66,5 +66,5 @@ h4.audit + .id-link-button {
   content: '「';
 }
 .wv-brk::after {
-  content: "」";
+  content: '」';
 }
