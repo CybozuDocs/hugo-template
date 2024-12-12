@@ -60,3 +60,11 @@ h4.audit + .id-link-button {
     margin-bottom: 7px;
     padding-left: 20px;
   }
+
+
+.wv-brk::before {
+  content: '「';
+}
+.wv-brk::after {
+  content: "」";
+}
