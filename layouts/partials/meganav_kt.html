@@ -13,12 +13,8 @@
 {{- $menu_ids := (slice "") }}
 {{- $menu_titles := (slice "") }}
 {{- $menu_urls := (slice "") }}
-{{- $menufile := printf "csv/%s/menuitems_%s.csv" $.Lang $.Site.Params.TargetRegion}}
-{{- if ne (os.FileExists $menufile) true }}
-  {{- $menufile = printf "csv/menuitems_%s_%s.csv" $.Lang $.Site.Params.TargetRegion}}
-{{- end }}
-{{- $p := "common/csv/icon_images.csv" }}
-{{- with resources.Get $p }}
+{{- $menufile := printf "%s/csv/menuitems_%s.csv" $.Lang $.Site.Params.TargetRegion}}
+{{- with resources.Get $menufile }}
     {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
     {{- range $i, $r := $data }}
         {{- $menu_ids = $menu_ids | append (index $r 0) }}
@@ -29,7 +25,7 @@
         {{- end }}
     {{- end }}
 {{- else }}
-    {{- warnf "Unable to get resource %q" $p }}
+    {{- warnf "Unable to get resource %q" $menufile }}
 {{- end }}
 <nav class="mega-nav-bar" role="navigation" aria-label="{{ i18n "Document_type" }}">
     <ul class="g-nav" role="none" ></ul>
