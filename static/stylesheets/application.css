@@ -2551,8 +2551,7 @@ i.index-pdf {
         display: block;
     }
     /* -------------------------------- article style */
-
-    .article img.screenshot {
+    .article img:not(.admonition img.screenshot) {
         max-width: 600px;
     }
 }
