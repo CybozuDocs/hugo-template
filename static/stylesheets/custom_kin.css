@@ -72,3 +72,10 @@ h4.audit + .id-link-button {
 }
 .wv-brk::after {
   content: "」";
+}
+.wv-brk2::before {
+  content: '[';
+}
+.wv-brk2::after {
+  content: "]";
+}
