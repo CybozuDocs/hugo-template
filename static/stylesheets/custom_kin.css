@@ -61,10 +61,21 @@ h4.audit + .id-link-button {
     padding-left: 20px;
   }
 
+/* list shortcode -------------------------------------- */
+.article .listsummary ol > li::before {
+    color: #ffffff;
+    background-color: #0d7b91;
+}
 
 .wv-brk::before {
   content: '「';
 }
 .wv-brk::after {
-  content: '」';
+  content: "」";
+}
+.wv-brk2::before {
+  content: '[';
+}
+.wv-brk2::after {
+  content: "]";
 }
