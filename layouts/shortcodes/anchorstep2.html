@@ -33,10 +33,14 @@
 {{- $section = (strings.TrimSuffix "</div>" $section) }}
 {{- $bc := "" }}
 {{- if .Get "bgcolor" }}
-    {{- $bc = printf "%s%s" "background-color:" (.Get "bgcolor") }}
+    {{- $bc = printf "%s%s;" "background-color:" (.Get "bgcolor") | safeCSS }}
+{{- end }}
+{{- $tc := "" }}
+{{- if .Get "txtcolor" }}
+    {{- $tc = printf "%s%s" "color:" (.Get "txtcolor") | safeCSS }}
 {{- end }}
 {{- if ne $section "" }}
-            <span class="step-section" style="{{$bc}}">{{ $section | safeHTML }}</span>
+            <span class="step-section" style="{{$bc}}{{$tc}}">{{ $section | safeHTML }}</span>
 {{- end }}
 {{- $title := "" }}
 {{- $tmptitle_pref := "<div class=\"tmp-step-title\">" }}
