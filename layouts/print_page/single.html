@@ -469,17 +469,13 @@
                             {{- $targeturl = (printf "/%s/%s/kep5" $productId $lang) -}}
                         {{- end -}}
                     {{- else if eq $product "kop" -}}
-                        {{- if eq $weight 100 -}}
-                            {{- $targeturl = (printf "/%s/%s/kop1_overview" $productId $lang) -}}
-                        {{- end -}}
                         {{- if eq $weight 200 -}}
-                            {{- $targeturl = (printf "/%s/%s/kop1_setup" $productId $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/kop1/setup" $productId $lang) -}}
                         {{- end -}}
                         {{- if eq $weight 300 -}}
-                            {{- $targeturl = (printf "/%s/%s/kop1_user" $productId $lang) -}}
+                            {{- $targeturl = (printf "/%s/%s/kop1/user" $productId $lang) -}}
                         {{- end -}}
                     {{- end -}}
-
                     {{- if ne $targeturl "" }}
                         {{- range $links -}}
                             <!-- retrieve URL string -->
@@ -501,6 +497,10 @@
                                           {{- $url = . -}}
                                        {{- end -}}
                                     {{- else -}}
+                                       <!-- kop had deep path for preview site -->
+                                       {{- if eq $product "kop"}}
+                                          {{- $url = replaceRE "/kop1/" "/" $url -}}
+                                       {{- end -}}
                                        {{- $url = (anchorize $url) -}}
                                     {{- end -}}
 
