@@ -14,7 +14,7 @@
 {{- $seconditems := len $rootsect.Pages }}
 {{- if .IsHome}}
   {{- $seconditems = 0 }}
-{{- else if or (in $rootsect "purpose") (in $rootsect "guide") (in $rootsect "pdf") (in $rootsect "glossary") (in $rootsect "error") (in $rootsect "mobile")}}
+{{- else if or (in $rootsect "video") (in $rootsect "purpose") (in $rootsect "guide") (in $rootsect "pdf") (in $rootsect "glossary") (in $rootsect "error") (in $rootsect "mobile")}}
   {{- $seconditems = 0 }}
 {{- else if or (eq $.Params.type "search_result") (eq $.Params.type "gr/sitemap")}}
   {{- $seconditems = 0 }}
