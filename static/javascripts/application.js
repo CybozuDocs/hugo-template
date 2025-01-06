@@ -1110,14 +1110,12 @@
                     const url = location.href;
                     const pathes = url.split("/");
                     
-                    let langPath = pathes[2];
-                    if (window.WOVN && WOVN.io && WOVN.io.isApiReady()) {
-                        langPath = WOVN.io.getCurrentLang().code;
-                    }
-                    let prodpath = "//" + langPath;
+                    let prodpath = "";
                     if (languages.indexOf(pathes[3]) === -1) {
-                        // URLの4階層目が言語情報ではない（＝製品ID）
-                        prodpath = prodpath + "/" + pathes[3];
+                        // URLの２階層目が言語情報ではない（＝製品ID）
+                        prodpath = "//" + pathes[2] + "/" + pathes[3];
+                    } else {
+                        prodpath = "//" + pathes[2];
                     }
                     
                     let desturl = pathes[0] + prodpath + idpath + ".html";
