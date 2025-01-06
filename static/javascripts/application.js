@@ -1105,8 +1105,13 @@
         const hids = $(".id-link-button");
         if(hids.length > 0) {
             hids.click(function() {
-                const idpath = $(this).attr('idpath');
+                let idpath = $(this).attr('idpath');
                 if(idpath !== undefined) {
+                    if (window.WOVN && WOVN.io && WOVN.io.isApiReady()) {
+                        const wcode = WOVN.io.getCurrentLang().code;
+                        idpath = idpath.replace("/en/", "/"+wcode+"/");
+                    }
+                    
                     const url = location.href;
                     const pathes = url.split("/");
                     
