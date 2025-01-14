@@ -176,3 +176,9 @@ other = "英文頁面"
 
 [Contact_support]
 other = "聯繫支援人員"
+
+[Side_navigation_show]
+other = "顯示側面導航"
+
+[Side_navigation_hide]
+other = "隱藏側面導航"

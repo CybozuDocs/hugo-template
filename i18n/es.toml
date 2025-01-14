@@ -174,3 +174,10 @@ other = "English page"
 
 [Contact_support]
 other = "Contact Support"
+
+[Side_navigation_show]
+other = "Mostrar menú de navegación lateral"
+
+[Side_navigation_hide]
+other = "Ocultar menú de navegación lateral"
+

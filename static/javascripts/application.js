@@ -679,8 +679,7 @@
                     // サポートボタンの位置修正
                     adjustSupportInquiry();
                 }
-
-            }, 1000);
+            }, 200);
         }); 
 
         // ツリーナビゲーションの位置と高さの調整
@@ -694,6 +693,7 @@
                 if(hasMegaNav === true) {
                     $("#tree-nav").removeClass("fixed-tree");
                 }
+                $("#treenav-toggle").css("display", "none");
                 return false;
             }
 
@@ -737,6 +737,7 @@
             }
 
             $tree.height(wrapHeight);
+            adjustTreeToggle();
 
             // 右ペインTOCのサイズ調整
             if( document.getElementById("rightside-bar") != null ) {
@@ -753,6 +754,145 @@
                 $("#rightside-bar").height(sbh);
             }
         }
+
+        // ツリーナビゲーションの展開と省略
+        if (window.innerWidth > mobileSize) {
+            $("#treenav-toggle").css("display", "block");
+        } else {
+            $("#treenav-toggle").css("display", "none");
+        }
+
+        // 開閉ボタンの位置
+        function adjustTreeToggle() {
+            if (window.innerWidth > mobileSize) {
+                $("#treenav-toggle").css("display", "block");
+            } else {
+                $("#treenav-toggle").css("display", "none");
+                return false;
+            }
+
+            let footHeight = 0;
+            const winHeight = $(window).outerHeight();
+            const footerOffsetTop = $(".footer").offset().top;
+            const winScrollTop = $(window).scrollTop();
+            if(winScrollTop + winHeight - footerOffsetTop > 0) {
+                footHeight = (winScrollTop + winHeight - footerOffsetTop);
+            }
+            $("#treenav-toggle").css("bottom", footHeight + "px");
+
+            if ($("#tree").css("display") === "block") {
+                const toggleLeft = $("#tree-nav").outerWidth(true) + parseInt($("#page").css("margin-left")) - 25;
+                $("#treenav-toggle").css("left", toggleLeft);
+            }
+        }
+
+        // ツリーナビゲーションの折りたたみ
+        function toggleTreeNav(spread) {
+            if (window.innerWidth < mobileSize) {
+                return false;
+            }
+
+            let pageWidth = "1300px";
+            let contentsWidth = "calc(100% - 492px)";
+            const currentTree = $("#tree-nav").outerWidth(true);
+
+            const currentPageWidth = $("#page").outerWidth(true);
+
+            let rightPaneWidth = 0;
+            if( document.getElementById("rightside-bar") != null ) {
+                rightPaneWidth = 200;
+            }
+
+            if (spread) {
+                // ナビゲーションを開く
+                $("#tree").css("display", "block");
+                $("#contents").css("left", -currentTree);
+                
+                let nextMargin = 0;
+                if (currentPageWidth > 1300) {
+                    nextMargin = (currentPageWidth - 1300) / 2;
+                }
+
+                $("#head").css("maxWidth", currentPageWidth);
+                $("#head").animate({maxWidth: pageWidth, marginLeft: nextMargin, marginRight: nextMargin}, function() {
+                    $("#head").css("margin-left", "auto");
+                    $("#head").css("margin-right", "auto");
+                });
+
+                if ($(".g-nav").length > 0) {
+                    $(".g-nav").animate({maxWidth: pageWidth});
+                    $(".mega-tab-wrap").animate({maxWidth: pageWidth});
+                }
+
+                $(".page").css("maxWidth", currentPageWidth - currentTree);
+                $(".page").animate({maxWidth: pageWidth, marginLeft: nextMargin, marginRight: nextMargin}, function() {
+                    $(".page").css("margin-left", "auto");
+                    $(".page").css("margin-right", "auto");
+                });
+
+                const currentWidth = document.body.clientWidth;
+                let contentsWidth = "auto";
+                let nextContentsWidth = currentWidth;
+                if (currentWidth > 1059) {
+                    contentsWidth = "calc(100% - 492px)";
+                    nextContentsWidth = currentWidth - 492 - (nextMargin*2);
+                } else if (currentWidth > 768) {
+                    contentsWidth = "calc(100% - 292px)";
+                    nextContentsWidth = currentWidth - 292 - (nextMargin*2);
+                }
+
+                $("#contents").animate({width: nextContentsWidth, left: 0}, function() {
+
+                    $("#contents").css("width", contentsWidth);
+                });
+
+                $("#tree").animate({left: 0});
+                $("#treenav-toggle").animate({left: currentTree}, function() {
+                    $("#treenav-show").css("display", "none");
+                    $("#treenav-hide").css("display", "block");
+                    adjustTreeToggle();
+                });
+            } else {
+                // ナビゲーションを畳む
+                $("#tree").animate({left: "-"+currentTree}, function() {
+                    $("#tree").css("display", "none");
+                });
+                $("#treenav-toggle").animate({left: "-22px"}, function() {
+                    $("#treenav-show").css("display", "block");
+                    $("#treenav-hide").css("display", "none");
+                });
+
+                const nextContentsWidth = currentPageWidth - rightPaneWidth;
+
+                $("#contents").animate({width: nextContentsWidth, left:  0}, function() {
+                    $("#contents").css("width", "calc(100% - " + rightPaneWidth + "px)");
+                });
+
+                $("#head").animate({maxWidth: currentPageWidth, marginLeft: 0, marginRight: 0}, function() {
+                    $("#head").css("maxWidth", "none");
+                    $("#head").css("margin", 0);
+                });
+
+                if ($(".g-nav").length > 0) {
+                    $(".g-nav").animate({maxWidth: currentPageWidth});
+                    $(".mega-tab-wrap").animate({maxWidth: currentPageWidth});
+                }
+
+                $(".page").animate({maxWidth: currentPageWidth, marginLeft: "-"+currentTree}, function() {
+                    $(".page").css("maxWidth", "none");
+                    $(".page").css("margin", 0);
+                });
+            }
+        }
+
+        $("#treenav-show").click(function() {
+            toggleTreeNav(true);
+        });
+
+        $("#treenav-hide").click(function() {
+            toggleTreeNav(false);
+        });
+
 
         // ツリーナビゲーションヘッダーの高さ取得
         function getTreeHeadHeight() {

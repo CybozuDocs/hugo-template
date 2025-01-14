@@ -174,3 +174,9 @@ other = "英語のページ"
 
 [Contact_support]
 other = "サポート問い合わせ"
+
+[Side_navigation_show]
+other = "サイドナビゲーションを表示する"
+
+[Side_navigation_hide]
+other = "サイドナビゲーションを表示しない"

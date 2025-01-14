@@ -174,3 +174,9 @@ other = "英文页面"
 
 [Contact_support]
 other = "联系支持"
+
+[Side_navigation_show]
+other = "隐藏侧边导航栏"
+
+[Side_navigation_hide]
+other = "显示侧边导航栏"

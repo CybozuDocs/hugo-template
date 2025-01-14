@@ -549,7 +549,7 @@ li .lang-title {
     position: absolute;
     left: 0;
     top: 150px;
-    z-index: 9;
+    z-index: 999999;
     width:100%;
     background: #fff;
     border-bottom:solid 3px #b8c5ca;
@@ -819,6 +819,7 @@ h6 + .id-link-button {
     overflow: hidden;
     width: auto;
     height: auto;
+    z-index: 1000;
 }
 .tree-title, .tree-subtitle {
     font-weight: normal;
@@ -841,6 +842,8 @@ h6 + .id-link-button {
     width: auto;
     height: auto;
     overscroll-behavior-y: contain;
+    background-color: #fff;
+    z-index: 1200;
 }
 #tree-main ul {
     padding-inline-start: 10px;
@@ -919,6 +922,43 @@ h6 + .id-link-button {
     top: 46px;
     position: fixed;
 }
+#treenav-toggle {
+    position: fixed;
+    left: 10px;
+    bottom: 0;
+    margin-bottom: 20px;
+    padding-left: 16px;
+    height: 30px;
+    z-index: 900;
+}
+.treenav-toggle-button {
+    position: relative;
+    top: 10px;
+    width: 34px;
+    height: 34px;
+    border: solid 2px #9e9e9e;
+    border-radius: 0 20px 20px 0; 
+    font-size: 24px;
+    background-color: #fff;
+    cursor: pointer;
+}
+.treenav-toggle-button:hover {
+    background-color: #015aff;
+    color: #fff;
+}
+.treenav-toggle-button i {
+    position: relative;
+    top: -2px;
+    padding-left: 6px;
+    color: #9e9e9e;
+}
+.treenav-toggle-button:hover i {
+    color: #fff;
+}
+#treenav-show {
+    display: none;
+}
+
 /* -------------------- end of tree navigation */
 
 .contents-wrap {
@@ -926,6 +966,7 @@ h6 + .id-link-button {
     margin-top: 34px;
     position: relative;
     flex-shrink: 0;
+
     border-bottom: solid #b8c5ca 2px;
 }
 .top-wrap {
@@ -1925,7 +1966,7 @@ i.index-pdf {
     background: #fff;
     font-size: 0.875rem;
     width: 100%;
-    z-index: 999;
+    z-index: 9999;
 }
 .footer::before {
     content: '';
@@ -2016,6 +2057,7 @@ i.index-pdf {
 }
 .enquete-panel div {
     display: inline;
+    padding-left: 30px;
 }
 .close-enquete {
     display: none;
@@ -2546,6 +2588,7 @@ i.index-pdf {
     }
     .enquete-panel div {
         display: block;
+        padding-left: 0;
     }
     .close-enquete {
         display: block;
