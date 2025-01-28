@@ -10,7 +10,7 @@
         const url_parts = cururl.split("/");
 
         // 対応言語
-        const languages = ["en", "ja", "zh", "zh-tw", "es"];
+        const languages = ["en", "ja", "zh", "zh-tw", "es", "th"];
 
         // メガメニュー有無のフラグ
         let hasMegaNav = false;
