@@ -1,0 +1,76 @@
+{{- $filter := (slice) }}
+{{- $paramfilter := "" }}
+{{- if eq .Site.Params.google_search true }}
+  {{- $paramfilter = .Site.Params.google_search_tabs }}
+{{- else if eq .Site.Params.bing_search true }}
+  {{- $paramfilter = .Site.Params.bing_search_tabs }}
+{{- end }}
+{{- if eq $paramfilter nil}}
+  {{- $paramfilter = "" }}
+{{- end }}
+{{- if gt ( $paramfilter | len ) 0 }}
+  {{- $paramfilter = strings.TrimLeft "[" $paramfilter }}
+  {{- $paramfilter = strings.TrimRight "]" $paramfilter }}
+  {{- $filter = split $paramfilter "," }}
+{{- end }}
+{{- $fullsize := false }}
+{{- $ph := "" }}
+{{- if and (eq $.Site.Params.template_version "2") (eq $.Site.Params.TargetRegion "US") }}
+  {{- $ph = (i18n "Search_example") }}
+{{- else }}
+  {{- $ph = (i18n "Enter_keywords") }}
+{{- end }}
+{{- if or .IsHome (eq .Params.type "search_result") }}
+  {{- $fullsize = true }}
+{{- else }}
+  {{- if eq $.Site.Params.TargetRegion "US" }}
+    {{- $ph = "" }}
+  {{- end }}
+{{- end }}
+    <div id="search" class="search-wrap" role="search" >
+      <div class="searchbox">
+        {{- if ne $paramfilter "" }}
+          {{- $buttonstyle := "search-filter-current" }}
+          {{- if eq $fullsize true }}
+            {{- $buttonstyle = (printf "%s %s" $buttonstyle "search-filter-current-top") }}
+          {{- end }}
+        <button id="search-filter-current" class="{{ $buttonstyle }}" title='{{i18n "Search_filter"}}' aria-controls="search-filter-list" aria-haspopup="listbox" aria-expanded="false" role="combobox">{{ strings.Trim (index $filter 0) "'" }}</button>
+        {{- end }}
+        <div id="search-filter-list" class="search-filter-list" aria-labelledby="search-filter-current" role="listbox" tabindex="-1">
+          <ul>
+{{- $classname := "search-filter-item" }}
+{{- range $idx, $value := $filter }}
+  {{- if eq $idx 0 }}
+    {{- $classname = printf "%s%s" $classname " search-filter-selected" }}
+  {{- else }}
+    {{- $classname = "search-filter-item" }}
+  {{- end }}
+            <li class="{{$classname}}" listid="{{$idx}}" role="option" aria-selected="false">{{ strings.Trim $value "'" }}</li>
+{{- end }}
+          </ul>
+        </div>
+        <input type="search" id="search-input" class="search-input" placeholder='{{ $ph }}' aria-label='{{i18n "search_word"}}'>
+        <button class="search-submit" title='{{i18n "search"}}' aria-label='{{i18n "search"}}'></button>
+      </div>
+{{- if eq $fullsize true }}
+      <div id="logo_place" class="search-logo {{ if eq .Site.Params.bing_search true }} search-logo-bing{{ end }}">
+          {{- if eq .Site.Params.bing_search true }}
+              <span>{{ i18n "search_bing" }} (<a href="https://www.microsoft.com/en-gb/privacy/privacystatement" target="_blank">{{ i18n "search_bing_legal" }}</a>)</span>
+          {{- end }}
+      </div>
+{{- end }}
+    </div>
+{{- if eq .Site.Params.google_search true }}
+  {{- $glang := $.Lang}}
+  {{- if eq $glang "zh" }}
+      {{- $glang = "zh-CN" }}
+  {{- else if eq $glang "zh-tw" }}
+      {{- $glang = "zh-TW" }}
+  {{- end }}
+  {{- $logoplace := "search-input" }}
+  {{- if eq $fullsize true }}
+    {{- $logoplace = "logo_place" }}
+  {{- end }}
+  <script src="https://www.gstatic.com/prose/brand.js" targetId="{{$logoplace}}" hl="{{$glang}}"></script>
+{{- end }}
+

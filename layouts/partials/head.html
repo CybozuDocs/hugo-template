@@ -73,6 +73,11 @@
     <meta name="apple-mobile-web-app-title" content="{{$title}}">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    {{- $templateversion := "1" }}
+    {{- with .Site.Params.template_version }}
+      {{- $templateversion = . }}
+    {{- end }}
+    <meta name="cy-template-version" content="{{$templateversion}}">
     {{- if and (ne .Site.Params.product "Office") (ne .Site.Params.product "Mailwise") (ne .Site.Params.product "Remote")}}
     {{- partial "alternatelink" . }}
     {{- end }}
@@ -93,18 +98,23 @@
 
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application.css" $buildnum | relURL }}">
     <link rel="stylesheet" href="{{ "stylesheets/zoom.css" | relURL }}">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    {{- if .IsHome}}
+
+    {{- if eq $templateversion "2" -}}
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application2.css" $buildnum | relURL }}">
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/searchbox.css" $buildnum | relURL }}">
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/footer.css" $buildnum | relURL }}">
+      {{- if .IsHome -}}
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/toppage2.css" $buildnum | relURL }}">
+      {{- end -}}
+    {{- else }} <!-- version "1" -->
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/home.css" $buildnum | relURL }}">
-    {{- end }}
+    {{- end -}}
+
     {{- if eq .Params.type "search_result"}}
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/search_result.css" $buildnum | relURL }}">
-    {{- if and ( ne .Site.Params.google_search true ) ( ne .Site.Params.bing_search true ) -}}
-    <link href="//c.marsflag.com/mf/mfx/css/mfx-serp.css" rel="stylesheet" type="text/css" media="all" charset="UTF-8">
-    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/mf_search.css" $buildnum | relURL }}">
-        {{- end }}
     {{- end}}
+
     {{- with .Site.Params.custom_css }}
         {{- $files := split . "," }}
         {{- range $files }}
@@ -128,6 +138,14 @@
     {{- if eq .Params.type "gr6/home" -}}
     <script src="{{ printf "%s?%s" "javascripts/custom_gr6.js" $buildnum | relURL }}"></script>
     {{- end -}}
+
+    {{- if eq $templateversion "2" -}}
+    <script src="{{ printf "%s?%s" "javascripts/searchbox.js" $buildnum | relURL }}"></script>
+      {{- if .IsHome -}}
+    <script src="{{ printf "%s?%s" "javascripts/toppage2.js" $buildnum | relURL }}"></script>
+      {{- end -}}
+    {{- end -}}
+
     {{- if or
         ( and (eq .Params.type "search_result") (eq .Site.Params.google_search true) )
         ( and (eq .Params.type "search_result") (eq .Site.Params.bing_search true) )

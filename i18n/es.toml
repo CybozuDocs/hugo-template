@@ -181,3 +181,12 @@ other = "Mostrar menú de navegación lateral"
 [Side_navigation_hide]
 other = "Ocultar menú de navegación lateral"
 
+[Only_ja]
+other = "Sólo japonés"
+
+[Search_example]
+other = "Buscar artículos de Ayuda (Por ejemplo, \"Búsquedas\", \"Notificaciones\", \"No se puede iniciar sesión\")"
+
+[Search_filter]
+other = "Buscar entre"
+

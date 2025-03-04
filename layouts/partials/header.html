@@ -4,7 +4,19 @@
 {{- else if and .IsHome (eq $.Site.Params.TargetRegion "US") }}
     {{- $hedclass = "home-header" }}
 {{- end }}
-    <header class="header {{$hedclass}}">
+
+{{- $v2_list := slice "kintone" "slash" "support_guide" "store" "store-jp"}}
+{{- $v2_prod := false }}
+{{- if in $v2_list $.Site.Params.product  }}
+    {{- $v2_prod = true }}
+{{- end }}
+
+{{- $templateversion := "1" }}
+{{- with $.Site.Params.template_version }}
+  {{- $templateversion = $.Site.Params.template_version }}
+{{- end }}
+    <div id="shield"></div>
+    <header id="header" class="header {{$hedclass}}">
         <div id="head" class="header-wrap">
         {{- $langlen := len $.AllTranslations }}
         {{- $baselang := "" }}
@@ -12,25 +24,24 @@
             {{- $baselang = printf "%s/" $.Lang }}
         {{- end }}
             <div class="logo-wrap">
-                <h1 class="frame-h1">
-                    <button class="logo-link">
-            {{- with $.Site.Params.logo -}}
-                {{- $alt := "" }}
-                {{- $hidden := "true" }}
-                {{- with $.Site.Params.logo_alt -}}
-                    {{- $alt = $.Site.Params.logo_alt }}
-                    {{- $hidden = "false" }}
-                {{- end }}
-                        <img class="logo-img" src="{{ $.Site.BaseURL }}{{.}}" alt="{{$alt}}" title="{{$alt}}" aria-hidden="{{$hidden}}">
-            {{- end -}}
-            {{- $title := "" }}
+        {{- if and (not .IsHome) (eq $templateversion "2") -}}
+                <button id="tree-switch-mobile" class="tree-switch-mobile">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+        {{- end }}
+                <h1>
+                    <a class="logo-link" href="{{ $.Site.BaseURL }}">
+        {{- if or (eq .Site.Params.product "kintone") (eq $.Site.Params.TargetRegion "US") }}
+            {{- $alt := printf "%s %s" $.Site.Params.product_name $.Site.Params.help}}
+                        <img class="logo-img" src="{{ $.Site.BaseURL }}{{ $.Site.Params.logo }}" alt="{{$alt}}" title="{{$alt}}">
+        {{- else }}
+            {{- $title := printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help }}
             {{- if eq $.Site.Params.preview_site true }}
                 {{- $title = $.Site.Params.product_name }}
-            {{- else }}
-                {{- $title = printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help -}}
             {{- end }}
                         <span class="logo-title">{{$title}}</span>
-                    </button>
+        {{- end }}
+                    </a>
                 </h1>
             </div>
 
@@ -38,9 +49,7 @@
         {{- $disp_sbox := true }}
         {{- if eq .Params.type "search_result" }}
             {{- $disp_sbox = false }}
-        {{- else if and (ne $.Site.Params.meganav true) .IsHome }}
-            {{- $disp_sbox = false }}
-        {{- else if and (eq $.Site.Params.TargetRegion "US") .IsHome }}
+        {{- else if and .IsHome (eq $v2_prod true) }}
             {{- $disp_sbox = false }}
         {{- else if eq .Params.type "gr6/home" }}
             {{- $disp_sbox = false }}
@@ -49,6 +58,9 @@
         {{- end }}
 
         {{- if eq $disp_sbox true }}
+          {{- if eq $templateversion "2" -}}
+            {{ partial "searchbox" . }}
+          {{- else }}
             {{- if eq $glang "zh" }}
                 {{- $glang = "zh-CN" }}
             {{- else if eq $glang "zh-tw" }}
@@ -70,6 +82,7 @@
             {{- if eq .Site.Params.google_search true }}
             <script src="https://www.gstatic.com/prose/brand.js" targetId="headerSearchBox_input" hl="{{$glang}}"></script>
             {{- end }}
+          {{- end }}
         {{- end }}
 
         {{- if and .IsTranslated (eq .Site.Params.langSelector true) }}
@@ -78,3 +91,4 @@
 
         </div>
     </header>
+

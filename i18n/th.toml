@@ -185,7 +185,7 @@ other = "Hide side navigation"
 other = "Japanese"
 
 [Search_example]
-other = "Search Help Articles (e.g., \"Lookups\", \"Notifications\", \"Can't log in\")"
+other = "ค้นหาบทความช่วยเหนือ (เช่น \"การค้นหา\", \"การแจ้งเตือน\", \"ไม่สามารถเข้าสู่ระบบได้\") "
 
 [Search_filter]
-other = "Select where to search"
+other = "Search among"

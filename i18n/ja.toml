@@ -180,3 +180,12 @@ other = "サイドナビゲーションを表示する"
 
 [Side_navigation_hide]
 other = "サイドナビゲーションを表示しない"
+
+[Only_ja]
+other = "日本語のみ"
+
+[Search_example]
+other = "検索する（例：ルックアップ、通知、ログインできない）"
+
+[Search_filter]
+other = "次の中から検索する"

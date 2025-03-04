@@ -5,8 +5,8 @@
 {{- end }}
 
 {{- $u := urls.Parse $.Site.BaseURL }}
-{{- if or (hasPrefix $u.Path "/g/") (hasPrefix $u.Path "/g6/") }}
-    {{ partial "footer_gr6.html" . }}
+{{- if or (hasPrefix $u.Path "/g/") (hasPrefix $u.Path "/g6/") (eq $.Site.Params.template_version "2") }}
+    {{ partial "footer2.html" . }}
 {{- else }}
 <footer id="page-footer" class="footer">
     <div class="footer-wrap">
@@ -23,12 +23,6 @@
               {{- end }}
               <ul>
               {{- $p := $.Site.Params.footer_links }}
-{{/* remove later START */}}
-              {{- $parts := split $p "/" }}
-              {{- if eq (index $parts 0) "csv" }}
-                  {{- $p = printf "%s/%s/%s" (index $parts 1) (index $parts 0) (index $parts 2)}}
-              {{- end }}
-{{/* remove later END */}}
               {{- with resources.Get $p }}
                 {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
                 {{- range $i, $r := $data }}

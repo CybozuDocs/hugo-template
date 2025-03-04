@@ -1,6 +1,8 @@
 'use strict';
 (function() {
     window.addEventListener('load', function() {
+        const tp_version =  document.querySelector('meta[name="cy-template-version"]');
+        const TEMPLATE_VERSION = tp_version ? tp_version.content : "1";
         // 1059px と 768px は css における@media screen min-width の設定値
         const pcSize = 1059;
         const mobileSize = 768;
@@ -689,12 +691,22 @@
             if(window.innerWidth < mobileSize) {
                 // モバイルサイズにリサイズした場合の設定リセット
                 $("#tree-nav").css("height", "auto");
-                $tree.css("height", "auto");
+                if (TEMPLATE_VERSION === "2") {
+                    $("#tree").addClass("tree-mobile");
+                    $("#tree-main").addClass("tree-main-mobile");
+                } else {
+                    $tree.css("height", "auto");
+                }
                 if(hasMegaNav === true) {
                     $("#tree-nav").removeClass("fixed-tree");
                 }
-                $("#treenav-toggle").css("display", "none");
+                //$("#treenav-toggle").css("display", "none");
                 return false;
+            } else {
+                if (TEMPLATE_VERSION === "2") {
+                    $("#tree").removeClass("tree-mobile");
+                    $("#tree-main").removeClass("tree-main-mobile");
+                }
             }
 
             if(hasMegaNavSecond === true) {
@@ -755,12 +767,26 @@
             }
         }
 
-        // ツリーナビゲーションの展開と省略
-        if (window.innerWidth > mobileSize) {
-            $("#treenav-toggle").css("display", "block");
-        } else {
-            $("#treenav-toggle").css("display", "none");
+        //  mobile版 ツリーナビゲーションの展開と省略
+        function toggleTreeMobile(expand) {
+            if (expand) {
+                $("#tree").css("display", "block");
+                $("#tree").css("top", $(window).scrollTop());
+                $("#shield").css("display", "block");
+                $("body").css("overflow", "hidden");
+            } else {
+                $("#tree").css("display", "none");
+                $("body").css("overflow", "auto");
+                $("#shield").css("display", "none");
+            }
         }
+        $("#tree-switch-mobile").click(function() {
+            toggleTreeMobile(true);
+            return false;
+        });
+        $("#tree-close-mobile").click(function() {
+            toggleTreeMobile(false);
+        });
 
         // 開閉ボタンの位置
         function adjustTreeToggle() {
@@ -917,29 +943,50 @@
             const head = document.getElementById("head");
             const search = document.getElementById("search");
             const lang = document.getElementById("lang");
-            
-            if((search != null) && (lang != null)) {
+            const toppage = document.getElementById("top-page");
+            const searchpage = document.getElementById("search-result");
+
+            if((search !== null) && (lang !== null) && (toppage === null) && (searchpage === null)) {
                 if (mobile === true) {
                     head.insertBefore(lang, search);
                 } else {
                     head.insertBefore(search, lang);
                 }
             }
-            
-            const page = document.getElementById("page");
-            const tree = document.getElementById("tree");
-            const contents = document.getElementById("contents");
-            
-            if ((tree != null) && (contents != null)) {
-                if (mobile === true) {
-                    if ($(page).children().first().attr("id") === "tree") {
-                        page.insertBefore(contents,tree);
+
+            if (TEMPLATE_VERSION === "2") {
+                toggleTreeMobile(false);
+                const body = document.getElementsByTagName("body");
+                const header = document.getElementById("header");
+                const tree = document.getElementById("tree");
+                if ((header != null) && (tree != null)) {
+                    if (mobile === true) {
+                        $(tree).css("display","none");
+                        if ($(body).children().eq(2).attr("id") !== "tree") {
+                            body[0].insertBefore(tree, header);
+                        }
+                    } else {
+                        $(tree).css("display","block");
+                        if ($(body).children().eq(2).attr("id") === "tree") {
+                            page.insertBefore(tree, contents);
+                        }
                     }
-                } else {
-                    if ($(page).children().first().attr("id") === "contents") {
-                        page.insertBefore(tree, contents);
+              }
+            } else {
+                const page = document.getElementById("page");
+                const tree = document.getElementById("tree");
+                const contents = document.getElementById("contents");
+                if ((tree != null) && (contents != null)) {
+                    if (mobile === true) {
+                        if ($(page).children().first().attr("id") === "tree") {
+                            page.insertBefore(contents,tree);
+                        }
+                    } else {
+                        if ($(page).children().first().attr("id") === "contents") {
+                            page.insertBefore(tree, contents);
+                        }
                     }
-                }
+              }
             }
         }
 
@@ -992,16 +1039,6 @@
         }
 
     /*** ツリーナビゲーション内TOC ***/
-
-        // ツリーナビゲーションヘッダーを持つ(=ツリー内TOCを保つ場合)
-/*
-        if(hasTreeHead == true) {
-            // bodyスクロール時にツリーナビゲーションTOCのハイライトを移動させるイベントハンドラ
-            $(window).on("scrollstop",function(e) {
-                moveTreeTocHighlight();
-            });
-        }
-*/
 
         // 画面スクロール時のツリーナビゲーション内TOCハイライト移動
         function moveTreeTocHighlight() {
@@ -1643,6 +1680,11 @@
             }
 
             if(window.innerWidth < mobileSize) {
+                if (TEMPLATE_VERSION === "2") {
+                    $("#tree").addClass("tree-mobile");
+                    $("#tree-main").addClass("tree-main-mobile");
+                }
+
                 // モバイル画面ではツリーナビゲーションの位置を変える
                 switchParts(true);
             } else {

@@ -7,11 +7,130 @@
 <div class="mnav-pad"></div>
     {{ partial "meganav" . }}
 {{- end -}}
-{{- if ne $.Site.Params.preview_site true }}
+{{- if eq $.Site.Params.template_version "2" }}
+  {{- $welcome := (i18n "Welcome" .)  }}
+  {{- if eq $.Site.Params.TargetRegion "US" }}
+    {{- $welcome = printf "%s%s%s" $welcome "! " (i18n "Enter_keywords")}}
+  {{- end }}
+<div class="top-page-header">
+  <div class="search-wrap">
+    <div class="welcome_message">{{$welcome}}</div>
+  {{- partial "searchbox" . }}
+  </div>
+</div>
+<div id="top-page" class="top-page">
+  {{- $allpages := .Site.AllPages }}
+  <main class="main">
+    <article class="home-article" >
+    {{- $region := $.Site.Params.TargetRegion | lower }}
+    {{- $lang := $.Site.LanguageCode }}
+    {{- if ne $lang "zh-tw" }}
+        {{- $lang = substr $lang 0 2 }}
+    {{- end }}
+    {{- $path := (printf "%s/csv/home_%s.csv" $lang $region) }}
+    {{- with resources.Get $path }}
+      {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
+      {{- $category_opened := false }}
+      {{- range $i, $r := $data }}
+        {{- $type := index $r 0 }}
+        {{- $value := index $r 1 }}
+        {{- $text := index $r 2 }}
+        {{- if eq $type "category"}}
+          {{- if eq $category_opened true }}
+          </div>
+            {{- $category_opened = false }}
+          {{- end }}
+            {{- $category_opened = true }}
+          <h2 class="top-page-category"><i class="{{$value}} top-page-category-icon"></i>{{$text}}</h2>
+          <div class="top-page-card-group">
+        {{- else if eq $type "page" }}
+          {{- if hasPrefix $value "http" }}
+            <!-- link to outer site -->
+              <button class="top-page-card top-page-card-single" href={{$value}}>{{$text}}</button>
+          {{- else }}
+            {{- range $allpages }}
+              {{- if eq (index .Params.aliases 0) $value }}
+                {{- $pages := .Pages }}
+                {{- if .Sections}}
+                  {{- $pages = ($pages | union .Sections) }}
+                {{- end}}
+                {{- if gt ($pages | len) 0 }}
+                <button type="button" id="top-page-card-{{$i}}" class="top-page-card top-page-card-parent" aria-controls="top-page-panel-{{$i}}" aria-haspopup="true" aria-expanded="false">{{- partial "title" . -}}</button>
+ 
+                  <ul id="top-page-panel-{{$i}}" class="top-page-panel" aria-labelledby="top-page-card-{{$i}}" tabindex="-1" role="menu">
+                    <li role="none"><a href={{.RelPermalink}} role="menuitem" itemnum="0" tabindex="-1"><span class="top-page-item">{{- partial "title" . -}}</span></a></li>
+                  {{- range $idx, $page := $pages }}
+                    <li role="none"><a href={{.RelPermalink}} role="menuitem" itemnum="{{add $idx 1}}" tabindex="-1"><span class="top-page-item">{{- partial "title" $page -}}</span></a></li>
+                  {{- end }}
+                  </ul>
+
+                {{- else }}
+              <button class="top-page-card top-page-card-single" href={{.RelPermalink}}>
+                {{- partial "title" . -}}
+              </button>
+                {{- end }}
+                {{- break }}
+              {{- end }} <!-- aliase match end -->
+            {{- end }} <!-- all pages roop end -->
+          {{- end }}
+        {{- else if eq $type "partition" }}
+            <div class="top-page-partition"></div>
+        {{- end }} <!-- csv row type end -->
+
+      {{- end }} <!-- end of csv row iteration -->
+        {{- if eq $category_opened true }}
+          </div>
+          {{- $category_opened = false }}
+        {{- end }}
+    {{- end }}
+
+          <div class="appendix-info">
+    {{- $path_apx := (printf "%s/csv/home_apx_%s.csv" $lang $region) }}
+    {{- with resources.Get $path_apx }}
+      {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
+      {{- $category_opened := false }}
+
+      {{- range $i, $r := $data }}
+        {{- $type := index $r 0 }}
+        {{- $text := index $r 1 }}
+        {{- $value := index $r 2 }}
+        {{- $status := index $r 3 }}
+        {{- if eq $type "category"}}
+          {{- if eq $category_opened true }}
+            </div>
+            {{- $category_opened = false }}
+          {{- end }}
+            {{- $category_opened = true }}
+            <div class="appendix-category-group">
+              <h3 class="appendix-category">
+                <span class="appendix-category-icon-frame "><i class="{{$value}} appendix-category-icon"></i></span>
+                <span class="appendix-category-title">{{$text}}</span>
+              </h3>
+        {{- else if eq $type "link" }}
+                <div class="appendix-link-item"><a href="{{$value}}">{{$text}}</a>
+              {{- if eq $status "jaonly" }}
+                  <span class="status-info">{{ i18n "Only_ja" }}</span>
+              {{- end }}
+                </div>
+        {{- end }}
+      {{- end }} <!-- end of csv row iteration -->
+
+      {{- if eq $category_opened true }}
+            </div>
+      {{- end }}
+
+    {{- end }}
+          </div> <!-- end of appendix -->
+
+        </article>
+    </main>
+
+{{- else }} <!-- version"1" -->
+  {{- if ne $.Site.Params.preview_site true }}
     <div class="eye-catching">
         <div class="hero" style="background-image: url('{{ "images/hero_common.png" | relURL}}');"></div>
     </div>
-{{- end }}
+  {{- end }}
     <main class="main">
         <article class="article home-article" >
             <div class="wrapper">
@@ -25,9 +144,6 @@
                         <div class="searchbox">
                             <input type="search" name="q" id="topSearchBox_input" class="search-input" placeholder='{{ i18n "Enter_keywords" }}' aria-label='{{i18n "search_word"}}'>
                             <button type="submit" name="commit" value="" class="search-submit" data-disable-with="" aria-label='{{i18n "search"}}'></button>
-                        {{- if and ( ne .Site.Params.google_search true ) ( ne .Site.Params.bing_search true ) }}
-                            <input type="hidden" name="ct" value="{{ .Site.Params.search_all }}">
-                        {{- end }}
                         </div>
                     </form>
                     <div id="logo_place" class="search-logo {{ if eq .Site.Params.bing_search true }} search-logo-bing{{ end }}">
@@ -43,17 +159,8 @@
             </div>
         </article>
     </main>
-    {{- if eq .Site.Params.google_search true }}
-        {{- $glang := .Lang}}
-        {{- if eq $glang "zh" }}
-            {{- $glang = "zh-CN" }}
-        {{- else if eq $glang "zh-tw" }}
-            {{- $glang = "zh-TW" }}
-        {{- end }}
-    <script src="https://www.gstatic.com/prose/brand.js" targetId="logo_place" hl="{{$glang}}"></script>
-    {{- end }}
-    {{- partial "footer" . }}
-
+{{- end -}}
+{{- partial "footer" . }}
 {{- if eq $.Site.Params.TargetRegion "US" }}
     <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
 {{- end -}}

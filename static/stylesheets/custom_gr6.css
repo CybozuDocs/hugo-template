@@ -29,7 +29,7 @@
 
 .home-search-fixed {
   position: fixed;
-  z-index: 9999;
+  z-index: 22000;
   left: 16px;
   top: 48px;
   min-width: calc(100% - 16px);
