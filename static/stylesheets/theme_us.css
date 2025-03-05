@@ -90,7 +90,11 @@
 }
 .mega-tab-short-wrap {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+}
+#mega-tab-short-text {
+  padding-top: 0.2em;
+  padding-left: 1em;
 }
 #mega-tab-switch {
   margin: .2em;
@@ -105,7 +109,7 @@
   margin-left: .2em;
   margin-right: .2em;
   color: #fff;
-  font-size: 1.5rem;
+
 }
 .mega-tab-bar {
   display: none;

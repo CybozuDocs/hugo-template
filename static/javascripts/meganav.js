@@ -92,8 +92,8 @@
             $mtb.css("display", "block");
             $swbtn.attr("aria-expanded", "true");
             $txt.css("visibility", "hidden");
-            $swicon.removeClass("fa-bars");
-            $swicon.addClass("fa-times");
+            $swicon.removeClass("fa-chevron-down");
+            $swicon.addClass("fa-chevron-up");
             $("#tab1").focus();
         } else {
             if (mts === true) {
@@ -101,8 +101,8 @@
             }
             $swbtn.attr("aria-expanded", "false");
             $txt.css("visibility", "");
-            $swicon.removeClass("fa-times");
-            $swicon.addClass("fa-bars");
+            $swicon.removeClass("fa-chevron-up");
+            $swicon.addClass("fa-chevron-down");
         }
     }
 

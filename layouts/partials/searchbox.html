@@ -15,7 +15,7 @@
 {{- end }}
 {{- $fullsize := false }}
 {{- $ph := "" }}
-{{- if and (eq $.Site.Params.template_version "2") (eq $.Site.Params.TargetRegion "US") }}
+{{- if eq $.Site.Params.TargetRegion "US" }}
   {{- $ph = (i18n "Search_example") }}
 {{- else }}
   {{- $ph = (i18n "Enter_keywords") }}
