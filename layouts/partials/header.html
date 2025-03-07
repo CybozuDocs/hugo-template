@@ -30,10 +30,11 @@
                 </button>
         {{- end }}
                 <h1>
-                    <a class="logo-link" href="{{ $.Site.BaseURL }}">
+        {{- $urlparts := split $.Site.BaseURL "/" }}
+                    <a class="logo-link" href="/{{index $urlparts 3}}/">
         {{- if or (eq .Site.Params.product "kintone") (eq $.Site.Params.TargetRegion "US") }}
             {{- $alt := printf "%s %s" $.Site.Params.product_name $.Site.Params.help}}
-                        <img class="logo-img" src="{{ $.Site.BaseURL }}{{ $.Site.Params.logo }}" alt="{{$alt}}" title="{{$alt}}">
+                        <img class="logo-img" src="/{{index $urlparts 3}}/{{ $.Site.Params.logo }}" alt="{{$alt}}" title="{{$alt}}">
         {{- else }}
             {{- $title := printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help }}
             {{- if eq $.Site.Params.preview_site true }}
