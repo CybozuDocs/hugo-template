@@ -14,18 +14,11 @@
   {{- $filter = split $paramfilter "," }}
 {{- end }}
 {{- $fullsize := false }}
-{{- $ph := "" }}
-{{- if eq $.Site.Params.TargetRegion "US" }}
-  {{- $ph = (i18n "Search_example") }}
-{{- else }}
-  {{- $ph = (i18n "Enter_keywords") }}
-{{- end }}
+{{- $ph := (i18n "Search_example") }}
 {{- if or .IsHome (eq .Params.type "search_result") }}
   {{- $fullsize = true }}
 {{- else }}
-  {{- if eq $.Site.Params.TargetRegion "US" }}
-    {{- $ph = "" }}
-  {{- end }}
+  {{- $ph = "" }}
 {{- end }}
     <div id="search" class="search-wrap" role="search" >
       <div class="searchbox">

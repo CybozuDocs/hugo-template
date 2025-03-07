@@ -100,9 +100,8 @@
 
   .footer-mega-list {
     display: flex;
-    column-gap: 16px;
+    column-gap: 32px;
     white-space: nowrap;
-    justify-content: space-around;
   }
 
   .footer-mega-list-title {

@@ -130,10 +130,13 @@
   box-shadow: none;
   outline: solid 2px var(--focus-color);
 }
+.top-page-panel li {
+  padding: 0 0 4px 8px;
+}
 
 .top-page-item {
   display: inline-block;
-  width: 283px;;
+  width: 276px;;
 }
 .top-page-item:hover,.top-page-item-selected {
   color: var(--select-color);
@@ -170,7 +173,6 @@
   background-color: var(--appendix-bg-color);
   display: flex;
   flex-flow: column;
-  justify-content: space-around;
 }
 .appendix-info h3 {
   font-size: 1.3rem;
@@ -179,7 +181,7 @@
 }
 
 .appendix-category-group:not(:last-child) {
-  padding-right: 25px;
+  padding-right: 50px;
 }
 
 .appendix-category {
