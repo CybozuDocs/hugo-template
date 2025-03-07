@@ -22,9 +22,11 @@
   {{- $allpages := .Site.AllPages }}
   <main class="main">
     <article class="home-article" >
-    {{- $region := $.Site.Params.TargetRegion | lower }}
+    {{- $region := $.Site.Params.TargetRegion | upper }}
     {{- $lang := $.Site.LanguageCode }}
-    {{- if ne $lang "zh-tw" }}
+    {{- if eq (hasPrefix $lang "zh-tw") true }}
+        {{- $lang = substr $lang 0 5 }}
+    {{- else }}
         {{- $lang = substr $lang 0 2 }}
     {{- end }}
     {{- $path := (printf "%s/csv/home_%s.csv" $lang $region) }}
