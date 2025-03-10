@@ -224,11 +224,6 @@
   color: #fff;
 }
 
-.article h3 {
-  border-left-color: #A42F29;
-  border-image-source: linear-gradient(to top, #4A4B4C 0%, #EF3F24 100%);
-}
-
 /* /general/と/k/の「監査ログの一覧」で使用する設定 **************************************/
 
 .id-header:has(h3.audit){
