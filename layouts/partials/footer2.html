@@ -51,7 +51,7 @@
                             {{- $href := index $link 1 }}
                             {{- $status := index $link 2 }}
                             <li class="footer-mega-list-item"><a href="{{ $href }}">{{ $text }}</a>
-                            {{- if eq $status "jponly" }}
+                            {{- if eq $status "jaonly" }}
                                 <span class="status-info">{{ i18n "Only_ja" }}</span>
                             {{- end }}
                             </li>
