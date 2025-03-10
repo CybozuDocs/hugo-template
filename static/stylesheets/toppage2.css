@@ -169,7 +169,7 @@
 .appendix-info {
   margin-top: 70px;
   margin-bottom: 70px;
-  padding: 25px;
+  padding: 25px 25px 25px 40px;
   background-color: var(--appendix-bg-color);
   display: flex;
   flex-flow: column;
