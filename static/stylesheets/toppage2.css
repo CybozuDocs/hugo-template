@@ -20,6 +20,10 @@
   padding-top: 30px;
 }
 
+.home-article {
+  padding-bottom: 70px;
+}
+
 .welcome_message {
   display: none;
   text-align-last: center;
@@ -168,7 +172,7 @@
 
 .appendix-info {
   margin-top: 70px;
-  margin-bottom: 70px;
+  margin-bottom: 0;
   padding: 25px 25px 25px 40px;
   background-color: var(--appendix-bg-color);
   display: flex;

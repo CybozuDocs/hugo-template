@@ -57,7 +57,9 @@ a {
 .section-pagelist a, .latest-page-guide a, .breadcrumbs a, .article a, .nfarticle a, #page-toc a {
   color: var(--link-color);
 }
-
+.home-article {
+    padding-bottom: 0
+}
 .footer::before {
   background-image: none;
 }

@@ -9,6 +9,9 @@
 {{- end -}}
 {{- if eq $.Site.Params.template_version "2" }}
   {{- $welcome := printf "%s%s%s"  (i18n "Welcome" .) "! " (i18n "Enter_keywords")}}
+  {{- if eq $.Site.Params.product "support_guide" }}
+     {{- $welcome = (i18n "Welcome" .) }}
+  {{- end }}
 <div class="top-page-header">
   <div class="search-wrap">
     <div class="welcome_message">{{$welcome}}</div>
@@ -85,9 +88,10 @@
       <!-- {{ errorf "Unable to get resource %q" $path }} -->
     {{- end }}
 
-          <div class="appendix-info">
+
     {{- $path_apx := (printf "%s/csv/home_apx_%s.csv" $lang $region) }}
     {{- with resources.Get $path_apx }}
+          <div class="appendix-info">
       {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
       {{- $category_opened := false }}
 
@@ -119,9 +123,9 @@
       {{- if eq $category_opened true }}
             </div>
       {{- end }}
-
-    {{- end }}
           </div> <!-- end of appendix -->
+    {{- end }}
+
 
         </article>
     </main>
