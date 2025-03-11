@@ -45,9 +45,16 @@
       if (searchText !== "") {
         const params = "c=" + filterId + "&q=" + encodeURIComponent(searchText);
 
+        const product = document.querySelector('meta[name="cy-product-name"]');
         const strPathes = location.pathname;
         const pathes = strPathes.split("/");
-        const newpath = "/" + pathes[1] + "/" + pathes[2] + "/search_result.html?" + params;
+        let baseurl = "";
+        if (product === "support_guide") {
+          baseurl = "/" + pathes[1];
+        } else {
+          baseurl = "/" + pathes[1] + "/" + pathes[2];
+        }
+        const newpath = baseurl + "/search_result.html?" + params;
         location.href = newpath;
       }
     }
