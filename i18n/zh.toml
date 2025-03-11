@@ -2,7 +2,7 @@
 other = "欢迎使用{{$.Site.Params.product_name}}{{$.Site.Params.help}}"
 
 [Enter_keywords]
-other = "可输入关键字查找"
+other = "希望我们能帮到您"
 
 [Page_not_found]
 other = "无法找到您正在查找的页面"
