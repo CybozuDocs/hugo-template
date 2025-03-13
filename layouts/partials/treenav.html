@@ -104,6 +104,8 @@
         {{- $selected := "false" }}
 
         {{- if .IsSection }}
+          {{- if (eq .Type "redirect_js") }}
+          {{- else }}
             {{- $pages := (cond .IsHome (where .Site.RegularPages "Section" "") .Pages) }}
             {{- $numberOfPages := (add (len $pages) (len .Sections)) }}
             {{- if in .Params.disabled .Site.Params.TargetRegion}}
@@ -143,8 +145,9 @@
                 {{- end}}
         </li>
             {{- end }}
+          {{- end }}
         {{- else}}
-            {{- if or (in .Params.disabled .Site.Params.TargetRegion) (eq .Type "print_page") }}
+            {{- if or (in .Params.disabled .Site.Params.TargetRegion) (eq .Type "print_page") (eq .Type "redirect_js")}}
             {{- else}}
                 {{- $tocs := "" }}
                 {{- if eq .RelPermalink $target.RelPermalink -}}
