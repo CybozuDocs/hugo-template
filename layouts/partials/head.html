@@ -79,6 +79,7 @@
     {{- end }}
     <meta name="cy-template-version" content="{{$templateversion}}">
     <meta name="cy-product-name" content="{{.Site.Params.product}}">
+    <meta name="cy-region" content="{{.Site.Params.TargetRegion}}">
     {{- if and (ne .Site.Params.product "Office") (ne .Site.Params.product "Mailwise") (ne .Site.Params.product "Remote")}}
     {{- partial "alternatelink" . }}
     {{- end }}
