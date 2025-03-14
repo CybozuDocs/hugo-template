@@ -62,7 +62,9 @@
                   <ul id="top-page-panel-{{$i}}" class="top-page-panel" aria-labelledby="top-page-card-{{$i}}" tabindex="-1" role="menu">
                     <li role="none"><a href={{.RelPermalink}} role="menuitem" itemnum="0" tabindex="-1"><span class="top-page-item">{{- partial "title" . -}}</span></a></li>
                   {{- range $idx, $page := $pages }}
+                    {{- if ne .Type "redirect_js" }}
                     <li role="none"><a href={{.RelPermalink}} role="menuitem" itemnum="{{add $idx 1}}" tabindex="-1"><span class="top-page-item">{{- partial "title" $page -}}</span></a></li>
+                    {{- end }}
                   {{- end }}
                   </ul>
 
