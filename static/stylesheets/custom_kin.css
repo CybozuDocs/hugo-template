@@ -1,4 +1,54 @@
-/* コードブロックで利用する設定 ********************************************/
+:root {
+  --theme-color: #ffbf00;
+  --focus-color: #2563eb;
+  --select-color: #2563eb;
+  --select-bg-color: #ccdcff;
+  --item-color: #2563eb;
+}
+
+.logo-link {
+  height: 48px;
+}
+
+.article h3 {
+  border-image: none;
+  border-left: none;
+  padding-left: 0;
+  border-bottom: solid 4px var(--theme-color);
+}
+
+.article h4 {
+  margin-left: -5px;
+}
+.article h4::before {
+  content: "";
+  margin-left: -5px;
+  padding-right: 5px;
+  border-left: solid 4px var(--theme-color);
+}
+
+.logo-img {
+  width: 160px;
+  height: 30px;
+}
+.logo-title {
+  display: none;
+}
+
+.selectlang, .lang-item:hover {
+  color: var(--select-color);
+  background-color: var(--select-bg-color);
+}
+
+.article {
+  padding-bottom: 0;
+}
+
+#tree {
+  display: none;
+}
+
+/* コードブロック -------------------------------------- */
 .article pre {
     border-radius: 4px;
 }
@@ -10,7 +60,7 @@
     margin-top: 0.9em;
 }
 
-/* 「監査ログの一覧」で使用する設定 **************************************/
+/* 監査ログの一覧 -------------------------------------- */
 
 .id-header:has(h3.audit){
     border-bottom: 3px solid #e94f90;
@@ -67,6 +117,7 @@ h4.audit + .id-link-button {
     background-color: #0d7b91;
 }
 
+/* WOVN -------------------------------------- */
 .wv-brk::before {
   content: "「";
 }
@@ -78,4 +129,12 @@ h4.audit + .id-link-button {
 }
 .wv-brk2::after {
   content: "]";
+}
+
+
+/* 768px以上の設定 *****************************************************/
+@media only screen and (min-width:768px){
+  #tree {
+    display: block;
+  }
 }

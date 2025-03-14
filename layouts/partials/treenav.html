@@ -6,12 +6,15 @@
 {{- $currentSection := .CurrentSection.Section }}
 
 <div id="tree-nav">
+    {{- if eq $.Site.Params.template_version "2" -}}
+    <button id="tree-close-mobile"><i class="fas fa-times"></i></button>
+    {{- end }}
 {{- if eq $.Site.Params.toc_in_tree true -}}
     {{- $lastpage := (slice) }}
     {{- if eq $.Site.Params.product "Garoon" }}
         {{- $lastpage = (slice "/purpose/" "/user/basic/" "/mobile/" "/user/mobile/" "/user/personal/" "/admin/spec/" "/admin/system/" "/glossary/" "/intro/" "/option/fullsearch/" "/error/") }}
     {{- else if eq $.Site.Params.product "Mailwise" }}
-        {{- $lastpage = (slice "/user/basic/" "/user/personal/" "/admin/spec/" "/admin/system/" "/option/migration/" "/intro/first/" "/intro/install/" "/intro/verup/" "/intro/uninstall/" "/purpose/") }}
+        {{- $lastpage = (slice "/user/basic/" "/user/personal/" "/admin/spec/" "/admin/system/" "/option/migration/" "/intro/first/" "/intro/install/" "/intro/verup/" "/intro/uninstall/") }}
     {{- else if eq $.Site.Params.product "Office" }}
         {{- $lastpage = (slice "/intro/first/" "/intro/install/" "/intro/uninstall/" "/option/migration/" "/guide/" "/pdf/" "/error/" "/user/per/") }}
     {{- else if eq $.Site.Params.product "Remote" }}
@@ -74,7 +77,7 @@
     {{- end }}
 {{- end }}
 
-  <nav id="tree-main" tabindex="0">
+  <nav id="tree-main" class="tree-main" tabindex="0">
     <ul>
 {{- $target := .}}
 
@@ -101,6 +104,8 @@
         {{- $selected := "false" }}
 
         {{- if .IsSection }}
+          {{- if (eq .Type "redirect_js") }}
+          {{- else }}
             {{- $pages := (cond .IsHome (where .Site.RegularPages "Section" "") .Pages) }}
             {{- $numberOfPages := (add (len $pages) (len .Sections)) }}
             {{- if in .Params.disabled .Site.Params.TargetRegion}}
@@ -140,8 +145,9 @@
                 {{- end}}
         </li>
             {{- end }}
+          {{- end }}
         {{- else}}
-            {{- if or (in .Params.disabled .Site.Params.TargetRegion) (eq .Type "print_page") }}
+            {{- if or (in .Params.disabled .Site.Params.TargetRegion) (eq .Type "print_page") (eq .Type "redirect_js")}}
             {{- else}}
                 {{- $tocs := "" }}
                 {{- if eq .RelPermalink $target.RelPermalink -}}

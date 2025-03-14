@@ -1,24 +1,22 @@
+:root {
+  --theme-color: #4bd7f3;
+  --focus-color: #2563eb;
+  --select-color: #2563eb;
+  --select-bg-color: #ccdcff;
+
+  --appendix-bg-color: #d6f8ff;
+  --appendix-icon-bg-color: #4bd7f3;
+}
+
 /* Header */
-.logo-wrap {
-  width: 200px;
-  padding-top: 8px;
-}
-.logo-img {
-  width: 100px;
-  vertical-align: -14px;
-}
-.logo-product {
-  display: none;
-}
 .logo-title {
-  padding-left: 0;
-  padding-top: 9px;
   font-size: 14px;
   color: #333;
 }
 .logo-title:lang(en) {
   font-size: 20px;
 }
+
 
 .article table {
     margin-bottom: 40px;
@@ -40,6 +38,23 @@
 .article dd {
   margin-bottom: 7px;
   padding-left: 20px;
+}
+
+.article h3 {
+  border-image: none;
+  border-left: none;
+  padding-left: 0;
+  border-bottom: solid 4px var(--theme-color);
+}
+
+.article h4 {
+  margin-left: -5px;
+}
+.article h4::before {
+  content: "";
+  margin-left: -5px;
+  padding-right: 5px;
+  border-left: solid 4px var(--theme-color);
 }
 
 /* 「監査ログの一覧」で使用する設定 **************************************/
@@ -95,12 +110,6 @@ h4.audit + .id-link-button {
 
 /* 768px以上の設定 *****************************************************/
 @media only screen and (min-width:768px){
-    .logo-img {
-        width: 140px;
-        height: 35px;
-        vertical-align: -10px;
-    }
-
     .logo-title {
         padding-top: 0;
         font-size: 18px;

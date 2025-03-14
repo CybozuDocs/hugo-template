@@ -10,10 +10,13 @@
     <div class="contents-wrap">
         <main class="main" role="main">
             {{- partial "breadcrumb" . }}
-            <article class="search-result" >
+            <article id="search-result" class="search-result" >
                 <h1>{{ partial "title" . }}</h1>
                 <div id="searchResultContainer">
                     <div id="main_form">
+              {{- if eq $.Site.Params.template_version "2" }}
+                {{- partial "searchbox" . }}
+              {{- else }}
                         <div role="search" class="search-part">
                             <input type="search" v-model="search_words" v-on:keyup.enter="submit_button" class="search-words" v-bind:disabled="searching == true" aria-label='{{i18n "search_word"}}'>
                             <button role="button" class="search-button" v-on:click="submit_button" v-bind:disabled="searching == true" title='{{i18n "search"}}' aria-label='{{i18n "search"}}'><i class="fa fa-search" aria-hidden="true"></i>
@@ -24,6 +27,8 @@
                                 <span>{{ i18n "search_bing" }} (<a href="https://www.microsoft.com/en-gb/privacy/privacystatement" target="_blank">{{ i18n "search_bing_legal" }}</a>)</span>
                             {{- end }}
                         </div>
+              {{- end }}
+
                         <div class="category-bar" v-bind:class="{ nodisp : initial }" v-cloak>
                             <span class="ctab" v-for="(ctab, index) in ctabs">
                                 <input type="radio" name="category" class="category-tab" :id="'category'+(index)" v-model="cid" v-on:click="change_category(index)" :value="index">
@@ -75,14 +80,5 @@
     <script>var category_list = {{$categories}};</script>
         {{- $buildnum := (now.Format "2006010203") }}
     <script type="text/javascript" src="{{ printf "%s?%s" "javascripts/helpsearch.js" $buildnum | relURL }}"></script>
-    {{- if eq $.Site.Params.google_search true }}
-      {{- $glang := $.Lang}}
-      {{- if eq $glang "zh" }}
-          {{- $glang = "zh-CN" }}
-      {{- else if eq $glang "zh-tw" }}
-          {{- $glang = "zh-TW" }}
-      {{- end }}
-      <script src="https://www.gstatic.com/prose/brand.js" targetId="logo_place" hl="{{$glang}}"></script>
-    {{- end }}
   </body>
 </html>

@@ -1,7 +1,16 @@
-/* Header */
+:root {
+  --focus-color: #2563eb;
+  --select-color: #2563eb;
+  --select-bg-color: #ccdcff;
+  --item-color: #2563eb;
+}
+
 .logo-wrap {
   width: 200px;
   padding-top: 8px;
+}
+.logo-wrap h1 {
+  padding-top: 0;
 }
 .logo-product {
   display: none;
@@ -23,9 +32,6 @@
     margin-bottom: 120px;
 }
 
-.home-article:lang(en) {
-    padding-bottom: 170px;
-}
 
 /* step list ----------------------------- */
 .step-list {
@@ -40,7 +46,6 @@
     background-color: unset !important;
 }
 /* ---------------------- end of step list */
-
 
 /* 768px以上の設定 *****************************************************/
 @media only screen and (min-width:768px){

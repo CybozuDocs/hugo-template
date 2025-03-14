@@ -182,3 +182,13 @@ other = "顯示側面導航"
 
 [Side_navigation_hide]
 other = "隱藏側面導航"
+
+[Only_ja]
+other = "日文"
+
+[Search_example]
+other = "搜尋關鍵字（例：Lookup、通知、無法登入）"
+
+[Search_filter]
+other = "搜尋範圍"
+

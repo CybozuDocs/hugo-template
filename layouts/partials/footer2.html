@@ -1,0 +1,96 @@
+{{- $sep := "\t" -}}
+{{- $legal_menu := slice -}}
+{{- $mega_menus := dict -}}
+{{- $p := $.Site.Params.footer_links }}
+{{- with resources.Get $p }}
+  {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
+  {{- range $i, $r := $data }}
+    {{- $id := (index $r 0 ) }}
+    {{- $item := printf "%s%s%s%s%s" (index $r 1 ) $sep (index $r 2) $sep (index $r 3) }}
+    {{- if (eq $id "999" ) }}
+          <!-- id = 999 is special footer -->
+        {{- $legal_menu = $legal_menu | append $item }}
+    {{- else }}
+        {{- $menu_items := index $mega_menus $id }}
+        {{- $menu_items = $menu_items | append $item }}
+        {{- $mega_menus = merge $mega_menus (dict $id $menu_items) }}
+    {{- end }}
+  {{- end }}
+{{- else }}
+  {{- warnf "Unable to get resource %q" $p }}
+{{- end }}
+{{- $u := urls.Parse $.Site.BaseURL }}
+{{- $fullsize := false }}
+{{- if or .IsHome (hasPrefix $u.Path "/k/") }}
+  {{- $fullsize = true }}
+{{- end }}
+<footer id="page-footer" class="footer{{- if $fullsize }} footer-home{{- end }}">
+<div class="footer-home">
+    {{- if $fullsize }}
+    <div class="footer-mega">
+        <ul class="footer-mega-list">
+            {{- range $index, $val := $mega_menus }}
+                <li class="footer-mega-item">
+                    {{- $category_title := "" }}
+                    {{- $links := slice }}
+                    {{- range $i, $r := $val }}
+                        {{- if eq $i 0 }}
+                            {{- $category_title = index (split $r $sep) 0 }}
+                        {{- else }}
+                            {{- $links = $links | append $r }}
+                        {{- end }}
+                    {{- end }}
+                    <h2 class="footer-mega-list-title">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        <span class="footer-mega-list-title-text">{{ $category_title }}</span>
+                    </h2>
+                    <ul class="footer-mega-list-list">
+                        {{- range $links }}
+                            {{- $link := (split . $sep) }}
+                            {{- $text := index $link 0 }}
+                            {{- $href := index $link 1 }}
+                            {{- $status := index $link 2 }}
+                            <li class="footer-mega-list-item"><a href="{{ $href }}">{{ $text }}</a>
+                            {{- if eq $status "jaonly" }}
+                                <span class="status-info">{{ i18n "Only_ja" }}</span>
+                            {{- end }}
+                            </li>
+                        {{- end }}
+                        {{/* Insert disclaimer into last menu */}}
+                        {{- if and ( eq $index "3" ) (ne $.Site.LanguageCode "ja-jp") (ne $.Site.LanguageCode "ja-cn") (eq $.Site.Params.product "Garoon") }}
+                            {{- template "disclaimer" (dict "languageCode" $.Site.LanguageCode ) }}
+                        {{- end }}
+                    </ul>
+                </li>
+            {{- end }}
+        </ul>
+    </div>
+    {{- end }}
+    <div class="footer-legal-wrap">
+      <div class="footer-legal">
+        <ul class="footer-legal-list">
+            {{- range $legal_menu }}
+                {{- $link := (split . $sep) }}
+                {{- $text := index $link 0 }}
+                {{- $href := index $link 1 }}
+                {{- $target := index $link 2 | default "_blank" }}
+                <li class="footer-legal-item">
+                    <a href="{{ $href }}" target="{{ $target }}">{{ $text }}</a>
+                </li>
+            {{- end -}}
+        </ul>
+        <div class="footer-legal-copyright">
+            {{ i18n "Footer_copyright" }}
+        </div>
+      </div>
+    </div>
+</div>
+</footer>
+
+{{- define "disclaimer" }}
+    {{- $pdf_url := partial "disclaimer_pdf_url" (dict "languageCode" .languageCode )}}
+    <li class="footer-mega-list-item">
+    <a href="{{ $pdf_url }}" target="_blank">{{ i18n "MT_Disclaimer" }}</a>
+    <i class="far fa-file-pdf index-pdf" aria-hidden="true"></i>
+    </li>
+{{- end -}}

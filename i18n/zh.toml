@@ -2,7 +2,7 @@
 other = "欢迎使用{{$.Site.Params.product_name}}{{$.Site.Params.help}}"
 
 [Enter_keywords]
-other = "可输入关键字查找"
+other = "希望我们能帮到您"
 
 [Page_not_found]
 other = "无法找到您正在查找的页面"
@@ -29,7 +29,7 @@ other = "返回页首"
 other = "此类别中的内容"
 
 [Footer_copyright]
-other = "所记载的商品名称及各商品名均为各公司的注册商标或商标。©Cybozu"
+other = "记载的商品名称、各产品名称都为各公司的注册商标或商标。 ©Cybozu"
 
 [See_also]
 other = "另请参阅下一页"
@@ -180,3 +180,13 @@ other = "隐藏侧边导航栏"
 
 [Side_navigation_hide]
 other = "显示侧边导航栏"
+
+[Only_ja]
+other = "日语"
+
+[Search_example]
+other = "输入搜索关键字（例如：Lookup、通知、无法登录）"
+
+[Search_filter]
+other = "搜索范围"
+

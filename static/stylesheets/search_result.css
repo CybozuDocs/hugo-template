@@ -52,7 +52,6 @@ body { overflow-y: scroll; }
 }
 
 .search-result a {
-    color: #0d7b91;
     text-decoration: underline;
     line-height: 1.5em;
 }
@@ -86,7 +85,6 @@ body { overflow-y: scroll; }
     border-radius: 4px;
     max-width: 32em;
     text-decoration: none;
-    color: #0d89a2;
 }
 .subnavianc h4 {
     font-size: 16px;
@@ -99,12 +97,10 @@ body { overflow-y: scroll; }
     display: block;
     font-size: 40px;
     padding-bottom: 17px;
-    color: #0d89a2;
 }
 .fa-envelope {
     display: block;
     font-size: 40px;
-    color: #0d89a2;
 }
 
 .subnavi2-title {
@@ -139,7 +135,6 @@ body { overflow-y: scroll; }
     cursor: pointer;
     border-radius: 0 3px 3px 0;
     color: #eee;
-    background-color: #0d89a2;
 }
 .search-button-label {
     color: #fff;

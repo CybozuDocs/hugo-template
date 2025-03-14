@@ -87,21 +87,23 @@ td {
 }
 /* -------------------- end of font */
 
-
-/* Frame --------------------- */
-.frame-h1 {
-    font-size: 1em;
-}
-/* -------------------- end of Frame */
-
 /* Header -------------------- */
+#shield {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 22000;
+    opacity: 50%;
+    background-color: #000;
+}
 .header {
     position: fixed;
     top: 0;
     width: 100%;
     height: 94px;
     user-select: none;
-    z-index: 2100;
+    z-index: 21000;
     background: #fff;
     box-shadow: 0 1.5px 3px rgba(0,0,0,.24), 0 3px 8px rgba(0,0,0,.05);
 }
@@ -133,28 +135,27 @@ td {
 }
 .logo-wrap {
     display: flex;
-    width: calc( 100% - 123px );
+    padding-top: 6px;
     padding-left: 10px;
-    padding-top: 9px;
-    padding-bottom: 9px;
-    margin-right: 10px;
-    font-weight: bold;
-    white-space: nowrap;
+}
+.logo-wrap h1 {
+  font-size: 1em;
 }
 .logo-img {
     width: 36px;
     height: 36px;
-    margin-top: -8px;
     vertical-align: top;
 }
 .logo-title {
     color: #222;
     font-size: 16px;
     line-height: 20px;
+    white-space: nowrap;
 }
 .logo-link{
     color: #000;
     font-weight: 600;
+    text-decoration: none;
 }
 
 .logo-link:hover,
@@ -237,7 +238,7 @@ td {
 
 /* Language selector -------------------- */
 .lang-wrap {
-    z-index: 1200;
+    z-index: 13000;
     font-size: 10px;
     width: 100px;
     text-overflow: ellipsis;
@@ -549,7 +550,7 @@ li .lang-title {
     position: absolute;
     left: 0;
     top: 150px;
-    z-index: 999999;
+    z-index: 20000;
     width:100%;
     background: #fff;
     border-bottom:solid 3px #b8c5ca;
@@ -811,6 +812,25 @@ h6 + .id-link-button {
     padding-left: 20px;
     padding-top: 20px;
     padding-bottom: 50px;
+    background-color: #fff;
+    z-index: 1000;
+}
+.tree-mobile {
+    position: absolute;
+    height: 90vh;
+    z-index: 22000;
+}
+#tree-close-mobile {
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 0;
+    margin-top: -10px;
+    cursor: pointer;
+}
+#tree-close-mobile i {
+    color: #999;
 }
 #tree-nav {
     display: block;
@@ -840,10 +860,7 @@ h6 + .id-link-button {
 #tree-main {
     display: none;
     width: auto;
-    height: auto;
-    overscroll-behavior-y: contain;
     background-color: #fff;
-    z-index: 1200;
 }
 #tree-main ul {
     padding-inline-start: 10px;
@@ -872,6 +889,15 @@ h6 + .id-link-button {
 }
 #tree-main a.opened, #tree-main li a.current {
     font-weight: bold;
+}
+.tree-main {
+    height: auto;
+    overscroll-behavior-y: contain;
+}
+.tree-main-mobile {
+    height: 80vh;
+    margin-top: 10px;
+    overflow: auto;
 }
 .jstree-node {
     display: inline-block;
@@ -922,7 +948,19 @@ h6 + .id-link-button {
     top: 46px;
     position: fixed;
 }
+#tree-switch-mobile {
+    display: block;
+    width: 14px;
+    height: 14px;
+    margin: 0.7em 0.7em 0 0.7em;
+    cursor: pointer;
+}
+#tree-switch-mobile i {
+    color: #999;
+}
+
 #treenav-toggle {
+    display: none;
     position: fixed;
     left: 10px;
     bottom: 0;
@@ -1340,7 +1378,7 @@ table .wd10 {
     top: 0;
     position: sticky;
     width: 100%;
-    z-index: 999;
+    z-index: 99999;
     background-color: #ccc;
     padding: 12px 16px;
     line-height: 1.5em;
@@ -2228,7 +2266,7 @@ i.index-pdf {
     }
     .logo-wrap {
         width: 200px;
-        padding-top: 9px;
+        padding-top: 10px;
     }
     .logo-title {
         font-size: 24px;
@@ -2376,6 +2414,15 @@ i.index-pdf {
     }
     /* ------------------------------ end of mega menu */
 
+    #treenav-toggle {
+        display: block;
+    }
+    #tree-switch-mobile {
+        display: none;
+    }
+    #tree-close-mobile {
+        display: none;
+    }
     .tree-wrap {
         position: relative;
         padding-top: 0;
