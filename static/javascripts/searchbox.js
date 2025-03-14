@@ -45,7 +45,7 @@
       if (searchText !== "") {
         const params = "c=" + filterId + "&q=" + encodeURIComponent(searchText);
 
-        const product = document.querySelector('meta[name="cy-product-name"]');
+        const product = document.querySelector('meta[name="cy-product-name"]').content;
         const strPathes = location.pathname;
         const pathes = strPathes.split("/");
         let baseurl = "";
@@ -55,6 +55,7 @@
           baseurl = "/" + pathes[1] + "/" + pathes[2];
         }
         const newpath = baseurl + "/search_result.html?" + params;
+
         location.href = newpath;
       }
     }
