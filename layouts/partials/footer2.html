@@ -82,6 +82,11 @@
         <div class="footer-legal-copyright">
             {{ i18n "Footer_copyright" }}
         </div>
+        {{- if eq .Site.Params.TargetRegion "US" }}
+        <!-- CookiePro Cookies Settings button start -->
+        <button id="ot-sdk-btn" class="ot-sdk-show-settings"> Cookie Settings</button>
+        <!-- CookiePro Cookies Settings button end -->
+        {{- end }}
       </div>
     </div>
 </div>
