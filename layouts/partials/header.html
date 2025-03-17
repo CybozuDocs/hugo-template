@@ -35,7 +35,8 @@
         {{- if ne $.Site.Params.product "support_guide" }}
           {{- $base = printf "/%s/" (index $urlparts 3) }}
         {{- end }}
-                    <a class="logo-link" href="{{$base}}">
+        {{- $baseLink := printf "%s%s/" $base $.Lang }}
+                    <a class="logo-link" href="{{$baseLink}}">
         {{- if or (eq .Site.Params.product "kintone") (eq $.Site.Params.TargetRegion "US") }}
             {{- $alt := printf "%s %s" $.Site.Params.product_name $.Site.Params.help}}
                         <img class="logo-img" src="{{$base}}{{ $.Site.Params.logo }}" alt="{{$alt}}" title="{{$alt}}">
