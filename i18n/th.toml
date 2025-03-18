@@ -1,8 +1,8 @@
 [Welcome]
-other = "Welcome to {{$.Site.Params.product_name}} {{$.Site.Params.help}}"
+other = "ยินดีต้อนรับสู่ ศูนย์ช่วยเหลือ  {{$.Site.Params.product_name}} {{$.Site.Params.help}}"
 
 [Enter_keywords]
-other = "Enter keywords to search help."
+other = "ใส่คำสำคัญเพื่อค้นหาความช่วยเหลือ"
 
 [Page_not_found]
 other = "The page you are looking for could not be found"
