@@ -3,6 +3,10 @@
         {
             "display_name": "Español",
             "language_code": "es"
+        },
+        {
+            "display_name": "ไทย",
+            "language_code": "th"
         }
     ]
 }
