@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 {{- $buildnum := (now.Format "2006010203") }}
+{{- $title2 :=  partial "applyparams" (dict "target" .Params.title2 "params" .Site.Params) }}
+{{- $title3 :=  partial "applyparams" (dict "target" .Params.title3 "params" .Site.Params) }}
 <html lang="{{.Site.LanguageCode}}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="robots" content="noindex,nofollow">
-    <meta name="document-title" content="{{ partial "title" . }} {{ .Params.title2 }} {{ .Params.title3 }}"/>
+    <meta name="document-title" content="{{ partial "title" . }} {{ $title2 }} {{ $title3 }}"/>
     <meta name="author" content="{{ .Params.company }}"/>
     <meta name="copyright-status" content="Copyrighted"/>
     <meta name="copyright-notice" content="© Cybozu"/>
@@ -33,14 +35,14 @@
     }
     </style>
 
-    <title>{{ partial "title" . }} {{ .Params.title2 }} {{ .Params.title3 }}</title>
+    <title>{{ partial "title" . }} {{ $title2 }} {{ $title3 }}</title>
   </head>
   <body class="font-{{.Lang}}">
         <div class="section">
             <div class="book-title">
                 {{ partial "title" . }}
-                <div class="book-title2">{{ .Params.title2 }}</div>
-                <div class="book-title3">{{ .Params.title3 }}</div>
+                <div class="book-title2">{{ $title2 }}</div>
+                <div class="book-title3">{{ $title3 }}</div>
                 <div class="sub-title">{{ .Params.version }}</div>
             </div>
         </div>
