@@ -358,14 +358,32 @@
                     {{- $targeturl := "" -}}
                     <!-- Identify the URL to convert -->
                     {{- if eq $product "kintone" -}}
-                        {{- if eq $weight 100 -}}
-                            {{- $targeturl = (printf "/k/%s/user" $lang) -}}
-                        {{- else if eq $weight 200 -}}
+                        {{- if eq $weight 1100 -}}
                             {{- $targeturl = (printf "/k/%s/admin" $lang) -}}
                         {{- else if eq $weight 300 -}}
-                            {{- $targeturl = (printf "/k/%s/utility" $lang) -}}
+                            {{- $targeturl = (printf "/k/%s/app" $lang) -}}
+                        {{- else if eq $weight 200 -}}
+                            {{- $targeturl = (printf "/k/%s/common_operation" $lang) -}}
+                        {{- else if eq $weight 800 -}}
+                            {{- $targeturl = (printf "/k/%s/guest" $lang) -}}
+                        {{- else if eq $weight 1000 -}}
+                            {{- $targeturl = (printf "/k/%s/message" $lang) -}}
+                        {{- else if eq $weight 1300 -}}
+                            {{- $targeturl = (printf "/k/%s/mobile_access" $lang) -}}
+                        {{- else if eq $weight 500 -}}
+                            {{- $targeturl = (printf "/k/%s/notifications" $lang) -}}
+                        {{- else if eq $weight 900 -}}
+                            {{- $targeturl = (printf "/k/%s/people" $lang) -}}
+                        {{- else if eq $weight 600 -}}
+                            {{- $targeturl = (printf "/k/%s/portal" $lang) -}}
                         {{- else if eq $weight 400 -}}
+                            {{- $targeturl = (printf "/k/%s/search" $lang) -}}
+                        {{- else if eq $weight 700 -}}
+                            {{- $targeturl = (printf "/k/%s/space" $lang) -}}
+                        {{- else if eq $weight 1500 -}}
                             {{- $targeturl = (printf "/k/%s/trouble_shooting" $lang) -}}
+                        {{- else if eq $weight 1400 -}}
+                            {{- $targeturl = (printf "/k/%s/utility" $lang) -}}
                         {{- end -}}
                     {{- else if eq $product "slash" -}}
                         {{- if eq $weight 100 -}}
