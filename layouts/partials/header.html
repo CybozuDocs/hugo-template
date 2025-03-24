@@ -33,7 +33,8 @@
         {{- $urlparts := split $.Site.BaseURL "/" }}
         {{- $base := "/" }}
         {{- if ne $.Site.Params.product "support_guide" }}
-          {{- $base = printf "/%s/" (index $urlparts 3) }}
+          {{- $product_pos := sub ($urlparts | len ) 2 }}
+          {{- $base = printf "/%s/" (index $urlparts $product_pos) }}
         {{- end }}
         {{- $baseLink := printf "%s%s/" $base $.Lang }}
                     <a class="logo-link" href="{{$baseLink}}">
