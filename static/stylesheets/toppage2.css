@@ -78,6 +78,10 @@
   text-align: left;
   z-index: 1;
 }
+.top-page-card-anchor {
+  text-decoration: none;
+  color: var(--font-color);
+}
 
 .top-page-card-parent::after {
   content: "";
