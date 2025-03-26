@@ -41,8 +41,9 @@
         {{- if hasPrefix $value "http" }}
           {{- /* link to outer site */}}
                 {
-                  "link_text": "{{$text}}",
-                  "href": "{{$value}}"
+                  "card_type": "external",
+                  "card_title": "{{$text}}",
+                  "card_href": "{{$value}}"
                 }
         {{- else }}
           {{- range $allpages }}
@@ -56,6 +57,7 @@
               {{- if gt $pagecnt 0 }}
                 {{- /* the page has sub pages */}}
                 {
+                  "card_type": "list",
                   "card_title": "{{- partial "title" . -}}",
                   "items":
                   [
@@ -77,6 +79,7 @@
               {{- else }}
                 {{- /* does not have page */}}
                 {
+                  "card_type": "single",
                   "card_title": "{{ partial "title" . }}",
                   "card_href": "{{.Permalink}}"
                 }
@@ -86,7 +89,7 @@
           {{- end }} {{- /* all pages roop end */}}
         {{- end }} {{- /* end of prefix "http" */}}
       {{- else if eq $type "partition" -}}
-        { "partition": "true" }
+        { "card_type": "partition" }
       {{- end -}} {{- /* csv row type end */}}
       {{- /* the next record is not "category", add a comma. */}}
       {{- if and (ne $type "category") (ne $next_type "category") (ne $next_type "") -}},{{- end -}}
