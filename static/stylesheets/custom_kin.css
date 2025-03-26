@@ -117,21 +117,6 @@ h4.audit + .id-link-button {
     background-color: #0d7b91;
 }
 
-/* WOVN -------------------------------------- */
-.wv-brk::before {
-  content: "「";
-}
-.wv-brk::after {
-  content: "」";
-}
-.wv-brk2::before {
-  content: "[";
-}
-.wv-brk2::after {
-  content: "]";
-}
-
-
 /* 768px以上の設定 *****************************************************/
 @media only screen and (min-width:768px){
   #tree {
