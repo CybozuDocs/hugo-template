@@ -1,0 +1,133 @@
+{{- $allpages := .Site.AllPages }}
+{{- $region := $.Site.Params.TargetRegion | upper }}
+{{- $lang := $.Site.LanguageCode }}
+{{- if eq (hasPrefix $lang "zh-tw") true }}
+    {{- $lang = substr $lang 0 5 }}
+{{- else }}
+    {{- $lang = substr $lang 0 2 }}
+{{- end }}
+{{- $path := (printf "%s/csv/home_%s.csv" $lang $region) }}
+{{- $records := slice }}
+{{- with resources.Get $path }}
+  {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
+  {{- $records = $records | append $data }}
+{{- else }}
+  {{ errorf "Unable to get resource %q" $path }}
+{{- end }}
+{{- $records_len := $records | len }}
+{{- define "partials/get_next_record_type" -}}
+  {{- /* returns the next record type */}}
+  {{- $ret_value := "" -}}
+  {{- $len := sub .len 1 -}}
+  {{- $next_idx := add .idx 1 -}}
+  {{- if le $next_idx $len -}}
+    {{- $next := index .rec $next_idx -}}
+    {{- $ret_value = index $next 0 -}}
+  {{- end -}}
+  {{- return $ret_value -}}
+{{- end -}}
+{ "categories": [
+{{- range $i, $r := $records }}
+      {{- $type := index $r 0 }}
+      {{- $value := index $r 1 }}
+      {{- $text := index $r 2 }}
+      {{- $next_type := partial "get_next_record_type" (dict "rec" $records "idx" $i "len" $records_len) }}
+      {{- if eq $type "category"}}
+        {
+          "category_text": "{{$text}}",
+          "category_class": "{{$value}}",
+          "cards": [
+      {{- else if eq $type "page" }}
+        {{- if hasPrefix $value "http" }}
+          {{- /* link to outer site */}}
+                {
+                  "link_text": "{{$text}}",
+                  "href": "{{$value}}"
+                }
+        {{- else }}
+          {{- range $allpages }}
+            {{- if eq (index .Params.aliases 0) $value }}
+              {{- /* alias file is found */}}
+              {{- $pages := .Pages }}
+              {{- if .Sections}}
+                {{- $pages = ($pages | union .Sections) }}
+              {{- end}}
+              {{- $pagecnt := $pages | len }}
+              {{- if gt $pagecnt 0 }}
+                {{- /* the page has sub pages */}}
+                {
+                  "card_title": "{{- partial "title" . -}}",
+                  "items":
+                  [
+                    { {{- /* the first item is a card title */}}
+                      "item_title": "{{- partial "title" . -}}",
+                      "item_href": "{{.Permalink}}"
+                    },
+                {{- range $idx, $page := $pages }}
+                  {{- if ne .Type "redirect_js" }}
+                    {
+                      "item_title": "{{ partial "title" $page }}",
+                      "item_href": "{{.Permalink}}"
+                    }
+                    {{- if ne $idx (sub $pagecnt 1) -}},{{- end }}
+                  {{- end }}
+                {{- end }}
+                  ] {{- /* end of items list array */}}
+                } {{- /* end of card array */}}
+              {{- else }}
+                {{- /* does not have page */}}
+                {
+                  "card_title": "{{ partial "title" . }}",
+                  "card_href": "{{.Permalink}}"
+                }
+              {{- end }}
+              {{- break }} {{- /* when the alias id is found, exit the roop  */}}
+            {{- end }} {{- /* aliase match end */}}
+          {{- end }} {{- /* all pages roop end */}}
+        {{- end }} {{- /* end of prefix "http" */}}
+      {{- else if eq $type "partition" -}}
+        { "partition": "true" }
+      {{- end -}} {{- /* csv row type end */}}
+      {{- /* the next record is not "category", add a comma. */}}
+      {{- if and (ne $type "category") (ne $next_type "category") (ne $next_type "") -}},{{- end -}}
+      {{- if eq $next_type "category" }}
+          ]
+        }, {{- /**** end  of cards collection */}}
+      {{- else if eq $next_type "" }}
+          ]
+        } {{- /* the last record */}}
+      {{- end }}
+  {{- end -}} {{- /* end of csv row iteration */}}
+], {{- /**** end  of category collection */}}
+"appendixes": [
+{{- $path_apx := (printf "%s/csv/home_apx_%s.csv" $lang $region) }}
+{{- with resources.Get $path_apx }}
+  {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
+  {{- $data_len := $data | len }}
+  {{- range $i, $r := $data }}
+    {{- $type := index $r 0 }}
+    {{- $text := index $r 1 }}
+    {{- $value := index $r 2 }}
+    {{- $status := index $r 3 }}
+    {{- if eq $type "category" }}
+      {
+          "category_icon": "{{$value}}",
+          "category_text": "{{$text}}"
+      },
+    {{- else if eq $type "link" }}
+      {
+        "item_link": "{{$value}}",
+        "item_text": "{{$text}}",
+        "itm_jaonly": 
+      {{- if eq $status "jaonly" -}}
+          true
+      {{- else -}}
+          false
+      {{- end }}
+      }
+      {{- if lt (add $i 1) $data_len }},{{- end }}
+    {{- end }}
+  {{- end }} {{- /* end of csv row iteration */}}
+{{- end }}
+]
+}
