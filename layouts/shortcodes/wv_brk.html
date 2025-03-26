@@ -1,1 +1,7 @@
-<span class="wv-brk">{{ .Inner | markdownify }}</span>
+{{- $langCode := $.Site.LanguageCode }}
+{{- $lnagOnly := (substr $langCode 0 2) }}
+{{- if or (eq $lnagOnly "ja")  (eq $lnagOnly "zh") }} 
+<span class="wv-brk">［{{ .Inner | markdownify }}］</span>
+{{- else }}
+<span class="wv-brk wv-brk-en">{{ .Inner | markdownify }}</span>
+{{- end }}
