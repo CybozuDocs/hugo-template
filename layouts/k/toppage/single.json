@@ -1,20 +1,3 @@
-{{- $allpages := .Site.AllPages }}
-{{- $region := $.Site.Params.TargetRegion | upper }}
-{{- $lang := $.Site.LanguageCode }}
-{{- if eq (hasPrefix $lang "zh-tw") true }}
-    {{- $lang = substr $lang 0 5 }}
-{{- else }}
-    {{- $lang = substr $lang 0 2 }}
-{{- end }}
-{{- $path := (printf "%s/csv/home_%s.csv" $lang $region) }}
-{{- $records := slice }}
-{{- with resources.Get $path }}
-  {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
-  {{- $records = $records | append $data }}
-{{- else }}
-  {{ errorf "Unable to get resource %q" $path }}
-{{- end }}
-{{- $records_len := $records | len }}
 {{- define "partials/get_next_record_type" -}}
   {{- /* returns the next record type */}}
   {{- $ret_value := "" -}}
@@ -26,15 +9,34 @@
   {{- end -}}
   {{- return $ret_value -}}
 {{- end -}}
-{ "categories": [
-{{- range $i, $r := $records }}
+{{- if eq $.Site.Params.TargetRegion "US" }}
+  {{- $allpages := .Site.AllPages }}
+  {{- $region := $.Site.Params.TargetRegion | upper }}
+  {{- $lang := $.Site.LanguageCode }}
+  {{- if eq (hasPrefix $lang "zh-tw") true }}
+      {{- $lang = substr $lang 0 5 }}
+  {{- else }}
+      {{- $lang = substr $lang 0 2 }}
+  {{- end }}
+  {{- $path := (printf "%s/csv/home_%s.csv" $lang $region) }}
+  {{- $records := slice }}
+  {{- with resources.Get $path }}
+    {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
+    {{- $records = $records | append $data }}
+  {{- else }}
+    {{ errorf "Unable to get resource %q" $path }}
+  {{- end }}
+  {{- $records_len := $records | len }}
+{ 
+  "categories": [
+  {{- range $i, $r := $records }}
       {{- $type := index $r 0 }}
       {{- $value := index $r 1 }}
       {{- $text := index $r 2 }}
       {{- $next_type := partial "get_next_record_type" (dict "rec" $records "idx" $i "len" $records_len) }}
       {{- if eq $type "category"}}
         {
-          "category_text": "{{$text}}",
+          "category_title": "{{$text}}",
           "category_class": "{{$value}}",
           "cards": [
       {{- else if eq $type "page" }}
@@ -102,35 +104,50 @@
       {{- end }}
   {{- end -}} {{- /* end of csv row iteration */}}
 ], {{- /**** end  of category collection */}}
-"appendixes": [
-{{- $path_apx := (printf "%s/csv/home_apx_%s.csv" $lang $region) }}
-{{- with resources.Get $path_apx }}
-  {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
-  {{- $data_len := $data | len }}
-  {{- range $i, $r := $data }}
-    {{- $type := index $r 0 }}
-    {{- $text := index $r 1 }}
-    {{- $value := index $r 2 }}
-    {{- $status := index $r 3 }}
-    {{- if eq $type "category" }}
-      {
-          "category_icon": "{{$value}}",
-          "category_text": "{{$text}}"
-      },
-    {{- else if eq $type "link" }}
-      {
-        "item_link": "{{$value}}",
-        "item_text": "{{$text}}",
-        "itm_jaonly": 
-      {{- if eq $status "jaonly" -}}
-          true
-      {{- else -}}
-          false
-      {{- end }}
-      }
-      {{- if lt (add $i 1) $data_len }},{{- end }}
+  "appendixes": [
+  {{- $apx_path := (printf "%s/csv/home_apx_%s.csv" $lang $region) }}
+  {{- $apx_records := slice }}
+  {{- with resources.Get $apx_path }}
+    {{- $apx_data := . | transform.Unmarshal (dict "delimiter" ",") }}
+    {{- $apx_records = $apx_records | append $apx_data }}
+  {{- else }}
+    {{- /* appendix file is a optional, so error is not reportes */}}
+  {{- end }}
+  {{- $apx_records_len := $apx_records | len }}
+
+  {{- range $apx_i, $apx_r := $apx_records }}
+    {{- $apx_type := index $apx_r 0 }}
+    {{- $apx_text := index $apx_r 1 }}
+    {{- $apx_value := index $apx_r 2 }}
+    {{- $apx_status := index $apx_r 3 }}
+    {{- $apx_next_type := partial "get_next_record_type" (dict "rec" $apx_records "idx" $apx_i "len" $apx_records_len) }}
+    {{- if eq $apx_type "category" }}
+    {
+      "category_title": "{{$apx_text}}",
+      "category_class": "{{$apx_value}}",
+      "items": [
+    {{- else if eq $apx_type "link" }}
+        {
+          "item_title": "{{$apx_text}}",
+          "item_href": "{{$apx_value}}",
+          "item_jaonly": 
+        {{- if eq $apx_status "jaonly" -}}
+            true
+        {{- else -}}
+            false
+        {{- end }}
+        }
+        {{- /* the next record is not "category", add a comma. */}}
+        {{- if and (ne $apx_type "category") (ne $apx_next_type "category") (ne $apx_next_type "") -}},{{- end -}}
+        {{- if eq $apx_next_type "category" }}
+      ] {{- /**** end  of items */}}
+    }, {{- /**** end  of category */}}
+        {{- else if eq $apx_next_type "" }}
+      ]
+    } {{- /* the last record */}}
+        {{- end }}
     {{- end }}
   {{- end }} {{- /* end of csv row iteration */}}
-{{- end }}
-]
+  ]
 }
+{{- end }}
