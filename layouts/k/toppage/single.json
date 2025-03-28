@@ -60,17 +60,17 @@
                 {{- /* the page has sub pages */}}
                 {
                   "card_type": "list",
-                  "card_title": "{{- partial "title" . -}}",
+                  "card_title": "{{- replaceRE "\"" "\\\"" (partial "title" .) -}}",
                   "items":
                   [
                     { {{- /* the first item is a card title */}}
-                      "item_title": "{{- partial "title" . -}}",
+                      "item_title": "{{- replaceRE "\"" "\\\"" (partial "title" .) -}}",
                       "item_href": "{{.Permalink}}"
                     },
                 {{- range $idx, $page := $pages }}
                   {{- if ne .Type "redirect_js" }}
                     {
-                      "item_title": "{{ partial "title" $page }}",
+                      "item_title": "{{ replaceRE "\"" "\\\"" (partial "title" $page) }}",
                       "item_href": "{{.Permalink}}"
                     }
                     {{- if ne $idx (sub $pagecnt 1) -}},{{- end }}
@@ -82,7 +82,7 @@
                 {{- /* does not have page */}}
                 {
                   "card_type": "single",
-                  "card_title": "{{ partial "title" . }}",
+                  "card_title": "{{ replaceRE "\"" "\\\"" (partial "title" .) }}",
                   "card_href": "{{.Permalink}}"
                 }
               {{- end }}
@@ -123,12 +123,12 @@
     {{- $apx_next_type := partial "get_next_record_type" (dict "rec" $apx_records "idx" $apx_i "len" $apx_records_len) }}
     {{- if eq $apx_type "category" }}
     {
-      "category_title": "{{$apx_text}}",
+      "category_title": "{{$apx_text }}",
       "category_class": "{{$apx_value}}",
       "items": [
     {{- else if eq $apx_type "link" }}
         {
-          "item_title": "{{$apx_text}}",
+          "item_title": "{{$apx_text }}",
           "item_href": "{{$apx_value}}",
           "item_jaonly": 
         {{- if eq $apx_status "jaonly" -}}
