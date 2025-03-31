@@ -54,7 +54,7 @@
     {{- end }}
     <title>{{ $title }}</title>
     <link rel="canonical" href="https://{{.Site.Params.domain}}{{ .Permalink | relURL }}">
-    {{- if or (eq .Params.type "search_result") (eq .Params.nolink true) }}
+    {{- if or (eq .Params.type "search_result") (eq .Params.nolink true) (eq .Site.Params.staging "true") }}
     <meta name="robots" content="noindex">
     {{- end }}
     <meta name="description" content="{{$desc}}">
