@@ -110,7 +110,9 @@
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/toppage2.css" $buildnum | relURL }}">
       {{- end -}}
     {{- else }} <!-- version "1" -->
+      {{- if .IsHome -}}
     <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/home.css" $buildnum | relURL }}">
+      {{- end -}}
     {{- end -}}
 
     {{- if eq .Params.type "search_result"}}
