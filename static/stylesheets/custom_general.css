@@ -57,38 +57,6 @@
   border-left: solid 4px var(--theme-color);
 }
 
-/* 「監査ログの一覧」で使用する設定 **************************************/
-
-.id-header:has(h3.audit){
-  border-bottom: 3px solid #e94f90;
-  border-image: linear-gradient(to right, #287bf4 0%, #e94f90 100%);
-  border-image-slice: 1;
-  margin-bottom: 1.4rem;
-}
-
-h3.audit {
-  margin-bottom: 0.5rem;
-  padding-left: 0;
-  border-left: none;
-  border-image: none;
-  border-image-slice: 0;
-}
-
-h4.audit {
-  border-left: 4px solid #e94f90;
-  border-image: linear-gradient(to top, #287bf4 0%, #e94f90 100%);
-  border-image-slice: 1;
-  line-height: 1em;
-  margin-top: 1.5em;
-  padding-top: 0.4em;
-  padding-left: 0.4em;
-  padding-bottom: 0.4em;
-}
-
-h4.audit + .id-link-button {
-  margin-top: 2.2rem;
-}
-
 /* コードブロックで利用する設定 ********************************************/
 
 .article pre {
