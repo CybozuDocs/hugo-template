@@ -63,8 +63,3 @@ a {
 .footer::before {
   background-image: none;
 }
-
-/* WOVN -------------------------------------- */
-.wv-brk-en {
-  font-weight: bold;
-}
