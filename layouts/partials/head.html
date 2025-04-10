@@ -131,6 +131,7 @@
     <script src="{{ "javascripts/zoom.js" | relURL }}"></script>
     <script src="{{ printf "%s?%s" "javascripts/preload.js" $buildnum | relURL }}"></script>
     <script src="{{ printf "%s?%s" "javascripts/application.js" $buildnum | relURL }}"></script>
+    <script src="{{ printf "%s?%s" "javascripts/langselector.js" $buildnum | relURL }}"></script>
     {{- if eq .Site.Params.meganav true }}
     <script src="{{ printf "%s?%s" "javascripts/meganav.js" $buildnum | relURL }}"></script>
     {{- end }}
