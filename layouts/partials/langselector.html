@@ -6,10 +6,6 @@
             <i class="fas fa-chevron-down" aria-hidden="true"></i>
         </button>
         <ul id="alter-lang" class="alter-lang" role="listbox" tabindex="-1" aria-hidden="true">
-            {{- range .Translations }}
-                <li id="lang_item_{{ .Site.LanguageCode }}" class="lang-item" role="option" desturl="{{ .RelPermalink }}"><span class="lang-title">{{ .Site.Language.LanguageName }}</span></li>
-            {{- end -}}
-
             {{- if eq .Site.Params.use_wovn true }}
                 {{- $urlParts := split .RelPermalink "/" }}
                 {{- $additionalLangs := index .Site.Data "language_list" }}
@@ -36,6 +32,10 @@
                     {{- end }}
                 <li id="lang_item_{{$languageCode}}" class="lang-item" role="option" desturl="{{$newTarget}}"><span class="lang-title">{{ .display_name }}</span></li>
                 {{- end }}
+            {{- else }}
+              {{- range .Translations }}
+                <li id="lang_item_{{ .Site.LanguageCode }}" class="lang-item" role="option" desturl="{{ .RelPermalink }}"><span class="lang-title">{{ .Site.Language.LanguageName }}</span></li>
+              {{- end -}}
             {{- end }}
 
         </ul>

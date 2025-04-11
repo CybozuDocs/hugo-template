@@ -244,7 +244,7 @@
             const wovnlang = wovnobj.name;
             const wovncode = wovnobj.code;
 
-            if (wovncode !== "en") {
+            if (wovncode !== "ja") {
                 setDisclamer(wovncode);
                 replaceLanguageURL(wovncode);
             }
