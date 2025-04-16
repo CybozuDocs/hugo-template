@@ -176,20 +176,6 @@
             }
         }
 
-        // WOVN 機械翻訳免責文言の表示
-        function setDisclamer(langcode) {
-            const $disc2 = $("#disclaimer2");
-            if ($disc2.length > 0) {
-                const paths = location.pathname.split("/");
-                fetch("/" + paths[1] + "/json/" + langcode + "/message.json")
-                    .then(response => response.json())
-                    .then((data) => { 
-                        $disc2.text(data.disclamer);
-                        $disc2.css("display", "block");
-                    });
-            }
-        }
-
         // WOVN 本文中の他プロダクトの言語付きURLを置き換える
         function replaceLanguageURL(langcode) {
             const atags = document.getElementsByTagName("a");
@@ -245,7 +231,6 @@
             const wovncode = wovnobj.code;
 
             if (wovncode !== "ja") {
-                setDisclamer(wovncode);
                 replaceLanguageURL(wovncode);
             }
         });
