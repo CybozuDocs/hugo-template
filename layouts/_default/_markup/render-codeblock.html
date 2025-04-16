@@ -4,8 +4,10 @@
       <i class="fas fa-copy" aria-hidden="true"></i>{{ i18n "Copy_codeblock_button" }}
     </button>
     <div class="codeblock-copy-message">{{ i18n "Codeblock_was_copied" }}</div>
-  {{- end -}}
-  <div class="codeblock--content">
+    <pre class="codeblock-{{.Type}} codeblock--content">{{.Inner | safeHTML}}</pre>
+  {{- else -}}
+    <div class="codeblock--content">
     {{- highlight ( .Inner | safeHTML ) .Type .Options }}
-  </div>
+    </div>
+  {{- end }}
 </div>
