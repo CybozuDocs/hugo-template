@@ -67,6 +67,7 @@
   max-width: 1300px;
   margin: auto;
   padding: 16px;
+  padding-bottom: 32px;
   color: var(--footer-font-color);
   display: block;
 }
