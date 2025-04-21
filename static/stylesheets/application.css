@@ -2232,6 +2232,12 @@ i.index-pdf {
 }
 /* -------------------- end of 404 not found page */
 
+/* Temporary Measures ----- */
+.wv-brk-en {
+  font-weight: bold;
+}
+/* ----- Temporary Measures end */
+
 /* 370px以上の設定 *****************************************************/
 @media only screen and (min-width:370px){
     .lang-wrap {
