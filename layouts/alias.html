@@ -15,7 +15,7 @@
       window.addEventListener('wovnApiReady', function () {
           const wovnobj = WOVN.io.getCurrentLang();
           const wovncode = wovnobj.code;
-          const wovnurl = url.replace("/en/", "/" + wovncode + "/");
+          const wovnurl = url.replace("/ja/", "/" + wovncode + "/");
           window.location.href = wovnurl + query + hash;
       });
 
