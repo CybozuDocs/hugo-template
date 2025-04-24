@@ -92,7 +92,7 @@
           {{- end }}
         {{- end }}
 
-        {{- if and .IsTranslated (eq .Site.Params.langSelector true) }}
+        {{- if or (eq .Site.Params.use_wovn true) (and .IsTranslated (eq .Site.Params.langSelector true)) }}
             {{ partial "langselector" . }}
         {{- end}}
 
