@@ -132,7 +132,9 @@
                 <button type="button" id="top-page-card-{{$i}}" class="top-page-card top-page-card-parent" aria-controls="top-page-panel-{{$i}}" aria-haspopup="true" aria-expanded="false">{{- partial "title" . -}}</button>
                   <ul id="top-page-panel-{{$i}}" class="top-page-panel" aria-labelledby="top-page-card-{{$i}}" tabindex="-1" role="menu">
                   {{- range $idx, $page := slice . | append $pages }}
+                    {{- if or (eq .Params.disabled nil) (not (in .Params.disabled .Site.Params.TargetRegion)) }}
                     <li role="none"><a href={{.RelPermalink}} role="menuitem" itemnum="{{$idx}}" tabindex="-1"><span class="top-page-item">{{- partial "title" $page -}}</span></a></li>
+                    {{- end }}
                   {{- end }}
                   </ul>
 
