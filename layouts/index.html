@@ -247,8 +247,5 @@
     </main>
 {{- end -}}
 {{- partial "footer" . }}
-{{- if eq $.Site.Params.TargetRegion "US" }}
-    <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
-{{- end -}}
 </body>
 </html>
