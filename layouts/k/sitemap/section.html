@@ -54,9 +54,6 @@
     </div>
     {{- partial "gototop" . }}
     {{- partial "footer" . }}
-    {{- if eq $.Site.Params.TargetRegion "US" }}
-        <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
-    {{- end -}}
     {{- end }}
     </body>
 </html>

@@ -75,10 +75,11 @@
               {{- end }}
         <div id="footercopyright">
         {{ i18n "Footer_copyright" }}<br>
-        {{- if eq .Site.Params.TargetRegion "US" }}
+        {{- if and (eq .Site.Params.TargetRegion "US") (eq hugo.Environment "production") }}
         <!-- CookiePro Cookies Settings button start -->
         <button id="ot-sdk-btn" class="ot-sdk-show-settings"> Cookie Settings</button>
         <!-- CookiePro Cookies Settings button end -->
+        <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
         {{- end }}
         </div>
     </div>

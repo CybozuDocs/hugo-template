@@ -67,9 +67,6 @@
     {{ .Content }}
 </div>
     {{ partial "footer" . }}
-    {{- if eq $.Site.Params.TargetRegion "US" }}
-    <script type="text/javascript" src="{{ printf "%s" "javascripts/geolocation.js" | relURL }}"></script>
-    {{- end -}}
         {{- $categories := (slice) }}
         {{- with $.Site.Params.google_search_tabs }}
             {{- $categories = trim $.Site.Params.google_search_tabs "\"" | safeJS}}
