@@ -11,6 +11,11 @@
                 {{- $additionalLangs := index .Site.Data "language_list" }}
                 {{- range $additionalLangs.languages }}
                     {{- $languageCode := .language_code }}
+                    {{- if or (eq $languageCode "es") (eq $languageCode "th") }}
+                      {{- if ne $.Site.Params.TargetRegion "US" }}
+                        {{- continue }}
+                      {{- end }}
+                    {{- end }}
                     {{- $idx := 0 }}
                     {{- $newTarget := "" }}
                     {{- $partsLen := $urlParts | len }}
