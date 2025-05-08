@@ -85,7 +85,7 @@
                   </h3>
               {{- $items := .items }}
               {{- range $items }}
-                  <div class="appendix-link-item"><a href="{{.item_url}}">{{.item_title}}</a>
+                  <div class="appendix-link-item"><a href="{{.item_href}}">{{.item_title}}</a>
                   {{- if eq .item_jaonly true }}
                       <span class="status-info">{{ i18n "Only_ja" }}</span>
                   {{- end }}
