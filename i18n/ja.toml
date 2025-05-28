@@ -73,6 +73,15 @@ other = "固定リンク"
 [MT_Disclaimer]
 other = "機械翻訳についての免責事項"
 
+[MT_Disclaimer2]
+other = "機械翻訳免責文（上）"
+
+[MT_Disclaimer3]
+other = "機械翻訳免責文（下）"
+
+[MT_Disclaimer4]
+other = "機械翻訳免責文（footer）"
+
 [og_desc1]
 other = "{{.Site.Params.product_name}}の{{.Site.Params.help}}です。"
 

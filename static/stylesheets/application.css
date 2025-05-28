@@ -423,12 +423,17 @@ li .lang-title {
     margin-left: 5px;
     font-size:1.25em;
 }
-.disclaimer-note {
+.mt-disclaimer {
     display: none;
     padding: 0.5em 1em;
     background-color: #eceaf7;
     border-radius: 6px;
     border: solid 1px #a298dc;
+}
+.mt-disclaimer-bottom {
+    padding-top: 1em;
+    font-size: 0.6em;
+    background-color: inherit;
 }
 /* -------------------------end of disclaimer */
 

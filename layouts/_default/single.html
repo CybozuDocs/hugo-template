@@ -23,7 +23,7 @@
             {{ partial "disclaimer" . }}
         {{- end }}
         {{- if eq $.Site.Params.use_wovn true }}
-            {{ partial "disclaimer2" . }}
+            <div id="mt-disclaimer-top" class="mt-disclaimer">{{ i18n "MT_Disclaimer2" }}</div>
         {{- end }}
         {{- partial "latestpageguide" . }}
         <main id="main" role="main">
@@ -50,6 +50,9 @@
             {{- end }}
 
         </main>
+		{{- if eq $.Site.Params.use_wovn true }}
+            <div id="mt-disclaimer-bottom" class="mt-disclaimer mt-disclaimer-bottom">{{ i18n "MT_Disclaimer3" }}</div>
+        {{- end }}
     </div>
     {{- if ne $.Site.Params.toc_in_tree true -}}
     <div class="sidebar-wrap">
