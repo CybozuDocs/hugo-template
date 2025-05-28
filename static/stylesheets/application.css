@@ -2170,6 +2170,10 @@ i.index-pdf {
     padding-left: 10px;
     color: #fff;
 }
+#hs-web-interactives-bottom-anchor {
+    z-index: 10000;
+}
+}
 /* -------------------- end of Support inquiry */
 
 /* locale modal -------------------- */
