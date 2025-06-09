@@ -8,9 +8,9 @@
     {{ partial "meganav" . }}
 {{- end -}}
 {{- if eq $.Site.Params.template_version "2" }}
-  {{- $welcome := printf "%s%s%s"  (i18n "Welcome" .) "! " (i18n "Enter_keywords")}}
-  {{- if eq $.Site.Params.product "support_guide" }}
-     {{- $welcome = (i18n "Welcome" .) }}
+  {{- $welcome := (i18n "Welcome" .) }}
+  {{- if or (eq $.Site.Params.product "kintone") (and (eq $.Site.Params.TargetRegion "US") (ne $.Site.Params.product "support-guide")) }}
+    {{- $welcome = printf "%s%s%s"  (i18n "Welcome" .) "! " (i18n "Enter_keywords")}}
   {{- end }}
 <div class="top-page-header">
   <div class="search-wrap">
