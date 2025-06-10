@@ -1,0 +1,64 @@
+---
+interface NavNode {
+  title: string;
+  relPermalink: string;
+  weight: number;
+  isSection: boolean;
+  sections?: NavNode[];
+  pages?: NavNode[];
+}
+
+interface Props {
+  sections: NavNode[];
+  currentPage: NavNode;
+}
+
+const { sections, currentPage } = Astro.props;
+
+// 重み順でソート
+function sortByWeight(items: NavNode[]): NavNode[] {
+  return items.sort((a, b) => a.weight - b.weight);
+}
+
+// 静的メニューを再帰的に生成
+function renderStaticMenu(node: NavNode, target: NavNode): any {
+  const isSelected = node.relPermalink === target.relPermalink;
+  
+  if (node.isSection) {
+    // セクションの場合
+    const entries = node.sections ? 
+      sortByWeight([...node.pages || [], ...node.sections]) : 
+      sortByWeight(node.pages || []);
+    
+    return (
+      <li role="presentation">
+        <a 
+          href={isSelected ? "#" : node.relPermalink}
+          class={isSelected ? "current" : ""}
+          set:html={node.title}
+        />
+        <ul>
+          {entries.map(entry => renderStaticMenu(entry, target))}
+        </ul>
+      </li>
+    );
+  } else {
+    // ページの場合
+    return (
+      <li role="presentation">
+        <a 
+          href={isSelected ? "#" : node.relPermalink}
+          class={`toclink ${isSelected ? "current" : ""}`}
+          set:html={node.title}
+        />
+      </li>
+    );
+  }
+}
+---
+
+<nav class="static_tree" tabindex="0">
+  <ul>
+    {sortByWeight(sections).map(section => renderStaticMenu(section, currentPage))}
+  </ul>
+</nav> 

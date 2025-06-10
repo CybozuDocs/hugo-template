@@ -1,0 +1,29 @@
+---
+// GetSecond処理をJavaScript関数として実装
+// このコンポーネントは実際にはレンダリングされない（ユーティリティ関数）
+
+interface Props {
+  p1: any;
+}
+
+const { p1 } = Astro.props;
+
+// Hugo の getsecond ロジックをJavaScriptで実装
+export const getSecondSection = (currentPage: any): any => {
+  let current = currentPage;
+  let second = null;
+  
+  while (current.parent && current !== current.firstSection) {
+    second = current;
+    current = current.parent;
+  }
+  
+  return second;
+};
+
+// 実際の処理
+const second = getSecondSection(p1);
+---
+
+<!-- このコンポーネントは何もレンダリングしない -->
+<!-- JavaScript関数のエクスポート目的のみ -->

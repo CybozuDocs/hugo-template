@@ -1,0 +1,155 @@
+---
+interface MenuItem {
+  id: string;
+  title: string;
+  url: string;
+}
+
+interface Props {
+  menuItems: MenuItem[];
+  product: string;
+  isHome?: boolean;
+  pageType?: string;
+  currentUrl: string;
+  documentTypeText: string;
+  tabMenuText: string;
+}
+
+const { 
+  menuItems, 
+  product, 
+  isHome = false, 
+  pageType = "", 
+  currentUrl, 
+  documentTypeText, 
+  tabMenuText 
+} = Astro.props;
+
+// プロダクトに応じたタブ番号を決定
+let tabNum = 0;
+if (product === "kintone") tabNum = 1;
+else if (product === "slash") tabNum = 2;
+else if (product === "store") tabNum = 3;
+
+const strTabNum = tabNum.toString();
+
+// 現在のタブを決定
+let currentTab = "";
+if (!isHome && pageType !== "search_result" && pageType !== "search_id") {
+  const currentMenuItem = menuItems.find(item => item.id === strTabNum);
+  if (currentMenuItem) {
+    currentTab = currentMenuItem.title;
+  }
+}
+
+// メニューアイテムをグループ化
+const groupedMenus: { [key: string]: MenuItem[] } = {};
+menuItems.forEach(item => {
+  if (!groupedMenus[item.id]) {
+    groupedMenus[item.id] = [];
+  }
+  groupedMenus[item.id].push(item);
+});
+
+// URLベースパスを取得
+const baseUrl = currentUrl.replace('.html', '');
+const baseParts = baseUrl.split('/');
+const partsLen = baseParts.length;
+
+// パネル数を計算
+const panelCount = Object.keys(groupedMenus).length;
+---
+
+<nav class="mega-nav-bar" role="navigation" aria-label={documentTypeText}>
+  <ul class="g-nav" role="none"></ul>
+  <div id="mega-nav" class="mega-nav">
+    <div class="mega-tab-wrap">
+      <div id="mega-tab-short" class="mega-tab-short">
+        <span class="mega-tab-short-wrap">
+          <span id="mega-tab-short-text">{currentTab}</span>
+          <button 
+            id="mega-tab-switch" 
+            class="mega-tab-switch" 
+            aria-label={tabMenuText}
+            aria-controls="mega-tab-bar" 
+            aria-expanded="false"
+          >
+            <i 
+              id="mega-tab-switch-icon" 
+              class="fas fa-chevron-down mega-tab-switch-icon" 
+              aria-hidden="true"
+            ></i>
+          </button>
+        </span>
+      </div>
+      <div id="mega-tab-bar" class="mega-tab-bar">
+        <ul role="tablist">
+          {Object.keys(groupedMenus).map((menuId, index) => {
+            const menuGroup = groupedMenus[menuId];
+            const firstItem = menuGroup[0];
+            const isCurrent = !isHome && parseInt(menuId) === tabNum && 
+                             product !== "support_guide" && 
+                             pageType !== "search_result" && 
+                             pageType !== "search_id";
+            const tabIndex = index === 0 ? "0" : "-1";
+            
+            return (
+              <li id={`menuitem${menuId}`} role="presentation">
+                <button 
+                  class={`mega-tab ${isCurrent ? "current" : ""}`}
+                  id={`tab${menuId}`}
+                  tabindex={tabIndex}
+                  role="tab" 
+                  aria-controls={`panel${menuId}`}
+                  aria-expanded="false"
+                >
+                  <span class="mega-tab-text">
+                    {firstItem.title}
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+                <div class="mega-panelplace"></div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+
+    {Object.keys(groupedMenus).map((menuId, panelIndex) => {
+      const menuGroup = groupedMenus[menuId];
+      const menuItems = menuGroup.slice(1); // 最初のアイテムはタイトルなので除外
+      
+      return (
+        <div 
+          class="mega-panel" 
+          role="tabpanel" 
+          id={`panel${menuId}`}
+          aria-labelledby={`tab${menuId}`}
+        >
+          <ul class="mega-list">
+            {menuItems.map(item => {
+              let href = item.url;
+              let isCurrent = false;
+              
+              // 現在のページかどうかを判定
+              const menuHref = href.replace('.html', '');
+              if (!isHome && partsLen >= 3 && menuHref.includes(baseUrl)) {
+                href = "#";
+                isCurrent = true;
+              }
+              
+              return (
+                <li class={`mega-list-line ${isCurrent ? "current" : ""}`}>
+                  <a class="mega-list-item" href={href} tabindex="0">
+                    {item.title}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    })}
+  </div>
+</nav> 

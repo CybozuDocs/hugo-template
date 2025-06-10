@@ -1,0 +1,116 @@
+---
+interface Props {
+  googleSearch?: boolean;
+  bingSearch?: boolean;
+  searchTabs?: string[];
+  isFullSize?: boolean;
+  placeholder?: string;
+  searchWordLabel: string;
+  searchLabel: string;
+  searchFilterLabel: string;
+  searchBingText?: string;
+  searchBingLegalText?: string;
+  searchBingLegalUrl?: string;
+  languageCode?: string;
+}
+
+const { 
+  googleSearch = false,
+  bingSearch = false,
+  searchTabs = [],
+  isFullSize = false,
+  placeholder = '',
+  searchWordLabel,
+  searchLabel,
+  searchFilterLabel,
+  searchBingText,
+  searchBingLegalText,
+  searchBingLegalUrl,
+  languageCode = 'en'
+} = Astro.props;
+
+// 言語コードの調整
+let adjustedLangCode = languageCode;
+if (languageCode === 'zh') {
+  adjustedLangCode = 'zh-CN';
+} else if (languageCode === 'zh-tw') {
+  adjustedLangCode = 'zh-TW';
+}
+
+const hasSearchTabs = searchTabs.length > 0;
+const buttonClass = hasSearchTabs ? 
+  `search-filter-current${isFullSize ? ' search-filter-current-top' : ''}` : 
+  '';
+---
+
+<div id="search" class="search-wrap" role="search">
+  <div class="searchbox">
+    {hasSearchTabs && (
+      <button 
+        id="search-filter-current" 
+        class={buttonClass}
+        title={searchFilterLabel}
+        aria-controls="search-filter-list" 
+        aria-haspopup="listbox" 
+        aria-expanded="false" 
+        role="combobox"
+      >
+        {searchTabs[0]}
+      </button>
+    )}
+    
+    {hasSearchTabs && (
+      <div 
+        id="search-filter-list" 
+        class="search-filter-list" 
+        aria-labelledby="search-filter-current" 
+        role="listbox" 
+        tabindex="-1"
+      >
+        <ul>
+          {searchTabs.map((tab, index) => (
+            <li 
+              class={`search-filter-item${index === 0 ? ' search-filter-selected' : ''}`}
+              data-listid={index}
+              role="option" 
+              aria-selected="false"
+            >
+              {tab}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+    
+    <input 
+      type="search" 
+      id="search-input" 
+      class="search-input" 
+      placeholder={placeholder}
+      aria-label={searchWordLabel}
+    />
+    <button 
+      class="search-submit" 
+      title={searchLabel}
+      aria-label={searchLabel}
+    ></button>
+  </div>
+  
+  {isFullSize && (
+    <div id="logo_place" class={`search-logo${bingSearch ? ' search-logo-bing' : ''}`}>
+      {bingSearch && searchBingText && searchBingLegalText && searchBingLegalUrl && (
+        <span>
+          {searchBingText} (<a href={searchBingLegalUrl} target="_blank">{searchBingLegalText}</a>)
+        </span>
+      )}
+    </div>
+  )}
+</div>
+
+{googleSearch && (
+  <script 
+    src="https://www.gstatic.com/prose/brand.js" 
+    data-targetid={isFullSize ? "logo_place" : "search-input"}
+    data-hl={adjustedLangCode}
+  ></script>
+)} 

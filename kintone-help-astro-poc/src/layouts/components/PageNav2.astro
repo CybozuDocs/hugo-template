@@ -1,0 +1,34 @@
+---
+interface PageNavItem {
+  title: string;
+  permalink: string;
+  isHome?: boolean;
+}
+
+interface Props {
+  nextPage?: PageNavItem;
+  prevPage?: PageNavItem;
+  previousPageText: string;
+  nextPageText: string;
+}
+
+const { nextPage, prevPage, previousPageText, nextPageText } = Astro.props;
+---
+
+<nav class="pagination">
+  {!nextPage ? (
+    <div class="pagination-previous"></div>
+  ) : (
+    <div class="pagination-previous">
+      <i class="fas fa-caret-left" aria-hidden="true"></i>
+      <a href={nextPage.permalink}>{previousPageText}</a>
+    </div>
+  )}
+
+  {prevPage && !prevPage.isHome && (
+    <div class="pagination-next">
+      <a href={prevPage.permalink}>{nextPageText}</a>
+      <i class="fas fa-caret-right" aria-hidden="true"></i>
+    </div>
+  )}
+</nav> 

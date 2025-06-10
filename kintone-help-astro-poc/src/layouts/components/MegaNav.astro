@@ -1,0 +1,17 @@
+---
+interface Props {
+  targetRegion: string;
+}
+
+const { targetRegion } = Astro.props;
+---
+
+{targetRegion === "US" ? (
+  <div id="meganav-kt-placeholder">
+    <!-- MegaNavKt コンポーネントをここに配置 -->
+  </div>
+) : (
+  <div id="meganav-gr-placeholder">
+    <!-- MegaNavGr コンポーネントをここに配置 -->
+  </div>
+)} 

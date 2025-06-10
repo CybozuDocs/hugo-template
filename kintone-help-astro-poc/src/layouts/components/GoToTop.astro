@@ -1,0 +1,12 @@
+---
+interface Props {
+  goBackToTopText: string;
+}
+
+const { goBackToTopText } = Astro.props;
+---
+
+<div id="goto-top" class="fa-stack" aria-hidden="true" title={goBackToTopText}>
+  <i class="fas fa-circle fa-stack-2x"></i>
+  <i class="fas fa-arrow-circle-up fa-stack-1x"></i>
+</div> 

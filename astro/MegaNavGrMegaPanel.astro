@@ -1,0 +1,73 @@
+---
+import Title from './Title.astro';
+import type { PageProps, EnvProps } from './types';
+
+interface Props {
+  cursect: PageProps;
+  env: EnvProps;
+}
+
+const { cursect, env } = Astro.props;
+
+// CSVデータの簡易実装（実際のCSVファイル読み込みの代替）
+// TODO: 実際のCSVファイルからの読み込み処理を実装
+const getIconFromCSV = (targetlink: string): string => {
+  // 簡易的なアイコンマッピング（実際のCSVデータで置き換えが必要）
+  const iconMappings: Record<string, string> = {
+    '/admin/': 'fas fa-cog',
+    '/user/': 'fas fa-user',
+    '/intro/': 'fas fa-play',
+    '/spec/': 'fas fa-list',
+    '/system/': 'fas fa-server',
+    '/basic/': 'fas fa-book',
+    '/personal/': 'fas fa-user-circle'
+  };
+  
+  for (const [path, icon] of Object.entries(iconMappings)) {
+    if (targetlink.includes(path)) {
+      return icon;
+    }
+  }
+  
+  return 'fas fa-file'; // デフォルトアイコン
+};
+
+// ページをweight順にソート
+const sortedPages = (cursect.pages || [])
+  .filter((page: PageProps) => page.params?.weight !== 0)
+  .sort((a: PageProps, b: PageProps) => (a.weight || 0) - (b.weight || 0));
+
+let menuid = 0;
+---
+
+{sortedPages.map((page: PageProps) => {
+  menuid += 1;
+  const iconface = getIconFromCSV(page.relPermalink);
+  const nolink = page.params?.nolink === true;
+  
+  return (
+    <div class="mega-panel" role="tabpanel" id={`panel${menuid}`} aria-labelledby={`tab${menuid}`}>
+      <div class="mega-title">
+        <h3>
+          {!nolink && <a href={page.relPermalink}>}
+          <span class="fa-stack" tabindex="-1" aria-hidden="true">
+            <i class="far fa-circle fa-stack-2x" aria-hidden="true"></i>
+            <i class={`${iconface} fa-stack-1x`} aria-hidden="true"></i>
+          </span>
+          <Title page={page} env={env} />
+          {!nolink && </a>}
+        </h3>
+      </div>
+      
+      <ul class="mega-list">
+        {(page.pages || []).map((subpage: PageProps) => (
+          <li class="mega-list-line">
+            <a class="mega-list-item" href={subpage.relPermalink}>
+              <Title page={subpage} env={env} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+})}

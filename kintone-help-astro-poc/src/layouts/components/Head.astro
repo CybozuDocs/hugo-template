@@ -1,0 +1,306 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  isHome?: boolean;
+  type?: string;
+  nolink?: boolean;
+  params?: any;
+  site: {
+    languageCode: string;
+    baseURL: string;
+    params: {
+      use_wovn?: boolean;
+      data_wovnio?: string;
+      service_type?: string;
+      service_type_id?: string;
+      product_name?: string;
+      help?: string;
+      product?: string;
+      domain?: string;
+      og_img?: string;
+      staging?: string;
+      template_version?: string;
+      TargetRegion?: string;
+      favicon?: string;
+      custom_css?: string;
+      meganav?: boolean;
+      google_search?: boolean;
+      bing_search?: boolean;
+      chat?: string;
+      [key: string]: any;
+    };
+  };
+  content?: string;
+  permalink?: string;
+  relPermalink?: string;
+}
+
+const { 
+  title: pageTitle, 
+  description, 
+  isHome = false, 
+  type, 
+  nolink = false, 
+  site, 
+  content = "", 
+  permalink = "", 
+  relPermalink = "" 
+} = Astro.props;
+
+// Build number (current date)
+const buildnum = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+
+// Site name construction
+let sitename = "";
+const servicetype = site.params.service_type || "";
+
+if (site.params.service_type_id === "on-premise" && site.languageCode === "en-us") {
+  sitename = `${site.params.product_name} ${servicetype}`.trim();
+} else {
+  sitename = `${servicetype} ${site.params.product_name}`.trim();
+}
+
+const fullSitename = `${sitename} ${site.params.help}`.trim();
+
+// Title construction
+let finalTitle = pageTitle || "";
+if (!isHome && pageTitle) {
+  finalTitle = `${pageTitle} | ${fullSitename}`;
+} else if (isHome) {
+  finalTitle = fullSitename;
+}
+
+// Description construction
+let desc = "";
+if (description) {
+  desc = description;
+} else {
+  let post = "";
+  if (!isHome && ["Garoon", "Mailwise", "Office", "Remote"].includes(site.params.product || "")) {
+    const contents = content.split("\n");
+    if (contents.length > 0) {
+      post = contents[0]
+        .replace(/^<p>/, "")
+        .replace(/<br>$/, "")
+        .replace(/<\/p>$/, "");
+    }
+  }
+  
+  // i18n placeholders - これらは実際のプロジェクトでは適切な国際化ライブラリを使用
+  const descBase = site.params.service_type ? "Service help documentation" : "Help documentation";
+  const descSuffix = "for users";
+  desc = `${descBase} ${descSuffix} ${post}`.trim();
+}
+
+// Template version
+const templateVersion = site.params.template_version || "1";
+
+// Environment check - Astroの環境変数アクセス
+const isProduction = (import.meta as any).env?.PROD || false;
+const isStaging = site.params.staging === "true" || (import.meta as any).env?.MODE === "staging";
+
+// Robots meta
+const shouldNoIndex = type === "search_result" || nolink || isStaging;
+
+// Chat configuration
+const chatConfig = site.params.chat ? site.params.chat.split(",") : [];
+const currentPage = relPermalink;
+
+// WOVN configuration
+let wovnDataWovnio = "";
+if (site.params.use_wovn) {
+  const baseUrlParts = site.baseURL.split("/");
+  const prefix = baseUrlParts[baseUrlParts.length - 2] || "";
+  wovnDataWovnio = `key=${site.params.data_wovnio}&defaultLang=en&currentLang=en&urlPattern=path&backend=true&langCodeAliases={"en":"en"}&sitePrefixPath=${prefix}&langParamName=wovn&backendVersion=WOVN.proxy_0.9.0`;
+}
+---
+{site.params.use_wovn && (
+  <script 
+    src="https://j.wovn.io/1" 
+    data-wovnio={wovnDataWovnio}
+    async
+  ></script>
+)}
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+<meta name="date" content={buildnum} />
+
+<title>{finalTitle}</title>
+<link rel="canonical" href={`https://${site.params.domain}${permalink}`} />
+
+{shouldNoIndex && (
+  <meta name="robots" content="noindex,nofollow" />
+)}
+
+<meta name="description" content={desc} />
+<meta name="thumbnail" content={`https://${site.params.domain}${site.params.og_img}`} />
+
+{/* Open Graph */}
+<meta property="og:url" content={`https://${site.params.domain}${permalink}`} />
+<meta property="og:type" content={isHome ? "website" : "article"} />
+<meta property="og:site_name" content={fullSitename} />
+<meta property="og:title" content={finalTitle} />
+<meta property="og:image" content={`https://${site.params.domain}${site.params.og_img}`} />
+<meta property="og:description" content={desc} />
+<meta property="og:locale" content={site.languageCode} />
+
+{/* Mobile */}
+<meta name="apple-mobile-web-app-title" content={finalTitle} />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+{/* Custom meta */}
+<meta name="cy-template-version" content={templateVersion} />
+<meta name="cy-product-name" content={site.params.product} />
+<meta name="cy-region" content={site.params.TargetRegion} />
+
+{/* Favicon */}
+<link rel="shortcut icon" type="image/x-icon" href={site.params.favicon || "/favicon.ico"} />
+<link rel="icon" type="image/x-icon" href={site.params.favicon || "/favicon.ico"} />
+
+{/* US Region specific */}
+{site.params.TargetRegion === "US" && (
+  <>
+    <link rel="stylesheet" href="https://use.typekit.net/fmt1ojn.css" />
+    {isProduction && (
+      <>
+        <script type="text/javascript" src="https://cookie-cdn.cookiepro.com/consent/9d6098cc-90be-4d07-a9ef-6e07312a3016/OtAutoBlock.js"></script>
+        <script src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js" type="text/javascript" charset="UTF-8" data-domain-script="9d6098cc-90be-4d07-a9ef-6e07312a3016"></script>
+        <script type="text/javascript">
+          function OptanonWrapper() { }
+        </script>
+      </>
+    )}
+  </>
+)}
+
+{/* Stylesheets */}
+<link rel="stylesheet" href={`/k/stylesheets/application.css?${buildnum}`} />
+<link rel="stylesheet" href="/k/stylesheets/zoom.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+{templateVersion === "2" ? (
+  <>
+    <link rel="stylesheet" href={`/k/stylesheets/application2.css?${buildnum}`} />
+    <link rel="stylesheet" href={`/k/stylesheets/searchbox.css?${buildnum}`} />
+    <link rel="stylesheet" href={`/k/stylesheets/footer.css?${buildnum}`} />
+    {isHome && (
+      <link rel="stylesheet" href={`/k/stylesheets/toppage2.css?${buildnum}`} />
+    )}
+  </>
+) : (
+  isHome && (
+    <link rel="stylesheet" href={`/k/stylesheets/home.css?${buildnum}`} />
+  )
+)}
+
+{type === "search_result" && (
+  <link rel="stylesheet" href={`/k/stylesheets/search_result.css?${buildnum}`} />
+)}
+
+{/* Custom CSS */}
+{site.params.custom_css && 
+  site.params.custom_css.split(",").map((css: string, index: number) => (
+    <link rel="stylesheet" href={`${css.trim()}?${buildnum}`} />
+  ))
+}
+
+{/* JavaScript */}
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
+<script is:inline src="/k/javascripts/zoom.js"></script>
+<script is:inline src={`/k/javascripts/preload.js?${buildnum}`}></script>
+<script is:inline src={`/k/javascripts/application.js?${buildnum}`}></script>
+<script is:inline src={`/k/javascripts/langselector.js?${buildnum}`}></script>
+
+{site.params.meganav && (
+  <script is:inline src={`/k/javascripts/meganav.js?${buildnum}`}></script>
+)}
+
+{/* Video list page */}
+{type === "gr/section_top_video" && (
+  <link rel="stylesheet" href={`/k/stylesheets/video_list.css?${buildnum}`} />
+)}
+
+{type === "gr6/home" && (
+  <script src={`/javascripts/custom_gr6.js?${buildnum}`}></script>
+)}
+
+{templateVersion === "2" && (
+  <>
+    <script src={`/javascripts/searchbox.js?${buildnum}`}></script>
+    {isHome && (
+      <script src={`/javascripts/toppage2.js?${buildnum}`}></script>
+    )}
+  </>
+)}
+
+{/* Vue.js for specific page types */}
+{(
+  (type === "search_result" && (site.params.google_search || site.params.bing_search)) ||
+  type === "gr/section_top_video" ||
+  type === "gr6/home"
+) && (
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.8/vue.global.prod.min.js"></script>
+)}
+
+{/* Google Tag Manager */}
+<script is:inline>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5ZR5GF');
+</script>
+
+<script is:inline>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5N49D3');
+</script>
+
+{site.params.product === "kintone" && site.params.TargetRegion === "JP" && (
+  <script is:inline>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K98FR27D');
+  </script>
+)}
+
+{/* Chat widget */}
+{chatConfig.length > 0 && chatConfig.some(chat => currentPage.includes(`/${chat}/`)) && (
+  <>
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=6549c743-a6eb-40ac-a71f-c479b0759f1c"></script>
+    {chatConfig.map((chat, index) => {
+      if (currentPage.includes(`/${chat}/`)) {
+        const menuKey = `chat_menu_${chat}`;
+        const menus = site.params[menuKey] ? site.params[menuKey].split(",").filter(Boolean) : [];
+        
+        if (menus.length > 0) {
+          return (
+            <script is:inline define:vars={{ menus }}>
+              window.zESettings = {
+                webWidget: {
+                  chat: {
+                    departments: {
+                      enabled: menus,
+                      ...(menus.length === 1 && { select: menus[0] })
+                    }
+                  }
+                }
+              };
+            </script>
+          );
+        }
+      }
+      return null;
+    })}
+  </>
+)}

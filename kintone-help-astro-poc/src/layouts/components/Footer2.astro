@@ -1,0 +1,136 @@
+---
+interface FooterLink {
+  id: string;
+  text: string;
+  href: string;
+  target?: string;
+  status?: string;
+}
+
+interface FooterMegaMenu {
+  [key: string]: FooterLink[];
+}
+
+interface Props {
+  footerLinks: FooterLink[];
+  isHome?: boolean;
+  hasKPath?: boolean;
+  languageCode: string;
+  product?: string;
+  targetRegion?: string;
+  environment?: string;
+  footerCopyright: string;
+  onlyJaText: string;
+  disclaimerText?: string;
+}
+
+const { 
+  footerLinks,
+  isHome = false,
+  hasKPath = false,
+  languageCode,
+  product = "",
+  targetRegion = "",
+  environment = "",
+  footerCopyright,
+  onlyJaText,
+  disclaimerText = ""
+} = Astro.props;
+
+const fullsize = isHome || hasKPath;
+
+// フッターリンクを分類
+const legalMenu: FooterLink[] = [];
+const megaMenus: FooterMegaMenu = {};
+
+footerLinks.forEach(link => {
+  if (link.id === "999") {
+    // 特別なフッター（法的リンク）
+    legalMenu.push(link);
+  } else {
+    // メガメニュー
+    if (!megaMenus[link.id]) {
+      megaMenus[link.id] = [];
+    }
+    megaMenus[link.id].push(link);
+  }
+});
+
+// 免責事項PDF URLの生成
+function getDisclaimerPdfUrl(languageCode: string): string {
+  let pdfUrl = "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf";
+  
+  if (languageCode === "zh-cn" || languageCode === "zh-jp") {
+    pdfUrl = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf";
+  }
+  
+  return pdfUrl;
+}
+
+const shouldShowDisclaimer = languageCode !== "ja-jp" && languageCode !== "ja-cn" && product === "Garoon";
+const disclaimerPdfUrl = getDisclaimerPdfUrl(languageCode);
+---
+
+<footer id="page-footer" class={`footer${fullsize ? ' footer-home' : ''}`}>
+  <div class="footer-home">
+    {fullsize && (
+      <div class="footer-mega">
+        <ul class="footer-mega-list">
+          {Object.entries(megaMenus).map(([index, menuItems]) => {
+            const categoryTitle = menuItems[0]?.text || "";
+            const links = menuItems.slice(1);
+            
+            return (
+              <li class="footer-mega-item">
+                <h2 class="footer-mega-list-title">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  <span class="footer-mega-list-title-text">{categoryTitle}</span>
+                </h2>
+                <ul class="footer-mega-list-list">
+                  {links.map(link => (
+                    <li class="footer-mega-list-item">
+                      <a href={link.href}>{link.text}</a>
+                      {link.status === "jaonly" && (
+                        <span class="status-info">{onlyJaText}</span>
+                      )}
+                    </li>
+                  ))}
+                  {/* 最後のメニューに免責事項を挿入 */}
+                  {index === "3" && shouldShowDisclaimer && disclaimerText && (
+                    <li class="footer-mega-list-item">
+                      <a href={disclaimerPdfUrl} target="_blank">{disclaimerText}</a>
+                      <i class="far fa-file-pdf index-pdf" aria-hidden="true"></i>
+                    </li>
+                  )}
+                </ul>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    )}
+    
+    <div class="footer-legal-wrap">
+      <div class="footer-legal">
+        <ul class="footer-legal-list">
+          {legalMenu.map(link => (
+            <li class="footer-legal-item">
+              <a href={link.href} target={link.target as "_blank" | "_self" | "_parent" | "_top" || "_blank"}>{link.text}</a>
+            </li>
+          ))}
+        </ul>
+        <div class="footer-legal-copyright">
+          {footerCopyright}
+        </div>
+        {targetRegion === "US" && environment === "production" && (
+          <Fragment>
+            <!-- CookiePro Cookies Settings button start -->
+            <button id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie Settings</button>
+            <!-- CookiePro Cookies Settings button end -->
+            <script type="text/javascript" src="/javascripts/geolocation.js"></script>
+          </Fragment>
+        )}
+      </div>
+    </div>
+  </div>
+</footer> 

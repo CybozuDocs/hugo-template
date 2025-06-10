@@ -1,0 +1,17 @@
+---
+interface Props {
+  sideNavigationShowText: string;
+  sideNavigationHideText: string;
+}
+
+const { sideNavigationShowText, sideNavigationHideText } = Astro.props;
+---
+
+<div id="treenav-toggle">
+  <button id="treenav-show" class="treenav-toggle-button" title={sideNavigationShowText}>
+    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+  </button>
+  <button id="treenav-hide" class="treenav-toggle-button" title={sideNavigationHideText}>
+    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+  </button>
+</div> 

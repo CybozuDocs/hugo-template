@@ -1,0 +1,5 @@
+/* listsummary shortcode -------------------------------------- */
+.article .listsummary ol > li::before {
+    color: #ffffff;
+    background-color: #0d7b91;
+}

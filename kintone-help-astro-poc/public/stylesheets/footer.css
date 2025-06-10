@@ -1,0 +1,145 @@
+:root {
+  --footer-font-color: #ffffff;
+  --footer-bg-color: #666666;
+  --footer-border-color: #e6e6e6;
+  --footer-mega-font-collor: #333333;
+}
+
+.footer {
+  border-top: solid 4px var(--footer-border-color);
+}
+.footer::before {
+  background-image: unset;
+}
+
+.footer a {
+  color: var(--footer-mega-font-collor);
+}
+
+.footer-home {
+  position: relative;
+}
+
+.footer-mega {
+  padding: 16px;
+  max-width: 1300px;
+  margin: auto;
+}
+.footer-mega-list {
+  display: block;
+}
+
+.footer-mega-item {
+  margin-top: 16px;
+}
+
+.footer-mega-list-title {
+  font-size: 1.2rem;
+  line-height: 2em;
+  padding-top: 1em;
+}
+
+.footer-mega-list-title i {
+  display: none;
+}
+
+.footer-mega-list-title-text {
+  font-size: 1.3rem;
+  font-weight: bold;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+.footer-mega-list-list {
+  list-style: none;
+  margin: 8px 0 0 8px;
+}
+
+.footer-mega-list-list a {
+  line-height: 2rem;
+}
+
+.footer-legal-wrap {
+  background-color: var(--footer-bg-color);
+}
+
+.footer-legal {
+  max-width: 1300px;
+  margin: auto;
+  padding: 16px;
+  padding-bottom: 32px;
+  color: var(--footer-font-color);
+  display: block;
+}
+
+.footer-legal a {
+  color: var(--footer-font-color);
+}
+
+.footer-legal-list {
+  display: block;
+  list-style: inside;
+}
+
+.footer-legal-item {
+  padding-bottom: 1rem;
+}
+
+.status-info {
+  white-space: nowrap;
+  font-size: 0.8rem;
+  margin-left: 8px;
+  padding: 0 0.5em;
+  background-color: var(--common-status-bg-color);
+}
+
+@media only screen and (min-width: 768px) {
+
+  .footer-mega {
+    padding: 40px 0px;
+  }
+
+  .footer-mega-list {
+    display: flex;
+    column-gap: 32px;
+    white-space: nowrap;
+  }
+
+  .footer-mega-list-title {
+    padding-top: 0;
+  }
+
+  .footer-mega-list-title i {
+    font-size: 1.5rem;
+  }
+
+  .footer-mega-list-title-text {
+    font-size: 1.25rem;
+  }
+
+  .footer-mega-item {
+    margin-top: 0px;
+  }
+
+  .footer-legal {
+    padding: 32px 40px;
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+  }
+
+  .footer-legal-list {
+    display: flex;
+    column-gap: 32px;
+    margin-left: 0;
+    white-space: nowrap;
+  }
+
+  .footer-legal-item {
+    padding-bottom: 0rem;
+  }
+
+  .footer-legal-copyright {
+    text-align: right;
+  }
+}

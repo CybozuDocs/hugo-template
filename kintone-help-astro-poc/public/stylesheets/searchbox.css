@@ -1,0 +1,106 @@
+:root {
+  --button-bg-color: #f6f6f6;
+  --hover-color: #ccdcff;
+  --border-color: #c9c9c9;
+
+  --select-color: #2563eb;
+  --select-bg-color: #ccdcff;
+}
+
+.search-filter-current {
+  display: none;
+  font-size: 1rem;
+  white-space: nowrap;
+  height: 42px;
+  padding: 8px 48px 8px 8px;
+  text-align: left;
+  cursor: pointer;
+  border: solid 1px var(--border-color);
+  background-color: var(--button-bg-color);
+}
+
+.search-filter-current-top {
+  font-size: 1.25rem;
+  height: 60px;
+  padding: 16px 48px 16px 16px;
+}
+
+.search-filter-current::after {
+  content: "";
+  float: right;
+  margin-top: 5px;
+  margin-right: -38px;
+  width: 0.6em;
+  height: 0.6em;
+  border: 0.15em solid currentColor;
+  border-left: 0;
+  border-bottom: 0;
+  transform: translateX(-25%) rotate(135deg);
+}
+
+.search-filter-current:hover {
+  background-color: var(--hover-color);
+}
+
+.search-filter-list {
+  display: none;
+  padding: 8px 0 8px 0;
+  position: absolute;
+  border: solid 1px var(--font-color);
+  background-color: var(--button-bg-color);
+  z-index: 999;
+}
+.search-filter-list li {
+  padding: 4px 16px 4px 16px;
+}
+.search-filter-list li:hover,.forcused-item {
+  color: var(--select-color);
+  background-color: var(--hover-color);
+  cursor: pointer;
+}
+
+.search-filter-selected {
+  font-weight: bold;
+  color:  var(--select-color);
+  border-left: solid 10px var(--select-color);
+}
+
+.searchbox input {
+  flex-shrink: 3;
+  width: auto;
+  border: solid 1px var(--border-color);
+  z-index: 999;
+}
+
+.searchbox input::placeholder {
+  color: var(--border-color);
+}
+
+.searchbox-header {
+  width: 100% !important;
+}
+
+.search-submit {
+  border: solid 1px var(--border-color);
+  background-color: var(--button-bg-color);
+}
+
+.search-submit::after {
+  color: var(--item-color);
+}
+
+.search-submit:hover {
+  background-color: var(--hover-color);
+}
+
+
+.header .searchbox input {
+  width: auto;
+}
+
+/* 768px以上の設定 *****************************************************/
+@media only screen and (min-width:768px){
+  .search-filter-current {
+    display: inline-block;
+  }
+}

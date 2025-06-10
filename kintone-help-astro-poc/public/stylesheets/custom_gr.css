@@ -1,0 +1,592 @@
+/* General tags -------------------- */
+html {
+    color: #000;
+    line-height: 1.8em;
+    line-break: strict;
+}
+
+body {
+    min-height: 100vh;
+}
+
+*:focus{
+    box-shadow:0 0 0 3px rgba(131,192,253,0.5);
+    outline:none;
+}
+
+a {
+    color: #1b72cd;
+    line-height: 1.5em;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+h1 a {
+    color: #000;
+}
+
+h1 a:hover {
+    text-decoration: none;
+}
+
+h2 {
+    font-weight: bold;
+}
+/* -------------------- end of General tags */
+
+img.icon,
+img.svgicon16{
+    padding:0 2px;
+}
+img.svg {
+    width:40px;
+    height:40px;
+}
+img.svgicon16{
+    width:16px;
+    height:16px;
+}
+
+.blue {
+    color: #0066CC;
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+.red{
+	color:#DD0000;
+}
+
+.btn {
+    margin: .188em .313em;
+    padding: .250em;
+    display: inline-block;
+    border: 1px solid #000;
+    background: #FFF;
+}
+
+.blue img,
+.red img,
+img.icon,
+img.svgicon16{
+    vertical-align: middle;
+}
+
+.t-check{
+    color:#00823B;
+}
+.t-blue{
+    color:#0177C9;
+}
+.far, .fas {
+    color: #000;
+}
+td a > .fa{
+    color: #1b72cd;
+}
+td a > .fa:hover{
+    text-decoration: underline;
+}
+
+/* Header -------------------- */
+.logo-title {
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    padding-left: 0;
+}
+
+.header {
+    box-shadow: none;
+    background: rgba(255,255,255,0.9);
+}
+.header::before {
+    background-image: none;
+}
+/* -------------------- End of Header */
+
+/* Search box --------------------*/
+.header .searchbox input {
+    border: 3px solid #015aaa;
+}
+
+.search-submit {
+    background-color: #015aaa;
+    border: solid 1px #015aaa;
+}
+.header .search-submit::after {
+    color: #fff;
+    background-color: #015aaa;
+}
+.header .search-submit:focus {
+    outline: 3px solid rgba(131,192,253,0.5);
+}
+/* -------------------- End of Search box */
+
+/* Mars finder */
+.mf_finder_searchBox_submit {
+    background-color: #015aaa;
+}
+.mf_finder_searchBox_query_input {
+    border: 4px solid #015aaa;
+}
+.btn-mail {
+    color: #015aaa;
+}
+.page-pad {
+    height: 94px;
+}
+.page {
+    margin-top: 0;
+    word-wrap:break-word;
+    word-break:normal;
+}
+
+.current-lang {
+    padding-top: 3px;
+}
+.current-lang .fas {
+    margin-top: 6px;
+}
+.lang-title {
+    padding-top: 7px;
+}
+.lang-title:lang(en) {
+    padding-top: 8px;
+}
+.lang-item:hover {
+    color: #000;
+    background-color: #c9cbcc;
+}
+.selectlang {
+    color: #000;
+    background-color: #c9cbcc;
+}
+
+/* latest page guide ------------------------ */
+.latest-page-guide a {
+    color: #1b72cd;
+}
+/* ------------------------ end of latest page guide */
+
+/* Breadcrumb -------------------- */
+.breadcrumb {
+    padding: 10px 0 40px;
+}
+.breadcrumbs a {
+    color: #1b72cd;
+    text-decoration: underline;
+    line-height: 1.5em;
+}
+/* -------------------- end of Breadcrumb */
+
+/* tree navigation -------------------- */
+.tree-wrap {
+    padding-bottom: 10px;
+}
+
+#tree-main {
+    font-size: 1rem;
+    position: relative;
+}
+#tree-main a {
+    color: #000;
+    padding-right: 16px;
+}
+#tree-main a:hover {
+    background-color: transparent;
+}
+#tree-main .branch {
+    border-top: 1px solid #e7eff3;
+}
+#tree-main ul li ul li a {
+    font-size: 0.8rem;
+}
+
+.jstree-anchor:hover {
+    color: #0d7b91;
+    text-decoration: underline;
+    line-height: 1.5em;
+}
+
+/* -------------------- end of tree navigation */
+
+/* article --------------------*/
+.article h1 {
+    padding: 0 0 0;
+    font-weight: normal;
+    margin-bottom: 50px;
+}
+.article h2 {
+    font-size:1.5em;
+    font-weight: normal;
+    border-bottom: solid 3px #b8c5ca;
+    margin-top: -24px;
+    margin-bottom: 0;
+    padding-top: 66px;
+}
+.article h3 {
+    font-size: 1.25em;
+    font-weight: inherit;
+    padding:.313em;
+    margin-top: 1.5em;
+    margin-bottom: 0;
+    border-left:#505050 solid 5px;
+    border-image: none;
+}
+.article h4 {
+    font-size: 1.125em;
+    border-bottom: dashed 2px #505050;
+    padding-bottom: 10px;
+}
+.article h5 {
+    padding-bottom: 15px;
+    font-size: 1.125em;
+    border-bottom: solid 1px #98b1c9;
+}
+.article h6 {
+    position: relative;
+    font-weight:bold;
+    margin-top: 0;
+    padding-top: 20px;
+}
+.adjustAnchor{
+    padding-top:1em;
+    margin-top: -.1em;
+}
+.article h4,
+.article h5,
+.article .h6-anc{
+    padding-top:65px;
+    margin-top:-65px;
+    z-index: -100;
+}
+.article a {
+    color: #1b72cd;
+    text-decoration: underline;
+    line-height: 1.5em;
+}
+.article ul ul{
+    list-style: circle;
+}
+.article ul ul ul{
+    list-style:square;
+}
+.article ol {
+    margin: 5px 0 5px;
+}
+.article ol>li>p {
+    font-weight: bold;
+}
+.article ol>li  {
+    font-size: 1.12em;
+    border: 0;
+}
+.article ol>li .listtext {
+    font-size: .9em;
+}
+.article ol>li::marker {
+    font-size: 1.12em;
+    font-family: "Arial Black", Arial, Times, serif;
+    color: #000;
+}
+.article table {
+    width: 100%;
+    border-top: 3px solid #000;
+    border-bottom: 3px solid #000;
+    border-left: none;
+    margin: 5px 0 14px;
+    background:#FFF;
+    font-size: 1rem;
+}
+.article table th{
+    text-align:center;
+    background: none;
+    border-right: none;
+    border-bottom: none;
+}
+.article table tr{
+    border-bottom: 1px solid #000;
+}
+.article table td {
+    border-right: none;
+    border-bottom: none;
+  }
+.article table th,
+.article table td{
+    padding: 10px;
+}
+.article table th:not(:nth-child(1)),
+.article table td:not(:nth-child(1)){
+    border-left: 1px solid #D6D6D6;
+}
+.article img.screenshot:hover {
+    outline: 3px solid #A4CAF7;
+}
+.article img.screenshot {
+    margin: .5em 0 1em;
+    display: block;
+    max-width: 100%;
+}
+
+.zoom-overlay {
+background: rgba(255, 255, 255, 0.9);
+}
+/* -------------------- End of article */
+
+/* search-result  -------------------- */
+.search-result h1 {
+    padding-top: 0;
+}
+
+.search-result a {
+    color: #1b72cd;
+}
+/* -------------------- End of search-result */
+
+/* mega  -------------------- */
+.mega-title a {
+    font-size: 1em;
+    padding: 0 0 0 0;
+    margin-left: 0;
+}
+/* -------------------- End of mega */
+
+/* admonition -------------------- */
+.admonition {
+    padding: 0;
+    margin: 40px 0;
+}
+.admonition.note,
+.admonition.reference,
+.admonition.warning {
+    background: transparent;
+    border-radius: 0;
+    border-right: 0;
+    border-left: 0;
+}
+.admonition.note {
+    border-top: solid 3px #50af51;
+    border-bottom: solid 3px #50af51;
+}
+.admonition.reference {
+    border-top: solid 2px #000;
+    border-bottom: solid 2px #000;
+}
+.admonition.reference .fas {
+    color: #000;
+    font-size: 1rem;
+}
+.admonition.warning {
+    border-top: solid 3px #ff9d12;
+    border-bottom: solid 3px #ff9d12;
+}
+.admonition-alt {
+    font-weight: bold;
+    font-size: 1em;
+    padding:.625em .938em;
+}
+.admonition.note .admonition-alt {
+    background: #f3f8f3;
+}
+.admonition.warning .admonition-alt {
+    background: #fce2bd;
+}
+.admonition-content {
+    margin: 0 .6em .6em;
+}
+.admonition-content ol {
+    margin: .5em 0 0 1.375em;
+}
+.article .admonition-content ol>li {
+    font-size: 1em;
+}
+.article .admonition-content ol>li:before {
+    font-size: 1em;
+    font-weight: normal;
+    font-family: initial;
+}
+/* -------------------- End of admonition */
+
+/* step list ----------------------------- */
+.step-list {
+    width: auto !important;
+}
+.step-list, .step-line, .step-link {
+    border: 0 !important;
+}
+.step-index, .step-link {
+    padding: 0 !important;
+}
+/* ---------------------- end of step list */
+
+#goto-top .fa-stack-1x {
+    color: #015aaa;
+}
+
+#enquete {
+    color: #fff;
+    background-color: #015aaa;
+}
+.enquete-btn {
+    color: #000;
+    background-color: #e6f1f4;
+}
+
+/* footer --------------------------------------*/
+.footer{
+    position: relative;
+    border-top: 3px solid #b8c5ca;
+}
+.footer-wrap {
+    height: 16rem;
+}
+.footer::before {
+    background-image: none;
+}
+/* -------------------------------------- End of footer */
+
+.subnavi {
+    padding-bottom: 0;
+}
+
+/* Home page --------------------------------------*/
+.col-tile-gr .tile-title {
+    margin-top: 20px;
+    font-size: 26px;
+    font-weight: inherit;
+    color: #1b72cd;
+}
+
+.col-tile-gr .tile-title.nolink {
+    color: #000;
+}
+/* -------------------------------------- End of Home page */
+
+/* Search page ---------------------------------*/
+.search-button {
+    background-color: #1b72cd;
+}
+.search-button:hover {
+    background-color: #74a0ce;
+}
+.search-words {
+    border-color: #1b72cd;
+}
+/* -------------------------------------- End of Search opage */
+
+/* 404 page */
+.nftitle {
+    background-image: none;
+    background-color: #1b72cd;
+}
+
+/* 370px以上の設定 *****************************************************/
+@media only screen and (min-width:370px){
+    .logo-title {
+        font-size: 14px;
+        line-height: 14px;
+    }
+    .lang-title {
+        padding-top: 6px;
+    }
+    .lang-title:lang(en) {
+        padding-top: 8px;
+    }
+    .footer-wrap {
+        height: 12rem;
+    }
+}
+
+/* 768px以上の設定  **************************************************************/
+@media only screen and (min-width: 768px) {
+    .logo-wrap {
+        width: 290px;
+    }
+    .logo-title {
+        font-size: 20px;
+        line-height: 24px;
+        padding-left: 8px;
+    }
+    .logo-title:lang(en) {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .search-wrap {
+        width: calc(100% - 270px - 130px);
+    }
+    .search-wrap:lang(en) {
+        width: calc(100% - 280px - 130px);
+    }
+    .search-wrap input:lang(en)::placeholder {
+        color: transparent;
+    }
+    .header .searchbox input {
+        font-size: 1.2rem;
+    }
+    .current-lang {
+        padding-top: 6px;
+    }
+    .current-lang .fas {
+        margin-top: 6px;
+    }
+    .page-pad {
+        height: 54px;
+    }
+    .article h2 {
+        font-size:2.063em;
+    }
+    .article h3 {
+        font-size: 1.62em;
+    }
+    .article h4 {
+        font-size: 1.25em;
+    }
+    .footer{
+        position: absolute;
+    }
+    .footer-wrap {
+        height: 6rem;
+    }
+    .subnavi {
+        padding-bottom: 100px;
+    }
+}
+
+/* 850px以上の設定  **************************************************************/
+@media only screen and (min-width: 850px) {
+    .search-wrap input:lang(en)::placeholder {
+        color: #000;
+    }
+}
+
+/* 1059px以上の設定  *************************************************************/
+@media only screen and (min-width: 1059px) {
+    .top-title {
+        padding: 1.5em 0 1.5em 0;
+        font-size: 3em;
+    }
+
+    .contents-wrap {
+        width: calc(100% - 292px);
+    }
+    .contents-with-chat {
+        width: calc(100% - 492px);
+    }
+
+    .article img.screenshot {
+        max-width: 600px;
+    }
+
+    .article .graynote img.screenshot {
+        max-width: 100%;
+    }
+}
+
+@media print {
+    .heading-button {
+        display: none;
+    }
+}

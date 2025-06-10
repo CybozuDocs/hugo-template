@@ -1,0 +1,130 @@
+---
+interface FooterLink {
+  enabled: string;
+  text: string;
+  href: string;
+  target: string;
+}
+
+interface Props {
+  previewSite?: boolean;
+  baseURL: string;
+  idSearch?: boolean;
+  templateVersion?: string;
+  product?: string;
+  footerLinks: FooterLink[];
+  footerCopyrightText: string;
+  targetRegion?: string;
+  environment?: string;
+  helpSiteText?: string;
+  pageType?: string;
+}
+
+const { 
+  previewSite = false,
+  baseURL,
+  idSearch = false,
+  templateVersion = "1",
+  product = "",
+  footerLinks,
+  footerCopyrightText,
+  targetRegion = "",
+  environment = "",
+  helpSiteText = "",
+  pageType = ""
+} = Astro.props;
+
+// プレビューサイトの場合は何も表示しない
+if (previewSite) {
+  return null;
+}
+
+const footerLinksEx = idSearch ? "footer-links-ex" : "";
+
+// URLパース
+const urlParts = baseURL.split("/");
+const hasGPath = urlParts.some(part => part.startsWith("g/") || part.startsWith("g6/"));
+
+// Footer2を使用するかどうかの判定
+const useFooter2 = hasGPath || templateVersion === "2";
+
+// フィルタリングされたリンク
+const primaryLinks = footerLinks.filter(link => {
+  if (link.enabled !== "1") return false;
+  
+  // ID検索が無効で、search_id.htmlの場合は除外
+  if (!idSearch && link.href.includes("search_id.html")) {
+    return false;
+  }
+  
+  return true;
+});
+
+const secondaryLinks = footerLinks.filter(link => {
+  if (link.enabled !== "2") return false;
+  
+  // 現在のページがsearch_idで、リンクもsearch_idの場合は除外
+  if (pageType === "search_id" && link.href.includes("search_id")) {
+    return false;
+  }
+  
+  return true;
+});
+---
+
+{!useFooter2 ? (
+  <footer id="page-footer" class="footer">
+    <div class="footer-wrap">
+      <div class="footer-col-links">
+        <div class={`footer-links ${footerLinksEx}`}>
+          {idSearch && (
+            <div class="footer-link-title">
+              {targetRegion === "US" ? "Kintone" : "Cybozu"}
+            </div>
+          )}
+          <ul>
+            {primaryLinks.map(link => (
+              <li>
+                <a href={link.href} target={link.target}>
+                  {link.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        {idSearch && secondaryLinks.length > 0 && (
+          <div class={`footer-links ${footerLinksEx}`}>
+            <div class="footer-link-title">{helpSiteText}</div>
+            <ul>
+              {secondaryLinks.map(link => (
+                <li>
+                  <a href={link.href} target={link.target}>
+                    {link.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      
+      <div id="footercopyright">
+        <Fragment set:html={footerCopyrightText} />
+        <br />
+        {targetRegion === "US" && environment === "production" && (
+          <Fragment>
+            <!-- CookiePro Cookies Settings button start -->
+            <button id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie Settings</button>
+            <!-- CookiePro Cookies Settings button end -->
+            <script type="text/javascript" src="/javascripts/geolocation.js"></script>
+          </Fragment>
+        )}
+      </div>
+    </div>
+  </footer>
+) : (
+  <div id="footer2-placeholder">
+    <!-- Footer2 コンポーネントをここに配置 -->
+  </div>
+)} 

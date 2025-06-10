@@ -1,0 +1,16 @@
+---
+interface Props {
+  alias: string;
+  articleNumberText: string;
+}
+
+const { alias, articleNumberText } = Astro.props;
+
+// ドキュメントIDの抽出
+const aliasParts = alias.split("/");
+const docid = aliasParts[aliasParts.length - 1];
+---
+
+<div class="id-bar">
+  <div class="id-str">{articleNumberText}:{docid}</div>
+</div> 

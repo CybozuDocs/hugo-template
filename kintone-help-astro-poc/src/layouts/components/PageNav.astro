@@ -1,0 +1,30 @@
+---
+interface PageNavItem {
+  title: string;
+  permalink: string;
+}
+
+interface Props {
+  nextInSection?: PageNavItem;
+  prevInSection?: PageNavItem;
+  previousPageText: string;
+  nextPageText: string;
+}
+
+const { nextInSection, prevInSection, previousPageText, nextPageText } = Astro.props;
+---
+
+<nav class="pagination">
+  {nextInSection && (
+    <div class="pagination-previous">
+      <i class="fas fa-caret-left"></i>
+      <a href={nextInSection.permalink}>{previousPageText}</a>
+    </div>
+  )}
+  {prevInSection && (
+    <div class="pagination-next">
+      <a href={prevInSection.permalink}>{nextPageText}</a>
+      <i class="fas fa-caret-right"></i>
+    </div>
+  )}
+</nav> 

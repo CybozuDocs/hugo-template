@@ -1,0 +1,72 @@
+---
+interface TocItem {
+  anchor: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  relPermalink: string;
+  content: string;
+}
+
+const { title, relPermalink, content } = Astro.props;
+
+// H2タグからTOCを生成
+function extractTocFromContent(htmlContent: string): TocItem[] {
+  const h2Regex = /<h2.*?>([\s\S]*?)<\/h2>/g;
+  const tocs: TocItem[] = [];
+  let match;
+
+  while ((match = h2Regex.exec(htmlContent)) !== null) {
+    const h2Content = match[0];
+    const innerText = match[1];
+    
+    // アンカーを抽出
+    let anchor = "";
+    const pidMatch = h2Content.match(/pid="([^"]+)"/);
+    const idMatch = h2Content.match(/id="([^"]+)"/);
+    
+    if (pidMatch) {
+      anchor = pidMatch[1];
+    } else if (idMatch) {
+      anchor = idMatch[1];
+    }
+    
+    // テキストを抽出（HTMLタグを除去）
+    const textMatch = innerText.match(/>([^<]+)</);
+    const text = textMatch ? textMatch[1] : innerText.replace(/<[^>]*>/g, '');
+    
+    if (anchor && text) {
+      tocs.push({ anchor, text });
+    }
+  }
+  
+  return tocs;
+}
+
+const tocItems = extractTocFromContent(content);
+---
+
+<div id="tree-nav">
+  <div id="tree-head">
+    <div class="tree-title">
+      <a href={relPermalink}>{title}</a>
+    </div>
+  </div>
+  <nav id="tree-main" class="tree-main" role="tree">
+    <ul>
+      <li class="dummy-node" data-jstree='{ "opened" : true, "disabled" : true }'>
+        {tocItems.length > 0 && (
+          <ul>
+            {tocItems.map(toc => (
+              <li>
+                <a href={`${relPermalink}#${toc.anchor}`} class="toclink" set:html={toc.text} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </li>
+    </ul>
+  </nav>
+</div> 

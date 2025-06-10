@@ -1,0 +1,9 @@
+レコードの開始行,テーブルの項目1,テーブルの項目2,ルックアップ,グループ選択,組織選択,ユーザー選択,リンク,日時,時刻,日付,文字列 (1行),文字列 (複数行),リッチエディター,数値,ラジオボタン,チェックボックス[sample1],チェックボックス[sample2],ドロップダウン,複数選択[sample1],複数選択[sample2],複数選択[sample3],複数選択[sample4],作成者,作成日時,更新者,更新日時
+*,A,2500円,inamitsu@sample.com,everyone,renshi,sakagami,https://jp.cybozu.help/k/ja/,2018/8/15 17:39,17:39,2018/8/15,文字列1行です。,"文字列複数行です。
+それぞれの項目の入力例として参考になれば幸いです。","<div><font color=""#ff00ff"" size=""4"">リッチエディターは、書式も反映されます。</font></div>",5,sample1,1,,sample2,1,,,1,sakagami,2021/3/1 11:31,takahashi,2021/3/1 11:31
+,B,5000円,inamitsu@sample.com,everyone,営業部_oZqtfV,takahashi,https://jp.cybozu.help/k/ja/,2018/8/21 18:00,17:39,2018/8/21,これは文字列1行です。,"これは文字列複数行です。
+テーブルのデータは、ファイル読み込みで新規追加した場合のみ反映されます。テーブルのデータを更新することはできません。",<div><b>リッチエディター項目。太字で入力しました。</b></div>,2,sample2,,1,sample1,,1,1,,takahashi,2021/3/3 14:19,sakagami,2021/3/3 14:19
+*,C,500円,shota.i@sample.com,Aグループ_0QDOKw,renshi,"kato
+sakagami",https://jp.cybozu.help/k/ja/,2018/8/15 17:39,17:39,2018/8/15,文字列1行,"これは文字列複数。
+改行後です。
+添付ファイルのデータは復元できません。","<div><font color=""#0000ff""><b><u>下線付きです。</u></b></font></div>",10,sample1,1,,sample1,1,1,,,kato,2021/3/5 17:52,kato,2021/3/5 17:52

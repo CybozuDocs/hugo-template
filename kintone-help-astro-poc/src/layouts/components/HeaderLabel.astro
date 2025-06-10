@@ -1,0 +1,33 @@
+---
+interface Props {
+  labels?: number[];
+  labelColors: string[];
+  labelLead: string;
+  labelContents: string[];
+}
+
+const { labels = [], labelColors, labelLead, labelContents } = Astro.props;
+
+// ラベルが存在し、ラベルコンテンツが設定されている場合のみ表示
+const shouldShowLabels = labels.length > 0 && labelContents.length > 0;
+---
+
+{shouldShowLabels && (
+  <div class="header-label-bar">
+    <span class="header-label-lead">{labelLead}:</span>
+    {labels.map(labelIndex => {
+      const adjustedIndex = labelIndex - 1; // 1-based to 0-based
+      const labelContent = labelContents[adjustedIndex];
+      const color = labelColors[adjustedIndex];
+      
+      return labelContent ? (
+        <span 
+          class="header-label" 
+          style={`background-color: ${color}`}
+        >
+          {labelContent}
+        </span>
+      ) : null;
+    })}
+  </div>
+)} 

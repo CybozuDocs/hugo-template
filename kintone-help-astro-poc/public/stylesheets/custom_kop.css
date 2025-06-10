@@ -1,0 +1,25 @@
+@media print {
+    .book-title {
+        width: 600px;
+    }
+}
+
+/* definition listの設定 -------------------------------------- */
+
+.article dl {
+    margin: 5px;
+  }
+  
+  .article dt {
+    margin-bottom: 7px;
+    font-weight: bold;
+  }
+  
+  .article dl > dt:nth-child(n + 2) {
+    margin-top: 14px;
+  }
+  
+  .article dd {
+    margin-bottom: 7px;
+    padding-left: 20px;
+  }

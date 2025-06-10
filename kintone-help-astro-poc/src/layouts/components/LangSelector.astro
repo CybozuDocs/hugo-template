@@ -1,0 +1,92 @@
+---
+interface Translation {
+  languageCode: string;
+  languageName: string;
+  relPermalink: string;
+}
+
+interface AdditionalLanguage {
+  language_code: string;
+  display_name: string;
+}
+
+interface Props {
+  currentLanguageName: string;
+  currentLanguageCode: string;
+  translations: Translation[];
+  currentRelPermalink: string;
+  useWovn?: boolean;
+  additionalLanguages?: AdditionalLanguage[];
+}
+
+const { 
+  currentLanguageName, 
+  currentLanguageCode, 
+  translations, 
+  currentRelPermalink,
+  useWovn = false,
+  additionalLanguages = []
+} = Astro.props;
+
+// WOVN用の追加言語のURL生成
+function generateWovnUrl(relPermalink: string, languageCode: string): string {
+  const urlParts = relPermalink.split('/').filter(part => part !== '');
+  let newTarget = '';
+  
+  urlParts.forEach((part, index) => {
+    if (index === 1) { // 言語コード部分を置換
+      newTarget += `/${languageCode}`;
+      if (urlParts.length <= 3) {
+        return;
+      }
+    } else {
+      newTarget += `/${part}`;
+    }
+  });
+  
+  // 末尾の調整
+  if (!newTarget.endsWith('.html') && !newTarget.endsWith('/')) {
+    newTarget += '/';
+  }
+  
+  return newTarget;
+}
+---
+
+<div id="lang" class="lang-wrap" aria-label="language selector">
+  <div>
+    <button 
+      id="lang-selector" 
+      class="current-lang" 
+      aria-haspopup="listbox" 
+      aria-expanded="false"
+    >
+      <i class="fas fa-globe" aria-hidden="true"></i>
+      <span id="displang" class="lang-title">{currentLanguageName}</span>
+      <i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </button>
+    <ul id="alter-lang" class="alter-lang" role="listbox" tabindex="-1" aria-hidden="true">
+      {translations.map((translation) => (
+        <li 
+          id={`lang_item_${translation.languageCode}`}
+          class="lang-item" 
+          role="option" 
+          data-desturl={translation.relPermalink}
+        >
+          <span class="lang-title">{translation.languageName}</span>
+        </li>
+      ))}
+      
+      {useWovn && additionalLanguages.map((lang) => (
+        <li 
+          id={`lang_item_${lang.language_code}`}
+          class="lang-item" 
+          role="option" 
+          data-desturl={generateWovnUrl(currentRelPermalink, lang.language_code)}
+        >
+          <span class="lang-title">{lang.display_name}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div> 

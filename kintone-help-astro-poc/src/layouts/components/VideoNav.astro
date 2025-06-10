@@ -1,0 +1,32 @@
+---
+interface VideoTag {
+  key: string;
+  text: string;
+}
+
+interface Props {
+  tags: VideoTag[];
+  filterText: string;
+}
+
+const { tags, filterText } = Astro.props;
+---
+
+<nav id="video-filter" class="video-filter">
+  <h2 class="video-filter-title">{filterText}</h2>
+  <ul>
+    {tags.map(tag => (
+      <li>
+        <span>
+          <input 
+            type="checkbox" 
+            class="video-filter-check" 
+            id={`video-filter-${tag.key}`}
+            data-tag-key={tag.key}
+          />
+          <label for={`video-filter-${tag.key}`}>{tag.text}</label>
+        </span>
+      </li>
+    ))}
+  </ul>
+</nav> 

@@ -1,0 +1,44 @@
+---
+interface Props {
+  level: number;
+  link: string;
+  id: string;
+  title: string;
+  attributes?: {
+    class?: string;
+  };
+  permalinkText: string;
+}
+
+const { level, link, id, title, attributes = {}, permalinkText } = Astro.props;
+
+const showHeadingLink = level <= 5 && link !== "";
+const HeadingTag = `h${level}` as keyof HTMLElementTagNameMap;
+---
+
+<div class="adjustAnchor" id={id}>
+  <HeadingTag class={`h${level}-contents ${attributes.class || ''}`} data-pid={id} set:html={title} />
+</div>
+
+{showHeadingLink && (
+  <div class="heading-link">
+    <button 
+      class="heading-button" 
+      tabindex="0" 
+      aria-owns={`heading-url-${id}`}
+      aria-expanded="false"
+    >
+      <span>{permalinkText}</span>
+      <i class="fas fa-link" aria-hidden="true"></i>
+    </button>
+    <div id={`heading-url-${id}`} class="heading-url" aria-hidden="true">
+      <input 
+        readonly 
+        value={`${link}#${id}`}
+        name="headingUrl" 
+        type="text" 
+        onclick="this.focus(); this.select()"
+      />
+    </div>
+  </div>
+)} 

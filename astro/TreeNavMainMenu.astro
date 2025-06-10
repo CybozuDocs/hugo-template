@@ -1,0 +1,151 @@
+---
+import Title from './Title.astro';
+import TreeNavTreeItem from './TreeNavTreeItem.astro';
+import type { PageProps, EnvProps } from './types';
+
+interface Props {
+  curnode: PageProps;
+  target: PageProps;
+  needtoc: boolean;
+  tocregex: string;
+  env: EnvProps;
+}
+
+const { curnode, target, needtoc, tocregex, env } = Astro.props;
+
+// 基本変数
+let opened = false;
+let selected = false;
+let shouldRenderSection = false;
+let shouldRenderPage = false;
+let sectionContent: any = null;
+let pageContent: any = null;
+
+// セクションかページかで処理を分岐
+const isSection = curnode.isSection;
+const isDisabled = curnode.params?.disabled?.includes(env.targetRegion);
+const isRedirectJs = curnode.type === "redirect_js";
+const isPrintPage = curnode.type === "print_page";
+
+// セクションの場合の処理
+if (isSection && !isRedirectJs && !isDisabled) {
+  const pages = curnode.isHome 
+    ? env.siteHome?.pages?.filter((p: PageProps) => p.sections === "") || []
+    : curnode.pages || [];
+  
+  const numberOfPages = (pages.length || 0) + (curnode.sections?.length || 0);
+  
+  // opened/selected の判定
+  if (curnode.isAncestor?.(target) || curnode === target) {
+    opened = true;
+  }
+  if (curnode.relPermalink === target.relPermalink) {
+    selected = true;
+  }
+
+  // entries の設定
+  let entries: PageProps[] = [];
+  if (curnode.sections) {
+    entries = [...pages, ...(curnode.sections || [])];
+  } else {
+    entries = pages;
+  }
+  entries = entries.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+
+  if (numberOfPages !== 0) {
+    shouldRenderSection = true;
+    sectionContent = {
+      opened,
+      selected,
+      entries
+    };
+  }
+} 
+// ページの場合の処理
+else if (!isSection && !isDisabled && !isPrintPage && !isRedirectJs) {
+  // TOC処理
+  let tocs: string[] = [];
+  let toclen = 0;
+  
+  if (curnode.relPermalink === target.relPermalink) {
+    opened = false;
+    selected = true;
+  }
+
+  if (needtoc && curnode.content) {
+    // 簡易的なTOC実装（正規表現による見出し抽出の代替）
+    // TODO: 実際のfindRE処理の実装
+    const headingMatches = curnode.content.match(new RegExp(tocregex, 'g'));
+    if (headingMatches) {
+      tocs = headingMatches;
+      toclen = tocs.length;
+    }
+  }
+
+  shouldRenderPage = true;
+  pageContent = {
+    opened,
+    selected,
+    tocs,
+    toclen
+  };
+}
+---
+
+{shouldRenderSection && (
+  <li role="presentation" data-jstree={sectionContent.opened ? '{ "opened" : true }' : undefined}>
+    {sectionContent.selected ? (
+      <a href="#" data-jstree='{ "selected" : true }' class="current">
+        <Title page={curnode} env={env} />
+      </a>
+    ) : (
+      <a href={curnode.relPermalink}>
+        <Title page={curnode} env={env} />
+      </a>
+    )}
+    <ul>
+      {sectionContent.entries.map((entry: PageProps) => (
+        <TreeNavMainMenu 
+          curnode={entry} 
+          target={target} 
+          needtoc={needtoc} 
+          tocregex={tocregex}
+          env={env}
+        />
+      ))}
+    </ul>
+  </li>
+)}
+
+{shouldRenderPage && (
+  <li role="presentation" data-jstree={pageContent.opened ? '{ "opened" : true }' : undefined}>
+    {pageContent.selected ? (
+      <a href="#" data-jstree='{ "selected" : true }' class="toclink current">
+        <Title page={curnode} env={env} />
+      </a>
+    ) : (
+      <a href={curnode.relPermalink} class="toclink">
+        <Title page={curnode} env={env} />
+      </a>
+    )}
+    
+    {pageContent.toclen > 0 && (
+      <ul>
+        {pageContent.tocs.map((tocItem: string, index: number) => {
+          const isLast = index === pageContent.tocs.length - 1;
+          const prevItem = index > 0 ? pageContent.tocs[index - 1] : "";
+          const hasChild = prevItem && prevItem.includes("<h2") && tocItem.includes("<h3");
+          
+          return (
+            <TreeNavTreeItem 
+              tocitem={tocItem}
+              haschild={hasChild}
+              pageurl={curnode.relPermalink}
+              isLast={isLast}
+            />
+          );
+        })}
+      </ul>
+    )}
+  </li>
+)}

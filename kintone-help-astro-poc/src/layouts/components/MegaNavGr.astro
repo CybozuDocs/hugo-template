@@ -1,0 +1,185 @@
+---
+interface NavSection {
+  title: string;
+  relPermalink: string;
+  weight: number;
+  isCurrentSection: boolean;
+  pages: NavPage[];
+}
+
+interface NavPage {
+  title: string;
+  relPermalink: string;
+  weight: number;
+  nolink?: boolean;
+  pages: NavPage[];
+}
+
+interface IconMapping {
+  path: string;
+  icon: string;
+}
+
+interface Props {
+  sections: NavSection[];
+  currentSection?: NavSection;
+  secondSection?: NavPage;
+  faqLink?: string;
+  iconMappings: IconMapping[];
+  documentTypeText: string;
+  byFeaturesText: string;
+  headerNavFaqText: string;
+  isHome?: boolean;
+  pageType?: string;
+}
+
+const { 
+  sections, 
+  currentSection, 
+  secondSection, 
+  faqLink, 
+  iconMappings, 
+  documentTypeText, 
+  byFeaturesText, 
+  headerNavFaqText,
+  isHome = false,
+  pageType = ""
+} = Astro.props;
+
+// アイコンを取得する関数
+function getIcon(relPermalink: string): string {
+  const mapping = iconMappings.find(m => relPermalink.includes(m.path));
+  return mapping ? mapping.icon : "";
+}
+
+// セカンドアイテムの数を計算
+let secondItems = 0;
+if (currentSection && !isHome) {
+  const excludedPaths = ["video", "purpose", "guide", "pdf", "glossary", "error", "mobile"];
+  const excludedTypes = ["search_result", "gr/sitemap"];
+  
+  if (!excludedPaths.some(path => currentSection.relPermalink.includes(path)) && 
+      !excludedTypes.includes(pageType)) {
+    secondItems = currentSection.pages.length;
+  }
+}
+
+// 重み順でソート
+const sortedSections = sections.filter(s => s.weight !== 0).sort((a, b) => a.weight - b.weight);
+---
+
+<nav role="navigation" aria-label={documentTypeText}>
+  <ul class="g-nav" role="none">
+    {sortedSections.map(section => (
+      <li class="g-col" role="none">
+        <a 
+          href={section.relPermalink}
+          class={section.isCurrentSection ? "current" : ""}
+          aria-current={section.isCurrentSection ? "page" : undefined}
+        >
+          <span class="g-nav-title-wrap">
+            {getIcon(section.relPermalink) && (
+              <i class={`${getIcon(section.relPermalink)} gcol-title-icon`} aria-hidden="true"></i>
+            )}
+            {section.title}
+          </span>
+        </a>
+      </li>
+    ))}
+    {faqLink && (
+      <li class="g-col" role="none">
+        <a href={faqLink} target="_blank">
+          <span class="g-nav-title-wrap">
+            {headerNavFaqText}
+            <span class="g-nab-title-icon-right">
+              <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+            </span>
+          </span>
+        </a>
+      </li>
+    )}
+  </ul>
+
+  <div class={`mega-nav ${pageType === "gr6/home" ? "mega-nav-home" : ""}`}>
+    {secondItems > 0 && currentSection && (
+      <Fragment>
+        <div class="mega-tab-wrap">
+          <div class="mega-tab-head">
+            <h2 class="mega-tab-guide">{byFeaturesText}</h2>
+          </div>
+          <div id="mega-tab-bar" class="mega-tab-bar">
+            <ul role="tablist">
+              {currentSection.pages.filter(p => p.weight !== 0).sort((a, b) => a.weight - b.weight).map((page, index) => {
+                const menuId = index + 1;
+                const isCurrent = secondSection?.relPermalink === page.relPermalink;
+                const tabIndex = index === 0 ? "0" : "-1";
+                
+                return (
+                  <li role="presentation">
+                    <button 
+                      class={`mega-tab ${isCurrent ? "current" : ""}`}
+                      id={`tab${menuId}`}
+                      tabindex={tabIndex}
+                      role="tab" 
+                      aria-controls={`panel${menuId}`}
+                      aria-selected={isCurrent ? "true" : "false"}
+                      aria-expanded="false"
+                    >
+                      {page.title}
+                      <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+
+        {currentSection.pages.filter(p => p.weight !== 0).sort((a, b) => a.weight - b.weight).map((page, index) => {
+          const menuId = index + 1;
+          const icon = getIcon(page.relPermalink);
+          
+          return (
+            <div 
+              class="mega-panel" 
+              role="tabpanel" 
+              id={`panel${menuId}`}
+              aria-labelledby={`tab${menuId}`}
+            >
+              <div class="mega-title">
+                <h3>
+                  {!page.nolink ? (
+                    <a href={page.relPermalink}>
+                      <span class="fa-stack" tabindex="-1" aria-hidden="true">
+                        <i class="far fa-circle fa-stack-2x" aria-hidden="true"></i>
+                        {icon && <i class={`${icon} fa-stack-1x`} aria-hidden="true"></i>}
+                      </span>
+                      {page.title}
+                    </a>
+                  ) : (
+                    <Fragment>
+                      <span class="fa-stack" tabindex="-1" aria-hidden="true">
+                        <i class="far fa-circle fa-stack-2x" aria-hidden="true"></i>
+                        {icon && <i class={`${icon} fa-stack-1x`} aria-hidden="true"></i>}
+                      </span>
+                      {page.title}
+                    </Fragment>
+                  )}
+                </h3>
+              </div>
+              <ul class="mega-list">
+                {page.pages.map(subPage => (
+                  <li class="mega-list-line">
+                    <a class="mega-list-item" href={subPage.relPermalink}>
+                      {subPage.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
+      </Fragment>
+    )}
+  </div>
+</nav> 

@@ -1,0 +1,46 @@
+---
+interface PreviewPage {
+  title: string;
+  relPermalink: string;
+  weight?: number;
+}
+
+interface PreviewSection {
+  title: string;
+  relPermalink: string;
+  pages: PreviewPage[];
+  weight?: number;
+}
+
+interface Props {
+  sections: PreviewSection[];
+}
+
+const { sections } = Astro.props;
+
+// 重み順でソート
+const sortedSections = sections.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+---
+
+<nav>
+  <div class="preview_list_container">
+    {sortedSections.map(section => {
+      const sortedPages = section.pages.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+      
+      return (
+        <div class="preview_list_item" role="presentation">
+          <div class="preview_list_title">
+            <a href={section.relPermalink} set:html={section.title} />
+          </div>
+          <ul>
+            {sortedPages.map(page => (
+              <li>
+                <a href={page.relPermalink} set:html={page.title} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    })}
+  </div>
+</nav> 

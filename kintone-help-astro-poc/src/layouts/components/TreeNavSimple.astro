@@ -1,0 +1,97 @@
+---
+interface TreeNavItem {
+  title: string;
+  url: string;
+  relPermalink: string;
+  isSection: boolean;
+  isSelected: boolean;
+  isOpened: boolean;
+  children?: TreeNavItem[];
+}
+
+interface Props {
+  entries: TreeNavItem[];
+  currentPage: TreeNavItem;
+  templateVersion?: string;
+  tocInTree?: boolean;
+  treeTitle?: string;
+  treeTitleUrl?: string;
+  treeSubtitle?: string;
+  treeSubtitleUrl?: string;
+}
+
+const { 
+  entries, 
+  currentPage,
+  templateVersion = "1",
+  tocInTree = false,
+  treeTitle,
+  treeTitleUrl,
+  treeSubtitle,
+  treeSubtitleUrl
+} = Astro.props;
+---
+
+<div id="tree-nav">
+  {templateVersion === "2" && (
+    <button id="tree-close-mobile">
+      <i class="fas fa-times"></i>
+    </button>
+  )}
+  
+  {tocInTree && (treeTitle || treeSubtitle) && (
+    <div id="tree-head">
+      {treeTitle && (
+        <div class="tree-title">
+          <a href={treeTitleUrl} set:html={treeTitle} />
+        </div>
+      )}
+      {treeSubtitle && (
+        <div class="tree-subtitle">
+          <a href={treeSubtitleUrl} set:html={treeSubtitle} />
+        </div>
+      )}
+    </div>
+  )}
+  
+  <nav id="tree-main" class="tree-main" tabindex="0">
+    <ul>
+      {entries.map(entry => (
+        <li 
+          role="presentation" 
+          data-jstree={entry.isOpened ? '{ "opened" : true }' : undefined}
+        >
+          {entry.isSelected ? (
+            <a 
+              href="#" 
+              data-jstree='{ "selected" : true }' 
+              class="current"
+              set:html={entry.title}
+            />
+          ) : (
+            <a href={entry.relPermalink} set:html={entry.title} />
+          )}
+          
+          {entry.children && entry.children.length > 0 && (
+            <ul>
+              {entry.children.map(child => (
+                <li role="presentation">
+                  {child.isSelected ? (
+                    <a 
+                      href="#" 
+                      data-jstree='{ "selected" : true }' 
+                      class="current"
+                      set:html={child.title}
+                    />
+                  ) : (
+                    <a href={child.relPermalink} set:html={child.title} />
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+  </nav>
+</div> 

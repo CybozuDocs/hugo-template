@@ -1,0 +1,47 @@
+---
+interface Props {
+  alias: string;
+  relPermalink: string;
+  contentBaseName: string;
+  baseURL: string;
+  permalinkText: string;
+}
+
+const { alias, relPermalink, contentBaseName, baseURL, permalinkText } = Astro.props;
+
+// ドキュメントIDの抽出
+const aliasParts = alias.split("/");
+const docid = aliasParts[aliasParts.length - 1];
+
+// 相対パスの処理
+let relpath = relPermalink.replace(/\.html$/, '');
+relpath = relpath.replace(new RegExp(`${contentBaseName}$`), '');
+
+// ドキュメントURLの生成
+const docurl = `${baseURL}${relpath}id/${docid}.html`;
+---
+
+<div class="idbar">
+  <div class="idstr">Document ID:{docid}</div>
+  <div class="id-link">
+    <button 
+      class="heading-button" 
+      tabindex="0" 
+      aria-owns="doc-id" 
+      aria-expanded="false"
+    >
+      <span>{permalinkText}</span>
+      <i class="fas fa-link" aria-hidden="true"></i>
+    </button>
+    <div id="doc-id" class="heading-url" aria-hidden="true">
+      <input 
+        readonly 
+        value="" 
+        name="headingUrl" 
+        data-idpath={alias}
+        type="text" 
+        onclick="this.focus(); this.select()"
+      />
+    </div>
+  </div>
+</div> 

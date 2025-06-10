@@ -1,0 +1,52 @@
+---
+interface Props {
+  latestPageUrl?: string;
+  currentLang: string;
+  thisPageIsNotLatestText: string;
+  latestPageIs1Text: string;
+  latestPageIs2Text: string;
+  pageJaText: string;
+  pageEnText: string;
+}
+
+const { 
+  latestPageUrl, 
+  currentLang, 
+  thisPageIsNotLatestText, 
+  latestPageIs1Text, 
+  latestPageIs2Text, 
+  pageJaText, 
+  pageEnText 
+} = Astro.props;
+
+// 最新ページURLが設定されている場合のみ処理
+if (!latestPageUrl) {
+  return null;
+}
+
+// URLから言語を抽出
+const urlParts = latestPageUrl.split("/");
+const newPageLang = urlParts[2];
+
+// 現在の言語と異なる場合のみ表示
+if (newPageLang === currentLang) {
+  return null;
+}
+
+// 言語に応じたページテキストを取得
+let langPageText = "";
+if (newPageLang === "ja") {
+  langPageText = pageJaText;
+} else if (newPageLang === "en") {
+  langPageText = pageEnText;
+}
+
+// ページテキストが空の場合は表示しない
+if (!langPageText) {
+  return null;
+}
+---
+
+<div class="latest-page-guide">
+  {thisPageIsNotLatestText}{latestPageIs1Text}<a href={latestPageUrl}>{langPageText}</a>{latestPageIs2Text}
+</div> 

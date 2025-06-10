@@ -1,0 +1,178 @@
+a,
+.mega-title a:hover i,
+.breadcrumbs a,
+.col-tile-gr2 a,
+.tile-text li:before,
+.col-tile-gr .tile-title,
+.col-tile-gr i,
+.article a,
+.search-result a,
+.tree-title a,
+.tree-subtitle a {
+    color: #d0324b;
+}
+
+.article em {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(55%, transparent), color-stop(55%, #fce2e6));
+    background: -webkit-linear-gradient(transparent 55%, #fce2e6 55%);
+    background: linear-gradient(transparent 55%, #fce2e6 55%);
+    font-style: normal;
+}
+
+.logo-wrap {
+    width: 120px;
+}
+.header .searchbox input[type=text]{
+    border: 4px solid #d0324b;
+}
+.search-submit {
+    background-color: #d0324b;
+    border-color: #d0324b;
+}
+.header .search-submit::after {
+    background-color: #d0324b;
+}
+.header .search-submit:focus {
+    outline: 3px solid rgba(131,192,253,0.5);
+}
+
+#search {
+    right: 0;
+}
+
+.g-col a.current {
+    border-bottom: 2px solid #d0324b;
+}
+.g-col a:hover {
+    color: #d0324b;
+    border-bottom: 2px solid #d0324b;
+}
+.mega-nav {
+    background-color: #f8c5c5;
+}
+.mega-tab.current {
+    background-color: #ff8e8e;
+}
+
+#goto-top .fa-stack-1x {
+    color: #d0324b;
+}
+
+.subnavi {
+    padding-bottom: 0;
+}
+
+#enquete {
+    /*background-color: #862030;*/
+    color: #000;
+    background-color: #f8c5c5;
+}
+.enquete-btn {
+    color: #fff;
+    background-color: #d0324d;
+}
+
+/* Home page --------------------------------------*/
+.top-title {
+    background: #d0324b;
+}
+
+/* -------------------------------------- End of Home page */
+
+/* Search page ---------------------------------*/
+.search-button {
+    background-color: #d0324b;
+}
+.search-button:hover {
+    background-color: #d98c98;
+}
+.search-words {
+    border-color: #d0324b;
+}
+/* -------------------------------------- End of Search opage */
+
+/* admonition -------------------- */
+.admonition.info {
+    background: #F3F1E8;
+}
+.admonition.info a {
+    text-decoration: none;
+}
+.admonition.info a:hover {
+    text-decoration: underline;
+}
+
+/* 404 page */
+.nftitle {
+    background-image: none;
+    background-color: #d0324b;
+}
+
+/* Section audit logs -------------------------------------- */
+.audit h2 {
+    font-size:1.25rem;
+    border-left: solid 8px #d0324b;
+    border-bottom: none;
+    background-color: #F3F1E8;
+    margin-top: 2.5em;
+    margin-bottom: 0.125em;
+    padding: 12px;
+    line-height: 1.5em;
+}
+
+.audit h3 {
+    font-size: 1.125rem;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    border-bottom:#d0324b solid 2px;
+    border-left: none;
+    font-weight: bold;
+}
+
+.audit ol {
+    margin: 0 0 0;
+    padding-left: 0;
+}
+
+.audit ol > li > p {
+    font-weight: normal;
+}
+
+.audit ol > li {
+    font-size: 1rem;
+}
+
+.audit  ol > li::marker {
+    font-size: 1rem;
+    font-weight: normal;
+    font-family: initial;
+}
+
+@media only screen and (min-width: 768px) {
+    .logo-wrap {
+        width: 350px;
+    }
+
+    .header .search-wrap {
+        width: calc(100% - 200px);
+        right: 0;
+    }
+
+    .g-nav {
+        flex-wrap: nowrap;
+    }
+    .g-col {
+        width: 100%;
+    }
+
+    .subnavi {
+        padding-bottom: 100px;
+    }
+}
+
+/* 1059px以上の設定  *************************************************************/
+@media only screen and (min-width:1059px) {
+    .col-tile-gr {
+        width: 18%;
+    }
+}

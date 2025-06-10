@@ -1,0 +1,41 @@
+---
+interface BreadcrumbItem {
+  title: string;
+  url?: string;
+  isHome?: boolean;
+  isCurrent?: boolean;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+  breadcrumbLabel: string;
+  topPageText: string;
+  showTopPageForProducts?: string[];
+  currentProduct?: string;
+}
+
+const { items, breadcrumbLabel, topPageText, showTopPageForProducts = [], currentProduct } = Astro.props;
+
+// 特定の製品でホームページのタイトルを「トップページ」に変更するかどうか
+const shouldShowTopPage = showTopPageForProducts.includes(currentProduct || '');
+---
+
+<nav class="breadcrumb" role="navigation" aria-label={breadcrumbLabel}>
+  <ul class="breadcrumbs">
+    {items.map((item, index) => (
+      <li>
+        {item.isCurrent ? (
+          <Fragment set:html={item.title} />
+        ) : (
+          <a href={item.url}>
+            {item.isHome && shouldShowTopPage ? (
+              topPageText
+            ) : (
+              <Fragment set:html={item.title} />
+            )}
+          </a>
+        )}
+      </li>
+    ))}
+  </ul>
+</nav> 

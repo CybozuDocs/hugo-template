@@ -1,0 +1,42 @@
+---
+interface TocItem {
+  Level: number;
+  Anchor: string;
+  Text: string;
+  Attributes: {
+    class?: string;
+  };
+}
+
+interface Props {
+  ti: TocItem;
+  ids?: boolean;
+  al?: string;
+  copyPermaLinkText: string;
+  linkWasCopiedText: string;
+}
+
+const { ti, ids = false, al = "", copyPermaLinkText, linkWasCopiedText } = Astro.props;
+
+const HeadingTag = `h${ti.Level}` as keyof HTMLElementTagNameMap;
+---
+
+{ti.Level === 2 && (
+  <div class="section-delimiter"></div>
+)}
+
+<div class="id-header" id={ti.Anchor}>
+  <HeadingTag class={`h${ti.Level}-contents ${ti.Attributes.class || ''}`} data-pid={ti.Anchor} set:html={ti.Text} />
+  {ids && (
+    <button 
+      class="id-link-button" 
+      title={copyPermaLinkText}
+      data-idpath={al}
+      tabindex="0" 
+      aria-owns={`message-${ti.Anchor}`}
+    >
+      <i class="fas fa-link" aria-hidden="true"></i>
+    </button>
+  )}
+</div>
+<div id={`message-${ti.Anchor}`} class="id-link-message">{linkWasCopiedText}</div> 

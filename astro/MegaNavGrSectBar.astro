@@ -1,0 +1,46 @@
+---
+import Title from './Title.astro';
+import type { PageProps, EnvProps } from './types';
+
+interface Props {
+  cursect: PageProps;
+  secondsect: PageProps | null;
+  env: EnvProps;
+}
+
+const { cursect, secondsect, env } = Astro.props;
+
+// ページをweight順にソート
+const sortedPages = (cursect.pages || [])
+  .filter((page: PageProps) => page.params?.weight !== 0)
+  .sort((a: PageProps, b: PageProps) => (a.weight || 0) - (b.weight || 0));
+
+let menuid = 0;
+---
+
+<ul role="tablist">
+  {sortedPages.map((page: PageProps) => {
+    menuid += 1;
+    
+    const curclass = page === secondsect ? "current" : "";
+    const tabsts = page === secondsect ? "true" : "false";
+    const tabidx = menuid === 1 ? "0" : "-1";
+    
+    return (
+      <li role="presentation">
+        <button 
+          class={`mega-tab ${curclass}`}
+          id={`tab${menuid}`}
+          tabindex={tabidx}
+          role="tab"
+          aria-controls={`panel${menuid}`}
+          aria-selected={tabsts}
+          aria-expanded="false"
+        >
+          <Title page={page} env={env} />
+          <i class="fas fa-chevron-down" aria-hidden="true"></i>
+        </button>
+      </li>
+    );
+  })}
+</ul>

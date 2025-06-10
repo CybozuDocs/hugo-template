@@ -1,0 +1,43 @@
+---
+interface RelatedPage {
+  title: string;
+  relPermalink: string;
+  disabled?: string[];
+  weight?: number;
+}
+
+interface Props {
+  relatedPages: RelatedPage[];
+  targetRegion?: string;
+  seeAlsoText: string;
+}
+
+const { relatedPages, targetRegion = "", seeAlsoText } = Astro.props;
+
+// 地域による無効化チェックを行い、有効なページのみをフィルタリング
+const validPages = relatedPages.filter(page => {
+  if (page.disabled && page.disabled.includes(targetRegion)) {
+    return false;
+  }
+  return true;
+});
+
+// 重み順でソート
+const sortedPages = validPages.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+
+const pageCount = sortedPages.length;
+---
+
+{pageCount > 0 && (
+  <Fragment>
+    <hr />
+    <div class="seealso">{seeAlsoText}</div>
+    <ul>
+      {sortedPages.map(page => (
+        <li>
+          <a href={page.relPermalink} set:html={page.title} />
+        </li>
+      ))}
+    </ul>
+  </Fragment>
+)} 

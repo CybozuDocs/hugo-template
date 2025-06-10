@@ -1,0 +1,47 @@
+---
+interface Props {
+  tocitem: string;
+  haschild: boolean;
+  pageurl: string;
+  isLast?: boolean;
+}
+
+const { tocitem, haschild, pageurl, isLast = false } = Astro.props;
+
+// アンカー（id またはpid）の抽出
+let anc = "";
+const params = tocitem.split(" ");
+
+for (const param of params) {
+  if (param.includes("pid=")) {
+    const params2 = param.split(">");
+    for (const p2 of params2) {
+      if (p2.includes("pid=")) {
+        anc = p2.replace(/^pid="/, '').replace(/"$/, '');
+      }
+    }
+  } else if (param.includes("id=")) {
+    anc = param.replace(/^id="/, '').replace(/"$/, '');
+  }
+}
+
+// テキスト内容の抽出
+const txtMatches = tocitem.match(/>.+</);
+let txt = "";
+if (txtMatches && txtMatches.length > 0) {
+  txt = txtMatches[0].replace(/^>/, '').replace(/<$/, '');
+}
+
+// safeHTML の代替（簡易実装）
+const safeHTML = (html: string) => html;
+---
+
+<li role="presentation">
+  <a href={`${pageurl}#${anc}`} class="toclink" set:html={safeHTML(txt)}></a>
+  {haschild && !isLast && (
+    <!-- 子要素がある場合は </li> を出力しない（次の ul が続く） -->
+  )}
+  {(!haschild || isLast) && (
+    <!-- 子要素がない場合や最後の要素の場合は </li> で閉じる -->
+  )}
+</li>

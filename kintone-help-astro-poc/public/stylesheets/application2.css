@@ -1,0 +1,65 @@
+:root {
+  --theme-color: #4bd7f3;
+
+  --font-color: #333;
+  --bg-color: #fff;
+  --link-color: #2563eb;
+  --button-bg-color: #f6f6f6;
+  --hover-color: #ccdcff;
+  --border-color: #c9c9c9;
+  --partition-color: #999999;
+  --status-bg-color: #d9d9d9;
+
+  --header-bg-color: #ffffff;
+
+  --focus-color: #2563eb;
+  --select-color: #2563eb;
+  --select-bg-color: #ccdcff;
+  --item-color: #2563eb;
+}
+
+body {
+ background-color: var(--bg-color);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+*:focus{
+  box-shadow: 0 0 0 2px var(--focus-color) inset;
+  outline:none;
+}
+
+.far, .fas {
+  color: var(--item-color);
+}
+
+.header::before {
+  background-image: none;
+}
+
+#lang-selector:hover {
+  background-color: var(--select-bg-color);
+}
+.lang-item:hover {
+  background-color: var(--select-color);
+}
+.selectlang {
+  background-color: var(--select-color);
+}
+
+.search-submit::after{
+  color: var(--item-color);
+}
+
+.section-pagelist a, .latest-page-guide a, .breadcrumbs a, .article a, .nfarticle a, #page-toc a {
+  color: var(--link-color);
+}
+.home-article {
+    padding-bottom: 0
+}
+.footer::before {
+  background-image: none;
+}

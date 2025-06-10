@@ -1,0 +1,400 @@
+---
+interface TreeNavItem {
+  title: string;
+  url: string;
+  relPermalink: string;
+  isSection: boolean;
+  isSelected: boolean;
+  isOpened: boolean;
+  isHome?: boolean;
+  isAncestor?: boolean;
+  type?: string;
+  disabled?: string[];
+  children?: TreeNavItem[];
+  content?: string;
+  weight?: number;
+}
+
+interface TocItem {
+  title: string;
+  anchor: string;
+  level: number; // 2 for h2, 3 for h3
+  hasChild?: boolean;
+}
+
+interface Props {
+  entries: TreeNavItem[];
+  currentPage: TreeNavItem;
+  templateVersion?: string;
+  tocInTree?: boolean;
+  product?: string;
+  targetRegion?: string;
+  previewSite?: boolean;
+}
+
+const { 
+  entries, 
+  currentPage,
+  templateVersion = "1",
+  tocInTree = false,
+  product = "",
+  targetRegion = "",
+  previewSite = false
+} = Astro.props;
+
+// 製品別の最終セクション設定
+const lastPageSections: Record<string, string[]> = {
+  "Garoon": ["/purpose/", "/user/basic/", "/mobile/", "/user/mobile/", "/user/personal/", "/admin/spec/", "/admin/system/", "/glossary/", "/intro/", "/option/fullsearch/", "/error/"],
+  "Mailwise": ["/user/basic/", "/user/personal/", "/admin/spec/", "/admin/system/", "/option/migration/", "/intro/first/", "/intro/install/", "/intro/verup/", "/intro/uninstall/", "/purpose/"],
+  "Office": ["/intro/first/", "/intro/install/", "/intro/uninstall/", "/option/migration/", "/guide/", "/pdf/", "/error/", "/user/per/"],
+  "Remote": ["/intro/", "/admin/", "/user/"]
+};
+
+// 現在のページが最終セクションかどうかの判定
+let isLastSect = false;
+const lastPages = lastPageSections[product] || [];
+for (const lastPage of lastPages) {
+  if (currentPage.relPermalink.includes(lastPage)) {
+    isLastSect = true;
+    break;
+  }
+}
+
+// TOCが必要かどうかの判定
+let needToc = false;
+if (["Garoon", "Mailwise", "Office", "Remote"].includes(product)) {
+  needToc = true;
+  if (currentPage.relPermalink.includes("/application.html")) {
+    needToc = false;
+  }
+}
+
+// TOC用の正規表現
+let tocRegex = "<h[23].*?>(.|\n)*?</h[23]>";
+if (product === "Office" && currentPage.relPermalink.includes("/error/")) {
+  tocRegex = "<h2.*?>(.|\n)*?</h2>";
+}
+
+// ツリーヘッダーの設定
+let link1 = "";
+let title1: TreeNavItem | null = null;
+let link2 = "";
+let title2: TreeNavItem | null = null;
+let parentTree = false;
+
+if (isLastSect) {
+  // 最終セクションの場合は親を表示
+  link1 = currentPage.url; // Parent.RelPermalink相当
+  title1 = currentPage; // Parent相当
+  parentTree = true;
+} else {
+  // 通常の階層処理
+  // FirstSection, Parent, Parent.Parent の概念を実装
+  // 簡略化のため、現在のページの階層に基づいて設定
+  link1 = currentPage.relPermalink;
+  title1 = currentPage;
+}
+
+// TOCアイテムの抽出
+function extractTocItems(content: string, regex: string): TocItem[] {
+  const tocItems: TocItem[] = [];
+  const matches = content.match(new RegExp(regex, 'g')) || [];
+  
+  for (let i = 0; i < matches.length; i++) {
+    const match = matches[i];
+    const nextMatch = matches[i + 1];
+    
+    // アンカーの抽出
+    let anchor = "";
+    const pidMatch = match.match(/pid="([^"]+)"/);
+    const idMatch = match.match(/id="([^"]+)"/);
+    
+    if (pidMatch) {
+      anchor = pidMatch[1];
+    } else if (idMatch) {
+      anchor = idMatch[1];
+    }
+    
+    // タイトルの抽出
+    const titleMatch = match.match(/>([^<]+)</);
+    const title = titleMatch ? titleMatch[1] : "";
+    
+    // レベルの判定
+    const level = match.includes("<h2") ? 2 : 3;
+    
+    // 子要素があるかの判定
+    const hasChild = match.includes("<h2") && nextMatch && nextMatch.includes("<h3");
+    
+    tocItems.push({
+      title,
+      anchor,
+      level,
+      hasChild
+    });
+  }
+  
+  return tocItems;
+}
+
+// 表示対象のエントリーをフィルタリング
+const displayEntries = entries.filter(entry => {
+  if (previewSite && entry.url !== currentPage.url) {
+    return false;
+  }
+  return true;
+});
+---
+
+<div id="tree-nav">
+  {templateVersion === "2" && (
+    <button id="tree-close-mobile">
+      <i class="fas fa-times"></i>
+    </button>
+  )}
+  
+  {tocInTree && (
+    <div id="tree-head">
+      {title1 && (
+        <div class="tree-title">
+          <a href={link1} set:html={title1.title} />
+        </div>
+      )}
+      {title2 && (
+        <div class="tree-subtitle">
+          <a href={link2} set:html={title2.title} />
+        </div>
+      )}
+    </div>
+  )}
+  
+  <nav id="tree-main" class="tree-main" tabindex="0">
+    <ul>
+      {displayEntries.map(entry => {
+        const opened = entry.isAncestor || entry.isSelected;
+        const selected = entry.relPermalink === currentPage.relPermalink;
+        
+        if (entry.isSection) {
+          // リダイレクトタイプは除外
+          if (entry.type === "redirect_js") {
+            return null;
+          }
+          
+          // 地域による無効化チェック
+          if (entry.disabled && entry.disabled.includes(targetRegion)) {
+            return null;
+          }
+          
+          const numberOfPages = (entry.children?.length || 0);
+          
+          return (
+            <li 
+              role="presentation" 
+              data-jstree={opened ? '{ "opened" : true }' : undefined}
+            >
+              {numberOfPages > 0 && (
+                <Fragment>
+                  {selected ? (
+                    <a 
+                      href="#" 
+                      data-jstree='{ "selected" : true }' 
+                      class="current"
+                      set:html={entry.title}
+                    />
+                  ) : (
+                    <a href={entry.relPermalink} set:html={entry.title} />
+                  )}
+                  <ul>
+                    {entry.children?.map(child => {
+                      const childOpened = child.isAncestor || child.isSelected;
+                      const childSelected = child.relPermalink === currentPage.relPermalink;
+                      
+                      if (child.isSection) {
+                        if (child.type === "redirect_js") return null;
+                        if (child.disabled && child.disabled.includes(targetRegion)) return null;
+                        
+                        const childNumberOfPages = (child.children?.length || 0);
+                        
+                        return (
+                          <li 
+                            role="presentation" 
+                            data-jstree={childOpened ? '{ "opened" : true }' : undefined}
+                          >
+                            {childNumberOfPages > 0 && (
+                              <Fragment>
+                                {childSelected ? (
+                                  <a 
+                                    href="#" 
+                                    data-jstree='{ "selected" : true }' 
+                                    class="current"
+                                    set:html={child.title}
+                                  />
+                                ) : (
+                                  <a href={child.relPermalink} set:html={child.title} />
+                                )}
+                                <ul>
+                                  {child.children?.map(grandchild => (
+                                    <li role="presentation">
+                                      <a href={grandchild.relPermalink} set:html={grandchild.title} />
+                                    </li>
+                                  ))}
+                                </ul>
+                              </Fragment>
+                            )}
+                          </li>
+                        );
+                      } else {
+                        // ページアイテム
+                        if (child.disabled && child.disabled.includes(targetRegion)) return null;
+                        if (child.type === "print_page" || child.type === "redirect_js") return null;
+                        
+                        let tocs: TocItem[] = [];
+                        const toclen = needToc && child.content ? extractTocItems(child.content, tocRegex).length : 0;
+                        
+                        if (needToc && child.content && childSelected) {
+                          tocs = extractTocItems(child.content, tocRegex);
+                        }
+                        
+                        return (
+                          <li role="presentation" data-jstree={childOpened ? '{ "opened" : true }' : undefined}>
+                            {childSelected ? (
+                              <a 
+                                href="#" 
+                                data-jstree='{ "selected" : true }' 
+                                class="toclink current"
+                                set:html={child.title}
+                              />
+                            ) : (
+                              <a href={child.relPermalink} class="toclink" set:html={child.title} />
+                            )}
+                            
+                            {toclen > 0 && (
+                              <ul>
+                                {tocs.map((toc, index) => {
+                                  const nextToc = tocs[index + 1];
+                                  
+                                  if (toc.hasChild) {
+                                    return (
+                                      <Fragment>
+                                        <li role="presentation">
+                                          <a 
+                                            href={`${child.relPermalink}#${toc.anchor}`}
+                                            class="toclink"
+                                            set:html={toc.title}
+                                          />
+                                        </li>
+                                        <ul class="twig-parent">
+                                      </Fragment>
+                                    );
+                                  } else if (toc.level === 3 && nextToc && nextToc.level === 2) {
+                                    return (
+                                      <Fragment>
+                                        <li role="presentation">
+                                          <a 
+                                            href={`${child.relPermalink}#${toc.anchor}`}
+                                            class="toclink"
+                                            set:html={toc.title}
+                                          />
+                                        </li>
+                                        </ul>
+                                      </Fragment>
+                                    );
+                                  } else {
+                                    return (
+                                      <li role="presentation">
+                                        <a 
+                                          href={`${child.relPermalink}#${toc.anchor}`}
+                                          class="toclink"
+                                          set:html={toc.title}
+                                        />
+                                      </li>
+                                    );
+                                  }
+                                })}
+                              </ul>
+                            )}
+                          </li>
+                        );
+                      }
+                    })}
+                  </ul>
+                </Fragment>
+              )}
+            </li>
+          );
+        } else {
+          // ページアイテム
+          if (entry.disabled && entry.disabled.includes(targetRegion)) return null;
+          if (entry.type === "print_page" || entry.type === "redirect_js") return null;
+          
+          let tocs: TocItem[] = [];
+          const toclen = needToc && entry.content ? extractTocItems(entry.content, tocRegex).length : 0;
+          
+          if (needToc && entry.content && selected) {
+            tocs = extractTocItems(entry.content, tocRegex);
+          }
+          
+          return (
+            <li role="presentation" data-jstree={opened ? '{ "opened" : true }' : undefined}>
+              {selected ? (
+                <a 
+                  href="#" 
+                  data-jstree='{ "selected" : true }' 
+                  class="toclink current"
+                  set:html={entry.title}
+                />
+              ) : (
+                <a href={entry.relPermalink} class="toclink" set:html={entry.title} />
+              )}
+              
+              {toclen > 0 && (
+                <ul>
+                  {tocs.map((toc, index) => {
+                    const nextToc = tocs[index + 1];
+                    
+                    if (toc.hasChild) {
+                      return (
+                        <Fragment>
+                          <li role="presentation">
+                            <a 
+                              href={`${entry.relPermalink}#${toc.anchor}`}
+                              class="toclink"
+                              set:html={toc.title}
+                            />
+                          </li>
+                          <ul class="twig-parent">
+                        </Fragment>
+                      );
+                    } else if (toc.level === 3 && nextToc && nextToc.level === 2) {
+                      return (
+                        <Fragment>
+                          <li role="presentation">
+                            <a 
+                              href={`${entry.relPermalink}#${toc.anchor}`}
+                              class="toclink"
+                              set:html={toc.title}
+                            />
+                          </li>
+                          </ul>
+                        </Fragment>
+                      );
+                    } else {
+                      return (
+                        <li role="presentation">
+                          <a 
+                            href={`${entry.relPermalink}#${toc.anchor}`}
+                            class="toclink"
+                            set:html={toc.title}
+                          />
+                        </li>
+                      );
+                    }
+                  })}
+                </ul>
+              )}
+            </li>
+          );
+        }
+      })}
+    </ul>
+  </nav>
+</div> 

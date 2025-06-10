@@ -1,0 +1,34 @@
+---
+interface Props {
+  target: string;
+  params: Record<string, any>;
+}
+
+const { target, params } = Astro.props;
+
+function applyParams(target: string, params: Record<string, any>): string {
+  let result = target;
+  
+  // 各パラメータを順次適用
+  result = result.replace(/{{<\s*kintone\s*>}}/g, params.kintone || '');
+  result = result.replace(/{{<\s*service\s*>}}/g, params.service || '');
+  result = result.replace(/{{<\s*store\s*>}}/g, params.store || '');
+  result = result.replace(/{{<\s*cybozu_com\s*>}}/g, params.cybozu_com || '');
+  result = result.replace(/{{<\s*slash_help\s*>}}/g, params.slash_help || '');
+  result = result.replace(/{{<\s*slash\s*>}}/g, params.slash || '');
+  result = result.replace(/{{<\s*CorpName\s*>}}/g, params.CorpName || '');
+  result = result.replace(/{{<\s*product\s*>}}/g, params.product || '');
+  result = result.replace(/{{<\s*service_type\s*>}}/g, params.service_type || '');
+  result = result.replace(/{{<\s*help\s*>}}/g, params.help || '');
+  result = result.replace(/{{<\s*product_name\s*>}}/g, params.product_name || '');
+  result = result.replace(/{{<\s*slash_ui\s*>}}/g, params.slash_ui || '');
+  result = result.replace(/{{<\s*slash_administrators\s*>}}/g, params.slash_administrators || '');
+  result = result.replace(/{{<\s*slash_service_name\s*>}}/g, params.slash_service_name || '');
+  
+  return result;
+}
+
+const processedContent = applyParams(target, params);
+---
+
+<Fragment set:html={processedContent} /> 

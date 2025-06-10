@@ -1,0 +1,201 @@
+.main {
+    margin-top: 0;
+    position: relative;
+    top: -52px;
+}
+
+.header .wrapper {
+    justify-content: space-between;
+}
+
+.page-pad {
+    height: 54px;
+}
+
+.hero {
+    height: 60px;
+    display: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: left top;
+    text-align: center;
+    justify-content: center;
+}
+
+.welcome_message {
+    display: none;
+}
+
+.top-title {
+    margin: 0;
+    padding: 1.5em 0 1.5em 0;
+    text-align: center;
+    background: #015AAA;
+    color: #FFFFFF;
+    font-size: 2em;
+    font-weight: 400;
+    line-height: 1.3em;
+}
+
+.second-header {
+    width: 100%;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.second-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 10px 0 160px 12px;
+    width: 100%;
+    height: auto;
+}
+
+/* article -------------------- */
+.article .wrapper {
+    max-width: 100%;
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+    margin: 0 12px 12px 12px;
+}
+
+.article {
+    width: 100%;
+    margin-left: 0;
+}
+
+.article .col-logo {
+  display: block;
+  width: 210px;
+  height: 60px;
+  float:left;
+  border: 1px solid #e6e6e6;
+  margin: 0 .8% 16px;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.article .col-logo > img {
+  width: 100%;
+}
+.article h1,.article h2,.article h3,.article h4,.article h5,.article h6 {
+  clear: both;
+}
+.article ol,.article p{
+    margin: 0;
+}
+.article ul li {
+    margin: .4rem 0;
+}
+.article .col-tile ol>li {
+  list-style: decimal;
+  padding: 0;
+  margin: 0 0 0 2rem;
+  margin-bottom: .4rem;
+  position: relative
+}
+.article .col-tile ol>li:before {
+  content: none;
+}
+/* -------------------- end of article  */
+
+.col-flex {
+  margin-top:72px;
+}
+.col-flex:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+.col-flex > h2:first-child,.col-flex > h3:first-child {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* Hot article -------------------- */
+.hotArticle {
+  color: #0d89a2;
+  padding: .1em 1px;
+  line-height: 1.5em;
+  padding-top: 0px;
+}
+.hotArticle li a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  white-space: nowrap;
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+#hotArticles-showMore {
+  text-align: center;
+  cursor: pointer;
+  color: #139cb7;
+}
+#hotArticles-showMore:hover {
+  background: #ECEAF7;
+}
+#hotArticles-showMore.closed{
+    transform: rotate(0deg);
+}
+
+#hotArticles-showMore.expand{
+    transform: rotate(180deg);
+}
+/* -------------------- End of Hot article */
+
+.article .fa-search {
+  margin-left: 12px;
+  font-size: 1.5rem;
+}
+
+/* 768px以上の設定  **************************************************************/
+@media only screen and (min-width:768px){
+    .welcome_message {
+        display: block;
+        text-align: center;
+        padding-top: 0;
+        font-weight: normal;
+        font-size: 2.4rem;
+        line-height: 1.2em;
+        margin-bottom: 30px;
+    }
+
+    .top-title {
+        padding: 1.2em 0 1.2em 0;
+        font-size: 2.5em;
+    }
+    .first-row {
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .second-row {
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+/* 1059px以上の設定  *************************************************************/
+@media only screen and (min-width:1059px) {
+    .hero {
+      height: 180px;
+    }
+    .main {
+      top: 0;
+    }
+}
+

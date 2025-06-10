@@ -1,0 +1,41 @@
+---
+interface Props {
+  alias: string;
+  relPermalink: string;
+  contentBaseName: string;
+  baseURL: string;
+  copyPermaLinkText: string;
+  linkWasCopiedText: string;
+}
+
+const { 
+  alias, 
+  relPermalink, 
+  contentBaseName, 
+  baseURL, 
+  copyPermaLinkText, 
+  linkWasCopiedText 
+} = Astro.props;
+
+// ドキュメントIDの抽出
+const aliasParts = alias.split("/");
+const docid = aliasParts[aliasParts.length - 1];
+
+// 相対パスの処理
+let relpath = relPermalink.replace(/\.html$/, '');
+relpath = relpath.replace(new RegExp(`${contentBaseName}$`), '');
+
+// ドキュメントURLの生成
+const docurl = `${baseURL}${relpath}id/${docid}.html`;
+---
+
+<button 
+  class="id-link-button id-link-button-title" 
+  title={copyPermaLinkText}
+  data-idpath={alias}
+  tabindex="0" 
+  aria-owns="message-aid"
+>
+  <i class="fas fa-link" aria-hidden="true"></i>
+</button>
+<div id="message-aid" class="id-link-message">{linkWasCopiedText}</div> 

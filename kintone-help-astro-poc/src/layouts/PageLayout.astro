@@ -1,0 +1,158 @@
+---
+import type { MarkdownLayoutProps } from "astro";
+import Head from "./components/Head.astro";
+
+type Props = MarkdownLayoutProps<{
+  title?: string;
+}> & {
+  // サイト設定
+  targetRegion?: string;
+  meganav?: boolean;
+  jsonTree?: boolean;
+  product?: string;
+  languageCode?: string;
+  useWovn?: boolean;
+  idSearch?: boolean;
+  tocInTree?: boolean;
+  supportInquiry?: boolean;
+  
+  // ページデータ
+  disabled?: string[];
+  aliases?: string[];
+  labels?: string[];
+  content?: string;
+  type?: string;
+  weight?: number;
+  
+  // 国際化
+  i18n?: {
+    inThisArticle?: string;
+  }
+};
+
+const {
+  frontmatter, 
+  targetRegion = "US",
+  meganav = false,
+  jsonTree = false,
+  product = "",
+  languageCode = "en-us",
+  useWovn = false,
+  idSearch = false,
+  tocInTree = false,
+  supportInquiry = false,
+  disabled = [],
+  aliases = [],
+  labels = [],
+  content = "",
+  type = "",
+  weight = 0,
+  i18n = { inThisArticle: "In this article" }
+ } = Astro.props;
+
+
+// 無効化チェック
+const isDisabled = disabled.includes(targetRegion);
+
+// 条件チェック用のヘルパー関数
+const isGaroonNonJapanese = product === "Garoon" && 
+  languageCode !== "ja-jp" && 
+  languageCode !== "ja-cn";
+---
+
+<!doctype html>
+<!-- TODO: {{.Site.LanguageCode}} を置き換える -->
+<html lang="ja" prefix="og: https://ogp.me/ns#">
+  <head>
+    <Head site={{ params: {} }} />
+  </head>
+  <!-- TODO: フォントサイズの指定を再現する -->
+  <body class="font-{{.Lang}}">
+
+      {isDisabled ? (
+        <meta http-equiv="refresh" content="0; URL=/" />
+      ) : (
+        <>
+          {targetRegion === "US" && <div>[LOCALE MODAL PARTIAL]</div>}
+          
+          <!-- Announcement banner -->
+          <div>[ANNOUNCEMENT BANNER PARTIAL]</div>
+          
+          <!-- Header -->
+          <div>[HEADER PARTIAL]</div>
+          
+          <div class="page-pad"></div>
+          
+          {meganav && (
+            <>
+              <div class="mnav-pad"></div>
+              <div>[MEGANAV PARTIAL]</div>
+            </>
+          )}
+          
+          <div id="page" class="page">
+            <div id="tree" class="tree-wrap">
+              {jsonTree ? (
+                <div>[TREENAV3 PARTIAL (JSON)]</div>
+              ) : (
+                <div>[TREENAV PARTIAL]</div>
+              )}
+            </div>
+            
+            <div id="contents" class="contents-wrap">
+              {isGaroonNonJapanese && <div>[DISCLAIMER PARTIAL]</div>}
+              
+              {useWovn && <div>[DISCLAIMER2 PARTIAL]</div>}
+              
+              <div>[LATEST PAGE GUIDE PARTIAL]</div>
+              
+              <main id="main" role="main">
+                <div>[BREADCRUMB PARTIAL]</div>
+                
+                <article class="article" role="article">
+                  <div class="id-title">
+                    <h1>{frontmatter.title}</h1>
+                    {idSearch && aliases && aliases.length > 0 && (
+                      <div>[ARTICLE LINK TEMPLATE]</div>
+                    )}
+                  </div>
+                  
+                  {idSearch && aliases && aliases.length > 0 && (
+                    <div>[ARTICLE NUMBER TEMPLATE]</div>
+                  )}
+                  
+                  {labels && labels.length > 0 && (
+                    <div>[HEADER LABEL TEMPLATE]</div>
+                  )}
+
+                  <slot />
+                </article>
+                
+                <div>[RELATED PARTIAL]</div>
+                
+                {type === "series" && <div>[PAGE NAV PARTIAL]</div>}
+              </main>
+            </div>
+            
+            {!tocInTree && (
+              <div class="sidebar-wrap">
+                <nav id="rightside-bar">
+                  <h2 class="toc-title">{i18n.inThisArticle}</h2>
+                </nav>
+              </div>
+            )}
+          </div>
+          
+          <div>[TREE NAV TOGGLE PARTIAL]</div>
+          <div>[GO TO TOP PARTIAL]</div>
+          
+          {supportInquiry && languageCode === "en-us" && (
+            <div>[SUPPORT INQUIRY PARTIAL]</div>
+          )}
+          
+          <div>[ENQUETE PARTIAL]</div>
+          <div>[FOOTER PARTIAL]</div>
+        </H>
+      )}
+  </body>
+</html>

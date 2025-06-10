@@ -1,0 +1,321 @@
+:root {
+  --theme-color: #ee3e23;
+  --lead-text-color: #fff;
+  --appendix-bg-color: #ef3f241e;
+  --appendix-icon-bg-color: #ff6f42;
+}
+
+.font-en, .mega-tab {
+  font-family: proxima-nova, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-es, .mega-tab {
+  font-family: proxima-nova, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-en .article table th, .font-en .article .admonition .admonition-alt, .font-en .article h1,.font-en .article h2, .font-en .article h5, .font-en .article h6, .font-en .article ol>li:before, .font-en .article caption, .font-en #mainmenu a.expand, .font-en #mainmenu li a.current, .font-en .welcome_message {
+  font-family: proxima-nova, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-es .article table th, .font-es .article .admonition .admonition-alt, .font-es .article h1,.font-es .article h2, .font-es .article h5, .font-es .article h6, .font-es .article ol>li:before, .font-es .article caption, .font-es #mainmenu a.expand, .font-es #mainmenu li a.current, .font-es .welcome_message {
+  font-family: proxima-nova, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Header */
+.header::before {
+  content: none;
+}
+.logo-wrap h1 {
+  padding-top: 0;
+}
+.logo-img {
+  width: 160px;
+  height: 34px;
+}
+.logo-product {
+  display: none;
+}
+.logo-title {
+  display: none;
+}
+.footer::before {
+  background-image: none;
+  background-color: #e6e6e6;
+}
+
+/* Eye-catching of the top page */
+.main {
+  top: -100px;
+}
+.page-pad-search {
+  height: 56px;
+}
+.welcome_message {
+  color: var(--lead-text-color);
+}
+.hero {
+  display: block;
+  background-size: 300px;
+  background-position: 100% -30%;
+  height: 150px;
+  background-color: var(--theme-color);
+  margin-left: auto;
+  margin-right: auto;
+}
+.eye-catching {
+  background-color: var(--theme-color);
+}
+
+.mega-nav-bar {
+  width: 100%;
+  z-index: 900;
+  box-shadow: none;
+}
+.mega-nav {
+  font-size: 1em;
+  background: #4a4B4c;
+  border-bottom: 0px;
+}
+
+.mega-tab-short {
+  color: #fff;
+}
+.mega-tab-short-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+#mega-tab-short-text {
+  padding-top: 0.2em;
+  padding-left: 1em;
+}
+#mega-tab-switch {
+  margin: .2em;
+  padding: .2em;
+  cursor: pointer;
+}
+#mega-tab-switch:focus-visible {
+  outline: solid 2px #fff;
+  border-radius: 3px;
+}
+.mega-tab-switch-icon {
+  margin-left: .2em;
+  margin-right: .2em;
+  color: #fff;
+
+}
+.mega-tab-bar {
+  display: none;
+  width: 100%;
+  z-index: 99;
+}
+.mega-tab-bar ul {
+  width: 100%;
+}
+.mega-tab-bar li {
+  display: list-item;
+  padding: 0;
+  margin: 0;
+}
+.mega-tab-wrap {
+  display: block;
+}
+.mega-tab {
+  font-size: .875rem;
+  line-height: 1.2;
+  text-align: left;
+  color: #fff;
+  background: none;
+  padding: .7em;
+}
+.mega-tab[aria-expanded="true"] {
+  background-color: #a42e25;
+}
+.mega-tab:hover {
+  background: #a42f29;
+}
+.mega-tab.current {
+  font-weight: inherit;
+  background: #5e1b15;
+}
+.mega-tab.current:hover {
+  background: #a42f29;
+}
+.mega-tab:focus-visible {
+  outline: solid 2px #fff;
+  border-radius: 3px;
+  margin: 1px 0 1px 0;
+}
+.mega-tab i {
+  display: inline-block;
+  padding-top: 0;
+  color: #fff;
+}
+.mega-tab-text {
+  font-size: 1.2em;
+  white-space: nowrap;
+  margin-left: 1em;
+}
+.mega-panel {
+  width: auto;
+  background: #a42e25;
+  border-bottom: 0;
+  box-shadow: none;
+  color: #fff;
+  z-index: 1300;
+  font-size: .8em;
+  margin-top: 3px;
+}
+.mega-panel a {
+  color: #fff;
+}
+.mega-panelplace {
+  background: #a42e25;
+}
+.mega-list {
+  column-count: 1;
+  text-align: left;
+  width: 100%;
+  padding: 0;
+  border-left: solid 3px #fff;
+  margin-left: 2em;
+  margin-bottom: 8px;
+}
+.mega-list-line {
+  box-sizing: border-box;
+  font-size: .8em;
+  margin-bottom: 0;
+  padding: .2em 1em .2em 1em;
+}
+.mega-list-line.current {
+  background: #5e1b15;
+}
+.mega-list-line:hover {
+  background-color: #5e1a13;
+  cursor: pointer;
+}
+.mega-list-item {
+  padding: 0;
+}
+.mega-list-item:focus {
+  outline: solid 2px #fff;
+  border-radius: 3px;
+}
+
+#rightside-bar {
+  margin-top: 1em;
+}
+
+.contents-wrap {
+  margin-top: 8px;
+}
+.id-header {
+    margin-top: -70px;
+    padding-top: 70px;
+}
+.article .welcome_message {
+  color: #fff;
+}
+
+/* Tiles of the top page */
+.col-flex {
+    margin-top: 10px;
+}
+.col-tile {
+  border-radius: 10px;
+}
+.col-tile i {
+  color: var(--theme-color) !important;
+}
+
+.fixed-tree {
+    top: 98px;
+}
+
+.inquiry-panel .fas {
+    color: #fff;
+}
+
+/* 古いiPhone向けの設定 ************************************************/
+    @media screen and (min-width:320px) and (max-width:428px){
+      .welcome_message:lang(ja) {
+        font-size: 1.7rem;
+      }
+    }
+
+/* 768px以上の設定 *****************************************************/
+    @media only screen and (min-width:768px){
+    .logo-img {
+        margin-top: -4px;
+    }
+    .hero {
+      background-size: 300px;
+      height: 250px;
+      max-width: 1300px;
+    }
+    .mnav-pad {
+        height:41px;
+    }
+    .mega-nav-bar {
+        position: fixed;
+        top: 56px;
+        box-shadow: 1px 1px 2px #726464;
+        z-index: 12000;
+    }
+    .mega-tab, .mega-tab[aria-expanded="true"]:hover {
+       border-bottom: 1px solid transparent;
+    }
+    .mega-tab:hover {
+       border-bottom: 1px solid #fff;
+    }
+    .mega-tab:focus-visible {
+       margin: -2px;
+    }
+    .mega-tab-short {
+        display: none;
+    }
+    .mega-tab-bar {
+        position: relative;
+        top: 0;
+        display: block;
+    }
+    .mega-tab-bar ul {
+        width: auto;
+    }
+    .mega-tab-bar li {
+        display: table-cell;
+    }
+    .mega-list {
+        border-left: none;
+        margin-left: 0;
+        margin-bottom: 8px;
+    }
+    .mega-list-line {
+        padding: .2em 1em .2em 2em;
+    }
+    .mega-panel {
+        font-size: 1em;
+        box-shadow: 1px 2px 4px #b91616;
+        margin-top: 0;
+    }
+    .main {
+      top: -182px;
+    }
+    /* Tiles of the top page */
+    .col-flex {
+      margin-top: 100px;
+    }
+
+    .appendix-category-icon {
+        color: {}
+    }
+}
+
+

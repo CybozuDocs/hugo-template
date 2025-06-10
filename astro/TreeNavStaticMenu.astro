@@ -1,0 +1,77 @@
+---
+import Title from './Title.astro';
+import type { PageProps, EnvProps } from './types';
+
+interface Props {
+  curnode: PageProps;
+  target: PageProps;
+  env: EnvProps;
+}
+
+const { curnode, target, env } = Astro.props;
+
+let selected = false;
+let shouldRenderSection = false;
+let shouldRenderPage = false;
+let sectionContent: any = null;
+
+// 選択状態の判定
+if (curnode.relPermalink === target.relPermalink) {
+  selected = true;
+}
+
+if (curnode.isSection) {
+  // セクションの場合
+  shouldRenderSection = true;
+  
+  // entries の設定
+  let entries: PageProps[] = [];
+  if (curnode.sections) {
+    entries = [...(curnode.pages || []), ...(curnode.sections || [])];
+  } else {
+    entries = curnode.pages || [];
+  }
+  entries = entries.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+
+  sectionContent = {
+    selected,
+    entries
+  };
+} else {
+  // ページの場合
+  shouldRenderPage = true;
+}
+---
+
+{shouldRenderSection && (
+  <li role="presentation">
+    {sectionContent.selected ? (
+      <a href="#" class="current">
+        <Title page={curnode} env={env} />
+      </a>
+    ) : (
+      <a href={curnode.relPermalink}>
+        <Title page={curnode} env={env} />
+      </a>
+    )}
+    <ul>
+      {sectionContent.entries.map((entry: PageProps) => (
+        <TreeNavStaticMenu curnode={entry} target={target} env={env} />
+      ))}
+    </ul>
+  </li>
+)}
+
+{shouldRenderPage && (
+  <li role="presentation">
+    {selected ? (
+      <a href="#" class="toclink current">
+        <Title page={curnode} env={env} />
+      </a>
+    ) : (
+      <a href={curnode.relPermalink} class="toclink">
+        <Title page={curnode} env={env} />
+      </a>
+    )}
+  </li>
+)}
