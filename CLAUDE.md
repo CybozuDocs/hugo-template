@@ -9,6 +9,7 @@ Hugo ベースのドキュメントテンプレートシステムです。現在
 ## ビルド・開発コマンド
 
 ### Hugo の実行
+
 ```bash
 # Hugoバイナリはプロジェクト内に含まれています
 ./bin/hugo serve  # 開発サーバー起動
@@ -16,34 +17,30 @@ Hugo ベースのドキュメントテンプレートシステムです。現在
 ```
 
 ### lint/typecheck コマンド
+
 プロジェクトには package.json がないため、JavaScript/CSS の lint コマンドは定義されていません。
 
 ## アーキテクチャ・ディレクトリ構造
 
 ### 主要ディレクトリ
-- `layouts/` - Hugo テンプレート（41個の partials を含む）
+
+- `layouts/` - Hugo テンプレート（41 個の partials を含む）
 - `layouts/partials/` - 再利用可能なコンポーネント
-- `i18n/` - 6言語対応の翻訳ファイル（ja, en, zh, zh-tw, th, es）
+- `i18n/` - 6 言語対応の翻訳ファイル（ja, en, zh, zh-tw, th, es）
 - `static/` - CSS、JavaScript、画像などの静的アセット
 - `astro/` - Astro コンポーネントへの移行作業ディレクトリ
-- `data/` - JSONデータファイル
-- `bin/` - Hugo実行バイナリ
+- `data/` - JSON データファイル
+- `bin/` - Hugo 実行バイナリ
 
 ### 製品別レイアウト
-- `layouts/k/` - kintone用
-- `layouts/gr/`, `layouts/gr6/` - Garoon用
-- `layouts/of/` - Office用
-- `layouts/kintone_tutorial/` - kintoneチュートリアル用
 
-### Astro移行計画
-`ASTRO_PLAN.md` に詳細な移行ルールが記載されています：
-- i18n: Hugo の `{{ i18n "key" }}` → Astro の `<Wovn>i18n__key</Wovn>`
-- 変数: サイト変数は `env`、ページ変数は `page` プロパティに集約
-- 各Astroコンポーネントには同名の `.md` ファイルで変更記録を作成
-
-移行用AIプロンプトは `PROMPT.md` に定義されています。
+- `layouts/k/` - kintone 用
+- `layouts/gr/`, `layouts/gr6/` - Garoon 用
+- `layouts/of/` - Office 用
+- `layouts/kintone_tutorial/` - kintone チュートリアル用
 
 ### 外部サービス統合
+
 - WOVN.io - 翻訳サービス
 - Google Tag Manager
 - Zendesk - サポート
@@ -52,16 +49,26 @@ Hugo ベースのドキュメントテンプレートシステムです。現在
 
 ## 開発時の注意点
 
-### Astro移行作業
-1. 現在のブランチ: `astro`（メインブランチは `master`）
-2. 移行済みコンポーネント: Wovn, ApplyParams, ArticleNumber, Breadcrumb, BreadcrumbNav, Disclaimer2, GotoTop, Title
-3. 新規コンポーネント作成時は必ず変更記録ファイル（.md）も作成
+### i18n 対応
 
-### i18n対応
 - 現在: Hugo の i18n 関数を使用
-- 移行後: WOVNサービスによる翻訳（`<Wovn>` コンポーネント使用）
+- 移行後: WOVN サービスによる翻訳（`<Wovn>` コンポーネント使用）
 
 ### テンプレート機能
-- 41個の partials が様々な UI コンポーネントを提供
-- メガナビゲーション、ツリーナビゲーション、検索機能などの高度なUI
+
+- 41 個の partials が様々な UI コンポーネントを提供
+- メガナビゲーション、ツリーナビゲーション、検索機能などの高度な UI
 - 製品別のカスタムレイアウトとスタイル
+
+# Hugo から Astro への移行作業におけるルール
+
+kintone-help-astro-poc/ ディレクトリ配下が移行後の Astro によるプロジェクトです。
+
+Hugo から Astro への移行作業を行う際は、kintone-help-astro-poc/migration-docs/ 配下に、作業ごとにディレクトリを作成し、次のファイルを作成してください。
+
+- plan.md : 詳細な実行プラン
+- prompt.md : ユーザーからの指示と、それに対する回答の履歴
+
+また、Astro での開発における全般的なルールについては、kintone-help-astro-poc/migration-docs/rules.md にナレッジとして記録してください。
+rules.md には移行作業が完了した後も参照可能なナレッジのみを記載します。
+移行作業全体に関する進行状況やメモについては、migrate.memo.md に記載してください。
