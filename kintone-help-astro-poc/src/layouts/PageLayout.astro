@@ -8,13 +8,8 @@ type Props = MarkdownLayoutProps<{
   title?: string;
   description?: string;
 }> & {
-  // サイト設定
-  targetRegion?: string;
-  meganav?: boolean;
+  // ページ固有設定
   jsonTree?: boolean;
-  product?: string;
-  languageCode?: string;
-  useWovn?: boolean;
   idSearch?: boolean;
   tocInTree?: boolean;
   supportInquiry?: boolean;
@@ -35,12 +30,7 @@ type Props = MarkdownLayoutProps<{
 
 const {
   frontmatter, 
-  targetRegion,
-  meganav = false,
   jsonTree = false,
-  product = "",
-  languageCode = "ja",
-  useWovn = false,
   idSearch = false,
   tocInTree = false,
   supportInquiry = false,
@@ -53,14 +43,8 @@ const {
   i18n = { inThisArticle: "In this article" }
  } = Astro.props;
 
-// env設定を構築
-const envConfig = buildEnvConfig({
-  languageCode,
-  product,
-  targetRegion,
-  useWovn,
-  meganav
-});
+// env設定を構築（環境変数から直接取得）
+const envConfig = buildEnvConfig();
 
 // permalink と relPermalink を生成
 const permalinks = getPermalinks(Astro.url, envConfig.domain);
@@ -76,16 +60,16 @@ const pageData = {
     type: type,
     nolink: false,  // TODO: 実際の値を設定
   },
-  lang: getLangFromLanguageCode(languageCode),
+  lang: getLangFromLanguageCode(envConfig.languageCode),
 };
 
 // 無効化チェック
-const isDisabled = disabled.includes(targetRegion);
+const isDisabled = disabled.includes(envConfig.targetRegion);
 
 // 条件チェック用のヘルパー関数
-const isGaroonNonJapanese = product === "Garoon" && 
-  languageCode !== "ja-jp" && 
-  languageCode !== "ja-cn";
+const isGaroonNonJapanese = envConfig.product === "Garoon" && 
+  envConfig.languageCode !== "ja-jp" && 
+  envConfig.languageCode !== "ja-cn";
 ---
 
 <!doctype html>
@@ -100,7 +84,7 @@ const isGaroonNonJapanese = product === "Garoon" &&
         <meta http-equiv="refresh" content="0; URL=/" />
       ) : (
         <>
-          {targetRegion === "US" && <div>[LOCALE MODAL PARTIAL]</div>}
+          {envConfig.targetRegion === "US" && <div>[LOCALE MODAL PARTIAL]</div>}
           
           <!-- Announcement banner -->
           <div>[ANNOUNCEMENT BANNER PARTIAL]</div>
@@ -110,7 +94,7 @@ const isGaroonNonJapanese = product === "Garoon" &&
           
           <div class="page-pad"></div>
           
-          {meganav && (
+          {envConfig.meganav && (
             <>
               <div class="mnav-pad"></div>
               <div>[MEGANAV PARTIAL]</div>
@@ -129,7 +113,7 @@ const isGaroonNonJapanese = product === "Garoon" &&
             <div id="contents" class="contents-wrap">
               {isGaroonNonJapanese && <div>[DISCLAIMER PARTIAL]</div>}
               
-              {useWovn && <div>[DISCLAIMER2 PARTIAL]</div>}
+              {envConfig.useWovn && <div>[DISCLAIMER2 PARTIAL]</div>}
               
               <div>[LATEST PAGE GUIDE PARTIAL]</div>
               
@@ -173,7 +157,7 @@ const isGaroonNonJapanese = product === "Garoon" &&
           <div>[TREE NAV TOGGLE PARTIAL]</div>
           <div>[GO TO TOP PARTIAL]</div>
           
-          {supportInquiry && languageCode === "en-us" && (
+          {supportInquiry && envConfig.languageCode === "en-us" && (
             <div>[SUPPORT INQUIRY PARTIAL]</div>
           )}
           
