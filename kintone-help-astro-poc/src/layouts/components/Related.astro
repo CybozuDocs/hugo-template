@@ -1,43 +1,55 @@
 ---
-interface RelatedPage {
-  title: string;
-  relPermalink: string;
-  disabled?: string[];
-  weight?: number;
-}
+import Wovn from './Wovn.astro';
+import Title from './Title.astro';
 
 interface Props {
-  relatedPages: RelatedPage[];
-  targetRegion?: string;
-  seeAlsoText: string;
+  env: {
+    targetRegion: string;
+    regularPages: any[];
+  };
+  page: {
+    // related機能で使用される現在のページ情報
+    [key: string]: any;
+  };
 }
 
-const { relatedPages, targetRegion = "", seeAlsoText } = Astro.props;
+const { env, page } = Astro.props;
 
-// 地域による無効化チェックを行い、有効なページのみをフィルタリング
-const validPages = relatedPages.filter(page => {
-  if (page.disabled && page.disabled.includes(targetRegion)) {
-    return false;
-  }
-  return true;
+// TODO: Hugo の Related 機能の実装
+// 現在は簡易実装（空配列）
+const related = env.regularPages?.slice(0, 5) || [];
+
+// 無効化されていないページのフィルタリング
+const validPages = related.filter(relatedPage => {
+  const disabled = relatedPage.params?.disabled || [];
+  return !disabled.includes(env.targetRegion);
 });
 
-// 重み順でソート
-const sortedPages = validPages.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+// 重み付けによるソート
+const sortedPages = validPages.sort((a, b) => {
+  const weightA = a.weight || 0;
+  const weightB = b.weight || 0;
+  return weightA - weightB;
+});
 
-const pageCount = sortedPages.length;
+// 表示するページが存在するかチェック
+const shouldDisplay = sortedPages.length > 0;
 ---
 
-{pageCount > 0 && (
-  <Fragment>
+{shouldDisplay && (
+  <>
     <hr />
-    <div class="seealso">{seeAlsoText}</div>
+    <div class="seealso">
+      <Wovn>i18n__See_also</Wovn>
+    </div>
     <ul>
-      {sortedPages.map(page => (
+      {sortedPages.map((relatedPage) => (
         <li>
-          <a href={page.relPermalink} set:html={page.title} />
+          <a href={relatedPage.relPermalink}>
+            <Title env={env} page={relatedPage} />
+          </a>
         </li>
       ))}
     </ul>
-  </Fragment>
-)} 
+  </>
+)}

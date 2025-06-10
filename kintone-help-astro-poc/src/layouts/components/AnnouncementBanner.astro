@@ -1,76 +1,39 @@
 ---
-interface AnnouncementItem {
-  key: string;
-  bgColor?: string;
-  fontAwesomeIcon: string;
-  iconColor?: string;
-  title?: string;
-  text: string;
-}
+import Wovn from './Wovn.astro';
+import MakeAnnounceBanner from './MakeAnnounceBanner.astro';
 
 interface Props {
-  announcements: AnnouncementItem[];
-  unsupportedBrowser: string;
-  unsupportedMessage: string;
-  announcementButtonClose: string;
-  closeText: string;
+  env: {
+    lang: string;
+    targetRegion: string;
+  };
+  page: {
+    // 今回は使用しない
+  };
 }
 
-const { 
-  announcements, 
-  unsupportedBrowser, 
-  unsupportedMessage, 
-  announcementButtonClose, 
-  closeText 
-} = Astro.props;
+const { env, page } = Astro.props;
 
-// デフォルトのセッション通知を追加
-const defaultAnnouncement: AnnouncementItem = {
-  key: "session-notice-1",
-  bgColor: "#f9aeb6",
-  fontAwesomeIcon: "fas fa-exclamation-triangle",
-  iconColor: "#cd1b49",
-  title: unsupportedBrowser,
-  text: unsupportedMessage
-};
+// デフォルトのメッセージ
+const defaultMsg = [
+  "session-notice-1",
+  "#f9aeb6", 
+  "fas fa-exclamation-triangle",
+  "#cd1b49",
+  "i18n__Unsupported_browser",
+  "i18n__Unsupported_message"
+];
 
-const allAnnouncements = [defaultAnnouncement, ...announcements];
+// CSVファイルの読み込み（静的な実装）
+const announcementfile = `csv/${env.lang}/announcement_${env.targetRegion}.csv`;
+let csvData = [];
+
+// TODO: 実際のCSVファイル読み込み処理を実装
+// 現在は静的な実装のため、CSVファイルの動的読み込みは未実装
 ---
 
-{allAnnouncements.map(announcement => (
-  <aside 
-    class={`announcement-banner ${announcement.key}`}
-    id={`announcement-banner-${announcement.key}`}
-    style={`display: none;${announcement.bgColor ? `background-color: ${announcement.bgColor};` : ''}`}
-  >
-    <div class="announcement-banner-wrapper">
-      <div class="announcement-banner-icon">
-        <i 
-          class={announcement.fontAwesomeIcon}
-          style={announcement.iconColor ? `color: ${announcement.iconColor};` : ''}
-          aria-hidden="true"
-        ></i>
-      </div>
-      <div class="announcement-banner-content">
-        <div class="announcement-banner-content-content">
-          {announcement.title && (
-            <div class="announcement-banner-content-title">{announcement.title}</div>
-          )}
-          <div class="announcement-banner-content-description" set:html={announcement.text} />
-        </div>
-        <div class="announcement-banner-content-button">
-          <button 
-            type="submit" 
-            id={`announcement-${announcement.key}`}
-            class="announcement-banner-content-button-close" 
-            title={announcementButtonClose}
-            tabindex="0"
-          >
-            <i class="fa fa-times-circle" aria-hidden="true"></i> 
-            <span>{closeText}</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </aside>
-))} 
+<MakeAnnounceBanner data={defaultMsg} />
+
+{csvData.map((row) => (
+  <MakeAnnounceBanner data={row} />
+))}

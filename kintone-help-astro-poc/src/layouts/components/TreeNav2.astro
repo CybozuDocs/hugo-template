@@ -1,72 +1,80 @@
 ---
-interface TocItem {
-  anchor: string;
-  text: string;
+import Title from './Title.astro';
+import type { BaseProps } from './types';
+
+interface Props extends BaseProps {}
+
+const { env, page } = Astro.props;
+
+// TOC生成（H2見出しのみ）
+const tocregex = "<h2.*?>(.|\n)*?</h2>";
+let tocs: string[] = [];
+
+if (page.content) {
+  // 簡易的なTOC実装（正規表現による見出し抽出）
+  const headingMatches = page.content.match(new RegExp(tocregex, 'g'));
+  if (headingMatches) {
+    tocs = headingMatches;
+  }
 }
 
-interface Props {
-  title: string;
-  relPermalink: string;
-  content: string;
-}
+// TOC項目の処理関数
+const processTocItem = (tocItem: string) => {
+  // アンカー（id またはpid）の抽出
+  let anc = "";
+  const params = tocItem.split(" ");
 
-const { title, relPermalink, content } = Astro.props;
-
-// H2タグからTOCを生成
-function extractTocFromContent(htmlContent: string): TocItem[] {
-  const h2Regex = /<h2.*?>([\s\S]*?)<\/h2>/g;
-  const tocs: TocItem[] = [];
-  let match;
-
-  while ((match = h2Regex.exec(htmlContent)) !== null) {
-    const h2Content = match[0];
-    const innerText = match[1];
-    
-    // アンカーを抽出
-    let anchor = "";
-    const pidMatch = h2Content.match(/pid="([^"]+)"/);
-    const idMatch = h2Content.match(/id="([^"]+)"/);
-    
-    if (pidMatch) {
-      anchor = pidMatch[1];
-    } else if (idMatch) {
-      anchor = idMatch[1];
-    }
-    
-    // テキストを抽出（HTMLタグを除去）
-    const textMatch = innerText.match(/>([^<]+)</);
-    const text = textMatch ? textMatch[1] : innerText.replace(/<[^>]*>/g, '');
-    
-    if (anchor && text) {
-      tocs.push({ anchor, text });
+  for (const param of params) {
+    if (param.includes("pid=")) {
+      const params2 = param.split(">");
+      for (const p2 of params2) {
+        if (p2.includes("pid=")) {
+          anc = p2.replace(/^pid="/, '').replace(/"$/, '');
+        }
+      }
+    } else if (param.includes("id=")) {
+      anc = param.replace(/^id="/, '').replace(/"$/, '');
     }
   }
-  
-  return tocs;
-}
 
-const tocItems = extractTocFromContent(content);
+  // テキスト内容の抽出
+  const txtMatches = tocItem.match(/>.+</);
+  let txt = "";
+  if (txtMatches && txtMatches.length > 0) {
+    txt = txtMatches[0].replace(/^>/, '').replace(/<$/, '');
+  }
+
+  return { anc, txt };
+};
+
+// safeHTML の代替（簡易実装）
+const safeHTML = (html: string) => html;
 ---
 
 <div id="tree-nav">
   <div id="tree-head">
     <div class="tree-title">
-      <a href={relPermalink}>{title}</a>
+      <a href={page.relPermalink}>
+        <Title page={page} env={env} />
+      </a>
     </div>
   </div>
   <nav id="tree-main" class="tree-main" role="tree">
     <ul>
       <li class="dummy-node" data-jstree='{ "opened" : true, "disabled" : true }'>
-        {tocItems.length > 0 && (
+        {tocs.length > 0 && (
           <ul>
-            {tocItems.map(toc => (
-              <li>
-                <a href={`${relPermalink}#${toc.anchor}`} class="toclink" set:html={toc.text} />
-              </li>
-            ))}
+            {tocs.map((tocItem) => {
+              const { anc, txt } = processTocItem(tocItem);
+              return (
+                <li>
+                  <a href={`${page.relPermalink}#${anc}`} class="toclink" set:html={safeHTML(txt)}></a>
+                </li>
+              );
+            })}
           </ul>
         )}
       </li>
     </ul>
   </nav>
-</div> 
+</div>

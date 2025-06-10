@@ -1,41 +1,14 @@
 ---
-interface BreadcrumbItem {
-  title: string;
-  url?: string;
-  isHome?: boolean;
-  isCurrent?: boolean;
-}
+import BreadcrumbNav from './BreadcrumbNav.astro';
+import type { BaseProps } from './types';
 
-interface Props {
-  items: BreadcrumbItem[];
-  breadcrumbLabel: string;
-  topPageText: string;
-  showTopPageForProducts?: string[];
-  currentProduct?: string;
-}
+interface Props extends BaseProps {}
 
-const { items, breadcrumbLabel, topPageText, showTopPageForProducts = [], currentProduct } = Astro.props;
-
-// 特定の製品でホームページのタイトルを「トップページ」に変更するかどうか
-const shouldShowTopPage = showTopPageForProducts.includes(currentProduct || '');
+const { env, page } = Astro.props;
 ---
 
-<nav class="breadcrumb" role="navigation" aria-label={breadcrumbLabel}>
-  <ul class="breadcrumbs">
-    {items.map((item, index) => (
-      <li>
-        {item.isCurrent ? (
-          <Fragment set:html={item.title} />
-        ) : (
-          <a href={item.url}>
-            {item.isHome && shouldShowTopPage ? (
-              topPageText
-            ) : (
-              <Fragment set:html={item.title} />
-            )}
-          </a>
-        )}
-      </li>
-    ))}
-  </ul>
-</nav> 
+<nav class="breadcrumb" role="navigation" aria-label="i18n__todo__Bread_crumb">
+    <ul class="breadcrumbs">
+        <BreadcrumbNav p1={page} p2={page} env={env} />
+    </ul>
+</nav>

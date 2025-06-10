@@ -1,33 +1,47 @@
 ---
 interface Props {
-  labels?: number[];
-  labelColors: string[];
-  labelLead: string;
-  labelContents: string[];
+  env: {
+    labelColors?: string[];
+    labelLead?: string;
+    labelContents?: string[];
+  };
+  page: {
+    params: {
+      labels?: string[];
+    };
+  };
 }
 
-const { labels = [], labelColors, labelLead, labelContents } = Astro.props;
+const { env, page } = Astro.props;
 
-// ラベルが存在し、ラベルコンテンツが設定されている場合のみ表示
-const shouldShowLabels = labels.length > 0 && labelContents.length > 0;
+const labels = page.params.labels;
+const labelColors = env.labelColors;
+const labelLead = env.labelLead;
+const labelContents = env.labelContents;
+
+// ラベルが存在し、設定も存在する場合のみ表示
+const shouldRender = labels && labelContents;
+
+// ラベルデータの処理
+const processedLabels = shouldRender ? labels.map((label: string) => {
+  const labelidx = parseInt(label) - 1; // 1-based to 0-based index
+  const labelcontent = labelContents[labelidx];
+  const color = labelColors ? labelColors[labelidx] : '';
+  
+  return labelcontent ? { content: labelcontent, color } : null;
+}).filter(Boolean) : [];
 ---
 
-{shouldShowLabels && (
+{shouldRender && processedLabels.length > 0 && (
   <div class="header-label-bar">
     <span class="header-label-lead">{labelLead}:</span>
-    {labels.map(labelIndex => {
-      const adjustedIndex = labelIndex - 1; // 1-based to 0-based
-      const labelContent = labelContents[adjustedIndex];
-      const color = labelColors[adjustedIndex];
-      
-      return labelContent ? (
-        <span 
-          class="header-label" 
-          style={`background-color: ${color}`}
-        >
-          {labelContent}
-        </span>
-      ) : null;
-    })}
+    {processedLabels.map((label: any, index: number) => (
+      <span 
+        class="header-label" 
+        style={`background-color: ${label.color}`}
+      >
+        {label.content}
+      </span>
+    ))}
   </div>
-)} 
+)}

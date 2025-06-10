@@ -1,74 +1,86 @@
 ---
-interface FooterLink {
-  id: string;
-  text: string;
-  href: string;
-  target?: string;
-  status?: string;
-}
-
-interface FooterMegaMenu {
-  [key: string]: FooterLink[];
-}
+import Wovn from './Wovn.astro';
+import Footer2Disclaimer from './Footer2Disclaimer.astro';
 
 interface Props {
-  footerLinks: FooterLink[];
-  isHome?: boolean;
-  hasKPath?: boolean;
-  languageCode: string;
-  product?: string;
-  targetRegion?: string;
-  environment?: string;
-  footerCopyright: string;
-  onlyJaText: string;
-  disclaimerText?: string;
+  env: {
+    footerLinks?: string;
+    baseURL: string;
+    languageCode: string;
+    targetRegion: string;
+    product?: string;
+  };
+  page: {
+    isHome?: boolean;
+  };
 }
 
-const { 
-  footerLinks,
-  isHome = false,
-  hasKPath = false,
-  languageCode,
-  product = "",
-  targetRegion = "",
-  environment = "",
-  footerCopyright,
-  onlyJaText,
-  disclaimerText = ""
-} = Astro.props;
+const { env, page } = Astro.props;
 
-const fullsize = isHome || hasKPath;
+// URLパース（簡易実装）
+const baseUrl = new URL(env.baseURL);
+const basePath = baseUrl.pathname;
 
-// フッターリンクを分類
-const legalMenu: FooterLink[] = [];
-const megaMenus: FooterMegaMenu = {};
+// フルサイズの判定
+const fullsize = page.isHome || basePath.startsWith('/k/');
 
-footerLinks.forEach(link => {
-  if (link.id === "999") {
-    // 特別なフッター（法的リンク）
-    legalMenu.push(link);
+// TODO: CSVデータの読み込み処理を実装
+let footerData: any[] = [];
+
+// 静的な実装（TODO: 動的読み込みに変更）
+// if (env.footerLinks) {
+//   try {
+//     // CSVファイルの読み込み処理をここに実装
+//   } catch (error) {
+//     console.warn(`Unable to get resource ${env.footerLinks}`);
+//   }
+// }
+
+// データ処理
+const sep = "\t";
+const legalMenu: string[] = [];
+const megaMenus: { [key: string]: string[] } = {};
+
+footerData.forEach(row => {
+  const id = row[0];
+  const item = `${row[1]}${sep}${row[2]}${sep}${row[3] || ''}`;
+  
+  if (id === "999") {
+    // 特別なフッター
+    legalMenu.push(item);
   } else {
-    // メガメニュー
-    if (!megaMenus[link.id]) {
-      megaMenus[link.id] = [];
+    if (!megaMenus[id]) {
+      megaMenus[id] = [];
     }
-    megaMenus[link.id].push(link);
+    megaMenus[id].push(item);
   }
 });
 
-// 免責事項PDF URLの生成
-function getDisclaimerPdfUrl(languageCode: string): string {
-  let pdfUrl = "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf";
+// メガメニューの処理
+const processedMegaMenus = Object.entries(megaMenus).map(([index, val]) => {
+  let categoryTitle = "";
+  const links: string[] = [];
   
-  if (languageCode === "zh-cn" || languageCode === "zh-jp") {
-    pdfUrl = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf";
-  }
+  val.forEach((r, i) => {
+    if (i === 0) {
+      categoryTitle = r.split(sep)[0];
+    } else {
+      links.push(r);
+    }
+  });
   
-  return pdfUrl;
-}
+  return { index, categoryTitle, links };
+});
 
-const shouldShowDisclaimer = languageCode !== "ja-jp" && languageCode !== "ja-cn" && product === "Garoon";
-const disclaimerPdfUrl = getDisclaimerPdfUrl(languageCode);
+// リーガルメニューの処理
+const processedLegalMenu = legalMenu.map(item => {
+  const link = item.split(sep);
+  return {
+    text: link[0],
+    href: link[1],
+    target: link[2] || "_blank"
+  };
+});
 ---
 
 <footer id="page-footer" class={`footer${fullsize ? ' footer-home' : ''}`}>
@@ -76,36 +88,40 @@ const disclaimerPdfUrl = getDisclaimerPdfUrl(languageCode);
     {fullsize && (
       <div class="footer-mega">
         <ul class="footer-mega-list">
-          {Object.entries(megaMenus).map(([index, menuItems]) => {
-            const categoryTitle = menuItems[0]?.text || "";
-            const links = menuItems.slice(1);
-            
-            return (
-              <li class="footer-mega-item">
-                <h2 class="footer-mega-list-title">
-                  <i class="fa fa-book" aria-hidden="true"></i>
-                  <span class="footer-mega-list-title-text">{categoryTitle}</span>
-                </h2>
-                <ul class="footer-mega-list-list">
-                  {links.map(link => (
+          {processedMegaMenus.map(({ index, categoryTitle, links }) => (
+            <li class="footer-mega-item">
+              <h2 class="footer-mega-list-title">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                <span class="footer-mega-list-title-text">{categoryTitle}</span>
+              </h2>
+              <ul class="footer-mega-list-list">
+                {links.map((linkItem, linkIndex) => {
+                  const link = linkItem.split(sep);
+                  const text = link[0];
+                  const href = link[1];
+                  const status = link[2];
+                  
+                  return (
                     <li class="footer-mega-list-item">
-                      <a href={link.href}>{link.text}</a>
-                      {link.status === "jaonly" && (
-                        <span class="status-info">{onlyJaText}</span>
+                      <a href={href}>{text}</a>
+                      {status === "jaonly" && (
+                        <span class="status-info">
+                          <Wovn>i18n__Only_ja</Wovn>
+                        </span>
                       )}
                     </li>
-                  ))}
-                  {/* 最後のメニューに免責事項を挿入 */}
-                  {index === "3" && shouldShowDisclaimer && disclaimerText && (
-                    <li class="footer-mega-list-item">
-                      <a href={disclaimerPdfUrl} target="_blank">{disclaimerText}</a>
-                      <i class="far fa-file-pdf index-pdf" aria-hidden="true"></i>
-                    </li>
-                  )}
-                </ul>
-              </li>
-            );
-          })}
+                  );
+                })}
+                {/* 最後のメニューにdisclaimerを挿入 */}
+                {index === "3" && 
+                 env.languageCode !== "ja-jp" && 
+                 env.languageCode !== "ja-cn" && 
+                 env.product === "Garoon" && (
+                  <Footer2Disclaimer languageCode={env.languageCode} />
+                )}
+              </ul>
+            </li>
+          ))}
         </ul>
       </div>
     )}
@@ -113,24 +129,26 @@ const disclaimerPdfUrl = getDisclaimerPdfUrl(languageCode);
     <div class="footer-legal-wrap">
       <div class="footer-legal">
         <ul class="footer-legal-list">
-          {legalMenu.map(link => (
+          {processedLegalMenu.map((link, index) => (
             <li class="footer-legal-item">
-              <a href={link.href} target={link.target as "_blank" | "_self" | "_parent" | "_top" || "_blank"}>{link.text}</a>
+              <a href={link.href} target={link.target}>
+                {link.text}
+              </a>
             </li>
           ))}
         </ul>
         <div class="footer-legal-copyright">
-          {footerCopyright}
+          <Wovn>i18n__Footer_copyright</Wovn>
         </div>
-        {targetRegion === "US" && environment === "production" && (
-          <Fragment>
+        {env.targetRegion === "US" && (
+          <>
             <!-- CookiePro Cookies Settings button start -->
             <button id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie Settings</button>
             <!-- CookiePro Cookies Settings button end -->
-            <script type="text/javascript" src="/javascripts/geolocation.js"></script>
-          </Fragment>
+            <script type="text/javascript" src="javascripts/geolocation.js"></script>
+          </>
         )}
       </div>
     </div>
   </div>
-</footer> 
+</footer>

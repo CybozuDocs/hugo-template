@@ -1,12 +1,12 @@
 ---
-interface Props {
-  goBackToTopText: string;
-}
+import type { BaseProps } from './types';
 
-const { goBackToTopText } = Astro.props;
+interface Props extends BaseProps {}
+
+const { env, page } = Astro.props;
 ---
 
-<div id="goto-top" class="fa-stack" aria-hidden="true" title={goBackToTopText}>
-  <i class="fas fa-circle fa-stack-2x"></i>
-  <i class="fas fa-arrow-circle-up fa-stack-1x"></i>
+<div id="goto-top" class="fa-stack" aria-hidden="true" title="i18n__todo__Go_back_to_top">
+<i class="fas fa-circle fa-stack-2x"></i>
+<i class="fas fa-arrow-circle-up fa-stack-1x"></i>
 </div> 

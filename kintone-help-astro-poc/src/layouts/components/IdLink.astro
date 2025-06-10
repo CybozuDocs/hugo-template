@@ -1,24 +1,36 @@
 ---
+import Wovn from './Wovn.astro';
+
 interface Props {
-  alias: string;
-  relPermalink: string;
-  contentBaseName: string;
-  baseURL: string;
-  permalinkText: string;
+  env: {
+    baseURL: string;
+  };
+  page: {
+    params: {
+      aliases: string[];
+    };
+    relPermalink: string;
+    fileContentBaseName: string;
+  };
 }
 
-const { alias, relPermalink, contentBaseName, baseURL, permalinkText } = Astro.props;
+const { env, page } = Astro.props;
 
-// ドキュメントIDの抽出
-const aliasParts = alias.split("/");
-const docid = aliasParts[aliasParts.length - 1];
+// エイリアスから最初の要素を取得
+const alias = page.params.aliases?.[0] || '';
+
+// エイリアスをスラッシュで分割
+const a1 = alias.split('/');
+
+// 最後の要素をドキュメントIDとして取得
+const docid = a1[a1.length - 1] || '';
 
 // 相対パスの処理
-let relpath = relPermalink.replace(/\.html$/, '');
-relpath = relpath.replace(new RegExp(`${contentBaseName}$`), '');
+let relpath = page.relPermalink.replace(/\.html$/, '');
+relpath = relpath.replace(new RegExp(page.fileContentBaseName + '$'), '');
 
 // ドキュメントURLの生成
-const docurl = `${baseURL}${relpath}id/${docid}.html`;
+const docurl = `${env.baseURL}${relpath}id/${docid}.html`;
 ---
 
 <div class="idbar">
@@ -30,7 +42,7 @@ const docurl = `${baseURL}${relpath}id/${docid}.html`;
       aria-owns="doc-id" 
       aria-expanded="false"
     >
-      <span>{permalinkText}</span>
+      <span><Wovn>i18n__Permalink</Wovn></span>
       <i class="fas fa-link" aria-hidden="true"></i>
     </button>
     <div id="doc-id" class="heading-url" aria-hidden="true">
@@ -38,10 +50,10 @@ const docurl = `${baseURL}${relpath}id/${docid}.html`;
         readonly 
         value="" 
         name="headingUrl" 
-        data-idpath={alias}
+        idpath={alias} 
         type="text" 
         onclick="this.focus(); this.select()"
       />
     </div>
   </div>
-</div> 
+</div>

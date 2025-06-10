@@ -1,96 +1,76 @@
 ---
-interface NavSection {
-  title: string;
-  relPermalink: string;
-  weight: number;
-  isCurrentSection: boolean;
-  pages: NavPage[];
-}
+import Title from './Title.astro';
+import MegaNavGrGetSecond from './MegaNavGrGetSecond.astro';
+import MegaNavGrSectBar from './MegaNavGrSectBar.astro';
+import MegaNavGrMegaPanel from './MegaNavGrMegaPanel.astro';
+import MegaNavGrTitleIcon from './MegaNavGrTitleIcon.astro';
+import Wovn from './Wovn.astro';
+import type { BaseProps } from './types';
 
-interface NavPage {
-  title: string;
-  relPermalink: string;
-  weight: number;
-  nolink?: boolean;
-  pages: NavPage[];
-}
+interface Props extends BaseProps {}
 
-interface IconMapping {
-  path: string;
-  icon: string;
-}
+const { env, page } = Astro.props;
 
-interface Props {
-  sections: NavSection[];
-  currentSection?: NavSection;
-  secondSection?: NavPage;
-  faqLink?: string;
-  iconMappings: IconMapping[];
-  documentTypeText: string;
-  byFeaturesText: string;
-  headerNavFaqText: string;
-  isHome?: boolean;
-  pageType?: string;
-}
-
-const { 
-  sections, 
-  currentSection, 
-  secondSection, 
-  faqLink, 
-  iconMappings, 
-  documentTypeText, 
-  byFeaturesText, 
-  headerNavFaqText,
-  isHome = false,
-  pageType = ""
-} = Astro.props;
-
-// アイコンを取得する関数
-function getIcon(relPermalink: string): string {
-  const mapping = iconMappings.find(m => relPermalink.includes(m.path));
-  return mapping ? mapping.icon : "";
-}
-
-// セカンドアイテムの数を計算
-let secondItems = 0;
-if (currentSection && !isHome) {
-  const excludedPaths = ["video", "purpose", "guide", "pdf", "glossary", "error", "mobile"];
-  const excludedTypes = ["search_result", "gr/sitemap"];
+// GetSecond処理の代替（簡易実装）
+const getSecondSection = (currentPage: any): any => {
+  let current = currentPage;
+  let second = null;
   
-  if (!excludedPaths.some(path => currentSection.relPermalink.includes(path)) && 
-      !excludedTypes.includes(pageType)) {
-    secondItems = currentSection.pages.length;
+  while (current.parent && current !== current.firstSection) {
+    second = current;
+    current = current.parent;
   }
+  
+  return second;
+};
+
+const secondsect = getSecondSection(page);
+const entries = env.siteHomeSections || [];
+const rootsect = page.firstSection;
+
+// seconditems の計算
+let seconditems = rootsect?.pages?.length || 0;
+
+if (page.isHome) {
+  seconditems = 0;
+} else if (rootsect && ["video", "purpose", "guide", "pdf", "glossary", "error", "mobile"].some(section => 
+  rootsect.relPermalink?.includes(section))) {
+  seconditems = 0;
+} else if (page.params?.type === "search_result" || page.params?.type === "gr/sitemap") {
+  seconditems = 0;
 }
 
-// 重み順でソート
-const sortedSections = sections.filter(s => s.weight !== 0).sort((a, b) => a.weight - b.weight);
+// URL解析（簡易実装）
+const baseURL = new URL(env.baseURL || 'https://example.com');
+
+// entries をweight順にソート
+const sortedEntries = entries.sort((a: any, b: any) => (a.weight || 0) - (b.weight || 0));
 ---
 
-<nav role="navigation" aria-label={documentTypeText}>
+<nav role="navigation" aria-label="i18n__todo__Document_type">
   <ul class="g-nav" role="none">
-    {sortedSections.map(section => (
-      <li class="g-col" role="none">
-        <a 
-          href={section.relPermalink}
-          class={section.isCurrentSection ? "current" : ""}
-          aria-current={section.isCurrentSection ? "page" : undefined}
-        >
-          <span class="g-nav-title-wrap">
-            {getIcon(section.relPermalink) && (
-              <i class={`${getIcon(section.relPermalink)} gcol-title-icon`} aria-hidden="true"></i>
-            )}
-            {section.title}
-          </span>
-        </a>
-      </li>
+    {sortedEntries.map((entry: any) => (
+      entry.params?.weight !== 0 && (
+        <li class="g-col" role="none">
+          <a 
+            href={entry.relPermalink}
+            class={entry.currentSection === rootsect ? "current" : undefined}
+            aria-current={entry.currentSection === rootsect ? "page" : undefined}
+          >
+            <span class="g-nav-title-wrap">
+              <MegaNavGrTitleIcon targetlink={entry.relPermalink} />
+              <Title page={entry} env={env} />
+            </span>
+          </a>
+        </li>
+      )
     ))}
-    {faqLink && (
+    
+    {env.faqLink && (
       <li class="g-col" role="none">
-        <a href={faqLink} target="_blank">
+        <a href={env.faqLink} target="_blank">
           <span class="g-nav-title-wrap">
-            {headerNavFaqText}
+            <Wovn>i18n__Header_nav_faq</Wovn>
             <span class="g-nab-title-icon-right">
               <i class="fas fa-external-link-alt" aria-hidden="true"></i>
             </span>
@@ -100,86 +80,30 @@ const sortedSections = sections.filter(s => s.weight !== 0).sort((a, b) => a.wei
     )}
   </ul>
 
-  <div class={`mega-nav ${pageType === "gr6/home" ? "mega-nav-home" : ""}`}>
-    {secondItems > 0 && currentSection && (
-      <Fragment>
+  <div class={`mega-nav ${page.params?.type === "gr6/home" ? "mega-nav-home" : ""}`}>
+    {seconditems > 0 && (
+      <>
         <div class="mega-tab-wrap">
           <div class="mega-tab-head">
-            <h2 class="mega-tab-guide">{byFeaturesText}</h2>
+            <h2 class="mega-tab-guide">
+              <Wovn>i18n__By_features</Wovn>
+            </h2>
           </div>
           <div id="mega-tab-bar" class="mega-tab-bar">
-            <ul role="tablist">
-              {currentSection.pages.filter(p => p.weight !== 0).sort((a, b) => a.weight - b.weight).map((page, index) => {
-                const menuId = index + 1;
-                const isCurrent = secondSection?.relPermalink === page.relPermalink;
-                const tabIndex = index === 0 ? "0" : "-1";
-                
-                return (
-                  <li role="presentation">
-                    <button 
-                      class={`mega-tab ${isCurrent ? "current" : ""}`}
-                      id={`tab${menuId}`}
-                      tabindex={tabIndex}
-                      role="tab" 
-                      aria-controls={`panel${menuId}`}
-                      aria-selected={isCurrent ? "true" : "false"}
-                      aria-expanded="false"
-                    >
-                      {page.title}
-                      <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
+            {sortedEntries.map((entry: any) => (
+              entry.currentSection === rootsect && (
+                <MegaNavGrSectBar cursect={rootsect} secondsect={secondsect} env={env} />
+              )
+            ))}
           </div>
         </div>
 
-        {currentSection.pages.filter(p => p.weight !== 0).sort((a, b) => a.weight - b.weight).map((page, index) => {
-          const menuId = index + 1;
-          const icon = getIcon(page.relPermalink);
-          
-          return (
-            <div 
-              class="mega-panel" 
-              role="tabpanel" 
-              id={`panel${menuId}`}
-              aria-labelledby={`tab${menuId}`}
-            >
-              <div class="mega-title">
-                <h3>
-                  {!page.nolink ? (
-                    <a href={page.relPermalink}>
-                      <span class="fa-stack" tabindex="-1" aria-hidden="true">
-                        <i class="far fa-circle fa-stack-2x" aria-hidden="true"></i>
-                        {icon && <i class={`${icon} fa-stack-1x`} aria-hidden="true"></i>}
-                      </span>
-                      {page.title}
-                    </a>
-                  ) : (
-                    <Fragment>
-                      <span class="fa-stack" tabindex="-1" aria-hidden="true">
-                        <i class="far fa-circle fa-stack-2x" aria-hidden="true"></i>
-                        {icon && <i class={`${icon} fa-stack-1x`} aria-hidden="true"></i>}
-                      </span>
-                      {page.title}
-                    </Fragment>
-                  )}
-                </h3>
-              </div>
-              <ul class="mega-list">
-                {page.pages.map(subPage => (
-                  <li class="mega-list-line">
-                    <a class="mega-list-item" href={subPage.relPermalink}>
-                      {subPage.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          );
-        })}
-      </Fragment>
+        {sortedEntries.map((entry: any) => (
+          entry.currentSection === rootsect && (
+            <MegaNavGrMegaPanel cursect={rootsect} env={env} />
+          )
+        ))}
+      </>
     )}
   </div>
-</nav> 
+</nav>

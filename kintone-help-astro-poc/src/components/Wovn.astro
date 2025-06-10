@@ -1,5 +1,12 @@
 ---
-// TODO: 旧実装では Language Code によって wv-brk wv-brk-en になる
+interface Props {
+  langCode?: string;
+}
+
+const { langCode } = Astro.props;
+
+// langCode によって wv-brk wv-brk-en を切り替える
+const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 ---
 
-<span class="wv-brk"><slot /></span>
+<span class={className}><slot /></span> 

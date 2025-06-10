@@ -1,26 +1,28 @@
 ---
+import Wovn from './Wovn.astro';
+
 interface Props {
-  languageCode: string;
-  disclaimerText: string;
+  env: {
+    languageCode: string;
+  };
+  page: {
+    // 今回は使用しない
+  };
 }
 
-const { languageCode, disclaimerText } = Astro.props;
+const { env, page } = Astro.props;
 
-// PDF URLの生成
-function getDisclaimerPdfUrl(languageCode: string): string {
-  let pdfUrl = "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf";
-  
-  if (languageCode === "zh-cn" || languageCode === "zh-jp") {
-    pdfUrl = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf";
-  }
-  
-  return pdfUrl;
+// PDF URLの決定（DisclaimerPdfUrlコンポーネントのロジックを統合）
+let pdfUrl = "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf";
+
+if (env.languageCode === "zh-cn" || env.languageCode === "zh-jp") {
+  pdfUrl = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf";
 }
-
-const pdfUrl = getDisclaimerPdfUrl(languageCode);
 ---
 
 <li>
-  <a href={pdfUrl} target="_blank">{disclaimerText}</a>
+  <a href={pdfUrl} target="_blank">
+    <Wovn>i18n__MT_Disclaimer</Wovn>
+  </a>
   <i class="far fa-file-pdf index-pdf" aria-hidden="true"></i>
-</li> 
+</li>

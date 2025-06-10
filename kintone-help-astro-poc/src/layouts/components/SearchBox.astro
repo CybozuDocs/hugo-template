@@ -1,116 +1,146 @@
 ---
+import Wovn from './Wovn.astro';
+
 interface Props {
-  googleSearch?: boolean;
-  bingSearch?: boolean;
-  searchTabs?: string[];
-  isFullSize?: boolean;
-  placeholder?: string;
-  searchWordLabel: string;
-  searchLabel: string;
-  searchFilterLabel: string;
-  searchBingText?: string;
-  searchBingLegalText?: string;
-  searchBingLegalUrl?: string;
-  languageCode?: string;
+  env: {
+    googleSearch?: boolean;
+    bingSearch?: boolean;
+    googleSearchTabs?: string;
+    bingSearchTabs?: string;
+    product: string;
+  };
+  page: {
+    isHome: boolean;
+    lang: string;
+    params: {
+      type?: string;
+    };
+  };
 }
 
-const { 
-  googleSearch = false,
-  bingSearch = false,
-  searchTabs = [],
-  isFullSize = false,
-  placeholder = '',
-  searchWordLabel,
-  searchLabel,
-  searchFilterLabel,
-  searchBingText,
-  searchBingLegalText,
-  searchBingLegalUrl,
-  languageCode = 'en'
-} = Astro.props;
+const { env, page } = Astro.props;
 
-// 言語コードの調整
-let adjustedLangCode = languageCode;
-if (languageCode === 'zh') {
-  adjustedLangCode = 'zh-CN';
-} else if (languageCode === 'zh-tw') {
-  adjustedLangCode = 'zh-TW';
+// フィルターパラメータの処理
+let paramFilter = "";
+if (env.googleSearch) {
+  paramFilter = env.googleSearchTabs || "";
+} else if (env.bingSearch) {
+  paramFilter = env.bingSearchTabs || "";
 }
 
-const hasSearchTabs = searchTabs.length > 0;
-const buttonClass = hasSearchTabs ? 
-  `search-filter-current${isFullSize ? ' search-filter-current-top' : ''}` : 
-  '';
+// フィルター配列の生成
+let filter: string[] = [];
+if (paramFilter.length > 0) {
+  const trimmed = paramFilter.replace(/^\[/, '').replace(/\]$/, '');
+  filter = trimmed.split(',');
+}
+
+// フルサイズ判定
+const fullsize = page.isHome || page.params.type === "search_result";
+
+// プレースホルダーの決定
+let placeholder = "";
+if (env.product === "support_guide") {
+  placeholder = "i18n__todo__Enter_keywords";
+} else if (!fullsize) {
+  placeholder = "";
+} else {
+  placeholder = "i18n__todo__Search_example";
+}
+
+// Google言語コードの変換
+let glang = page.lang;
+if (glang === "zh") {
+  glang = "zh-CN";
+} else if (glang === "zh-tw") {
+  glang = "zh-TW";
+}
+
+// ロゴプレース
+const logoplace = fullsize ? "logo_place" : "search-input";
+
+// ボタンスタイルの決定
+let buttonstyle = "search-filter-current";
+if (fullsize) {
+  buttonstyle += " search-filter-current-top";
+}
 ---
 
 <div id="search" class="search-wrap" role="search">
   <div class="searchbox">
-    {hasSearchTabs && (
+    {paramFilter && (
       <button 
         id="search-filter-current" 
-        class={buttonClass}
-        title={searchFilterLabel}
+        class={buttonstyle} 
+        title="i18n__todo__Search_filter"
         aria-controls="search-filter-list" 
         aria-haspopup="listbox" 
         aria-expanded="false" 
         role="combobox"
       >
-        {searchTabs[0]}
+        {filter[0]?.replace(/^'|'$/g, '') || ''}
       </button>
     )}
     
-    {hasSearchTabs && (
-      <div 
-        id="search-filter-list" 
-        class="search-filter-list" 
-        aria-labelledby="search-filter-current" 
-        role="listbox" 
-        tabindex="-1"
-      >
-        <ul>
-          {searchTabs.map((tab, index) => (
-            <li 
-              class={`search-filter-item${index === 0 ? ' search-filter-selected' : ''}`}
-              data-listid={index}
-              role="option" 
-              aria-selected="false"
-            >
-              {tab}
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
+    <div 
+      id="search-filter-list" 
+      class="search-filter-list" 
+      aria-labelledby="search-filter-current" 
+      role="listbox" 
+      tabindex="-1"
+    >
+      <ul>
+        {filter.map((value, idx) => (
+          <li 
+            class={`search-filter-item${idx === 0 ? ' search-filter-selected' : ''}`}
+            listid={idx} 
+            role="option" 
+            aria-selected="false"
+          >
+            {value.replace(/^'|'$/g, '')}
+          </li>
+        ))}
+      </ul>
+    </div>
     
     <input 
       type="search" 
       id="search-input" 
       class="search-input" 
       placeholder={placeholder}
-      aria-label={searchWordLabel}
+      aria-label="i18n__todo__search_word"
     />
+    
     <button 
       class="search-submit" 
-      title={searchLabel}
-      aria-label={searchLabel}
+      title="i18n__todo__search"
+      aria-label="i18n__todo__search"
     ></button>
   </div>
   
-  {isFullSize && (
-    <div id="logo_place" class={`search-logo${bingSearch ? ' search-logo-bing' : ''}`}>
-      {bingSearch && searchBingText && searchBingLegalText && searchBingLegalUrl && (
+  {fullsize && (
+    <div 
+      id="logo_place" 
+      class={`search-logo${env.bingSearch ? ' search-logo-bing' : ''}`}
+    >
+      {env.bingSearch && (
         <span>
-          {searchBingText} (<a href={searchBingLegalUrl} target="_blank">{searchBingLegalText}</a>)
+          <Wovn>i18n__search_bing</Wovn>
+          {' ('}
+          <a href="https://www.microsoft.com/en-gb/privacy/privacystatement" target="_blank">
+            <Wovn>i18n__search_bing_legal</Wovn>
+          </a>
+          {')'}
         </span>
       )}
     </div>
   )}
 </div>
 
-{googleSearch && (
+{env.googleSearch && (
   <script 
     src="https://www.gstatic.com/prose/brand.js" 
-    data-targetid={isFullSize ? "logo_place" : "search-input"}
-    data-hl={adjustedLangCode}
+    data-target-id={logoplace} 
+    data-hl={glang}
   ></script>
-)} 
+)}

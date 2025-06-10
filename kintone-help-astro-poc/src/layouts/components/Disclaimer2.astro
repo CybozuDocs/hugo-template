@@ -1,5 +1,9 @@
 ---
-// 空のdisclaimer2コンポーネント
+import type { BaseProps } from './types';
+
+interface Props extends BaseProps {}
+
+const { env, page } = Astro.props;
 ---
 
 <div id="disclaimer2" class="disclaimer-note">

@@ -1,41 +1,57 @@
 ---
-interface PreviewPage {
-  title: string;
-  relPermalink: string;
-  weight?: number;
-}
-
-interface PreviewSection {
-  title: string;
-  relPermalink: string;
-  pages: PreviewPage[];
-  weight?: number;
-}
+import Title from './Title.astro';
 
 interface Props {
-  sections: PreviewSection[];
+  env: {
+    // Title コンポーネントで使用
+  };
+  page: {
+    sections: Array<{
+      relPermalink: string;
+      weight: number;
+      pages: Array<{
+        relPermalink: string;
+        weight: number;
+        [key: string]: any;
+      }>;
+      [key: string]: any;
+    }>;
+  };
 }
 
-const { sections } = Astro.props;
+const { env, page } = Astro.props;
 
-// 重み順でソート
-const sortedSections = sections.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+// セクションを重み順でソート
+const sortedSections = page.sections.sort((a, b) => {
+  const weightA = a.weight || 0;
+  const weightB = b.weight || 0;
+  return weightA - weightB;
+});
 ---
 
 <nav>
   <div class="preview_list_container">
-    {sortedSections.map(section => {
-      const sortedPages = section.pages.sort((a, b) => (a.weight || 0) - (b.weight || 0));
-      
+    {sortedSections.map((section) => {
+      // ページを重み順でソート
+      const sortedPages = section.pages.sort((a, b) => {
+        const weightA = a.weight || 0;
+        const weightB = b.weight || 0;
+        return weightA - weightB;
+      });
+
       return (
         <div class="preview_list_item" role="presentation">
           <div class="preview_list_title">
-            <a href={section.relPermalink} set:html={section.title} />
+            <a href={section.relPermalink}>
+              <Title env={env} page={section} />
+            </a>
           </div>
           <ul>
-            {sortedPages.map(page => (
+            {sortedPages.map((page) => (
               <li>
-                <a href={page.relPermalink} set:html={page.title} />
+                <a href={page.relPermalink}>
+                  <Title env={env} page={page} />
+                </a>
               </li>
             ))}
           </ul>
@@ -43,4 +59,4 @@ const sortedSections = sections.sort((a, b) => (a.weight || 0) - (b.weight || 0)
       );
     })}
   </div>
-</nav> 
+</nav>

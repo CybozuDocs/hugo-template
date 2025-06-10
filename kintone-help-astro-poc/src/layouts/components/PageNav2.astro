@@ -1,34 +1,32 @@
 ---
-interface PageNavItem {
-  title: string;
-  permalink: string;
-  isHome?: boolean;
-}
+import Wovn from './Wovn.astro';
+import type { BaseProps } from './types';
 
-interface Props {
-  nextPage?: PageNavItem;
-  prevPage?: PageNavItem;
-  previousPageText: string;
-  nextPageText: string;
-}
+interface Props extends BaseProps {}
 
-const { nextPage, prevPage, previousPageText, nextPageText } = Astro.props;
+const { page } = Astro.props;
 ---
 
 <nav class="pagination">
-  {!nextPage ? (
+  {page.siteNext === null ? (
     <div class="pagination-previous"></div>
   ) : (
-    <div class="pagination-previous">
-      <i class="fas fa-caret-left" aria-hidden="true"></i>
-      <a href={nextPage.permalink}>{previousPageText}</a>
-    </div>
+    page.siteNext && (
+      <div class="pagination-previous">
+        <i class="fas fa-caret-left" aria-hidden="true"></i>
+        <a href={page.siteNext.permalink}>
+          <Wovn>i18n__Previous_page</Wovn>
+        </a>
+      </div>
+    )
   )}
 
-  {prevPage && !prevPage.isHome && (
+  {page.sitePrev !== null && page.sitePrev && !page.sitePrev.isHome && (
     <div class="pagination-next">
-      <a href={prevPage.permalink}>{nextPageText}</a>
+      <a href={page.sitePrev.permalink}>
+        <Wovn>i18n__Next_page</Wovn>
+      </a>
       <i class="fas fa-caret-right" aria-hidden="true"></i>
     </div>
   )}
-</nav> 
+</nav>

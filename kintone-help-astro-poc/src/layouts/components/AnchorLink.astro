@@ -1,4 +1,6 @@
 ---
+import Wovn from './Wovn.astro';
+
 interface Props {
   level: number;
   link: string;
@@ -6,39 +8,33 @@ interface Props {
   title: string;
   attributes?: {
     class?: string;
+    [key: string]: any;
   };
-  permalinkText: string;
 }
 
-const { level, link, id, title, attributes = {}, permalinkText } = Astro.props;
+const { level, link, id, title, attributes = {} } = Astro.props;
 
-const showHeadingLink = level <= 5 && link !== "";
-const HeadingTag = `h${level}` as keyof HTMLElementTagNameMap;
+// 安全なHTMLを作成するための関数
+const safeHTML = (html: string) => html;
 ---
 
 <div class="adjustAnchor" id={id}>
-  <HeadingTag class={`h${level}-contents ${attributes.class || ''}`} data-pid={id} set:html={title} />
+  <Fragment set:html={`<h${level} class="h${level}-contents ${attributes.class || ''}" pid="${id}">${safeHTML(title)}</h${level}>`} />
 </div>
-
-{showHeadingLink && (
+{level <= 5 && link !== "" && (
   <div class="heading-link">
-    <button 
-      class="heading-button" 
-      tabindex="0" 
-      aria-owns={`heading-url-${id}`}
-      aria-expanded="false"
-    >
-      <span>{permalinkText}</span>
+    <button class="heading-button" tabindex="0" aria-owns={`heading-url-${id}`} aria-expanded="false">
+      <span><Wovn>i18n__Permalink</Wovn></span>
       <i class="fas fa-link" aria-hidden="true"></i>
     </button>
     <div id={`heading-url-${id}`} class="heading-url" aria-hidden="true">
       <input 
-        readonly 
-        value={`${link}#${id}`}
+        readonly="readonly" 
+        value={`${link}#${id}`} 
         name="headingUrl" 
         type="text" 
         onclick="this.focus(); this.select()"
       />
     </div>
   </div>
-)} 
+)}

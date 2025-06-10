@@ -1,16 +1,22 @@
 ---
-interface Props {
-  alias: string;
-  articleNumberText: string;
+import Wovn from './Wovn.astro';
+import type { BaseProps } from './types';
+
+interface Props extends BaseProps {}
+
+const { page } = Astro.props;
+
+// エイリアスから記事番号を抽出
+let docid = '';
+if (page.aliases && page.aliases.length > 0) {
+  const alias = page.aliases[0];
+  const parts = alias.split('/');
+  docid = parts[parts.length - 1];
 }
-
-const { alias, articleNumberText } = Astro.props;
-
-// ドキュメントIDの抽出
-const aliasParts = alias.split("/");
-const docid = aliasParts[aliasParts.length - 1];
 ---
 
-<div class="id-bar">
-  <div class="id-str">{articleNumberText}:{docid}</div>
-</div> 
+{docid && (
+  <div class="id-bar">
+    <div class="id-str"><Wovn>i18n__Article_number</Wovn>:{docid}</div>
+  </div>
+)}

@@ -1,36 +1,16 @@
 ---
-interface Translation {
-  lang: string;
-  relPermalink: string;
-  domain: string;
-}
+import type { BaseProps } from './types';
 
-interface AdditionalLanguage {
-  language_code: string;
-}
+interface Props extends BaseProps {}
 
-interface Props {
-  product: string;
-  targetRegion: string;
-  translations: Translation[];
-  currentRelPermalink: string;
-  disabled?: string[];
-  additionalLanguages?: AdditionalLanguage[];
-  serviceTypeId?: string;
-}
+const { env, page } = Astro.props;
 
-const { 
-  product, 
-  targetRegion, 
-  translations, 
-  currentRelPermalink,
-  disabled = [],
-  additionalLanguages = [],
-  serviceTypeId
-} = Astro.props;
+const product = env.product;
+const targetRegion = env.targetRegion;
 
-// 地域の設定
-let regions: string[] = ["JP", "US", "CN"];
+let regions = ["JP", "US", "CN"];
+const defLang = "en";
+
 if (targetRegion === "US") {
   regions = ["JP", "US"];
 } else if (targetRegion === "CN") {
@@ -45,111 +25,89 @@ if (product === "Garoon") {
   regions = ["jp"];
 }
 
-const defaultLang = "en";
+const disabled = page.params.disabled || [];
 
-// ドメインの取得
-function getDomain(region: string): string {
-  const lowerRegion = region.toLowerCase();
-  if (lowerRegion === "us") {
-    return "get.kintone.help";
-  } else if (lowerRegion === "cn") {
-    return "help.cybozu.cn";
-  }
-  return "jp.cybozu.help";
-}
-
-// 言語コードの調整
-function adjustLanguageCode(lang: string): string {
-  if (lang === "zh") {
-    return "zh-Hans";
-  } else if (lang === "zh-tw") {
-    return "zh-Hant";
-  }
-  return lang;
-}
-
-// 表示可否の判定
-function shouldDisplay(region: string, lang: string): boolean {
-  const lowerRegion = region.toLowerCase();
-  
-  if (lowerRegion === "cn") {
-    if (product === "Garoon" && serviceTypeId === "on-premise") {
-      return false;
-    }
-    if (lang === "zh-tw") {
-      return false;
-    }
-  }
-  
-  return true;
-}
-
-// WOVN用のURL生成
-function generateWovnUrl(relPermalink: string, languageCode: string): string {
-  const urlParts = relPermalink.split('/').filter(part => part !== '');
-  let newTarget = '';
-  
-  urlParts.forEach((part, index) => {
-    if (index === 1) { // 言語コード部分を置換
-      newTarget += `/${languageCode}`;
-      if (urlParts.length <= 3) {
-        newTarget += '/';
-        return;
-      }
-    } else {
-      newTarget += `/${part}`;
-    }
-  });
-  
-  return newTarget;
-}
-
-// デフォルト言語のalternateリンク
-const defaultTranslation = translations.find(t => t.lang === defaultLang);
-
-// 各地域・言語のalternateリンク
-const alternateLinks: Array<{href: string, hreflang: string}> = [];
-
-// デフォルト言語
-if (defaultTranslation) {
-  alternateLinks.push({
-    href: `https://${defaultTranslation.domain}${defaultTranslation.relPermalink}`,
-    hreflang: "x-default"
-  });
-}
-
-// 各地域の処理
-regions.forEach(region => {
-  if (disabled.includes(region)) return;
-  
-  const domain = getDomain(region);
-  const lowerRegion = region.toLowerCase();
-  
-  translations.forEach(translation => {
-    if (!shouldDisplay(region, translation.lang)) return;
-    
-    const adjustedLang = adjustLanguageCode(translation.lang);
-    const hreflang = `${adjustedLang}-${lowerRegion}`;
-    
-    alternateLinks.push({
-      href: `https://${domain}${translation.relPermalink}`,
-      hreflang
-    });
-  });
-  
-  // US地域の追加言語処理
-  if (lowerRegion === "us") {
-    additionalLanguages.forEach(lang => {
-      const newUrl = generateWovnUrl(currentRelPermalink, lang.language_code);
-      alternateLinks.push({
-        href: `https://${domain}${newUrl}`,
-        hreflang: lang.language_code
-      });
-    });
-  }
-});
+// language_list.jsonの読み込み
+import languageListData from '../data/language_list.json';
 ---
 
-{alternateLinks.map(link => (
-  <link rel="alternate" href={link.href} hreflang={link.hreflang} />
-))} 
+{page.allTranslations?.map((translation) => (
+  translation.lang === defLang && (
+    <link rel="alternate" href={`https://${env.domain}${translation.relPermalink}`} hreflang="x-default" />
+  )
+))}
+
+{regions.map((region) => {
+  if (disabled.includes(region)) {
+    return null;
+  }
+
+  const curRegion = region.toLowerCase();
+  let domain = "jp.cybozu.help";
+  
+  if (curRegion === "us") {
+    domain = "get.kintone.help";
+  } else if (curRegion === "cn") {
+    domain = "help.cybozu.cn";
+  }
+
+  return (
+    <>
+      {page.allTranslations?.map((translation) => {
+        let disp = true;
+        let thisLang = translation.lang;
+        
+        if (thisLang === "zh") {
+          thisLang = "zh-Hans";
+        } else if (thisLang === "zh-tw") {
+          thisLang = "zh-Hant";
+        }
+
+        if (curRegion === "cn") {
+          if (product === "Garoon" && env.serviceTypeId === "on-premise") {
+            disp = false;
+          }
+          if (translation.lang === "zh-tw") {
+            disp = false;
+          }
+        }
+
+        if (disp) {
+          const lang = `${thisLang}-${curRegion}`;
+          return (
+            <link rel="alternate" href={`https://${domain}${translation.relPermalink}`} hreflang={lang} />
+          );
+        }
+        return null;
+      })}
+
+      {curRegion === "us" && 
+        languageListData.languages.map((langItem: any) => {
+          const languageCode = langItem.language_code;
+          const urlParts = page.relPermalink.split("/");
+          let idx = 0;
+          let newTarget = "";
+          const partsLen = urlParts.length;
+          
+          urlParts.forEach((part: string) => {
+            if (part !== "") {
+              if (idx === 2) {
+                newTarget = `${newTarget}/${languageCode}`;
+                if (partsLen <= 4) {
+                  newTarget = `${newTarget}/`;
+                }
+              } else {
+                newTarget = `${newTarget}/${part}`;
+              }
+            }
+            idx++;
+          });
+          
+          return (
+            <link rel="alternate" href={`https://${domain}${newTarget}`} hreflang={languageCode} />
+          );
+        })
+      }
+    </>
+  );
+})}

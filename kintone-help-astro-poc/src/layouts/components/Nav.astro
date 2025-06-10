@@ -1,101 +1,22 @@
 ---
-interface NavItem {
-  title: string;
-  relPermalink: string;
-  isSection: boolean;
-  isHome?: boolean;
-  isAncestor?: boolean;
-  disabled?: string[];
-  children?: NavItem[];
-  pages?: NavItem[];
-  sections?: NavItem[];
-  weight?: number;
-}
+import Title from './Title.astro';
+import NavMainMenu from './NavMainMenu.astro';
+import type { BaseProps } from './types';
 
-interface Props {
-  entries: NavItem[];
-  currentPage: NavItem;
-  targetRegion?: string;
-}
+interface Props extends BaseProps {}
 
-const { entries, currentPage, targetRegion = "" } = Astro.props;
+const { env, page } = Astro.props;
 
-// 重み順でソート
-const sortedEntries = entries.sort((a, b) => (a.weight || 0) - (b.weight || 0));
-
-function renderMainMenu(curnode: NavItem, target: NavItem): any {
-  // 地域による無効化チェック
-  if (curnode.disabled && curnode.disabled.includes(targetRegion)) {
-    return null;
-  }
-
-  if (curnode.isSection) {
-    // セクションの場合
-    const pages = curnode.isHome ? [] : (curnode.pages || []);
-    const sections = curnode.sections || [];
-    const numberOfPages = pages.length + sections.length;
-    
-    const isAncestorOrCurrent = curnode.isAncestor || curnode.relPermalink === target.relPermalink;
-    const isCurrent = curnode.relPermalink === target.relPermalink;
-    
-    // エントリーの結合とソート
-    let allEntries = [...pages, ...sections];
-    allEntries = allEntries.sort((a, b) => (a.weight || 0) - (b.weight || 0));
-    
-    return (
-      <li>
-        <div class="category">
-          <span class="navi-icon">
-            {isAncestorOrCurrent ? (
-              <i class="fa fa-chevron-down"></i>
-            ) : (
-              <i class="fa fa-chevron-right"></i>
-            )}
-          </span>
-          {isCurrent ? (
-            <a 
-              href="#" 
-              class={`current${isAncestorOrCurrent ? ' expand' : ''}`}
-            >
-              <span set:html={curnode.title} />
-            </a>
-          ) : (
-            <a 
-              href={curnode.relPermalink}
-              class={isAncestorOrCurrent ? 'expand' : ''}
-            >
-              <span set:html={curnode.title} />
-            </a>
-          )}
-        </div>
-        {numberOfPages > 0 && (
-          <ul class={isAncestorOrCurrent ? 'opened' : ''}>
-            {allEntries.map(entry => renderMainMenu(entry, target))}
-          </ul>
-        )}
-      </li>
-    );
-  } else {
-    // ページの場合
-    const isCurrent = curnode.relPermalink === target.relPermalink;
-    
-    return (
-      <li>
-        <span class="navi-sp">
-          {isCurrent ? (
-            <a href="#" class="current" aria-current="page" set:html={curnode.title} />
-          ) : (
-            <a href={curnode.relPermalink} set:html={curnode.title} />
-          )}
-        </span>
-      </li>
-    );
-  }
-}
+const entries = env.siteHomeSections || [];
+const target = page;
 ---
 
 <div id="mainmenu">
   <ul id="navi">
-    {sortedEntries.map(entry => renderMainMenu(entry, currentPage))}
+    {entries
+      .sort((a, b) => (a.weight || 0) - (b.weight || 0))
+      .map((entry) => (
+        <NavMainMenu curnode={entry} target={target} env={env} />
+      ))}
   </ul>
-</div> 
+</div>

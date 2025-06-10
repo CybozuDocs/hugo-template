@@ -1,34 +1,39 @@
 ---
+import type { ReplaceParams } from './types';
+
 interface Props {
   target: string;
-  params: Record<string, any>;
+  params: ReplaceParams;
 }
 
 const { target, params } = Astro.props;
 
-function applyParams(target: string, params: Record<string, any>): string {
-  let result = target;
-  
-  // 各パラメータを順次適用
-  result = result.replace(/{{<\s*kintone\s*>}}/g, params.kintone || '');
-  result = result.replace(/{{<\s*service\s*>}}/g, params.service || '');
-  result = result.replace(/{{<\s*store\s*>}}/g, params.store || '');
-  result = result.replace(/{{<\s*cybozu_com\s*>}}/g, params.cybozu_com || '');
-  result = result.replace(/{{<\s*slash_help\s*>}}/g, params.slash_help || '');
-  result = result.replace(/{{<\s*slash\s*>}}/g, params.slash || '');
-  result = result.replace(/{{<\s*CorpName\s*>}}/g, params.CorpName || '');
-  result = result.replace(/{{<\s*product\s*>}}/g, params.product || '');
-  result = result.replace(/{{<\s*service_type\s*>}}/g, params.service_type || '');
-  result = result.replace(/{{<\s*help\s*>}}/g, params.help || '');
-  result = result.replace(/{{<\s*product_name\s*>}}/g, params.product_name || '');
-  result = result.replace(/{{<\s*slash_ui\s*>}}/g, params.slash_ui || '');
-  result = result.replace(/{{<\s*slash_administrators\s*>}}/g, params.slash_administrators || '');
-  result = result.replace(/{{<\s*slash_service_name\s*>}}/g, params.slash_service_name || '');
-  
-  return result;
-}
+// パラメータ置換処理
+let result = target;
 
-const processedContent = applyParams(target, params);
+// 各パラメータを順番に置換
+const replacements = [
+  { pattern: /{{<\s*kintone\s*>}}/g, value: params.kintone },
+  { pattern: /{{<\s*service\s*>}}/g, value: params.service },
+  { pattern: /{{<\s*store\s*>}}/g, value: params.store },
+  { pattern: /{{<\s*cybozu_com\s*>}}/g, value: params.cybozu_com },
+  { pattern: /{{<\s*slash_help\s*>}}/g, value: params.slash_help },
+  { pattern: /{{<\s*slash\s*>}}/g, value: params.slash },
+  { pattern: /{{<\s*CorpName\s*>}}/g, value: params.CorpName },
+  { pattern: /{{<\s*product\s*>}}/g, value: params.product },
+  { pattern: /{{<\s*service_type\s*>}}/g, value: params.service_type },
+  { pattern: /{{<\s*help\s*>}}/g, value: params.help },
+  { pattern: /{{<\s*product_name\s*>}}/g, value: params.product_name },
+  { pattern: /{{<\s*slash_ui\s*>}}/g, value: params.slash_ui },
+  { pattern: /{{<\s*slash_administrators\s*>}}/g, value: params.slash_administrators },
+  { pattern: /{{<\s*slash_service_name\s*>}}/g, value: params.slash_service_name },
+];
+
+replacements.forEach(({ pattern, value }) => {
+  if (value !== undefined) {
+    result = result.replace(pattern, value);
+  }
+});
 ---
 
-<Fragment set:html={processedContent} /> 
+{result} 
