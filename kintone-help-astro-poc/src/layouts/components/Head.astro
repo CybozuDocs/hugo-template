@@ -140,147 +140,141 @@ const processChatSettings = () => {
 const activeChatTargets = processChatSettings();
 ---
 
-<!DOCTYPE html>
-<html lang={env.languageCode} prefix="og: https://ogp.me/ns#">
-  <head>
-    {env.useWovn && (
-      <script src={wovnConfig()} async></script>
+{env.useWovn && (
+  <script src={wovnConfig()} async></script>
+)}
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+<meta name="date" content={buildnum} scheme="YYYYMMDD" />
+<meta name="cy-template-version" content={templateVersion} />
+<meta name="cy-product-name" content={env.product} />
+<meta name="cy-region" content={env.targetRegion} />
+
+<title>{title}</title>
+<link rel="canonical" href={`https://${env.domain}${page.permalink}`} />
+
+{shouldNoIndex && (
+  <meta name="robots" content="noindex,nofollow" />
+)}
+
+<meta name="description" content={description} />
+<meta name="thumbnail" content={`https://${env.domain}${env.ogImg}`} />
+
+{/* Open Graph タグ */}
+<meta property="og:url" content={`https://${env.domain}${page.permalink}`} />
+<meta property="og:type" content={page.isHome ? "website" : "article"} />
+<meta property="og:site_name" content={sitename} />
+<meta property="og:title" content={title} />
+<meta property="og:image" content={`https://${env.domain}${env.ogImg}`} />
+<meta property="og:description" content={description} />
+<meta property="og:locale" content={env.languageCode} />
+
+{/* モバイル設定 */}
+<meta name="apple-mobile-web-app-title" content={title} />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+{/* AlternateLink コンポーネント */}
+{!['Office', 'Mailwise', 'Remote'].includes(env.product) && (
+  <AlternateLink env={env} page={page} />
+)}
+
+{/* ファビコン */}
+<link rel="shortcut icon" type="image/x-icon" href={env.favicon || "favicon.ico"} />
+<link rel="icon" type="image/x-icon" href={env.favicon || "favicon.ico"} />
+
+{/* US地域の設定 */}
+{env.targetRegion === "US" && (
+  <>
+    <link rel="stylesheet" href="https://use.typekit.net/fmt1ojn.css" />
+    {/* TODO: 本番環境判定 */}
+    <!-- OneTrust Cookies Consent Notice start -->
+    <script type="text/javascript" src="https://cookie-cdn.cookiepro.com/consent/9d6098cc-90be-4d07-a9ef-6e07312a3016/OtAutoBlock.js"></script>
+    <script src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js" type="text/javascript" charset="UTF-8" data-domain-script="9d6098cc-90be-4d07-a9ef-6e07312a3016"></script>
+    <script type="text/javascript">
+    function OptanonWrapper() { }
+    </script>
+    <!-- OneTrust Cookies Consent Notice end -->
+  </>
+)}
+
+{/* CSS ファイル */}
+<link rel="stylesheet" href={`/k/stylesheets/application.css?${buildnum}`} />
+<link rel="stylesheet" href="/k/stylesheets/zoom.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+{templateVersion === "2" ? (
+  <>
+    <link rel="stylesheet" href={`/k/stylesheets/application2.css?${buildnum}`} />
+    <link rel="stylesheet" href={`/k/stylesheets/searchbox.css?${buildnum}`} />
+    <link rel="stylesheet" href={`/k/stylesheets/footer.css?${buildnum}`} />
+    {page.isHome && (
+      <link rel="stylesheet" href={`/k/stylesheets/toppage2.css?${buildnum}`} />
     )}
+  </>
+) : (
+  page.isHome && (
+    <link rel="stylesheet" href={`stylesheets/home.css?${buildnum}`} />
+  )
+)}
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=11" />
-    <meta name="date" content={buildnum} scheme="YYYYMMDD" />
-    <meta name="cy-template-version" content={templateVersion} />
-    <meta name="cy-product-name" content={env.product} />
-    <meta name="cy-region" content={env.targetRegion} />
+{page.params.type === "search_result" && (
+  <link rel="stylesheet" href={`stylesheets/search_result.css?${buildnum}`} />
+)}
 
-    <title>{title}</title>
-    <link rel="canonical" href={`https://${env.domain}${page.permalink}`} />
-    
-    {shouldNoIndex && (
-      <meta name="robots" content="noindex,nofollow" />
+{page.params.type === "gr/section_top_video" && (
+  <link rel="stylesheet" href={`stylesheets/video_list.css?${buildnum}`} />
+)}
+
+{/* カスタムCSS */}
+{env.customCss && (
+  env.customCss.split(',').map((cssFile: string) => (
+    <link rel="stylesheet" href={`${cssFile.trim()}?${buildnum}`} />
+  ))
+)}
+
+{/* JavaScript ファイル */}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
+<script is:inline src="/k/javascripts/zoom.js"></script>
+<script is:inline src={`/k/javascripts/preload.js?${buildnum}`}></script>
+<script is:inline src={`/k/javascripts/application.js?${buildnum}`}></script>
+<script is:inline src={`/k/javascripts/langselector.js?${buildnum}`}></script>
+
+{env.meganav && (
+  <script is:inline src={`/k/javascripts/meganav.js?${buildnum}`}></script>
+)}
+
+{page.params.type === "gr6/home" && (
+  <script is:inline src={`/k/javascripts/custom_gr6.js?${buildnum}`}></script>
+)}
+
+{templateVersion === "2" && (
+  <>
+    <script is:inline src={`/k/javascripts/searchbox.js?${buildnum}`}></script>
+    {page.isHome && (
+      <script is:inline src={`/k/javascripts/toppage2.js?${buildnum}`}></script>
     )}
-    
-    <meta name="description" content={description} />
-    <meta name="thumbnail" content={`https://${env.domain}${env.ogImg}`} />
-    
-    {/* Open Graph タグ */}
-    <meta property="og:url" content={`https://${env.domain}${page.permalink}`} />
-    <meta property="og:type" content={page.isHome ? "website" : "article"} />
-    <meta property="og:site_name" content={sitename} />
-    <meta property="og:title" content={title} />
-    <meta property="og:image" content={`https://${env.domain}${env.ogImg}`} />
-    <meta property="og:description" content={description} />
-    <meta property="og:locale" content={env.languageCode} />
-    
-    {/* モバイル設定 */}
-    <meta name="apple-mobile-web-app-title" content={title} />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  </>
+)}
 
-    {/* AlternateLink コンポーネント */}
-    {!['Office', 'Mailwise', 'Remote'].includes(env.product) && (
-      <AlternateLink env={env} page={page} />
-    )}
+{needsVue && (
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.8/vue.global.prod.min.js"></script>
+)}
 
-    {/* ファビコン */}
-    <link rel="shortcut icon" type="image/x-icon" href={env.favicon || "favicon.ico"} />
-    <link rel="icon" type="image/x-icon" href={env.favicon || "favicon.ico"} />
+{/* Google Tag Manager */}
+<Gtm key="GTM-5ZR5GF" />
+<Gtm key="GTM-5N49D3" />
+{env.product === "kintone" && env.targetRegion === "JP" && (
+  <Gtm key="GTM-K98FR27D" />
+)}
 
-    {/* US地域の設定 */}
-    {env.targetRegion === "US" && (
-      <>
-        <link rel="stylesheet" href="https://use.typekit.net/fmt1ojn.css" />
-        {/* TODO: 本番環境判定 */}
-        <!-- OneTrust Cookies Consent Notice start -->
-        <script type="text/javascript" src="https://cookie-cdn.cookiepro.com/consent/9d6098cc-90be-4d07-a9ef-6e07312a3016/OtAutoBlock.js"></script>
-        <script src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js" type="text/javascript" charset="UTF-8" data-domain-script="9d6098cc-90be-4d07-a9ef-6e07312a3016"></script>
-        <script type="text/javascript">
-        function OptanonWrapper() { }
-        </script>
-        <!-- OneTrust Cookies Consent Notice end -->
-      </>
-    )}
-
-    {/* CSS ファイル */}
-    <link rel="stylesheet" href={`stylesheets/application.css?${buildnum}`} />
-    <link rel="stylesheet" href="stylesheets/zoom.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
-    {templateVersion === "2" ? (
-      <>
-        <link rel="stylesheet" href={`stylesheets/application2.css?${buildnum}`} />
-        <link rel="stylesheet" href={`stylesheets/searchbox.css?${buildnum}`} />
-        <link rel="stylesheet" href={`stylesheets/footer.css?${buildnum}`} />
-        {page.isHome && (
-          <link rel="stylesheet" href={`stylesheets/toppage2.css?${buildnum}`} />
-        )}
-      </>
-    ) : (
-      page.isHome && (
-        <link rel="stylesheet" href={`stylesheets/home.css?${buildnum}`} />
-      )
-    )}
-
-    {page.params.type === "search_result" && (
-      <link rel="stylesheet" href={`stylesheets/search_result.css?${buildnum}`} />
-    )}
-
-    {page.params.type === "gr/section_top_video" && (
-      <link rel="stylesheet" href={`stylesheets/video_list.css?${buildnum}`} />
-    )}
-
-    {/* カスタムCSS */}
-    {env.customCss && (
-      env.customCss.split(',').map((cssFile: string) => (
-        <link rel="stylesheet" href={`${cssFile.trim()}?${buildnum}`} />
-      ))
-    )}
-
-    {/* JavaScript ファイル */}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
-    <script src="javascripts/zoom.js"></script>
-    <script src={`javascripts/preload.js?${buildnum}`}></script>
-    <script src={`javascripts/application.js?${buildnum}`}></script>
-    <script src={`javascripts/langselector.js?${buildnum}`}></script>
-
-    {env.meganav && (
-      <script src={`javascripts/meganav.js?${buildnum}`}></script>
-    )}
-
-    {page.params.type === "gr6/home" && (
-      <script src={`javascripts/custom_gr6.js?${buildnum}`}></script>
-    )}
-
-    {templateVersion === "2" && (
-      <>
-        <script src={`javascripts/searchbox.js?${buildnum}`}></script>
-        {page.isHome && (
-          <script src={`javascripts/toppage2.js?${buildnum}`}></script>
-        )}
-      </>
-    )}
-
-    {needsVue && (
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.8/vue.global.prod.min.js"></script>
-    )}
-
-    {/* Google Tag Manager */}
-    <Gtm key="GTM-5ZR5GF" />
-    <Gtm key="GTM-5N49D3" />
-    {env.product === "kintone" && env.targetRegion === "JP" && (
-      <Gtm key="GTM-K98FR27D" />
-    )}
-
-    {/* Zendesk チャット */}
-    {activeChatTargets.map((target) => (
-      <Fragment>
-        <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=6549c743-a6eb-40ac-a71f-c479b0759f1c"></script>
-        {/* TODO: チャットメニューの設定 */}
-      </Fragment>
-    ))}
-
-  </head>
-  <body class={`font-${page.lang}`}>
+{/* Zendesk チャット */}
+{activeChatTargets.map((target) => (
+  <Fragment>
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=6549c743-a6eb-40ac-a71f-c479b0759f1c"></script>
+    {/* TODO: チャットメニューの設定 */}
+  </Fragment>
+))}

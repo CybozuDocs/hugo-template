@@ -35,11 +35,11 @@ type Props = MarkdownLayoutProps<{
 
 const {
   frontmatter, 
-  targetRegion = "US",
+  targetRegion,
   meganav = false,
   jsonTree = false,
   product = "",
-  languageCode = "en-us",
+  languageCode = "ja",
   useWovn = false,
   idSearch = false,
   tocInTree = false,
@@ -96,7 +96,6 @@ const isGaroonNonJapanese = product === "Garoon" &&
   </head>
   <!-- TODO: フォントサイズの指定を再現する -->
   <body class="font-{{.Lang}}">
-
       {isDisabled ? (
         <meta http-equiv="refresh" content="0; URL=/" />
       ) : (

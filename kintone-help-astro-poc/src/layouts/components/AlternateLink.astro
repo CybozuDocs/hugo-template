@@ -27,8 +27,20 @@ if (product === "Garoon") {
 
 const disabled = page.params.disabled || [];
 
-// language_list.jsonの読み込み
-import languageListData from '../data/language_list.json';
+// TODO: language_list.jsonの読み込みに切り替える必要があるかも
+// import languageListData from '../data/language_list.json';
+const languageListData = {
+  "languages": [
+    {
+        "display_name": "Español",
+        "language_code": "es"
+    },
+    {
+        "display_name": "ไทย",
+        "language_code": "th"
+    }
+  ]
+} as const;
 ---
 
 {page.allTranslations?.map((translation) => (
@@ -94,10 +106,10 @@ import languageListData from '../data/language_list.json';
               if (idx === 2) {
                 newTarget = `${newTarget}/${languageCode}`;
                 if (partsLen <= 4) {
-                  newTarget = `${newTarget}/`;
+                  newTarget = `${newTarget}/`
                 }
               } else {
-                newTarget = `${newTarget}/${part}`;
+                newTarget = `${newTarget}/${part}`
               }
             }
             idx++;
