@@ -64,7 +64,7 @@ const isGaroonNonJapanese = product === "Garoon" &&
 <!-- TODO: {{.Site.LanguageCode}} を置き換える -->
 <html lang="ja" prefix="og: https://ogp.me/ns#">
   <head>
-    <Head site={{ params: {} }} />
+    <Head env={Astro.env} page={Astro.page} />
   </head>
   <!-- TODO: フォントサイズの指定を再現する -->
   <body class="font-{{.Lang}}">
