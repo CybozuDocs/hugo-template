@@ -64,11 +64,34 @@ Hugo ベースのドキュメントテンプレートシステムです。現在
 
 kintone-help-astro-poc/ ディレクトリ配下が移行後の Astro によるプロジェクトです。
 
-Hugo から Astro への移行作業を行う際は、kintone-help-astro-poc/migration-docs/ 配下に、作業ごとにディレクトリを作成し、次のファイルを作成してください。
+## 重要：移行作業時の必須ドキュメント作成
 
-- plan.md : 詳細な実行プラン
-- prompt.md : ユーザーからの指示と、それに対する回答の履歴
+Hugo から Astro への移行作業を行う際は、**必ず以下のドキュメントを作成してください**：
 
-また、Astro での開発における全般的なルールについては、kintone-help-astro-poc/migration-docs/rules.md にナレッジとして記録してください。
+### 1. 作業ごとのドキュメント作成
+kintone-help-astro-poc/migration-docs/ 配下に、作業ごとにディレクトリを作成し、次のファイルを作成：
+
+- **plan.md** : 詳細な実行プラン（作業開始前に作成）
+- **prompt.md** : ユーザーからの指示と、それに対する回答の履歴（作業完了時に作成）
+
+例：環境変数移行の場合
+```
+kintone-help-astro-poc/migration-docs/env-variables/
+├── plan.md    # 環境変数移行の実行プラン
+└── prompt.md  # 作業履歴
+```
+
+### 2. 全般的なルールの記録
+Astro での開発における全般的なルールについては、kintone-help-astro-poc/migration-docs/rules.md にナレッジとして記録してください。
 rules.md には移行作業が完了した後も参照可能なナレッジのみを記載します。
-移行作業全体に関する進行状況やメモについては、migrate.memo.md に記載してください。
+
+### 3. 進行状況の記録
+移行作業全体に関する進行状況やメモについては、migrate-memo.md に記載してください。
+
+## ドキュメント作成を忘れないために
+
+作業開始時にTodoリストを作成し、以下のタスクを必ず含めてください：
+1. migration-docs/{作業名}/ ディレクトリの作成
+2. plan.md の作成
+3. prompt.md の作成
+4. rules.md の更新（必要に応じて）

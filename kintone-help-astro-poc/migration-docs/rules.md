@@ -318,6 +318,141 @@ const safeItems = Array.isArray(items) ? items : [];
 - **移行計画**: `migration-docs/migrate-partials/plan.md`
 - **プロジェクト概要**: `CLAUDE.md`
 
+## 環境変数管理
+
+### 1. 環境変数ファイル構成
+
+#### .env ファイル
+Astro の標準的な環境変数システムを使用：
+
+```bash
+# サイト基本設定
+PUBLIC_BASE_URL=https://jp.cybozu.help/k/
+PUBLIC_TEMPLATE_VERSION=2
+PUBLIC_PRODUCT=kintone
+
+# 言語別設定（接尾辞で管理）
+PUBLIC_PRODUCT_NAME_JA=kintone
+PUBLIC_PRODUCT_NAME_EN=kintone
+PUBLIC_HELP_JA=ヘルプ
+PUBLIC_HELP_EN=Help
+```
+
+#### 命名規則
+- **PUBLIC_** プレフィックス: クライアント側でアクセス可能な環境変数
+- **大文字スネークケース**: PUBLIC_VARIABLE_NAME
+- **言語接尾辞**: _JA, _EN, _ZH, _ZH_TW
+
+### 2. TypeScript 型定義 (env.d.ts)
+
+```typescript
+/// <reference types="astro/client" />
+
+interface ImportMetaEnv {
+  // サイト基本設定
+  readonly PUBLIC_BASE_URL: string;
+  readonly PUBLIC_TEMPLATE_VERSION: string;
+  // ... 他の環境変数
+  
+  // 動的に生成される言語固有の設定用
+  [key: string]: string | undefined;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
+```
+
+### 3. 環境変数ローダー (src/lib/env.ts)
+
+#### 基本構成
+```typescript
+// 言語固有の環境変数を取得
+export const getLocalizedEnvValue = (key: string, langCode: string): string => {
+  const langSuffix = langCode.toUpperCase().replace('-', '_');
+  const localizedKey = `PUBLIC_${key}_${langSuffix}`;
+  const defaultKey = `PUBLIC_${key}_JA`; // デフォルトは日本語
+  
+  return import.meta.env[localizedKey] || 
+         import.meta.env[defaultKey] || 
+         import.meta.env[`PUBLIC_${key}`] || '';
+};
+
+// 環境変数から設定オブジェクトを構築
+export const buildEnvConfig = (options: {
+  languageCode?: string;
+  product?: string;
+  targetRegion?: string;
+  useWovn?: boolean;
+  meganav?: boolean;
+} = {}) => {
+  // ... 実装
+};
+
+// 型定義のエクスポート
+export type EnvConfig = ReturnType<typeof buildEnvConfig>;
+```
+
+### 4. コンポーネントでの使用パターン
+
+#### レイアウトコンポーネント
+```astro
+---
+import { buildEnvConfig } from "../lib/env.js";
+
+const envConfig = buildEnvConfig({
+  languageCode,
+  product,
+  targetRegion,
+  useWovn,
+  meganav
+});
+---
+
+<Head env={envConfig} page={Astro.url} />
+```
+
+#### 子コンポーネント
+```astro
+---
+interface Props {
+  env: {
+    product: string;
+    baseURL: string;
+    // 必要なプロパティのみ定義
+  };
+}
+
+const { env } = Astro.props;
+---
+
+<div>{env.product}</div>
+```
+
+### 5. 環境変数のベストプラクティス
+
+#### デフォルト値の設定
+```typescript
+// 環境変数が未定義の場合は空文字列を返す
+const value = import.meta.env.PUBLIC_SOME_VALUE || '';
+
+// 言語固有の値が見つからない場合は日本語設定をフォールバック
+const localizedValue = getLocalizedEnvValue('PRODUCT_NAME', langCode);
+```
+
+#### ブール値の扱い
+```typescript
+// 文字列として保存されるため、明示的な変換が必要
+const isEnabled = import.meta.env.PUBLIC_FEATURE_FLAG === 'true';
+```
+
+#### 配列やオブジェクトの扱い
+```typescript
+// JSON 文字列として保存し、パース
+const colors = JSON.parse(import.meta.env.PUBLIC_LABEL_COLORS || '[]');
+```
+
 ## 更新履歴
 
 - 2024年12月 - 初版作成（Hugo → Astro 移行ルール確立）
+- 2025年1月 - 環境変数管理セクション追加
