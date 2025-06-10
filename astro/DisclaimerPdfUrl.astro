@@ -1,0 +1,20 @@
+---
+interface Props {
+  languageCode: string;
+}
+
+const { languageCode } = Astro.props;
+
+// PDF URLの決定
+let pdfUrl = "https://cybozu.co.jp/spec/pdf/machine-translation-english.pdf";
+
+if (languageCode === "zh-cn" || languageCode === "zh-jp") {
+  pdfUrl = "https://cybozu.co.jp/spec/pdf/machine-translation-chinise.pdf";
+}
+
+// このコンポーネントは URL を返すためのユーティリティコンポーネント
+// 実際の使用では、この値を他のコンポーネントで利用する
+export { pdfUrl };
+---
+
+<!-- このコンポーネントは値を返すためのものなので、HTMLは出力しない -->

@@ -1,0 +1,32 @@
+---
+import Wovn from './Wovn.astro';
+import type { BaseProps } from './types';
+
+interface Props extends BaseProps {}
+
+const { page } = Astro.props;
+---
+
+<nav class="pagination">
+  {page.siteNext === null ? (
+    <div class="pagination-previous"></div>
+  ) : (
+    page.siteNext && (
+      <div class="pagination-previous">
+        <i class="fas fa-caret-left" aria-hidden="true"></i>
+        <a href={page.siteNext.permalink}>
+          <Wovn>i18n__Previous_page</Wovn>
+        </a>
+      </div>
+    )
+  )}
+
+  {page.sitePrev !== null && page.sitePrev && !page.sitePrev.isHome && (
+    <div class="pagination-next">
+      <a href={page.sitePrev.permalink}>
+        <Wovn>i18n__Next_page</Wovn>
+      </a>
+      <i class="fas fa-caret-right" aria-hidden="true"></i>
+    </div>
+  )}
+</nav>

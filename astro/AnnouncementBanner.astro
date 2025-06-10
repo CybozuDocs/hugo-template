@@ -1,0 +1,39 @@
+---
+import Wovn from './Wovn.astro';
+import MakeAnnounceBanner from './MakeAnnounceBanner.astro';
+
+interface Props {
+  env: {
+    lang: string;
+    targetRegion: string;
+  };
+  page: {
+    // 今回は使用しない
+  };
+}
+
+const { env, page } = Astro.props;
+
+// デフォルトのメッセージ
+const defaultMsg = [
+  "session-notice-1",
+  "#f9aeb6", 
+  "fas fa-exclamation-triangle",
+  "#cd1b49",
+  "i18n__Unsupported_browser",
+  "i18n__Unsupported_message"
+];
+
+// CSVファイルの読み込み（静的な実装）
+const announcementfile = `csv/${env.lang}/announcement_${env.targetRegion}.csv`;
+let csvData = [];
+
+// TODO: 実際のCSVファイル読み込み処理を実装
+// 現在は静的な実装のため、CSVファイルの動的読み込みは未実装
+---
+
+<MakeAnnounceBanner data={defaultMsg} />
+
+{csvData.map((row) => (
+  <MakeAnnounceBanner data={row} />
+))}

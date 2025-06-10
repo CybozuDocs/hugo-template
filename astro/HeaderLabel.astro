@@ -1,0 +1,47 @@
+---
+interface Props {
+  env: {
+    labelColors?: string[];
+    labelLead?: string;
+    labelContents?: string[];
+  };
+  page: {
+    params: {
+      labels?: string[];
+    };
+  };
+}
+
+const { env, page } = Astro.props;
+
+const labels = page.params.labels;
+const labelColors = env.labelColors;
+const labelLead = env.labelLead;
+const labelContents = env.labelContents;
+
+// ラベルが存在し、設定も存在する場合のみ表示
+const shouldRender = labels && labelContents;
+
+// ラベルデータの処理
+const processedLabels = shouldRender ? labels.map((label: string) => {
+  const labelidx = parseInt(label) - 1; // 1-based to 0-based index
+  const labelcontent = labelContents[labelidx];
+  const color = labelColors ? labelColors[labelidx] : '';
+  
+  return labelcontent ? { content: labelcontent, color } : null;
+}).filter(Boolean) : [];
+---
+
+{shouldRender && processedLabels.length > 0 && (
+  <div class="header-label-bar">
+    <span class="header-label-lead">{labelLead}:</span>
+    {processedLabels.map((label: any, index: number) => (
+      <span 
+        class="header-label" 
+        style={`background-color: ${label.color}`}
+      >
+        {label.content}
+      </span>
+    ))}
+  </div>
+)}

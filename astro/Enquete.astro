@@ -1,0 +1,58 @@
+---
+import Wovn from './Wovn.astro';
+
+interface Props {
+  env: {
+    previewSite?: boolean;
+    baseURL: string;
+  };
+  page: {
+    // 今回は使用しない
+  };
+}
+
+const { env, page } = Astro.props;
+
+// ビルド番号の生成（日付ベース）
+const buildnum = new Date().toISOString().slice(0, 10).replace(/-/g, '') + 
+                 new Date().getHours().toString().padStart(2, '0');
+
+// スクリプトURL（相対URL処理）
+const scriptUrl = `javascripts/enquete.js?${buildnum}`;
+---
+
+{!env.previewSite && (
+  <>
+    <aside id="enquete">
+      <div class="enquete-panel">
+        <div>
+          <Wovn>i18n__Was_it_helpful</Wovn>
+          <button 
+            class="close-enquete" 
+            id="close-enquete" 
+            title="i18n__todo__Close"
+          >
+            <i class="far fa-window-close"></i>
+          </button>
+        </div>
+        <div class="enquete-btn-wrap">
+          <button 
+            class="enquete-btn" 
+            id="feedback-yes" 
+            aria-label="i18n__todo__Yes"
+          >
+            <Wovn>i18n__Yes</Wovn>
+          </button>
+          <button 
+            class="enquete-btn" 
+            id="feedback-no" 
+            aria-label="i18n__todo__No"
+          >
+            <Wovn>i18n__No</Wovn>
+          </button>
+        </div>
+      </div>
+    </aside>
+    <script src={scriptUrl}></script>
+  </>
+)}

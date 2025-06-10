@@ -1,0 +1,55 @@
+---
+import Wovn from './Wovn.astro';
+import Title from './Title.astro';
+
+interface Props {
+  env: {
+    targetRegion: string;
+    regularPages: any[];
+  };
+  page: {
+    // related機能で使用される現在のページ情報
+    [key: string]: any;
+  };
+}
+
+const { env, page } = Astro.props;
+
+// TODO: Hugo の Related 機能の実装
+// 現在は簡易実装（空配列）
+const related = env.regularPages?.slice(0, 5) || [];
+
+// 無効化されていないページのフィルタリング
+const validPages = related.filter(relatedPage => {
+  const disabled = relatedPage.params?.disabled || [];
+  return !disabled.includes(env.targetRegion);
+});
+
+// 重み付けによるソート
+const sortedPages = validPages.sort((a, b) => {
+  const weightA = a.weight || 0;
+  const weightB = b.weight || 0;
+  return weightA - weightB;
+});
+
+// 表示するページが存在するかチェック
+const shouldDisplay = sortedPages.length > 0;
+---
+
+{shouldDisplay && (
+  <>
+    <hr />
+    <div class="seealso">
+      <Wovn>i18n__See_also</Wovn>
+    </div>
+    <ul>
+      {sortedPages.map((relatedPage) => (
+        <li>
+          <a href={relatedPage.relPermalink}>
+            <Title env={env} page={relatedPage} />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </>
+)}

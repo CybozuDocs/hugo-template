@@ -1,0 +1,32 @@
+---
+import Wovn from './Wovn.astro';
+
+interface Props {
+  env: {
+    // 今回は使用しない
+  };
+  page: {
+    // 今回は使用しない
+  };
+}
+
+const { env, page } = Astro.props;
+---
+
+<div class="locale-modal">
+  <div class="locale-modal-content" role="dialog" aria-modal="true">
+    <div class="locale-modal-text">
+      <div>
+        <Wovn>i18n__Locale_modal_message</Wovn>
+      </div>
+    </div>
+    <div class="locale-modal-button">
+      <button type="button" class="locale-modal-button-yes">
+        <span><Wovn>i18n__Yes</Wovn></span>
+      </button>
+      <button type="button" class="locale-modal-button-no">
+        <span><Wovn>i18n__No</Wovn></span>
+      </button>
+    </div>
+  </div>
+</div>

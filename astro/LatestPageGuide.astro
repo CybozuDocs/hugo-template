@@ -1,0 +1,62 @@
+---
+import Wovn from './Wovn.astro';
+
+interface Props {
+  env: {
+    // 今回は使用しない
+  };
+  page: {
+    lang: string;
+    params: {
+      latestPage?: string;
+      [key: string]: any;
+    };
+  };
+}
+
+const { env, page } = Astro.props;
+
+// latest_page パラメータが存在するかチェック
+const latestPageUrl = page.params.latestPage;
+
+if (!latestPageUrl) {
+  // 何も表示しない
+  return null;
+}
+
+// URLを分割して言語コードを取得
+const urlParts = latestPageUrl.split('/');
+const newPageLang = urlParts[2] || '';
+
+// 現在のページと異なる言語の場合のみ表示
+if (newPageLang === page.lang) {
+  return null;
+}
+
+// 言語キーの決定
+let langPageKey = '';
+if (newPageLang === 'ja') {
+  langPageKey = 'Page_ja';
+} else if (newPageLang === 'en') {
+  langPageKey = 'Page_en';
+}
+
+// 言語キーが存在しない場合は表示しない
+if (!langPageKey) {
+  return null;
+}
+
+// TODO: i18n の実装
+const langPage = `i18n__${langPageKey}`;
+
+// 空の場合は表示しない（i18n実装後に適切にチェック）
+---
+
+<div class="latest-page-guide">
+  <Wovn>i18n__This_page_is_not_latest</Wovn>
+  <Wovn>i18n__Latest_page_is_1</Wovn>
+  <a href={latestPageUrl}>
+    <Wovn>{langPage}</Wovn>
+  </a>
+  <Wovn>i18n__Latest_page_is_2</Wovn>
+</div>

@@ -1,0 +1,56 @@
+---
+interface Props {
+  env: {
+    // 今回は使用しない
+  };
+  page: {
+    // 今回は使用しない
+  };
+  tags?: Array<{
+    key: string;
+    text: string;
+  }>;
+}
+
+const { env, page, tags = [] } = Astro.props;
+---
+
+<nav id="video-filter" class="video-filter">
+  <h2 class="video-filter-title">[[filter]]</h2>
+  <ul>
+    {tags.map((tag) => (
+      <li>
+        <span>
+          <input 
+            type="checkbox" 
+            class="video-filter-check" 
+            id={`video-filter-${tag.key}`}
+            data-tag-key={tag.key}
+          />
+          <label htmlFor={`video-filter-${tag.key}`}>
+            {tag.text}
+          </label>
+        </span>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  // Vue.js の changetag() 相当の機能をバニラJSで実装
+  function setupVideoFilter() {
+    const checkboxes = document.querySelectorAll('.video-filter-check');
+    
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('click', function() {
+        const tagKey = this.getAttribute('data-tag-key');
+        // タグフィルタリング機能の実装
+        console.log('Tag changed:', tagKey, this.checked);
+        // TODO: 実際のフィルタリング機能を実装
+      });
+    });
+  }
+  
+  // DOM読み込み完了後に実行
+  document.addEventListener('DOMContentLoaded', setupVideoFilter);
+</script>

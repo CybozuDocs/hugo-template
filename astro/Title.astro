@@ -1,0 +1,18 @@
+---
+import ApplyParams from './ApplyParams.astro';
+import type { BaseProps } from './types';
+
+interface Props extends BaseProps {}
+
+const { env, page } = Astro.props;
+
+// タイトルの決定ロジック
+let target = page.title;
+if (env.targetRegion === "US" && page.params.titleUs) {
+  target = page.params.titleUs;
+} else if (env.targetRegion === "CN" && page.params.titleCn) {
+  target = page.params.titleCn;
+}
+---
+
+<ApplyParams target={target} params={env} />

@@ -1,0 +1,152 @@
+---
+import Wovn from './Wovn.astro';
+import Footer2 from './Footer2.astro';
+
+interface Props {
+  env: {
+    previewSite?: boolean;
+    idSearch?: boolean;
+    baseURL: string;
+    targetRegion: string;
+    templateVersion: string;
+    footerLinks?: string;
+    languageCode: string;
+  };
+  page: {
+    type?: string;
+  };
+}
+
+const { env, page } = Astro.props;
+
+// プレビューサイトでは表示しない
+if (env.previewSite) {
+  return null;
+}
+
+// URLパース（簡易実装）
+const baseUrl = new URL(env.baseURL);
+const basePath = baseUrl.pathname;
+
+// Footer2を使用する条件
+const useFooter2 = basePath.startsWith('/g/') || 
+                   basePath.startsWith('/g6/') || 
+                   env.templateVersion === "2";
+
+if (useFooter2) {
+  // Footer2コンポーネントを使用
+  return <Footer2 env={env} page={page} />;
+}
+
+// フッタークラス名の設定
+const footerLinksEx = env.idSearch ? "footer-links-ex" : "";
+
+// TODO: CSVデータの読み込み処理を実装
+let footerData: any[] = [];
+
+// 静的な実装（TODO: 動的読み込みに変更）
+// if (env.footerLinks) {
+//   try {
+//     // CSVファイルの読み込み処理をここに実装
+//   } catch (error) {
+//     console.warn(`Unable to get resource ${env.footerLinks}`);
+//   }
+// }
+
+// データ処理関数
+const processFooterData = (data: any[]) => {
+  const primaryLinks: any[] = [];
+  const helpSiteLinks: any[] = [];
+
+  data.forEach(row => {
+    if (row.length >= 3) {
+      const id = row[0];
+      const text = row[1];
+      const href = row[2];
+      const target = row[3] || '_blank';
+
+      if (id === "1") {
+        // プライマリリンクの処理
+        let disp = true;
+        
+        if (!env.idSearch) {
+          const filename = href.split('/').pop();
+          if (filename === "search_id.html") {
+            disp = false;
+          }
+        }
+
+        if (disp) {
+          primaryLinks.push({ href, text, target });
+        }
+      } else if (id === "2" && env.idSearch) {
+        // ヘルプサイトリンクの処理
+        if (!(page.type === "search_id" && href.includes("search_id"))) {
+          helpSiteLinks.push({ href, text, target });
+        }
+      }
+    } else {
+      // 短縮形式（o and m）
+      const text = row[0];
+      const href = row[1];
+      primaryLinks.push({ href, text, target: '_blank' });
+    }
+  });
+
+  return { primaryLinks, helpSiteLinks };
+};
+
+const { primaryLinks, helpSiteLinks } = processFooterData(footerData);
+---
+
+<footer id="page-footer" class="footer">
+  <div class="footer-wrap">
+    <div class="footer-col-links">
+      <div class={`footer-links ${footerLinksEx}`}>
+        {env.idSearch && (
+          <div class="footer-link-title">
+            {env.targetRegion === "US" ? "Kintone" : "Cybozu"}
+          </div>
+        )}
+        <ul>
+          {primaryLinks.map((link, index) => (
+            <li>
+              <a href={link.href} target={link.target}>
+                {link.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      {env.idSearch && (
+        <div class={`footer-links ${footerLinksEx}`}>
+          <div class="footer-link-title">
+            <Wovn>i18n__Help_site</Wovn>
+          </div>
+          <ul>
+            {helpSiteLinks.map((link, index) => (
+              <li>
+                <a href={link.href} target={link.target}>
+                  {link.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+    
+    <div id="footercopyright">
+      <Wovn>i18n__Footer_copyright</Wovn><br />
+      {env.targetRegion === "US" && (
+        <>
+          <!-- CookiePro Cookies Settings button start -->
+          <button id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie Settings</button>
+          <!-- CookiePro Cookies Settings button end -->
+          <script type="text/javascript" src="javascripts/geolocation.js"></script>
+        </>
+      )}
+    </div>
+  </div>
+</footer>

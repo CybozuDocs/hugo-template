@@ -1,0 +1,43 @@
+---
+import Title from './Title.astro';
+import Wovn from './Wovn.astro';
+import type { PageProps, EnvProps } from './types';
+
+interface Props {
+  p1: PageProps;
+  p2: PageProps;
+  env: EnvProps;
+}
+
+const { p1, p2, env } = Astro.props;
+
+// 再帰的にパンくずリストを構築
+const breadcrumbItems: PageProps[] = [];
+
+function buildBreadcrumb(current: PageProps) {
+  if (current.parent) {
+    buildBreadcrumb(current.parent);
+  } else if (!current.isHome && env.siteHome) {
+    buildBreadcrumb(env.siteHome);
+  }
+  breadcrumbItems.push(current);
+}
+
+buildBreadcrumb(p1);
+---
+
+{breadcrumbItems.map((item) => (
+  <li>
+    {item === p2 ? (
+      <Title page={item} env={env} />
+    ) : (
+      <a href={item.relPermalink}>
+        {item.isHome && ["Garoon", "Mailwise", "Office", "Remote"].includes(env.product) ? (
+          <Wovn>i18n__Top_page</Wovn>
+        ) : (
+          <Title page={item} env={env} />
+        )}
+      </a>
+    )}
+  </li>
+))}

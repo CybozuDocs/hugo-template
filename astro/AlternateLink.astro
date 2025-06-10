@@ -1,0 +1,113 @@
+---
+import type { BaseProps } from './types';
+
+interface Props extends BaseProps {}
+
+const { env, page } = Astro.props;
+
+const product = env.product;
+const targetRegion = env.targetRegion;
+
+let regions = ["JP", "US", "CN"];
+const defLang = "en";
+
+if (targetRegion === "US") {
+  regions = ["JP", "US"];
+} else if (targetRegion === "CN") {
+  regions = ["JP", "CN"];
+}
+
+if (product === "Garoon") {
+  regions = ["jp", "cn"];
+} else if (product === "store") {
+  regions = ["us"];
+} else if (product === "store-jp") {
+  regions = ["jp"];
+}
+
+const disabled = page.params.disabled || [];
+
+// language_list.jsonの読み込み
+import languageListData from '../data/language_list.json';
+---
+
+{page.allTranslations?.map((translation) => (
+  translation.lang === defLang && (
+    <link rel="alternate" href={`https://${env.domain}${translation.relPermalink}`} hreflang="x-default" />
+  )
+))}
+
+{regions.map((region) => {
+  if (disabled.includes(region)) {
+    return null;
+  }
+
+  const curRegion = region.toLowerCase();
+  let domain = "jp.cybozu.help";
+  
+  if (curRegion === "us") {
+    domain = "get.kintone.help";
+  } else if (curRegion === "cn") {
+    domain = "help.cybozu.cn";
+  }
+
+  return (
+    <>
+      {page.allTranslations?.map((translation) => {
+        let disp = true;
+        let thisLang = translation.lang;
+        
+        if (thisLang === "zh") {
+          thisLang = "zh-Hans";
+        } else if (thisLang === "zh-tw") {
+          thisLang = "zh-Hant";
+        }
+
+        if (curRegion === "cn") {
+          if (product === "Garoon" && env.serviceTypeId === "on-premise") {
+            disp = false;
+          }
+          if (translation.lang === "zh-tw") {
+            disp = false;
+          }
+        }
+
+        if (disp) {
+          const lang = `${thisLang}-${curRegion}`;
+          return (
+            <link rel="alternate" href={`https://${domain}${translation.relPermalink}`} hreflang={lang} />
+          );
+        }
+        return null;
+      })}
+
+      {curRegion === "us" && 
+        languageListData.languages.map((langItem: any) => {
+          const languageCode = langItem.language_code;
+          const urlParts = page.relPermalink.split("/");
+          let idx = 0;
+          let newTarget = "";
+          const partsLen = urlParts.length;
+          
+          urlParts.forEach((part: string) => {
+            if (part !== "") {
+              if (idx === 2) {
+                newTarget = `${newTarget}/${languageCode}`;
+                if (partsLen <= 4) {
+                  newTarget = `${newTarget}/`;
+                }
+              } else {
+                newTarget = `${newTarget}/${part}`;
+              }
+            }
+            idx++;
+          });
+          
+          return (
+            <link rel="alternate" href={`https://${domain}${newTarget}`} hreflang={languageCode} />
+          );
+        })
+      }
+    </>
+  );
+})}
