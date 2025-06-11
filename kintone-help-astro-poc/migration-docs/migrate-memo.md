@@ -360,3 +360,27 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - ビルドテスト成功（npm run build）
   - 型エラーなし、実行時間2.58秒
   - 型チェック通過、実装の一貫性確保
+
+#### 0011_env-files-review 作業完了（修正版）
+- **成果物**: 環境変数ファイルとTypeScript型定義の見直し
+  - 更新: `src/env.d.ts` 新しい環境変数を追加した型定義
+  - 更新: `src/lib/env.ts` buildEnvConfig関数に不足していた環境変数を追加
+  - 7つの.envファイルの全内容を調査・対応
+- **重要な学習事項**:
+  - 既存のsrc/lib/env.tsファイルを活用する方針
+  - env.d.tsはシンプルな型定義のみに留める
+  - 新規ファイル作成ではなく既存ファイルの拡張が適切
+- **技術的実装**:
+  - **src/env.d.ts**: 新しい環境変数プロパティを型定義に追加
+  - **src/lib/env.ts**: buildEnvConfig関数の返り値に不足環境変数を追加
+  - **追加した環境変数**: idSearch, jsonTree, logoAlt, service, cybozuCom等
+- **新たに対応した環境変数**:
+  - **リージョン固有**: PUBLIC_LOGO_ALT (US), PUBLIC_SUPPORT_INQUIRY (US)
+  - **Staging専用**: PUBLIC_USE_WOVN, PUBLIC_DATA_WOVNIO
+  - **検索機能**: PUBLIC_BING_SEARCH, PUBLIC_BING_SEARCH_TABS (CN)
+  - **JP固有**: PUBLIC_LABEL_LEAD, PUBLIC_LABEL_CONTENTS, PUBLIC_LABEL_COLORS
+  - **その他**: PUBLIC_ID_SEARCH, PUBLIC_JSON_TREE, PUBLIC_SERVICE等
+- **修正後のアプローチ**:
+  - 既存ファイルの拡張による段階的改善
+  - 過度な抽象化を避けたシンプルな実装
+  - コメントなしのクリーンな型定義

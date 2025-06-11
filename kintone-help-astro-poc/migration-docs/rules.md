@@ -249,6 +249,28 @@ Astro の標準的な環境変数システムを使用（多リージョン・�
 .env.cn_staging     # 中国リージョン（staging）
 ```
 
+### 2. 環境変数処理 (src/lib/env.ts)
+
+`buildEnvConfig`関数で.env ファイルの環境変数を読み込み：
+
+```typescript
+export const buildEnvConfig = (options: {
+  languageCode?: string;
+  targetRegion?: string;
+  useWovn?: boolean;
+  meganav?: boolean;
+} = {}) => {
+  // 環境変数から設定オブジェクトを構築
+  return {
+    // 基本設定
+    baseURL: import.meta.env.PUBLIC_BASE_URL || "",
+    domain: import.meta.env.PUBLIC_DOMAIN || "",
+    targetRegion: targetRegion || import.meta.env.PUBLIC_TARGET_REGION || "JP",
+    // その他の設定...
+  };
+};
+```
+
 #### リージョン別設定例
 
 ```bash
@@ -301,12 +323,12 @@ PUBLIC_HELP=ヘルプ
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
-  // サイト基本設定
   readonly PUBLIC_BASE_URL: string;
-  readonly PUBLIC_TEMPLATE_VERSION: string;
+  readonly PUBLIC_DOMAIN: string;
+  readonly PUBLIC_TARGET_REGION: "JP" | "US" | "CN";
+  readonly PUBLIC_KINTONE: string;
   // ... 他の環境変数
 
-  // 動的に生成される言語固有の設定用
   [key: string]: string | undefined;
 }
 
@@ -317,17 +339,12 @@ interface ImportMeta {
 
 ### 2. 環境変数ローダー (src/lib/env.ts)
 
-#### 簡素化された構成（日本語特化）
+直接環境変数を参照するシンプルな構成：
 
 ```typescript
-// 削除: 言語固有の環境変数取得関数
-// getLocalizedEnvValue 関数は不要に
-
-// 直接環境変数を参照するシンプルな構成
 export const buildEnvConfig = (
   options: {
     languageCode?: string;
-    product?: string;
     targetRegion?: string;
     useWovn?: boolean;
     meganav?: boolean;
@@ -339,11 +356,10 @@ export const buildEnvConfig = (
     help: import.meta.env.PUBLIC_HELP || '',
     baseURL: import.meta.env.PUBLIC_BASE_URL || '',
     targetRegion: targetRegion || import.meta.env.PUBLIC_TARGET_REGION || 'JP',
-    // その他の設定...
+    // その他すべての環境変数...
   };
 };
 
-// 型定義のエクスポート
 export type EnvConfig = ReturnType<typeof buildEnvConfig>;
 ```
 
