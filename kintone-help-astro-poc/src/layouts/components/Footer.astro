@@ -8,7 +8,6 @@ interface Props {
     baseURL: string;
     languageCode: string;
     targetRegion: string;
-    product?: string;
   };
   page: {
     isHome?: boolean;
@@ -25,8 +24,11 @@ const basePath = baseUrl.pathname;
 const fullsize = page.isHome || basePath.startsWith('/k/');
 
 // CSVデータの読み込み処理
-const csvPath = `/src/pages/_data/csv/links.${env.targetRegion}.csv`;
-const csvContent = await import(/* @vite-ignore */ csvPath + '?raw');
+const csvContent = env.targetRegion === "CN" 
+  ? await import('../../pages/_data/csv/links.CN.csv?raw')
+  : env.targetRegion === "US"
+  ? await import('../../pages/_data/csv/links.US.csv?raw')
+  : await import('../../pages/_data/csv/links.JP.csv?raw');
 
 // CSVをパースして配列に変換
 const lines = csvContent.default.split('\n');
@@ -133,13 +135,6 @@ const processedLegalMenu = legalMenu.map(item => {
                     </li>
                   );
                 })}
-                {/* 最後のメニューにdisclaimerを挿入 */}
-                {index === "3" && 
-                 env.languageCode !== "ja-jp" && 
-                 env.languageCode !== "ja-cn" && 
-                 env.product === "Garoon" && (
-                  <Footer2Disclaimer languageCode={env.languageCode} />
-                )}
               </ul>
             </li>
           ))}

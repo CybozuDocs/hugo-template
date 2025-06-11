@@ -32,6 +32,45 @@ Hugoのpartial名とAstroコンポーネント名は正確に対応させる：
 - templateVersion=2のみ存在するため、バージョン分岐は不要
 - Footer2.astroは標準のFooter.astroとして扱う
 
+### 4. product と templateVersion の固定化ルール
+
+**2025年1月から適用**: templateVersionとproductは固定値として扱う
+
+- `templateVersion`: 常に"2"として扱い、条件分岐を削除
+- `product`: 常に"kintone"として扱い、他製品の処理を削除
+- 環境変数 `PUBLIC_TEMPLATE_VERSION`, `PUBLIC_PRODUCT` は使用禁止
+- 型定義にも含めない（EnvProps, ImportMetaEnv等）
+
+#### 削除対象の処理
+
+```astro
+<!-- ❌ 削除対象: templateVersion条件分岐 -->
+{env.templateVersion === "2" && (
+  <button>...</button>
+)}
+
+<!-- ✅ 修正後: 常に表示 -->
+<button>...</button>
+
+<!-- ❌ 削除対象: product条件分岐 -->
+{env.product === "kintone" && <Component />}
+{["Garoon", "Mailwise", "Office", "Remote"].includes(env.product) && <Component />}
+
+<!-- ✅ 修正後: kintone前提の処理のみ -->
+<Component />
+```
+
+#### 削除対象の製品
+
+以下の製品に関する処理はすべて削除：
+
+- Garoon
+- Mailwise  
+- Office
+- Remote
+- support_guide
+- store系製品
+
 ## 移行作業の基本原則
 
 ### 1. 段階的アプローチ

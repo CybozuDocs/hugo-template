@@ -11,9 +11,21 @@
 - **templateVersion**: `"2"` で固定
   - templateVersion=1 の古い実装は削除済み
   - 全てのコンポーネントでtemplateVersion=2を前提とした実装
+  - 環境変数 `PUBLIC_TEMPLATE_VERSION` は削除済み
 - **product**: `"kintone"` で固定
-  - support_guide、slash、store等の他製品は対象外
+  - Garoon、Mailwise、Office、Remote等の他製品は対象外
+  - support_guide、slash、store等の特別製品も対象外
   - kintone固有の実装を前提とした設計
+  - 環境変数 `PUBLIC_PRODUCT` は削除済み
+
+### 削除された機能
+
+以下の機能は完全に削除され、実装時に考慮不要：
+
+- 他製品の条件分岐処理
+- templateVersion=1の古い実装
+- 製品別のTOC設定
+- 他製品の地域別処理
 
 ## コンポーネント設計原則
 

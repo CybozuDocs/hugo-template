@@ -18,46 +18,12 @@ let islastsect = false;
 let tocregex = propTocregex || "<h[23].*?>(.|\n)*?</h[23]>";
 const currentSection = page.currentSection?.sections || "";
 
-// 製品別の最終セクション判定
-const getLastPagesByProduct = (product: string) => {
-  switch (product) {
-    case "Garoon":
-      return ["/purpose/", "/user/basic/", "/mobile/", "/user/mobile/", "/user/personal/", "/admin/spec/", "/admin/system/", "/glossary/", "/intro/", "/option/fullsearch/", "/error/"];
-    case "Mailwise":
-      return ["/user/basic/", "/user/personal/", "/admin/spec/", "/admin/system/", "/option/migration/", "/intro/first/", "/intro/install/", "/intro/verup/", "/intro/uninstall/", "/purpose/"];
-    case "Office":
-      return ["/intro/first/", "/intro/install/", "/intro/uninstall/", "/option/migration/", "/guide/", "/pdf/", "/error/", "/user/per/"];
-    case "Remote":
-      return ["/intro/", "/admin/", "/user/"];
-    default:
-      return [];
-  }
+const getLastPagesByProduct = () => {
+  return [];
 };
 
-// TOC設定の判定
 if (env.tocInTree) {
-  const lastpages = getLastPagesByProduct(env.product);
-  
-  // 最終セクション判定
-  for (const lastpage of lastpages) {
-    if (page.relPermalink.includes(lastpage)) {
-      islastsect = true;
-      break;
-    }
-  }
-
-  // TOC regex 設定
-  if (env.product === "Office" && currentSection === "error") {
-    tocregex = "<h2.*?>(.|\n)*?</h2>";
-  }
-
-  // TOC 必要性判定
-  if (["Garoon", "Mailwise", "Office", "Remote"].includes(env.product)) {
-    needtoc = true;
-    if (page.relPermalink.includes("/application.html")) {
-      needtoc = false;
-    }
-  }
+  needtoc = false;
 }
 
 // 階層構造の決定
@@ -105,11 +71,9 @@ entries = entries.sort((a, b) => (a.weight || 0) - (b.weight || 0));
 ---
 
 <div id="tree-nav">
-  {env.templateVersion === "2" && (
-    <button id="tree-close-mobile">
+  <button id="tree-close-mobile">
       <i class="fas fa-times"></i>
     </button>
-  )}
   
   {env.tocInTree && (
     <div id="tree-head">

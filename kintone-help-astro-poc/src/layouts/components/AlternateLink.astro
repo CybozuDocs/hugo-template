@@ -5,7 +5,6 @@ interface Props extends BaseProps {}
 
 const { env, page } = Astro.props;
 
-const product = env.product;
 const targetRegion = env.targetRegion;
 
 let regions = ["JP", "US", "CN"];
@@ -15,14 +14,6 @@ if (targetRegion === "US") {
   regions = ["JP", "US"];
 } else if (targetRegion === "CN") {
   regions = ["JP", "CN"];
-}
-
-if (product === "Garoon") {
-  regions = ["jp", "cn"];
-} else if (product === "store") {
-  regions = ["us"];
-} else if (product === "store-jp") {
-  regions = ["jp"];
 }
 
 const disabled = page.params.disabled || [];
@@ -76,9 +67,6 @@ const languageListData = {
         }
 
         if (curRegion === "cn") {
-          if (product === "Garoon" && env.serviceTypeId === "on-premise") {
-            disp = false;
-          }
           if (translation.lang === "zh-tw") {
             disp = false;
           }

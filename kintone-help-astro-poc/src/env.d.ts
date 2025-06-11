@@ -3,8 +3,6 @@
 interface ImportMetaEnv {
   // サイト基本設定
   readonly PUBLIC_BASE_URL: string;
-  readonly PUBLIC_TEMPLATE_VERSION: string;
-  readonly PUBLIC_PRODUCT: string;
   readonly PUBLIC_DOMAIN: string;
   readonly PUBLIC_TARGET_REGION: "JP" | "US" | "CN";
   readonly PUBLIC_KINTONE: string;

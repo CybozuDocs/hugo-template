@@ -17,17 +17,8 @@ const getMenuData = (lang: string, targetRegion: string) => {
   };
 };
 
-// タブ番号の決定
-let tabnum = 0;
-if (env.product === "kintone") {
-  tabnum = 1;
-} else if (env.product === "slash") {
-  tabnum = 2;
-} else if (env.product === "store") {
-  tabnum = 3;
-}
-
-const strtabnum = tabnum.toString();
+const tabnum = 1;
+const strtabnum = "1";
 let curtab = "";
 
 // メニューデータの取得
@@ -63,7 +54,7 @@ const generateMenuItems = () => {
     
     if (r === strid) {
       let current = "";
-      if (!page.isHome && menuid === tabnum && env.product !== "support_guide" && 
+      if (!page.isHome && menuid === tabnum && 
           page.params?.type !== "search_result" && page.params?.type !== "search_id") {
         current = "current";
       }

@@ -90,10 +90,6 @@ const pageData = {
 // 無効化チェック
 const isDisabled = disabled.includes(envConfig.targetRegion);
 
-// 条件チェック用のヘルパー関数
-const isGaroonNonJapanese = envConfig.product === "Garoon" && 
-  envConfig.languageCode !== "ja-jp" && 
-  envConfig.languageCode !== "ja-cn";
 ---
 
 <!doctype html>
@@ -135,8 +131,6 @@ const isGaroonNonJapanese = envConfig.product === "Garoon" &&
             </div>
             
             <div id="contents" class="contents-wrap">
-              {isGaroonNonJapanese && <div>[DISCLAIMER PARTIAL]</div>}
-              
               {envConfig.useWovn && <Disclaimer2 env={envConfig} page={pageData} />}
               
               <div>[LATEST PAGE GUIDE PARTIAL]</div>

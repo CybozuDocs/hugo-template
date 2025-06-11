@@ -32,11 +32,7 @@ buildBreadcrumb(p1);
       <Title page={item} env={env} />
     ) : (
       <a href={item.relPermalink}>
-        {item.isHome && ["Garoon", "Mailwise", "Office", "Remote"].includes(env.product) ? (
-          <Wovn>i18n__Top_page</Wovn>
-        ) : (
-          <Title page={item} env={env} />
-        )}
+        <Title page={item} env={env} />
       </a>
     )}
   </li>

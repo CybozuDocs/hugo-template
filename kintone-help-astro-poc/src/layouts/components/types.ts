@@ -3,7 +3,6 @@
 
 export interface EnvProps {
   // 基本設定
-  product: string;
   productName?: string;
   baseURL: string;
   domain?: string;
@@ -11,7 +10,6 @@ export interface EnvProps {
   targetRegion: string;
 
   // テンプレート設定
-  templateVersion?: string;
   meganav?: boolean;
   previewSite?: boolean;
 

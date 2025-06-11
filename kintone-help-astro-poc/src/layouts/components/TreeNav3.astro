@@ -7,11 +7,9 @@ const { env } = Astro.props;
 ---
 
 <div id="tree-nav" class="tree-base">
-  {env.templateVersion === "2" && (
-    <button id="tree-close-mobile">
-      <i class="fas fa-times"></i>
-    </button>
-  )}
+  <button id="tree-close-mobile">
+    <i class="fas fa-times"></i>
+  </button>
   <nav id="tree-main" class="tree-main" role="tree">
   </nav>
 </div>

@@ -63,28 +63,23 @@ if (page.isHome && !env.meganav) {
   hedclass = "home-header";
 }
 
-// templateVersion=2, product="kintone" で固定
-
-// 言語設定（将来の多言語対応用）
-// const langlen = page.allTranslations.length;
-
-// ベースURLの計算（product="kintone"固定のため常に実行）
+// ベースURLの計算
 const urlparts = env.baseURL.split('/');
 const productPos = urlparts.length - 2;
 const base = `/${urlparts[productPos]}/`;
 const baseLink = `${base}${page.lang}/`;
 
-// サーチボックス表示の判定（kintone固定前提で簡素化）
+// サーチボックス表示の判定
 let dispSbox = true;
 if (page.params.type === "search_result") {
   dispSbox = false;
 } else if (page.isHome) {
-  dispSbox = false; // kintone では home で非表示
+  dispSbox = false;
 } else if (env.previewSite) {
   dispSbox = false;
 }
 
-// ロゴ/タイトルの決定（kintone固定のため常に画像使用、USリージョンも画像使用）
+// ロゴ/タイトルの決定
 const logoAlt = `${env.productName} ${env.help}`;
 
 // shouldUseImage が常に true のため logoTitle は不要

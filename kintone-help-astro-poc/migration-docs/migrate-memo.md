@@ -299,3 +299,31 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - **product**: 常に"kintone"、他製品の条件削除
   - **shouldUseImage**: 常にtrue（kintoneまたはUSで常に画像使用）
   - **v2Prod**: 削除（kintoneは常にv2対象）
+
+#### 0009_template-product-constants 作業完了
+- **成果物**: templateVersionとproductの完全な固定化と定数化
+  - 全環境変数ファイルからPUBLIC_TEMPLATE_VERSION、PUBLIC_PRODUCTの削除
+  - 型定義ファイルからの該当型削除（env.d.ts, types.ts）
+  - 全コンポーネントの分岐処理削除と定数化
+- **重要な学習事項**:
+  - 環境変数削除による大幅なコード簡素化効果
+  - 他製品（Garoon、Mailwise、Office、Remote）の処理完全削除
+  - 条件分岐から直接表示への変更による保守性向上
+- **技術的実装**:
+  - **環境変数削除**: 7つの.envファイルから該当行削除
+  - **型定義更新**: ImportMetaEnv、EnvProps型から該当プロパティ削除
+  - **Head.astro**: product分岐削除、GTM条件簡素化、AlternateLink条件削除
+  - **Footer.astro**: Garoon条件削除、CSVファイル読み込み修正
+  - **TreeNav系**: templateVersion条件削除、TOC設定簡素化
+  - **その他**: BreadcrumbNav、MegaNavKt、AlternateLink等の条件削除
+- **固定化された処理**:
+  - **メタタグ**: `<meta name="cy-template-version" content="2" />`
+  - **メタタグ**: `<meta name="cy-product-name" content="kintone" />`
+  - **分岐条件**: templateVersion="2"の条件を常に実行
+  - **製品条件**: kintone前提の処理のみ保持
+- **削除された機能**:
+  - Garoon、Mailwise、Office、Remote製品対応
+  - templateVersion=1の古い処理
+  - support_guide製品の特別処理
+  - 他製品のTOC設定、地域別処理
+- **ビルド結果**: npm run build成功、構文エラー解消、CSVファイル読み込み問題解決

@@ -12,7 +12,6 @@ interface Props {
     serviceTypeId?: string;
     productName: string;
     help: string;
-    product: string;
     domain: string;
     ogImg: string;
     staging?: string;
@@ -88,22 +87,11 @@ const generateDescription = () => {
     return page.description;
   }
   
-  let post = '';
-  if (!page.isHome && ['Garoon', 'Mailwise', 'Office', 'Remote'].includes(env.product)) {
-    const contents = (page.content || '').split('\n');
-    if (contents.length > 0) {
-      post = contents[0]
-        .replace(/^<p>/, '')
-        .replace(/<br>$/, '')
-        .replace(/<\/p>$/, '');
-    }
-  }
-  
   // TODO: i18n の実装
   const descBase = 'i18n__todo__og_desc1';
   const desc2 = 'i18n__todo__og_desc2';
   
-  return `${descBase} ${desc2} ${post}`.trim();
+  return `${descBase} ${desc2}`.trim();
 };
 
 const sitename = generateSiteName();
@@ -173,9 +161,7 @@ const activeChatTargets = processChatSettings();
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 {/* AlternateLink コンポーネント */}
-{!['Office', 'Mailwise', 'Remote'].includes(env.product) && (
-  <AlternateLink env={env} page={page} />
-)}
+<AlternateLink env={env} page={page} />
 
 {/* ファビコン */}
 <link rel="shortcut icon" type="image/x-icon" href={env.favicon || "favicon.ico"} />
@@ -251,7 +237,7 @@ const activeChatTargets = processChatSettings();
 {/* Google Tag Manager */}
 <Gtm key="GTM-5ZR5GF" />
 <Gtm key="GTM-5N49D3" />
-{env.product === "kintone" && env.targetRegion === "JP" && (
+{env.targetRegion === "JP" && (
   <Gtm key="GTM-K98FR27D" />
 )}
 
