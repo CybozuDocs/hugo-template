@@ -15,11 +15,7 @@ const basePath = baseUrl.pathname;
 const fullsize = page.isHome || basePath.startsWith('/k/');
 
 // CSVデータの読み込み処理
-const csvContent = env.targetRegion === "CN" 
-  ? await import('../../pages/_data/csv/links.CN.csv?raw')
-  : env.targetRegion === "US"
-  ? await import('../../pages/_data/csv/links.US.csv?raw')
-  : await import('../../pages/_data/csv/links.JP.csv?raw');
+const csvContent = await import(`../../pages/_data/csv/links.${env.targetRegion}.csv?raw`)
 
 // CSVをパースして配列に変換
 const lines = csvContent.default.split('\n');
