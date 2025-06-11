@@ -1,26 +1,46 @@
 ---
 import SearchBox from './SearchBox.astro';
 import LangSelector from './LangSelector.astro';
-import Wovn from '@/components/Wovn.astro';
 
 interface Props {
   env: {
     meganav?: boolean;
     targetRegion: string;
-    product: string;
-    templateVersion?: string;
     baseURL: string;
     logo?: string;
     productName: string;
     help: string;
     previewSite?: boolean;
     googleSearch?: boolean;
+    bingSearch?: boolean;
     searchAll?: string;
     langSelector?: boolean;
+    useWovn?: boolean;
+    googleSearchTabs?: string;
+    bingSearchTabs?: string;
+    languageData?: {
+      languages: Array<{
+        language_code: string;
+        display_name: string;
+      }>;
+    };
   };
   page: {
     isHome: boolean;
     lang: string;
+    // LangSelector用のプロパティ
+    siteLanguage?: {
+      languageName: string;
+    };
+    translations?: Array<{
+      siteLanguageCode: string;
+      siteLanguage: {
+        languageName: string;
+      };
+      relPermalink: string;
+    }>;
+    relPermalink?: string;
+    // 元からあったプロパティ
     allTranslations: any[];
     isTranslated: boolean;
     params: {
@@ -43,65 +63,39 @@ if (page.isHome && !env.meganav) {
   hedclass = "home-header";
 }
 
-// v2プロダクトのリスト
-const v2List = ["kintone", "slash", "support_guide", "store", "store-jp"];
-const v2Prod = v2List.includes(env.product);
+// templateVersion=2, product="kintone" で固定
 
-const templateVersion = env.templateVersion || "1";
+// 言語設定（将来の多言語対応用）
+// const langlen = page.allTranslations.length;
 
-// 言語設定
-const langlen = page.allTranslations.length;
-const baselang = langlen !== 0 ? `${page.lang}/` : "";
-
-// ベースURLの計算
+// ベースURLの計算（product="kintone"固定のため常に実行）
 const urlparts = env.baseURL.split('/');
-let base = "/";
-if (env.product !== "support_guide") {
-  const productPos = urlparts.length - 2;
-  base = `/${urlparts[productPos]}/`;
-}
+const productPos = urlparts.length - 2;
+const base = `/${urlparts[productPos]}/`;
 const baseLink = `${base}${page.lang}/`;
 
-// Google言語コードの変換
-let glang = page.lang;
-if (glang === "zh") {
-  glang = "zh-CN";
-} else if (glang === "zh-tw") {
-  glang = "zh-TW";
-}
-
-// サーチボックス表示の判定
+// サーチボックス表示の判定（kintone固定前提で簡素化）
 let dispSbox = true;
 if (page.params.type === "search_result") {
   dispSbox = false;
-} else if (page.isHome && v2Prod) {
-  dispSbox = false;
-} else if (page.params.type === "gr6/home") {
-  dispSbox = false;
+} else if (page.isHome) {
+  dispSbox = false; // kintone では home で非表示
 } else if (env.previewSite) {
   dispSbox = false;
 }
 
-// ロゴ/タイトルの決定
-const shouldUseImage = env.product === "kintone" || env.targetRegion === "US";
+// ロゴ/タイトルの決定（kintone固定のため常に画像使用、USリージョンも画像使用）
 const logoAlt = `${env.productName} ${env.help}`;
 
-let logoTitle = "";
-if (!shouldUseImage) {
-  if (env.previewSite) {
-    logoTitle = env.productName;
-  } else {
-    // TODO: page.scratch.sitename の実装
-    logoTitle = `${page.scratch?.sitename || ''} ${env.help}`;
-  }
-}
+// shouldUseImage が常に true のため logoTitle は不要
+// let logoTitle = "";
 ---
 
 <div id="shield"></div>
 <header id="header" class={`header ${hedclass}`}>
   <div id="head" class="header-wrap">
     <div class="logo-wrap">
-      {!page.isHome && templateVersion === "2" && (
+      {!page.isHome && (
         <button id="tree-switch-mobile" class="tree-switch-mobile">
           <i class="fas fa-bars" aria-hidden="true"></i>
         </button>
@@ -109,68 +103,33 @@ if (!shouldUseImage) {
       
       <h1>
         <a class="logo-link" href={baseLink}>
-          {shouldUseImage ? (
-            <img 
-              class="logo-img" 
-              src={`${base}${env.logo}`} 
-              alt={logoAlt} 
-              title={logoAlt}
-            />
-          ) : (
-            <span class="logo-title">{logoTitle}</span>
-          )}
+          <img 
+            class="logo-img" 
+            src={`${base}${env.logo}`} 
+            alt={logoAlt} 
+            title={logoAlt}
+          />
         </a>
       </h1>
     </div>
 
     {dispSbox && (
-      templateVersion === "2" ? (
-        <SearchBox env={env} page={page} />
-      ) : (
-        <>
-          <div id="search" class="search-wrap">
-            <form 
-              id="searchBox_form" 
-              action={`${page.lang}/search_result.html`}
-              onsubmit="if(document.getElementById('headerSearchBox_input').value==''){return false;}"
-              role="search"
-            >
-              <div class="searchbox">
-                <input 
-                  type="search" 
-                  name="q" 
-                  id="headerSearchBox_input" 
-                  class="search-input home-search-input" 
-                  role="searchbox" 
-                  aria-label="i18n__todo__search_word"
-                  placeholder="i18n__todo__Enter_keywords"
-                />
-                <button 
-                  type="submit" 
-                  class="search-submit" 
-                  data-disable-with="" 
-                  aria-label="i18n__todo__search"
-                ></button>
-                {!env.googleSearch && (
-                  <input type="hidden" name="ct" value={env.searchAll} />
-                )}
-              </div>
-            </form>
-          </div>
-
-          {env.googleSearch && (
-            <script 
-              src="https://www.gstatic.com/prose/brand.js" 
-              data-target-id="headerSearchBox_input" 
-              data-hl={glang}
-            ></script>
-          )}
-        </>
-      )
+      <SearchBox env={env} page={page} />
     )}
 
-    {page.isTranslated && env.langSelector && (
-      <LangSelector env={env} page={page} />
+
+    {page.isTranslated && env.langSelector && page.siteLanguage && page.translations && page.relPermalink && (
+      <LangSelector 
+        env={{
+          useWovn: env.useWovn,
+          languageData: env.languageData
+        }} 
+        page={{
+          siteLanguage: page.siteLanguage,
+          translations: page.translations,
+          relPermalink: page.relPermalink
+        }} 
+      />
     )}
   </div>
 </header>

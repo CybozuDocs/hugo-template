@@ -7,7 +7,6 @@ interface Props {
     bingSearch?: boolean;
     googleSearchTabs?: string;
     bingSearchTabs?: string;
-    product: string;
   };
   page: {
     isHome: boolean;
@@ -38,11 +37,9 @@ if (paramFilter.length > 0) {
 // フルサイズ判定
 const fullsize = page.isHome || page.params.type === "search_result";
 
-// プレースホルダーの決定
+// プレースホルダーの決定（kintone固定前提）
 let placeholder = "";
-if (env.product === "support_guide") {
-  placeholder = "i18n__todo__Enter_keywords";
-} else if (!fullsize) {
+if (!fullsize) {
   placeholder = "";
 } else {
   placeholder = "i18n__todo__Search_example";

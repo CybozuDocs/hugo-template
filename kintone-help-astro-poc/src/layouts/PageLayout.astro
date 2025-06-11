@@ -6,6 +6,7 @@ import { getPermalinks, isHomePage, getLangFromLanguageCode } from "../lib/url.j
 import Disclaimer2 from "./components/Disclaimer2.astro";
 // import Related from "./components/Related.astro";
 import Footer from "./components/Footer.astro";
+import Header from "./components/Header.astro";
 
 type Props = MarkdownLayoutProps<{
   title?: string;
@@ -71,6 +72,19 @@ const pageData = {
     nolink: false,  // TODO: 実際の値を設定
   },
   lang: getLangFromLanguageCode(envConfig.languageCode),
+  
+  // Header.astroで必要な追加プロパティ（仮実装）
+  allTranslations: [], // TODO: 多言語対応時に実装
+  isTranslated: false, // TODO: 多言語対応時に実装
+  scratch: {
+    sitename: envConfig.productName // TODO: 適切なサイト名ロジックを実装
+  },
+  
+  // LangSelector.astro用のプロパティ（仮実装）
+  siteLanguage: {
+    languageName: "日本語"
+  },
+  translations: [] // TODO: 多言語対応時に実装
 };
 
 // 無効化チェック
@@ -100,7 +114,7 @@ const isGaroonNonJapanese = envConfig.product === "Garoon" &&
           <div>[ANNOUNCEMENT BANNER PARTIAL]</div>
           
           <!-- Header -->
-          <div>[HEADER PARTIAL]</div>
+          <Header env={envConfig} page={pageData} />
           
           <div class="page-pad"></div>
           

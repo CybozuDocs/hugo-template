@@ -255,3 +255,47 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - ID=999: リーガルメニュー、ID=1-4: メガメニューの分類ロジック
   - target属性の型制約とValidation
   - エラーハンドリングとフォールバック処理
+
+#### 0008_header-component-integration 作業完了
+- **成果物**: PageLayout.astroでのHeader.astroコンポーネント統合
+  - `[HEADER PARTIAL]` プレースホルダーから実際のHeader.astroコンポーネント呼び出しに移行
+  - 型安全性を確保したプロパティ受け渡しの実装
+  - SearchBox.astro、LangSelector.astro との依存関係の解決
+- **重要な学習事項**:
+  - コンポーネント統合時の型整合性の重要性（子コンポーネントの型定義事前確認）
+  - 段階的実装アプローチの有効性（完全機能実装よりも型安全性優先）
+  - 仮実装による基本統合の実現（TODO付きで将来実装を明示）
+- **技術的実装**:
+  - `buildEnvConfig`関数の拡張（Header.astro, SearchBox.astro, LangSelector.astro用プロパティ追加）
+  - `pageData`オブジェクトの拡張（allTranslations, isTranslated, scratch, siteLanguage等の仮実装）
+  - Header.astro Props型定義の拡張（LangSelector、SearchBox向け型情報統合）
+  - 型エラー解消（重複プロパティ、未使用変数、script属性警告の対応）
+- **仮実装として残った課題**:
+  - 多言語関連機能（allTranslations, isTranslated, translations）の本格実装
+  - scratch.sitename の適切なサイト名取得ロジック
+  - 新規環境変数（logo, previewSite, googleSearch等）の実際の.envファイル設定
+- **影響範囲**:
+  - ✅ PageLayout.astro: Header統合完了
+  - ✅ Header.astro: 型定義拡張完了  
+  - ✅ src/lib/env.ts: 環境変数設定拡張完了
+
+#### 0008_header-component-integration 固定値対応完了
+- **成果物**: templateVersion=2、product="kintone"の固定化による簡素化
+  - env.tsからproduct, templateVersionパラメータを削除（固定値前提）
+  - Header.astroの不要な分岐処理削除（v2Prod判定、templateVersion分岐等）
+  - SearchBox.astroのproduct関連分岐削除（support_guide判定等）
+- **重要な学習事項**:
+  - 固定値前提によるコード簡素化の効果（分岐削除、型定義簡素化）
+  - shouldUseImage常にtrue化によるロゴ表示ロジックの単純化
+  - templateVersion=1の古い検索ボックス実装完全削除
+- **技術的実装**:
+  - buildEnvConfig関数のproductパラメータ削除
+  - Header.astro Props型定義からproduct, templateVersion削除
+  - SearchBox.astro Props型定義からproduct削除
+  - サーチボックス表示判定の簡素化（v2Prod条件削除）
+  - ベースURL計算の簡素化（support_guide判定削除）
+- **固定値前提による簡素化**:
+  - **templateVersion**: 常に"2"、分岐処理削除
+  - **product**: 常に"kintone"、他製品の条件削除
+  - **shouldUseImage**: 常にtrue（kintoneまたはUSで常に画像使用）
+  - **v2Prod**: 削除（kintoneは常にv2対象）
