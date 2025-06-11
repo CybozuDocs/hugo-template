@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "4.3.0",
-    "astro": "5.8.1"
+    "astro": "5.8.1",
+    "dotenv": "16.5.0"
   }
 }
