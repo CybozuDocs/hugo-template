@@ -13,20 +13,23 @@ interface ImportMetaEnv {
   readonly PUBLIC_FAVICON: string;
   readonly PUBLIC_LOGO: string;
   readonly PUBLIC_OG_IMG: string;
+  readonly PUBLIC_LOGO_ALT?: string; // USリージョンのみ
 
   // 機能フラグ
   readonly PUBLIC_LANG_SELECTOR: string;
   readonly PUBLIC_MEGANAV: string;
   readonly PUBLIC_JSON_TREE: string;
-  readonly PUBLIC_GOOGLE_SEARCH: string;
+  readonly PUBLIC_GOOGLE_SEARCH?: string; // JP, USリージョン
+  readonly PUBLIC_BING_SEARCH?: string; // CNリージョン
   readonly PUBLIC_ID_SEARCH: string;
+  readonly PUBLIC_USE_WOVN?: string; // staging環境のみ
 
   // 外部サービス
   readonly PUBLIC_DEVNET_NAME: string;
   readonly PUBLIC_DEVNET_URL: string;
-  readonly PUBLIC_DATA_WOVNIO?: string;
+  readonly PUBLIC_DATA_WOVNIO?: string; // staging環境のみ
+  readonly PUBLIC_SUPPORT_INQUIRY?: string; // USリージョンのみ
   readonly PUBLIC_STAGING?: string;
-  readonly PUBLIC_BING_SEARCH?: string;
   readonly PUBLIC_CHAT?: string;
   readonly PUBLIC_CHAT_MENU_PREFIX?: string;
   readonly PUBLIC_SERVICE_TYPE?: string;
@@ -35,64 +38,29 @@ interface ImportMetaEnv {
   // カスタムCSS
   readonly PUBLIC_CUSTOM_CSS: string;
 
-  // ラベル色設定
-  readonly PUBLIC_LABEL_COLORS: string;
-
   // 言語設定
   readonly PUBLIC_DEFAULT_CONTENT_LANGUAGE: string;
   readonly PUBLIC_LANGUAGE_CODE: string;
 
-  // 日本語設定
-  readonly PUBLIC_PRODUCT_NAME_JA: string;
-  readonly PUBLIC_HELP_JA: string;
-  readonly PUBLIC_GOOGLE_SEARCH_TABS_JA: string;
-  readonly PUBLIC_FOOTER_LINKS_JA: string;
-  readonly PUBLIC_CORP_NAME_JA: string;
-  readonly PUBLIC_STORE_JA: string;
-  readonly PUBLIC_SLASH_JA: string;
-  readonly PUBLIC_SLASH_HELP_JA: string;
-  readonly PUBLIC_SLASH_ADMINISTRATORS_JA: string;
-  readonly PUBLIC_SLASH_UI_JA: string;
-  readonly PUBLIC_LABEL_LEAD_JA: string;
-  readonly PUBLIC_LABEL_CONTENTS_JA: string;
+  // 日本語統一設定（言語接尾辞なし）
+  readonly PUBLIC_PRODUCT_NAME: string;
+  readonly PUBLIC_HELP: string;
+  readonly PUBLIC_GOOGLE_SEARCH_TABS?: string; // JP, USリージョン
+  readonly PUBLIC_BING_SEARCH_TABS?: string; // CNリージョン
+  readonly PUBLIC_FOOTER_LINKS: string;
+  readonly PUBLIC_CORP_NAME: string;
+  readonly PUBLIC_STORE: string;
+  readonly PUBLIC_SLASH: string;
+  readonly PUBLIC_SLASH_HELP: string;
+  readonly PUBLIC_SLASH_ADMINISTRATORS: string;
+  readonly PUBLIC_SLASH_UI: string;
+  
+  // JPリージョン固有設定
+  readonly PUBLIC_LABEL_LEAD?: string;
+  readonly PUBLIC_LABEL_CONTENTS?: string;
+  readonly PUBLIC_LABEL_COLORS?: string;
 
-  // 英語設定
-  readonly PUBLIC_PRODUCT_NAME_EN: string;
-  readonly PUBLIC_HELP_EN: string;
-  readonly PUBLIC_GOOGLE_SEARCH_TABS_EN: string;
-  readonly PUBLIC_FOOTER_LINKS_EN: string;
-  readonly PUBLIC_CORP_NAME_EN: string;
-  readonly PUBLIC_STORE_EN: string;
-  readonly PUBLIC_SLASH_EN: string;
-  readonly PUBLIC_SLASH_HELP_EN: string;
-  readonly PUBLIC_SLASH_ADMINISTRATORS_EN: string;
-  readonly PUBLIC_SLASH_UI_EN: string;
-
-  // 中国語（簡体字）設定
-  readonly PUBLIC_PRODUCT_NAME_ZH: string;
-  readonly PUBLIC_HELP_ZH: string;
-  readonly PUBLIC_GOOGLE_SEARCH_TABS_ZH: string;
-  readonly PUBLIC_FOOTER_LINKS_ZH: string;
-  readonly PUBLIC_CORP_NAME_ZH: string;
-  readonly PUBLIC_STORE_ZH: string;
-  readonly PUBLIC_SLASH_ZH: string;
-  readonly PUBLIC_SLASH_HELP_ZH: string;
-  readonly PUBLIC_SLASH_ADMINISTRATORS_ZH: string;
-  readonly PUBLIC_SLASH_UI_ZH: string;
-
-  // 中国語（繁体字）設定
-  readonly PUBLIC_PRODUCT_NAME_ZH_TW: string;
-  readonly PUBLIC_HELP_ZH_TW: string;
-  readonly PUBLIC_GOOGLE_SEARCH_TABS_ZH_TW: string;
-  readonly PUBLIC_FOOTER_LINKS_ZH_TW: string;
-  readonly PUBLIC_CORP_NAME_ZH_TW: string;
-  readonly PUBLIC_STORE_ZH_TW: string;
-  readonly PUBLIC_SLASH_ZH_TW: string;
-  readonly PUBLIC_SLASH_HELP_ZH_TW: string;
-  readonly PUBLIC_SLASH_ADMINISTRATORS_ZH_TW: string;
-  readonly PUBLIC_SLASH_UI_ZH_TW: string;
-
-  // 動的に生成される言語固有の設定用
+  // 動的に生成される設定用
   [key: string]: string | undefined;
 }
 
