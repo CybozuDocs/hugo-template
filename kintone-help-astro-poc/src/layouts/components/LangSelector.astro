@@ -1,14 +1,7 @@
 ---
-interface Props {
-  env: {
-    useWovn?: boolean;
-    languageData?: {
-      languages: Array<{
-        language_code: string;
-        display_name: string;
-      }>;
-    };
-  };
+import type { BaseProps } from './types';
+
+interface Props extends BaseProps {
   page: {
     siteLanguage: {
       languageName: string;

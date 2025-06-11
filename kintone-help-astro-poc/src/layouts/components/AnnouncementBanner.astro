@@ -1,16 +1,9 @@
 ---
 import Wovn from '@/components/Wovn.astro';
 import MakeAnnounceBanner from './MakeAnnounceBanner.astro';
+import type { BaseProps } from './types';
 
-interface Props {
-  env: {
-    lang: string;
-    targetRegion: string;
-  };
-  page: {
-    // 今回は使用しない
-  };
-}
+interface Props extends BaseProps {}
 
 const { env, page } = Astro.props;
 

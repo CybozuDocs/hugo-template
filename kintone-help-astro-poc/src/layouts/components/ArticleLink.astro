@@ -1,18 +1,8 @@
 ---
 import Wovn from '@/components/Wovn.astro';
+import type { BaseProps } from './types';
 
-interface Props {
-  env: {
-    baseURL: string;
-  };
-  page: {
-    params: {
-      aliases: string[];
-    };
-    relPermalink: string;
-    fileContentBaseName: string;
-  };
-}
+interface Props extends BaseProps {}
 
 const { env, page } = Astro.props;
 

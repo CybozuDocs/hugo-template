@@ -1,16 +1,7 @@
 ---
-interface Props {
-  env: {
-    labelColors?: string[];
-    labelLead?: string;
-    labelContents?: string[];
-  };
-  page: {
-    params: {
-      labels?: string[];
-    };
-  };
-}
+import type { BaseProps } from './types';
+
+interface Props extends BaseProps {}
 
 const { env, page } = Astro.props;
 

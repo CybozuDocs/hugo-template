@@ -3,15 +3,12 @@
 
 export interface EnvProps {
   // 基本設定
-  productName?: string;
+  productName: string;
   baseURL: string;
-  domain?: string;
+  domain: string;
   languageCode: string;
   targetRegion: string;
-
-  // テンプレート設定
-  meganav?: boolean;
-  previewSite?: boolean;
+  help: string;
 
   // 検索設定
   googleSearch?: boolean;
@@ -21,12 +18,15 @@ export interface EnvProps {
   searchAll?: string;
   idSearch?: boolean;
 
-  // その他の設定
+  // 機能フラグ
+  meganav?: boolean;
+  previewSite?: boolean;
   langSelector?: boolean;
   useWovn?: boolean;
-  dataWovnio?: string;
   tocInTree?: boolean;
-  help?: string;
+
+  // 外部サービス
+  dataWovnio?: string;
   serviceType?: string;
   serviceTypeId?: string;
   staging?: string;
@@ -47,9 +47,18 @@ export interface EnvProps {
   labelLead?: string;
   labelContents?: string[];
 
+  // 言語データ設定
+  languageData?: {
+    languages: Array<{
+      language_code: string;
+      display_name: string;
+    }>;
+  };
+
   // サイト構造
   siteHome?: PageProps;
   siteHomeSections?: PageProps[];
+  regularPages?: PageProps[];
 
   // FAQ リンク
   faqLink?: string;

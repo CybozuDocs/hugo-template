@@ -60,25 +60,38 @@
 
 ### 1. TypeScript 型定義
 
-すべてのコンポーネントで Props の型定義を実装：
+#### 基本ルール: BaseProps の使用
+
+独自の環境設定が不要なコンポーネントは必ずBasePropsを使用：
 
 ```typescript
+import type { BaseProps } from './types';
+
+interface Props extends BaseProps {}
+```
+
+#### 独自プロパティが必要な場合
+
+以下の場合のみカスタムProps定義を許可：
+
+```typescript
+// コンポーネント固有のプロパティがある場合
 interface Props {
-  env?: {
-    product?: string;
-    baseURL?: string;
-    languageCode?: string;
-    // 必要なプロパティを追加
-  };
-  page?: {
-    isHome?: boolean;
-    title?: string;
-    relPermalink?: string;
-    // 必要なプロパティを追加
-  };
-  // コンポーネント固有のプロパティ
+  cursect: PageProps;  // 独自プロパティ
+  env: EnvProps;       // EnvPropsは使用可能
+}
+
+// 特殊なPage型が必要な場合
+interface Props extends BaseProps {
+  // BasePropsを継承しつつ独自定義
 }
 ```
+
+#### 型安全性の確保
+
+- 全てのコンポーネントでPropsの型定義を実装
+- TypeScript interfaceを使用して型安全性を保証
+- Props変更後は必ず `npm run build` でビルドテストを実行
 
 ### 2. i18n（国際化）対応
 

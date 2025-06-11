@@ -1,43 +1,9 @@
 ---
 import AlternateLink from './AlternateLink.astro';
 import Gtm from './Gtm.astro';
+import type { BaseProps } from './types';
 
-interface Props {
-  env: {
-    languageCode: string;
-    useWovn?: boolean;
-    dataWovnio?: string;
-    baseURL: string;
-    serviceType?: string;
-    serviceTypeId?: string;
-    productName: string;
-    help: string;
-    domain: string;
-    ogImg: string;
-    staging?: string;
-    favicon?: string;
-    targetRegion: string;
-    customCss?: string;
-    meganav?: boolean;
-    googleSearch?: boolean;
-    bingSearch?: boolean;
-    chat?: string;
-    chatMenuPrefix?: string;
-  };
-  page: {
-    isHome: boolean;
-    description?: string;
-    content?: string;
-    permalink: string;
-    relPermalink: string;
-    params: {
-      type?: string;
-      nolink?: boolean;
-      [key: string]: any;
-    };
-    lang: string;
-  };
-}
+interface Props extends BaseProps {}
 
 const { env, page } = Astro.props;
 
@@ -173,8 +139,8 @@ const activeChatTargets = processChatSettings();
     <link rel="stylesheet" href="https://use.typekit.net/fmt1ojn.css" />
     {/* TODO: 本番環境判定 */}
     <!-- OneTrust Cookies Consent Notice start -->
-    <script type="text/javascript" src="https://cookie-cdn.cookiepro.com/consent/9d6098cc-90be-4d07-a9ef-6e07312a3016/OtAutoBlock.js"></script>
-    <script src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js" type="text/javascript" charset="UTF-8" data-domain-script="9d6098cc-90be-4d07-a9ef-6e07312a3016"></script>
+    <script is:inline type="text/javascript" src="https://cookie-cdn.cookiepro.com/consent/9d6098cc-90be-4d07-a9ef-6e07312a3016/OtAutoBlock.js"></script>
+    <script is:inline src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js" type="text/javascript" charset="UTF-8" data-domain-script="9d6098cc-90be-4d07-a9ef-6e07312a3016"></script>
     <script type="text/javascript">
     function OptanonWrapper() { }
     </script>
@@ -210,8 +176,8 @@ const activeChatTargets = processChatSettings();
 )}
 
 {/* JavaScript ファイル */}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
 <script is:inline src="/k/javascripts/zoom.js"></script>
 <script is:inline src={`/k/javascripts/preload.js?${buildnum}`}></script>
 <script is:inline src={`/k/javascripts/application.js?${buildnum}`}></script>
@@ -231,7 +197,7 @@ const activeChatTargets = processChatSettings();
 )}
 
 {needsVue && (
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.8/vue.global.prod.min.js"></script>
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.8/vue.global.prod.min.js"></script>
 )}
 
 {/* Google Tag Manager */}
@@ -244,7 +210,7 @@ const activeChatTargets = processChatSettings();
 {/* Zendesk チャット */}
 {activeChatTargets.map((target) => (
   <Fragment>
-    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=6549c743-a6eb-40ac-a71f-c479b0759f1c"></script>
+    <script is:inline id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=6549c743-a6eb-40ac-a71f-c479b0759f1c"></script>
     {/* TODO: チャットメニューの設定 */}
   </Fragment>
 ))}

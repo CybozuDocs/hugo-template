@@ -1,14 +1,8 @@
 ---
 import Wovn from '@/components/Wovn.astro';
+import type { BaseProps } from './types';
 
-interface Props {
-  env: {
-    // 今回は使用しない
-  };
-  page: {
-    // 今回は使用しない
-  };
-}
+interface Props extends BaseProps {}
 
 const { env, page } = Astro.props;
 ---

@@ -327,3 +327,36 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - support_guide製品の特別処理
   - 他製品のTOC設定、地域別処理
 - **ビルド結果**: npm run build成功、構文エラー解消、CSVファイル読み込み問題解決
+
+#### 0010_env-props-unification 作業完了
+- **成果物**: 各コンポーネントのProps型定義の統一化
+  - 19件のコンポーネントでカスタムenv型定義をBaseProps使用に統一
+  - 型安全性の向上と保守性の改善
+  - 型定義の重複削除とEnvProps/BasePropsの一貫した使用
+- **重要な学習事項**:
+  - BasePropsによる型継承パターンの有効性
+  - 独自プロパティが必要なコンポーネントの適切な判断基準
+  - 型統一化による環境変数変更時の影響範囲明確化
+- **技術的実装**:
+  - **型定義統一**: 19件のコンポーネントでカスタムenv型をBaseProps継承に変更
+  - **Header.astro**: 大規模なカスタム型定義を削除、BaseProps使用
+  - **SearchBox.astro**: カスタムenv/page型定義を削除、BaseProps使用
+  - **Footer.astro**: カスタムenv型定義を削除、BaseProps使用
+  - **その他**: AnnouncementBanner、Disclaimer系、Enquete等の型統一
+- **統一化対象コンポーネント（19件）**:
+  - AnnouncementBanner.astro, Disclaimer.astro, Disclaimer3.astro
+  - Enquete.astro, FooterGr6.astro, HeaderLabel.astro
+  - ArticleLink.astro, IdLink.astro, LatestPageGuide.astro
+  - LocaleModal.astro, PreviewList.astro, Related.astro
+  - SupportInquiry.astro, LangSelector.astro（部分的）
+  - その他の対象コンポーネント
+- **保持されたコンポーネント**:
+  - **BreadcrumbNav.astro**: p1, p2という独自プロパティのため
+  - **LangSelector.astro**: 独自のpage型定義が必要
+  - **MegaNavGrMegaPanel.astro**: cursectという独自プロパティ
+  - **TreeNavMainMenu.astro**: curnode, target等の独自プロパティ
+  - **VideoNav.astro**: tagsという独自プロパティ
+- **品質確保**:
+  - ビルドテスト成功（npm run build）
+  - 型エラーなし、実行時間2.58秒
+  - 型チェック通過、実装の一貫性確保

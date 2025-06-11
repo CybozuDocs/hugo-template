@@ -1,57 +1,9 @@
 ---
 import SearchBox from './SearchBox.astro';
 import LangSelector from './LangSelector.astro';
+import type { BaseProps } from './types';
 
-interface Props {
-  env: {
-    meganav?: boolean;
-    targetRegion: string;
-    baseURL: string;
-    logo?: string;
-    productName: string;
-    help: string;
-    previewSite?: boolean;
-    googleSearch?: boolean;
-    bingSearch?: boolean;
-    searchAll?: string;
-    langSelector?: boolean;
-    useWovn?: boolean;
-    googleSearchTabs?: string;
-    bingSearchTabs?: string;
-    languageData?: {
-      languages: Array<{
-        language_code: string;
-        display_name: string;
-      }>;
-    };
-  };
-  page: {
-    isHome: boolean;
-    lang: string;
-    // LangSelector用のプロパティ
-    siteLanguage?: {
-      languageName: string;
-    };
-    translations?: Array<{
-      siteLanguageCode: string;
-      siteLanguage: {
-        languageName: string;
-      };
-      relPermalink: string;
-    }>;
-    relPermalink?: string;
-    // 元からあったプロパティ
-    allTranslations: any[];
-    isTranslated: boolean;
-    params: {
-      type?: string;
-      [key: string]: any;
-    };
-    scratch?: {
-      sitename?: string;
-    };
-  };
-}
+interface Props extends BaseProps {}
 
 const { env, page } = Astro.props;
 

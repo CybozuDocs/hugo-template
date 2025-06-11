@@ -1,10 +1,8 @@
 ---
 import Title from './Title.astro';
+import type { BaseProps } from './types';
 
-interface Props {
-  env: {
-    // Title コンポーネントで使用
-  };
+interface Props extends BaseProps {
   page: {
     sections: Array<{
       relPermalink: string;

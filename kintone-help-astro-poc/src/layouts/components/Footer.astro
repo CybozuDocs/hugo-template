@@ -1,18 +1,9 @@
 ---
 import Wovn from '@/components/Wovn.astro';
 import Footer2Disclaimer from './Footer2Disclaimer.astro';
+import type { BaseProps } from './types';
 
-interface Props {
-  env: {
-    footerLinks?: string;
-    baseURL: string;
-    languageCode: string;
-    targetRegion: string;
-  };
-  page: {
-    isHome?: boolean;
-  };
-}
+interface Props extends BaseProps {}
 
 const { env, page } = Astro.props;
 

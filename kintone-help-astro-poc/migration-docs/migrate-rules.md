@@ -347,9 +347,84 @@ const footerData = lines
 - CSVファイル読み込みエラーは適切にキャッチし、コンソール警告を出力
 - データが存在しない場合は空配列でフォールバック
 
+## Props型定義統一化ルール
+
+### 1. BaseProps使用の必須化
+
+**ルール**: 独自の環境設定が不要なコンポーネントは必ずBasePropsを使用する
+
+```typescript
+// ❌ 独自env型定義は禁止
+interface Props {
+  env: {
+    baseURL: string;
+    languageCode: string;
+    // ...
+  };
+  page: {
+    isHome: boolean;
+    // ...
+  };
+}
+
+// ✅ BasePropsを使用
+import type { BaseProps } from './types';
+
+interface Props extends BaseProps {}
+```
+
+### 2. 独自プロパティが必要な場合の判断基準
+
+以下の場合のみカスタムProps定義を許可：
+
+- コンポーネント固有のプロパティがある場合（例：BreadcrumbNav.astroのp1, p2）
+- 特殊なPage型が必要な場合（例：LangSelector.astroのtranslations）
+- 第三者によるコンポーネント固有パラメータ（例：VideoNav.astroのtags）
+
+```typescript
+// ✅ 独自プロパティありの場合
+interface Props {
+  cursect: PageProps;  // 独自プロパティ
+  env: EnvProps;       // EnvPropsは使用可能
+}
+
+// ✅ 特殊なPage型の場合
+interface Props extends BaseProps {
+  // BasePropsを継承しつつ独自のpage型定義
+}
+```
+
+### 3. 型統一化の確認方法
+
+Props定義変更後は必ずビルドテストを実行：
+
+```bash
+npm run build
+```
+
+型エラーがないことを確認してから作業完了とする。
+
+### 4. 既存の良い実装パターンの維持
+
+以下のコンポーネントは既に適切な型設計されており、参考とする：
+
+- **TreeNavMainMenu.astro**: EnvPropsと独自プロパティの組み合わせ
+- **BreadcrumbNav.astro**: 特殊なプロパティ構造の実装
+- **MegaNavGrMegaPanel.astro**: 階層データの適切な型定義
+
+### 5. 型定義の保守性向上効果
+
+統一化により以下の効果を期待：
+
+- 環境変数変更時の影響範囲の明確化
+- 型安全性の向上
+- コンポーネント間の一貫性確保
+- 重複コードの削除
+
 ## 更新履歴
 
 - 2025年1月 - 初版作成（rules.mdから移行関連情報を分離）
 - 2025年1月 - 環境変数変換ルールを追加
 - 2025年1月 - 多リージョン・単一言語設定の管理ルールを追加
 - 2025年1月 - CSVファイル読み込みルールを追加
+- 2025年1月 - Props型定義統一化ルールを追加
