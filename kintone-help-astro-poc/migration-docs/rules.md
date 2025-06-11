@@ -1,8 +1,8 @@
-# Hugo から Astro への移行ルール・開発ガイドライン
+# Astro 開発ガイドライン
 
 ## 概要
 
-このドキュメントは、Hugo テンプレートから Astro コンポーネントへの移行作業で確立された開発ルールとナレッジを記録します。移行完了後も Astro プロジェクトの開発指針として参照できます。
+このドキュメントは、Astro プロジェクトの開発ルールとナレッジを記録します。開発指針として参照してください。
 
 ## コンポーネント設計原則
 
@@ -22,17 +22,7 @@
 
 ### 2. コンポーネント分割規則
 
-Hugo の `define`/`template` は個別の Astro コンポーネントに分割：
-
-```astro
-<!-- Hugo -->
-{{ define "mainmenu" }}...{{ end }}
-{{ template "mainmenu" . }}
-
-<!-- Astro -->
-<!-- TreeNavMainMenu.astro として分離 -->
-<TreeNavMainMenu {env} {page} />
-```
+複雑なコンポーネントは責任に応じて適切に分割する。各コンポーネントは単一の責任を持つよう設計する。
 
 ## 実装ルール
 
@@ -42,34 +32,8 @@ Hugo の `define`/`template` は個別の Astro コンポーネントに分割�
 - **変更記録ファイル**: 同名 + `.md` 拡張子
 - **配置場所**: `src/components/` ディレクトリ
 
-### 2. 変更記録ファイル
 
-移行時には各コンポーネントに対応する `.md` ファイルを作成し、変更内容を記録する：
-
-```markdown
-# {ComponentName} 変更記録
-
-元ファイル: `layouts/partials/{filename}.html`
-
-## 関数・変数の置換
-
-| Hugo | Astro | 備考 |
-|------|-------|------|
-
-## TODO
-
-- [ ] 未実装機能
-
-## 構造の変化
-
-## その他の差分
-
-## 外部依存
-
-## 注意事項
-```
-
-### 3. TypeScript 型定義
+### 1. TypeScript 型定義
 
 すべてのコンポーネントで Props の型定義を実装：
 
@@ -91,7 +55,7 @@ interface Props {
 }
 ```
 
-### 4. i18n（国際化）対応
+### 2. i18n（国際化）対応
 
 #### WOVN サービスを利用した翻訳
 
@@ -109,95 +73,6 @@ import Wovn from './Wovn.astro';
 <button aria-label="i18n__todo__search">
 ```
 
-### 5. Hugo 変数のマッピング
-
-#### env プロパティ（サイト設定値）
-
-```typescript
-// Hugo → Astro
-$.Site.Params.product → env.product
-$.Site.BaseURL → env.baseURL
-.Site.LanguageCode → env.languageCode
-.Site.Params.TargetRegion → env.targetRegion
-```
-
-#### page プロパティ（ページ情報）
-
-```typescript
-// Hugo → Astro
-.IsHome → page.isHome
-.Title → page.title
-.RelPermalink → page.relPermalink
-.Parent → page.parent
-.CurrentSection → page.currentSection
-```
-
-### 6. テンプレート構文の変換
-
-#### 条件分岐
-
-```astro
-<!-- Hugo -->
-{{ if condition }}...{{ else }}...{{ end }}
-
-<!-- Astro -->
-{condition ? (
-  <div>...</div>
-) : (
-  <div>...</div>
-)}
-
-<!-- Hugo -->
-{{ with .Variable }}...{{ end }}
-
-<!-- Astro -->
-{variable && (
-  <div>...</div>
-)}
-```
-
-#### ループ処理
-
-```astro
-<!-- Hugo -->
-{{ range .Items }}
-  <div>{{ . }}</div>
-{{ end }}
-
-<!-- Astro -->
-{items.map((item) => (
-  <div key={item.id}>{item}</div>
-))}
-```
-
-#### 文字列処理
-
-```javascript
-// Hugo → JavaScript
-strings.TrimPrefix "prefix" . → str.replace(/^prefix/, '')
-strings.TrimSuffix "suffix" . → str.replace(/suffix$/, '')
-split . " " → str.split(' ')
-printf "%s %s" $var1 $var2 → `${var1} ${var2}`
-replaceRE "pattern" $replacement $target → target.replace(/pattern/g, replacement)
-hasPrefix → str.startsWith()
-hasSuffix → str.endsWith()
-```
-
-#### コレクション操作
-
-```javascript
-// Hugo → JavaScript
-.Pages.ByWeight → pages.sort((a, b) => a.weight - b.weight)
-union → [...array1, ...array2] または Array.from(new Set([...array1, ...array2]))
-where .Site.RegularPages "Section" "" → regularPages.filter(p => p.section === "")
-first 5 → slice(0, 5)
-len → .length
-add → +
-sub → -
-index → array[index]
-range → Array.from({ length: n }, (_, i) => i)
-seq → Array.from({ length: n }, (_, i) => i + 1)
-```
 
 ## 外部サービス統合
 
@@ -314,8 +189,6 @@ const safeItems = Array.isArray(items) ? items : [];
 
 ## 参考情報
 
-- **移行状況**: `migration-docs/migrate-memo.md`
-- **移行計画**: `migration-docs/migrate-partials/plan.md`
 - **プロジェクト概要**: `CLAUDE.md`
 
 ## 環境変数管理
@@ -343,7 +216,7 @@ PUBLIC_HELP_EN=Help
 - **大文字スネークケース**: PUBLIC_VARIABLE_NAME
 - **言語接尾辞**: _JA, _EN, _ZH, _ZH_TW
 
-### 2. TypeScript 型定義 (env.d.ts)
+### 1. TypeScript 型定義 (env.d.ts)
 
 ```typescript
 /// <reference types="astro/client" />
@@ -363,7 +236,7 @@ interface ImportMeta {
 }
 ```
 
-### 3. 環境変数ローダー (src/lib/env.ts)
+### 2. 環境変数ローダー (src/lib/env.ts)
 
 #### 基本構成
 ```typescript
@@ -393,7 +266,7 @@ export const buildEnvConfig = (options: {
 export type EnvConfig = ReturnType<typeof buildEnvConfig>;
 ```
 
-### 4. コンポーネントでの使用パターン
+### 3. コンポーネントでの使用パターン
 
 #### レイアウトコンポーネント
 ```astro
@@ -429,7 +302,7 @@ const { env } = Astro.props;
 <div>{env.product}</div>
 ```
 
-### 5. 環境変数のベストプラクティス
+### 4. 環境変数のベストプラクティス
 
 #### デフォルト値の設定
 ```typescript
@@ -452,7 +325,15 @@ const isEnabled = import.meta.env.PUBLIC_FEATURE_FLAG === 'true';
 const colors = JSON.parse(import.meta.env.PUBLIC_LABEL_COLORS || '[]');
 ```
 
+## DOM構造の保持原則
+
+Astroコンポーネントは元のHTML構造を正確に保持する必要があります：
+
+- 不要な wrapper 要素の追加を避ける
+- 元の class 名と id を維持
+- セマンティックHTMLを遵守
+
 ## 更新履歴
 
-- 2024年12月 - 初版作成（Hugo → Astro 移行ルール確立）
+- 2024年12月 - 初版作成
 - 2025年1月 - 環境変数管理セクション追加

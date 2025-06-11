@@ -3,10 +3,14 @@ import type { MarkdownLayoutProps } from "astro";
 import Head from "./components/Head.astro";
 import { buildEnvConfig } from "../lib/env.js";
 import { getPermalinks, isHomePage, getLangFromLanguageCode } from "../lib/url.js";
+import Disclaimer2 from "./components/Disclaimer2.astro";
+// import Related from "./components/Related.astro";
+import Footer from "./components/Footer.astro";
 
 type Props = MarkdownLayoutProps<{
   title?: string;
   description?: string;
+  weight?: number;
 }> & {
   // ページ固有設定
   jsonTree?: boolean;
@@ -39,12 +43,15 @@ const {
   labels = [],
   content = "",
   type = "",
-  weight = 0,
+  weight = frontmatter.weight || 0,
   i18n = { inThisArticle: "In this article" }
  } = Astro.props;
 
 // env設定を構築（環境変数から直接取得）
-const envConfig = buildEnvConfig();
+const envConfig = {
+  ...buildEnvConfig(),
+  regularPages: [], // TODO: 実際の関連ページデータを設定
+};
 
 // permalink と relPermalink を生成
 const permalinks = getPermalinks(Astro.url, envConfig.domain);
@@ -52,10 +59,13 @@ const permalinks = getPermalinks(Astro.url, envConfig.domain);
 // page オブジェクトを構築
 const pageData = {
   isHome: isHomePage(Astro.url.pathname),
+  isSection: false,
+  title: frontmatter.title || "",
   description: frontmatter.description,
   content: content,
   permalink: permalinks.permalink,
   relPermalink: permalinks.relPermalink,
+  weight: weight,
   params: {
     type: type,
     nolink: false,  // TODO: 実際の値を設定
@@ -113,7 +123,7 @@ const isGaroonNonJapanese = envConfig.product === "Garoon" &&
             <div id="contents" class="contents-wrap">
               {isGaroonNonJapanese && <div>[DISCLAIMER PARTIAL]</div>}
               
-              {envConfig.useWovn && <div>[DISCLAIMER2 PARTIAL]</div>}
+              {envConfig.useWovn && <Disclaimer2 env={envConfig} page={pageData} />}
               
               <div>[LATEST PAGE GUIDE PARTIAL]</div>
               
@@ -139,7 +149,7 @@ const isGaroonNonJapanese = envConfig.product === "Garoon" &&
                   <slot />
                 </article>
                 
-                <div>[RELATED PARTIAL]</div>
+                {/* <Related env={envConfig} page={pageData} /> */}
                 
                 {type === "series" && <div>[PAGE NAV PARTIAL]</div>}
               </main>
@@ -162,8 +172,8 @@ const isGaroonNonJapanese = envConfig.product === "Garoon" &&
           )}
           
           <div>[ENQUETE PARTIAL]</div>
-          <div>[FOOTER PARTIAL]</div>
-        </H>
+          <Footer env={envConfig} page={pageData} />
+        </>
       )}
   </body>
 </html>

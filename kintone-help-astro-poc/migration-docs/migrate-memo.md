@@ -187,3 +187,20 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 ## 更新履歴
 
 - 2024年12月 - 初版作成（移行初期段階の状況記録）
+- 2025年1月 - Partials統合作業の完了を反映
+
+### 2025年1月更新内容
+
+#### 0005_partials-integration 作業完了
+- **実装済みコンポーネント**: 
+  - Disclaimer2.astro（DISCLAIMER2 PARTIAL）
+  - Related.astro（RELATED PARTIAL）※コメントアウト
+  - Footer.astro（FOOTER PARTIAL）※Footer2からリネーム
+- **重要な学習事項**:
+  - partial名とコンポーネント名の正確な対応が必要（例：disclaimer2.html → Disclaimer2.astro）
+  - DOM構造の厳密な保持（文言の勝手な追加は禁止）
+  - templateVersion=2のみ存在するため、Footer2を標準のFooterとして使用
+- **判明した課題**:
+  - 最高難易度: TreeNav、Header、AnnouncementBanner（再帰処理、API統合が必要）
+  - 中難易度: Breadcrumb、LatestPageGuide（階層処理が必要）
+  - 低難易度: MegaNav、各種小コンポーネント（単純な移植で対応可能）
