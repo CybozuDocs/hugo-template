@@ -197,7 +197,78 @@ params.google_search_tabs → PUBLIC_GOOGLE_SEARCH_TABS_* (言語別)
 - 異なるベースURL
 - 一部本番と異なる言語設定
 
+## 多リージョン・単一言語設定の管理
+
+### 環境変数の簡素化ルール
+
+リージョンを維持しつつ言語は日本語に統一し、環境変数管理を簡素化：
+
+#### 言語接尾辞の整理
+
+```
+# 旧設定（多言語対応）
+PUBLIC_PRODUCT_NAME_JA=kintone
+PUBLIC_HELP_JA=ヘルプ
+
+# 新設定（日本語特化）
+PUBLIC_PRODUCT_NAME=kintone
+PUBLIC_HELP=ヘルプ
+```
+
+#### リージョン設定の維持と言語設定の統一
+
+- **リージョンファイルの有効化**: .env.us, .env.cn 等を有効な状態で維持
+- **言語設定のコメントアウト**: 各ファイル内の英語・中国語設定のみコメントアウト
+- **リージョン固有設定の保持**: ドメイン、ブランディング、機能フラグは各リージョンで維持
+
+```bash
+# .env.us （アメリカリージョン）
+# リージョン設定は有効
+PUBLIC_BASE_URL=https://get.kintone.help/k/
+PUBLIC_TARGET_REGION=US
+PUBLIC_KINTONE=Kintone  # アメリカブランディング
+PUBLIC_MEGANAV=true     # アメリカ固有機能
+
+# 言語設定は日本語に統一
+PUBLIC_DEFAULT_CONTENT_LANGUAGE=ja
+PUBLIC_LANGUAGE_CODE=ja-jp
+PUBLIC_PRODUCT_NAME=Kintone  # _JA接尾辞を削除
+PUBLIC_HELP=ヘルプ
+
+# 他言語設定はコメントアウト
+# PUBLIC_PRODUCT_NAME_EN=Kintone
+# PUBLIC_HELP_EN=Help
+```
+
+#### env.ts の簡素化
+
+```typescript
+// 削除: 多言語対応関数
+export const getLocalizedEnvValue = (key: string, langCode: string) => {
+  // ... 複雑な言語判定ロジック
+};
+
+// 変更: 直接環境変数参照
+export const buildEnvConfig = () => {
+  return {
+    productName: import.meta.env.PUBLIC_PRODUCT_NAME || '',
+    help: import.meta.env.PUBLIC_HELP || '',
+    // ...
+  };
+};
+```
+
+### 多リージョン・単一言語アーキテクチャのメリット
+
+1. **リージョン特化の維持**: 各市場固有のビジネスロジックを保持
+2. **言語コードの簡素化**: 言語分岐処理の削除
+3. **メンテナンス性の向上**: 必要な設定のみ管理
+4. **パフォーマンスの向上**: 不要な言語判定処理の削除
+5. **スケーラビリティ**: 新しいリージョン追加が容易
+6. **間違いの減少**: 複雑な設定でのヒューマンエラーを防止
+
 ## 更新履歴
 
 - 2025年1月 - 初版作成（rules.mdから移行関連情報を分離）
 - 2025年1月 - 環境変数変換ルールを追加
+- 2025年1月 - 多リージョン・単一言語設定の管理ルールを追加

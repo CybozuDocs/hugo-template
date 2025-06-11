@@ -1,63 +1,66 @@
-# 環境変数ファイル拡張 - 実行プラン
+# 環境変数ファイル整理と env.ts 修正プラン
 
 ## 作業概要
-既存の`.env.jp`に加えて、追加のTomlファイルから新しい環境変数ファイルを作成する
 
-## 対象ファイル
-- `hugo_cn.toml` → `.env.cn`
-- `hugo_cn_staging.toml` → `.env.cn_staging`  
-- `hugo_jp_staging.toml` → `.env.jp_staging`
-- `hugo_us.toml` → `.env.us`
-- `hugo_us_staging.toml` → `.env.us_staging`
+Hugo から Astro への移行に伴い、環境変数ファイル群の整理と env.ts の修正を行います。
 
-## 実行手順
+## 現状分析
 
-### 1. 各Tomlファイルの読み取り
-- 5つのTomlファイルの内容を並行して読み取り
-- 既存の`.env.jp`ファイルの形式を参考として確認
+### 環境変数ファイル一覧
+- `.env` - デフォルト設定
+- `.env.jp` - 日本語固有設定
+- `.env.jp_staging` - 日本語 staging 環境設定
+- `.env.cn` - 中国語固有設定
+- `.env.cn_staging` - 中国語 staging 環境設定
+- `.env.us` - 英語（US）固有設定
+- `.env.us_staging` - 英語 staging 環境設定
 
-### 2. 環境変数ファイルの作成
-各Tomlファイルの設定を以下の形式でAstro用環境変数に変換：
+### env.ts の現状
+- `getLocalizedEnvValue` 関数で言語別の環境変数を取得
+- `buildEnvConfig` 関数で設定オブジェクトを構築
+- 言語コードに基づいた動的な環境変数取得
 
-#### 基本設定の変換
-- `baseurl` → `PUBLIC_BASE_URL`
-- `params.template_version` → `PUBLIC_TEMPLATE_VERSION`
-- `params.product` → `PUBLIC_PRODUCT`
-- `params.domain` → `PUBLIC_DOMAIN`
-- など
+## 実行計画
 
-#### 機能フラグの変換
-- `params.langSelector` → `PUBLIC_LANG_SELECTOR`
-- `params.meganav` → `PUBLIC_MEGANAV`
-- `params.json_tree` → `PUBLIC_JSON_TREE`
-- など
+### Phase 1: 環境変数ファイルの内容分析
+1. 各 .env ファイルの内容を確認
+2. 英語・中国語設定（_EN、_CN 接尾辞）を特定
+3. 日本語設定（_JP 接尾辞）を特定
 
-#### 言語別設定の変換
-- `languages.ja.params.*` → `PUBLIC_*_JA`
-- `languages.en.params.*` → `PUBLIC_*_EN`
-- `languages.zh.params.*` → `PUBLIC_*_ZH`
-- `languages.zh-tw.params.*` → `PUBLIC_*_ZH_TW`
+### Phase 2: 英語・中国語設定のコメントアウト
+1. `.env.us` および `.env.us_staging` ファイル内の設定をコメントアウト
+2. `.env.cn` および `.env.cn_staging` ファイル内の設定をコメントアウト
+3. メインファイル（`.env`, `.env.jp`, `.env.jp_staging`）内の _EN, _CN 接尾辞設定をコメントアウト
 
-### 3. 地域別・環境別の差異対応
-- CN: Bing検索、cybozu.cnドメイン
-- JP: Google検索、cybozu.comドメイン、ラベル色設定
-- US: メガナビ有効、Kintoneブランディング、サポート問い合わせURL
-- Staging: WOVN設定、異なるベースURL
+### Phase 3: 日本語設定の _JP 接尾辞削除
+1. 各ファイル内の _JP 接尾辞を持つ環境変数名から _JP を削除
+2. 設定値はそのまま保持
 
-### 4. 品質確認
-- 各ファイルの形式一貫性確認
-- 必要な設定項目の漏れチェック
-- 地域・環境別の設定差異の正確性確認
+### Phase 4: env.ts の修正
+1. `getLocalizedEnvValue` 関数の削除
+2. `buildEnvConfig` 関数の修正:
+   - 直接キーでの環境変数取得に変更
+   - 言語固有の動的取得ロジックを削除
+3. 型定義の更新（必要に応じて）
 
-## 期待される成果物
-- `.env.cn` - 中国向けプロダクション環境設定
-- `.env.cn_staging` - 中国向けステージング環境設定
-- `.env.jp_staging` - 日本向けステージング環境設定  
-- `.env.us` - アメリカ向けプロダクション環境設定
-- `.env.us_staging` - アメリカ向けステージング環境設定
+### Phase 5: 検証
+1. 修正後の env.ts が正常に動作することを確認
+2. Astro プロジェクトのビルドが通ることを確認
 
-## 注意点
-- 既存の`.env.jp`と同じ形式を維持
-- 地域別のブランディング差異（Kintone vs kintone）に注意
-- 検索機能の違い（Google vs Bing）を正確に反映
-- WOVN設定の有無を適切に処理
+## 影響範囲
+
+### 影響を受けるファイル
+- 全ての .env* ファイル
+- `src/lib/env.ts`
+- env.ts を import しているコンポーネント（あれば）
+
+### 注意点
+- 英語・中国語設定は完全削除ではなくコメントアウトのため、将来的な復活が可能
+- 日本語専用設定への変更により、シンプルな構造になる
+- 既存のコンポーネントで env.ts を使用している箇所の動作確認が必要
+
+## 作業後の状態
+
+- 日本語専用の環境変数設定
+- シンプルな env.ts（多言語対応ロジック削除）
+- 英語・中国語設定はコメントアウト状態で保持

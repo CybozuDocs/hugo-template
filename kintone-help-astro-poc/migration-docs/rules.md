@@ -196,28 +196,68 @@ const safeItems = Array.isArray(items) ? items : [];
 
 ### 1. 環境変数ファイル構成
 
-#### .env ファイル
+#### .env ファイル構成
 
-Astro の標準的な環境変数システムを使用：
+Astro の標準的な環境変数システムを使用（多リージョン・単一言語版）：
+
+#### リージョン別ファイル構成
 
 ```bash
-# サイト基本設定
-PUBLIC_BASE_URL=https://jp.cybozu.help/k/
-PUBLIC_TEMPLATE_VERSION=2
-PUBLIC_PRODUCT=kintone
+# メイン設定ファイル
+.env                # デフォルト設定
+.env.jp             # 日本リージョン
+.env.jp_staging     # 日本リージョン（staging）
+.env.us             # アメリカリージョン
+.env.us_staging     # アメリカリージョン（staging）
+.env.cn             # 中国リージョン
+.env.cn_staging     # 中国リージョン（staging）
+```
 
-# 言語別設定（接尾辞で管理）
-PUBLIC_PRODUCT_NAME_JA=kintone
-PUBLIC_PRODUCT_NAME_EN=kintone
-PUBLIC_HELP_JA=ヘルプ
-PUBLIC_HELP_EN=Help
+#### リージョン別設定例
+
+```bash
+# .env.jp （日本リージョン）
+PUBLIC_BASE_URL=https://jp.cybozu.help/k/
+PUBLIC_TARGET_REGION=JP
+PUBLIC_KINTONE=kintone
+PUBLIC_SERVICE=cybozu.com
+PUBLIC_GOOGLE_SEARCH=true
+PUBLIC_MEGANAV=false
+
+# .env.us （アメリカリージョン）
+PUBLIC_BASE_URL=https://get.kintone.help/k/
+PUBLIC_TARGET_REGION=US
+PUBLIC_KINTONE=Kintone  # 大文字Kのブランディング
+PUBLIC_SERVICE=Kintone
+PUBLIC_GOOGLE_SEARCH=true
+PUBLIC_MEGANAV=true     # アメリカのみ有効
+
+# .env.cn （中国リージョン）
+PUBLIC_BASE_URL=https://help.cybozu.cn/k/
+PUBLIC_TARGET_REGION=CN
+PUBLIC_KINTONE=kintone
+PUBLIC_SERVICE=cybozu.cn
+PUBLIC_BING_SEARCH=true  # 中国はBing検索
+PUBLIC_MEGANAV=false
+
+# 全リージョン共通：日本語設定
+PUBLIC_DEFAULT_CONTENT_LANGUAGE=ja
+PUBLIC_LANGUAGE_CODE=ja-jp
+PUBLIC_PRODUCT_NAME=kintone
+PUBLIC_HELP=ヘルプ
+
+# 他言語設定 - コメントアウト
+# PUBLIC_PRODUCT_NAME_EN=kintone
+# PUBLIC_HELP_EN=Help
 ```
 
 #### 命名規則
 
 - **PUBLIC\_** プレフィックス: クライアント側でアクセス可能な環境変数
 - **大文字スネークケース**: PUBLIC_VARIABLE_NAME
-- **言語接尾辞**: \_JA, \_EN, \_ZH, \_ZH_TW
+- **リージョン設定**: ファイル名で管理（.env.jp, .env.us, .env.cn）
+- **日本語設定**: 接尾辞なし（シンプルなキー名）
+- **他言語設定**: コメントアウト状態で保持
 
 ### 1. TypeScript 型定義 (env.d.ts)
 
@@ -241,24 +281,13 @@ interface ImportMeta {
 
 ### 2. 環境変数ローダー (src/lib/env.ts)
 
-#### 基本構成
+#### 簡素化された構成（日本語特化）
 
 ```typescript
-// 言語固有の環境変数を取得
-export const getLocalizedEnvValue = (key: string, langCode: string): string => {
-  const langSuffix = langCode.toUpperCase().replace("-", "_");
-  const localizedKey = `PUBLIC_${key}_${langSuffix}`;
-  const defaultKey = `PUBLIC_${key}_JA`; // デフォルトは日本語
+// 削除: 言語固有の環境変数取得関数
+// getLocalizedEnvValue 関数は不要に
 
-  return (
-    import.meta.env[localizedKey] ||
-    import.meta.env[defaultKey] ||
-    import.meta.env[`PUBLIC_${key}`] ||
-    ""
-  );
-};
-
-// 環境変数から設定オブジェクトを構築
+// 直接環境変数を参照するシンプルな構成
 export const buildEnvConfig = (
   options: {
     languageCode?: string;
@@ -268,7 +297,14 @@ export const buildEnvConfig = (
     meganav?: boolean;
   } = {}
 ) => {
-  // ... 実装
+  return {
+    languageCode: languageCode || import.meta.env.PUBLIC_LANGUAGE_CODE || 'ja-jp',
+    productName: import.meta.env.PUBLIC_PRODUCT_NAME || '',
+    help: import.meta.env.PUBLIC_HELP || '',
+    baseURL: import.meta.env.PUBLIC_BASE_URL || '',
+    targetRegion: targetRegion || import.meta.env.PUBLIC_TARGET_REGION || 'JP',
+    // その他の設定...
+  };
 };
 
 // 型定義のエクスポート
@@ -315,14 +351,15 @@ const { env } = Astro.props;
 
 ### 4. 環境変数のベストプラクティス
 
-#### デフォルト値の設定
+#### デフォルト値の設定（簡素化版）
 
 ```typescript
 // 環境変数が未定義の場合は空文字列を返す
 const value = import.meta.env.PUBLIC_SOME_VALUE || "";
 
-// 言語固有の値が見つからない場合は日本語設定をフォールバック
-const localizedValue = getLocalizedEnvValue("PRODUCT_NAME", langCode);
+// 日本語特化により直接参照が可能
+const productName = import.meta.env.PUBLIC_PRODUCT_NAME || '';
+const help = import.meta.env.PUBLIC_HELP || '';
 ```
 
 #### ブール値の扱い
@@ -340,34 +377,52 @@ const colors = JSON.parse(import.meta.env.PUBLIC_LABEL_COLORS || "[]");
 const searchTabs = JSON.parse(import.meta.env.PUBLIC_GOOGLE_SEARCH_TABS_JA || "[]");
 ```
 
-### 5. 地域・環境別設定の管理
+### 5. リージョン・環境別設定の管理
 
-#### ファイル構成
+#### ファイル構成（程定使用中）
 
-- `.env.jp` - 日本向けプロダクション環境
-- `.env.jp_staging` - 日本向けステージング環境
-- `.env.cn` - 中国向けプロダクション環境
-- `.env.cn_staging` - 中国向けステージング環境
-- `.env.us` - アメリカ向けプロダクション環境
-- `.env.us_staging` - アメリカ向けステージング環境
+**全リージョン稼働中**:
+- `.env` - メイン設定（デフォルト）
+- `.env.jp` - 日本リージョンプロダクション環境
+- `.env.jp_staging` - 日本リージョンステージング環境
+- `.env.us` - アメリカリージョンプロダクション環境
+- `.env.us_staging` - アメリカリージョンステージング環境
+- `.env.cn` - 中国リージョンプロダクション環境
+- `.env.cn_staging` - 中国リージョンステージング環境
 
-#### 地域別の設定差異
+#### リージョン別の特性保持
 
 ```typescript
-// 地域別のブランディング差異
-// 中国・日本: kintone、アメリカ: Kintone（大文字K）
+// 日本リージョン (.env.jp)
+PUBLIC_TARGET_REGION=JP
+PUBLIC_KINTONE=kintone
+PUBLIC_SERVICE=cybozu.com
+PUBLIC_GOOGLE_SEARCH=true
+PUBLIC_MEGANAV=false
 
-// 検索機能の地域差
-// 中国: PUBLIC_BING_SEARCH=true
-// 日本・アメリカ: PUBLIC_GOOGLE_SEARCH=true
+// アメリカリージョン (.env.us)
+PUBLIC_TARGET_REGION=US
+PUBLIC_KINTONE=Kintone  # 大文字Kブランディング
+PUBLIC_SERVICE=Kintone
+PUBLIC_GOOGLE_SEARCH=true
+PUBLIC_MEGANAV=true     # アメリカのみ有効
 
-// メガナビゲーション
-// アメリカのみ: PUBLIC_MEGANAV=true
-// その他: PUBLIC_MEGANAV=false
+// 中国リージョン (.env.cn)
+PUBLIC_TARGET_REGION=CN
+PUBLIC_KINTONE=kintone
+PUBLIC_SERVICE=cybozu.cn
+PUBLIC_BING_SEARCH=true  # 中国はBing検索
+PUBLIC_MEGANAV=false
 
-// WOVN翻訳サービス
-// ステージング環境: PUBLIC_USE_WOVN=true, PUBLIC_DATA_WOVNIO=FZkNJw
-// プロダクション環境: 地域により異なる
+// 全リージョン共通: 日本語統一
+PUBLIC_DEFAULT_CONTENT_LANGUAGE=ja
+PUBLIC_LANGUAGE_CODE=ja-jp
+PUBLIC_PRODUCT_NAME=kintone
+PUBLIC_HELP=ヘルプ
+
+// 他言語設定 - コメントアウト
+# PUBLIC_PRODUCT_NAME_EN=Kintone
+# PUBLIC_HELP_EN=Help
 ```
 
 ## DOM 構造の保持原則
@@ -383,3 +438,4 @@ Astro コンポーネントは元の HTML 構造を正確に保持する必要�
 - 2024 年 12 月 - 初版作成
 - 2025 年 1 月 - 環境変数管理セクション追加
 - 2025 年 1 月 - 地域・環境別設定管理ルールを追加
+- 2025 年 1 月 - 多リージョン・単一言語アーキテクチャに伴う環境変数管理の更新
