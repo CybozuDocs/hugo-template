@@ -9,14 +9,17 @@
 ### 1. コンポーネント分類
 
 #### 基本コンポーネント
+
 - **用途**: 単一責任の機能を持つ再利用可能なコンポーネント
 - **例**: `Wovn.astro`, `Title.astro`, `GotoTop.astro`
 
 #### レイアウトコンポーネント
+
 - **用途**: ページ構造やナビゲーションを担当
 - **例**: `Header.astro`, `Footer.astro`, `Nav.astro`
 
 #### 複合コンポーネント
+
 - **用途**: 複数の機能を組み合わせた高機能コンポーネント
 - **例**: `TreeNav.astro`, `MegaNav.astro`, `SearchBox.astro`
 
@@ -28,10 +31,9 @@
 
 ### 1. ファイル構成・命名規則
 
-- **Astroコンポーネント**: PascalCase + `.astro` 拡張子
+- **Astro コンポーネント**: PascalCase + `.astro` 拡張子
 - **変更記録ファイル**: 同名 + `.md` 拡張子
 - **配置場所**: `src/components/` ディレクトリ
-
 
 ### 1. TypeScript 型定義
 
@@ -66,13 +68,12 @@ interface Props {
 
 ```astro
 ---
-import Wovn from './Wovn.astro';
+import Wovn from '@/components/Wovn.astro';
 ---
 
 <button><Wovn>i18n__Contact_support</Wovn></button>
 <button aria-label="i18n__todo__search">
 ```
-
 
 ## 外部サービス統合
 
@@ -122,7 +123,7 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 1. **型安全性**: TypeScript 型定義の適切性
 2. **Props 設計**: 再利用性と保守性を考慮した設計
 3. **パフォーマンス**: 不要な再計算や再レンダリングの回避
-4. **アクセシビリティ**: セマンティックHTML と ARIA 属性の適切な使用
+4. **アクセシビリティ**: セマンティック HTML と ARIA 属性の適切な使用
 5. **コードの可読性**: 命名規則とコメントの適切性
 6. **テスタビリティ**: テストしやすい構造の実装
 
@@ -133,8 +134,8 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 ```typescript
 // 基本パターン
 interface BaseProps {
-  env: EnvProps;    // サイト設定値
-  page: PageProps;  // ページ情報
+  env: EnvProps; // サイト設定値
+  page: PageProps; // ページ情報
 }
 
 // 拡張パターン
@@ -196,6 +197,7 @@ const safeItems = Array.isArray(items) ? items : [];
 ### 1. 環境変数ファイル構成
 
 #### .env ファイル
+
 Astro の標準的な環境変数システムを使用：
 
 ```bash
@@ -212,9 +214,10 @@ PUBLIC_HELP_EN=Help
 ```
 
 #### 命名規則
-- **PUBLIC_** プレフィックス: クライアント側でアクセス可能な環境変数
+
+- **PUBLIC\_** プレフィックス: クライアント側でアクセス可能な環境変数
 - **大文字スネークケース**: PUBLIC_VARIABLE_NAME
-- **言語接尾辞**: _JA, _EN, _ZH, _ZH_TW
+- **言語接尾辞**: \_JA, \_EN, \_ZH, \_ZH_TW
 
 ### 1. TypeScript 型定義 (env.d.ts)
 
@@ -226,7 +229,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_BASE_URL: string;
   readonly PUBLIC_TEMPLATE_VERSION: string;
   // ... 他の環境変数
-  
+
   // 動的に生成される言語固有の設定用
   [key: string]: string | undefined;
 }
@@ -239,26 +242,32 @@ interface ImportMeta {
 ### 2. 環境変数ローダー (src/lib/env.ts)
 
 #### 基本構成
+
 ```typescript
 // 言語固有の環境変数を取得
 export const getLocalizedEnvValue = (key: string, langCode: string): string => {
-  const langSuffix = langCode.toUpperCase().replace('-', '_');
+  const langSuffix = langCode.toUpperCase().replace("-", "_");
   const localizedKey = `PUBLIC_${key}_${langSuffix}`;
   const defaultKey = `PUBLIC_${key}_JA`; // デフォルトは日本語
-  
-  return import.meta.env[localizedKey] || 
-         import.meta.env[defaultKey] || 
-         import.meta.env[`PUBLIC_${key}`] || '';
+
+  return (
+    import.meta.env[localizedKey] ||
+    import.meta.env[defaultKey] ||
+    import.meta.env[`PUBLIC_${key}`] ||
+    ""
+  );
 };
 
 // 環境変数から設定オブジェクトを構築
-export const buildEnvConfig = (options: {
-  languageCode?: string;
-  product?: string;
-  targetRegion?: string;
-  useWovn?: boolean;
-  meganav?: boolean;
-} = {}) => {
+export const buildEnvConfig = (
+  options: {
+    languageCode?: string;
+    product?: string;
+    targetRegion?: string;
+    useWovn?: boolean;
+    meganav?: boolean;
+  } = {}
+) => {
   // ... 実装
 };
 
@@ -269,6 +278,7 @@ export type EnvConfig = ReturnType<typeof buildEnvConfig>;
 ### 3. コンポーネントでの使用パターン
 
 #### レイアウトコンポーネント
+
 ```astro
 ---
 import { buildEnvConfig } from "../lib/env.js";
@@ -286,6 +296,7 @@ const envConfig = buildEnvConfig({
 ```
 
 #### 子コンポーネント
+
 ```astro
 ---
 interface Props {
@@ -305,35 +316,70 @@ const { env } = Astro.props;
 ### 4. 環境変数のベストプラクティス
 
 #### デフォルト値の設定
+
 ```typescript
 // 環境変数が未定義の場合は空文字列を返す
-const value = import.meta.env.PUBLIC_SOME_VALUE || '';
+const value = import.meta.env.PUBLIC_SOME_VALUE || "";
 
 // 言語固有の値が見つからない場合は日本語設定をフォールバック
-const localizedValue = getLocalizedEnvValue('PRODUCT_NAME', langCode);
+const localizedValue = getLocalizedEnvValue("PRODUCT_NAME", langCode);
 ```
 
 #### ブール値の扱い
+
 ```typescript
 // 文字列として保存されるため、明示的な変換が必要
-const isEnabled = import.meta.env.PUBLIC_FEATURE_FLAG === 'true';
+const isEnabled = import.meta.env.PUBLIC_FEATURE_FLAG === "true";
 ```
 
 #### 配列やオブジェクトの扱い
+
 ```typescript
 // JSON 文字列として保存し、パース
-const colors = JSON.parse(import.meta.env.PUBLIC_LABEL_COLORS || '[]');
+const colors = JSON.parse(import.meta.env.PUBLIC_LABEL_COLORS || "[]");
+const searchTabs = JSON.parse(import.meta.env.PUBLIC_GOOGLE_SEARCH_TABS_JA || "[]");
 ```
 
-## DOM構造の保持原則
+### 5. 地域・環境別設定の管理
 
-Astroコンポーネントは元のHTML構造を正確に保持する必要があります：
+#### ファイル構成
+
+- `.env.jp` - 日本向けプロダクション環境
+- `.env.jp_staging` - 日本向けステージング環境
+- `.env.cn` - 中国向けプロダクション環境
+- `.env.cn_staging` - 中国向けステージング環境
+- `.env.us` - アメリカ向けプロダクション環境
+- `.env.us_staging` - アメリカ向けステージング環境
+
+#### 地域別の設定差異
+
+```typescript
+// 地域別のブランディング差異
+// 中国・日本: kintone、アメリカ: Kintone（大文字K）
+
+// 検索機能の地域差
+// 中国: PUBLIC_BING_SEARCH=true
+// 日本・アメリカ: PUBLIC_GOOGLE_SEARCH=true
+
+// メガナビゲーション
+// アメリカのみ: PUBLIC_MEGANAV=true
+// その他: PUBLIC_MEGANAV=false
+
+// WOVN翻訳サービス
+// ステージング環境: PUBLIC_USE_WOVN=true, PUBLIC_DATA_WOVNIO=FZkNJw
+// プロダクション環境: 地域により異なる
+```
+
+## DOM 構造の保持原則
+
+Astro コンポーネントは元の HTML 構造を正確に保持する必要があります：
 
 - 不要な wrapper 要素の追加を避ける
 - 元の class 名と id を維持
-- セマンティックHTMLを遵守
+- セマンティック HTML を遵守
 
 ## 更新履歴
 
-- 2024年12月 - 初版作成
-- 2025年1月 - 環境変数管理セクション追加
+- 2024 年 12 月 - 初版作成
+- 2025 年 1 月 - 環境変数管理セクション追加
+- 2025 年 1 月 - 地域・環境別設定管理ルールを追加

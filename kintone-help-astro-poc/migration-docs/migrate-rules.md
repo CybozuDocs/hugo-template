@@ -133,6 +133,71 @@ $.Site.Params.xxx → env.xxx
 3. `migrate-rules.md` を更新（新ルール）
 4. `rules.md` を更新（Astro開発の永続的ルール）
 
+## 環境変数変換ルール
+
+### Toml から Astro環境変数への変換
+
+#### 基本変換規則
+
+```
+Hugo Toml → Astro 環境変数
+baseurl → PUBLIC_BASE_URL
+params.template_version → PUBLIC_TEMPLATE_VERSION
+params.product → PUBLIC_PRODUCT
+params.domain → PUBLIC_DOMAIN
+params.kintone → PUBLIC_KINTONE
+```
+
+#### 機能フラグの変換
+
+```
+params.langSelector → PUBLIC_LANG_SELECTOR
+params.meganav → PUBLIC_MEGANAV
+params.json_tree → PUBLIC_JSON_TREE
+params.use_wovn → PUBLIC_USE_WOVN
+params.google_search → PUBLIC_GOOGLE_SEARCH
+params.bing_search → PUBLIC_BING_SEARCH
+```
+
+#### 言語別設定の変換
+
+```
+languages.ja.params.product_name → PUBLIC_PRODUCT_NAME_JA
+languages.en.params.help → PUBLIC_HELP_EN
+languages.zh.params.* → PUBLIC_*_ZH
+languages.zh-tw.params.* → PUBLIC_*_ZH_TW
+```
+
+#### JSON配列の扱い
+
+```
+params.label_colors → PUBLIC_LABEL_COLORS (JSON文字列として保持)
+params.google_search_tabs → PUBLIC_GOOGLE_SEARCH_TABS_* (言語別)
+```
+
+### 地域・環境別設定の注意点
+
+#### 中国 (CN)
+- Bing検索を使用
+- cybozu.cnドメイン・サービス
+- 多言語対応（4言語）
+
+#### 日本 (JP)
+- Google検索を使用
+- cybozu.comドメイン・サービス
+- ラベル色設定あり
+
+#### アメリカ (US)
+- メガナビゲーション有効
+- Kintoneブランディング（大文字K）
+- サポート問い合わせURL設定
+
+#### ステージング環境
+- WOVN設定有効
+- 異なるベースURL
+- 一部本番と異なる言語設定
+
 ## 更新履歴
 
 - 2025年1月 - 初版作成（rules.mdから移行関連情報を分離）
+- 2025年1月 - 環境変数変換ルールを追加

@@ -188,6 +188,7 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 
 - 2024年12月 - 初版作成（移行初期段階の状況記録）
 - 2025年1月 - Partials統合作業の完了を反映
+- 2025年1月 - 環境変数ファイル拡張作業の完了を反映
 
 ### 2025年1月更新内容
 
@@ -204,3 +205,20 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - 最高難易度: TreeNav、Header、AnnouncementBanner（再帰処理、API統合が必要）
   - 中難易度: Breadcrumb、LatestPageGuide（階層処理が必要）
   - 低難易度: MegaNav、各種小コンポーネント（単純な移植で対応可能）
+
+#### 0006_env-files-extension 作業完了
+- **成果物**: 5つの追加環境変数ファイル
+  - `.env.cn` - 中国向けプロダクション環境
+  - `.env.cn_staging` - 中国向けステージング環境
+  - `.env.jp_staging` - 日本向けステージング環境
+  - `.env.us` - アメリカ向けプロダクション環境
+  - `.env.us_staging` - アメリカ向けステージング環境
+- **重要な学習事項**:
+  - 地域別ブランディング差異（中国・日本: kintone、アメリカ: Kintone）
+  - 検索機能の地域差（中国: Bing、日本・アメリカ: Google）
+  - WOVN翻訳サービスの使用パターン（staging環境で有効化）
+  - メガナビゲーションの地域別設定（アメリカのみ有効）
+- **環境変数変換の確立**:
+  - HugoのToml形式からAstro環境変数への変換ルールが確立
+  - `PUBLIC_`プレフィックスと言語サフィックス（`_JA`, `_EN`等）の命名規則
+  - JSON配列形式の適切な保持方法
