@@ -433,9 +433,36 @@ Astro コンポーネントは元の HTML 構造を正確に保持する必要�
 - 元の class 名と id を維持
 - セマンティック HTML を遵守
 
+## データファイル管理
+
+### CSVファイル読み込み
+
+Astroでの静的ファイル読み込みパターン：
+
+```typescript
+// Viteの?rawインポートを使用
+const csvPath = `/src/pages/_data/csv/filename.${region}.csv`;
+const csvContent = await import(/* @vite-ignore */ csvPath + '?raw');
+
+// CSVパース（カンマ区切り、クォート対応）
+const data = csvContent.default.split('\n')
+  .filter((line: string) => line.trim())
+  .map((line: string) => {
+    // カンマ区切りパーサーロジック
+  });
+```
+
+#### CSVファイル管理原則
+
+1. **リージョン別管理**: `filename.{region}.csv` の命名規則
+2. **型安全性**: `string[][]` で型定義
+3. **エラーハンドリング**: 適切なフォールバック処理
+4. **パフォーマンス**: 静的インポートによる最適化
+
 ## 更新履歴
 
 - 2024 年 12 月 - 初版作成
 - 2025 年 1 月 - 環境変数管理セクション追加
 - 2025 年 1 月 - 地域・環境別設定管理ルールを追加
 - 2025 年 1 月 - 多リージョン・単一言語アーキテクチャに伴う環境変数管理の更新
+- 2025 年 1 月 - データファイル管理（CSV読み込み）セクション追加

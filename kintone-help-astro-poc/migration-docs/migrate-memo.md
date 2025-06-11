@@ -189,6 +189,7 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 - 2024年12月 - 初版作成（移行初期段階の状況記録）
 - 2025年1月 - Partials統合作業の完了を反映
 - 2025年1月 - 環境変数ファイル拡張作業の完了を反映
+- 2025年1月 - Footer.astro CSVファイル読み込み機能実装完了を反映
 
 ### 2025年1月更新内容
 
@@ -238,3 +239,19 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - 多リージョン・単一言語アーキテクチャの確立
   - リージョン固有のビジネスロジックと言語ロジックの分離
   - コード簡素化とメンテナンス性の向上
+
+#### 0007_footer-csv-implementation 作業完了
+- **成果物**: Footer.astroでのCSVファイル読み込み機能実装
+  - リージョン別CSVファイル読み分け（links.JP.csv, links.US.csv, links.CN.csv）
+  - ViteのESMインポートを使用したCSV読み込み
+  - 適切なTypeScript型定義と型安全性の確保
+- **重要な学習事項**:
+  - Viteの`?raw`インポートによる静的ファイル読み込み
+  - カンマ区切りCSVパーサーの実装（クォート対応）
+  - `env.targetRegion`を使用した動的ファイルパス生成
+  - 元のHugo実装（footer2.html）との構造的な一致保持
+- **技術的実装**:
+  - CSVデータの型を`string[][]`で定義
+  - ID=999: リーガルメニュー、ID=1-4: メガメニューの分類ロジック
+  - target属性の型制約とValidation
+  - エラーハンドリングとフォールバック処理

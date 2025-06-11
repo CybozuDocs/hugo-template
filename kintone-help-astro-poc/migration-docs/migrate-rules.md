@@ -267,8 +267,50 @@ export const buildEnvConfig = () => {
 5. **スケーラビリティ**: 新しいリージョン追加が容易
 6. **間違いの減少**: 複雑な設定でのヒューマンエラーを防止
 
+## CSVファイル読み込みルール
+
+### 1. ファイル配置規則
+
+CSVファイルは `src/pages/_data/csv/` 配下に配置し、リージョン別に管理：
+
+```
+src/pages/_data/csv/
+├── links.JP.csv  - 日本リージョン用
+├── links.US.csv  - アメリカリージョン用
+└── links.CN.csv  - 中国リージョン用
+```
+
+### 2. CSV読み込み実装パターン
+
+```typescript
+// env.targetRegionに基づく動的ファイルパス
+const csvPath = `/src/pages/_data/csv/links.${env.targetRegion}.csv`;
+const csvContent = await import(/* @vite-ignore */ csvPath + '?raw');
+
+// CSVパース処理
+const lines = csvContent.default.split('\n');
+const footerData = lines
+  .filter((line: string) => line.trim())
+  .map((line: string) => {
+    // カンマ区切りパース（クォート対応）
+    // ...
+  });
+```
+
+### 3. CSVデータ処理ルール
+
+#### データ分類ルール
+- **ID=999**: リーガルメニュー（法的リンク）
+- **ID=1-4**: メガメニュー（カテゴリ別）
+- **フィールド構成**: カテゴリID, テキスト, URL, ステータス/target
+
+#### エラーハンドリング
+- CSVファイル読み込みエラーは適切にキャッチし、コンソール警告を出力
+- データが存在しない場合は空配列でフォールバック
+
 ## 更新履歴
 
 - 2025年1月 - 初版作成（rules.mdから移行関連情報を分離）
 - 2025年1月 - 環境変数変換ルールを追加
 - 2025年1月 - 多リージョン・単一言語設定の管理ルールを追加
+- 2025年1月 - CSVファイル読み込みルールを追加

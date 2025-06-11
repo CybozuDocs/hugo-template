@@ -24,24 +24,42 @@ const basePath = baseUrl.pathname;
 // フルサイズの判定
 const fullsize = page.isHome || basePath.startsWith('/k/');
 
-// TODO: CSVデータの読み込み処理を実装
-let footerData: any[] = [];
+// CSVデータの読み込み処理
+const csvPath = `/src/pages/_data/csv/links.${env.targetRegion}.csv`;
+const csvContent = await import(/* @vite-ignore */ csvPath + '?raw');
 
-// 静的な実装（TODO: 動的読み込みに変更）
-// if (env.footerLinks) {
-//   try {
-//     // CSVファイルの読み込み処理をここに実装
-//   } catch (error) {
-//     console.warn(`Unable to get resource ${env.footerLinks}`);
-//   }
-// }
+// CSVをパースして配列に変換
+const lines = csvContent.default.split('\n');
+const footerData = lines
+  .filter((line: string) => line.trim()) // 空行を除外
+  .map((line: string) => {
+    // 簡易的なCSVパース（カンマ区切り、クォート対応）
+    const result: string[] = [];
+    let current = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === ',' && !inQuotes) {
+        result.push(current);
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    result.push(current); // 最後のフィールドを追加
+    
+    return result;
+  });
 
 // データ処理
 const sep = "\t";
 const legalMenu: string[] = [];
 const megaMenus: { [key: string]: string[] } = {};
 
-footerData.forEach(row => {
+footerData.forEach((row: string[]) => {
   const id = row[0];
   const item = `${row[1]}${sep}${row[2]}${sep}${row[3] || ''}`;
   
@@ -75,10 +93,13 @@ const processedMegaMenus = Object.entries(megaMenus).map(([index, val]) => {
 // リーガルメニューの処理
 const processedLegalMenu = legalMenu.map(item => {
   const link = item.split(sep);
+  const targetValue = link[2] || "_blank";
   return {
     text: link[0],
     href: link[1],
-    target: link[2] || "_blank"
+    target: (targetValue === "_blank" || targetValue === "_self" || targetValue === "_parent" || targetValue === "_top") 
+      ? targetValue as "_blank" | "_self" | "_parent" | "_top" 
+      : "_blank" as const
   };
 });
 ---
@@ -95,7 +116,7 @@ const processedLegalMenu = legalMenu.map(item => {
                 <span class="footer-mega-list-title-text">{categoryTitle}</span>
               </h2>
               <ul class="footer-mega-list-list">
-                {links.map((linkItem, linkIndex) => {
+                {links.map((linkItem) => {
                   const link = linkItem.split(sep);
                   const text = link[0];
                   const href = link[1];
@@ -129,7 +150,7 @@ const processedLegalMenu = legalMenu.map(item => {
     <div class="footer-legal-wrap">
       <div class="footer-legal">
         <ul class="footer-legal-list">
-          {processedLegalMenu.map((link, index) => (
+          {processedLegalMenu.map((link) => (
             <li class="footer-legal-item">
               <a href={link.href} target={link.target}>
                 {link.text}

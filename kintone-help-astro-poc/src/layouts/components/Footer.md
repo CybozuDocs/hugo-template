@@ -9,8 +9,8 @@
 | `{{ $sep := "\t" }}` | `const sep = "\t"` | 区切り文字定数 |
 | `{{ $legal_menu := slice }}` | `const legalMenu: string[] = []` | 配列初期化 |
 | `{{ $mega_menus := dict }}` | `const megaMenus: { [key: string]: string[] } = {}` | オブジェクト初期化 |
-| `{{ resources.Get $p }}` | 未実装 | TODO: CSVリソース読み込み |
-| `{{ transform.Unmarshal }}` | 未実装 | TODO: CSV解析 |
+| `{{ resources.Get $p }}` | `await import(csvPath + '?raw')` | Viteの?rawインポートでCSV読み込み |
+| `{{ transform.Unmarshal }}` | カスタムCSVパーサー | カンマ区切り、クォート対応のパース処理 |
 | `{{ printf "%s%s%s%s%s" }}` | テンプレートリテラル | 文字列結合 |
 | `{{ $legal_menu \| append $item }}` | `legalMenu.push(item)` | 配列追加 |
 | `{{ merge $mega_menus }}` | `megaMenus[id] = menuItems` | オブジェクト更新 |
@@ -25,9 +25,9 @@
 
 ## TODO
 
-- [ ] CSVファイルの動的読み込み処理の実装
-- [ ] resources.Getに相当するリソース読み込み機能
-- [ ] transform.Unmarshalに相当するCSV解析機能
+- [x] CSVファイルの動的読み込み処理の実装（完了）
+- [x] resources.Getに相当するリソース読み込み機能（Vite ?rawインポートで実装）
+- [x] transform.Unmarshalに相当するCSV解析機能（カスタムパーサーで実装）
 - [ ] hugo.Environment相当の環境判定
 
 ## 構造の変化
@@ -80,6 +80,15 @@
 
 ## 注意事項
 
-- CSVファイルの読み込み処理は現在未実装
+- CSVファイルの読み込み処理は完全実装済み（targetRegion別ファイル読み分け対応）
 - フルサイズ表示の判定ロジックがFooterと異なる
 - disclaimerの挿入条件がGaroonとFooterGr6で異なる
+
+## 実装完了項目（2025年1月更新）
+
+### CSVファイル読み込み機能
+- リージョン別ファイル読み分け（links.JP.csv, links.US.csv, links.CN.csv）
+- Viteの`?raw`インポートを使用した静的ファイル読み込み
+- カンマ区切りCSVパーサー（クォート対応）
+- TypeScript型安全性の確保（`string[][]`型定義）
+- ID=999（リーガルメニュー）とID=1-4（メガメニュー）の適切な分類
