@@ -384,3 +384,22 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - 既存ファイルの拡張による段階的改善
   - 過度な抽象化を避けたシンプルな実装
   - コメントなしのクリーンな型定義
+
+#### 0012_enabled-component 作業完了
+- **成果物**: Enabled.astroコンポーネントの実装
+  - Hugo の `enabled2.html` ショートコードを Astro コンポーネントに移行
+  - 地域別の条件付きコンテンツ表示機能を実装
+  - TypeScript による型安全性を確保
+- **重要な学習事項**:
+  - ショートコードの条件分岐ロジックを Astro の Props と条件レンダリングで実現
+  - `regions` 配列と `env.targetRegion` の照合による表示制御
+  - DOM構造の保持（wrapper要素を追加しない）
+- **技術的実装**:
+  - **Props定義**: `regions?: string[]` と `env: { targetRegion: string }`
+  - **条件判定**: `!regions || regions.includes(env.targetRegion)`
+  - **レンダリング**: `{shouldDisplay && <slot />}` による条件付き表示
+  - **後方互換性**: regions未定義時は常に表示
+- **品質確保**:
+  - ビルドテスト成功（npm run build）
+  - 変更記録ファイル（Enabled.md）作成完了
+  - 実行計画と作業履歴のドキュメント化
