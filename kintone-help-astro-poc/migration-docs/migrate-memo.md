@@ -12,9 +12,9 @@
 |-------------|------------|---------|-----|
 | `Wovn.astro` | 高機能型 | ✅ | WOVN翻訳サービス用、条件分岐とProps対応 |
 | `Kintone.astro` | 製品固有型 | ❌ | 製品名表示、設定値の動的取得が課題 |
-| `Enabled.astro` | 基本ラッパー型 | ❌ | 将来的な機能追加予定のプレースホルダー |
+| `Enabled.astro` | 条件表示型 | ✅ | 地域別条件付きコンテンツ表示機能 |
 | `Heading.astro` | 基本ラッパー型 | ❌ | 将来的な機能追加予定のプレースホルダー |
-| `Reference.astro` | 基本ラッパー型 | ❌ | 将来的な機能追加予定のプレースホルダー |
+| `Reference.astro` | アドモニション型 | ✅ | 参考情報ボックス、Font Awesome + WOVN統合 |
 
 ### 移行予定コンポーネント（41個）
 
@@ -403,6 +403,27 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - ビルドテスト成功（npm run build）
   - 変更記録ファイル（Enabled.md）作成完了
   - 実行計画と作業履歴のドキュメント化
+
+#### 0013_reference-component 作業完了
+- **成果物**: Reference.astroコンポーネントの実装
+  - Hugo の `reference.html` ショートコードを Astro コンポーネントに移行
+  - 参考情報を表示するアドモニションボックス機能の実装
+  - Font Awesome アイコンと WOVN 翻訳機能の統合
+- **重要な学習事項**:
+  - アドモニション形式のコンポーネント実装パターン
+  - Font Awesome CSS 前提のアイコン表示
+  - WOVN コンポーネントによる i18n 対応の実装方法
+  - `markdownify` 機能の Astro Slot による代替実装
+- **技術的実装**:
+  - **DOM構造**: `aside.admonition.reference` > `div.admonition-alt` + `div.admonition-content`
+  - **アイコン**: `fas fa-info-circle fa-fw` の配置とaria-hidden属性保持
+  - **翻訳**: `{{ i18n "Title_references" }}` → `<Wovn>i18n__Title_references</Wovn>`
+  - **コンテンツ**: `{{ .Inner | markdownify }}` → `<slot />` による内容表示
+- **品質確保**:
+  - ビルドテスト成功（npm run build、1.98秒）
+  - 変更記録ファイル（Reference.md）作成完了
+  - DOM構造の厳密な保持確認
+  - migrate-rules.md への完全準拠
 
 #### 0001_env-refactor 作業完了
 - **成果物**: env管理方法の全面的なリファクタリング
