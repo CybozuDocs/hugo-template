@@ -1,11 +1,12 @@
 ---
+import { env } from "@/lib/env";
 import SearchBox from './SearchBox.astro';
 import LangSelector from './LangSelector.astro';
 import type { BaseProps } from './types';
 
 interface Props extends BaseProps {}
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 // ヘッダークラスの決定
 let hedclass = "";
@@ -61,16 +62,12 @@ const logoAlt = `${env.productName} ${env.help}`;
     </div>
 
     {dispSbox && (
-      <SearchBox env={env} page={page} />
+      <SearchBox page={page} />
     )}
 
 
     {page.isTranslated && env.langSelector && page.siteLanguage && page.translations && page.relPermalink && (
       <LangSelector 
-        env={{
-          useWovn: env.useWovn,
-          languageData: env.languageData
-        }} 
         page={{
           siteLanguage: page.siteLanguage,
           translations: page.translations,

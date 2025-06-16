@@ -1,11 +1,12 @@
 ---
+import { env } from "@/lib/env";
 import Wovn from '@/components/Wovn.astro';
 import MakeAnnounceBanner from './MakeAnnounceBanner.astro';
 import type { BaseProps } from './types';
 
 interface Props extends BaseProps {}
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 // デフォルトのメッセージ
 const defaultMsg = [

@@ -78,3 +78,9 @@ export const buildEnvConfig = (
  * 環境変数設定の型定義
  */
 export type EnvConfig = ReturnType<typeof buildEnvConfig>;
+
+/**
+ * 環境変数設定のグローバルインスタンス
+ * buildEnvConfig をデフォルト引数で実行した結果を Readonly で export
+ */
+export const env: Readonly<EnvConfig> = buildEnvConfig();

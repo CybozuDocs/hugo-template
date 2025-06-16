@@ -1,14 +1,14 @@
 ---
+import { env } from "@/lib/env";
 import Title from './Title.astro';
 import type { PageProps, EnvProps } from './types';
 
 interface Props {
   curnode: PageProps;
   target: PageProps;
-  env: EnvProps;
 }
 
-const { curnode, target, env } = Astro.props;
+const { curnode, target } = Astro.props;
 
 let selected = false;
 let shouldRenderSection = false;
@@ -47,16 +47,16 @@ if (curnode.isSection) {
   <li role="presentation">
     {sectionContent.selected ? (
       <a href="#" class="current">
-        <Title page={curnode} env={env} />
+        <Title page={curnode} />
       </a>
     ) : (
       <a href={curnode.relPermalink}>
-        <Title page={curnode} env={env} />
+        <Title page={curnode} />
       </a>
     )}
     <ul>
       {sectionContent.entries.map((entry: PageProps) => (
-        <TreeNavStaticMenu curnode={entry} target={target} env={env} />
+        <TreeNavStaticMenu curnode={entry} target={target} />
       ))}
     </ul>
   </li>
@@ -66,11 +66,11 @@ if (curnode.isSection) {
   <li role="presentation">
     {selected ? (
       <a href="#" class="toclink current">
-        <Title page={curnode} env={env} />
+        <Title page={curnode} />
       </a>
     ) : (
       <a href={curnode.relPermalink} class="toclink">
-        <Title page={curnode} env={env} />
+        <Title page={curnode} />
       </a>
     )}
   </li>

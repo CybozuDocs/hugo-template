@@ -1,4 +1,5 @@
 ---
+import { env } from "@/lib/env";
 import Title from './Title.astro';
 import Wovn from '@/components/Wovn.astro';
 import type { PageProps, EnvProps } from './types';
@@ -6,10 +7,9 @@ import type { PageProps, EnvProps } from './types';
 interface Props {
   p1: PageProps;
   p2: PageProps;
-  env: EnvProps;
 }
 
-const { p1, p2, env } = Astro.props;
+const { p1, p2 } = Astro.props;
 
 // 再帰的にパンくずリストを構築
 const breadcrumbItems: PageProps[] = [];
@@ -29,10 +29,10 @@ buildBreadcrumb(p1);
 {breadcrumbItems.map((item) => (
   <li>
     {item === p2 ? (
-      <Title page={item} env={env} />
+      <Title page={item} />
     ) : (
       <a href={item.relPermalink}>
-        <Title page={item} env={env} />
+        <Title page={item} />
       </a>
     )}
   </li>

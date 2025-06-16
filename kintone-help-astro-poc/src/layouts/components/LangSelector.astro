@@ -1,7 +1,8 @@
 ---
+import { env } from "@/lib/env";
 import type { BaseProps } from './types';
 
-interface Props extends BaseProps {
+interface Props {
   page: {
     siteLanguage: {
       languageName: string;
@@ -17,7 +18,7 @@ interface Props extends BaseProps {
   };
 }
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 // WOVN言語リストの処理
 const processWovnLanguages = () => {

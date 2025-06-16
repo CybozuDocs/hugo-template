@@ -1,10 +1,11 @@
 ---
+import { env } from "@/lib/env";
 import TreeNavStaticMenu from './TreeNavStaticMenu.astro';
 import type { BaseProps } from './types';
 
 interface Props extends BaseProps {}
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 const entries = env.siteHomeSections || [];
 const target = page;
@@ -16,7 +17,7 @@ const sortedEntries = entries.sort((a: any, b: any) => (a.weight || 0) - (b.weig
 <nav class="static_tree" tabindex="0">
   <ul>
     {sortedEntries.map((entry: any) => (
-      <TreeNavStaticMenu curnode={entry} target={target} env={env} />
+      <TreeNavStaticMenu curnode={entry} target={target} />
     ))}
   </ul>
 </nav>

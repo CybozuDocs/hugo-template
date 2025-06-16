@@ -1,12 +1,11 @@
 ---
+import { env } from "@/lib/env";
+
 interface Props {
   regions?: string[];
-  env: {
-    targetRegion: string;
-  };
 }
 
-const { regions, env } = Astro.props;
+const { regions } = Astro.props;
 
 // regionsが未定義の場合は常に表示
 // regionsが定義されている場合は、env.targetRegionが含まれるかチェック

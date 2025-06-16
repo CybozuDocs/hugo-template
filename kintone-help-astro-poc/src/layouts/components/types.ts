@@ -124,7 +124,6 @@ export interface PageProps {
 }
 
 export interface BaseProps {
-  env: EnvProps;
   page: PageProps;
 }
 

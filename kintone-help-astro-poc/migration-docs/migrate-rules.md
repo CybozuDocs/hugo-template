@@ -421,6 +421,87 @@ npm run build
 - コンポーネント間の一貫性確保
 - 重複コードの削除
 
+## env 管理の大規模リファクタリングルール
+
+### 1. env のグローバル化原則
+
+**ルール**: Props によるバケツリレーを避け、必要に応じて直接 import する
+
+```typescript
+// ❌ 旧方式: Props でのバケツリレー
+interface Props extends BaseProps {
+  env: EnvProps;
+  page: PageProps;
+}
+const { env, page } = Astro.props;
+
+// ✅ 新方式: 直接 import
+import { env } from "@/lib/env";
+interface Props extends BaseProps {
+  page: PageProps;
+}
+const { page } = Astro.props;
+```
+
+### 2. env.ts の実装パターン
+
+```typescript
+// buildEnvConfig を内部で呼び出し
+export const env: Readonly<EnvConfig> = buildEnvConfig();
+
+// 外部からは env のみをエクスポート
+// buildEnvConfig は直接呼び出し禁止
+```
+
+### 3. 大規模リファクタリング時の注意点
+
+#### 段階的実行の重要性
+1. env.ts の修正（グローバルインスタンス作成）
+2. 全コンポーネントの型定義修正
+3. Props 削除と import 追加
+4. PageLayout の修正（最終段階）
+
+#### 型定義の整合性確保
+- BaseProps から env プロパティを削除
+- カスタム Props 定義からも env を削除
+- 一貫した import パターンの適用
+
+#### 品質確保
+- 各段階でのビルドテスト実行
+- 型エラーの段階的解消
+- 既存機能の完全保持
+
+### 4. コンポーネント間の依存関係変更
+
+```astro
+<!-- ❌ 旧方式: env props の連鎖 -->
+<PageLayout>
+  <Header env={env} page={page}>
+    <SearchBox env={env} page={page} />
+  </Header>
+</PageLayout>
+
+<!-- ✅ 新方式: 各コンポーネントで直接 import -->
+<PageLayout>
+  <Header page={page}>
+    <SearchBox page={page} />
+  </Header>
+</PageLayout>
+```
+
+### 5. リファクタリングの効果と検証
+
+#### 期待される効果
+- Props バケツリレーの完全解消
+- コンポーネント独立性の向上
+- 保守性とコードの可読性向上
+- 環境変数変更時の影響範囲明確化
+
+#### 検証方法
+- ビルドテストによる構文エラー確認
+- 型チェックによる型安全性確認
+- 既存機能の動作確認
+
 ## 更新履歴
 
 - 2025年1月 - 初版作成（rules.mdから移行関連情報を分離）
@@ -428,3 +509,4 @@ npm run build
 - 2025年1月 - 多リージョン・単一言語設定の管理ルールを追加
 - 2025年1月 - CSVファイル読み込みルールを追加
 - 2025年1月 - Props型定義統一化ルールを追加
+- 2025年1月 - env管理の大規模リファクタリングルールを追加

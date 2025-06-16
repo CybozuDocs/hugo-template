@@ -1,11 +1,12 @@
 ---
+import { env } from "@/lib/env";
 import Title from './Title.astro';
 import NavMainMenu from './NavMainMenu.astro';
 import type { BaseProps } from './types';
 
 interface Props extends BaseProps {}
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 const entries = env.siteHomeSections || [];
 const target = page;
@@ -16,7 +17,7 @@ const target = page;
     {entries
       .sort((a, b) => (a.weight || 0) - (b.weight || 0))
       .map((entry) => (
-        <NavMainMenu curnode={entry} target={target} env={env} />
+        <NavMainMenu curnode={entry} target={target} />
       ))}
   </ul>
 </div>

@@ -1,9 +1,10 @@
 ---
+import { env } from "@/lib/env";
 import type { BaseProps } from './types';
 
 interface Props extends BaseProps {}
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 ---
 
 <div id="goto-top" class="fa-stack" aria-hidden="true" title="i18n__todo__Go_back_to_top">

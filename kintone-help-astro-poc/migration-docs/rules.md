@@ -511,6 +511,44 @@ const data = csvContent.default.split('\n')
 3. **エラーハンドリング**: 適切なフォールバック処理
 4. **パフォーマンス**: 静的インポートによる最適化
 
+## env 管理ルール
+
+### 1. 環境変数のグローバル化原則
+
+環境設定は Props の受け渡しではなく、直接 import で取得する：
+
+```astro
+---
+import { env } from "@/lib/env";
+
+interface Props {
+  page: PageProps;
+  // env は含めない
+}
+
+const { page } = Astro.props;
+// env.targetRegion などを直接使用
+---
+```
+
+### 2. env の型安全性
+
+- env は `Readonly<EnvConfig>` として定義
+- 実行時の変更を防止
+- TypeScript による型安全性を確保
+
+### 3. 設定の一元管理
+
+- buildEnvConfig は env.ts 内部でのみ呼び出し
+- 外部からは env インスタンスのみを参照
+- 設定の変更時は env.ts のみを修正
+
+### 4. Props の簡素化
+
+- BaseProps は page のみを含む
+- 環境設定は Props に含めない
+- コンポーネント間の依存関係を削減
+
 ## 更新履歴
 
 - 2024 年 12 月 - 初版作成
@@ -518,3 +556,4 @@ const data = csvContent.default.split('\n')
 - 2025 年 1 月 - 地域・環境別設定管理ルールを追加
 - 2025 年 1 月 - 多リージョン・単一言語アーキテクチャに伴う環境変数管理の更新
 - 2025 年 1 月 - データファイル管理（CSV読み込み）セクション追加
+- 2025 年 1 月 - env管理ルール追加（グローバル化原則の確立）

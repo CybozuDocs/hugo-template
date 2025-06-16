@@ -1,11 +1,12 @@
 ---
+import { env } from "@/lib/env";
 import AlternateLink from './AlternateLink.astro';
 import Gtm from './Gtm.astro';
 import type { BaseProps } from './types';
 
 interface Props extends BaseProps {}
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 // ビルド番号の生成
 const buildnum = new Date().toISOString().slice(0, 10).replace(/-/g, '');
@@ -127,7 +128,7 @@ const activeChatTargets = processChatSettings();
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 {/* AlternateLink コンポーネント */}
-<AlternateLink env={env} page={page} />
+<AlternateLink page={page} />
 
 {/* ファビコン */}
 <link rel="shortcut icon" type="image/x-icon" href={env.favicon || "favicon.ico"} />

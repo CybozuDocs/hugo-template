@@ -1,13 +1,13 @@
 ---
+import { env } from "@/lib/env";
 import Title from './Title.astro';
 import type { PageProps, EnvProps } from './types';
 
 interface Props {
   cursect: PageProps;
-  env: EnvProps;
 }
 
-const { cursect, env } = Astro.props;
+const { cursect } = Astro.props;
 
 // CSVデータの簡易実装（実際のCSVファイル読み込みの代替）
 // TODO: 実際のCSVファイルからの読み込み処理を実装
@@ -54,7 +54,7 @@ let menuid = 0;
             <i class="far fa-circle fa-stack-2x" aria-hidden="true"></i>
             <i class={`${iconface} fa-stack-1x`} aria-hidden="true"></i>
           </span>
-          <Title page={page} env={env} />
+          <Title page={page} />
           {!nolink && </a>}
         </h3>
       </div>
@@ -63,7 +63,7 @@ let menuid = 0;
         {(page.pages || []).map((subpage: PageProps) => (
           <li class="mega-list-line">
             <a class="mega-list-item" href={subpage.relPermalink}>
-              <Title page={subpage} env={env} />
+              <Title page={subpage} />
             </a>
           </li>
         ))}

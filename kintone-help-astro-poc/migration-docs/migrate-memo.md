@@ -403,3 +403,26 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - ビルドテスト成功（npm run build）
   - 変更記録ファイル（Enabled.md）作成完了
   - 実行計画と作業履歴のドキュメント化
+
+#### 0001_env-refactor 作業完了
+- **成果物**: env管理方法の全面的なリファクタリング
+  - Props のバケツリレーから import による直接取得への変更
+  - 43ファイルの大規模変更（env.ts, types.ts, PageLayout.astro, 40個のコンポーネント）
+  - buildEnvConfig の内部化と env グローバルインスタンスの作成
+- **重要な学習事項**:
+  - 大規模リファクタリングにおける Task ツールの活用
+  - TypeScript 型システムでの BaseProps 継承関係の重要性
+  - Readonly 型による設定の保護と型安全性の確保
+- **技術的実装**:
+  - **env.ts**: `export const env: Readonly<EnvConfig> = buildEnvConfig();` 追加
+  - **types.ts**: BaseProps から env プロパティ削除
+  - **PageLayout.astro**: buildEnvConfig 呼び出し削除、env props 渡し削除
+  - **全コンポーネント**: `import { env } from "@/lib/env";` 追加、Props から env 削除
+- **アーキテクチャ改善効果**:
+  - Props バケツリレーの完全解消
+  - コンポーネント独立性の向上
+  - 環境変数変更時の影響範囲明確化
+  - 保守性とコードの可読性向上
+- **品質確保**:
+  - ビルドテスト成功（npm run build）
+  - 型エラーなし、既存機能の完全保持

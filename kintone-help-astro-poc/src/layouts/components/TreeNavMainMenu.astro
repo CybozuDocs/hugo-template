@@ -1,4 +1,5 @@
 ---
+import { env } from "@/lib/env";
 import Title from './Title.astro';
 import TreeNavTreeItem from './TreeNavTreeItem.astro';
 import type { PageProps, EnvProps } from './types';
@@ -8,10 +9,9 @@ interface Props {
   target: PageProps;
   needtoc: boolean;
   tocregex: string;
-  env: EnvProps;
 }
 
-const { curnode, target, needtoc, tocregex, env } = Astro.props;
+const { curnode, target, needtoc, tocregex } = Astro.props;
 
 // 基本変数
 let opened = false;
@@ -96,11 +96,11 @@ else if (!isSection && !isDisabled && !isPrintPage && !isRedirectJs) {
   <li role="presentation" data-jstree={sectionContent.opened ? '{ "opened" : true }' : undefined}>
     {sectionContent.selected ? (
       <a href="#" data-jstree='{ "selected" : true }' class="current">
-        <Title page={curnode} env={env} />
+        <Title page={curnode} />
       </a>
     ) : (
       <a href={curnode.relPermalink}>
-        <Title page={curnode} env={env} />
+        <Title page={curnode} />
       </a>
     )}
     <ul>
@@ -110,7 +110,6 @@ else if (!isSection && !isDisabled && !isPrintPage && !isRedirectJs) {
           target={target} 
           needtoc={needtoc} 
           tocregex={tocregex}
-          env={env}
         />
       ))}
     </ul>
@@ -121,11 +120,11 @@ else if (!isSection && !isDisabled && !isPrintPage && !isRedirectJs) {
   <li role="presentation" data-jstree={pageContent.opened ? '{ "opened" : true }' : undefined}>
     {pageContent.selected ? (
       <a href="#" data-jstree='{ "selected" : true }' class="toclink current">
-        <Title page={curnode} env={env} />
+        <Title page={curnode} />
       </a>
     ) : (
       <a href={curnode.relPermalink} class="toclink">
-        <Title page={curnode} env={env} />
+        <Title page={curnode} />
       </a>
     )}
     

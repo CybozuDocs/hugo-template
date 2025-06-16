@@ -1,4 +1,5 @@
 ---
+import { env } from "@/lib/env";
 import Title from './Title.astro';
 import MegaNavGrGetSecond from './MegaNavGrGetSecond.astro';
 import MegaNavGrSectBar from './MegaNavGrSectBar.astro';
@@ -9,7 +10,7 @@ import type { BaseProps } from './types';
 
 interface Props extends BaseProps {}
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 // GetSecond処理の代替（簡易実装）
 const getSecondSection = (currentPage: any): any => {
@@ -59,7 +60,7 @@ const sortedEntries = entries.sort((a: any, b: any) => (a.weight || 0) - (b.weig
           >
             <span class="g-nav-title-wrap">
               <MegaNavGrTitleIcon targetlink={entry.relPermalink} />
-              <Title page={entry} env={env} />
+              <Title page={entry} />
             </span>
           </a>
         </li>
@@ -92,7 +93,7 @@ const sortedEntries = entries.sort((a: any, b: any) => (a.weight || 0) - (b.weig
           <div id="mega-tab-bar" class="mega-tab-bar">
             {sortedEntries.map((entry: any) => (
               entry.currentSection === rootsect && (
-                <MegaNavGrSectBar cursect={rootsect} secondsect={secondsect} env={env} />
+                <MegaNavGrSectBar cursect={rootsect} secondsect={secondsect} />
               )
             ))}
           </div>
@@ -100,7 +101,7 @@ const sortedEntries = entries.sort((a: any, b: any) => (a.weight || 0) - (b.weig
 
         {sortedEntries.map((entry: any) => (
           entry.currentSection === rootsect && (
-            <MegaNavGrMegaPanel cursect={rootsect} env={env} />
+            <MegaNavGrMegaPanel cursect={rootsect} />
           )
         ))}
       </>

@@ -1,10 +1,11 @@
 ---
+import { env } from "@/lib/env";
 import Wovn from '@/components/Wovn.astro';
 import type { BaseProps } from './types';
 
 interface Props extends BaseProps {}
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 // latest_page パラメータが存在するかチェック
 const latestPageUrl = page.params.latestPage;

@@ -1,18 +1,14 @@
 ---
+import { env } from "@/lib/env";
+
 interface Props {
-  env: {
-    // 今回は使用しない
-  };
-  page: {
-    // 今回は使用しない
-  };
   tags?: Array<{
     key: string;
     text: string;
   }>;
 }
 
-const { env, page, tags = [] } = Astro.props;
+const { tags = [] } = Astro.props;
 ---
 
 <nav id="video-filter" class="video-filter">

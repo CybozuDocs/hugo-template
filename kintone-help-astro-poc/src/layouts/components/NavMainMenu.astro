@@ -1,14 +1,14 @@
 ---
+import { env } from "@/lib/env";
 import Title from './Title.astro';
 import type { PageProps, EnvProps } from './types';
 
 interface Props {
   curnode: PageProps;
   target: PageProps;
-  env: EnvProps;
 }
 
-const { curnode, target, env } = Astro.props;
+const { curnode, target } = Astro.props;
 
 // Scratch変数の代替
 let entries: PageProps[] = [];
@@ -58,18 +58,18 @@ if (curnode.isSection) {
       </span>
       {curnode.relPermalink === target.relPermalink ? (
         <a href="#" class={`current${(curnode.isAncestor?.(target) || curnode === target) ? ' expand' : ''}`}>
-          <span><Title page={curnode} env={env} /></span>
+          <span><Title page={curnode} /></span>
         </a>
       ) : (
         <a href={curnode.relPermalink} class={(curnode.isAncestor?.(target) || curnode === target) ? 'expand' : ''}>
-          <span><Title page={curnode} env={env} /></span>
+          <span><Title page={curnode} /></span>
         </a>
       )}
     </div>
     {numberOfPages !== 0 && (
       <ul class={(curnode.isAncestor?.(target) || curnode === target) ? 'opened' : ''}>
         {entries.map((entry) => (
-          <NavMainMenu curnode={entry} target={target} env={env} />
+          <NavMainMenu curnode={entry} target={target} />
         ))}
       </ul>
     )}
@@ -81,11 +81,11 @@ if (curnode.isSection) {
     <span class="navi-sp">
       {curnode.relPermalink === target.relPermalink ? (
         <a href="#" class="current" aria-current="page">
-          <Title page={curnode} env={env} />
+          <Title page={curnode} />
         </a>
       ) : (
         <a href={curnode.relPermalink}>
-          <Title page={curnode} env={env} />
+          <Title page={curnode} />
         </a>
       )}
     </span>

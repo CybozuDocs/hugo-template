@@ -1,9 +1,10 @@
 ---
+import { env } from "@/lib/env";
 import type { BaseProps } from './types';
 
 interface Props extends BaseProps {}
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 const labels = page.params.labels;
 const labelColors = env.labelColors;

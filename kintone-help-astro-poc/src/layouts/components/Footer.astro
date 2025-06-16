@@ -1,11 +1,12 @@
 ---
+import { env } from "@/lib/env";
 import Wovn from '@/components/Wovn.astro';
 import Footer2Disclaimer from './Footer2Disclaimer.astro';
 import type { BaseProps } from './types';
 
 interface Props extends BaseProps {}
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 // URLパース（簡易実装）
 const baseUrl = new URL(env.baseURL);

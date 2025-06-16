@@ -1,7 +1,7 @@
 ---
 import type { MarkdownLayoutProps } from "astro";
 import Head from "./components/Head.astro";
-import { buildEnvConfig } from "../lib/env.js";
+import { env } from "../lib/env.js";
 import { getPermalinks, isHomePage, getLangFromLanguageCode } from "../lib/url.js";
 import Disclaimer2 from "./components/Disclaimer2.astro";
 // import Related from "./components/Related.astro";
@@ -48,9 +48,9 @@ const {
   i18n = { inThisArticle: "In this article" }
  } = Astro.props;
 
-// env設定を構築（環境変数から直接取得）
+// env設定をグローバルインスタンスから取得
 const envConfig = {
-  ...buildEnvConfig(),
+  ...env,
   regularPages: [], // TODO: 実際の関連ページデータを設定
 };
 
@@ -96,7 +96,7 @@ const isDisabled = disabled.includes(envConfig.targetRegion);
 <!-- TODO: {{.Site.LanguageCode}} を置き換える -->
 <html lang="ja" prefix="og: https://ogp.me/ns#">
   <head>
-    <Head env={envConfig} page={pageData} />
+    <Head page={pageData} />
   </head>
   <!-- TODO: フォントサイズの指定を再現する -->
   <body class="font-{{.Lang}}">
@@ -110,7 +110,7 @@ const isDisabled = disabled.includes(envConfig.targetRegion);
           <div>[ANNOUNCEMENT BANNER PARTIAL]</div>
           
           <!-- Header -->
-          <Header env={envConfig} page={pageData} />
+          <Header page={pageData} />
           
           <div class="page-pad"></div>
           
@@ -131,7 +131,7 @@ const isDisabled = disabled.includes(envConfig.targetRegion);
             </div>
             
             <div id="contents" class="contents-wrap">
-              {envConfig.useWovn && <Disclaimer2 env={envConfig} page={pageData} />}
+              {envConfig.useWovn && <Disclaimer2 page={pageData} />}
               
               <div>[LATEST PAGE GUIDE PARTIAL]</div>
               
@@ -180,7 +180,7 @@ const isDisabled = disabled.includes(envConfig.targetRegion);
           )}
           
           <div>[ENQUETE PARTIAL]</div>
-          <Footer env={envConfig} page={pageData} />
+          <Footer page={pageData} />
         </>
       )}
   </body>

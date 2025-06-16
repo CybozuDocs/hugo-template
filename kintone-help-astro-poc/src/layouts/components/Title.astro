@@ -1,10 +1,11 @@
 ---
+import { env } from "@/lib/env";
 import ApplyParams from './ApplyParams.astro';
 import type { BaseProps } from './types';
 
 interface Props extends BaseProps {}
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 // タイトルの決定ロジック
 let target = page.title;

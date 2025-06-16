@@ -1,4 +1,5 @@
 ---
+import { env } from "@/lib/env";
 import Title from './Title.astro';
 import type { BaseProps } from './types';
 
@@ -17,7 +18,7 @@ interface Props extends BaseProps {
   };
 }
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 // セクションを重み順でソート
 const sortedSections = page.sections.sort((a, b) => {
@@ -41,14 +42,14 @@ const sortedSections = page.sections.sort((a, b) => {
         <div class="preview_list_item" role="presentation">
           <div class="preview_list_title">
             <a href={section.relPermalink}>
-              <Title env={env} page={section} />
+              <Title page={section} />
             </a>
           </div>
           <ul>
             {sortedPages.map((page) => (
               <li>
                 <a href={page.relPermalink}>
-                  <Title env={env} page={page} />
+                  <Title page={page} />
                 </a>
               </li>
             ))}

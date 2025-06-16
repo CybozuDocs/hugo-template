@@ -1,11 +1,12 @@
 ---
+import { env } from "@/lib/env";
 import Wovn from '@/components/Wovn.astro';
 import Title from './Title.astro';
 import type { BaseProps } from './types';
 
 interface Props extends BaseProps {}
 
-const { env, page } = Astro.props;
+const { page } = Astro.props;
 
 // TODO: Hugo の Related 機能の実装
 // 現在は簡易実装（空配列）
@@ -38,7 +39,7 @@ const shouldDisplay = sortedPages.length > 0;
       {sortedPages.map((relatedPage) => (
         <li>
           <a href={relatedPage.relPermalink}>
-            <Title env={env} page={relatedPage} />
+            <Title page={relatedPage} />
           </a>
         </li>
       ))}
