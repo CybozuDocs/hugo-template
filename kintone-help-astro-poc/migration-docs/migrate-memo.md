@@ -13,7 +13,7 @@
 | `Wovn.astro` | 高機能型 | ✅ | WOVN翻訳サービス用、条件分岐とProps対応 |
 | `Kintone.astro` | 製品固有型 | ❌ | 製品名表示、設定値の動的取得が課題 |
 | `Enabled.astro` | 条件表示型 | ✅ | 地域別条件付きコンテンツ表示機能 |
-| `Heading.astro` | 基本ラッパー型 | ❌ | 将来的な機能追加予定のプレースホルダー |
+| `Heading.astro` | アンカーリンク型 | ✅ | AnchorLink2.astroを呼び出す見出しコンポーネント |
 | `Reference.astro` | アドモニション型 | ✅ | 参考情報ボックス、Font Awesome + WOVN統合 |
 
 ### 移行予定コンポーネント（41個）
@@ -447,3 +447,22 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 - **品質確保**:
   - ビルドテスト成功（npm run build）
   - 型エラーなし、既存機能の完全保持
+
+#### 0014_heading-component 作業完了
+- **成果物**: Heading.astroコンポーネントの実装
+  - Hugo の `render-heading.html` で呼び出される `anchorlink2` テンプレートの Astro 実装
+  - AnchorLink2.astro を内部で呼び出すラッパーコンポーネント
+  - page.ts に getRelPermalink() 関数を追加（TODO実装）
+- **重要な学習事項**:
+  - Hugo の複雑な Markdown カスタマイズをシンプルなコンポーネント化で代替
+  - product="kintone"、templateVersion="2" 固定により条件分岐が不要
+  - Astro では slot の制約により text props を使用する設計選択
+- **技術的実装**:
+  - **Props設計**: level, id, text, class の明示的定義
+  - **AnchorLink2統合**: 既存コンポーネントを活用したラッパーパターン
+  - **getRelPermalink関数**: page.ts にダミー実装で将来拡張に備える
+  - **型安全性**: TypeScript interface による Props 型定義
+- **品質確保**:
+  - ビルドテスト成功（npm run build、2.52秒）
+  - 変更記録ファイル（Heading.md）作成完了
+  - 実行計画と作業履歴のドキュメント化

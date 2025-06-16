@@ -1,1 +1,30 @@
-<div><slot /></div>
+---
+import AnchorLink2 from '@/layouts/components/AnchorLink2.astro';
+import { getRelPermalink } from '@/lib/page';
+import { env } from "@/lib/env";
+
+interface Props {
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  id: string;
+  class?: string;
+}
+
+const { level = 2, id, class: className } = Astro.props;
+
+// TocItem型に合わせてデータを構築（Textは空文字でslotを使用）
+const ti = {
+  Level: level,
+  Anchor: id,
+  Text: '', // slotを使用するため空文字
+  Attributes: {
+    class: className || ''
+  }
+};
+
+// 相対パーマリンクを取得
+const al = getRelPermalink();
+---
+
+<AnchorLink2 ti={ti} ids={env.idSearch} al={al}>
+  <slot />
+</AnchorLink2>

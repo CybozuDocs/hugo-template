@@ -454,7 +454,7 @@
             let pos = 0;
             allLinks.each(function () {
                 // destUrlと本文中のh2,h3タグのhrefが同じ場合
-                let ancUrl = location.pathname + "#" + encodeURIComponent($(this).attr("pid"));
+                let ancUrl = location.pathname + "#" + encodeURIComponent($(this).attr("data-pid"));
 
                 if(ancUrl.toLowerCase() === destUrl) {
                     // 本文中のタグの位置を取得
@@ -871,7 +871,7 @@
             let ctag = "";
             allLinks.each(function() {
                 if(cur_pos >= $(this).offset().top) {
-                    anc = $(this).attr("pid");
+                    anc = $(this).attr("data-pid");
                     ctag = $(this).prop("nodeName");
                 }
             });
@@ -881,7 +881,7 @@
                 let lasth2 = null;
                 h2Links.each(function() {
                     if(cur_pos > $(this).offset().top) {
-                        lasth2 = $(this).attr("pid");
+                        lasth2 = $(this).attr("data-pid");
                     }
                 });
 
@@ -996,7 +996,7 @@
             let curlevel = 0;
             let existsToc = 0;
             $(".article h2,.article h3,.article h4").each(function() {
-                let href = $(this).attr("pid");
+                let href = $(this).attr("data-pid");
                 let val = $(this).text();
                 let taglevel = Number($(this).prop("tagName").substr(1,1));
 
@@ -1040,8 +1040,8 @@
                 if(cur_pos >= $(this).offset().top) {
                     $("#page-toc li a").removeClass("current");
                     $("#page-toc li a").attr("aria-selected", "false");
-                    $("#page-toc li a[href='#" + $(this).attr("pid") +"']").addClass("current");
-                    $("#page-toc li a[href='#" + $(this).attr("pid") +"']").attr("aria-selected", "true");
+                    $("#page-toc li a[href='#" + $(this).attr("data-pid") +"']").addClass("current");
+                    $("#page-toc li a[href='#" + $(this).attr("data-pid") +"']").attr("aria-selected", "true");
                 }
             });
         }
@@ -1088,7 +1088,7 @@
         const hids = $(".id-link-button");
         if(hids.length > 0) {
             hids.click(function() {
-                let idpath = $(this).attr('idpath');
+                let idpath = $(this).attr('data-idpath');
                 if(idpath !== undefined) {
                     if (window.WOVN && WOVN.io && WOVN.io.isApiReady()) {
                         const wcode = WOVN.io.getCurrentLang().code;

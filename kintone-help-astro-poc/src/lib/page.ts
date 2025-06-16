@@ -14,7 +14,7 @@ export function getSiteHome(): PageProps {
     permalink: "/",
     lang: "ja",
     weight: 0,
-    params: {}
+    params: {},
   };
 }
 
@@ -34,4 +34,15 @@ export function getSiteHomeSections(): PageProps[] {
 export function getRegularPages(): PageProps[] {
   // TODO: 実際のサイト内ページ一覧を実装
   return [];
+}
+
+/**
+ * ページの相対パーマリンクを取得
+ * Hugo の .Page.RelPermalink に対応
+ * @returns 相対パーマリンク
+ */
+export function getRelPermalink(): string {
+  // TODO: 実際の相対パーマリンク生成ロジックを実装
+  // 現在はダミー値を返す
+  return "/dummy-permalink";
 }

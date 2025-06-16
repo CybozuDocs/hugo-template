@@ -19,6 +19,9 @@ interface Props {
 
 const { ti, ids, al } = Astro.props;
 
+// slotの内容があるかどうかを判定するためのフラグ
+const hasSlot = Astro.slots.has('default');
+
 // 安全なHTMLを作成するための関数
 const safeHTML = (html: string) => html;
 ---
@@ -27,7 +30,18 @@ const safeHTML = (html: string) => html;
   <div class="section-delimiter"></div>
 )}
 <div class="id-header" id={ti.Anchor}>
-  <Fragment set:html={`<h${ti.Level} class="h${ti.Level}-contents ${ti.Attributes?.class || ''}" pid="${ti.Anchor}">${safeHTML(ti.Text)}</h${ti.Level}>`} />
+  {hasSlot ? (
+    <>
+      {ti.Level === 1 && <h1 class={`h1-contents ${ti.Attributes?.class || ''}`} data-pid={ti.Anchor}><slot /></h1>}
+      {ti.Level === 2 && <h2 class={`h2-contents ${ti.Attributes?.class || ''}`} data-pid={ti.Anchor}><slot /></h2>}
+      {ti.Level === 3 && <h3 class={`h3-contents ${ti.Attributes?.class || ''}`} data-pid={ti.Anchor}><slot /></h3>}
+      {ti.Level === 4 && <h4 class={`h4-contents ${ti.Attributes?.class || ''}`} data-pid={ti.Anchor}><slot /></h4>}
+      {ti.Level === 5 && <h5 class={`h5-contents ${ti.Attributes?.class || ''}`} data-pid={ti.Anchor}><slot /></h5>}
+      {ti.Level === 6 && <h6 class={`h6-contents ${ti.Attributes?.class || ''}`} data-pid={ti.Anchor}><slot /></h6>}
+    </>
+  ) : (
+    <Fragment set:html={`<h${ti.Level} class="h${ti.Level}-contents ${ti.Attributes?.class || ''}" pid="${ti.Anchor}">${safeHTML(ti.Text)}</h${ti.Level}>`} />
+  )}
   {ids && (
     <button 
       class="id-link-button" 
