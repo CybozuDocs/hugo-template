@@ -88,7 +88,7 @@ else if (!isSection && !isDisabled && !isPrintPage && !isRedirectJs) {
     )}
     <ul>
       {sectionContent.entries.map((entry: PageProps) => (
-        <TreeNavMainMenu 
+        <Astro.self 
           curnode={entry} 
           target={target}
         />

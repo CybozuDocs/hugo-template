@@ -11,7 +11,7 @@ interface Props extends BaseProps {
 const { page, entries: propEntries } = Astro.props;
 
 // 初期設定
-let entries = propEntries || getSiteHomeSections();
+let entries = propEntries || await getSiteHomeSections();
 
 // 重み順にソート
 entries = entries.sort((a, b) => (a.weight || 0) - (b.weight || 0));
