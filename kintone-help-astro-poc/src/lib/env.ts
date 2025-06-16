@@ -41,7 +41,6 @@ export const buildEnvConfig = (
     googleSearch: import.meta.env.PUBLIC_GOOGLE_SEARCH === "true",
     bingSearch: import.meta.env.PUBLIC_BING_SEARCH === "true",
     idSearch: import.meta.env.PUBLIC_ID_SEARCH === "true",
-    jsonTree: import.meta.env.PUBLIC_JSON_TREE === "true",
     chat: import.meta.env.PUBLIC_CHAT || "",
     chatMenuPrefix: import.meta.env.PUBLIC_CHAT_MENU_PREFIX || "",
     logo: import.meta.env.PUBLIC_LOGO || "",

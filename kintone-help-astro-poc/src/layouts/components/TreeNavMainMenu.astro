@@ -8,11 +8,9 @@ import type { PageProps } from './types';
 interface Props {
   curnode: PageProps;
   target: PageProps;
-  needtoc: boolean;
-  tocregex: string;
 }
 
-const { curnode, target, needtoc, tocregex } = Astro.props;
+const { curnode, target } = Astro.props;
 
 // 基本変数
 let opened = false;
@@ -64,31 +62,15 @@ if (isSection && !isRedirectJs && !isDisabled) {
 } 
 // ページの場合の処理
 else if (!isSection && !isDisabled && !isPrintPage && !isRedirectJs) {
-  // TOC処理
-  let tocs: string[] = [];
-  let toclen = 0;
-  
   if (curnode.relPermalink === target.relPermalink) {
     opened = false;
     selected = true;
   }
 
-  if (needtoc && curnode.content) {
-    // 簡易的なTOC実装（正規表現による見出し抽出の代替）
-    // TODO: 実際のfindRE処理の実装
-    const headingMatches = curnode.content.match(new RegExp(tocregex, 'g'));
-    if (headingMatches) {
-      tocs = headingMatches;
-      toclen = tocs.length;
-    }
-  }
-
   shouldRenderPage = true;
   pageContent = {
     opened,
-    selected,
-    tocs,
-    toclen
+    selected
   };
 }
 ---
@@ -108,9 +90,7 @@ else if (!isSection && !isDisabled && !isPrintPage && !isRedirectJs) {
       {sectionContent.entries.map((entry: PageProps) => (
         <TreeNavMainMenu 
           curnode={entry} 
-          target={target} 
-          needtoc={needtoc} 
-          tocregex={tocregex}
+          target={target}
         />
       ))}
     </ul>

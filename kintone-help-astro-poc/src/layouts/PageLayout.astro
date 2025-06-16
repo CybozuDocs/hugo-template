@@ -3,11 +3,11 @@ import type { MarkdownLayoutProps } from "astro";
 import Head from "./components/Head.astro";
 import { env } from "../lib/env.js";
 import { getPermalinks, isHomePage, getLangFromLanguageCode } from "../lib/url.js";
-import { getRegularPages } from "../lib/page.js";
 import Disclaimer2 from "./components/Disclaimer2.astro";
 // import Related from "./components/Related.astro";
 import Footer from "./components/Footer.astro";
 import Header from "./components/Header.astro";
+import TreeNav from "./components/TreeNav.astro";
 
 type Props = MarkdownLayoutProps<{
   title?: string;
@@ -15,9 +15,7 @@ type Props = MarkdownLayoutProps<{
   weight?: number;
 }> & {
   // ページ固有設定
-  jsonTree?: boolean;
   idSearch?: boolean;
-  tocInTree?: boolean;
   supportInquiry?: boolean;
   
   // ページデータ
@@ -27,36 +25,23 @@ type Props = MarkdownLayoutProps<{
   content?: string;
   type?: string;
   weight?: number;
-  
-  // 国際化
-  i18n?: {
-    inThisArticle?: string;
-  }
 };
 
 const {
   frontmatter, 
-  jsonTree = false,
   idSearch = false,
-  tocInTree = false,
   supportInquiry = false,
   disabled = [],
   aliases = [],
   labels = [],
   content = "",
   type = "",
-  weight = frontmatter.weight || 0,
-  i18n = { inThisArticle: "In this article" }
+  weight = frontmatter.weight || 0
  } = Astro.props;
 
-// env設定をグローバルインスタンスから取得
-const envConfig = {
-  ...env,
-  regularPages: getRegularPages(),
-};
 
 // permalink と relPermalink を生成
-const permalinks = getPermalinks(Astro.url, envConfig.domain);
+const permalinks = getPermalinks(Astro.url, env.domain);
 
 // page オブジェクトを構築
 const pageData = {
@@ -72,13 +57,13 @@ const pageData = {
     type: type,
     nolink: false,  // TODO: 実際の値を設定
   },
-  lang: getLangFromLanguageCode(envConfig.languageCode),
+  lang: getLangFromLanguageCode(env.languageCode),
   
   // Header.astroで必要な追加プロパティ（仮実装）
   allTranslations: [], // TODO: 多言語対応時に実装
   isTranslated: false, // TODO: 多言語対応時に実装
   scratch: {
-    sitename: envConfig.productName // TODO: 適切なサイト名ロジックを実装
+    sitename: env.productName // TODO: 適切なサイト名ロジックを実装
   },
   
   // LangSelector.astro用のプロパティ（仮実装）
@@ -89,7 +74,7 @@ const pageData = {
 };
 
 // 無効化チェック
-const isDisabled = disabled.includes(envConfig.targetRegion);
+const isDisabled = disabled.includes(env.targetRegion);
 
 ---
 
@@ -105,7 +90,7 @@ const isDisabled = disabled.includes(envConfig.targetRegion);
         <meta http-equiv="refresh" content="0; URL=/" />
       ) : (
         <>
-          {envConfig.targetRegion === "US" && <div>[LOCALE MODAL PARTIAL]</div>}
+          {env.targetRegion === "US" && <div>[LOCALE MODAL PARTIAL]</div>}
           
           <!-- Announcement banner -->
           <div>[ANNOUNCEMENT BANNER PARTIAL]</div>
@@ -115,7 +100,7 @@ const isDisabled = disabled.includes(envConfig.targetRegion);
           
           <div class="page-pad"></div>
           
-          {envConfig.meganav && (
+          {env.meganav && (
             <>
               <div class="mnav-pad"></div>
               <div>[MEGANAV PARTIAL]</div>
@@ -124,15 +109,11 @@ const isDisabled = disabled.includes(envConfig.targetRegion);
           
           <div id="page" class="page">
             <div id="tree" class="tree-wrap">
-              {jsonTree ? (
-                <div>[TREENAV3 PARTIAL (JSON)]</div>
-              ) : (
-                <div>[TREENAV PARTIAL]</div>
-              )}
+              <TreeNav page={pageData} />
             </div>
             
             <div id="contents" class="contents-wrap">
-              {envConfig.useWovn && <Disclaimer2 page={pageData} />}
+              {env.useWovn && <Disclaimer2 page={pageData} />}
               
               <div>[LATEST PAGE GUIDE PARTIAL]</div>
               
@@ -158,25 +139,23 @@ const isDisabled = disabled.includes(envConfig.targetRegion);
                   <slot />
                 </article>
                 
-                {/* <Related env={envConfig} page={pageData} /> */}
+                {/* <Related env={env} page={pageData} /> */}
                 
                 {type === "series" && <div>[PAGE NAV PARTIAL]</div>}
               </main>
             </div>
             
-            {!tocInTree && (
-              <div class="sidebar-wrap">
-                <nav id="rightside-bar">
-                  <h2 class="toc-title">i18n__todo__In_this_article</h2>
-                </nav>
-              </div>
-            )}
+            <div class="sidebar-wrap">
+              <nav id="rightside-bar">
+                <h2 class="toc-title">i18n__todo__In_this_article</h2>
+              </nav>
+            </div>
           </div>
           
           <div>[TREE NAV TOGGLE PARTIAL]</div>
           <div>[GO TO TOP PARTIAL]</div>
           
-          {supportInquiry && envConfig.languageCode === "en-us" && (
+          {supportInquiry && env.languageCode === "en-us" && (
             <div>[SUPPORT INQUIRY PARTIAL]</div>
           )}
           

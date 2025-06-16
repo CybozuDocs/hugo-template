@@ -466,3 +466,34 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - ビルドテスト成功（npm run build、2.52秒）
   - 変更記録ファイル（Heading.md）作成完了
   - 実行計画と作業履歴のドキュメント化
+
+#### 0015_treenav-integration 作業完了
+- **成果物**: PageLayoutからTreeNav.astroの統合とリファクタリング
+  - TreeNav3とTreeNavの呼び分け廃止、TreeNav統一
+  - env.jsonTree完全削除（7つの.envファイル、型定義、実装から削除）
+  - TreeNav内のtoc_in_tree分岐削除（toc_in_tree=false前提の実装のみ）
+  - PageLayout.astroでのTreeNav.astro直接呼び出し実装
+- **重要な学習事項**:
+  - 段階的リファクタリングによる安全な複雑機能削除
+  - 環境変数、型定義、実装の一貫性維持の重要性
+  - プレースホルダーから実コンポーネントへの移行パターン
+  - BasePropsを活用した型安全なコンポーネント統合
+- **技術的実装**:
+  - **環境変数削除**: .env系7ファイルからPUBLIC_JSON_TREE削除
+  - **型定義更新**: env.d.ts, env.tsからjsonTree関連削除
+  - **PageLayout統合**: TreeNav.astroの直接import/呼び出し実装
+  - **TreeNav簡素化**: toc_in_tree分岐削除、不要変数・import削除
+  - **ファイル削除**: TreeNav3.astro（不要なプレースホルダー）削除
+- **確定した仕様変更**:
+  - **TreeNav呼び分け廃止**: 常にTreeNav.astroを使用
+  - **JSON Tree機能削除**: env.jsonTreeとTREENAV3 PARTIAL削除
+  - **TOC in Tree機能削除**: toc_in_tree=false前提の実装のみ
+  - **サイドバー表示**: tocInTree条件削除で常に表示
+- **品質確保**:
+  - 第1段階（リファクタリング）ビルドテスト成功（2.50秒）
+  - 第2段階（統合）ビルドテスト成功（2.38秒）
+  - 型エラーなし、実行時エラーなし
+- **残された課題**:
+  - TreeNav内部機能の完全実装（現在は基本構造のみ）
+  - ページデータ（sections, pages）の実装
+  - jsTreeライブラリとの連携とスタイリング

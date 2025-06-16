@@ -23,7 +23,6 @@ export interface EnvProps {
   previewSite?: boolean;
   langSelector?: boolean;
   useWovn?: boolean;
-  tocInTree?: boolean;
 
   // 外部サービス
   dataWovnio?: string;

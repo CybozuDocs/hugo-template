@@ -14,7 +14,6 @@ interface ImportMetaEnv {
 
   readonly PUBLIC_LANG_SELECTOR: string;
   readonly PUBLIC_MEGANAV: string;
-  readonly PUBLIC_JSON_TREE: string;
   readonly PUBLIC_GOOGLE_SEARCH?: string;
   readonly PUBLIC_BING_SEARCH?: string;
   readonly PUBLIC_ID_SEARCH: string;
