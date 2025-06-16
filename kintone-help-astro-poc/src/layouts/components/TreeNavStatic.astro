@@ -1,5 +1,5 @@
 ---
-import { env } from "@/lib/env";
+import { getSiteHomeSections } from "@/lib/page";
 import TreeNavStaticMenu from './TreeNavStaticMenu.astro';
 import type { BaseProps } from './types';
 
@@ -7,7 +7,7 @@ interface Props extends BaseProps {}
 
 const { page } = Astro.props;
 
-const entries = env.siteHomeSections || [];
+const entries = getSiteHomeSections();
 const target = page;
 
 // 重み順にソート

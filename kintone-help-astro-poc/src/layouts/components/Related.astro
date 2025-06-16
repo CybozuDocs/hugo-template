@@ -1,5 +1,6 @@
 ---
 import { env } from "@/lib/env";
+import { getRegularPages } from "@/lib/page";
 import Wovn from '@/components/Wovn.astro';
 import Title from './Title.astro';
 import type { BaseProps } from './types';
@@ -10,7 +11,7 @@ const { page } = Astro.props;
 
 // TODO: Hugo の Related 機能の実装
 // 現在は簡易実装（空配列）
-const related = env.regularPages?.slice(0, 5) || [];
+const related = getRegularPages().slice(0, 5);
 
 // 無効化されていないページのフィルタリング
 const validPages = related.filter(relatedPage => {

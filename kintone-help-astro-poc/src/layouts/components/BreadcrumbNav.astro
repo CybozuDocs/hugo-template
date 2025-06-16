@@ -1,8 +1,7 @@
 ---
-import { env } from "@/lib/env";
+import { getSiteHome } from "@/lib/page";
 import Title from './Title.astro';
-import Wovn from '@/components/Wovn.astro';
-import type { PageProps, EnvProps } from './types';
+import type { PageProps } from './types';
 
 interface Props {
   p1: PageProps;
@@ -17,8 +16,8 @@ const breadcrumbItems: PageProps[] = [];
 function buildBreadcrumb(current: PageProps) {
   if (current.parent) {
     buildBreadcrumb(current.parent);
-  } else if (!current.isHome && env.siteHome) {
-    buildBreadcrumb(env.siteHome);
+  } else if (!current.isHome && getSiteHome()) {
+    buildBreadcrumb(getSiteHome());
   }
   breadcrumbItems.push(current);
 }

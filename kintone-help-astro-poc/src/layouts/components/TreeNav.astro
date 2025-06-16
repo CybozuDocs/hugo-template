@@ -1,5 +1,6 @@
 ---
 import { env } from "@/lib/env";
+import { getSiteHomeSections } from "@/lib/page";
 import Title from './Title.astro';
 import TreeNavMainMenu from './TreeNavMainMenu.astro';
 import type { BaseProps } from './types';
@@ -13,7 +14,7 @@ interface Props extends BaseProps {
 const { page, entries: propEntries, needtoc: propNeedtoc, tocregex: propTocregex } = Astro.props;
 
 // 初期設定
-let entries = propEntries || env.siteHomeSections || [];
+let entries = propEntries || getSiteHomeSections();
 let needtoc = propNeedtoc || false;
 let islastsect = false;
 let tocregex = propTocregex || "<h[23].*?>(.|\n)*?</h[23]>";

@@ -1,5 +1,6 @@
 ---
 import { env } from "@/lib/env";
+import { getSiteHome } from "@/lib/page";
 import Title from './Title.astro';
 import type { PageProps, EnvProps } from './types';
 
@@ -21,7 +22,7 @@ if (curnode.isSection) {
   
   // pages の計算
   const pages = curnode.isHome 
-    ? env.siteHome?.pages?.filter((p: PageProps) => p.sections === "") || []
+    ? getSiteHome()?.pages?.filter((p: PageProps) => p.sections === "") || []
     : curnode.pages || [];
   
   numberOfPages = (pages.length || 0) + (curnode.sections?.length || 0);

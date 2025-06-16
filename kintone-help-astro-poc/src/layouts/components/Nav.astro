@@ -1,5 +1,5 @@
 ---
-import { env } from "@/lib/env";
+import { getSiteHomeSections } from "@/lib/page";
 import Title from './Title.astro';
 import NavMainMenu from './NavMainMenu.astro';
 import type { BaseProps } from './types';
@@ -8,7 +8,7 @@ interface Props extends BaseProps {}
 
 const { page } = Astro.props;
 
-const entries = env.siteHomeSections || [];
+const entries = getSiteHomeSections();
 const target = page;
 ---
 

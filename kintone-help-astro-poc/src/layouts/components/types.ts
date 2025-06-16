@@ -55,11 +55,6 @@ export interface EnvProps {
     }>;
   };
 
-  // サイト構造
-  siteHome?: PageProps;
-  siteHomeSections?: PageProps[];
-  regularPages?: PageProps[];
-
   // FAQ リンク
   faqLink?: string;
 
@@ -142,7 +137,7 @@ export interface TreeNavEntry {
   title: string;
   relPermalink: string;
   weight?: number;
-  params?: PageProps['params'];
+  params?: PageProps["params"];
   pages?: TreeNavEntry[];
   sections?: TreeNavEntry[];
   isSection?: boolean;

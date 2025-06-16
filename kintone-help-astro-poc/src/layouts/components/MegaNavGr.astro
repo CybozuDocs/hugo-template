@@ -1,5 +1,6 @@
 ---
 import { env } from "@/lib/env";
+import { getSiteHomeSections } from "@/lib/page";
 import Title from './Title.astro';
 import MegaNavGrGetSecond from './MegaNavGrGetSecond.astro';
 import MegaNavGrSectBar from './MegaNavGrSectBar.astro';
@@ -26,7 +27,7 @@ const getSecondSection = (currentPage: any): any => {
 };
 
 const secondsect = getSecondSection(page);
-const entries = env.siteHomeSections || [];
+const entries = getSiteHomeSections();
 const rootsect = page.firstSection;
 
 // seconditems の計算

@@ -1,5 +1,6 @@
 ---
 import { env } from "@/lib/env";
+import { getSiteHome } from "@/lib/page";
 import Title from './Title.astro';
 import TreeNavTreeItem from './TreeNavTreeItem.astro';
 import type { PageProps, EnvProps } from './types';
@@ -30,7 +31,7 @@ const isPrintPage = curnode.type === "print_page";
 // セクションの場合の処理
 if (isSection && !isRedirectJs && !isDisabled) {
   const pages = curnode.isHome 
-    ? env.siteHome?.pages?.filter((p: PageProps) => p.sections === "") || []
+    ? getSiteHome()?.pages?.filter((p: PageProps) => p.sections === "") || []
     : curnode.pages || [];
   
   const numberOfPages = (pages.length || 0) + (curnode.sections?.length || 0);
