@@ -536,6 +536,48 @@ export const env: Readonly<EnvConfig> = buildEnvConfig();
 - 型チェックによる型安全性確認
 - 既存機能の動作確認
 
+## Astro.globとimport.meta.globの使い分けルール
+
+### import.meta.globの推奨
+
+**ルール**: Astro.globは非推奨のため、import.meta.globを使用する
+
+```typescript
+// ❌ 非推奨: Astro.glob（将来削除予定）
+const pages = await Astro.glob('/src/pages/**/*.{md,mdx,astro}');
+
+// ✅ 推奨: import.meta.glob
+const modules = import.meta.glob('/src/pages/**/*.{md,mdx,astro}', { eager: true });
+const pages = Object.entries(modules);
+```
+
+### 実装時の注意点
+
+#### 型安全性の確保
+- any型の使用は完全に禁止
+- フロントマターの型キャストは適切に実施
+- Record<string, unknown>による安全な型定義
+
+```typescript
+// ✅ 正しい型安全な実装
+const frontmatter = (module as { frontmatter?: Record<string, unknown> }).frontmatter || {};
+const title = (frontmatter.title as string) || '無題';
+const weight = (frontmatter.weight as number) || 0;
+```
+
+#### コンポーネントの自己参照
+
+再帰的なコンポーネントではAstro.selfを使用：
+
+```astro
+<!-- ❌ インポートエラーが発生 -->
+import TreeNavMainMenu from './TreeNavMainMenu.astro';
+<TreeNavMainMenu curnode={entry} target={target} />
+
+<!-- ✅ Astro.selfで自己参照 -->
+<Astro.self curnode={entry} target={target} />
+```
+
 ## 更新履歴
 
 - 2025年1月 - 初版作成（rules.mdから移行関連情報を分離）
@@ -544,3 +586,4 @@ export const env: Readonly<EnvConfig> = buildEnvConfig();
 - 2025年1月 - CSVファイル読み込みルールを追加
 - 2025年1月 - Props型定義統一化ルールを追加
 - 2025年1月 - env管理の大規模リファクタリングルールを追加
+- 2025年1月 - Astro.globとimport.meta.globの使い分けルールを追加

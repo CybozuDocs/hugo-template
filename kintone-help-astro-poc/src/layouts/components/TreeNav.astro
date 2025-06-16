@@ -5,13 +5,12 @@ import TreeNavMainMenu from './TreeNavMainMenu.astro';
 import type { BaseProps } from './types';
 
 interface Props extends BaseProps {
-  entries?: any[];
 }
 
-const { page, entries: propEntries } = Astro.props;
+const { page } = Astro.props;
 
 // 初期設定
-let entries = propEntries || await getSiteHomeSections();
+let entries = await getSiteHomeSections();
 
 // 重み順にソート
 entries = entries.sort((a, b) => (a.weight || 0) - (b.weight || 0));

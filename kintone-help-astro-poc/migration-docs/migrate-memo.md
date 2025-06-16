@@ -497,3 +497,29 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - TreeNav内部機能の完全実装（現在は基本構造のみ）
   - ページデータ（sections, pages）の実装
   - jsTreeライブラリとの連携とスタイリング
+
+#### 0015_treenav-integration getSiteHomeSections実装完了
+- **成果物**: getSiteHomeSections()の本格実装
+  - テストデータから実際のファイルシステムベースの動的生成に移行
+  - import.meta.globを使用したsrc/pages/配下のファイル取得
+  - Hugoのsections仕様に完全対応した階層構造の生成
+  - /k/プレフィックス付きrelPermalinkの実装
+- **重要な学習事項**:
+  - import.meta.globがAstro.globより推奨される（Astro.globは非推奨）
+  - any型の完全禁止とRecord<string, unknown>による型安全性確保
+  - TreeNavMainMenuの自己インポート問題の解決（Astro.self使用）
+  - /k/プレフィックス追加後のパス解析処理の適切な修正
+- **技術的実装**:
+  - **ファイル取得**: `import.meta.glob('/src/pages/**/*.{md,mdx,astro}', { eager: true })`
+  - **フロントマター解析**: 型安全なfrontmatter処理とPageProps構築
+  - **セクション構造**: Hugo sections概念に基づく階層化とweight順ソート
+  - **プレフィックス処理**: `/k/`付きrelPermalinkと内部処理での適切な除去
+  - **自己参照修正**: TreeNavMainMenuでAstro.selfによる再帰呼び出し
+- **品質確保とルール追加**:
+  - ビルドテスト成功（2.06秒、エラーなし）
+  - migration-docs/rules.mdにany型禁止ルールを追加
+  - 型安全性の強化（unknown型、Record<string, unknown>の使用）
+- **アーキテクチャ進化**:
+  - 静的テストデータから動的ファイルシステムベースへの移行
+  - Hugo.Site.Home.Sectionsと同等の機能をAstroで実現
+  - 将来的なコンテンツ拡張に対応可能な拡張性確保
