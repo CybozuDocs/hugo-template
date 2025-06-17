@@ -14,9 +14,9 @@
   {{- $filter = split $paramfilter "," }}
 {{- end }}
 {{- $fullsize := false }}
-{{- $ph := (i18n "Search_example") }}
-{{- if eq $.Site.Params.product "support_guide" }}
-  {{- $ph = (i18n "Enter_keywords") }}
+{{- $ph := (i18n "Enter_keywords") }}
+{{- if or (eq $.Site.Params.product "kintone") (and (eq $.Site.Params.TargetRegion "US") (ne $.Site.Params.product "support-guide")) }}
+  {{- $ph = (i18n "Search_example") }}
 {{- end }}
 {{- if or .IsHome (eq .Params.type "search_result") }}
   {{- $fullsize = true }}
