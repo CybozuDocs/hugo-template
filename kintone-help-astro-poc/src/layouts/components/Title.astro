@@ -9,10 +9,10 @@ const { page } = Astro.props;
 
 // タイトルの決定ロジック
 let target = page.title;
-if (env.targetRegion === "US" && page.params.titleUs) {
-  target = page.params.titleUs;
-} else if (env.targetRegion === "CN" && page.params.titleCn) {
-  target = page.params.titleCn;
+if (env.targetRegion === "US" && page.titleUs) {
+  target = page.titleUs;
+} else if (env.targetRegion === "CN" && page.titleCn) {
+  target = page.titleCn;
 }
 ---
 

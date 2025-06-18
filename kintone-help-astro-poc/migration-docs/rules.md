@@ -613,6 +613,19 @@ const { page } = Astro.props;
 - 環境設定は Props に含めない
 - コンポーネント間の依存関係を削減
 
+## FrontMatter データの設計原則
+
+### 地域別データの扱い
+
+- FrontMatter の地域別データ（title_us, title_cn など）は PageProps のトップレベルプロパティとして統合
+- params オブジェクトではなく、直接アクセス可能な形で提供
+- コンポーネントは PageProps から統一的にアクセス
+
+### パラメータ置換の型安全性
+
+- ApplyParams で使用される全てのパラメータは ReplaceParams 型に明示的に定義
+- env オブジェクトを渡す場合は型整合性を確保
+
 ## 更新履歴
 
 - 2024 年 12 月 - 初版作成
@@ -621,3 +634,4 @@ const { page } = Astro.props;
 - 2025 年 1 月 - 多リージョン・単一言語アーキテクチャに伴う環境変数管理の更新
 - 2025 年 1 月 - データファイル管理（CSV読み込み）セクション追加
 - 2025 年 1 月 - env管理ルール追加（グローバル化原則の確立）
+- 2025 年 1 月 - FrontMatterデータのPageProps統合とApplyParams型定義を追加

@@ -611,3 +611,50 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - export した内部関数の直接テスト（__testExports 不使用）
   - モックではなく実ファイルでの統合テスト
   - 親子関係の循環参照問題への適切な対処
+
+#### breadcrumb 作業完了
+- **成果物**: PageLayout.astro での Breadcrumb 表示機能実装
+  - `[BREADCRUMB PARTIAL]` プレースホルダーから実際のコンポーネント呼び出しに移行
+  - 既存の Breadcrumb.astro と BreadcrumbNav.astro を活用した統合
+  - page.ts の getCurrentPage() 関数を使用した現在ページ特定
+- **重要な学習事項**:
+  - 既存コンポーネントの効果的な再利用パターン
+  - page.ts の parent 関係を活用した階層構造の実現
+  - Hugo の breadcrumb.html との DOM 構造の正確な対応
+  - エラーハンドリングによる堅牢な実装（ページが見つからない場合の対応）
+- **技術的実装**:
+  - **PageLayout.astro**: getCurrentPage, getSiteHomeSections のインポートと使用
+  - **セクション取得**: `await getSiteHomeSections()` による動的情報取得
+  - **ページ特定**: try-catch による安全な getCurrentPage() 実行
+  - **コンポーネント呼び出し**: `{currentPage && <Breadcrumb page={currentPage} />}`
+  - **BreadcrumbNav.astro**: ホームページリンクの WOVN 対応追加
+  - **Title.astro**: プロパティ名修正（titleUs → title_us）
+- **DOM構造の保持**:
+  - Hugo の breadcrumb.html と同等の `<nav class="breadcrumb">` 構造
+  - 再帰的パンくず生成による親子階層の正確な表現
+  - ホームページでの「トップページ」リンク表示
+- **品質確保**:
+  - npm run build 成功（2.61秒、エラーなし）
+  - TypeScript 型安全性の確保
+  - Breadcrumb.md 変更記録ファイル作成完了
+- **i18n 対応**:
+  - ホームページリンクは WOVN コンポーネントで翻訳対応
+  - aria-label は将来対応のため `i18n__todo__` プレフィックス
+- **残された課題**:
+  - aria-label の完全な i18n 対応
+  - lib/params.js の独立実装（現在は ApplyParams.astro で代替）
+
+#### 0019_breadcrumb-implementation 追加修正完了
+- **修正内容**: ユーザー指摘事項への対応
+  - PageLayout.astro の try-catch 削除（getCurrentPage は必ず成功する前提）
+  - PageProps 型定義に titleUs, titleCn を追加
+  - page.ts で FrontMatter から title_us, title_cn を取得して PageProps に設定
+  - Title.astro を PageProps から地域別タイトルを参照するように修正
+  - ReplaceParams 型定義の拡張（ApplyParams で使用される全プロパティ追加）
+- **設計改善**:
+  - FrontMatter データの PageProps への統一的な統合パターン確立
+  - 地域別データは params ではなく PageProps のトップレベルに配置
+  - コンポーネント間のデータ受け渡しの簡素化
+- **型安全性の向上**:
+  - ReplaceParams に全ての置換パラメータを明示的に定義
+  - env オブジェクトと ReplaceParams の型整合性確保

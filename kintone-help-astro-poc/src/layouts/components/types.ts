@@ -66,6 +66,8 @@ export interface PageProps {
   isHome: boolean;
   isSection: boolean;
   title: string;
+  titleUs?: string;
+  titleCn?: string;
   description?: string;
   relPermalink: string;
   permalink?: string;
@@ -83,8 +85,6 @@ export interface PageProps {
     weight?: number;
     disabled?: string[];
     nolink?: boolean;
-    titleUs?: string;
-    titleCn?: string;
     labels?: string[];
     latestPage?: string;
     [key: string]: any;
@@ -128,6 +128,16 @@ export interface ReplaceParams {
   store?: string;
   product?: string;
   domain?: string;
+  cybozu_com?: string;
+  slash_help?: string;
+  slash?: string;
+  CorpName?: string;
+  service_type?: string;
+  help?: string;
+  product_name?: string;
+  slash_ui?: string;
+  slash_administrators?: string;
+  slash_service_name?: string;
   [key: string]: string | undefined;
 }
 

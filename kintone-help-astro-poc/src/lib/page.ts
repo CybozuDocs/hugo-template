@@ -59,6 +59,8 @@ export function createPageData(
     isSection:
       filepath.endsWith("/index.mdx") || filepath.endsWith("/index.md"),
     title: (frontmatter.title as string) || "",
+    titleUs: (frontmatter.title_us as string) || undefined,
+    titleCn: (frontmatter.title_cn as string) || undefined,
     description: (frontmatter.description as string) || "",
     relPermalink: "/k" + urlPath,
     permalink: "/k" + urlPath,
@@ -139,6 +141,8 @@ export function getSiteHome(): PageProps {
     isHome: true,
     isSection: false,
     title: "kintone ヘルプ",
+    titleUs: undefined,
+    titleCn: undefined,
     relPermalink: "/",
     permalink: "/",
     lang: "ja",
