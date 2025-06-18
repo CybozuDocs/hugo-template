@@ -79,6 +79,34 @@ if (!foundPage) {
 - 既存機能への影響なし
 - セクションの階層構造が正しく構築される
 
+## リファクタリング作業
+
+### 追加のコード改善
+
+ユーザーの指摘により、page.ts の可読性改善のためのリファクタリングを実施：
+
+#### 内部関数の抽出
+- **パスユーティリティ**: normalizePathname(), removeKPrefix(), getPathSegments()
+- **ページデータ作成**: createPageData(), isValidPageFile()
+- **ページ検索**: findParentSection(), findPageInTree()
+
+#### getSiteHomeSections() の分割
+- **loadAllPages()**: ファイル読み込みとページデータ作成
+- **indexSectionsByPath()**: セクションのパスインデックス化
+- **assignPageParents()**: ページの親子関係設定
+- **assignSectionParents()**: セクションの親子関係設定
+- **sortPagesAndSections()**: ソート処理
+
+#### getCurrentPage() の簡素化
+- 再帰検索ロジックを findPageInTree() に分離
+- パス正規化を共通関数に移行
+
+### 非破壊的リファクタリングの原則
+- 外部API（export関数）は一切変更せず
+- 関数シグネチャ、戻り値の型、動作は完全に同一
+- 内部実装のみを小さな関数に分割
+- ビルドテスト成功（2.71秒）
+
 ## 今後の利用方法
 
 コンポーネント内での使用例：
