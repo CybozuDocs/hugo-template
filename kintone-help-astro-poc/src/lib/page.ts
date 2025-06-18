@@ -1,4 +1,5 @@
 import type { PageProps } from "../layouts/components/types";
+import type { AstroGlobal } from "astro";
 
 /**
  * サイトのホームページ情報を取得
@@ -31,6 +32,7 @@ export async function getSiteHomeSections(): Promise<PageProps[]> {
 
   const sectionsMap = new Map<string, PageProps>();
   const allPagesData: PageProps[] = [];
+  const homeData = getSiteHome();
 
   // 各ファイルを処理してページデータを構築
   for (const [filepath, module] of allPages) {
@@ -64,6 +66,7 @@ export async function getSiteHomeSections(): Promise<PageProps[]> {
       params: (frontmatter.params as Record<string, unknown>) || {},
       sections: [],
       pages: [],
+      parent: undefined, // 後で設定
     };
 
     allPagesData.push(pageData);
@@ -74,35 +77,87 @@ export async function getSiteHomeSections(): Promise<PageProps[]> {
     }
   }
 
-  // 各ページを適切なセクションに配置
+  // 階層的なセクション構造を構築するためのマップ
+  const sectionsByPath = new Map<string, PageProps>();
+
+  // セクションをパスでインデックス化
+  for (const section of sectionsMap.values()) {
+    const pathWithoutPrefix = section.relPermalink.replace(/^\/k/, "");
+    sectionsByPath.set(pathWithoutPrefix, section);
+  }
+
+  // 各ページを適切なセクションに配置し、親を設定
   for (const pageData of allPagesData) {
     if (!pageData.isSection && !pageData.isHome) {
       // /k/ プレフィックスを除去してパスを解析
       const pathWithoutPrefix = pageData.relPermalink.replace(/^\/k/, "");
       const pathSegments = pathWithoutPrefix.split("/").filter(Boolean);
-      const sectionName = pathSegments[1];
+      
+      // 最も近い親セクションを探す（深い階層から順に探す）
+      let parentSection: PageProps | undefined;
+      for (let i = pathSegments.length - 1; i >= 1; i--) {
+        const parentPath = "/" + pathSegments.slice(0, i).join("/");
+        if (sectionsByPath.has(parentPath)) {
+          parentSection = sectionsByPath.get(parentPath);
+          break;
+        }
+      }
 
-      if (sectionName && sectionsMap.has(sectionName)) {
-        const section = sectionsMap.get(sectionName)!;
-        if (!section.pages) section.pages = [];
-        section.pages.push(pageData);
+      if (parentSection) {
+        if (!parentSection.pages) parentSection.pages = [];
+        parentSection.pages.push(pageData);
+        // ページの親をセクションに設定
+        pageData.parent = parentSection;
       }
     }
   }
 
-  // セクションのページを weight でソート
+  // セクションの親子関係を設定
   for (const section of sectionsMap.values()) {
+    const pathWithoutPrefix = section.relPermalink.replace(/^\/k/, "");
+    const pathSegments = pathWithoutPrefix.split("/").filter(Boolean);
+    
+    if (pathSegments.length <= 2) {
+      // トップレベルのセクション（例: /ja/start）の親はホーム
+      section.parent = homeData;
+    } else {
+      // 入れ子のセクション（例: /ja/start/subsection）の親は親セクション
+      let parentSection: PageProps | undefined;
+      for (let i = pathSegments.length - 1; i >= 2; i--) {
+        const parentPath = "/" + pathSegments.slice(0, i).join("/");
+        if (sectionsByPath.has(parentPath)) {
+          parentSection = sectionsByPath.get(parentPath);
+          break;
+        }
+      }
+      
+      if (parentSection) {
+        section.parent = parentSection;
+        if (!parentSection.sections) parentSection.sections = [];
+        parentSection.sections.push(section);
+      } else {
+        // 親セクションが見つからない場合はホームを親とする
+        section.parent = homeData;
+      }
+    }
+    
+    // セクションのページを weight でソート
     if (section.pages) {
       section.pages.sort((a, b) => (a.weight || 0) - (b.weight || 0));
     }
+    
+    // セクションのサブセクションを weight でソート
+    if (section.sections) {
+      section.sections.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+    }
   }
 
-  // セクション一覧を weight でソートして返す
-  const sections = Array.from(sectionsMap.values()).sort(
-    (a, b) => (a.weight || 0) - (b.weight || 0)
-  );
+  // トップレベルのセクションのみを返す（親がホームのもの）
+  const topLevelSections = Array.from(sectionsMap.values())
+    .filter(section => section.parent === homeData)
+    .sort((a, b) => (a.weight || 0) - (b.weight || 0));
 
-  return sections;
+  return topLevelSections;
 }
 
 /**
@@ -123,4 +178,62 @@ export function getRelPermalink(): string {
   // TODO: 実際の相対パーマリンク生成ロジックを実装
   // 現在はダミー値を返す
   return "/dummy-permalink";
+}
+
+/**
+ * 現在レンダリング中のページを取得
+ * getSiteHomeSections() の結果から、現在の URL に一致するページを検索して返す
+ * @param Astro - Astro グローバルオブジェクト
+ * @param sections - getSiteHomeSections() の実行結果
+ * @returns 現在のページデータ
+ * @throws ページが見つからない場合はエラーをスロー
+ */
+export function getCurrentPage(
+  Astro: AstroGlobal,
+  sections: PageProps[]
+): PageProps {
+  // 現在の URL パスを取得
+  const currentPath = Astro.url.pathname;
+
+  // ホームページかどうかをチェック
+  if (currentPath === "/" || currentPath === "/k/" || currentPath === "/k") {
+    return getSiteHome();
+  }
+
+  // パスを正規化（末尾のスラッシュを除去）
+  const normalizedPath = currentPath.replace(/\/$/, "");
+
+  // 再帰的にページを検索する関数
+  function findPageRecursive(pages: PageProps[]): PageProps | undefined {
+    for (const page of pages) {
+      // relPermalink を正規化して比較
+      const normalizedPermalink = page.relPermalink.replace(/\/$/, "");
+      
+      if (normalizedPermalink === normalizedPath) {
+        return page;
+      }
+
+      // sections 内を検索
+      if (page.sections && page.sections.length > 0) {
+        const found = findPageRecursive(page.sections);
+        if (found) return found;
+      }
+
+      // pages 内を検索
+      if (page.pages && page.pages.length > 0) {
+        const found = findPageRecursive(page.pages);
+        if (found) return found;
+      }
+    }
+    return undefined;
+  }
+
+  // sections から検索
+  const foundPage = findPageRecursive(sections);
+  
+  if (!foundPage) {
+    throw new Error(`ページが見つかりません: ${currentPath}`);
+  }
+  
+  return foundPage;
 }

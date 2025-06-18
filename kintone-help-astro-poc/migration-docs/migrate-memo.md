@@ -541,3 +541,37 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - 条件付き表示機能（latest_page パラメータベース）の実装完了済み
   - kintone環境では該当パラメータを持つコンテンツが存在しない
   - 実行されることのない不要なコードの除去
+
+#### 0017_page-functions-update 作業完了
+- **成果物**: lib/page.ts の機能拡張
+  - getSiteHomeSections() に parent フィールド設定機能追加
+  - getCurrentPage() 関数の新規実装
+  - AstroGlobal 型のインポート追加
+- **重要な学習事項**:
+  - Astro.url を使用した現在ページの取得方法
+  - 再帰的なツリー構造検索の実装パターン
+  - コンポーネントから Astro オブジェクトを関数に渡す設計
+  - セクションの階層構造における親子関係の正しい設定方法
+- **技術的実装**:
+  - **parent フィールド設定**: 
+    - トップレベルセクションの親はホーム
+    - 入れ子セクションの親は親セクション
+    - ページの親は最も近い親セクション
+  - **getCurrentPage関数**: 
+    - Astro.url.pathname と relPermalink の比較による検索
+    - ページが見つからない場合はエラーをスロー
+  - **パス正規化**: 末尾スラッシュ除去による確実な比較
+  - **再帰検索**: sections と pages の両方を対象とした効率的な検索
+- **API設計**:
+  - getCurrentPage(Astro: AstroGlobal, sections: PageProps[]): PageProps
+  - エラーハンドリング強化（見つからない場合は Error をスロー）
+  - sectionsByPath マップによる効率的な親セクション検索
+- **追加修正内容**:
+  - getCurrentPage() のエラーハンドリング強化（undefined → Error）
+  - getSiteHomeSections() のセクション階層対応
+  - トップレベルセクションのみを返すように変更
+- **品質確保**:
+  - ビルドテスト成功（1.33秒）
+  - TypeScript 型安全性の確保
+  - 既存機能への影響なし
+  - セクションの階層構造が正しく構築される
