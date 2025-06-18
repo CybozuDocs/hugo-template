@@ -1,16 +1,18 @@
 ---
 import { env } from "@/lib/env";
-import MegaNavKt from './MegaNavKt.astro';
-import MegaNavGr from './MegaNavGr.astro';
-import type { BaseProps } from './types';
+import MegaNavKt from "./MegaNavKt.astro";
+import MegaNavGr from "./MegaNavGr.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
 const { page } = Astro.props;
 ---
 
-{env.targetRegion === "US" ? (
-  <MegaNavKt page={page} />
-) : (
-  <MegaNavGr page={page} />
-)}
+{
+  env.targetRegion === "US" ? (
+    <MegaNavKt page={page} />
+  ) : (
+    <MegaNavGr page={page} />
+  )
+}

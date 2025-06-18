@@ -1,46 +1,46 @@
 ---
 import { env } from "@/lib/env";
-import AlternateLink from './AlternateLink.astro';
-import Gtm from './Gtm.astro';
-import type { BaseProps } from './types';
+import AlternateLink from "./AlternateLink.astro";
+import Gtm from "./Gtm.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
 const { page } = Astro.props;
 
 // ビルド番号の生成
-const buildnum = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+const buildnum = new Date().toISOString().slice(0, 10).replace(/-/g, "");
 
 // WOVN設定
 const wovnConfig = () => {
-  if (!env.useWovn) return '';
-  
-  const baseUrlParts = env.baseURL.split('/');
-  const prefix = baseUrlParts[baseUrlParts.length - 2] || '';
-  
+  if (!env.useWovn) return "";
+
+  const baseUrlParts = env.baseURL.split("/");
+  const prefix = baseUrlParts[baseUrlParts.length - 2] || "";
+
   return `https://j.wovn.io/1?key=${env.dataWovnio}&amp;defaultLang=en&amp;currentLang=en&amp;urlPattern=path&amp;backend=true&amp;langCodeAliases={&quot;en&quot;:&quot;en&quot;}&amp;sitePrefixPath=${prefix}&amp;langParamName=wovn&amp;backendVersion=WOVN.proxy_0.9.0`;
 };
 
 // サイト名の生成
 const generateSiteName = () => {
-  let sitename = '';
-  const servicetype = env.serviceType || '';
-  
+  let sitename = "";
+  const servicetype = env.serviceType || "";
+
   if (env.serviceTypeId === "on-premise" && env.languageCode === "en-us") {
     sitename = `${env.productName} ${servicetype}`.trim();
   } else {
     sitename = `${servicetype} ${env.productName}`.trim();
   }
-  
+
   return `${sitename} ${env.help}`;
 };
 
 // ページタイトルの生成
 const generateTitle = () => {
   // TODO: Title コンポーネントの出力を取得
-  const baseTitle = ''; // Title コンポーネントから取得
+  const baseTitle = ""; // Title コンポーネントから取得
   const sitename = generateSiteName();
-  
+
   if (!page.isHome) {
     return `${baseTitle} | ${sitename}`;
   }
@@ -53,11 +53,11 @@ const generateDescription = () => {
     // TODO: ApplyParams コンポーネントの機能を利用
     return page.description;
   }
-  
+
   // TODO: i18n の実装
-  const descBase = 'i18n__todo__og_desc1';
-  const desc2 = 'i18n__todo__og_desc2';
-  
+  const descBase = "i18n__todo__og_desc1";
+  const desc2 = "i18n__todo__og_desc2";
+
   return `${descBase} ${desc2}`.trim();
 };
 
@@ -66,23 +66,26 @@ const title = generateTitle();
 const description = generateDescription();
 
 // robots の判定
-const shouldNoIndex = page.params.type === "search_result" || 
-                     page.params.nolink === true || 
-                     env.staging === "true";
+const shouldNoIndex =
+  page.params.type === "search_result" ||
+  page.params.nolink === true ||
+  env.staging === "true";
 
 // Vue.js が必要な条件
-const needsVue = (page.params.type === "search_result" && (env.googleSearch || env.bingSearch)) ||
-                 page.params.type === "gr/section_top_video" ||
-                 page.params.type === "gr6/home";
+const needsVue =
+  (page.params.type === "search_result" &&
+    (env.googleSearch || env.bingSearch)) ||
+  page.params.type === "gr/section_top_video" ||
+  page.params.type === "gr6/home";
 
 // チャット設定の処理
 const processChatSettings = () => {
   if (!env.chat) return [];
-  
-  const chatTargets = env.chat.split(',');
+
+  const chatTargets = env.chat.split(",");
   const currentPage = page.relPermalink;
-  
-  return chatTargets.filter(target => {
+
+  return chatTargets.filter((target) => {
     const targetPath = `/${target}/`;
     return currentPage.includes(targetPath);
   });
@@ -91,9 +94,7 @@ const processChatSettings = () => {
 const activeChatTargets = processChatSettings();
 ---
 
-{env.useWovn && (
-  <script src={wovnConfig()} async></script>
-)}
+{env.useWovn && <script src={wovnConfig()} async />}
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -106,9 +107,7 @@ const activeChatTargets = processChatSettings();
 <title>{title}</title>
 <link rel="canonical" href={`https://${env.domain}${page.permalink}`} />
 
-{shouldNoIndex && (
-  <meta name="robots" content="noindex,nofollow" />
-)}
+{shouldNoIndex && <meta name="robots" content="noindex,nofollow" />}
 
 <meta name="description" content={description} />
 <meta name="thumbnail" content={`https://${env.domain}${env.ogImg}`} />
@@ -125,93 +124,143 @@ const activeChatTargets = processChatSettings();
 {/* モバイル設定 */}
 <meta name="apple-mobile-web-app-title" content={title} />
 <meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="black-translucent"
+/>
 
 {/* AlternateLink コンポーネント */}
 <AlternateLink page={page} />
 
 {/* ファビコン */}
-<link rel="shortcut icon" type="image/x-icon" href={env.favicon || "favicon.ico"} />
+<link
+  rel="shortcut icon"
+  type="image/x-icon"
+  href={env.favicon || "favicon.ico"}
+/>
 <link rel="icon" type="image/x-icon" href={env.favicon || "favicon.ico"} />
 
 {/* US地域の設定 */}
-{env.targetRegion === "US" && (
-  <>
-    <link rel="stylesheet" href="https://use.typekit.net/fmt1ojn.css" />
-    {/* TODO: 本番環境判定 */}
-    <!-- OneTrust Cookies Consent Notice start -->
-    <script is:inline type="text/javascript" src="https://cookie-cdn.cookiepro.com/consent/9d6098cc-90be-4d07-a9ef-6e07312a3016/OtAutoBlock.js"></script>
-    <script is:inline src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js" type="text/javascript" charset="UTF-8" data-domain-script="9d6098cc-90be-4d07-a9ef-6e07312a3016"></script>
-    <script type="text/javascript">
-    function OptanonWrapper() { }
-    </script>
-    <!-- OneTrust Cookies Consent Notice end -->
-  </>
-)}
+{
+  env.targetRegion === "US" && (
+    <>
+      <link rel="stylesheet" href="https://use.typekit.net/fmt1ojn.css" />
+      {/* TODO: 本番環境判定 */}
+      {/* OneTrust Cookies Consent Notice start */}
+      <script
+        is:inline
+        type="text/javascript"
+        src="https://cookie-cdn.cookiepro.com/consent/9d6098cc-90be-4d07-a9ef-6e07312a3016/OtAutoBlock.js"
+      />
+      <script
+        is:inline
+        src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js"
+        type="text/javascript"
+        charset="UTF-8"
+        data-domain-script="9d6098cc-90be-4d07-a9ef-6e07312a3016"
+      />
+      <script type="text/javascript">function OptanonWrapper() {}</script>
+      {/* OneTrust Cookies Consent Notice end */}
+    </>
+  )
+}
 
 {/* CSS ファイル */}
 <link rel="stylesheet" href={`/k/stylesheets/application.css?${buildnum}`} />
 <link rel="stylesheet" href="/k/stylesheets/zoom.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
 
 <link rel="stylesheet" href={`/k/stylesheets/application2.css?${buildnum}`} />
 <link rel="stylesheet" href={`/k/stylesheets/searchbox.css?${buildnum}`} />
 <link rel="stylesheet" href={`/k/stylesheets/footer.css?${buildnum}`} />
-{page.isHome && (
-  <link rel="stylesheet" href={`/k/stylesheets/toppage2.css?${buildnum}`} />
-)}
+{
+  page.isHome && (
+    <link rel="stylesheet" href={`/k/stylesheets/toppage2.css?${buildnum}`} />
+  )
+}
 
-{page.params.type === "search_result" && (
-  <link rel="stylesheet" href={`stylesheets/search_result.css?${buildnum}`} />
-)}
+{
+  page.params.type === "search_result" && (
+    <link rel="stylesheet" href={`stylesheets/search_result.css?${buildnum}`} />
+  )
+}
 
-{page.params.type === "gr/section_top_video" && (
-  <link rel="stylesheet" href={`stylesheets/video_list.css?${buildnum}`} />
-)}
+{
+  page.params.type === "gr/section_top_video" && (
+    <link rel="stylesheet" href={`stylesheets/video_list.css?${buildnum}`} />
+  )
+}
 
 {/* カスタムCSS */}
-{env.customCss && (
-  env.customCss.split(',').map((cssFile: string) => (
-    <link rel="stylesheet" href={`${cssFile.trim()}?${buildnum}`} />
-  ))
-)}
+{
+  env.customCss &&
+    env.customCss
+      .split(",")
+      .map((cssFile: string) => (
+        <link rel="stylesheet" href={`${cssFile.trim()}?${buildnum}`} />
+      ))
+}
 
 {/* JavaScript ファイル */}
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
+<script
+  is:inline
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+></script>
+<script
+  is:inline
+  src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"
+></script>
 <script is:inline src="/k/javascripts/zoom.js"></script>
 <script is:inline src={`/k/javascripts/preload.js?${buildnum}`}></script>
 <script is:inline src={`/k/javascripts/application.js?${buildnum}`}></script>
 <script is:inline src={`/k/javascripts/langselector.js?${buildnum}`}></script>
 
-{env.meganav && (
-  <script is:inline src={`/k/javascripts/meganav.js?${buildnum}`}></script>
-)}
+{
+  env.meganav && (
+    <script is:inline src={`/k/javascripts/meganav.js?${buildnum}`} />
+  )
+}
 
-{page.params.type === "gr6/home" && (
-  <script is:inline src={`/k/javascripts/custom_gr6.js?${buildnum}`}></script>
-)}
+{
+  page.params.type === "gr6/home" && (
+    <script is:inline src={`/k/javascripts/custom_gr6.js?${buildnum}`} />
+  )
+}
 
 <script is:inline src={`/k/javascripts/searchbox.js?${buildnum}`}></script>
-{page.isHome && (
-  <script is:inline src={`/k/javascripts/toppage2.js?${buildnum}`}></script>
-)}
+{
+  page.isHome && (
+    <script is:inline src={`/k/javascripts/toppage2.js?${buildnum}`} />
+  )
+}
 
-{needsVue && (
-  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.8/vue.global.prod.min.js"></script>
-)}
+{
+  needsVue && (
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.8/vue.global.prod.min.js"
+    />
+  )
+}
 
 {/* Google Tag Manager */}
 <Gtm key="GTM-5ZR5GF" />
 <Gtm key="GTM-5N49D3" />
-{env.targetRegion === "JP" && (
-  <Gtm key="GTM-K98FR27D" />
-)}
+{env.targetRegion === "JP" && <Gtm key="GTM-K98FR27D" />}
 
 {/* Zendesk チャット */}
-{activeChatTargets.map((target) => (
-  <Fragment>
-    <script is:inline id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=6549c743-a6eb-40ac-a71f-c479b0759f1c"></script>
-    {/* TODO: チャットメニューの設定 */}
-  </Fragment>
-))}
+{
+  activeChatTargets.map((target) => (
+    <Fragment>
+      <script
+        is:inline
+        id="ze-snippet"
+        src="https://static.zdassets.com/ekr/snippet.js?key=6549c743-a6eb-40ac-a71f-c479b0759f1c"
+      />
+      {/* TODO: チャットメニューの設定 */}
+    </Fragment>
+  ))
+}

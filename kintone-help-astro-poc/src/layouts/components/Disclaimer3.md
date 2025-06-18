@@ -4,13 +4,13 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ partial "disclaimer_pdf_url" (dict "languageCode" $.Site.LanguageCode )}}` | インライン実装 | PDF URL決定ロジックを統合 |
-| `{{ printf "<li><a href=\"%s\" target=\"_blank\">%s</a><i class=\"far fa-file-pdf index-pdf\" aria-hidden=\"true\"></i></li>" $pdf_url (i18n "MT_Disclaimer") }}` | JSX構造 | HTMLをJSXで構築 |
-| `{{ i18n "MT_Disclaimer" }}` | `<Wovn>i18n__MT_Disclaimer</Wovn>` | WOVN対応 |
-| `{{ return $html }}` | 直接出力 | コンポーネントが直接HTMLを返す |
-| `$.Site.LanguageCode` | `env.languageCode` | envプロパティに集約 |
+| Hugo                                                                                                                                                              | Astro                              | 備考                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ------------------------------ |
+| `{{ partial "disclaimer_pdf_url" (dict "languageCode" $.Site.LanguageCode )}}`                                                                                    | インライン実装                     | PDF URL決定ロジックを統合      |
+| `{{ printf "<li><a href=\"%s\" target=\"_blank\">%s</a><i class=\"far fa-file-pdf index-pdf\" aria-hidden=\"true\"></i></li>" $pdf_url (i18n "MT_Disclaimer") }}` | JSX構造                            | HTMLをJSXで構築                |
+| `{{ i18n "MT_Disclaimer" }}`                                                                                                                                      | `<Wovn>i18n__MT_Disclaimer</Wovn>` | WOVN対応                       |
+| `{{ return $html }}`                                                                                                                                              | 直接出力                           | コンポーネントが直接HTMLを返す |
+| `$.Site.LanguageCode`                                                                                                                                             | `env.languageCode`                 | envプロパティに集約            |
 
 ## TODO
 

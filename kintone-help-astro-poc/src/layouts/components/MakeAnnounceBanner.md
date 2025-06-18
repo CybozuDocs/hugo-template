@@ -4,20 +4,20 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ index . 0 }}` | `data[0]` | 配列インデックスアクセス |
-| `{{ index . 1 }}` | `data[1]` | 配列インデックスアクセス |
-| `{{ index . 2 }}` | `data[2]` | 配列インデックスアクセス |
-| `{{ index . 3 }}` | `data[3]` | 配列インデックスアクセス |
-| `{{ index . 4 }}` | `data[4]` | 配列インデックスアクセス |
-| `{{ index . 5 }}` | `data[5]` | 配列インデックスアクセス |
-| `{{ with $bg_color }}background-color: {{ . }};{{ end }}` | `${bgColor ? `background-color: ${bgColor};` : ''}` | 条件付きスタイル |
-| `{{ with $icon_color }}color: {{ . }};{{ end }}` | `${iconColor ? `color: ${iconColor};` : ''}` | 条件付きスタイル |
-| `{{ with $title }}...{{ end }}` | `{title && (...)}` | 条件付きレンダリング |
-| `{{ $text | markdownify }}` | `{processMarkdown(text)}` | マークダウン処理 |
-| `{{ i18n "Announcement_button_close" }}` | `i18n__todo__Announcement_button_close` | title属性内のためTODO |
-| `{{ i18n "Close" }}` | `<Wovn>i18n__Close</Wovn>` | WOVN対応 |
+| Hugo                                                      | Astro                                               | 備考                      |
+| --------------------------------------------------------- | --------------------------------------------------- | ------------------------- | ---------------- |
+| `{{ index . 0 }}`                                         | `data[0]`                                           | 配列インデックスアクセス  |
+| `{{ index . 1 }}`                                         | `data[1]`                                           | 配列インデックスアクセス  |
+| `{{ index . 2 }}`                                         | `data[2]`                                           | 配列インデックスアクセス  |
+| `{{ index . 3 }}`                                         | `data[3]`                                           | 配列インデックスアクセス  |
+| `{{ index . 4 }}`                                         | `data[4]`                                           | 配列インデックスアクセス  |
+| `{{ index . 5 }}`                                         | `data[5]`                                           | 配列インデックスアクセス  |
+| `{{ with $bg_color }}background-color: {{ . }};{{ end }}` | `${bgColor ? `background-color: ${bgColor};` : ''}` | 条件付きスタイル          |
+| `{{ with $icon_color }}color: {{ . }};{{ end }}`          | `${iconColor ? `color: ${iconColor};` : ''}`        | 条件付きスタイル          |
+| `{{ with $title }}...{{ end }}`                           | `{title && (...)}`                                  | 条件付きレンダリング      |
+| `{{ $text                                                 | markdownify }}`                                     | `{processMarkdown(text)}` | マークダウン処理 |
+| `{{ i18n "Announcement_button_close" }}`                  | `i18n__todo__Announcement_button_close`             | title属性内のためTODO     |
+| `{{ i18n "Close" }}`                                      | `<Wovn>i18n__Close</Wovn>`                          | WOVN対応                  |
 
 ## TODO
 

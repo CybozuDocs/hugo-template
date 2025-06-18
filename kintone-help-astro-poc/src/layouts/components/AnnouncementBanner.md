@@ -4,24 +4,24 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ i18n "Unsupported_browser" }}` | `i18n__Unsupported_browser` | 静的文字列として処理 |
-| `{{ i18n "Unsupported_message" }}` | `i18n__Unsupported_message` | 静的文字列として処理 |
-| `{{ i18n "Close" }}` | `<Wovn>i18n__Close</Wovn>` | WOVN対応 |
-| `{{ i18n "Announcement_button_close" }}` | `i18n__todo__Announcement_button_close` | title属性内のためTODO |
-| `$.Lang` | `env.lang` | envプロパティに集約 |
-| `$.Site.Params.TargetRegion` | `env.targetRegion` | envプロパティに集約 |
-| `os.FileExists` | 未実装 | TODO: ファイル存在チェック |
-| `resources.Get` | 未実装 | TODO: CSVリソース読み込み |
-| `transform.Unmarshal` | 未実装 | TODO: CSV解析 |
-| `markdownify` | `processMarkdown()` | 簡易実装、要改善 |
+| Hugo                                     | Astro                                   | 備考                       |
+| ---------------------------------------- | --------------------------------------- | -------------------------- |
+| `{{ i18n "Unsupported_browser" }}`       | `i18n__Unsupported_browser`             | 静的文字列として処理       |
+| `{{ i18n "Unsupported_message" }}`       | `i18n__Unsupported_message`             | 静的文字列として処理       |
+| `{{ i18n "Close" }}`                     | `<Wovn>i18n__Close</Wovn>`              | WOVN対応                   |
+| `{{ i18n "Announcement_button_close" }}` | `i18n__todo__Announcement_button_close` | title属性内のためTODO      |
+| `$.Lang`                                 | `env.lang`                              | envプロパティに集約        |
+| `$.Site.Params.TargetRegion`             | `env.targetRegion`                      | envプロパティに集約        |
+| `os.FileExists`                          | 未実装                                  | TODO: ファイル存在チェック |
+| `resources.Get`                          | 未実装                                  | TODO: CSVリソース読み込み  |
+| `transform.Unmarshal`                    | 未実装                                  | TODO: CSV解析              |
+| `markdownify`                            | `processMarkdown()`                     | 簡易実装、要改善           |
 
 ## TODO
 
 - [ ] CSVファイルの動的読み込み処理の実装
 - [ ] os.FileExistsに相当するファイル存在チェック機能
-- [ ] resources.Getに相当するリソース読み込み機能  
+- [ ] resources.Getに相当するリソース読み込み機能
 - [ ] transform.Unmarshalに相当するCSV解析機能
 - [ ] markdownify機能の完全実装
 - [ ] title属性のi18n対応方法の検討

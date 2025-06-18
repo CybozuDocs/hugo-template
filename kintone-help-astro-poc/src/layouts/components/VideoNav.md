@@ -4,15 +4,15 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `v-for="tag in tags"` | `tags.map((tag) => ())` | 配列反復 |
-| `:key="tag.key"` | `key={tag.key}` | React/JSXのキー属性 |
-| `v-bind:id="'video-filter-'+tag.key"` | `id={\`video-filter-${tag.key}\`}` | 動的ID生成 |
-| `v-on:click="changetag()"` | `addEventListener('click', ...)` | イベントハンドラー |
-| `v-bind:for="'video-filter-'+tag.key"` | `htmlFor={\`video-filter-${tag.key}\`}` | ラベル関連付け |
-| `[[tag.text]]` | `{tag.text}` | Vue.jsのテキスト補間 |
-| `[[filter]]` | `[[filter]]` | そのまま維持（他の実装で処理される想定） |
+| Hugo                                   | Astro                                   | 備考                                     |
+| -------------------------------------- | --------------------------------------- | ---------------------------------------- |
+| `v-for="tag in tags"`                  | `tags.map((tag) => ())`                 | 配列反復                                 |
+| `:key="tag.key"`                       | `key={tag.key}`                         | React/JSXのキー属性                      |
+| `v-bind:id="'video-filter-'+tag.key"`  | `id={\`video-filter-${tag.key}\`}`      | 動的ID生成                               |
+| `v-on:click="changetag()"`             | `addEventListener('click', ...)`        | イベントハンドラー                       |
+| `v-bind:for="'video-filter-'+tag.key"` | `htmlFor={\`video-filter-${tag.key}\`}` | ラベル関連付け                           |
+| `[[tag.text]]`                         | `{tag.text}`                            | Vue.jsのテキスト補間                     |
+| `[[filter]]`                           | `[[filter]]`                            | そのまま維持（他の実装で処理される想定） |
 
 ## TODO
 

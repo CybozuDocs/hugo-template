@@ -39,9 +39,11 @@ const safeHTML = (html: string) => html;
 <li role="presentation">
   <a href={`${pageurl}#${anc}`} class="toclink" set:html={safeHTML(txt)}></a>
   {haschild && !isLast && (
-    <!-- 子要素がある場合は </li> を出力しない（次の ul が続く） -->
+    // <!-- 子要素がある場合は </li> を出力しない（次の ul が続く） -->
+    <></>
   )}
   {(!haschild || isLast) && (
-    <!-- 子要素がない場合や最後の要素の場合は </li> で閉じる -->
+    // <!-- 子要素がない場合や最後の要素の場合は </li> で閉じる -->
+    <></>
   )}
 </li>

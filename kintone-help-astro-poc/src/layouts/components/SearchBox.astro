@@ -1,7 +1,7 @@
 ---
 import { env } from "@/lib/env";
-import Wovn from '@/components/Wovn.astro';
-import type { BaseProps } from './types';
+import Wovn from "@/components/Wovn.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
@@ -18,8 +18,8 @@ if (env.googleSearch) {
 // フィルター配列の生成
 let filter: string[] = [];
 if (paramFilter.length > 0) {
-  const trimmed = paramFilter.replace(/^\[/, '').replace(/\]$/, '');
-  filter = trimmed.split(',');
+  const trimmed = paramFilter.replace(/^\[/, "").replace(/\]$/, "");
+  filter = trimmed.split(",");
 }
 
 // フルサイズ判定
@@ -53,79 +53,89 @@ if (fullsize) {
 
 <div id="search" class="search-wrap" role="search">
   <div class="searchbox">
-    {paramFilter && (
-      <button 
-        id="search-filter-current" 
-        class={buttonstyle} 
-        title="i18n__todo__Search_filter"
-        aria-controls="search-filter-list" 
-        aria-haspopup="listbox" 
-        aria-expanded="false" 
-        role="combobox"
-      >
-        {filter[0]?.replace(/^'|'$/g, '') || ''}
-      </button>
-    )}
-    
-    <div 
-      id="search-filter-list" 
-      class="search-filter-list" 
-      aria-labelledby="search-filter-current" 
-      role="listbox" 
+    {
+      paramFilter && (
+        <button
+          id="search-filter-current"
+          class={buttonstyle}
+          title="i18n__todo__Search_filter"
+          aria-controls="search-filter-list"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          role="combobox"
+        >
+          {filter[0]?.replace(/^'|'$/g, "") || ""}
+        </button>
+      )
+    }
+
+    <div
+      id="search-filter-list"
+      class="search-filter-list"
+      aria-labelledby="search-filter-current"
+      role="listbox"
       tabindex="-1"
     >
       <ul>
-        {filter.map((value, idx) => (
-          <li 
-            class={`search-filter-item${idx === 0 ? ' search-filter-selected' : ''}`}
-            listid={idx} 
-            role="option" 
-            aria-selected="false"
-          >
-            {value.replace(/^'|'$/g, '')}
-          </li>
-        ))}
+        {
+          filter.map((value, idx) => (
+            <li
+              class={`search-filter-item${idx === 0 ? " search-filter-selected" : ""}`}
+              listid={idx}
+              role="option"
+              aria-selected="false"
+            >
+              {value.replace(/^'|'$/g, "")}
+            </li>
+          ))
+        }
       </ul>
     </div>
-    
-    <input 
-      type="search" 
-      id="search-input" 
-      class="search-input" 
+
+    <input
+      type="search"
+      id="search-input"
+      class="search-input"
       placeholder={placeholder}
       aria-label="i18n__todo__search_word"
     />
-    
-    <button 
-      class="search-submit" 
+
+    <button
+      class="search-submit"
       title="i18n__todo__search"
-      aria-label="i18n__todo__search"
-    ></button>
+      aria-label="i18n__todo__search"></button>
   </div>
-  
-  {fullsize && (
-    <div 
-      id="logo_place" 
-      class={`search-logo${env.bingSearch ? ' search-logo-bing' : ''}`}
-    >
-      {env.bingSearch && (
-        <span>
-          <Wovn>i18n__search_bing</Wovn>
-          {' ('}
-          <a href="https://www.microsoft.com/en-gb/privacy/privacystatement" target="_blank">
-            <Wovn>i18n__search_bing_legal</Wovn>
-          </a>
-          {')'}
-        </span>
-      )}
-    </div>
-  )}
+
+  {
+    fullsize && (
+      <div
+        id="logo_place"
+        class={`search-logo${env.bingSearch ? " search-logo-bing" : ""}`}
+      >
+        {env.bingSearch && (
+          <span>
+            <Wovn>i18n__search_bing</Wovn>
+            {" ("}
+            <a
+              href="https://www.microsoft.com/en-gb/privacy/privacystatement"
+              target="_blank"
+            >
+              <Wovn>i18n__search_bing_legal</Wovn>
+            </a>
+            {")"}
+          </span>
+        )}
+      </div>
+    )
+  }
 </div>
 
-{env.googleSearch && (
-  <script 
-    src="https://www.gstatic.com/prose/brand.js" 
-    data-target-id={logoplace} 
-    data-hl={glang}
-  ></script>
-)}
+{
+  env.googleSearch && (
+    <script
+      src="https://www.gstatic.com/prose/brand.js"
+      data-target-id={logoplace}
+      data-hl={glang}
+    />
+  )
+}

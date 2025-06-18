@@ -1,5 +1,5 @@
 ---
-import Wovn from '@/components/Wovn.astro';
+import Wovn from "@/components/Wovn.astro";
 
 interface TocItem {
   Level: number;
@@ -20,38 +20,86 @@ interface Props {
 const { ti, ids, al } = Astro.props;
 
 // slotの内容があるかどうかを判定するためのフラグ
-const hasSlot = Astro.slots.has('default');
+const hasSlot = Astro.slots.has("default");
 
 // 安全なHTMLを作成するための関数
 const safeHTML = (html: string) => html;
 ---
 
-{ti.Level === 2 && (
-  <div class="section-delimiter"></div>
-)}
+{ti.Level === 2 && <div class="section-delimiter" />}
 <div class="id-header" id={ti.Anchor}>
-  {hasSlot ? (
-    <>
-      {ti.Level === 1 && <h1 class={`h1-contents ${ti.Attributes?.class || ''}`} data-pid={ti.Anchor}><slot /></h1>}
-      {ti.Level === 2 && <h2 class={`h2-contents ${ti.Attributes?.class || ''}`} data-pid={ti.Anchor}><slot /></h2>}
-      {ti.Level === 3 && <h3 class={`h3-contents ${ti.Attributes?.class || ''}`} data-pid={ti.Anchor}><slot /></h3>}
-      {ti.Level === 4 && <h4 class={`h4-contents ${ti.Attributes?.class || ''}`} data-pid={ti.Anchor}><slot /></h4>}
-      {ti.Level === 5 && <h5 class={`h5-contents ${ti.Attributes?.class || ''}`} data-pid={ti.Anchor}><slot /></h5>}
-      {ti.Level === 6 && <h6 class={`h6-contents ${ti.Attributes?.class || ''}`} data-pid={ti.Anchor}><slot /></h6>}
-    </>
-  ) : (
-    <Fragment set:html={`<h${ti.Level} class="h${ti.Level}-contents ${ti.Attributes?.class || ''}" pid="${ti.Anchor}">${safeHTML(ti.Text)}</h${ti.Level}>`} />
-  )}
-  {ids && (
-    <button 
-      class="id-link-button" 
-      title="i18n__todo__Copy_perma_link" 
-      data-idpath={al} 
-      tabindex="0" 
-      aria-owns={`message-${ti.Anchor}`}
-    >
-      <i class="fas fa-link" aria-hidden="true"></i>
-    </button>
-  )}
+  {
+    hasSlot ? (
+      <>
+        {ti.Level === 1 && (
+          <h1
+            class={`h1-contents ${ti.Attributes?.class || ""}`}
+            data-pid={ti.Anchor}
+          >
+            <slot />
+          </h1>
+        )}
+        {ti.Level === 2 && (
+          <h2
+            class={`h2-contents ${ti.Attributes?.class || ""}`}
+            data-pid={ti.Anchor}
+          >
+            <slot />
+          </h2>
+        )}
+        {ti.Level === 3 && (
+          <h3
+            class={`h3-contents ${ti.Attributes?.class || ""}`}
+            data-pid={ti.Anchor}
+          >
+            <slot />
+          </h3>
+        )}
+        {ti.Level === 4 && (
+          <h4
+            class={`h4-contents ${ti.Attributes?.class || ""}`}
+            data-pid={ti.Anchor}
+          >
+            <slot />
+          </h4>
+        )}
+        {ti.Level === 5 && (
+          <h5
+            class={`h5-contents ${ti.Attributes?.class || ""}`}
+            data-pid={ti.Anchor}
+          >
+            <slot />
+          </h5>
+        )}
+        {ti.Level === 6 && (
+          <h6
+            class={`h6-contents ${ti.Attributes?.class || ""}`}
+            data-pid={ti.Anchor}
+          >
+            <slot />
+          </h6>
+        )}
+      </>
+    ) : (
+      <Fragment
+        set:html={`<h${ti.Level} class="h${ti.Level}-contents ${ti.Attributes?.class || ""}" pid="${ti.Anchor}">${safeHTML(ti.Text)}</h${ti.Level}>`}
+      />
+    )
+  }
+  {
+    ids && (
+      <button
+        class="id-link-button"
+        title="i18n__todo__Copy_perma_link"
+        data-idpath={al}
+        tabindex="0"
+        aria-owns={`message-${ti.Anchor}`}
+      >
+        <i class="fas fa-link" aria-hidden="true" />
+      </button>
+    )
+  }
 </div>
-<div id={`message-${ti.Anchor}`} class="id-link-message"><Wovn>i18n__Link_was_copied</Wovn></div>
+<div id={`message-${ti.Anchor}`} class="id-link-message">
+  <Wovn>i18n__Link_was_copied</Wovn>
+</div>

@@ -1,52 +1,55 @@
 ---
 import { env } from "@/lib/env";
-import Wovn from '@/components/Wovn.astro';
-import type { BaseProps } from './types';
+import Wovn from "@/components/Wovn.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
 const { page } = Astro.props;
 
 // ビルド番号の生成（日付ベース）
-const buildnum = new Date().toISOString().slice(0, 10).replace(/-/g, '') + 
-                 new Date().getHours().toString().padStart(2, '0');
+const buildnum =
+  new Date().toISOString().slice(0, 10).replace(/-/g, "") +
+  new Date().getHours().toString().padStart(2, "0");
 
 // スクリプトURL（相対URL処理）
 const scriptUrl = `javascripts/enquete.js?${buildnum}`;
 ---
 
-{!env.previewSite && (
-  <>
-    <aside id="enquete">
-      <div class="enquete-panel">
-        <div>
-          <Wovn>i18n__Was_it_helpful</Wovn>
-          <button 
-            class="close-enquete" 
-            id="close-enquete" 
-            title="i18n__todo__Close"
-          >
-            <i class="far fa-window-close"></i>
-          </button>
+{
+  !env.previewSite && (
+    <>
+      <aside id="enquete">
+        <div class="enquete-panel">
+          <div>
+            <Wovn>i18n__Was_it_helpful</Wovn>
+            <button
+              class="close-enquete"
+              id="close-enquete"
+              title="i18n__todo__Close"
+            >
+              <i class="far fa-window-close" />
+            </button>
+          </div>
+          <div class="enquete-btn-wrap">
+            <button
+              class="enquete-btn"
+              id="feedback-yes"
+              aria-label="i18n__todo__Yes"
+            >
+              <Wovn>i18n__Yes</Wovn>
+            </button>
+            <button
+              class="enquete-btn"
+              id="feedback-no"
+              aria-label="i18n__todo__No"
+            >
+              <Wovn>i18n__No</Wovn>
+            </button>
+          </div>
         </div>
-        <div class="enquete-btn-wrap">
-          <button 
-            class="enquete-btn" 
-            id="feedback-yes" 
-            aria-label="i18n__todo__Yes"
-          >
-            <Wovn>i18n__Yes</Wovn>
-          </button>
-          <button 
-            class="enquete-btn" 
-            id="feedback-no" 
-            aria-label="i18n__todo__No"
-          >
-            <Wovn>i18n__No</Wovn>
-          </button>
-        </div>
-      </div>
-    </aside>
-    <script src={scriptUrl}></script>
-  </>
-)}
+      </aside>
+      <script src={scriptUrl} />
+    </>
+  )
+}

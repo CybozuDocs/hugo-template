@@ -4,11 +4,11 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ partial "disclaimer_pdf_url" (dict "languageCode" $.Site.LanguageCode )}}` | インライン実装 | PDF URL決定ロジックを統合 |
-| `{{ i18n "MT_Disclaimer" }}` | `<Wovn>i18n__MT_Disclaimer</Wovn>` | WOVN対応 |
-| `$.Site.LanguageCode` | `env.languageCode` | envプロパティに集約 |
+| Hugo                                                                           | Astro                              | 備考                      |
+| ------------------------------------------------------------------------------ | ---------------------------------- | ------------------------- |
+| `{{ partial "disclaimer_pdf_url" (dict "languageCode" $.Site.LanguageCode )}}` | インライン実装                     | PDF URL決定ロジックを統合 |
+| `{{ i18n "MT_Disclaimer" }}`                                                   | `<Wovn>i18n__MT_Disclaimer</Wovn>` | WOVN対応                  |
+| `$.Site.LanguageCode`                                                          | `env.languageCode`                 | envプロパティに集約       |
 
 ## TODO
 
@@ -23,7 +23,7 @@
 
 ### 条件分岐の変更
 
-- Hugo の `or (eq $languageCode "zh-cn") (eq $languageCode "zh-jp")` 
+- Hugo の `or (eq $languageCode "zh-cn") (eq $languageCode "zh-jp")`
 - Astro: `env.languageCode === "zh-cn" || env.languageCode === "zh-jp"`
 
 ## その他の差分

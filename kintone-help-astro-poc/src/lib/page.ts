@@ -31,7 +31,7 @@ export function getPathSegments(path: string): string[] {
  */
 export function createPageData(
   filepath: string,
-  module: Record<string, unknown>
+  module: Record<string, unknown>,
 ): PageProps {
   const frontmatter = (module.frontmatter as Record<string, unknown>) || {};
 
@@ -57,8 +57,7 @@ export function createPageData(
   return {
     isHome: urlPath === "" || urlPath === "/",
     isSection:
-      filepath.endsWith("/index.mdx") || 
-      filepath.endsWith("/index.md"),
+      filepath.endsWith("/index.mdx") || filepath.endsWith("/index.md"),
     title: (frontmatter.title as string) || "",
     description: (frontmatter.description as string) || "",
     relPermalink: "/k" + urlPath,
@@ -85,7 +84,7 @@ export function isValidPageFile(filepath: string): boolean {
 export function findParentSection(
   pathSegments: string[],
   sectionsByPath: Map<string, PageProps>,
-  startIndex: number = 1
+  startIndex: number = 1,
 ): PageProps | undefined {
   for (let i = pathSegments.length - 1; i >= startIndex; i--) {
     const parentPath = "/" + pathSegments.slice(0, i).join("/");
@@ -101,7 +100,7 @@ export function findParentSection(
  */
 export function findPageInTree(
   pages: PageProps[],
-  targetPath: string
+  targetPath: string,
 ): PageProps | undefined {
   for (const page of pages) {
     // relPermalink を正規化して比較
@@ -166,7 +165,7 @@ function loadAllPages(): {
       "/src/lib/__tests__/page/_dummy-contents/**/*.{md,mdx}",
       {
         eager: true,
-      }
+      },
     );
   } else {
     // 本番用のページを読み込み
@@ -186,7 +185,7 @@ function loadAllPages(): {
 
     const pageData = createPageData(
       filepath,
-      module as Record<string, unknown>
+      module as Record<string, unknown>,
     );
     allPagesData.push(pageData);
 
@@ -209,7 +208,7 @@ function loadAllPages(): {
  * セクションをパスでインデックス化
  */
 function indexSectionsByPath(
-  sectionsMap: Map<string, PageProps>
+  sectionsMap: Map<string, PageProps>,
 ): Map<string, PageProps> {
   const sectionsByPath = new Map<string, PageProps>();
 
@@ -226,7 +225,7 @@ function indexSectionsByPath(
  */
 function assignPageParents(
   allPagesData: PageProps[],
-  sectionsByPath: Map<string, PageProps>
+  sectionsByPath: Map<string, PageProps>,
 ): void {
   for (const pageData of allPagesData) {
     if (!pageData.isSection && !pageData.isHome) {
@@ -250,7 +249,7 @@ function assignPageParents(
 function assignSectionParents(
   sectionsMap: Map<string, PageProps>,
   sectionsByPath: Map<string, PageProps>,
-  homeData: PageProps
+  homeData: PageProps,
 ): void {
   for (const section of sectionsMap.values()) {
     const pathWithoutPrefix = removeKPrefix(section.relPermalink);
@@ -350,7 +349,7 @@ export function getRelPermalink(): string {
  */
 export function getCurrentPage(
   Astro: AstroGlobal,
-  sections: PageProps[]
+  sections: PageProps[],
 ): PageProps {
   const currentPath = Astro.url.pathname;
 

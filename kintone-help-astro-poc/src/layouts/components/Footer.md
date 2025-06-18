@@ -4,24 +4,24 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ $sep := "\t" }}` | `const sep = "\t"` | 区切り文字定数 |
-| `{{ $legal_menu := slice }}` | `const legalMenu: string[] = []` | 配列初期化 |
-| `{{ $mega_menus := dict }}` | `const megaMenus: { [key: string]: string[] } = {}` | オブジェクト初期化 |
-| `{{ resources.Get $p }}` | `await import(csvPath + '?raw')` | Viteの?rawインポートでCSV読み込み |
-| `{{ transform.Unmarshal }}` | カスタムCSVパーサー | カンマ区切り、クォート対応のパース処理 |
-| `{{ printf "%s%s%s%s%s" }}` | テンプレートリテラル | 文字列結合 |
-| `{{ $legal_menu \| append $item }}` | `legalMenu.push(item)` | 配列追加 |
-| `{{ merge $mega_menus }}` | `megaMenus[id] = menuItems` | オブジェクト更新 |
-| `{{ urls.Parse $.Site.BaseURL }}` | `new URL(env.baseURL)` | URL解析 |
-| `{{ hasPrefix $u.Path "/k/" }}` | `basePath.startsWith('/k/')` | 文字列前方一致 |
-| `{{ range $index, $val := $mega_menus }}` | `Object.entries(megaMenus).map()` | オブジェクト反復 |
-| `{{ split $r $sep }}` | `r.split(sep)` | 文字列分割 |
-| `{{ eq $status "jaonly" }}` | `status === "jaonly"` | 文字列比較 |
-| `{{ i18n "Only_ja" }}` | `<Wovn>i18n__Only_ja</Wovn>` | WOVN対応 |
-| `{{ template "disclaimer" }}` | `<Footer2Disclaimer />` | コンポーネント呼び出し |
-| `{{ i18n "Footer_copyright" }}` | `<Wovn>i18n__Footer_copyright</Wovn>` | WOVN対応 |
+| Hugo                                      | Astro                                               | 備考                                   |
+| ----------------------------------------- | --------------------------------------------------- | -------------------------------------- |
+| `{{ $sep := "\t" }}`                      | `const sep = "\t"`                                  | 区切り文字定数                         |
+| `{{ $legal_menu := slice }}`              | `const legalMenu: string[] = []`                    | 配列初期化                             |
+| `{{ $mega_menus := dict }}`               | `const megaMenus: { [key: string]: string[] } = {}` | オブジェクト初期化                     |
+| `{{ resources.Get $p }}`                  | `await import(csvPath + '?raw')`                    | Viteの?rawインポートでCSV読み込み      |
+| `{{ transform.Unmarshal }}`               | カスタムCSVパーサー                                 | カンマ区切り、クォート対応のパース処理 |
+| `{{ printf "%s%s%s%s%s" }}`               | テンプレートリテラル                                | 文字列結合                             |
+| `{{ $legal_menu \| append $item }}`       | `legalMenu.push(item)`                              | 配列追加                               |
+| `{{ merge $mega_menus }}`                 | `megaMenus[id] = menuItems`                         | オブジェクト更新                       |
+| `{{ urls.Parse $.Site.BaseURL }}`         | `new URL(env.baseURL)`                              | URL解析                                |
+| `{{ hasPrefix $u.Path "/k/" }}`           | `basePath.startsWith('/k/')`                        | 文字列前方一致                         |
+| `{{ range $index, $val := $mega_menus }}` | `Object.entries(megaMenus).map()`                   | オブジェクト反復                       |
+| `{{ split $r $sep }}`                     | `r.split(sep)`                                      | 文字列分割                             |
+| `{{ eq $status "jaonly" }}`               | `status === "jaonly"`                               | 文字列比較                             |
+| `{{ i18n "Only_ja" }}`                    | `<Wovn>i18n__Only_ja</Wovn>`                        | WOVN対応                               |
+| `{{ template "disclaimer" }}`             | `<Footer2Disclaimer />`                             | コンポーネント呼び出し                 |
+| `{{ i18n "Footer_copyright" }}`           | `<Wovn>i18n__Footer_copyright</Wovn>`               | WOVN対応                               |
 
 ## TODO
 
@@ -87,6 +87,7 @@
 ## 実装完了項目（2025年1月更新）
 
 ### CSVファイル読み込み機能
+
 - リージョン別ファイル読み分け（links.JP.csv, links.US.csv, links.CN.csv）
 - Viteの`?raw`インポートを使用した静的ファイル読み込み
 - カンマ区切りCSVパーサー（クォート対応）

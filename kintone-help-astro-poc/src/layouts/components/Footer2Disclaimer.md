@@ -4,11 +4,11 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ partial "disclaimer_pdf_url" (dict "languageCode" .languageCode )}}` | インライン実装 | PDF URL決定ロジックを統合 |
-| `{{ i18n "MT_Disclaimer" }}` | `<Wovn>i18n__MT_Disclaimer</Wovn>` | WOVN対応 |
-| `.languageCode` | `languageCode` | Propsとして受け取り |
+| Hugo                                                                     | Astro                              | 備考                      |
+| ------------------------------------------------------------------------ | ---------------------------------- | ------------------------- |
+| `{{ partial "disclaimer_pdf_url" (dict "languageCode" .languageCode )}}` | インライン実装                     | PDF URL決定ロジックを統合 |
+| `{{ i18n "MT_Disclaimer" }}`                                             | `<Wovn>i18n__MT_Disclaimer</Wovn>` | WOVN対応                  |
+| `.languageCode`                                                          | `languageCode`                     | Propsとして受け取り       |
 
 ## TODO
 

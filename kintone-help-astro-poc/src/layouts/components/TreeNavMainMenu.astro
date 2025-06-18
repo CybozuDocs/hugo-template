@@ -1,9 +1,9 @@
 ---
 import { env } from "@/lib/env";
 import { getSiteHome } from "@/lib/page";
-import Title from './Title.astro';
-import TreeNavTreeItem from './TreeNavTreeItem.astro';
-import type { PageProps } from './types';
+import Title from "./Title.astro";
+import TreeNavTreeItem from "./TreeNavTreeItem.astro";
+import type { PageProps } from "./types";
 
 interface Props {
   curnode: PageProps;
@@ -28,12 +28,14 @@ const isPrintPage = curnode.type === "print_page";
 
 // セクションの場合の処理
 if (isSection && !isRedirectJs && !isDisabled) {
-  const pages = curnode.isHome 
-    ? getSiteHome()?.pages?.filter((p: PageProps) => !p.sections || p.sections.length === 0) || []
+  const pages = curnode.isHome
+    ? getSiteHome()?.pages?.filter(
+        (p: PageProps) => !p.sections || p.sections.length === 0,
+      ) || []
     : curnode.pages || [];
-  
+
   const numberOfPages = (pages.length || 0) + (curnode.sections?.length || 0);
-  
+
   // opened/selected の判定
   if (curnode.isAncestor?.(target) || curnode === target) {
     opened = true;
@@ -56,10 +58,10 @@ if (isSection && !isRedirectJs && !isDisabled) {
     sectionContent = {
       opened,
       selected,
-      entries
+      entries,
     };
   }
-} 
+}
 // ページの場合の処理
 else if (!isSection && !isDisabled && !isPrintPage && !isRedirectJs) {
   if (curnode.relPermalink === target.relPermalink) {
@@ -70,62 +72,70 @@ else if (!isSection && !isDisabled && !isPrintPage && !isRedirectJs) {
   shouldRenderPage = true;
   pageContent = {
     opened,
-    selected
+    selected,
   };
 }
 ---
 
-{shouldRenderSection && (
-  <li role="presentation" data-jstree={sectionContent.opened ? '{ "opened" : true }' : undefined}>
-    {sectionContent.selected ? (
-      <a href="#" data-jstree='{ "selected" : true }' class="current">
-        <Title page={curnode} />
-      </a>
-    ) : (
-      <a href={curnode.relPermalink}>
-        <Title page={curnode} />
-      </a>
-    )}
-    <ul>
-      {sectionContent.entries.map((entry: PageProps) => (
-        <Astro.self 
-          curnode={entry} 
-          target={target}
-        />
-      ))}
-    </ul>
-  </li>
-)}
-
-{shouldRenderPage && (
-  <li role="presentation" data-jstree={pageContent.opened ? '{ "opened" : true }' : undefined}>
-    {pageContent.selected ? (
-      <a href="#" data-jstree='{ "selected" : true }' class="toclink current">
-        <Title page={curnode} />
-      </a>
-    ) : (
-      <a href={curnode.relPermalink} class="toclink">
-        <Title page={curnode} />
-      </a>
-    )}
-    
-    {pageContent.toclen > 0 && (
+{
+  shouldRenderSection && (
+    <li
+      role="presentation"
+      data-jstree={sectionContent.opened ? '{ "opened" : true }' : undefined}
+    >
+      {sectionContent.selected ? (
+        <a href="#" data-jstree='{ "selected" : true }' class="current">
+          <Title page={curnode} />
+        </a>
+      ) : (
+        <a href={curnode.relPermalink}>
+          <Title page={curnode} />
+        </a>
+      )}
       <ul>
-        {pageContent.tocs.map((tocItem: string, index: number) => {
-          const isLast = index === pageContent.tocs.length - 1;
-          const prevItem = index > 0 ? pageContent.tocs[index - 1] : "";
-          const hasChild = prevItem && prevItem.includes("<h2") && tocItem.includes("<h3");
-          
-          return (
-            <TreeNavTreeItem 
-              tocitem={tocItem}
-              haschild={hasChild}
-              pageurl={curnode.relPermalink}
-              isLast={isLast}
-            />
-          );
-        })}
+        {sectionContent.entries.map((entry: PageProps) => (
+          <Astro.self curnode={entry} target={target} />
+        ))}
       </ul>
-    )}
-  </li>
-)}
+    </li>
+  )
+}
+
+{
+  shouldRenderPage && (
+    <li
+      role="presentation"
+      data-jstree={pageContent.opened ? '{ "opened" : true }' : undefined}
+    >
+      {pageContent.selected ? (
+        <a href="#" data-jstree='{ "selected" : true }' class="toclink current">
+          <Title page={curnode} />
+        </a>
+      ) : (
+        <a href={curnode.relPermalink} class="toclink">
+          <Title page={curnode} />
+        </a>
+      )}
+
+      {pageContent.toclen > 0 && (
+        <ul>
+          {pageContent.tocs.map((tocItem: string, index: number) => {
+            const isLast = index === pageContent.tocs.length - 1;
+            const prevItem = index > 0 ? pageContent.tocs[index - 1] : "";
+            const hasChild =
+              prevItem && prevItem.includes("<h2") && tocItem.includes("<h3");
+
+            return (
+              <TreeNavTreeItem
+                tocitem={tocItem}
+                haschild={hasChild}
+                pageurl={curnode.relPermalink}
+                isLast={isLast}
+              />
+            );
+          })}
+        </ul>
+      )}
+    </li>
+  )
+}

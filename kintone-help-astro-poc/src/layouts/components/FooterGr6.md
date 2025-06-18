@@ -4,22 +4,22 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ $sep := "\t" }}` | `const sep = "\t"` | 区切り文字定数 |
-| `{{ $legal_menu := slice }}` | `const legalMenu: string[] = []` | 配列初期化 |
-| `{{ $mega_menus := dict }}` | `const megaMenus: { [key: string]: string[] } = {}` | オブジェクト初期化 |
-| `{{ split $p "/" }}` | `footerLinksPath.split('/')` | パス分割処理 |
-| `{{ printf "%s/%s/%s" }}` | テンプレートリテラル | パス再構築 |
-| `{{ resources.Get $p }}` | 未実装 | TODO: CSVリソース読み込み |
-| `{{ transform.Unmarshal }}` | 未実装 | TODO: CSV解析 |
-| `{{ printf "%s%s%s" }}` | テンプレートリテラル | 文字列結合（footer2より短い） |
-| `{{ $legal_menu \| append $item }}` | `legalMenu.push(item)` | 配列追加 |
-| `{{ merge $mega_menus }}` | `megaMenus[id] = menuItems` | オブジェクト更新 |
-| `{{ range $index, $val := $mega_menus }}` | `Object.entries(megaMenus).map()` | オブジェクト反復 |
-| `{{ split $r $sep }}` | `r.split(sep)` | 文字列分割 |
-| `{{ template "disclaimer" }}` | `<Footer2Disclaimer />` | コンポーネント呼び出し |
-| `{{ i18n "Footer_copyright" }}` | `<Wovn>i18n__Footer_copyright</Wovn>` | WOVN対応 |
+| Hugo                                      | Astro                                               | 備考                          |
+| ----------------------------------------- | --------------------------------------------------- | ----------------------------- |
+| `{{ $sep := "\t" }}`                      | `const sep = "\t"`                                  | 区切り文字定数                |
+| `{{ $legal_menu := slice }}`              | `const legalMenu: string[] = []`                    | 配列初期化                    |
+| `{{ $mega_menus := dict }}`               | `const megaMenus: { [key: string]: string[] } = {}` | オブジェクト初期化            |
+| `{{ split $p "/" }}`                      | `footerLinksPath.split('/')`                        | パス分割処理                  |
+| `{{ printf "%s/%s/%s" }}`                 | テンプレートリテラル                                | パス再構築                    |
+| `{{ resources.Get $p }}`                  | 未実装                                              | TODO: CSVリソース読み込み     |
+| `{{ transform.Unmarshal }}`               | 未実装                                              | TODO: CSV解析                 |
+| `{{ printf "%s%s%s" }}`                   | テンプレートリテラル                                | 文字列結合（footer2より短い） |
+| `{{ $legal_menu \| append $item }}`       | `legalMenu.push(item)`                              | 配列追加                      |
+| `{{ merge $mega_menus }}`                 | `megaMenus[id] = menuItems`                         | オブジェクト更新              |
+| `{{ range $index, $val := $mega_menus }}` | `Object.entries(megaMenus).map()`                   | オブジェクト反復              |
+| `{{ split $r $sep }}`                     | `r.split(sep)`                                      | 文字列分割                    |
+| `{{ template "disclaimer" }}`             | `<Footer2Disclaimer />`                             | コンポーネント呼び出し        |
+| `{{ i18n "Footer_copyright" }}`           | `<Wovn>i18n__Footer_copyright</Wovn>`               | WOVN対応                      |
 
 ## TODO
 

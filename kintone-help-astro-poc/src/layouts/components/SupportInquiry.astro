@@ -1,7 +1,7 @@
 ---
 import { env } from "@/lib/env";
-import Wovn from '@/components/Wovn.astro';
-import type { BaseProps } from './types';
+import Wovn from "@/components/Wovn.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
@@ -10,8 +10,8 @@ const { page } = Astro.props;
 
 <aside id="support-inquiry">
   <div class="inquiry-panel">
-    <button 
-      class="inquiry-btn hs-cta-trigger-button hs-cta-trigger-button-187693642597" 
+    <button
+      class="inquiry-btn hs-cta-trigger-button hs-cta-trigger-button-187693642597"
       id="inquiry-btn"
     >
       <i class="fas fa-headset inquiry-icon"></i>
@@ -19,6 +19,12 @@ const { page } = Astro.props;
     </button>
   </div>
   <!-- Start of HubSpot Embed Code -->
-  <script is:inline type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/1857320.js"></script>
+  <script
+    is:inline
+    type="text/javascript"
+    id="hs-script-loader"
+    async
+    defer
+    src="//js.hs-scripts.com/1857320.js"></script>
   <!-- End of HubSpot Embed Code -->
 </aside>

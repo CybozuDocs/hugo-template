@@ -4,26 +4,26 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{.Site.LanguageCode}}` | `env.languageCode` | envプロパティに集約 |
-| `{{ eq .Site.Params.use_wovn true }}` | `env.useWovn` | 条件分岐 |
-| `{{ split .Site.BaseURL "/" }}` | `env.baseURL.split('/')` | 配列分割 |
-| `{{ sub (len $baseUrl) 2 }}` | `baseUrlParts.length - 2` | 配列長計算 |
-| `{{ now.Format "20060102" }}` | `new Date().toISOString().slice(0, 10).replace(/-/g, '')` | 日付フォーマット |
-| `{{ partial "title" . }}` | Title コンポーネント | TODO: 実装 |
-| `{{ partial "applyparams" }}` | ApplyParams コンポーネント | TODO: 実装 |
-| `{{ strings.TrimLeft " " $sitename }}` | `sitename.trim()` | 文字列トリム |
-| `{{ printf "%s \| %s" $title $sitename }}` | `` `${title} \| ${sitename}` `` | 文字列テンプレート |
-| `{{ split .Content "\n" }}` | `page.content.split('\\n')` | 文字列分割 |
-| `{{ strings.TrimLeft "<p>" . }}` | `.replace(/^<p>/, '')` | 文字列置換 |
-| `{{ i18n "og_desc1" . }}` | `i18n__todo__og_desc1` | TODO: i18n実装 |
-| `{{ relURL }}` | 相対URL処理 | TODO: 実装 |
-| `{{ eq hugo.Environment "staging" }}` | 環境判定 | TODO: 実装 |
-| `{{ split . "," }}` | `.split(',')` | カンマ分割 |
-| `{{ printf "%s?%s" "file.css" $buildnum }}` | `` `file.css?${buildnum}` `` | キャッシュバスティング |
-| `{{ template "gtm" dict "key" "GTM-XXX" }}` | `<Gtm key="GTM-XXX" />` | コンポーネント呼び出し |
-| `{{ strings.Count $target $curpage }}` | `currentPage.includes(targetPath)` | 文字列検索 |
+| Hugo                                        | Astro                                                     | 備考                   |
+| ------------------------------------------- | --------------------------------------------------------- | ---------------------- |
+| `{{.Site.LanguageCode}}`                    | `env.languageCode`                                        | envプロパティに集約    |
+| `{{ eq .Site.Params.use_wovn true }}`       | `env.useWovn`                                             | 条件分岐               |
+| `{{ split .Site.BaseURL "/" }}`             | `env.baseURL.split('/')`                                  | 配列分割               |
+| `{{ sub (len $baseUrl) 2 }}`                | `baseUrlParts.length - 2`                                 | 配列長計算             |
+| `{{ now.Format "20060102" }}`               | `new Date().toISOString().slice(0, 10).replace(/-/g, '')` | 日付フォーマット       |
+| `{{ partial "title" . }}`                   | Title コンポーネント                                      | TODO: 実装             |
+| `{{ partial "applyparams" }}`               | ApplyParams コンポーネント                                | TODO: 実装             |
+| `{{ strings.TrimLeft " " $sitename }}`      | `sitename.trim()`                                         | 文字列トリム           |
+| `{{ printf "%s \| %s" $title $sitename }}`  | `` `${title} \| ${sitename}` ``                           | 文字列テンプレート     |
+| `{{ split .Content "\n" }}`                 | `page.content.split('\\n')`                               | 文字列分割             |
+| `{{ strings.TrimLeft "<p>" . }}`            | `.replace(/^<p>/, '')`                                    | 文字列置換             |
+| `{{ i18n "og_desc1" . }}`                   | `i18n__todo__og_desc1`                                    | TODO: i18n実装         |
+| `{{ relURL }}`                              | 相対URL処理                                               | TODO: 実装             |
+| `{{ eq hugo.Environment "staging" }}`       | 環境判定                                                  | TODO: 実装             |
+| `{{ split . "," }}`                         | `.split(',')`                                             | カンマ分割             |
+| `{{ printf "%s?%s" "file.css" $buildnum }}` | `` `file.css?${buildnum}` ``                              | キャッシュバスティング |
+| `{{ template "gtm" dict "key" "GTM-XXX" }}` | `<Gtm key="GTM-XXX" />`                                   | コンポーネント呼び出し |
+| `{{ strings.Count $target $curpage }}`      | `currentPage.includes(targetPath)`                        | 文字列検索             |
 
 ## TODO
 

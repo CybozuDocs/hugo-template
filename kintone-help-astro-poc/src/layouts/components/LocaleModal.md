@@ -4,11 +4,11 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
+| Hugo                                            | Astro                                     | 備考                   |
+| ----------------------------------------------- | ----------------------------------------- | ---------------------- |
 | `{{ i18n "Locale_modal_message" \| safeHTML }}` | `<Wovn>i18n__Locale_modal_message</Wovn>` | WOVN対応、HTML安全出力 |
-| `{{ i18n "Yes" }}` | `<Wovn>i18n__Yes</Wovn>` | WOVN対応 |
-| `{{ i18n "No" }}` | `<Wovn>i18n__No</Wovn>` | WOVN対応 |
+| `{{ i18n "Yes" }}`                              | `<Wovn>i18n__Yes</Wovn>`                  | WOVN対応               |
+| `{{ i18n "No" }}`                               | `<Wovn>i18n__No</Wovn>`                   | WOVN対応               |
 
 ## TODO
 

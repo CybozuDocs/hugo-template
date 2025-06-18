@@ -1,34 +1,34 @@
 ---
 import { env } from "@/lib/env";
-import Wovn from '@/components/Wovn.astro';
-import type { BaseProps } from './types';
+import Wovn from "@/components/Wovn.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
 const { page } = Astro.props;
 
 // エイリアスから最初の要素を取得
-const alias = page.params.aliases?.[0] || '';
+const alias = page.params.aliases?.[0] || "";
 
 // エイリアスをスラッシュで分割
-const a1 = alias.split('/');
+const a1 = alias.split("/");
 
 // 最後の要素をドキュメントIDとして取得
-const docid = a1[a1.length - 1] || '';
+const docid = a1[a1.length - 1] || "";
 
 // 相対パスの処理
-let relpath = page.relPermalink.replace(/\.html$/, '');
-relpath = relpath.replace(new RegExp(page.fileContentBaseName + '$'), '');
+let relpath = page.relPermalink.replace(/\.html$/, "");
+relpath = relpath.replace(new RegExp(page.fileContentBaseName + "$"), "");
 
 // ドキュメントURLの生成
 const docurl = `${env.baseURL}${relpath}id/${docid}.html`;
 ---
 
-<button 
-  class="id-link-button id-link-button-title" 
-  title="i18n__todo__Copy_perma_link" 
-  idpath={alias} 
-  tabindex="0" 
+<button
+  class="id-link-button id-link-button-title"
+  title="i18n__todo__Copy_perma_link"
+  idpath={alias}
+  tabindex="0"
   aria-owns="message-aid"
 >
   <i class="fas fa-link" aria-hidden="true"></i>

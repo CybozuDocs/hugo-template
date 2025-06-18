@@ -1,7 +1,6 @@
 ---
-import { env } from "@/lib/env";
 import Title from './Title.astro';
-import type { PageProps, EnvProps } from './types';
+import type { PageProps } from './types';
 
 interface Props {
   cursect: PageProps;
@@ -40,7 +39,8 @@ const sortedPages = (cursect.pages || [])
 let menuid = 0;
 ---
 
-{sortedPages.map((page: PageProps) => {
+{
+  sortedPages.map((page: PageProps) => {
   menuid += 1;
   const iconface = getIconFromCSV(page.relPermalink);
   const nolink = page.params?.nolink === true;
@@ -70,4 +70,5 @@ let menuid = 0;
       </ul>
     </div>
   );
-})}
+})
+}

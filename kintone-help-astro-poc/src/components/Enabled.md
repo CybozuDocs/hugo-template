@@ -4,13 +4,13 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-|------|-------|------|
-| `.Params` | `regions` prop | 配列形式で地域コードを受け取る |
-| `$.Site.Params.TargetRegion` | `env.targetRegion` | 環境変数から取得 |
-| `in` 演算子 | `includes()` メソッド | 配列内の要素チェック |
-| `.Inner` | `<slot />` | Astro のスロット機能 |
-| `.Page.RenderString` | - | Astro では不要（自動処理） |
+| Hugo                         | Astro                 | 備考                           |
+| ---------------------------- | --------------------- | ------------------------------ |
+| `.Params`                    | `regions` prop        | 配列形式で地域コードを受け取る |
+| `$.Site.Params.TargetRegion` | `env.targetRegion`    | 環境変数から取得               |
+| `in` 演算子                  | `includes()` メソッド | 配列内の要素チェック           |
+| `.Inner`                     | `<slot />`            | Astro のスロット機能           |
+| `.Page.RenderString`         | -                     | Astro では不要（自動処理）     |
 
 ## TODO
 
@@ -20,13 +20,14 @@
 ## 構造の変化
 
 ### Hugo（enabled2.html）
+
 ```html
-{{- if in .Params $.Site.Params.TargetRegion}}
-{{- .Inner | .Page.RenderString }}
-{{- end}}
+{{- if in .Params $.Site.Params.TargetRegion}} {{- .Inner | .Page.RenderString
+}} {{- end}}
 ```
 
 ### Astro（Enabled.astro）
+
 ```astro
 ---
 interface Props {

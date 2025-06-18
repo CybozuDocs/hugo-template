@@ -8,25 +8,28 @@ Hugo の `render-heading.html` で Markdown 見出しをカスタマイズする
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-|------|-------|------|
-| `{{ template "anchorlink2" }}` | `<AnchorLink2 />` | コンポーネント化 |
-| `.Level` | `level` prop | 見出しレベル |
-| `.Anchor` | `id` prop | アンカーID |
-| `.Text` | `text` prop | 見出しテキスト |
-| `.Attributes.class` | `class` prop | CSSクラス |
-| `.Page.RelPermalink` | `getRelPermalink()` | 相対パーマリンク取得 |
-| `.Page.Site.Params.id_search` | `env.idSearch` | IDリンク機能フラグ |
+| Hugo                             | Astro               | 備考                   |
+| -------------------------------- | ------------------- | ---------------------- |
+| `{{ template "anchorlink2" }}`   | `<AnchorLink2 />`   | コンポーネント化       |
+| `.Level`                         | `level` prop        | 見出しレベル           |
+| `.Anchor`                        | `id` prop           | アンカーID             |
+| `.Text`                          | `text` prop         | 見出しテキスト         |
+| `.Attributes.class`              | `class` prop        | CSSクラス              |
+| `.Page.RelPermalink`             | `getRelPermalink()` | 相対パーマリンク取得   |
+| `.Page.Site.Params.id_search`    | `env.idSearch`      | IDリンク機能フラグ     |
 | `(index .Page.Params.aliases 0)` | `getRelPermalink()` | エイリアス取得（TODO） |
 
 ## 実装の変化
 
 ### Hugo版（簡略化後）
+
 ```html
-{{- template "anchorlink2" (dict "ti" . "link" .Page.RelPermalink "al" (index .Page.Params.aliases 0) "ids" .Page.Site.Params.id_search ) }}
+{{- template "anchorlink2" (dict "ti" . "link" .Page.RelPermalink "al" (index
+.Page.Params.aliases 0) "ids" .Page.Site.Params.id_search ) }}
 ```
 
 ### Astro版
+
 ```astro
 <AnchorLink2 ti={ti} ids={env.idSearch} al={al} />
 ```

@@ -150,6 +150,60 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 <script is:inline src="https://example.com/script.js" data-param={dynamicValue}></script>
 ```
 
+## コードフォーマット（Prettier）
+
+### Prettier 設定
+
+プロジェクトでは [Prettier](https://prettier.io/) を使用してコードスタイルを統一しています。
+
+#### 設定ファイル
+
+`.prettierrc` でAstro対応のPrettier設定を定義：
+
+```json
+{
+  "plugins": ["prettier-plugin-astro"],
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ]
+}
+```
+
+#### フォーマット実行
+
+```bash
+# フォーマット実行
+npm run format
+
+# フォーマットチェック（CI用）
+npm run format:check
+```
+
+#### .prettierignore による除外
+
+以下のファイル・ディレクトリはフォーマット対象外：
+
+- `dist/` - ビルド出力
+- `public/` - 静的ファイル（Hugo生成物）
+- `migration-docs/` - ドキュメント内のコードブロック
+- 構文エラーのあるAstroファイル
+
+#### 部分的なフォーマット無効化
+
+特定のコードブロックのフォーマットを無効にする場合：
+
+```astro
+{/* prettier-ignore */}
+{complexCode && 
+  someFunction(param1, param2, param3)
+}
+```
+
 ## 品質管理・開発指針
 
 ### 開発時のチェック項目
@@ -161,6 +215,7 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 - [ ] アクセシビリティ（ARIA 属性）の考慮
 - [ ] エラーハンドリングの実装
 - [ ] パフォーマンスの考慮（メモ化など）
+- [ ] **コードフォーマットの実行**（`npm run format` でコードスタイルを統一）
 - [ ] **テストの実行と成功確認**（`npm test` で全テストがパスすることを確認）
 
 ### コードレビュー観点

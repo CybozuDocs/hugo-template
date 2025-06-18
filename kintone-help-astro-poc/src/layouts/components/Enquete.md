@@ -4,18 +4,18 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ if ne $.Site.Params.preview_site true }}` | `{!env.previewSite && (...)}` | 条件付きレンダリング |
-| `{{ i18n "Was_it_helpful" }}` | `<Wovn>i18n__Was_it_helpful</Wovn>` | WOVN対応 |
-| `{{ i18n "Close" }}` | `i18n__todo__Close` | title属性内のためTODO |
-| `{{ i18n "Yes" }}` | `<Wovn>i18n__Yes</Wovn>` | WOVN対応（テキスト部分） |
-| `{{ i18n "Yes" }}` | `i18n__todo__Yes` | aria-label属性内のためTODO |
-| `{{ i18n "No" }}` | `<Wovn>i18n__No</Wovn>` | WOVN対応（テキスト部分） |
-| `{{ i18n "No" }}` | `i18n__todo__No` | aria-label属性内のためTODO |
-| `{{ now.Format "2006010203" }}` | `new Date().toISOString().slice(0, 10).replace(/-/g, '') + new Date().getHours().toString().padStart(2, '0')` | 日付フォーマット |
-| `{{ printf "%s?%s" "javascripts/enquete.js" $buildnum \| relURL }}` | `` `javascripts/enquete.js?${buildnum}` `` | URL構築 |
-| `$.Site.Params.preview_site` | `env.previewSite` | envプロパティに集約 |
+| Hugo                                                                | Astro                                                                                                         | 備考                       |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| `{{ if ne $.Site.Params.preview_site true }}`                       | `{!env.previewSite && (...)}`                                                                                 | 条件付きレンダリング       |
+| `{{ i18n "Was_it_helpful" }}`                                       | `<Wovn>i18n__Was_it_helpful</Wovn>`                                                                           | WOVN対応                   |
+| `{{ i18n "Close" }}`                                                | `i18n__todo__Close`                                                                                           | title属性内のためTODO      |
+| `{{ i18n "Yes" }}`                                                  | `<Wovn>i18n__Yes</Wovn>`                                                                                      | WOVN対応（テキスト部分）   |
+| `{{ i18n "Yes" }}`                                                  | `i18n__todo__Yes`                                                                                             | aria-label属性内のためTODO |
+| `{{ i18n "No" }}`                                                   | `<Wovn>i18n__No</Wovn>`                                                                                       | WOVN対応（テキスト部分）   |
+| `{{ i18n "No" }}`                                                   | `i18n__todo__No`                                                                                              | aria-label属性内のためTODO |
+| `{{ now.Format "2006010203" }}`                                     | `new Date().toISOString().slice(0, 10).replace(/-/g, '') + new Date().getHours().toString().padStart(2, '0')` | 日付フォーマット           |
+| `{{ printf "%s?%s" "javascripts/enquete.js" $buildnum \| relURL }}` | `` `javascripts/enquete.js?${buildnum}` ``                                                                    | URL構築                    |
+| `$.Site.Params.preview_site`                                        | `env.previewSite`                                                                                             | envプロパティに集約        |
 
 ## TODO
 
@@ -27,7 +27,7 @@
 
 ### 条件分岐の変更
 
-- Hugo の `{{ if ne $.Site.Params.preview_site true }}...{{ end }}` 
+- Hugo の `{{ if ne $.Site.Params.preview_site true }}...{{ end }}`
 - Astro: `{!env.previewSite && (...)}`（JSXの条件レンダリング）
 
 ### スクリプト読み込みの統合

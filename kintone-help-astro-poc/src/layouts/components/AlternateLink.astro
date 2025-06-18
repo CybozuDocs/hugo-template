@@ -1,6 +1,6 @@
 ---
 import { env } from "@/lib/env";
-import type { BaseProps } from './types';
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
@@ -22,93 +22,109 @@ const disabled = page.params.disabled || [];
 // TODO: language_list.jsonの読み込みに切り替える必要があるかも
 // import languageListData from '../data/language_list.json';
 const languageListData = {
-  "languages": [
+  languages: [
     {
-        "display_name": "Español",
-        "language_code": "es"
+      display_name: "Español",
+      language_code: "es",
     },
     {
-        "display_name": "ไทย",
-        "language_code": "th"
-    }
-  ]
+      display_name: "ไทย",
+      language_code: "th",
+    },
+  ],
 } as const;
 ---
 
-{page.allTranslations?.map((translation) => (
-  translation.lang === defLang && (
-    <link rel="alternate" href={`https://${env.domain}${translation.relPermalink}`} hreflang="x-default" />
+{
+  page.allTranslations?.map(
+    (translation) =>
+      translation.lang === defLang && (
+        <link
+          rel="alternate"
+          href={`https://${env.domain}${translation.relPermalink}`}
+          hreflang="x-default"
+        />
+      ),
   )
-))}
+}
 
-{regions.map((region) => {
-  if (disabled.includes(region)) {
-    return null;
-  }
+{
+  regions.map((region) => {
+    if (disabled.includes(region)) {
+      return null;
+    }
 
-  const curRegion = region.toLowerCase();
-  let domain = "jp.cybozu.help";
-  
-  if (curRegion === "us") {
-    domain = "get.kintone.help";
-  } else if (curRegion === "cn") {
-    domain = "help.cybozu.cn";
-  }
+    const curRegion = region.toLowerCase();
+    let domain = "jp.cybozu.help";
 
-  return (
-    <>
-      {page.allTranslations?.map((translation) => {
-        let disp = true;
-        let thisLang = translation.lang;
-        
-        if (thisLang === "zh") {
-          thisLang = "zh-Hans";
-        } else if (thisLang === "zh-tw") {
-          thisLang = "zh-Hant";
-        }
+    if (curRegion === "us") {
+      domain = "get.kintone.help";
+    } else if (curRegion === "cn") {
+      domain = "help.cybozu.cn";
+    }
 
-        if (curRegion === "cn") {
-          if (translation.lang === "zh-tw") {
-            disp = false;
+    return (
+      <>
+        {page.allTranslations?.map((translation) => {
+          let disp = true;
+          let thisLang = translation.lang;
+
+          if (thisLang === "zh") {
+            thisLang = "zh-Hans";
+          } else if (thisLang === "zh-tw") {
+            thisLang = "zh-Hant";
           }
-        }
 
-        if (disp) {
-          const lang = `${thisLang}-${curRegion}`;
-          return (
-            <link rel="alternate" href={`https://${domain}${translation.relPermalink}`} hreflang={lang} />
-          );
-        }
-        return null;
-      })}
-
-      {curRegion === "us" && 
-        languageListData.languages.map((langItem: any) => {
-          const languageCode = langItem.language_code;
-          const urlParts = page.relPermalink.split("/");
-          let idx = 0;
-          let newTarget = "";
-          const partsLen = urlParts.length;
-          
-          urlParts.forEach((part: string) => {
-            if (part !== "") {
-              if (idx === 2) {
-                newTarget = `${newTarget}/${languageCode}`;
-                if (partsLen <= 4) {
-                  newTarget = `${newTarget}/`
-                }
-              } else {
-                newTarget = `${newTarget}/${part}`
-              }
+          if (curRegion === "cn") {
+            if (translation.lang === "zh-tw") {
+              disp = false;
             }
-            idx++;
-          });
-          
-          return (
-            <link rel="alternate" href={`https://${domain}${newTarget}`} hreflang={languageCode} />
-          );
-        })
-      }
-    </>
-  );
-})}
+          }
+
+          if (disp) {
+            const lang = `${thisLang}-${curRegion}`;
+            return (
+              <link
+                rel="alternate"
+                href={`https://${domain}${translation.relPermalink}`}
+                hreflang={lang}
+              />
+            );
+          }
+          return null;
+        })}
+
+        {curRegion === "us" &&
+          languageListData.languages.map((langItem: any) => {
+            const languageCode = langItem.language_code;
+            const urlParts = page.relPermalink.split("/");
+            let idx = 0;
+            let newTarget = "";
+            const partsLen = urlParts.length;
+
+            urlParts.forEach((part: string) => {
+              if (part !== "") {
+                if (idx === 2) {
+                  newTarget = `${newTarget}/${languageCode}`;
+                  if (partsLen <= 4) {
+                    newTarget = `${newTarget}/`
+                  }
+                } else {
+                  newTarget = `${newTarget}/${part}`
+                }
+              }
+              idx++;
+            });
+
+            return (
+              <link
+                rel="alternate"
+                href={`https://${domain}${newTarget}`}
+                hreflang={languageCode}
+              />
+            );
+          })}
+      </>
+    );
+  })
+}

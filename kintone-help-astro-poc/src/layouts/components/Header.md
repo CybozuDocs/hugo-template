@@ -4,25 +4,25 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ and .IsHome (ne .Site.Params.meganav true) }}` | `page.isHome && !env.meganav` | 論理演算子 |
-| `{{ slice "kintone" "slash" ... }}` | `["kintone", "slash", ...]` | 配列リテラル |
-| `{{ in $v2_list $.Site.Params.product }}` | `v2List.includes(env.product)` | 配列包含チェック |
-| `{{ len $.AllTranslations }}` | `page.allTranslations.length` | 配列長取得 |
-| `{{ printf "%s/" $.Lang }}` | `` `${page.lang}/` `` | 文字列テンプレート |
-| `{{ split $.Site.BaseURL "/" }}` | `env.baseURL.split('/')` | 文字列分割 |
-| `{{ sub ($urlparts \| len ) 2 }}` | `urlparts.length - 2` | 算術演算 |
-| `{{ index $urlparts $product_pos }}` | `urlparts[productPos]` | 配列インデックス |
-| `{{ printf "/%s/" (index $urlparts $product_pos) }}` | `` `/${urlparts[productPos]}/` `` | 文字列テンプレート |
-| `{{ $.Scratch.Get "sitename" }}` | `page.scratch?.sitename` | TODO: Scratch実装 |
-| `{{ partial "searchbox" . }}` | `<SearchBox env={env} page={page} />` | コンポーネント呼び出し |
-| `{{ partial "langselector" . }}` | `<LangSelector env={env} page={page} />` | コンポーネント呼び出し |
-| `{{ urls.Parse $.Site.BaseURL }}` | URLパース（使用箇所で削除） | 簡略化 |
-| `{{ i18n "search_word" }}` | `i18n__todo__search_word` | aria-label内のためTODO |
-| `{{ i18n "Enter_keywords" }}` | `i18n__todo__Enter_keywords` | placeholder内のためTODO |
-| `{{ i18n "search" }}` | `i18n__todo__search` | aria-label内のためTODO |
-| `{{ relURL }}` | 相対URL処理 | 簡易実装 |
+| Hugo                                                 | Astro                                    | 備考                    |
+| ---------------------------------------------------- | ---------------------------------------- | ----------------------- |
+| `{{ and .IsHome (ne .Site.Params.meganav true) }}`   | `page.isHome && !env.meganav`            | 論理演算子              |
+| `{{ slice "kintone" "slash" ... }}`                  | `["kintone", "slash", ...]`              | 配列リテラル            |
+| `{{ in $v2_list $.Site.Params.product }}`            | `v2List.includes(env.product)`           | 配列包含チェック        |
+| `{{ len $.AllTranslations }}`                        | `page.allTranslations.length`            | 配列長取得              |
+| `{{ printf "%s/" $.Lang }}`                          | `` `${page.lang}/` ``                    | 文字列テンプレート      |
+| `{{ split $.Site.BaseURL "/" }}`                     | `env.baseURL.split('/')`                 | 文字列分割              |
+| `{{ sub ($urlparts \| len ) 2 }}`                    | `urlparts.length - 2`                    | 算術演算                |
+| `{{ index $urlparts $product_pos }}`                 | `urlparts[productPos]`                   | 配列インデックス        |
+| `{{ printf "/%s/" (index $urlparts $product_pos) }}` | `` `/${urlparts[productPos]}/` ``        | 文字列テンプレート      |
+| `{{ $.Scratch.Get "sitename" }}`                     | `page.scratch?.sitename`                 | TODO: Scratch実装       |
+| `{{ partial "searchbox" . }}`                        | `<SearchBox env={env} page={page} />`    | コンポーネント呼び出し  |
+| `{{ partial "langselector" . }}`                     | `<LangSelector env={env} page={page} />` | コンポーネント呼び出し  |
+| `{{ urls.Parse $.Site.BaseURL }}`                    | URLパース（使用箇所で削除）              | 簡略化                  |
+| `{{ i18n "search_word" }}`                           | `i18n__todo__search_word`                | aria-label内のためTODO  |
+| `{{ i18n "Enter_keywords" }}`                        | `i18n__todo__Enter_keywords`             | placeholder内のためTODO |
+| `{{ i18n "search" }}`                                | `i18n__todo__search`                     | aria-label内のためTODO  |
+| `{{ relURL }}`                                       | 相対URL処理                              | 簡易実装                |
 
 ## TODO
 

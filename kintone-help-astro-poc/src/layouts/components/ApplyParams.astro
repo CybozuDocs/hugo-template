@@ -1,5 +1,5 @@
 ---
-import type { ReplaceParams } from './types';
+import type { ReplaceParams } from "./types";
 
 interface Props {
   target: string;
@@ -25,8 +25,14 @@ const replacements = [
   { pattern: /{{<\s*help\s*>}}/g, value: params.help },
   { pattern: /{{<\s*product_name\s*>}}/g, value: params.product_name },
   { pattern: /{{<\s*slash_ui\s*>}}/g, value: params.slash_ui },
-  { pattern: /{{<\s*slash_administrators\s*>}}/g, value: params.slash_administrators },
-  { pattern: /{{<\s*slash_service_name\s*>}}/g, value: params.slash_service_name },
+  {
+    pattern: /{{<\s*slash_administrators\s*>}}/g,
+    value: params.slash_administrators,
+  },
+  {
+    pattern: /{{<\s*slash_service_name\s*>}}/g,
+    value: params.slash_service_name,
+  },
 ];
 
 replacements.forEach(({ pattern, value }) => {
@@ -36,4 +42,4 @@ replacements.forEach(({ pattern, value }) => {
 });
 ---
 
-{result} 
+{result}

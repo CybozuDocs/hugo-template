@@ -4,21 +4,21 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ .Site.Language.LanguageName }}` | `page.siteLanguage.languageName` | pageプロパティに集約 |
-| `{{ range .Translations }}` | `page.translations.map()` | 配列反復 |
-| `{{ .Site.LanguageCode }}` | `translation.siteLanguageCode` | 翻訳オブジェクトのプロパティ |
-| `{{ .RelPermalink }}` | `translation.relPermalink` | 翻訳オブジェクトのプロパティ |
-| `{{ eq .Site.Params.use_wovn true }}` | `env.useWovn` | envプロパティに集約 |
-| `{{ split .RelPermalink "/" }}` | `page.relPermalink.split('/')` | 文字列分割 |
-| `{{ index .Site.Data "language_list" }}` | `env.languageData` | envプロパティに集約 |
-| `{{ range $additionalLangs.languages }}` | `env.languageData.languages.map()` | 配列反復 |
-| `{{ $urlParts \| len }}` | `urlParts.length` | 配列長取得 |
-| `{{ printf "%s/%s" $newTarget $languageCode }}` | `` `${newTarget}/${languageCode}` `` | 文字列テンプレート |
-| `{{ add $idx 1 }}` | `idx++` または `forEach` の index | インデックス増加 |
-| `{{ hasSuffix $newTarget ".html" }}` | `newTarget.endsWith('.html')` | 文字列末尾チェック |
-| `{{ hasSuffix $newTarget "/" }}` | `newTarget.endsWith('/')` | 文字列末尾チェック |
+| Hugo                                            | Astro                                | 備考                         |
+| ----------------------------------------------- | ------------------------------------ | ---------------------------- |
+| `{{ .Site.Language.LanguageName }}`             | `page.siteLanguage.languageName`     | pageプロパティに集約         |
+| `{{ range .Translations }}`                     | `page.translations.map()`            | 配列反復                     |
+| `{{ .Site.LanguageCode }}`                      | `translation.siteLanguageCode`       | 翻訳オブジェクトのプロパティ |
+| `{{ .RelPermalink }}`                           | `translation.relPermalink`           | 翻訳オブジェクトのプロパティ |
+| `{{ eq .Site.Params.use_wovn true }}`           | `env.useWovn`                        | envプロパティに集約          |
+| `{{ split .RelPermalink "/" }}`                 | `page.relPermalink.split('/')`       | 文字列分割                   |
+| `{{ index .Site.Data "language_list" }}`        | `env.languageData`                   | envプロパティに集約          |
+| `{{ range $additionalLangs.languages }}`        | `env.languageData.languages.map()`   | 配列反復                     |
+| `{{ $urlParts \| len }}`                        | `urlParts.length`                    | 配列長取得                   |
+| `{{ printf "%s/%s" $newTarget $languageCode }}` | `` `${newTarget}/${languageCode}` `` | 文字列テンプレート           |
+| `{{ add $idx 1 }}`                              | `idx++` または `forEach` の index    | インデックス増加             |
+| `{{ hasSuffix $newTarget ".html" }}`            | `newTarget.endsWith('.html')`        | 文字列末尾チェック           |
+| `{{ hasSuffix $newTarget "/" }}`                | `newTarget.endsWith('/')`            | 文字列末尾チェック           |
 
 ## TODO
 

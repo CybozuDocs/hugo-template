@@ -4,18 +4,18 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ .Site.RegularPages.Related . \| first 5 }}` | 未実装 | TODO: Related機能の実装 |
-| `{{ $.Scratch.Set "pagecnt" 0}}` | `validPages.length` | カウント処理を配列長に変更 |
-| `{{ $.Scratch.Add "pagecnt" 1}}` | `filter()` の結果 | 配列フィルタリングで代替 |
-| `{{ $.Scratch.Get "pagecnt" }}` | `sortedPages.length > 0` | 配列長チェック |
-| `{{ in .Params.disabled $.Site.Params.TargetRegion }}` | `disabled.includes(env.targetRegion)` | 配列包含チェック |
-| `{{ $related.ByWeight }}` | `sort((a, b) => a.weight - b.weight)` | 重み付けソート |
-| `{{ gt ($.Scratch.Get "pagecnt") 0}}` | `shouldDisplay` | 条件チェック |
-| `{{ partial "title" . }}` | `<Title env={env} page={relatedPage} />` | コンポーネント呼び出し |
-| `{{ i18n "See_also" }}` | `<Wovn>i18n__See_also</Wovn>` | WOVN対応 |
-| `{{ .RelPermalink }}` | `relatedPage.relPermalink` | プロパティアクセス |
+| Hugo                                                   | Astro                                    | 備考                       |
+| ------------------------------------------------------ | ---------------------------------------- | -------------------------- |
+| `{{ .Site.RegularPages.Related . \| first 5 }}`        | 未実装                                   | TODO: Related機能の実装    |
+| `{{ $.Scratch.Set "pagecnt" 0}}`                       | `validPages.length`                      | カウント処理を配列長に変更 |
+| `{{ $.Scratch.Add "pagecnt" 1}}`                       | `filter()` の結果                        | 配列フィルタリングで代替   |
+| `{{ $.Scratch.Get "pagecnt" }}`                        | `sortedPages.length > 0`                 | 配列長チェック             |
+| `{{ in .Params.disabled $.Site.Params.TargetRegion }}` | `disabled.includes(env.targetRegion)`    | 配列包含チェック           |
+| `{{ $related.ByWeight }}`                              | `sort((a, b) => a.weight - b.weight)`    | 重み付けソート             |
+| `{{ gt ($.Scratch.Get "pagecnt") 0}}`                  | `shouldDisplay`                          | 条件チェック               |
+| `{{ partial "title" . }}`                              | `<Title env={env} page={relatedPage} />` | コンポーネント呼び出し     |
+| `{{ i18n "See_also" }}`                                | `<Wovn>i18n__See_also</Wovn>`            | WOVN対応                   |
+| `{{ .RelPermalink }}`                                  | `relatedPage.relPermalink`               | プロパティアクセス         |
 
 ## TODO
 

@@ -4,12 +4,12 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ range .Sections.ByWeight}}` | `sortedSections.map()` | 重み順ソートと配列反復 |
-| `{{ .RelPermalink }}` | `section.relPermalink` | プロパティアクセス |
-| `{{ partial "title" . }}` | `<Title env={env} page={section} />` | コンポーネント呼び出し |
-| `{{ range .Pages.ByWeight}}` | `sortedPages.map()` | 重み順ソートと配列反復 |
+| Hugo                            | Astro                                | 備考                   |
+| ------------------------------- | ------------------------------------ | ---------------------- |
+| `{{ range .Sections.ByWeight}}` | `sortedSections.map()`               | 重み順ソートと配列反復 |
+| `{{ .RelPermalink }}`           | `section.relPermalink`               | プロパティアクセス     |
+| `{{ partial "title" . }}`       | `<Title env={env} page={section} />` | コンポーネント呼び出し |
+| `{{ range .Pages.ByWeight}}`    | `sortedPages.map()`                  | 重み順ソートと配列反復 |
 
 ## TODO
 

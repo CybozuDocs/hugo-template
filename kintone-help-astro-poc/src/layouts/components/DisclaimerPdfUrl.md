@@ -4,11 +4,11 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ .languageCode }}` | `languageCode` | Props として受け取り |
-| `{{ or (eq $languageCode "zh-cn") (eq $languageCode "zh-jp") }}` | `languageCode === "zh-cn" \|\| languageCode === "zh-jp"` | 論理演算子の変更 |
-| `{{ return $pdf_url }}` | `export { pdfUrl }` | モジュールエクスポート |
+| Hugo                                                             | Astro                                                    | 備考                   |
+| ---------------------------------------------------------------- | -------------------------------------------------------- | ---------------------- |
+| `{{ .languageCode }}`                                            | `languageCode`                                           | Props として受け取り   |
+| `{{ or (eq $languageCode "zh-cn") (eq $languageCode "zh-jp") }}` | `languageCode === "zh-cn" \|\| languageCode === "zh-jp"` | 論理演算子の変更       |
+| `{{ return $pdf_url }}`                                          | `export { pdfUrl }`                                      | モジュールエクスポート |
 
 ## TODO
 

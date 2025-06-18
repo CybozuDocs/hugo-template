@@ -1,8 +1,8 @@
 ---
 import { env } from "@/lib/env";
-import Wovn from '@/components/Wovn.astro';
-import Footer2Disclaimer from './Footer2Disclaimer.astro';
-import type { BaseProps } from './types';
+import Wovn from "@/components/Wovn.astro";
+import Footer2Disclaimer from "./Footer2Disclaimer.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
@@ -12,10 +12,10 @@ const { page } = Astro.props;
 let footerData: any[] = [];
 
 // パス変換処理（remove later部分の実装）
-let footerLinksPath = env.footerLinks || '';
-if (footerLinksPath.startsWith('csv/')) {
-  const parts = footerLinksPath.split('/');
-  if (parts[0] === 'csv') {
+let footerLinksPath = env.footerLinks || "";
+if (footerLinksPath.startsWith("csv/")) {
+  const parts = footerLinksPath.split("/");
+  if (parts[0] === "csv") {
     footerLinksPath = `${parts[1]}/${parts[0]}/${parts[2]}`;
   }
 }
@@ -34,10 +34,10 @@ const sep = "\t";
 const legalMenu: string[] = [];
 const megaMenus: { [key: string]: string[] } = {};
 
-footerData.forEach(row => {
+footerData.forEach((row) => {
   const id = row[0];
   const item = `${row[1]}${sep}${row[2]}`;
-  
+
   if (id === "999") {
     // 特別なフッター
     legalMenu.push(item);
@@ -53,7 +53,7 @@ footerData.forEach(row => {
 const processedMegaMenus = Object.entries(megaMenus).map(([index, val]) => {
   let categoryTitle = "";
   const links: string[] = [];
-  
+
   val.forEach((r, i) => {
     if (i === 0) {
       categoryTitle = r.split(sep)[0];
@@ -61,66 +61,72 @@ const processedMegaMenus = Object.entries(megaMenus).map(([index, val]) => {
       links.push(r);
     }
   });
-  
+
   return { index, categoryTitle, links };
 });
 
 // リーガルメニューの処理
-const processedLegalMenu = legalMenu.map(item => {
+const processedLegalMenu = legalMenu.map((item) => {
   const link = item.split(sep);
   return {
     text: link[0],
     href: link[1],
-    target: link[2] || "_blank"
+    target: link[2] || "_blank",
   };
 });
 ---
 
-<footer id="page-footer" class={`footer${page.isHome ? ' footer-home' : ''}`}>
+<footer id="page-footer" class={`footer${page.isHome ? " footer-home" : ""}`}>
   <div class="footer-home">
-    {page.isHome && (
-      <div class="footer-mega">
-        <ul class="footer-mega-list">
-          {processedMegaMenus.map(({ index, categoryTitle, links }) => (
-            <li class="footer-mega-item">
-              <div class="footer-mega-list-title">
-                <i class="fa fa-book" aria-hidden="true"></i>
-                <span class="footer-mega-list-title-text">{categoryTitle}</span>
-              </div>
-              <ul class="footer-mega-list-list">
-                {links.map((linkItem, linkIndex) => {
-                  const link = linkItem.split(sep);
-                  const text = link[0];
-                  const href = link[1];
-                  
-                  return (
-                    <li class="footer-mega-list-item">
-                      <a href={href}>{text}</a>
-                    </li>
-                  );
-                })}
-                {/* 最後のメニューにdisclaimerを挿入 */}
-                {index === "3" && 
-                 env.languageCode !== "ja-jp" && 
-                 env.languageCode !== "ja-cn" && (
-                  <Footer2Disclaimer languageCode={env.languageCode} />
-                )}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
-    
+    {
+      page.isHome && (
+        <div class="footer-mega">
+          <ul class="footer-mega-list">
+            {processedMegaMenus.map(({ index, categoryTitle, links }) => (
+              <li class="footer-mega-item">
+                <div class="footer-mega-list-title">
+                  <i class="fa fa-book" aria-hidden="true" />
+                  <span class="footer-mega-list-title-text">
+                    {categoryTitle}
+                  </span>
+                </div>
+                <ul class="footer-mega-list-list">
+                  {links.map((linkItem, linkIndex) => {
+                    const link = linkItem.split(sep);
+                    const text = link[0];
+                    const href = link[1];
+
+                    return (
+                      <li class="footer-mega-list-item">
+                        <a href={href}>{text}</a>
+                      </li>
+                    );
+                  })}
+                  {/* 最後のメニューにdisclaimerを挿入 */}
+                  {index === "3" &&
+                    env.languageCode !== "ja-jp" &&
+                    env.languageCode !== "ja-cn" && (
+                      <Footer2Disclaimer languageCode={env.languageCode} />
+                    )}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
     <div class="footer-legal">
       <ul class="footer-legal-list">
-        {processedLegalMenu.map((link, index) => (
-          <li class="footer-legal-item">
-            <a href={link.href} target={link.target}>
-              {link.text}
-            </a>
-          </li>
-        ))}
+        {
+          processedLegalMenu.map((link, index) => (
+            <li class="footer-legal-item">
+              <a href={link.href} target={link.target}>
+                {link.text}
+              </a>
+            </li>
+          ))
+        }
       </ul>
       <div class="footer-legal-copyright">
         <Wovn>i18n__Footer_copyright</Wovn>

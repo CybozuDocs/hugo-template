@@ -12,12 +12,12 @@ const { p1 } = Astro.props;
 export const getSecondSection = (currentPage: any): any => {
   let current = currentPage;
   let second = null;
-  
+
   while (current.parent && current !== current.firstSection) {
     second = current;
     current = current.parent;
   }
-  
+
   return second;
 };
 
@@ -25,5 +25,4 @@ export const getSecondSection = (currentPage: any): any => {
 const second = getSecondSection(p1);
 ---
 
-<!-- このコンポーネントは何もレンダリングしない -->
-<!-- JavaScript関数のエクスポート目的のみ -->
+<!-- このコンポーネントは何もレンダリングしない --><!-- JavaScript関数のエクスポート目的のみ -->

@@ -9,7 +9,9 @@
     "astro": "astro",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "dependencies": {
     "@astrojs/mdx": "4.3.0",
@@ -17,6 +19,8 @@
     "dotenv": "16.5.0"
   },
   "devDependencies": {
+    "prettier": "3.5.3",
+    "prettier-plugin-astro": "0.14.1",
     "vitest": "3.2.4"
   }
 }

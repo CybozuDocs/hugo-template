@@ -1,11 +1,10 @@
 ---
 import { env } from "@/lib/env";
 import { getSiteHomeSections } from "@/lib/page";
-import TreeNavMainMenu from './TreeNavMainMenu.astro';
-import type { BaseProps } from './types';
+import TreeNavMainMenu from "./TreeNavMainMenu.astro";
+import type { BaseProps } from "./types";
 
-interface Props extends BaseProps {
-}
+interface Props extends BaseProps {}
 
 const { page } = Astro.props;
 
@@ -18,25 +17,24 @@ entries = entries.sort((a, b) => (a.weight || 0) - (b.weight || 0));
 
 <div id="tree-nav">
   <button id="tree-close-mobile">
-      <i class="fas fa-times"></i>
-    </button>
-  
+    <i class="fas fa-times"></i>
+  </button>
+
   <nav id="tree-main" class="tree-main" tabindex="0">
     <ul>
-      {entries.map((entry) => {
-        // プレビューサイトでの表示制御
-        let disp = true;
-        if (env.previewSite && page.firstSection !== entry) {
-          disp = false;
-        }
-        
-        return disp ? (
-          <TreeNavMainMenu 
-            curnode={entry} 
-            target={page}
-          />
-        ) : null;
-      })}
+      {
+        entries.map((entry) => {
+          // プレビューサイトでの表示制御
+          let disp = true;
+          if (env.previewSite && page.firstSection !== entry) {
+            disp = false;
+          }
+
+          return disp ? (
+            <TreeNavMainMenu curnode={entry} target={page} />
+          ) : null;
+        })
+      }
     </ul>
   </nav>
 </div>

@@ -4,17 +4,17 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ .Params.labels }}` | `page.params.labels` | pageプロパティに集約 |
-| `{{ $.Site.Params.label_colors }}` | `env.labelColors` | envプロパティに集約 |
-| `{{ $.Site.Params.label_lead }}` | `env.labelLead` | envプロパティに集約 |
-| `{{ $.Site.Params.label_contents }}` | `env.labelContents` | envプロパティに集約 |
-| `{{ range $labels }}` | `labels.map()` | 配列反復 |
-| `{{ int . }}` | `parseInt(label)` | 型変換 |
-| `{{ sub $labelidx 1 }}` | `parseInt(label) - 1` | インデックス調整 |
-| `{{ index $label_contents $labelidx }}` | `labelContents[labelidx]` | 配列インデックス |
-| `{{ index $label_colors $labelidx }}` | `labelColors[labelidx]` | 配列インデックス |
+| Hugo                                    | Astro                     | 備考                 |
+| --------------------------------------- | ------------------------- | -------------------- |
+| `{{ .Params.labels }}`                  | `page.params.labels`      | pageプロパティに集約 |
+| `{{ $.Site.Params.label_colors }}`      | `env.labelColors`         | envプロパティに集約  |
+| `{{ $.Site.Params.label_lead }}`        | `env.labelLead`           | envプロパティに集約  |
+| `{{ $.Site.Params.label_contents }}`    | `env.labelContents`       | envプロパティに集約  |
+| `{{ range $labels }}`                   | `labels.map()`            | 配列反復             |
+| `{{ int . }}`                           | `parseInt(label)`         | 型変換               |
+| `{{ sub $labelidx 1 }}`                 | `parseInt(label) - 1`     | インデックス調整     |
+| `{{ index $label_contents $labelidx }}` | `labelContents[labelidx]` | 配列インデックス     |
+| `{{ index $label_colors $labelidx }}`   | `labelColors[labelidx]`   | 配列インデックス     |
 
 ## TODO
 

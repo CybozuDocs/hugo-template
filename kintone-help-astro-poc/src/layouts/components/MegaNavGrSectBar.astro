@@ -1,7 +1,7 @@
 ---
 import { env } from "@/lib/env";
-import Title from './Title.astro';
-import type { PageProps, EnvProps } from './types';
+import Title from "./Title.astro";
+import type { PageProps, EnvProps } from "./types";
 
 interface Props {
   cursect: PageProps;
@@ -19,28 +19,30 @@ let menuid = 0;
 ---
 
 <ul role="tablist">
-  {sortedPages.map((page: PageProps) => {
-    menuid += 1;
-    
-    const curclass = page === secondsect ? "current" : "";
-    const tabsts = page === secondsect ? "true" : "false";
-    const tabidx = menuid === 1 ? "0" : "-1";
-    
-    return (
-      <li role="presentation">
-        <button 
-          class={`mega-tab ${curclass}`}
-          id={`tab${menuid}`}
-          tabindex={tabidx}
-          role="tab"
-          aria-controls={`panel${menuid}`}
-          aria-selected={tabsts}
-          aria-expanded="false"
-        >
-          <Title page={page} />
-          <i class="fas fa-chevron-down" aria-hidden="true"></i>
-        </button>
-      </li>
-    );
-  })}
+  {
+    sortedPages.map((page: PageProps) => {
+      menuid += 1;
+
+      const curclass = page === secondsect ? "current" : "";
+      const tabsts = page === secondsect ? "true" : "false";
+      const tabidx = menuid === 1 ? "0" : "-1";
+
+      return (
+        <li role="presentation">
+          <button
+            class={`mega-tab ${curclass}`}
+            id={`tab${menuid}`}
+            tabindex={tabidx}
+            role="tab"
+            aria-controls={`panel${menuid}`}
+            aria-selected={tabsts}
+            aria-expanded="false"
+          >
+            <Title page={page} />
+            <i class="fas fa-chevron-down" aria-hidden="true" />
+          </button>
+        </li>
+      );
+    })
+  }
 </ul>

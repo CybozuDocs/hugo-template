@@ -8,14 +8,15 @@ Hugo ショートコードの `reference.html` を Astro コンポーネント�
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-|------|-------|------|
-| `{{ i18n "Title_references" }}` | `<Wovn>i18n__Title_references</Wovn>` | WOVN翻訳サービス使用 |
-| `{{ printf "%s" .Inner \| markdownify }}` | `<slot />` | Astroの標準Slot機能 |
+| Hugo                                      | Astro                                 | 備考                 |
+| ----------------------------------------- | ------------------------------------- | -------------------- |
+| `{{ i18n "Title_references" }}`           | `<Wovn>i18n__Title_references</Wovn>` | WOVN翻訳サービス使用 |
+| `{{ printf "%s" .Inner \| markdownify }}` | `<slot />`                            | Astroの標準Slot機能  |
 
 ## 構造の変化
 
 ### 元の実装（Hugo）
+
 ```html
 <aside class="admonition reference">
   <div class="admonition-alt">
@@ -27,9 +28,10 @@ Hugo ショートコードの `reference.html` を Astro コンポーネント�
 ```
 
 ### 新しい実装（Astro）
+
 ```astro
 ---
-import Wovn from './Wovn.astro';
+import Wovn from "./Wovn.astro";
 ---
 
 <aside class="admonition reference">
@@ -44,24 +46,25 @@ import Wovn from './Wovn.astro';
 ## 機能の詳細
 
 ### 1. アドモニションボックス
+
 - **CSS クラス**: `admonition reference`
 - **役割**: 参考情報を視覚的に区別して表示
 
 ### 2. ヘッダー部分（admonition-alt）
-- **アイコン**: Font Awesome `fa-info-circle` 
+
+- **アイコン**: Font Awesome `fa-info-circle`
 - **タイトル**: "参考" の多言語対応
 - **WOVN統合**: `i18n__Title_references` キーによる翻訳
 
 ### 3. コンテンツ部分（admonition-content）
+
 - **Slot機能**: 子要素の内容をそのまま表示
 - **Markdown対応**: Astroのコンテンツ処理に依存
 
 ## 使用方法
 
 ```astro
-<Reference>
-  参考情報の内容をここに記述
-</Reference>
+<Reference> 参考情報の内容をここに記述 </Reference>
 ```
 
 ## 外部依存

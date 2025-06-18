@@ -1,9 +1,9 @@
 ---
 import { env } from "@/lib/env";
 import { getRegularPages } from "@/lib/page";
-import Wovn from '@/components/Wovn.astro';
-import Title from './Title.astro';
-import type { BaseProps } from './types';
+import Wovn from "@/components/Wovn.astro";
+import Title from "./Title.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
@@ -14,7 +14,7 @@ const { page } = Astro.props;
 const related = getRegularPages().slice(0, 5);
 
 // 無効化されていないページのフィルタリング
-const validPages = related.filter(relatedPage => {
+const validPages = related.filter((relatedPage) => {
   const disabled = relatedPage.params?.disabled || [];
   return !disabled.includes(env.targetRegion);
 });
@@ -30,20 +30,22 @@ const sortedPages = validPages.sort((a, b) => {
 const shouldDisplay = sortedPages.length > 0;
 ---
 
-{shouldDisplay && (
-  <>
-    <hr />
-    <div class="seealso">
-      <Wovn>i18n__See_also</Wovn>
-    </div>
-    <ul>
-      {sortedPages.map((relatedPage) => (
-        <li>
-          <a href={relatedPage.relPermalink}>
-            <Title page={relatedPage} />
-          </a>
-        </li>
-      ))}
-    </ul>
-  </>
-)}
+{
+  shouldDisplay && (
+    <>
+      <hr />
+      <div class="seealso">
+        <Wovn>i18n__See_also</Wovn>
+      </div>
+      <ul>
+        {sortedPages.map((relatedPage) => (
+          <li>
+            <a href={relatedPage.relPermalink}>
+              <Title page={relatedPage} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+}

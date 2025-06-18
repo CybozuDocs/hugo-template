@@ -1,7 +1,7 @@
 ---
 import { env } from "@/lib/env";
-import Title from './Title.astro';
-import type { PageProps, EnvProps } from './types';
+import Title from "./Title.astro";
+import type { PageProps, EnvProps } from "./types";
 
 interface Props {
   curnode: PageProps;
@@ -23,7 +23,7 @@ if (curnode.relPermalink === target.relPermalink) {
 if (curnode.isSection) {
   // セクションの場合
   shouldRenderSection = true;
-  
+
   // entries の設定
   let entries: PageProps[] = [];
   if (curnode.sections) {
@@ -35,7 +35,7 @@ if (curnode.isSection) {
 
   sectionContent = {
     selected,
-    entries
+    entries,
   };
 } else {
   // ページの場合
@@ -43,35 +43,39 @@ if (curnode.isSection) {
 }
 ---
 
-{shouldRenderSection && (
-  <li role="presentation">
-    {sectionContent.selected ? (
-      <a href="#" class="current">
-        <Title page={curnode} />
-      </a>
-    ) : (
-      <a href={curnode.relPermalink}>
-        <Title page={curnode} />
-      </a>
-    )}
-    <ul>
-      {sectionContent.entries.map((entry: PageProps) => (
-        <TreeNavStaticMenu curnode={entry} target={target} />
-      ))}
-    </ul>
-  </li>
-)}
+{
+  shouldRenderSection && (
+    <li role="presentation">
+      {sectionContent.selected ? (
+        <a href="#" class="current">
+          <Title page={curnode} />
+        </a>
+      ) : (
+        <a href={curnode.relPermalink}>
+          <Title page={curnode} />
+        </a>
+      )}
+      <ul>
+        {sectionContent.entries.map((entry: PageProps) => (
+          <TreeNavStaticMenu curnode={entry} target={target} />
+        ))}
+      </ul>
+    </li>
+  )
+}
 
-{shouldRenderPage && (
-  <li role="presentation">
-    {selected ? (
-      <a href="#" class="toclink current">
-        <Title page={curnode} />
-      </a>
-    ) : (
-      <a href={curnode.relPermalink} class="toclink">
-        <Title page={curnode} />
-      </a>
-    )}
-  </li>
-)}
+{
+  shouldRenderPage && (
+    <li role="presentation">
+      {selected ? (
+        <a href="#" class="toclink current">
+          <Title page={curnode} />
+        </a>
+      ) : (
+        <a href={curnode.relPermalink} class="toclink">
+          <Title page={curnode} />
+        </a>
+      )}
+    </li>
+  )
+}

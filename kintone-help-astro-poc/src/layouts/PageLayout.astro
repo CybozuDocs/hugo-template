@@ -2,7 +2,11 @@
 import type { MarkdownLayoutProps } from "astro";
 import Head from "./components/Head.astro";
 import { env } from "../lib/env.js";
-import { getPermalinks, isHomePage, getLangFromLanguageCode } from "../lib/url.js";
+import {
+  getPermalinks,
+  isHomePage,
+  getLangFromLanguageCode,
+} from "../lib/url.js";
 import Disclaimer2 from "./components/Disclaimer2.astro";
 // import Related from "./components/Related.astro";
 import Footer from "./components/Footer.astro";
@@ -17,7 +21,7 @@ type Props = MarkdownLayoutProps<{
   // ページ固有設定
   idSearch?: boolean;
   supportInquiry?: boolean;
-  
+
   // ページデータ
   disabled?: string[];
   aliases?: string[];
@@ -28,7 +32,7 @@ type Props = MarkdownLayoutProps<{
 };
 
 const {
-  frontmatter, 
+  frontmatter,
   idSearch = false,
   supportInquiry = false,
   disabled = [],
@@ -36,9 +40,8 @@ const {
   labels = [],
   content = "",
   type = "",
-  weight = frontmatter.weight || 0
- } = Astro.props;
-
+  weight = frontmatter.weight || 0,
+} = Astro.props;
 
 // permalink と relPermalink を生成
 const permalinks = getPermalinks(Astro.url, env.domain);
@@ -55,27 +58,26 @@ const pageData = {
   weight: weight,
   params: {
     type: type,
-    nolink: false,  // TODO: 実際の値を設定
+    nolink: false, // TODO: 実際の値を設定
   },
   lang: getLangFromLanguageCode(env.languageCode),
-  
+
   // Header.astroで必要な追加プロパティ（仮実装）
   allTranslations: [], // TODO: 多言語対応時に実装
   isTranslated: false, // TODO: 多言語対応時に実装
   scratch: {
-    sitename: env.productName // TODO: 適切なサイト名ロジックを実装
+    sitename: env.productName, // TODO: 適切なサイト名ロジックを実装
   },
-  
+
   // LangSelector.astro用のプロパティ（仮実装）
   siteLanguage: {
-    languageName: "日本語"
+    languageName: "日本語",
   },
-  translations: [] // TODO: 多言語対応時に実装
+  translations: [], // TODO: 多言語対応時に実装
 };
 
 // 無効化チェック
 const isDisabled = disabled.includes(env.targetRegion);
-
 ---
 
 <!doctype html>
@@ -86,39 +88,39 @@ const isDisabled = disabled.includes(env.targetRegion);
   </head>
   <!-- TODO: フォントサイズの指定を再現する -->
   <body class="font-{{.Lang}}">
-      {isDisabled ? (
+    {
+      isDisabled ? (
         <meta http-equiv="refresh" content="0; URL=/" />
       ) : (
         <>
           {env.targetRegion === "US" && <div>[LOCALE MODAL PARTIAL]</div>}
-          
-          <!-- Announcement banner -->
+
+          {/* <!-- Announcement banner --> */}
           {/* <div>[ANNOUNCEMENT BANNER PARTIAL]</div> */}
-          
-          <!-- Header -->
+
+          {/* <!-- Header --> */}
           <Header page={pageData} />
-          
-          <div class="page-pad"></div>
-          
+
+          <div class="page-pad" />
+
           {env.meganav && (
             <>
-              <div class="mnav-pad"></div>
+              <div class="mnav-pad" />
               <div>[MEGANAV PARTIAL]</div>
             </>
           )}
-          
+
           <div id="page" class="page">
             <div id="tree" class="tree-wrap">
               <TreeNav page={pageData} />
             </div>
-            
+
             <div id="contents" class="contents-wrap">
               {env.useWovn && <Disclaimer2 page={pageData} />}
-              
-              
+
               <main id="main" role="main">
                 <div>[BREADCRUMB PARTIAL]</div>
-                
+
                 <article class="article" role="article">
                   <div class="id-title">
                     <h1>{frontmatter.title}</h1>
@@ -126,41 +128,42 @@ const isDisabled = disabled.includes(env.targetRegion);
                       <div>[ARTICLE LINK TEMPLATE]</div>
                     )}
                   </div>
-                  
+
                   {idSearch && aliases && aliases.length > 0 && (
                     <div>[ARTICLE NUMBER TEMPLATE]</div>
                   )}
-                  
+
                   {labels && labels.length > 0 && (
                     <div>[HEADER LABEL TEMPLATE]</div>
                   )}
 
                   <slot />
                 </article>
-                
+
                 {/* <Related env={env} page={pageData} /> */}
-                
+
                 {type === "series" && <div>[PAGE NAV PARTIAL]</div>}
               </main>
             </div>
-            
+
             <div class="sidebar-wrap">
               <nav id="rightside-bar">
                 <h2 class="toc-title">i18n__todo__In_this_article</h2>
               </nav>
             </div>
           </div>
-          
+
           <div>[TREE NAV TOGGLE PARTIAL]</div>
           <div>[GO TO TOP PARTIAL]</div>
-          
+
           {supportInquiry && env.languageCode === "en-us" && (
             <div>[SUPPORT INQUIRY PARTIAL]</div>
           )}
-          
+
           <div>[ENQUETE PARTIAL]</div>
           <Footer page={pageData} />
         </>
-      )}
+      )
+    }
   </body>
 </html>

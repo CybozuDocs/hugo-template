@@ -1,8 +1,8 @@
 ---
 import { env } from "@/lib/env";
-import SearchBox from './SearchBox.astro';
-import LangSelector from './LangSelector.astro';
-import type { BaseProps } from './types';
+import SearchBox from "./SearchBox.astro";
+import LangSelector from "./LangSelector.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
@@ -17,7 +17,7 @@ if (page.isHome && !env.meganav) {
 }
 
 // ベースURLの計算
-const urlparts = env.baseURL.split('/');
+const urlparts = env.baseURL.split("/");
 const productPos = urlparts.length - 2;
 const base = `/${urlparts[productPos]}/`;
 const baseLink = `${base}${page.lang}/`;
@@ -43,37 +43,42 @@ const logoAlt = `${env.productName} ${env.help}`;
 <header id="header" class={`header ${hedclass}`}>
   <div id="head" class="header-wrap">
     <div class="logo-wrap">
-      {!page.isHome && (
-        <button id="tree-switch-mobile" class="tree-switch-mobile">
-          <i class="fas fa-bars" aria-hidden="true"></i>
-        </button>
-      )}
-      
+      {
+        !page.isHome && (
+          <button id="tree-switch-mobile" class="tree-switch-mobile">
+            <i class="fas fa-bars" aria-hidden="true" />
+          </button>
+        )
+      }
+
       <h1>
         <a class="logo-link" href={baseLink}>
-          <img 
-            class="logo-img" 
-            src={`${base}${env.logo}`} 
-            alt={logoAlt} 
+          <img
+            class="logo-img"
+            src={`${base}${env.logo}`}
+            alt={logoAlt}
             title={logoAlt}
           />
         </a>
       </h1>
     </div>
 
-    {dispSbox && (
-      <SearchBox page={page} />
-    )}
+    {dispSbox && <SearchBox page={page} />}
 
-
-    {page.isTranslated && env.langSelector && page.siteLanguage && page.translations && page.relPermalink && (
-      <LangSelector 
-        page={{
-          siteLanguage: page.siteLanguage,
-          translations: page.translations,
-          relPermalink: page.relPermalink
-        }} 
-      />
-    )}
+    {
+      page.isTranslated &&
+        env.langSelector &&
+        page.siteLanguage &&
+        page.translations &&
+        page.relPermalink && (
+          <LangSelector
+            page={{
+              siteLanguage: page.siteLanguage,
+              translations: page.translations,
+              relPermalink: page.relPermalink,
+            }}
+          />
+        )
+    }
   </div>
 </header>

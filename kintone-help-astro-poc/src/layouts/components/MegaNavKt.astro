@@ -1,7 +1,7 @@
 ---
 import { env } from "@/lib/env";
-import Wovn from '@/components/Wovn.astro';
-import type { BaseProps } from './types';
+import Wovn from "@/components/Wovn.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
@@ -13,8 +13,28 @@ const getMenuData = (lang: string, targetRegion: string) => {
   // 簡易的なメニューデータ（実際のCSVデータで置き換えが必要）
   return {
     ids: ["1", "1", "1", "2", "2", "2", "3", "3", "3"],
-    titles: ["Admin", "User", "Developer", "Business", "Enterprise", "Features", "Store", "Marketplace", "Apps"],
-    urls: ["/k/admin/", "/k/user/", "/k/developer/", "/slash/business/", "/slash/enterprise/", "/slash/features/", "/store/", "/store/marketplace/", "/store/apps/"]
+    titles: [
+      "Admin",
+      "User",
+      "Developer",
+      "Business",
+      "Enterprise",
+      "Features",
+      "Store",
+      "Marketplace",
+      "Apps",
+    ],
+    urls: [
+      "/k/admin/",
+      "/k/user/",
+      "/k/developer/",
+      "/slash/business/",
+      "/slash/enterprise/",
+      "/slash/features/",
+      "/store/",
+      "/store/marketplace/",
+      "/store/apps/",
+    ],
   };
 };
 
@@ -29,7 +49,11 @@ const menu_titles = ["", ...menuData.titles];
 const menu_urls = ["", ...menuData.urls];
 
 // 現在のタブの決定
-if (!page.isHome && page.params?.type !== "search_result" && page.params?.type !== "search_id") {
+if (
+  !page.isHome &&
+  page.params?.type !== "search_result" &&
+  page.params?.type !== "search_id"
+) {
   for (let i = 0; i < menu_ids.length; i++) {
     if (menu_ids[i] === strtabnum && curtab === "") {
       curtab = menu_titles[i];
@@ -39,8 +63,8 @@ if (!page.isHome && page.params?.type !== "search_result" && page.params?.type !
 }
 
 // ベースURL処理
-const baseurl = page.relPermalink.replace(/\.html$/, '');
-const baseparts = baseurl.split('/');
+const baseurl = page.relPermalink.replace(/\.html$/, "");
+const baseparts = baseurl.split("/");
 const partslen = baseparts.length;
 
 // メニューアイテムの生成
@@ -48,32 +72,36 @@ const generateMenuItems = () => {
   const items = [];
   let menuid = 1;
   let firstitem = true;
-  
+
   for (let i = 0; i < menu_ids.length; i++) {
     const r = menu_ids[i];
     const strid = menuid.toString();
-    
+
     if (r === strid) {
       let current = "";
-      if (!page.isHome && menuid === tabnum && 
-          page.params?.type !== "search_result" && page.params?.type !== "search_id") {
+      if (
+        !page.isHome &&
+        menuid === tabnum &&
+        page.params?.type !== "search_result" &&
+        page.params?.type !== "search_id"
+      ) {
         current = "current";
       }
-      
+
       const tx = firstitem ? "0" : "-1";
-      
+
       items.push({
         menuid,
         current,
         tx,
-        title: menu_titles[i]
+        title: menu_titles[i],
       });
-      
+
       menuid++;
       firstitem = false;
     }
   }
-  
+
   return items;
 };
 
@@ -82,31 +110,35 @@ const generatePanelContent = (panelNum: number) => {
   const strid = panelNum.toString();
   const items = [];
   let first = true;
-  
+
   for (let i = 0; i < menu_ids.length; i++) {
     const r = menu_ids[i];
-    
+
     if (r === strid) {
       if (!first) {
         let current = "";
         let href = menu_urls[i];
-        const menuhref = href.replace(/\.html$/, '');
-        
-        if (!page.isHome && partslen >= 3 && (menuhref.includes(baseurl) || baseurl.includes(menuhref))) {
+        const menuhref = href.replace(/\.html$/, "");
+
+        if (
+          !page.isHome &&
+          partslen >= 3 &&
+          (menuhref.includes(baseurl) || baseurl.includes(menuhref))
+        ) {
           href = "#";
           current = "current";
         }
-        
+
         items.push({
           href,
           current,
-          title: menu_titles[i]
+          title: menu_titles[i],
         });
       }
       first = false;
     }
   }
-  
+
   return items;
 };
 
@@ -114,66 +146,82 @@ const menuItems = generateMenuItems();
 const panelcnt = menuItems.length;
 ---
 
-<nav class="mega-nav-bar" role="navigation" aria-label="i18n__todo__Document_type">
+<nav
+  class="mega-nav-bar"
+  role="navigation"
+  aria-label="i18n__todo__Document_type"
+>
   <ul class="g-nav" role="none"></ul>
   <div id="mega-nav" class="mega-nav">
     <div class="mega-tab-wrap">
       <div id="mega-tab-short" class="mega-tab-short">
         <span class="mega-tab-short-wrap">
           <span id="mega-tab-short-text">{curtab}</span>
-          <button 
-            id="mega-tab-switch" 
-            class="mega-tab-switch" 
-            aria-label="i18n__todo__Tab_menu" 
-            aria-controls="mega-tab-bar" 
+          <button
+            id="mega-tab-switch"
+            class="mega-tab-switch"
+            aria-label="i18n__todo__Tab_menu"
+            aria-controls="mega-tab-bar"
             aria-expanded="false"
           >
-            <i id="mega-tab-switch-icon" class="fas fa-chevron-down mega-tab-switch-icon" aria-hidden="true"></i>
+            <i
+              id="mega-tab-switch-icon"
+              class="fas fa-chevron-down mega-tab-switch-icon"
+              aria-hidden="true"></i>
           </button>
         </span>
       </div>
       <div id="mega-tab-bar" class="mega-tab-bar">
         <ul role="tablist">
-          {menuItems.map((item) => (
-            <li id={`menuitem${item.menuid}`} role="presentation">
-              <button 
-                class={`mega-tab ${item.current}`} 
-                id={`tab${item.menuid}`} 
-                tabindex={item.tx} 
-                role="tab" 
-                aria-controls={`panel${item.menuid}`} 
-                aria-expanded="false"
-              >
-                <span class="mega-tab-text">
-                  {item.title}
-                  <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                </span>
-              </button>
-              <div class="mega-panelplace"></div>
-            </li>
-          ))}
+          {
+            menuItems.map((item) => (
+              <li id={`menuitem${item.menuid}`} role="presentation">
+                <button
+                  class={`mega-tab ${item.current}`}
+                  id={`tab${item.menuid}`}
+                  tabindex={item.tx}
+                  role="tab"
+                  aria-controls={`panel${item.menuid}`}
+                  aria-expanded="false"
+                >
+                  <span class="mega-tab-text">
+                    {item.title}
+                    <i class="fas fa-chevron-down" aria-hidden="true" />
+                  </span>
+                </button>
+                <div class="mega-panelplace" />
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
 
-    {Array.from({ length: panelcnt }, (_, i) => {
-      const panelNum = i + 1;
-      const tabid = i + 1;
-      const panelItems = generatePanelContent(panelNum);
-      
-      return (
-        <div class="mega-panel" role="tabpanel" id={`panel${panelNum}`} aria-labelledby={`tab${tabid}`}>
-          <ul class="mega-list">
-            {panelItems.map((item) => (
-              <li class={`mega-list-line ${item.current}`}>
-                <a class="mega-list-item" href={item.href} tabindex="0">
-                  {item.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      );
-    })}
+    {
+      Array.from({ length: panelcnt }, (_, i) => {
+        const panelNum = i + 1;
+        const tabid = i + 1;
+        const panelItems = generatePanelContent(panelNum);
+
+        return (
+          <div
+            class="mega-panel"
+            role="tabpanel"
+            id={`panel${panelNum}`}
+            aria-labelledby={`tab${tabid}`}
+          >
+            <ul class="mega-list">
+              {panelItems.map((item) => (
+                <li class={`mega-list-line ${item.current}`}>
+                  <a class="mega-list-item" href={item.href} tabindex="0">
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })
+    }
   </div>
 </nav>

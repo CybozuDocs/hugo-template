@@ -46,7 +46,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_SLASH_HELP: string;
   readonly PUBLIC_SLASH_ADMINISTRATORS: string;
   readonly PUBLIC_SLASH_UI: string;
-  
+
   readonly PUBLIC_LABEL_LEAD?: string;
   readonly PUBLIC_LABEL_CONTENTS?: string;
 

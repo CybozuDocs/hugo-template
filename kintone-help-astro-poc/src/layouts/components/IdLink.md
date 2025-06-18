@@ -4,19 +4,19 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ index .Params.aliases 0 }}` | `page.params.aliases?.[0] \|\| ''` | 配列の最初の要素取得 |
-| `{{ split $alias "/" }}` | `alias.split('/')` | 文字列分割 |
-| `{{ index $a1 (sub (len $a1) 1) }}` | `a1[a1.length - 1] \|\| ''` | 配列の最後の要素取得 |
-| `{{ strings.TrimRight ".html" .Page.RelPermalink }}` | `page.relPermalink.replace(/\.html$/, '')` | 文字列の末尾削除 |
-| `{{ strings.TrimRight .File.ContentBaseName $relpath }}` | `relpath.replace(new RegExp(page.fileContentBaseName + '$'), '')` | 文字列の末尾削除 |
-| `{{ printf "%s%sid/%s.html" .Site.BaseURL $relpath $docid}}` | `` `${env.baseURL}${relpath}id/${docid}.html` `` | 文字列テンプレート |
-| `{{ i18n "Permalink" }}` | `<Wovn>i18n__Permalink</Wovn>` | WOVN対応 |
-| `.Site.BaseURL` | `env.baseURL` | envプロパティに集約 |
-| `.Page.RelPermalink` | `page.relPermalink` | pageプロパティに集約 |
-| `.File.ContentBaseName` | `page.fileContentBaseName` | pageプロパティに集約 |
-| `.Params.aliases` | `page.params.aliases` | pageプロパティに集約 |
+| Hugo                                                         | Astro                                                             | 備考                 |
+| ------------------------------------------------------------ | ----------------------------------------------------------------- | -------------------- |
+| `{{ index .Params.aliases 0 }}`                              | `page.params.aliases?.[0] \|\| ''`                                | 配列の最初の要素取得 |
+| `{{ split $alias "/" }}`                                     | `alias.split('/')`                                                | 文字列分割           |
+| `{{ index $a1 (sub (len $a1) 1) }}`                          | `a1[a1.length - 1] \|\| ''`                                       | 配列の最後の要素取得 |
+| `{{ strings.TrimRight ".html" .Page.RelPermalink }}`         | `page.relPermalink.replace(/\.html$/, '')`                        | 文字列の末尾削除     |
+| `{{ strings.TrimRight .File.ContentBaseName $relpath }}`     | `relpath.replace(new RegExp(page.fileContentBaseName + '$'), '')` | 文字列の末尾削除     |
+| `{{ printf "%s%sid/%s.html" .Site.BaseURL $relpath $docid}}` | `` `${env.baseURL}${relpath}id/${docid}.html` ``                  | 文字列テンプレート   |
+| `{{ i18n "Permalink" }}`                                     | `<Wovn>i18n__Permalink</Wovn>`                                    | WOVN対応             |
+| `.Site.BaseURL`                                              | `env.baseURL`                                                     | envプロパティに集約  |
+| `.Page.RelPermalink`                                         | `page.relPermalink`                                               | pageプロパティに集約 |
+| `.File.ContentBaseName`                                      | `page.fileContentBaseName`                                        | pageプロパティに集約 |
+| `.Params.aliases`                                            | `page.params.aliases`                                             | pageプロパティに集約 |
 
 ## TODO
 

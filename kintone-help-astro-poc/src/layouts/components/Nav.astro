@@ -1,8 +1,8 @@
 ---
 import { getSiteHomeSections } from "@/lib/page";
-import Title from './Title.astro';
-import NavMainMenu from './NavMainMenu.astro';
-import type { BaseProps } from './types';
+import Title from "./Title.astro";
+import NavMainMenu from "./NavMainMenu.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
@@ -14,10 +14,10 @@ const target = page;
 
 <div id="mainmenu">
   <ul id="navi">
-    {entries
-      .sort((a, b) => (a.weight || 0) - (b.weight || 0))
-      .map((entry) => (
-        <NavMainMenu curnode={entry} target={target} />
-      ))}
+    {
+      entries
+        .sort((a, b) => (a.weight || 0) - (b.weight || 0))
+        .map((entry) => <NavMainMenu curnode={entry} target={target} />)
+    }
   </ul>
 </div>

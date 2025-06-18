@@ -1,8 +1,7 @@
 ---
 import { env } from "@/lib/env";
-import Wovn from '@/components/Wovn.astro';
-import Footer2Disclaimer from './Footer2Disclaimer.astro';
-import type { BaseProps } from './types';
+import Wovn from "@/components/Wovn.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
@@ -13,34 +12,36 @@ const baseUrl = new URL(env.baseURL);
 const basePath = baseUrl.pathname;
 
 // フルサイズの判定
-const fullsize = page.isHome || basePath.startsWith('/k/');
+const fullsize = page.isHome || basePath.startsWith("/k/");
 
 // CSVデータの読み込み処理
-const csvContent = await import(`../../pages/_data/csv/links.${env.targetRegion}.csv?raw`)
+const csvContent = await import(
+  `../../pages/_data/csv/links.${env.targetRegion}.csv?raw`
+);
 
 // CSVをパースして配列に変換
-const lines = csvContent.default.split('\n');
+const lines = csvContent.default.split("\n");
 const footerData = lines
   .filter((line: string) => line.trim()) // 空行を除外
   .map((line: string) => {
     // 簡易的なCSVパース（カンマ区切り、クォート対応）
     const result: string[] = [];
-    let current = '';
+    let current = "";
     let inQuotes = false;
-    
+
     for (let i = 0; i < line.length; i++) {
       const char = line[i];
       if (char === '"') {
         inQuotes = !inQuotes;
-      } else if (char === ',' && !inQuotes) {
+      } else if (char === "," && !inQuotes) {
         result.push(current);
-        current = '';
+        current = "";
       } else {
         current += char;
       }
     }
     result.push(current); // 最後のフィールドを追加
-    
+
     return result;
   });
 
@@ -51,8 +52,8 @@ const megaMenus: { [key: string]: string[] } = {};
 
 footerData.forEach((row: string[]) => {
   const id = row[0];
-  const item = `${row[1]}${sep}${row[2]}${sep}${row[3] || ''}`;
-  
+  const item = `${row[1]}${sep}${row[2]}${sep}${row[3] || ""}`;
+
   if (id === "999") {
     // 特別なフッター
     legalMenu.push(item);
@@ -68,7 +69,7 @@ footerData.forEach((row: string[]) => {
 const processedMegaMenus = Object.entries(megaMenus).map(([index, val]) => {
   let categoryTitle = "";
   const links: string[] = [];
-  
+
   val.forEach((r, i) => {
     if (i === 0) {
       categoryTitle = r.split(sep)[0];
@@ -76,82 +77,100 @@ const processedMegaMenus = Object.entries(megaMenus).map(([index, val]) => {
       links.push(r);
     }
   });
-  
+
   return { index, categoryTitle, links };
 });
 
 // リーガルメニューの処理
-const processedLegalMenu = legalMenu.map(item => {
+const processedLegalMenu = legalMenu.map((item) => {
   const link = item.split(sep);
   const targetValue = link[2] || "_blank";
   return {
     text: link[0],
     href: link[1],
-    target: (targetValue === "_blank" || targetValue === "_self" || targetValue === "_parent" || targetValue === "_top") 
-      ? targetValue as "_blank" | "_self" | "_parent" | "_top" 
-      : "_blank" as const
+    target:
+      targetValue === "_blank" ||
+      targetValue === "_self" ||
+      targetValue === "_parent" ||
+      targetValue === "_top"
+        ? (targetValue as "_blank" | "_self" | "_parent" | "_top")
+        : ("_blank" as const),
   };
 });
 ---
 
-<footer id="page-footer" class={`footer${fullsize ? ' footer-home' : ''}`}>
+<footer id="page-footer" class={`footer${fullsize ? " footer-home" : ""}`}>
   <div class="footer-home">
-    {fullsize && (
-      <div class="footer-mega">
-        <ul class="footer-mega-list">
-          {processedMegaMenus.map(({ index, categoryTitle, links }) => (
-            <li class="footer-mega-item">
-              <h2 class="footer-mega-list-title">
-                <i class="fa fa-book" aria-hidden="true"></i>
-                <span class="footer-mega-list-title-text">{categoryTitle}</span>
-              </h2>
-              <ul class="footer-mega-list-list">
-                {links.map((linkItem) => {
-                  const link = linkItem.split(sep);
-                  const text = link[0];
-                  const href = link[1];
-                  const status = link[2];
-                  
-                  return (
-                    <li class="footer-mega-list-item">
-                      <a href={href}>{text}</a>
-                      {status === "jaonly" && (
-                        <span class="status-info">
-                          <Wovn>i18n__Only_ja</Wovn>
-                        </span>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
-    
+    {
+      fullsize && (
+        <div class="footer-mega">
+          <ul class="footer-mega-list">
+            {processedMegaMenus.map(({ index, categoryTitle, links }) => (
+              <li class="footer-mega-item">
+                <h2 class="footer-mega-list-title">
+                  <i class="fa fa-book" aria-hidden="true" />
+                  <span class="footer-mega-list-title-text">
+                    {categoryTitle}
+                  </span>
+                </h2>
+                <ul class="footer-mega-list-list">
+                  {links.map((linkItem) => {
+                    const link = linkItem.split(sep);
+                    const text = link[0];
+                    const href = link[1];
+                    const status = link[2];
+
+                    return (
+                      <li class="footer-mega-list-item">
+                        <a href={href}>{text}</a>
+                        {status === "jaonly" && (
+                          <span class="status-info">
+                            <Wovn>i18n__Only_ja</Wovn>
+                          </span>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
     <div class="footer-legal-wrap">
       <div class="footer-legal">
         <ul class="footer-legal-list">
-          {processedLegalMenu.map((link) => (
-            <li class="footer-legal-item">
-              <a href={link.href} target={link.target}>
-                {link.text}
-              </a>
-            </li>
-          ))}
+          {
+            processedLegalMenu.map((link) => (
+              <li class="footer-legal-item">
+                <a href={link.href} target={link.target}>
+                  {link.text}
+                </a>
+              </li>
+            ))
+          }
         </ul>
         <div class="footer-legal-copyright">
           <Wovn>i18n__Footer_copyright</Wovn>
         </div>
-        {env.targetRegion === "US" && (
-          <>
-            <!-- CookiePro Cookies Settings button start -->
-            <button id="ot-sdk-btn" class="ot-sdk-show-settings">Cookie Settings</button>
-            <!-- CookiePro Cookies Settings button end -->
-            <script is:inline type="text/javascript" src="/k/javascripts/geolocation.js"></script>
-          </>
-        )}
+        {
+          env.targetRegion === "US" && (
+            <>
+              {/* CookiePro Cookies Settings button start */}
+              <button id="ot-sdk-btn" class="ot-sdk-show-settings">
+                Cookie Settings
+              </button>
+              {/* CookiePro Cookies Settings button end */}
+              <script
+                is:inline
+                type="text/javascript"
+                src="/k/javascripts/geolocation.js"
+              />
+            </>
+          )
+        }
       </div>
     </div>
   </div>

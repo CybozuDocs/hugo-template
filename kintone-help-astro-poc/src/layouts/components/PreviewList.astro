@@ -1,7 +1,7 @@
 ---
 import { env } from "@/lib/env";
-import Title from './Title.astro';
-import type { BaseProps } from './types';
+import Title from "./Title.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {
   page: {
@@ -30,32 +30,34 @@ const sortedSections = page.sections.sort((a, b) => {
 
 <nav>
   <div class="preview_list_container">
-    {sortedSections.map((section) => {
-      // ページを重み順でソート
-      const sortedPages = section.pages.sort((a, b) => {
-        const weightA = a.weight || 0;
-        const weightB = b.weight || 0;
-        return weightA - weightB;
-      });
+    {
+      sortedSections.map((section) => {
+        // ページを重み順でソート
+        const sortedPages = section.pages.sort((a, b) => {
+          const weightA = a.weight || 0;
+          const weightB = b.weight || 0;
+          return weightA - weightB;
+        });
 
-      return (
-        <div class="preview_list_item" role="presentation">
-          <div class="preview_list_title">
-            <a href={section.relPermalink}>
-              <Title page={section} />
-            </a>
+        return (
+          <div class="preview_list_item" role="presentation">
+            <div class="preview_list_title">
+              <a href={section.relPermalink}>
+                <Title page={section} />
+              </a>
+            </div>
+            <ul>
+              {sortedPages.map((page) => (
+                <li>
+                  <a href={page.relPermalink}>
+                    <Title page={page} />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul>
-            {sortedPages.map((page) => (
-              <li>
-                <a href={page.relPermalink}>
-                  <Title page={page} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      );
-    })}
+        );
+      })
+    }
   </div>
 </nav>

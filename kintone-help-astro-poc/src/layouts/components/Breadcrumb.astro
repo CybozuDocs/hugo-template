@@ -1,7 +1,7 @@
 ---
 import { env } from "@/lib/env";
-import BreadcrumbNav from './BreadcrumbNav.astro';
-import type { BaseProps } from './types';
+import BreadcrumbNav from "./BreadcrumbNav.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
@@ -9,7 +9,7 @@ const { page } = Astro.props;
 ---
 
 <nav class="breadcrumb" role="navigation" aria-label="i18n__todo__Bread_crumb">
-    <ul class="breadcrumbs">
-        <BreadcrumbNav p1={page} p2={page} />
-    </ul>
+  <ul class="breadcrumbs">
+    <BreadcrumbNav p1={page} p2={page} />
+  </ul>
 </nav>

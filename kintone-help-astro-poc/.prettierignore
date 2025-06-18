@@ -1,0 +1,15 @@
+# ビルド出力
+dist/
+.astro/
+
+# 静的ファイル（Hugo生成物）
+public/
+
+# ドキュメント内のコードブロック（構文エラー回避）
+migration-docs/
+
+# 構文エラーのあるAstroファイル
+src/pages/
+src/layouts/components/AlternateLink.astro
+src/layouts/components/MegaNavGrMegaPanel.astro
+src/layouts/components/TreeNavTreeItem.astro

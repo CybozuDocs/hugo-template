@@ -1,7 +1,7 @@
 ---
 import { getSiteHomeSections } from "@/lib/page";
-import TreeNavStaticMenu from './TreeNavStaticMenu.astro';
-import type { BaseProps } from './types';
+import TreeNavStaticMenu from "./TreeNavStaticMenu.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
@@ -11,13 +11,17 @@ const entries = getSiteHomeSections();
 const target = page;
 
 // 重み順にソート
-const sortedEntries = entries.sort((a: any, b: any) => (a.weight || 0) - (b.weight || 0));
+const sortedEntries = entries.sort(
+  (a: any, b: any) => (a.weight || 0) - (b.weight || 0),
+);
 ---
 
 <nav class="static_tree" tabindex="0">
   <ul>
-    {sortedEntries.map((entry: any) => (
-      <TreeNavStaticMenu curnode={entry} target={target} />
-    ))}
+    {
+      sortedEntries.map((entry: any) => (
+        <TreeNavStaticMenu curnode={entry} target={target} />
+      ))
+    }
   </ul>
 </nav>

@@ -1,6 +1,6 @@
 ---
-import AnchorLink2 from '@/layouts/components/AnchorLink2.astro';
-import { getRelPermalink } from '@/lib/page';
+import AnchorLink2 from "@/layouts/components/AnchorLink2.astro";
+import { getRelPermalink } from "@/lib/page";
 import { env } from "@/lib/env";
 
 interface Props {
@@ -15,10 +15,10 @@ const { level = 2, id, class: className } = Astro.props;
 const ti = {
   Level: level,
   Anchor: id,
-  Text: '', // slotを使用するため空文字
+  Text: "", // slotを使用するため空文字
   Attributes: {
-    class: className || ''
-  }
+    class: className || "",
+  },
 };
 
 // 相対パーマリンクを取得

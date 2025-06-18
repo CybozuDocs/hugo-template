@@ -1,7 +1,7 @@
 ---
 import { env } from "@/lib/env";
-import Title from './Title.astro';
-import type { BaseProps } from './types';
+import Title from "./Title.astro";
+import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
 
@@ -13,7 +13,7 @@ let tocs: string[] = [];
 
 if (page.content) {
   // 簡易的なTOC実装（正規表現による見出し抽出）
-  const headingMatches = page.content.match(new RegExp(tocregex, 'g'));
+  const headingMatches = page.content.match(new RegExp(tocregex, "g"));
   if (headingMatches) {
     tocs = headingMatches;
   }
@@ -30,11 +30,11 @@ const processTocItem = (tocItem: string) => {
       const params2 = param.split(">");
       for (const p2 of params2) {
         if (p2.includes("pid=")) {
-          anc = p2.replace(/^pid="/, '').replace(/"$/, '');
+          anc = p2.replace(/^pid="/, "").replace(/"$/, "");
         }
       }
     } else if (param.includes("id=")) {
-      anc = param.replace(/^id="/, '').replace(/"$/, '');
+      anc = param.replace(/^id="/, "").replace(/"$/, "");
     }
   }
 
@@ -42,7 +42,7 @@ const processTocItem = (tocItem: string) => {
   const txtMatches = tocItem.match(/>.+</);
   let txt = "";
   if (txtMatches && txtMatches.length > 0) {
-    txt = txtMatches[0].replace(/^>/, '').replace(/<$/, '');
+    txt = txtMatches[0].replace(/^>/, "").replace(/<$/, "");
   }
 
   return { anc, txt };
@@ -62,19 +62,28 @@ const safeHTML = (html: string) => html;
   </div>
   <nav id="tree-main" class="tree-main" role="tree">
     <ul>
-      <li class="dummy-node" data-jstree='{ "opened" : true, "disabled" : true }'>
-        {tocs.length > 0 && (
-          <ul>
-            {tocs.map((tocItem) => {
-              const { anc, txt } = processTocItem(tocItem);
-              return (
-                <li>
-                  <a href={`${page.relPermalink}#${anc}`} class="toclink" set:html={safeHTML(txt)}></a>
-                </li>
-              );
-            })}
-          </ul>
-        )}
+      <li
+        class="dummy-node"
+        data-jstree='{ "opened" : true, "disabled" : true }'
+      >
+        {
+          tocs.length > 0 && (
+            <ul>
+              {tocs.map((tocItem) => {
+                const { anc, txt } = processTocItem(tocItem);
+                return (
+                  <li>
+                    <a
+                      href={`${page.relPermalink}#${anc}`}
+                      class="toclink"
+                      set:html={safeHTML(txt)}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          )
+        }
       </li>
     </ul>
   </nav>

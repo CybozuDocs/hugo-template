@@ -4,29 +4,29 @@
 
 ## 関数・変数の置換
 
-| Hugo | Astro | 備考 |
-| ---- | ----- | ---- |
-| `{{ slice }}` | `[]` | 空配列初期化 |
-| `{{ eq .Site.Params.google_search true }}` | `env.googleSearch` | envプロパティに集約 |
-| `{{ eq .Site.Params.bing_search true }}` | `env.bingSearch` | envプロパティに集約 |
-| `{{ .Site.Params.google_search_tabs }}` | `env.googleSearchTabs` | envプロパティに集約 |
-| `{{ .Site.Params.bing_search_tabs }}` | `env.bingSearchTabs` | envプロパティに集約 |
-| `{{ gt ( $paramfilter \| len ) 0 }}` | `paramFilter.length > 0` | 文字列長チェック |
-| `{{ strings.TrimLeft "[" $paramfilter }}` | `paramFilter.replace(/^\\[/, '')` | 文字列前方削除 |
-| `{{ strings.TrimRight "]" $paramfilter }}` | `paramFilter.replace(/\\]$/, '')` | 文字列後方削除 |
-| `{{ split $paramfilter "," }}` | `trimmed.split(',')` | 文字列分割 |
-| `{{ i18n "Search_example" }}` | `i18n__todo__Search_example` | placeholder内のためTODO |
-| `{{ i18n "Enter_keywords" }}` | `i18n__todo__Enter_keywords` | placeholder内のためTODO |
-| `{{ or .IsHome (eq .Params.type "search_result") }}` | `page.isHome \|\| page.params.type === "search_result"` | 論理演算 |
-| `{{ printf "%s %s" $buttonstyle "search-filter-current-top" }}` | `buttonstyle += " search-filter-current-top"` | 文字列結合 |
-| `{{ i18n "Search_filter" }}` | `i18n__todo__Search_filter` | title属性内のためTODO |
-| `{{ strings.Trim (index $filter 0) "'" }}` | `filter[0]?.replace(/^'\|'$/g, '') \|\| ''` | 文字列トリム |
-| `{{ range $idx, $value := $filter }}` | `filter.map((value, idx) => ())` | 配列反復 |
-| `{{ printf "%s%s" $classname " search-filter-selected" }}` | `` `${classname} search-filter-selected` `` | 文字列結合 |
-| `{{ i18n "search_word" }}` | `i18n__todo__search_word` | aria-label内のためTODO |
-| `{{ i18n "search" }}` | `i18n__todo__search` | title/aria-label内のためTODO |
-| `{{ i18n "search_bing" }}` | `<Wovn>i18n__search_bing</Wovn>` | WOVN対応 |
-| `{{ i18n "search_bing_legal" }}` | `<Wovn>i18n__search_bing_legal</Wovn>` | WOVN対応 |
+| Hugo                                                            | Astro                                                   | 備考                         |
+| --------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------- |
+| `{{ slice }}`                                                   | `[]`                                                    | 空配列初期化                 |
+| `{{ eq .Site.Params.google_search true }}`                      | `env.googleSearch`                                      | envプロパティに集約          |
+| `{{ eq .Site.Params.bing_search true }}`                        | `env.bingSearch`                                        | envプロパティに集約          |
+| `{{ .Site.Params.google_search_tabs }}`                         | `env.googleSearchTabs`                                  | envプロパティに集約          |
+| `{{ .Site.Params.bing_search_tabs }}`                           | `env.bingSearchTabs`                                    | envプロパティに集約          |
+| `{{ gt ( $paramfilter \| len ) 0 }}`                            | `paramFilter.length > 0`                                | 文字列長チェック             |
+| `{{ strings.TrimLeft "[" $paramfilter }}`                       | `paramFilter.replace(/^\\[/, '')`                       | 文字列前方削除               |
+| `{{ strings.TrimRight "]" $paramfilter }}`                      | `paramFilter.replace(/\\]$/, '')`                       | 文字列後方削除               |
+| `{{ split $paramfilter "," }}`                                  | `trimmed.split(',')`                                    | 文字列分割                   |
+| `{{ i18n "Search_example" }}`                                   | `i18n__todo__Search_example`                            | placeholder内のためTODO      |
+| `{{ i18n "Enter_keywords" }}`                                   | `i18n__todo__Enter_keywords`                            | placeholder内のためTODO      |
+| `{{ or .IsHome (eq .Params.type "search_result") }}`            | `page.isHome \|\| page.params.type === "search_result"` | 論理演算                     |
+| `{{ printf "%s %s" $buttonstyle "search-filter-current-top" }}` | `buttonstyle += " search-filter-current-top"`           | 文字列結合                   |
+| `{{ i18n "Search_filter" }}`                                    | `i18n__todo__Search_filter`                             | title属性内のためTODO        |
+| `{{ strings.Trim (index $filter 0) "'" }}`                      | `filter[0]?.replace(/^'\|'$/g, '') \|\| ''`             | 文字列トリム                 |
+| `{{ range $idx, $value := $filter }}`                           | `filter.map((value, idx) => ())`                        | 配列反復                     |
+| `{{ printf "%s%s" $classname " search-filter-selected" }}`      | `` `${classname} search-filter-selected` ``             | 文字列結合                   |
+| `{{ i18n "search_word" }}`                                      | `i18n__todo__search_word`                               | aria-label内のためTODO       |
+| `{{ i18n "search" }}`                                           | `i18n__todo__search`                                    | title/aria-label内のためTODO |
+| `{{ i18n "search_bing" }}`                                      | `<Wovn>i18n__search_bing</Wovn>`                        | WOVN対応                     |
+| `{{ i18n "search_bing_legal" }}`                                | `<Wovn>i18n__search_bing_legal</Wovn>`                  | WOVN対応                     |
 
 ## TODO
 

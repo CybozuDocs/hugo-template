@@ -1,7 +1,7 @@
 ---
 import { getSiteHome } from "@/lib/page";
-import Title from './Title.astro';
-import type { PageProps } from './types';
+import Title from "./Title.astro";
+import type { PageProps } from "./types";
 
 interface Props {
   p1: PageProps;
@@ -25,14 +25,16 @@ function buildBreadcrumb(current: PageProps) {
 buildBreadcrumb(p1);
 ---
 
-{breadcrumbItems.map((item) => (
-  <li>
-    {item === p2 ? (
-      <Title page={item} />
-    ) : (
-      <a href={item.relPermalink}>
+{
+  breadcrumbItems.map((item) => (
+    <li>
+      {item === p2 ? (
         <Title page={item} />
-      </a>
-    )}
-  </li>
-))}
+      ) : (
+        <a href={item.relPermalink}>
+          <Title page={item} />
+        </a>
+      )}
+    </li>
+  ))
+}

@@ -7,14 +7,9 @@ export const buildEnvConfig = (
     targetRegion?: string;
     useWovn?: boolean;
     meganav?: boolean;
-  } = {}
+  } = {},
 ) => {
-  const {
-    languageCode,
-    targetRegion,
-    useWovn = false,
-    meganav,
-  } = options;
+  const { languageCode, targetRegion, useWovn = false, meganav } = options;
 
   const currentLangCode =
     languageCode || import.meta.env.PUBLIC_LANGUAGE_CODE || "ja-jp";
@@ -56,7 +51,8 @@ export const buildEnvConfig = (
     devnetName: import.meta.env.PUBLIC_DEVNET_NAME || "",
     devnetUrl: import.meta.env.PUBLIC_DEVNET_URL || "",
     supportInquiry: import.meta.env.PUBLIC_SUPPORT_INQUIRY || "",
-    defaultContentLanguage: import.meta.env.PUBLIC_DEFAULT_CONTENT_LANGUAGE || "",
+    defaultContentLanguage:
+      import.meta.env.PUBLIC_DEFAULT_CONTENT_LANGUAGE || "",
     footerLinks: import.meta.env.PUBLIC_FOOTER_LINKS || "",
     corpName: import.meta.env.PUBLIC_CORP_NAME || "",
     store: import.meta.env.PUBLIC_STORE || "",

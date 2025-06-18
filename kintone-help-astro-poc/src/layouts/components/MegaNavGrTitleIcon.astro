@@ -10,33 +10,31 @@ const { targetlink } = Astro.props;
 const getIconFromCSV = (targetlink: string): string => {
   // 簡易的なアイコンマッピング（実際のCSVデータで置き換えが必要）
   const iconMappings: Record<string, string> = {
-    '/admin/': 'fas fa-cog',
-    '/user/': 'fas fa-user', 
-    '/intro/': 'fas fa-play',
-    '/spec/': 'fas fa-list',
-    '/system/': 'fas fa-server',
-    '/basic/': 'fas fa-book',
-    '/personal/': 'fas fa-user-circle',
-    '/mobile/': 'fas fa-mobile-alt',
-    '/purpose/': 'fas fa-target',
-    '/guide/': 'fas fa-compass',
-    '/pdf/': 'fas fa-file-pdf',
-    '/glossary/': 'fas fa-book-open',
-    '/error/': 'fas fa-exclamation-triangle'
+    "/admin/": "fas fa-cog",
+    "/user/": "fas fa-user",
+    "/intro/": "fas fa-play",
+    "/spec/": "fas fa-list",
+    "/system/": "fas fa-server",
+    "/basic/": "fas fa-book",
+    "/personal/": "fas fa-user-circle",
+    "/mobile/": "fas fa-mobile-alt",
+    "/purpose/": "fas fa-target",
+    "/guide/": "fas fa-compass",
+    "/pdf/": "fas fa-file-pdf",
+    "/glossary/": "fas fa-book-open",
+    "/error/": "fas fa-exclamation-triangle",
   };
-  
+
   for (const [path, icon] of Object.entries(iconMappings)) {
     if (targetlink.includes(path)) {
       return icon;
     }
   }
-  
-  return ''; // アイコンなし
+
+  return ""; // アイコンなし
 };
 
 const iconClass = getIconFromCSV(targetlink);
 ---
 
-{iconClass && (
-  <i class={`${iconClass} gcol-title-icon`} aria-hidden="true"></i>
-)}
+{iconClass && <i class={`${iconClass} gcol-title-icon`} aria-hidden="true" />}
