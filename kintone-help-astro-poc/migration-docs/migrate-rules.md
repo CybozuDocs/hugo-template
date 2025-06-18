@@ -587,3 +587,70 @@ import TreeNavMainMenu from './TreeNavMainMenu.astro';
 - 2025年1月 - Props型定義統一化ルールを追加
 - 2025年1月 - env管理の大規模リファクタリングルールを追加
 - 2025年1月 - Astro.globとimport.meta.globの使い分けルールを追加
+- 2025年1月 - getCurrentPage()活用によるページデータ統一ルールを追加
+
+## getCurrentPage() 活用によるページデータ統一ルール
+
+### 1. pageData独自作成の禁止
+
+**ルール**: ページレイアウトコンポーネントでの独自pageDataオブジェクト作成を避け、getCurrentPage()の結果を活用する
+
+```typescript
+// ❌ 禁止: 独自pageData作成
+const pageData = {
+  isHome: isHomePage(Astro.url.pathname),
+  title: frontmatter.title || "",
+  // ... 独自実装
+};
+
+// ✅ 推奨: getCurrentPage()結果の活用
+const currentPage = getCurrentPage(Astro, sections);
+const pageData = {
+  ...currentPage,
+  // 必要な追加プロパティのみ補完
+};
+```
+
+### 2. FrontMatterデータのgetCurrentPage()経由取得
+
+**ルール**: disabled, aliases, labels, type, weight等のFrontMatterデータは、Propsではなくgetcurrpage()結果から取得する
+
+```typescript
+// ❌ 旧方式: Props経由での取得
+type Props = MarkdownLayoutProps<{}> & {
+  disabled?: string[];
+  aliases?: string[];
+  labels?: string[];
+};
+
+// ✅ 新方式: getCurrentPage()結果からの取得
+const currentPage = getCurrentPage(Astro, sections);
+const disabled = currentPage.params.disabled as string[] || [];
+const aliases = currentPage.aliases || [];
+const labels = currentPage.params.labels as string[] || [];
+```
+
+### 3. PageProps型統一の維持
+
+**ルール**: ページデータの型はPagePropsに統一し、コンポーネント間での一貫性を保つ
+
+```typescript
+// ✅ PageProps型に必要なプロパティを追加
+export interface PageProps {
+  type?: string;
+  aliases?: string[];
+  params: {
+    disabled?: string[];
+    labels?: string[];
+    [key: string]: any;
+  };
+}
+```
+
+### 4. データソース一元化の維持
+
+**効果**: 
+- 重複実装の削除
+- 型安全性の向上
+- 保守性の改善
+- 一貫性のあるアーキテクチャ

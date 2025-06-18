@@ -6,7 +6,7 @@ interface Props extends BaseProps {}
 
 const { page } = Astro.props;
 
-const labels = page.params.labels;
+const labels = page.frontmatter.labels;
 const labelColors = env.labelColors;
 const labelLead = env.labelLead;
 const labelContents = env.labelContents;

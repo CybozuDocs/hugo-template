@@ -23,12 +23,11 @@ describe("page.ts", () => {
 
       expect(home.isHome).toBe(true);
       expect(home.isSection).toBe(false);
-      expect(home.title).toBe("kintone ヘルプ");
+      expect(home.frontmatter.title).toBe("kintone ヘルプ");
       expect(home.relPermalink).toBe("/");
       expect(home.permalink).toBe("/");
       expect(home.lang).toBe("ja");
-      expect(home.weight).toBe(0);
-      expect(home.params).toEqual({});
+      expect(home.frontmatter.weight).toBe(0);
     });
   });
 
@@ -47,23 +46,39 @@ describe("page.ts", () => {
         {
           isHome: false,
           isSection: true,
-          title: "はじめる",
           relPermalink: "/k/ja/start",
           permalink: "/k/ja/start",
           lang: "ja",
-          weight: 1,
-          params: {},
+          frontmatter: {
+            title: "はじめる",
+            titleUs: undefined,
+            titleCn: undefined,
+            description: "",
+            weight: 1,
+            type: "",
+            disabled: [],
+            aliases: [],
+            labels: [],
+          },
           sections: [],
           pages: [
             {
               isHome: false,
               isSection: false,
-              title: "kintoneとは",
               relPermalink: "/k/ja/start/whatskintone",
               permalink: "/k/ja/start/whatskintone",
               lang: "ja",
-              weight: 1,
-              params: {},
+              frontmatter: {
+                title: "kintoneとは",
+                titleUs: undefined,
+                titleCn: undefined,
+                description: "",
+                weight: 1,
+                type: "",
+                disabled: [],
+                aliases: [],
+                labels: [],
+              },
               sections: [],
               pages: [],
             },
@@ -77,7 +92,7 @@ describe("page.ts", () => {
       const result = getCurrentPage(mockAstro, mockSections);
 
       expect(result.isHome).toBe(true);
-      expect(result.title).toBe("kintone ヘルプ");
+      expect(result.frontmatter.title).toBe("kintone ヘルプ");
     });
 
     it("/k/パスの場合、ホームページデータを返すこと", () => {
@@ -85,14 +100,14 @@ describe("page.ts", () => {
       const result = getCurrentPage(mockAstro, mockSections);
 
       expect(result.isHome).toBe(true);
-      expect(result.title).toBe("kintone ヘルプ");
+      expect(result.frontmatter.title).toBe("kintone ヘルプ");
     });
 
     it("セクションページを正しく見つけること", () => {
       mockAstro.url = new URL("http://localhost:4321/k/ja/start");
       const result = getCurrentPage(mockAstro, mockSections);
 
-      expect(result.title).toBe("はじめる");
+      expect(result.frontmatter.title).toBe("はじめる");
       expect(result.isSection).toBe(true);
       expect(result.relPermalink).toBe("/k/ja/start");
     });
@@ -101,7 +116,7 @@ describe("page.ts", () => {
       mockAstro.url = new URL("http://localhost:4321/k/ja/start/");
       const result = getCurrentPage(mockAstro, mockSections);
 
-      expect(result.title).toBe("はじめる");
+      expect(result.frontmatter.title).toBe("はじめる");
       expect(result.isSection).toBe(true);
       expect(result.relPermalink).toBe("/k/ja/start");
     });
@@ -110,7 +125,7 @@ describe("page.ts", () => {
       mockAstro.url = new URL("http://localhost:4321/k/ja/start/whatskintone");
       const result = getCurrentPage(mockAstro, mockSections);
 
-      expect(result.title).toBe("kintoneとは");
+      expect(result.frontmatter.title).toBe("kintoneとは");
       expect(result.isSection).toBe(false);
       expect(result.relPermalink).toBe("/k/ja/start/whatskintone");
     });
@@ -128,12 +143,20 @@ describe("page.ts", () => {
       const deepPage: PageProps = {
         isHome: false,
         isSection: false,
-        title: "深いページ",
         relPermalink: "/k/ja/start/sub/deep",
         permalink: "/k/ja/start/sub/deep",
         lang: "ja",
-        weight: 1,
-        params: {},
+        frontmatter: {
+          title: "深いページ",
+          titleUs: undefined,
+          titleCn: undefined,
+          description: "",
+          weight: 1,
+          type: "",
+          disabled: [],
+          aliases: [],
+          labels: [],
+        },
         sections: [],
         pages: [],
       };
@@ -141,12 +164,20 @@ describe("page.ts", () => {
       const subSection: PageProps = {
         isHome: false,
         isSection: true,
-        title: "サブセクション",
         relPermalink: "/k/ja/start/sub",
         permalink: "/k/ja/start/sub",
         lang: "ja",
-        weight: 2,
-        params: {},
+        frontmatter: {
+          title: "サブセクション",
+          titleUs: undefined,
+          titleCn: undefined,
+          description: "",
+          weight: 2,
+          type: "",
+          disabled: [],
+          aliases: [],
+          labels: [],
+        },
         sections: [],
         pages: [deepPage],
       };
@@ -156,7 +187,7 @@ describe("page.ts", () => {
       mockAstro.url = new URL("http://localhost:4321/k/ja/start/sub/deep");
       const result = getCurrentPage(mockAstro, mockSections);
 
-      expect(result.title).toBe("深いページ");
+      expect(result.frontmatter.title).toBe("深いページ");
       expect(result.relPermalink).toBe("/k/ja/start/sub/deep");
     });
   });
@@ -226,16 +257,25 @@ describe("page.ts", () => {
           title: "スタートガイド",
           description: "テスト説明",
           weight: 10,
-          params: { test: "value" },
         },
       };
 
       const result = createPageData(filepath, module);
 
-      expect(result.title).toBe("スタートガイド");
-      expect(result.description).toBe("テスト説明");
-      expect(result.weight).toBe(10);
-      expect(result.params).toEqual({ test: "value" });
+      expect(result.frontmatter.title).toBe("スタートガイド");
+      expect(result.frontmatter.description).toBe("テスト説明");
+      expect(result.frontmatter.weight).toBe(10);
+      expect(result.frontmatter).toEqual({
+        title: "スタートガイド",
+        titleUs: undefined,
+        titleCn: undefined,
+        description: "テスト説明",
+        weight: 10,
+        type: "",
+        disabled: [],
+        aliases: [],
+        labels: [],
+      });
       expect(result.relPermalink).toBe("/k/ja/start");
       expect(result.isSection).toBe(true); // index.mdx なのでセクション
       expect(result.lang).toBe("ja");
@@ -247,10 +287,20 @@ describe("page.ts", () => {
 
       const result = createPageData(filepath, module);
 
-      expect(result.title).toBe("");
-      expect(result.description).toBe("");
-      expect(result.weight).toBe(0);
-      expect(result.params).toEqual({});
+      expect(result.frontmatter.title).toBe("");
+      expect(result.frontmatter.description).toBe("");
+      expect(result.frontmatter.weight).toBe(0);
+      expect(result.frontmatter).toEqual({
+        title: "",
+        titleUs: undefined,
+        titleCn: undefined,
+        description: "",
+        weight: 0,
+        type: "",
+        disabled: [],
+        aliases: [],
+        labels: [],
+      });
       expect(result.relPermalink).toBe("/k/ja/start/page");
       expect(result.isSection).toBe(false); // page.md なので通常ページ
     });
@@ -262,14 +312,44 @@ describe("page.ts", () => {
     beforeEach(() => {
       sectionsByPath = new Map();
       sectionsByPath.set("/ja/start", {
-        title: "スタート",
-        relPermalink: "/k/ja/start",
+        isHome: false,
         isSection: true,
+        relPermalink: "/k/ja/start",
+        permalink: "/k/ja/start",
+        lang: "ja",
+        frontmatter: {
+          title: "スタート",
+          titleUs: undefined,
+          titleCn: undefined,
+          description: "",
+          weight: 1,
+          type: "",
+          disabled: [],
+          aliases: [],
+          labels: [],
+        },
+        sections: [],
+        pages: [],
       } as PageProps);
       sectionsByPath.set("/ja/start/advanced", {
-        title: "上級編",
-        relPermalink: "/k/ja/start/advanced",
+        isHome: false,
         isSection: true,
+        relPermalink: "/k/ja/start/advanced",
+        permalink: "/k/ja/start/advanced",
+        lang: "ja",
+        frontmatter: {
+          title: "上級編",
+          titleUs: undefined,
+          titleCn: undefined,
+          description: "",
+          weight: 2,
+          type: "",
+          disabled: [],
+          aliases: [],
+          labels: [],
+        },
+        sections: [],
+        pages: [],
       } as PageProps);
     });
 
@@ -277,14 +357,14 @@ describe("page.ts", () => {
       const pathSegments = ["ja", "start", "page"];
       const result = findParentSection(pathSegments, sectionsByPath);
 
-      expect(result?.title).toBe("スタート");
+      expect(result?.frontmatter.title).toBe("スタート");
     });
 
     it("深い階層の親セクションを見つけること", () => {
       const pathSegments = ["ja", "start", "advanced", "page"];
       const result = findParentSection(pathSegments, sectionsByPath);
 
-      expect(result?.title).toBe("上級編");
+      expect(result?.frontmatter.title).toBe("上級編");
     });
 
     it("親セクションが見つからない場合はundefinedを返すこと", () => {
@@ -301,28 +381,85 @@ describe("page.ts", () => {
     beforeEach(() => {
       pages = [
         {
-          title: "セクション1",
-          relPermalink: "/k/ja/section1",
+          isHome: false,
           isSection: true,
+          relPermalink: "/k/ja/section1",
+          permalink: "/k/ja/section1",
+          lang: "ja",
+          frontmatter: {
+            title: "セクション1",
+            titleUs: undefined,
+            titleCn: undefined,
+            description: "",
+            weight: 1,
+            type: "",
+            disabled: [],
+            aliases: [],
+            labels: [],
+          },
           sections: [
             {
-              title: "サブセクション",
-              relPermalink: "/k/ja/section1/sub",
+              isHome: false,
               isSection: true,
+              relPermalink: "/k/ja/section1/sub",
+              permalink: "/k/ja/section1/sub",
+              lang: "ja",
+              frontmatter: {
+                title: "サブセクション",
+                titleUs: undefined,
+                titleCn: undefined,
+                description: "",
+                weight: 1,
+                type: "",
+                disabled: [],
+                aliases: [],
+                labels: [],
+              },
+              sections: [],
               pages: [
                 {
-                  title: "深いページ",
-                  relPermalink: "/k/ja/section1/sub/deep",
+                  isHome: false,
                   isSection: false,
+                  relPermalink: "/k/ja/section1/sub/deep",
+                  permalink: "/k/ja/section1/sub/deep",
+                  lang: "ja",
+                  frontmatter: {
+                    title: "深いページ",
+                    titleUs: undefined,
+                    titleCn: undefined,
+                    description: "",
+                    weight: 1,
+                    type: "",
+                    disabled: [],
+                    aliases: [],
+                    labels: [],
+                  },
+                  sections: [],
+                  pages: [],
                 } as PageProps,
               ],
             } as PageProps,
           ],
           pages: [
             {
-              title: "ページ1",
-              relPermalink: "/k/ja/section1/page1",
+              isHome: false,
               isSection: false,
+              relPermalink: "/k/ja/section1/page1",
+              permalink: "/k/ja/section1/page1",
+              lang: "ja",
+              frontmatter: {
+                title: "ページ1",
+                titleUs: undefined,
+                titleCn: undefined,
+                description: "",
+                weight: 1,
+                type: "",
+                disabled: [],
+                aliases: [],
+                labels: [],
+              },
+              sections: [],
+              pages: [],
             } as PageProps,
           ],
         } as PageProps,
@@ -331,17 +468,17 @@ describe("page.ts", () => {
 
     it("トップレベルのセクションを見つけること", () => {
       const result = findPageInTree(pages, "/k/ja/section1");
-      expect(result?.title).toBe("セクション1");
+      expect(result?.frontmatter.title).toBe("セクション1");
     });
 
     it("ページを見つけること", () => {
       const result = findPageInTree(pages, "/k/ja/section1/page1");
-      expect(result?.title).toBe("ページ1");
+      expect(result?.frontmatter.title).toBe("ページ1");
     });
 
     it("深い階層のページを見つけること", () => {
       const result = findPageInTree(pages, "/k/ja/section1/sub/deep");
-      expect(result?.title).toBe("深いページ");
+      expect(result?.frontmatter.title).toBe("深いページ");
     });
 
     it("存在しないページの場合はundefinedを返すこと", () => {
@@ -360,36 +497,36 @@ describe("getSiteHomeSections integration", () => {
     expect(sections).toHaveLength(2);
 
     // weight順でソートされているか確認
-    const sectionTitles = sections.map((s) => s.title);
+    const sectionTitles = sections.map((s) => s.frontmatter.title);
     expect(sectionTitles).toEqual(["スタートガイド", "ガイド"]);
 
     // startセクション（.mdx）
-    const startSection = sections.find((s) => s.title === "スタートガイド")!;
+    const startSection = sections.find((s) => s.frontmatter.title === "スタートガイド")!;
     expect(startSection.relPermalink).toBe("/k/ja/start");
     expect(startSection.isSection).toBe(true);
-    expect(startSection.weight).toBe(1);
+    expect(startSection.frontmatter.weight).toBe(1);
 
     const whatskintone = startSection.pages?.find(
-      (p) => p.title === "kintoneとは",
+      (p) => p.frontmatter.title === "kintoneとは",
     );
     expect(whatskintone).toBeDefined();
     expect(whatskintone!.relPermalink).toBe("/k/ja/start/whatskintone");
     expect(whatskintone!.isSection).toBe(false);
 
     const advancedSection = startSection.sections?.find(
-      (s) => s.title === "上級編",
+      (s) => s.frontmatter.title === "上級編",
     );
     expect(advancedSection).toBeDefined();
     expect(advancedSection!.relPermalink).toBe("/k/ja/start/advanced");
     expect(advancedSection!.isSection).toBe(true);
 
     // guideセクション（.md）
-    const guideSection = sections.find((s) => s.title === "ガイド")!;
+    const guideSection = sections.find((s) => s.frontmatter.title === "ガイド")!;
     expect(guideSection.relPermalink).toBe("/k/ja/guide");
     expect(guideSection.isSection).toBe(true);
-    expect(guideSection.weight).toBe(2);
+    expect(guideSection.frontmatter.weight).toBe(2);
 
-    const basicPage = guideSection.pages?.find((p) => p.title === "基本操作");
+    const basicPage = guideSection.pages?.find((p) => p.frontmatter.title === "基本操作");
     expect(basicPage).toBeDefined();
     expect(basicPage!.relPermalink).toBe("/k/ja/guide/basic");
     expect(basicPage!.isSection).toBe(false);
@@ -405,15 +542,15 @@ describe("getSiteHomeSections integration", () => {
     });
 
     // 個別のテスト
-    const startSection = sections.find((s) => s.title === "スタートガイド")!;
-    const guideSection = sections.find((s) => s.title === "ガイド")!;
+    const startSection = sections.find((s) => s.frontmatter.title === "スタートガイド")!;
+    const guideSection = sections.find((s) => s.frontmatter.title === "ガイド")!;
 
     // startセクション内の関係
     const advancedSection = startSection.sections?.find(
-      (s) => s.title === "上級編",
+      (s) => s.frontmatter.title === "上級編",
     );
     const whatskintone = startSection.pages?.find(
-      (p) => p.title === "kintoneとは",
+      (p) => p.frontmatter.title === "kintoneとは",
     );
     const customization = advancedSection?.pages?.[0];
 
@@ -422,7 +559,7 @@ describe("getSiteHomeSections integration", () => {
     expect(customization?.parent).toEqual(advancedSection);
 
     // guideセクション内の関係
-    const basicPage = guideSection.pages?.find((p) => p.title === "基本操作");
+    const basicPage = guideSection.pages?.find((p) => p.frontmatter.title === "基本操作");
     expect(basicPage?.parent).toEqual(guideSection);
   });
 
@@ -430,23 +567,23 @@ describe("getSiteHomeSections integration", () => {
     const sections = await getSiteHomeSections();
 
     // トップレベルセクションがweight順でソートされていること
-    const weights = sections.map((s) => s.weight);
+    const weights = sections.map((s) => s.frontmatter.weight);
     expect(weights).toEqual([1, 2]); // start, guide
 
     // 各セクション内でもソートされていること確認
     sections.forEach((section) => {
       if (section.pages && section.pages.length > 1) {
         for (let i = 0; i < section.pages.length - 1; i++) {
-          expect(section.pages[i].weight).toBeLessThanOrEqual(
-            section.pages[i + 1].weight,
+          expect(section.pages[i].frontmatter.weight).toBeLessThanOrEqual(
+            section.pages[i + 1].frontmatter.weight,
           );
         }
       }
 
       if (section.sections && section.sections.length > 1) {
         for (let i = 0; i < section.sections.length - 1; i++) {
-          expect(section.sections[i].weight).toBeLessThanOrEqual(
-            section.sections[i + 1].weight,
+          expect(section.sections[i].frontmatter.weight).toBeLessThanOrEqual(
+            section.sections[i + 1].frontmatter.weight,
           );
         }
       }

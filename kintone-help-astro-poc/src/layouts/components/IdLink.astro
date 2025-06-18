@@ -8,7 +8,7 @@ interface Props extends BaseProps {}
 const { page } = Astro.props;
 
 // エイリアスから最初の要素を取得
-const alias = page.params.aliases?.[0] || "";
+const alias = page.frontmatter.aliases[0] || "";
 
 // エイリアスをスラッシュで分割
 const a1 = alias.split("/");

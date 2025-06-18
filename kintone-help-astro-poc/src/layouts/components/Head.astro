@@ -49,9 +49,9 @@ const generateTitle = () => {
 
 // 説明文の生成
 const generateDescription = () => {
-  if (page.description) {
+  if (page.frontmatter.description) {
     // TODO: ApplyParams コンポーネントの機能を利用
-    return page.description;
+    return page.frontmatter.description;
   }
 
   // TODO: i18n の実装
@@ -67,16 +67,16 @@ const description = generateDescription();
 
 // robots の判定
 const shouldNoIndex =
-  page.params.type === "search_result" ||
-  page.params.nolink === true ||
+  page.frontmatter.type === "search_result" ||
+  false ||
   env.staging === "true";
 
 // Vue.js が必要な条件
 const needsVue =
-  (page.params.type === "search_result" &&
+  (page.frontmatter.type === "search_result" &&
     (env.googleSearch || env.bingSearch)) ||
-  page.params.type === "gr/section_top_video" ||
-  page.params.type === "gr6/home";
+  page.frontmatter.type === "gr/section_top_video" ||
+  page.frontmatter.type === "gr6/home";
 
 // チャット設定の処理
 const processChatSettings = () => {
@@ -183,13 +183,13 @@ const activeChatTargets = processChatSettings();
 }
 
 {
-  page.params.type === "search_result" && (
+  page.frontmatter.type === "search_result" && (
     <link rel="stylesheet" href={`stylesheets/search_result.css?${buildnum}`} />
   )
 }
 
 {
-  page.params.type === "gr/section_top_video" && (
+  page.frontmatter.type === "gr/section_top_video" && (
     <link rel="stylesheet" href={`stylesheets/video_list.css?${buildnum}`} />
   )
 }
@@ -225,7 +225,7 @@ const activeChatTargets = processChatSettings();
 }
 
 {
-  page.params.type === "gr6/home" && (
+  page.frontmatter.type === "gr6/home" && (
     <script is:inline src={`/k/javascripts/custom_gr6.js?${buildnum}`} />
   )
 }

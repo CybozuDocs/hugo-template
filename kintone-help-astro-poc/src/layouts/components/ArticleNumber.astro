@@ -8,8 +8,8 @@ const { page } = Astro.props;
 
 // エイリアスから記事番号を抽出
 let docid = "";
-if (page.aliases && page.aliases.length > 0) {
-  const alias = page.aliases[0];
+if (page.frontmatter.aliases.length > 0) {
+  const alias = page.frontmatter.aliases[0];
   const parts = alias.split("/");
   docid = parts[parts.length - 1];
 }

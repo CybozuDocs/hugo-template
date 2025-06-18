@@ -658,3 +658,68 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 - **型安全性の向上**:
   - ReplaceParams に全ての置換パラメータを明示的に定義
   - env オブジェクトと ReplaceParams の型整合性確保
+
+#### 0020_pagelayout-current-page-update 作業完了
+- **成果物**: PageLayout.astro の getCurrentPage() 完全活用
+  - 独自pageData作成の削除、getCurrentPage()結果をベースに変更
+  - Props型定義の簡素化（disabled, aliases, labels, type, weight削除）
+  - FrontMatterデータのgetCurrentPage()経由での取得に統一
+- **重要な学習事項**:
+  - データソース一元化によるアーキテクチャ改善効果
+  - PageProps型の統一的活用パターンの確立
+  - FrontMatterデータの統合における型安全性の重要性
+- **技術的実装**:
+  - **lib/page.ts拡張**: createPageData関数にtype, aliases, params.disabled, params.labelsを追加
+  - **PageLayout.astro簡素化**: Props型定義から重複項目削除、独自pageData作成除去
+  - **FrontMatter統合**: `currentPage.params.disabled`, `currentPage.aliases`等での統一取得
+  - **テスト修正**: createPageData関数変更に伴うテスト期待値更新
+- **アーキテクチャ進化**:
+  - **データソース統一**: pageData独自作成からgetCurrentPage()活用への移行
+  - **Props責任分離**: MarkdownLayoutProps以外の冗長なPropsの削除
+  - **型安全性向上**: PageProps統一による一貫性のある型システム
+- **品質確保**:
+  - ビルドテスト成功（2.26秒）
+  - 全テスト成功（28テスト、961ms）
+  - 既存機能への影響なし（Header, TreeNav, Breadcrumb等）
+
+#### 0021_pagelayout-frontmatter-refactor 作業完了
+- **成果物**: FrontMatter データの完全な分離と型安全性向上
+  - frontmatter プロパティによる FrontMatter 値の構造化
+  - 重複プロパティの完全削除と型安全性の向上
+  - PageLayout.astro の中間変数削除による簡素化
+  - Head.astro の page.params 参照修正
+- **重要な学習事項**:
+  - 大規模な型リファクタリングにおける段階的アプローチの有効性
+  - FrontMatter データと計算値の明確な分離による保守性向上
+  - [key: string]: unknown 削除による型安全性の大幅改善
+  - 17個のコンポーネント更新における一貫性維持の重要性
+- **技術的実装**:
+  - **PageProps型定義**: 重複プロパティ削除、frontmatter プロパティに集約
+    ```typescript
+    frontmatter: {
+      title: string;
+      titleUs?: string;
+      titleCn?: string;
+      description: string;
+      weight: number;
+      type: string;
+      disabled: string[];
+      aliases: string[];
+      labels: string[];
+    };
+    ```
+  - **createPageData()**: ルートプロパティ削除、frontmatter のみに統一
+  - **17コンポーネント更新**: `page.title` → `page.frontmatter.title` 変更
+  - **型安全性強化**: `[key: string]: unknown` 削除、params プロパティ削除
+  - **PageLayout.astro**: 中間変数削除、直接参照に変更
+  - **Head.astro**: `page.params.type` → `page.frontmatter.type` 修正
+- **アーキテクチャ進化**:
+  - **データ構造明確化**: FrontMatter 由来値と計算値の完全分離
+  - **型安全性向上**: 意図しないプロパティアクセスの完全防止
+  - **コード簡素化**: 重複削除と中間変数の削除による可読性向上
+  - **一貫性確保**: 全コンポーネントでの統一的なデータアクセスパターン
+- **品質確保**:
+  - 段階的変更によるビルドテスト（各段階で成功確認）
+  - 最終ビルドテスト成功（npm run build、エラーなし）
+  - TypeScript エラー完全解消（Head.astro の page.params 参照修正）
+  - 既存機能の完全保持（DOM 構造、動作に変更なし）

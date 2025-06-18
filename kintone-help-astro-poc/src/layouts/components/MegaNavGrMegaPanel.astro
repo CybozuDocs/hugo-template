@@ -33,8 +33,8 @@ const getIconFromCSV = (targetlink: string): string => {
 
 // ページをweight順にソート
 const sortedPages = (cursect.pages || [])
-  .filter((page: PageProps) => page.params?.weight !== 0)
-  .sort((a: PageProps, b: PageProps) => (a.weight || 0) - (b.weight || 0));
+  .filter((page: PageProps) => page.frontmatter.weight !== 0)
+  .sort((a: PageProps, b: PageProps) => a.frontmatter.weight - b.frontmatter.weight);
 
 let menuid = 0;
 ---
@@ -43,7 +43,7 @@ let menuid = 0;
   sortedPages.map((page: PageProps) => {
   menuid += 1;
   const iconface = getIconFromCSV(page.relPermalink);
-  const nolink = page.params?.nolink === true;
+  const nolink = false; // nolink機能は削除済み
   
   return (
     <div class="mega-panel" role="tabpanel" id={`panel${menuid}`} aria-labelledby={`tab${menuid}`}>

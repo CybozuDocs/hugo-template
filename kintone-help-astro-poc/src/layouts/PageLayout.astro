@@ -19,31 +19,9 @@ type Props = MarkdownLayoutProps<{
   title?: string;
   description?: string;
   weight?: number;
-}> & {
-  // ページ固有設定
-  idSearch?: boolean;
-  supportInquiry?: boolean;
+}>;
 
-  // ページデータ
-  disabled?: string[];
-  aliases?: string[];
-  labels?: string[];
-  content?: string;
-  type?: string;
-  weight?: number;
-};
-
-const {
-  frontmatter,
-  idSearch = false,
-  supportInquiry = false,
-  disabled = [],
-  aliases = [],
-  labels = [],
-  content = "",
-  type = "",
-  weight = frontmatter.weight || 0,
-} = Astro.props;
+const { frontmatter } = Astro.props;
 
 // permalink と relPermalink を生成
 const permalinks = getPermalinks(Astro.url, env.domain);
@@ -51,25 +29,14 @@ const permalinks = getPermalinks(Astro.url, env.domain);
 // サイトのセクション情報を取得
 const sections = await getSiteHomeSections();
 
-// 現在ページを特定（Breadcrumb用）
+// 現在ページを特定
 const currentPage = getCurrentPage(Astro, sections);
 
-// page オブジェクトを構築
+// getCurrentPage()の結果をベースに、不足するプロパティを補完
 const pageData = {
-  isHome: isHomePage(Astro.url.pathname),
-  isSection: false,
-  title: frontmatter.title || "",
-  description: frontmatter.description,
-  content: content,
-  permalink: permalinks.permalink,
-  relPermalink: permalinks.relPermalink,
-  weight: weight,
-  params: {
-    type: type,
-    nolink: false, // TODO: 実際の値を設定
-  },
-  lang: getLangFromLanguageCode(env.languageCode),
-
+  ...currentPage,
+  // frontmatterプロパティを明示的に保持
+  frontmatter: currentPage.frontmatter,
   // Header.astroで必要な追加プロパティ（仮実装）
   allTranslations: [], // TODO: 多言語対応時に実装
   isTranslated: false, // TODO: 多言語対応時に実装
@@ -84,8 +51,8 @@ const pageData = {
   translations: [], // TODO: 多言語対応時に実装
 };
 
-// 無効化チェック
-const isDisabled = disabled.includes(env.targetRegion);
+// 無効化チェック（frontmatter経由で直接アクセス）
+const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
 ---
 
 <!doctype html>
@@ -127,21 +94,21 @@ const isDisabled = disabled.includes(env.targetRegion);
               {env.useWovn && <Disclaimer2 page={pageData} />}
 
               <main id="main" role="main">
-                <Breadcrumb page={currentPage} />
+                <Breadcrumb page={pageData} />
 
                 <article class="article" role="article">
                   <div class="id-title">
-                    <h1>{frontmatter.title}</h1>
-                    {idSearch && aliases && aliases.length > 0 && (
+                    <h1>{currentPage.frontmatter.title}</h1>
+                    {env.idSearch && currentPage.frontmatter.aliases.length > 0 && (
                       <div>[ARTICLE LINK TEMPLATE]</div>
                     )}
                   </div>
 
-                  {idSearch && aliases && aliases.length > 0 && (
+                  {env.idSearch && currentPage.frontmatter.aliases.length > 0 && (
                     <div>[ARTICLE NUMBER TEMPLATE]</div>
                   )}
 
-                  {labels && labels.length > 0 && (
+                  {currentPage.frontmatter.labels.length > 0 && (
                     <div>[HEADER LABEL TEMPLATE]</div>
                   )}
 
@@ -150,7 +117,7 @@ const isDisabled = disabled.includes(env.targetRegion);
 
                 {/* <Related env={env} page={pageData} /> */}
 
-                {type === "series" && <div>[PAGE NAV PARTIAL]</div>}
+                {currentPage.frontmatter.type === "series" && <div>[PAGE NAV PARTIAL]</div>}
               </main>
             </div>
 
@@ -164,7 +131,7 @@ const isDisabled = disabled.includes(env.targetRegion);
           <div>[TREE NAV TOGGLE PARTIAL]</div>
           <div>[GO TO TOP PARTIAL]</div>
 
-          {supportInquiry && env.languageCode === "en-us" && (
+          {env.supportInquiry && env.languageCode === "en-us" && (
             <div>[SUPPORT INQUIRY PARTIAL]</div>
           )}
 

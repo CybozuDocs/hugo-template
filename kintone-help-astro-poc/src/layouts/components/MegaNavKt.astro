@@ -51,8 +51,8 @@ const menu_urls = ["", ...menuData.urls];
 // 現在のタブの決定
 if (
   !page.isHome &&
-  page.params?.type !== "search_result" &&
-  page.params?.type !== "search_id"
+  page.frontmatter.type !== "search_result" &&
+  page.frontmatter.type !== "search_id"
 ) {
   for (let i = 0; i < menu_ids.length; i++) {
     if (menu_ids[i] === strtabnum && curtab === "") {
@@ -82,8 +82,8 @@ const generateMenuItems = () => {
       if (
         !page.isHome &&
         menuid === tabnum &&
-        page.params?.type !== "search_result" &&
-        page.params?.type !== "search_id"
+        page.frontmatter.type !== "search_result" &&
+        page.frontmatter.type !== "search_id"
       ) {
         current = "current";
       }

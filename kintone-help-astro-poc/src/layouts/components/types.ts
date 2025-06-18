@@ -56,39 +56,33 @@ export interface EnvProps {
 
   // FAQ リンク
   faqLink?: string;
-
-  // その他のプロパティ（互換性のため）
-  [key: string]: any;
 }
 
 export interface PageProps {
-  // 基本情報
+  // 基本情報（パスから計算される値）
   isHome: boolean;
   isSection: boolean;
-  title: string;
-  titleUs?: string;
-  titleCn?: string;
-  description?: string;
   relPermalink: string;
   permalink?: string;
-  type?: string;
   lang: string;
-  weight: number;
+
+  // FrontMatterから取得した値
+  frontmatter: {
+    title: string;
+    titleUs?: string;
+    titleCn?: string;
+    description: string;
+    weight: number;
+    type: string;
+    disabled: string[];
+    aliases: string[];
+    labels: string[];
+  };
 
   // ページ階層
   currentSection?: PageProps;
   parent?: PageProps;
   firstSection?: PageProps;
-
-  // パラメータ
-  params: {
-    weight?: number;
-    disabled?: string[];
-    nolink?: boolean;
-    labels?: string[];
-    latestPage?: string;
-    [key: string]: any;
-  };
 
   // コンテンツ
   content?: string;
@@ -112,9 +106,6 @@ export interface PageProps {
 
   // 関数
   isAncestor?: (target: PageProps) => boolean;
-
-  // その他のプロパティ（互換性のため）
-  [key: string]: any;
 }
 
 export interface BaseProps {
@@ -146,7 +137,6 @@ export interface TreeNavEntry {
   title: string;
   relPermalink: string;
   weight?: number;
-  params?: PageProps["params"];
   pages?: TreeNavEntry[];
   sections?: TreeNavEntry[];
   isSection?: boolean;

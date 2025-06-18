@@ -8,11 +8,11 @@ interface Props extends BaseProps {}
 const { page } = Astro.props;
 
 // タイトルの決定ロジック
-let target = page.title;
-if (env.targetRegion === "US" && page.titleUs) {
-  target = page.titleUs;
-} else if (env.targetRegion === "CN" && page.titleCn) {
-  target = page.titleCn;
+let target = page.frontmatter.title;
+if (env.targetRegion === "US" && page.frontmatter.titleUs) {
+  target = page.frontmatter.titleUs;
+} else if (env.targetRegion === "CN" && page.frontmatter.titleCn) {
+  target = page.frontmatter.titleCn;
 }
 ---
 

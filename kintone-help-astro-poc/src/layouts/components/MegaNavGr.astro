@@ -43,8 +43,8 @@ if (page.isHome) {
 ) {
   seconditems = 0;
 } else if (
-  page.params?.type === "search_result" ||
-  page.params?.type === "gr/sitemap"
+  page.frontmatter.type === "search_result" ||
+  page.frontmatter.type === "gr/sitemap"
 ) {
   seconditems = 0;
 }
@@ -101,7 +101,7 @@ const sortedEntries = entries.sort(
   </ul>
 
   <div
-    class={`mega-nav ${page.params?.type === "gr6/home" ? "mega-nav-home" : ""}`}
+    class={`mega-nav ${page.frontmatter.type === "gr6/home" ? "mega-nav-home" : ""}`}
   >
     {
       seconditems > 0 && (

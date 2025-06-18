@@ -17,7 +17,7 @@ if (targetRegion === "US") {
   regions = ["JP", "CN"];
 }
 
-const disabled = page.params.disabled || [];
+const disabled = page.frontmatter.disabled;
 
 // TODO: language_list.jsonの読み込みに切り替える必要があるかも
 // import languageListData from '../data/language_list.json';

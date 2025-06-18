@@ -615,11 +615,60 @@ const { page } = Astro.props;
 
 ## FrontMatter データの設計原則
 
-### 地域別データの扱い
+### データ構造の分離
 
-- FrontMatter の地域別データ（title_us, title_cn など）は PageProps のトップレベルプロパティとして統合
-- params オブジェクトではなく、直接アクセス可能な形で提供
-- コンポーネントは PageProps から統一的にアクセス
+- FrontMatter 由来の値は `frontmatter` プロパティに集約
+- 計算値（isHome, isSection 等）は PageProps のトップレベルに配置
+- 重複プロパティは排除し、データ構造を明確化
+
+### FrontMatter プロパティの設計
+
+```typescript
+export interface PageProps {
+  // 計算値（パスから計算される値）
+  isHome: boolean;
+  isSection: boolean;
+  relPermalink: string;
+  permalink?: string;
+  lang: string;
+
+  // FrontMatter から取得した値
+  frontmatter: {
+    title: string;
+    titleUs?: string;
+    titleCn?: string;
+    description: string;
+    weight: number;
+    type: string;
+    disabled: string[];
+    aliases: string[];
+    labels: string[];
+  };
+
+  // 階層構造
+  sections: PageProps[];
+  pages: PageProps[];
+  parent?: PageProps;
+}
+```
+
+### コンポーネントでのアクセスパターン
+
+```astro
+<!-- FrontMatter 値への統一アクセス -->
+<h1>{page.frontmatter.title}</h1>
+<p>{page.frontmatter.description}</p>
+
+<!-- 計算値への直接アクセス -->
+{page.isHome && <div>ホームページ</div>}
+```
+
+### 型安全性の確保
+
+- `[key: string]: unknown` の使用を禁止
+- 意図しないプロパティアクセスを防止
+- すべてのプロパティを明示的に定義
+- デフォルト値設定により `?` オプショナルマーカーを最小化
 
 ### パラメータ置換の型安全性
 

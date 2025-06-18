@@ -54,19 +54,32 @@ export function createPageData(
   const pathSegments = getPathSegments(urlPath);
   const lang = pathSegments[0] || "ja";
 
-  return {
-    isHome: urlPath === "" || urlPath === "/",
-    isSection:
-      filepath.endsWith("/index.mdx") || filepath.endsWith("/index.md"),
+  // FrontMatterから取得した値（デフォルト値を含む）
+  const frontmatterData = {
     title: (frontmatter.title as string) || "",
     titleUs: (frontmatter.title_us as string) || undefined,
     titleCn: (frontmatter.title_cn as string) || undefined,
     description: (frontmatter.description as string) || "",
+    weight: (frontmatter.weight as number) || 0,
+    type: (frontmatter.type as string) || "",
+    disabled: (frontmatter.disabled as string[]) || [],
+    aliases: (frontmatter.aliases as string[]) || [],
+    labels: (frontmatter.labels as string[]) || [],
+  };
+
+  return {
+    // パスから計算される値
+    isHome: urlPath === "" || urlPath === "/",
+    isSection:
+      filepath.endsWith("/index.mdx") || filepath.endsWith("/index.md"),
     relPermalink: "/k" + urlPath,
     permalink: "/k" + urlPath,
     lang: lang,
-    weight: (frontmatter.weight as number) || 0,
-    params: (frontmatter.params as Record<string, unknown>) || {},
+
+    // FrontMatterから取得した値
+    frontmatter: frontmatterData,
+
+    // 階層構造
     sections: [],
     pages: [],
     parent: undefined, // 後で設定
@@ -140,14 +153,20 @@ export function getSiteHome(): PageProps {
   return {
     isHome: true,
     isSection: false,
-    title: "kintone ヘルプ",
-    titleUs: undefined,
-    titleCn: undefined,
     relPermalink: "/",
     permalink: "/",
     lang: "ja",
-    weight: 0,
-    params: {},
+    frontmatter: {
+      title: "kintone ヘルプ",
+      titleUs: undefined,
+      titleCn: undefined,
+      description: "",
+      weight: 0,
+      type: "",
+      disabled: [],
+      aliases: [],
+      labels: [],
+    },
   };
 }
 
@@ -285,12 +304,12 @@ function sortPagesAndSections(sectionsMap: Map<string, PageProps>): void {
   for (const section of sectionsMap.values()) {
     // セクションのページを weight でソート
     if (section.pages) {
-      section.pages.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+      section.pages.sort((a, b) => a.frontmatter.weight - b.frontmatter.weight);
     }
 
     // セクションのサブセクションを weight でソート
     if (section.sections) {
-      section.sections.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+      section.sections.sort((a, b) => a.frontmatter.weight - b.frontmatter.weight);
     }
   }
 }
@@ -318,7 +337,7 @@ export async function getSiteHomeSections(): Promise<PageProps[]> {
   // トップレベルのセクションのみを返す（親がホームのもの）
   const topLevelSections = Array.from(sectionsMap.values())
     .filter((section) => section.parent === homeData)
-    .sort((a, b) => (a.weight || 0) - (b.weight || 0));
+    .sort((a, b) => a.frontmatter.weight - b.frontmatter.weight);
 
   return topLevelSections;
 }

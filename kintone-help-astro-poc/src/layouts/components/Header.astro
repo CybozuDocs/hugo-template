@@ -24,7 +24,7 @@ const baseLink = `${base}${page.lang}/`;
 
 // サーチボックス表示の判定
 let dispSbox = true;
-if (page.params.type === "search_result") {
+if (page.frontmatter.type === "search_result") {
   dispSbox = false;
 } else if (page.isHome) {
   dispSbox = false;

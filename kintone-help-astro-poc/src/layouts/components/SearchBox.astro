@@ -23,7 +23,7 @@ if (paramFilter.length > 0) {
 }
 
 // フルサイズ判定
-const fullsize = page.isHome || page.params.type === "search_result";
+const fullsize = page.isHome || page.frontmatter.type === "search_result";
 
 // プレースホルダーの決定
 let placeholder = "";
