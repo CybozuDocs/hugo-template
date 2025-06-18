@@ -2,11 +2,6 @@
 import type { MarkdownLayoutProps } from "astro";
 import Head from "./components/Head.astro";
 import { env } from "../lib/env.js";
-import {
-  getPermalinks,
-  isHomePage,
-  getLangFromLanguageCode,
-} from "../lib/url.js";
 import { getCurrentPage, getSiteHomeSections } from "../lib/page";
 import Disclaimer2 from "./components/Disclaimer2.astro";
 // import Related from "./components/Related.astro";
@@ -20,11 +15,6 @@ type Props = MarkdownLayoutProps<{
   description?: string;
   weight?: number;
 }>;
-
-const { frontmatter } = Astro.props;
-
-// permalink と relPermalink を生成
-const permalinks = getPermalinks(Astro.url, env.domain);
 
 // サイトのセクション情報を取得
 const sections = await getSiteHomeSections();
