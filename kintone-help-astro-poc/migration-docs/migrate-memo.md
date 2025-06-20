@@ -723,3 +723,26 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - 最終ビルドテスト成功（npm run build、エラーなし）
   - TypeScript エラー完全解消（Head.astro の page.params 参照修正）
   - 既存機能の完全保持（DOM 構造、動作に変更なし）
+
+#### 0022_pagelayout-placeholders-implementation 作業完了
+- **成果物**: PageLayout.astro での TreeNavToggle と GoToTop コンポーネント統合
+  - `[TREE NAV TOGGLE PARTIAL]` と `[GO TO TOP PARTIAL]` プレースホルダーから実コンポーネント呼び出しに移行
+  - 既存の適切に実装済みコンポーネントを活用した効率的な統合
+  - DOM 構造の正確な保持と型安全性の確保
+- **重要な学習事項**:
+  - 既存実装の充実度確認の重要性（TreeNavToggle.astro, GoToTop.astro が既に適切に実装済み）
+  - プレースホルダーから実装への移行パターンの有効性
+  - BaseProps による統一的な型設計の継続活用
+- **技術的実装**:
+  - **TreeNavToggle.astro**: 2つのボタン（show/hide）、Font Awesome アイコン（chevron-right/left）
+  - **GoToTop.astro**: Font Awesome スタックアイコン（circle + arrow-circle-up）
+  - **PageLayout.astro**: import 文追加（2行）、プレースホルダー置換（2行）
+  - **型安全性**: BaseProps 継承による一貫した Props 型定義
+- **品質確保**:
+  - ビルドテスト成功（npm run build、3.24秒、エラーなし）
+  - DOM 構造の Hugo 実装との完全一致
+  - TypeScript 型チェック通過
+- **アーキテクチャ進化**:
+  - プレースホルダー管理による段階的実装の効果的活用
+  - 既存コンポーネント資産の適切な再利用
+  - 統一された型システムによる保守性向上

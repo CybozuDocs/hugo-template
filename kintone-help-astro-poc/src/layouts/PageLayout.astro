@@ -9,6 +9,8 @@ import Footer from "./components/Footer.astro";
 import Header from "./components/Header.astro";
 import TreeNav from "./components/TreeNav.astro";
 import Breadcrumb from "./components/Breadcrumb.astro";
+import TreeNavToggle from "./components/TreeNavToggle.astro";
+import GoToTop from "./components/GoToTop.astro";
 
 type Props = MarkdownLayoutProps<{
   title?: string;
@@ -81,7 +83,7 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
             </div>
 
             <div id="contents" class="contents-wrap">
-              {env.useWovn && <Disclaimer2 page={pageData} />}
+              {env.useWovn && <Disclaimer2 />}
 
               <main id="main" role="main">
                 <Breadcrumb page={pageData} />
@@ -118,14 +120,14 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
             </div>
           </div>
 
-          <div>[TREE NAV TOGGLE PARTIAL]</div>
-          <div>[GO TO TOP PARTIAL]</div>
+          <TreeNavToggle />
+          <GoToTop />
 
           {env.supportInquiry && env.languageCode === "en-us" && (
             <div>[SUPPORT INQUIRY PARTIAL]</div>
           )}
 
-          <div>[ENQUETE PARTIAL]</div>
+          {/* <div>[ENQUETE PARTIAL]</div> */}
           <Footer page={pageData} />
         </>
       )
