@@ -63,7 +63,11 @@ export function createPageData(
     weight: (frontmatter.weight as number) || 0,
     type: (frontmatter.type as string) || "",
     disabled: (frontmatter.disabled as string[]) || [],
-    aliases: (frontmatter.aliases as string[]) || [],
+    aliases: Array.isArray(frontmatter.aliases)
+      ? (frontmatter.aliases as string[])
+      : typeof frontmatter.aliases === "string"
+        ? [frontmatter.aliases]
+        : [],
     labels: (frontmatter.labels as string[]) || [],
   };
 
