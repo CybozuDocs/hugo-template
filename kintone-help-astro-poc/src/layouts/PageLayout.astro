@@ -17,6 +17,7 @@ import LocaleModal from "./components/LocaleModal.astro";
 import ArticleLink from "./components/ArticleLink.astro";
 import ArticleNumber from "./components/ArticleNumber.astro";
 import HeaderLabel from "./components/HeaderLabel.astro";
+import PageNav from "./components/PageNav.astro";
 
 type Props = MarkdownLayoutProps<{
   title?: string;
@@ -110,7 +111,10 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
                 {/* <Related env={env} page={pageData} /> */}
 
                 {currentPage.frontmatter.type === "series" && (
-                  <div>[PAGE NAV PARTIAL]</div>
+                  <PageNav 
+                    nextInSection={undefined} 
+                    prevInSection={undefined}
+                  />
                 )}
               </main>
             </div>

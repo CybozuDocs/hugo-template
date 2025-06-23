@@ -2,20 +2,29 @@
 
 元ファイル: `layouts/partials/pagenav.html`
 
-## 関数・変数の置換
+## Props最適化
+
+| 修正前 | 修正後 | 理由 |
+|--------|--------|------|
+| `interface Props extends BaseProps {}` | `interface Props { nextInSection?: { permalink: string; }; prevInSection?: { permalink: string; }; }` | 必要最小限のプロパティのみに限定 |
+| `const { page } = Astro.props;` | `const { nextInSection, prevInSection } = Astro.props;` | 直接必要なプロパティを受け取る |
+| `page.nextInSection` | `nextInSection` | Props最適化に伴う参照変更 |
+| `page.prevInSection` | `prevInSection` | Props最適化に伴う参照変更 |
+
+## Hugo → Astro 変換
 
 | Hugo                         | Astro                              | 備考                |
 | ---------------------------- | ---------------------------------- | ------------------- |
 | `{{ i18n "Previous_page" }}` | `<Wovn>i18n__Previous_page</Wovn>` | WOVN 対応           |
 | `{{ i18n "Next_page" }}`     | `<Wovn>i18n__Next_page</Wovn>`     | WOVN 対応           |
-| `.NextInSection`             | `page.nextInSection`               | page プロパティ     |
-| `.PrevInSection`             | `page.prevInSection`               | page プロパティ     |
-| `.Permalink`                 | `.permalink`                       | プロパティ名        |
-| `{{ with }}`                 | `{variable && (...)}`              | JavaScript の条件式 |
+| `{{ with .NextInSection }}`  | `{ nextInSection && (`             | 条件分岐の変換       |
+| `{{ with .PrevInSection }}`  | `{ prevInSection && (`             | 条件分岐の変換       |
+| `{{ .Permalink }}`           | `{nextInSection.permalink}`        | プロパティ参照の変換 |
 
 ## TODO
 
-なし
+- [ ] nextInSectionとprevInSectionの実際の値を取得するロジックの実装
+- [ ] シリーズページでの前後ページナビゲーション機能の完全実装
 
 ## 構造の変化
 

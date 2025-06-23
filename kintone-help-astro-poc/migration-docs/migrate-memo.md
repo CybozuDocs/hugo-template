@@ -883,3 +883,30 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - Hugo ショートコード構文 `{{< hint >}}` → Astro コンポーネント `<Hint>`
   - import 文の追加による適切なコンポーネント読み込み
   - 既存 MDX ファイルでの即座に使用可能な状態
+
+#### 0028_page-nav-component 作業完了
+- **成果物**: PageLayout.astro での PageNav コンポーネント統合
+  - `[PAGE NAV PARTIAL]` プレースホルダーから実際の PageNav.astro コンポーネント呼び出しに移行
+  - Props最適化による BaseProps から必要最小限のカスタムProps への変更
+  - DOM構造の完全保持と型安全性の確保
+- **重要な学習事項**:
+  - Props最適化パターンの確立（page全体 → 必要プロパティのみ）
+  - 段階的統合アプローチの有効性（TODO実装による将来拡張への備え）
+  - 既存コンポーネント活用による効率的な移行手法
+- **技術的実装**:
+  - **Props設計改善**: `interface Props extends BaseProps {}` → `{ nextInSection?: { permalink: string; }; prevInSection?: { permalink: string; }; }`
+  - **参照の最適化**: `page.nextInSection` → `nextInSection` による直接参照
+  - **PageLayout統合**: import追加、プレースホルダー置換、条件付きレンダリング維持
+  - **型安全性**: 必要最小限のプロパティ定義による明確なインターフェース
+- **品質確保**:
+  - ビルドテスト成功（npm run build、2.30秒、エラーなし）
+  - DOM構造の Hugo pagenav.html との完全一致
+  - 変更記録ファイル（PageNav.md）更新完了
+- **残された課題（TODO実装）**:
+  - nextInSection/prevInSection の実際の値取得ロジック
+  - シリーズページでの前後ページナビゲーション機能の完全実装
+  - Hugo の .NextInSection/.PrevInSection と同等の機能実現
+- **アーキテクチャ進化**:
+  - Props最適化による依存関係の削除と型安全性向上
+  - 段階的統合パターンの確立（機能的完成度よりも構造的統合を優先）
+  - 既存コンポーネント活用による効率的な移行手法の実証
