@@ -309,7 +309,9 @@ function sortPagesAndSections(sectionsMap: Map<string, PageProps>): void {
 
     // セクションのサブセクションを weight でソート
     if (section.sections) {
-      section.sections.sort((a, b) => a.frontmatter.weight - b.frontmatter.weight);
+      section.sections.sort(
+        (a, b) => a.frontmatter.weight - b.frontmatter.weight,
+      );
     }
   }
 }

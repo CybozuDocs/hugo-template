@@ -1,18 +1,22 @@
 ---
+import { env } from "@/lib/env";
 import Wovn from "@/components/Wovn.astro";
-import type { BaseProps } from "./types";
 
-interface Props extends BaseProps {}
+interface Props {
+  aliases: string[];
+}
 
-const { page } = Astro.props;
+const { aliases } = Astro.props;
+
+// 表示条件をチェック（idSearchはenvから直接取得）
+if (!env.idSearch || aliases.length === 0) {
+  return null;
+}
 
 // エイリアスから記事番号を抽出
-let docid = "";
-if (page.frontmatter.aliases.length > 0) {
-  const alias = page.frontmatter.aliases[0];
-  const parts = alias.split("/");
-  docid = parts[parts.length - 1];
-}
+const alias = aliases[0];
+const parts = alias.split("/");
+const docid = parts[parts.length - 1];
 ---
 
 {

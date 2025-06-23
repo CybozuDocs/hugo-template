@@ -503,6 +503,50 @@ import { env } from "@/lib/env";
 - 条件ロジックの一元管理
 - Props削除による性能向上
 
+### 8. コンポーネント内条件判定パターン
+
+**ルール**: 環境変数に依存する表示条件はコンポーネント内部で判定可能
+
+#### 実装パターン（2025年1月追加）
+```astro
+<!-- ArticleLink.astro/ArticleNumber.astro の例 -->
+---
+import { env } from "@/lib/env";
+
+interface Props {
+  aliases: string[];
+  // 必要最小限のプロパティのみ
+}
+
+const { aliases } = Astro.props;
+
+// コンポーネント内部で条件判定
+if (!env.idSearch || aliases.length === 0) {
+  return null;
+}
+---
+```
+
+#### 親コンポーネントの簡素化
+```astro
+<!-- 修正前: 親で条件判定 -->
+{env.idSearch && currentPage.frontmatter.aliases.length > 0 && (
+  <ArticleLink page={currentPage} />
+)}
+
+<!-- 修正後: 無条件で呼び出し -->
+<ArticleLink 
+  aliases={currentPage.frontmatter.aliases}
+  relPermalink={currentPage.relPermalink}
+  fileContentBaseName={currentPage.fileContentBaseName}
+/>
+```
+
+#### 適用基準
+- 環境変数による表示制御が必要な場合
+- データの存在チェックが必要な場合
+- コンポーネントの責任範囲内の条件判定
+
 ## env 管理の大規模リファクタリングルール
 
 ### 1. env のグローバル化原則

@@ -67,9 +67,7 @@ const description = generateDescription();
 
 // robots の判定
 const shouldNoIndex =
-  page.frontmatter.type === "search_result" ||
-  false ||
-  env.staging === "true";
+  page.frontmatter.type === "search_result" || false || env.staging === "true";
 
 // Vue.js が必要な条件
 const needsVue =

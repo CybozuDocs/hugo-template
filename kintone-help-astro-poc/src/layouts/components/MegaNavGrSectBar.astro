@@ -13,7 +13,9 @@ const { cursect, secondsect } = Astro.props;
 // ページをweight順にソート
 const sortedPages = (cursect.pages || [])
   .filter((page: PageProps) => page.frontmatter.weight !== 0)
-  .sort((a: PageProps, b: PageProps) => a.frontmatter.weight - b.frontmatter.weight);
+  .sort(
+    (a: PageProps, b: PageProps) => a.frontmatter.weight - b.frontmatter.weight,
+  );
 
 let menuid = 0;
 ---

@@ -501,7 +501,9 @@ describe("getSiteHomeSections integration", () => {
     expect(sectionTitles).toEqual(["スタートガイド", "ガイド"]);
 
     // startセクション（.mdx）
-    const startSection = sections.find((s) => s.frontmatter.title === "スタートガイド")!;
+    const startSection = sections.find(
+      (s) => s.frontmatter.title === "スタートガイド",
+    )!;
     expect(startSection.relPermalink).toBe("/k/ja/start");
     expect(startSection.isSection).toBe(true);
     expect(startSection.frontmatter.weight).toBe(1);
@@ -521,12 +523,16 @@ describe("getSiteHomeSections integration", () => {
     expect(advancedSection!.isSection).toBe(true);
 
     // guideセクション（.md）
-    const guideSection = sections.find((s) => s.frontmatter.title === "ガイド")!;
+    const guideSection = sections.find(
+      (s) => s.frontmatter.title === "ガイド",
+    )!;
     expect(guideSection.relPermalink).toBe("/k/ja/guide");
     expect(guideSection.isSection).toBe(true);
     expect(guideSection.frontmatter.weight).toBe(2);
 
-    const basicPage = guideSection.pages?.find((p) => p.frontmatter.title === "基本操作");
+    const basicPage = guideSection.pages?.find(
+      (p) => p.frontmatter.title === "基本操作",
+    );
     expect(basicPage).toBeDefined();
     expect(basicPage!.relPermalink).toBe("/k/ja/guide/basic");
     expect(basicPage!.isSection).toBe(false);
@@ -542,8 +548,12 @@ describe("getSiteHomeSections integration", () => {
     });
 
     // 個別のテスト
-    const startSection = sections.find((s) => s.frontmatter.title === "スタートガイド")!;
-    const guideSection = sections.find((s) => s.frontmatter.title === "ガイド")!;
+    const startSection = sections.find(
+      (s) => s.frontmatter.title === "スタートガイド",
+    )!;
+    const guideSection = sections.find(
+      (s) => s.frontmatter.title === "ガイド",
+    )!;
 
     // startセクション内の関係
     const advancedSection = startSection.sections?.find(
@@ -559,7 +569,9 @@ describe("getSiteHomeSections integration", () => {
     expect(customization?.parent).toEqual(advancedSection);
 
     // guideセクション内の関係
-    const basicPage = guideSection.pages?.find((p) => p.frontmatter.title === "基本操作");
+    const basicPage = guideSection.pages?.find(
+      (p) => p.frontmatter.title === "基本操作",
+    );
     expect(basicPage?.parent).toEqual(guideSection);
   });
 

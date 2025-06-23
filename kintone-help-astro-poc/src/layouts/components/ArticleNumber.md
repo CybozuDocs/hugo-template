@@ -4,18 +4,18 @@
 
 ## 関数・変数の置換
 
-| Hugo                                       | Astro                                   | 備考                      |
-| ------------------------------------------ | --------------------------------------- | ------------------------- |
-| `{{- define "articlenumber" }}`            | コンポーネントファイルとして分離        | define は不要に           |
-| `{{- $alias := index .Params.aliases 0 }}` | `const alias = page.params.aliases[0];` | 配列アクセスの構文変更    |
-| `split $alias "/"`                         | `alias.split('/')`                      | 文字列分割の構文変更      |
-| `index $a1 (sub (len $a1) 1)`              | `parts[parts.length - 1]`               | 配列の最後の要素取得      |
-| `{{ i18n "Article_number" }}`              | `<Wovn>i18n__Article_number</Wovn>`     | WOVN コンポーネントを使用 |
+| Hugo                                       | Astro                               | 備考                      |
+| ------------------------------------------ | ----------------------------------- | ------------------------- |
+| `{{- define "articlenumber" }}`            | コンポーネントファイルとして分離    | define は不要に           |
+| `{{- $alias := index .Params.aliases 0 }}` | `const alias = aliases[0];`         | Props から直接受け取り    |
+| `split $alias "/"`                         | `alias.split('/')`                  | 文字列分割の構文変更      |
+| `index $a1 (sub (len $a1) 1)`              | `parts[parts.length - 1]`           | 配列の最後の要素取得      |
+| `{{ i18n "Article_number" }}`              | `<Wovn>i18n__Article_number</Wovn>` | WOVN コンポーネントを使用 |
 
 ## TODO
 
-- [ ] aliases が存在しない場合の表示確認
-- [ ] 複数の aliases がある場合の動作確認
+- [x] aliases が存在しない場合の表示確認
+- [x] 複数の aliases がある場合の動作確認
 
 ## 構造の変化
 
@@ -28,6 +28,11 @@
 
 - aliases が存在しない場合の null チェックを追加
 - docid が空の場合は何も表示しない
+
+### Props最適化（2025年1月更新）
+
+- BasePropsからカスタムPropsへ変更（aliasesのみを受け取る）
+- 条件判定をコンポーネント内部に移動（env.idSearchとaliases.lengthチェック）
 
 ## その他の差分
 

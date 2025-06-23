@@ -792,3 +792,41 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - Props最適化パターンの標準化（3コンポーネントで実証済み）
   - 段階的統合手法による安全で効果的な移行方法の確立
   - 性能向上の定量的確認による開発効率向上の実証
+
+#### 0025_article-components-integration 作業完了
+- **成果物**: PageLayout.astro での ArticleLink・ArticleNumber コンポーネント統合
+  - `[ARTICLE LINK TEMPLATE]` と `[ARTICLE NUMBER TEMPLATE]` プレースホルダーから実コンポーネント呼び出しに移行
+  - 既存の適切に実装済みコンポーネントの効率的な活用
+  - 条件付きレンダリングの完全保持（env.idSearch と aliases 存在条件）
+- **重要な学習事項**:
+  - 既存コンポーネント活用パターンの確立（調査→統合→テストの流れ）
+  - 複雑な条件式を保持しつつのコンポーネント化手法
+  - BaseProps による統一的な Props 設計の継続活用
+- **技術的実装**:
+  - **ArticleLink.astro**: パーマリンクコピー機能付きボタン、Font Awesome + WOVN 統合
+  - **ArticleNumber.astro**: エイリアスから記事番号抽出・表示、WOVN 翻訳対応
+  - **PageLayout.astro**: import 文2行追加、プレースホルダー2箇所を実コンポーネント呼び出しに変更
+  - **条件付きレンダリング**: `env.idSearch && currentPage.frontmatter.aliases.length > 0` 条件の維持
+- **品質確保**:
+  - ビルドテスト成功（npm run build、2.29秒、エラーなし）
+  - TypeScript 型エラーなし、BaseProps による型安全性確保
+  - DOM構造の保持（条件分岐ロジック維持）
+- **新機能追加**:
+  - 記事番号表示機能（ArticleNumber）の実装
+  - パーマリンクコピー機能（ArticleLink）の実装
+  - Font Awesome アイコンと WOVN 翻訳の統合
+
+#### 0025_article-components-integration リファクタリング完了
+- **追加修正内容**: ArticleLink・ArticleNumber コンポーネントのProps最適化と条件判定の内部移動
+  - BaseProps から必要最小限のカスタムPropsへ変更
+  - 表示条件（env.idSearch、aliases.length）をコンポーネント内部で判定
+  - PageLayout.astro の条件判定を削除して簡素化
+- **技術的変更**:
+  - **ArticleLink.astro**: aliases, relPermalink, fileContentBaseName のみ受け取る
+  - **ArticleNumber.astro**: aliases のみ受け取る
+  - **内部判定**: `if (!env.idSearch || aliases.length === 0) return null;`
+  - **親の簡素化**: 条件判定なしで直接コンポーネント呼び出し
+- **アーキテクチャ進化**:
+  - コンポーネントの責任分離（表示条件は自己判定）
+  - 親コンポーネントの複雑性削減
+  - Props 最小化によるインターフェース明確化

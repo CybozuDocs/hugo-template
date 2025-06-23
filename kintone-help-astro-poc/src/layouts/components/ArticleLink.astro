@@ -1,38 +1,39 @@
 ---
 import { env } from "@/lib/env";
 import Wovn from "@/components/Wovn.astro";
-import type { BaseProps } from "./types";
 
-interface Props extends BaseProps {}
+interface Props {
+  aliases: string[];
+}
 
-const { page } = Astro.props;
+const { aliases } = Astro.props;
+
+// 表示条件をチェック（idSearchはenvから直接取得）
+if (!env.idSearch || aliases.length === 0) {
+  return null;
+}
 
 // エイリアスから最初の要素を取得
-const alias = page.frontmatter.aliases[0] || "";
+const alias = aliases[0] || "";
 
-// エイリアスをスラッシュで分割
-const a1 = alias.split("/");
-
-// 最後の要素をドキュメントIDとして取得
-const docid = a1[a1.length - 1] || "";
-
-// 相対パスの処理
-let relpath = page.relPermalink.replace(/\.html$/, "");
-relpath = relpath.replace(new RegExp(page.fileContentBaseName + "$"), "");
-
-// ドキュメントURLの生成
-const docurl = `${env.baseURL}${relpath}id/${docid}.html`;
+// TODO: AnchorLink2.astro のコピー用のリンクとほぼ同じ内容なので、共通化する
 ---
 
-<button
-  class="id-link-button id-link-button-title"
-  title="i18n__todo__Copy_perma_link"
-  idpath={alias}
-  tabindex="0"
-  aria-owns="message-aid"
->
-  <i class="fas fa-link" aria-hidden="true"></i>
-</button>
-<div id="message-aid" class="id-link-message">
-  <Wovn>i18n__Link_was_copied</Wovn>
-</div>
+{
+  alias && (
+    <>
+      <button
+        class="id-link-button id-link-button-title"
+        title="i18n__todo__Copy_perma_link"
+        data-idpath={alias}
+        tabindex="0"
+        aria-owns="message-aid"
+      >
+        <i class="fas fa-link" aria-hidden="true" />
+      </button>
+      <div id="message-aid" class="id-link-message">
+        <Wovn>i18n__Link_was_copied</Wovn>
+      </div>
+    </>
+  )
+}

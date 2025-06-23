@@ -14,6 +14,8 @@ import GoToTop from "./components/GoToTop.astro";
 import SupportInquiry from "./components/SupportInquiry.astro";
 import Enquete from "./components/Enquete.astro";
 import LocaleModal from "./components/LocaleModal.astro";
+import ArticleLink from "./components/ArticleLink.astro";
+import ArticleNumber from "./components/ArticleNumber.astro";
 
 type Props = MarkdownLayoutProps<{
   title?: string;
@@ -94,14 +96,10 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
                 <article class="article" role="article">
                   <div class="id-title">
                     <h1>{currentPage.frontmatter.title}</h1>
-                    {env.idSearch && currentPage.frontmatter.aliases.length > 0 && (
-                      <div>[ARTICLE LINK TEMPLATE]</div>
-                    )}
+                    <ArticleLink aliases={currentPage.frontmatter.aliases} />
                   </div>
 
-                  {env.idSearch && currentPage.frontmatter.aliases.length > 0 && (
-                    <div>[ARTICLE NUMBER TEMPLATE]</div>
-                  )}
+                  <ArticleNumber aliases={currentPage.frontmatter.aliases} />
 
                   {currentPage.frontmatter.labels.length > 0 && (
                     <div>[HEADER LABEL TEMPLATE]</div>
@@ -112,7 +110,9 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
 
                 {/* <Related env={env} page={pageData} /> */}
 
-                {currentPage.frontmatter.type === "series" && <div>[PAGE NAV PARTIAL]</div>}
+                {currentPage.frontmatter.type === "series" && (
+                  <div>[PAGE NAV PARTIAL]</div>
+                )}
               </main>
             </div>
 
