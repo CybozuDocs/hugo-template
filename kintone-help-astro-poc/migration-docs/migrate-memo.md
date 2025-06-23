@@ -853,3 +853,33 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - ビルドテスト成功（npm run build、2.58秒、エラーなし）
   - TypeScript型安全性確保
   - 既存機能の完全保持
+
+#### 0027_hint-component 作業完了
+- **成果物**: Hint.astro および Note.astro コンポーネントの実装
+  - Hugo ショートコード `hint.html` を Astro コンポーネントとして移植
+  - 同時に `note.html` も移植（MDX ファイル互換性確保のため）
+  - 既存 MDX ファイルの Hugo 構文を Astro 構文に修正
+- **重要な学習事項**:
+  - アドモニション実装の統一パターン確立（Reference.astro と同様の構造）
+  - 製品固定化による大幅な簡素化効果（kintone=固定でアイコン常時表示）
+  - MDX ファイルでの Hugo ショートコード残存問題と対処方法
+  - 同時実装による効率的な互換性確保の手法
+- **技術的実装**:
+  - **Hint.astro**: `aside.admonition.hint` 構造、Font Awesome lightbulb アイコン、WOVN翻訳
+  - **Note.astro**: `aside.admonition.note` 構造、Font Awesome pencil-alt アイコン、WOVN翻訳
+  - **Props最適化**: 両コンポーネントともProps不要の最大限簡素化
+  - **MDX修正**: `add_employee_app.mdx` の Hugo 構文を Astro 構文に変換
+  - **DOM構造保持**: 元の Hugo ショートコードと完全同等の構造維持
+- **アドモニション実装パターン**:
+  - **統一構造**: `aside.admonition.{type}` > `div.admonition-alt` + `div.admonition-content`
+  - **アイコン配置**: Font Awesome アイコンの aria-hidden 属性保持
+  - **i18n対応**: WOVN コンポーネントによる翻訳（Title_tips, Title_note）
+  - **内容表示**: slot による Markdown 内容の表示
+- **品質確保**:
+  - ビルドテスト成功（npm run build、2.52秒、エラーなし）
+  - 実用例での動作確認（add_employee_app.mdx での使用）
+  - 変更記録ファイル完備（Hint.md, Note.md）
+- **互換性対応**:
+  - Hugo ショートコード構文 `{{< hint >}}` → Astro コンポーネント `<Hint>`
+  - import 文の追加による適切なコンポーネント読み込み
+  - 既存 MDX ファイルでの即座に使用可能な状態
