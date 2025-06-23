@@ -1,18 +1,18 @@
 ---
 import { env } from "@/lib/env";
-import type { BaseProps } from "./types";
 
-interface Props extends BaseProps {}
+interface Props {
+  labels: string[];
+}
 
-const { page } = Astro.props;
+const { labels } = Astro.props;
 
-const labels = page.frontmatter.labels;
 const labelColors = env.labelColors;
 const labelLead = env.labelLead;
 const labelContents = env.labelContents;
 
 // ラベルが存在し、設定も存在する場合のみ表示
-const shouldRender = labels && labelContents;
+const shouldRender = labels && labels.length > 0 && labelContents;
 
 // ラベルデータの処理
 const processedLabels = shouldRender

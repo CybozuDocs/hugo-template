@@ -16,6 +16,7 @@ import Enquete from "./components/Enquete.astro";
 import LocaleModal from "./components/LocaleModal.astro";
 import ArticleLink from "./components/ArticleLink.astro";
 import ArticleNumber from "./components/ArticleNumber.astro";
+import HeaderLabel from "./components/HeaderLabel.astro";
 
 type Props = MarkdownLayoutProps<{
   title?: string;
@@ -101,9 +102,7 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
 
                   <ArticleNumber aliases={currentPage.frontmatter.aliases} />
 
-                  {currentPage.frontmatter.labels.length > 0 && (
-                    <div>[HEADER LABEL TEMPLATE]</div>
-                  )}
+                  <HeaderLabel labels={currentPage.frontmatter.labels} />
 
                   <slot />
                 </article>
