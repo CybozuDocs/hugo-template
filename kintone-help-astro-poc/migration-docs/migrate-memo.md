@@ -830,3 +830,26 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - コンポーネントの責任分離（表示条件は自己判定）
   - 親コンポーネントの複雑性削減
   - Props 最小化によるインターフェース明確化
+
+#### 0026_header-label-component 作業完了
+- **成果物**: PageLayout.astro での HeaderLabel コンポーネント統合
+  - `[HEADER LABEL TEMPLATE]` プレースホルダーから実際の HeaderLabel.astro コンポーネント呼び出しに移行
+  - Props最適化による BaseProps から独自Props（labels配列のみ）への変更
+  - 表示条件の完全なコンポーネント内移動
+- **重要な学習事項**:
+  - Props最適化パターンの確立（必要最小限のデータのみ受け取る設計）
+  - 条件分岐の適切な配置（コンポーネント内での完結した判定）
+  - BaseProps削除による依存関係の除去効果
+- **技術的実装**:
+  - **HeaderLabel.astro**: BaseProps削除、`labels: string[]` のみのカスタムProps
+  - **条件判定内部化**: `labels && labels.length > 0 && labelContents` による自己判定
+  - **PageLayout.astro**: import追加、プレースホルダー置換、外部条件分岐削除
+  - **DOM構造保持**: 元のHugoテンプレートと同等のラベル表示構造維持
+- **アーキテクチャ進化**:
+  - 責任分離によるコンポーネント独立性向上
+  - Props最適化による再利用性とメンテナンス性向上
+  - 条件分岐一元化による保守性向上
+- **品質確保**:
+  - ビルドテスト成功（npm run build、2.58秒、エラーなし）
+  - TypeScript型安全性確保
+  - 既存機能の完全保持
