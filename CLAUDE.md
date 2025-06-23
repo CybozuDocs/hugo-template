@@ -14,9 +14,9 @@ kintone-help-astro-poc/ ディレクトリ配下が移行後の Astro による�
 
 Astro への移行作業を指示された場合、**必ず次のファイルの内容を確認してください。**
 
-- migration-docs/rules.md : Astro 開発の永続的なルール（移行完了後も使用）
-- migration-docs/migrate-rules.md : 新たな移行ルールや注意点
-- migration-docs/migrate-memo.md : 作業の概要、学習事項、判明している課題
+- kintone-help-astro-poc/migration-docs/rules.md : Astro 開発の永続的なルール（移行完了後も使用）
+- kintone-help-astro-poc/migration-docs/migrate-rules.md : 新たな移行ルールや注意点
+- kintone-help-astro-poc/migration-docs/migrate-memo.md : 作業の概要、学習事項、判明している課題
 
 ### 重要：移行作業時の必須ドキュメント作成
 

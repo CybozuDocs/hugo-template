@@ -11,6 +11,9 @@ import TreeNav from "./components/TreeNav.astro";
 import Breadcrumb from "./components/Breadcrumb.astro";
 import TreeNavToggle from "./components/TreeNavToggle.astro";
 import GoToTop from "./components/GoToTop.astro";
+import SupportInquiry from "./components/SupportInquiry.astro";
+import Enquete from "./components/Enquete.astro";
+import LocaleModal from "./components/LocaleModal.astro";
 
 type Props = MarkdownLayoutProps<{
   title?: string;
@@ -60,7 +63,7 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
         <meta http-equiv="refresh" content="0; URL=/" />
       ) : (
         <>
-          {env.targetRegion === "US" && <div>[LOCALE MODAL PARTIAL]</div>}
+          {env.targetRegion === "US" && <LocaleModal />}
 
           {/* <!-- Announcement banner --> */}
           {/* <div>[ANNOUNCEMENT BANNER PARTIAL]</div> */}
@@ -124,10 +127,10 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
           <GoToTop />
 
           {env.supportInquiry && env.languageCode === "en-us" && (
-            <div>[SUPPORT INQUIRY PARTIAL]</div>
+            <SupportInquiry />
           )}
 
-          {/* <div>[ENQUETE PARTIAL]</div> */}
+          <Enquete />
           <Footer page={pageData} />
         </>
       )

@@ -1,11 +1,6 @@
 ---
 import { env } from "@/lib/env";
 import Wovn from "@/components/Wovn.astro";
-import type { BaseProps } from "./types";
-
-interface Props extends BaseProps {}
-
-const { page } = Astro.props;
 
 // ビルド番号の生成（日付ベース）
 const buildnum =

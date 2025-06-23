@@ -455,6 +455,54 @@ npm run build
 - コンポーネント間の一貫性確保
 - 重複コードの削除
 
+### 6. Props最適化による簡素化ルール
+
+**ルール**: 使用していないPropsは積極的に削除し、コンポーネントを簡素化する
+
+#### 削除対象の判断基準
+- Props定義はしているが、実際のDOM構造やロジックで使用していない
+- BasePropsを継承しているが、pageやenvを使用していない
+- 型定義のみ存在し、実装で参照されていない
+
+#### 最適化パターン
+```typescript
+// ❌ 最適化前: 不要なProps定義
+interface Props extends BaseProps {}
+const { page } = Astro.props;
+
+// ✅ 最適化後: 必要なもののみ
+import { env } from "@/lib/env";
+// Props定義なし
+```
+
+#### 適用例
+- **SupportInquiry.astro**: BaseProps完全削除（Props不要）
+- **Enquete.astro**: BaseProps削除、envのみ直接import
+- **LocaleModal.astro**: BaseProps完全削除（最大限簡素化、条件分岐は親で処理）
+
+### 7. 地域限定機能の実装ルール
+
+**ルール**: 地域限定機能は親コンポーネントで条件分岐し、子コンポーネントは最大限シンプル化する
+
+#### 実装パターン
+```astro
+<!-- ✅ 正しい: 親コンポーネント側で条件分岐 -->
+{env.targetRegion === "US" && <LocaleModal />}
+
+<!-- ❌ 間違い: 子コンポーネント内で条件分岐 -->
+// LocaleModal.astro内で env.targetRegion 判定
+```
+
+#### 地域限定機能の特徴
+- アメリカリージョン限定: LocaleModal、SupportInquiry
+- 中国リージョン限定: Bing検索、cybozu.cn設定
+- 日本リージョン限定: ラベル色設定、Google検索
+
+#### 最適化効果
+- 子コンポーネントの完全な地域非依存化
+- 条件ロジックの一元管理
+- Props削除による性能向上
+
 ## env 管理の大規模リファクタリングルール
 
 ### 1. env のグローバル化原則

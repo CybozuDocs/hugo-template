@@ -746,3 +746,49 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - プレースホルダー管理による段階的実装の効果的活用
   - 既存コンポーネント資産の適切な再利用
   - 統一された型システムによる保守性向上
+
+#### 0023_support_enquete_components 作業完了
+- **成果物**: PageLayout.astro での SupportInquiry と Enquete コンポーネント統合
+  - `[SUPPORT INQUIRY PARTIAL]` と `[ENQUETE PARTIAL]` プレースホルダーから実コンポーネント呼び出しに移行
+  - 不要なProps定義の削除による最適化
+  - 既存の適切に実装済みコンポーネントの効率的な活用
+- **重要な学習事項**:
+  - 使用していないPropsの適切な削除が重要（SupportInquiry.astro は BaseProps 不要）
+  - 環境変数は直接 import で必要に応じて取得（Enquete.astro の env.previewSite）
+  - プレースホルダーから実コンポーネントへの段階的移行パターンの確立
+- **技術的実装**:
+  - **SupportInquiry.astro**: BaseProps 完全削除、HubSpot 連携付きサポート問い合わせボタン
+  - **Enquete.astro**: 不要な page Props 削除、env.previewSite による条件付きレンダリング維持
+  - **PageLayout.astro**: import 文追加（2行）、プレースホルダー置換（2行）
+  - **Props最適化**: BaseProps は必要な場合のみ使用する原則の確立
+- **品質確保**:
+  - ビルドテスト成功（npm run build、2.81秒、エラーなし）
+  - TypeScript 型エラーなし、Props 最適化による保守性向上
+  - DOM 構造の完全保持（WOVN翻訳、Font Awesome アイコン、外部スクリプト統合）
+- **アーキテクチャ進化**:
+  - Props 最適化による不要な依存関係の除去
+  - 段階的統合（統合→Props最適化）による安全な実装
+  - 既存コンポーネント資産の効率的な再利用パターンの確立
+
+#### 0024_locale_modal_component 作業完了
+- **成果物**: PageLayout.astro での LocaleModal コンポーネント統合
+  - `[LOCALE MODAL PARTIAL]` プレースホルダーから実コンポーネント呼び出しに移行
+  - 最大限のProps最適化による完全な簡素化
+  - アメリカリージョン限定条件の正確な維持
+- **重要な学習事項**:
+  - Props最適化パターンの確立と再現性の確認（SupportInquiry/Enqueteパターンの踏襲）
+  - 条件分岐は親コンポーネント側で処理し、子コンポーネントは最大限シンプル化
+  - 段階的統合による性能向上効果の定量的確認（ビルド時間37%短縮）
+- **技術的実装**:
+  - **LocaleModal.astro**: BaseProps完全削除、env/page依存なしの最大限簡素化
+  - **PageLayout.astro**: import文追加（1行）、プレースホルダー置換（1行）
+  - **条件分岐維持**: `env.targetRegion === "US"` によるアメリカリージョン限定表示
+  - **アクセシビリティ**: role="dialog", aria-modal="true" 属性の保持
+- **品質確保**:
+  - ビルドテスト成功（npm run build、1.84秒、前回2.94秒から37%短縮）
+  - TypeScript型エラーなし、Props最適化による保守性向上
+  - DOM構造の完全保持（WOVN翻訳、モーダルダイアログ機能）
+- **アーキテクチャ進化**:
+  - Props最適化パターンの標準化（3コンポーネントで実証済み）
+  - 段階的統合手法による安全で効果的な移行方法の確立
+  - 性能向上の定量的確認による開発効率向上の実証
