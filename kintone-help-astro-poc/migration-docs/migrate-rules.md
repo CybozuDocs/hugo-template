@@ -670,6 +670,41 @@ import TreeNavMainMenu from './TreeNavMainMenu.astro';
 <Astro.self curnode={entry} target={target} />
 ```
 
+## WOVN統合による翻訳関連プロパティ削除ルール
+
+### Hugo多言語機能からWOVN統合への移行
+
+**ルール**: WOVN翻訳サービス利用により、Hugo固有の翻訳機能は全て削除対象
+
+#### 削除対象のプロパティ
+- `page.isTranslated`: 翻訳先コンテンツの有無判定（WOVN使用により不要）
+- `page.siteLanguage`: FW側の言語設定（WOVN初期化により不要）
+- `page.allTranslations`: 全翻訳バージョンの一覧（WOVN使用により不要）
+- `page.translations`: 翻訳リンク情報（WOVN使用により不要）
+- `scratch.sitename`: サイト名（利用箇所なしで削除）
+
+#### 削除理由
+- **WOVN外部サービス委譲**: 翻訳状態管理をWOVNサービスに委譲
+- **FW負荷削減**: フレームワーク側での言語処理が不要
+- **アーキテクチャ簡素化**: Hugo多言語システムの完全除去
+
+#### 対応パターン
+```astro
+<!-- ❌ 削除対象: Hugo翻訳機能の使用 -->
+{page.isTranslated && <div>翻訳あり</div>}
+{page.allTranslations.map(...)}
+{page.siteLanguage === 'ja' && <Component />}
+
+<!-- ✅ 修正後: WOVN前提またはリージョン判定 -->
+{env.targetRegion === 'JP' && <Component />}
+<Wovn>i18n__translatable_text</Wovn>
+```
+
+#### PageLayoutでの実装変更
+- 独自pageDataオブジェクトの削除
+- 翻訳関連プロパティ設定の除去
+- WOVN統合を前提とした設計への統一
+
 ## 更新履歴
 
 - 2025年1月 - 初版作成（rules.mdから移行関連情報を分離）
@@ -680,6 +715,7 @@ import TreeNavMainMenu from './TreeNavMainMenu.astro';
 - 2025年1月 - env管理の大規模リファクタリングルールを追加
 - 2025年1月 - Astro.globとimport.meta.globの使い分けルールを追加
 - 2025年1月 - getCurrentPage()活用によるページデータ統一ルールを追加
+- 2025年1月 - WOVN統合による翻訳関連プロパティ削除ルールを追加
 
 ## getCurrentPage() 活用によるページデータ統一ルール
 

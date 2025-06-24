@@ -32,25 +32,6 @@ const sections = await getSiteHomeSections();
 // 現在ページを特定
 const currentPage = getCurrentPage(Astro, sections);
 
-// getCurrentPage()の結果をベースに、不足するプロパティを補完
-const pageData = {
-  ...currentPage,
-  // frontmatterプロパティを明示的に保持
-  frontmatter: currentPage.frontmatter,
-  // Header.astroで必要な追加プロパティ（仮実装）
-  allTranslations: [], // TODO: 多言語対応時に実装
-  isTranslated: false, // TODO: 多言語対応時に実装
-  scratch: {
-    sitename: env.productName, // TODO: 適切なサイト名ロジックを実装
-  },
-
-  // LangSelector.astro用のプロパティ（仮実装）
-  siteLanguage: {
-    languageName: "日本語",
-  },
-  translations: [], // TODO: 多言語対応時に実装
-};
-
 // 無効化チェック（frontmatter経由で直接アクセス）
 const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
 ---
@@ -59,7 +40,7 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
 <!-- TODO: {{.Site.LanguageCode}} を置き換える -->
 <html lang="ja" prefix="og: https://ogp.me/ns#">
   <head>
-    <Head page={pageData} />
+    <Head page={currentPage} />
   </head>
   <!-- TODO: フォントサイズの指定を再現する -->
   <body class="font-{{.Lang}}">
@@ -74,7 +55,7 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
           {/* <div>[ANNOUNCEMENT BANNER PARTIAL]</div> */}
 
           {/* <!-- Header --> */}
-          <Header page={pageData} />
+          <Header page={currentPage} />
 
           <div class="page-pad" />
 
@@ -92,14 +73,14 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
 
           <div id="page" class="page">
             <div id="tree" class="tree-wrap">
-              <TreeNav page={pageData} />
+              <TreeNav page={currentPage} />
             </div>
 
             <div id="contents" class="contents-wrap">
               {env.useWovn && <Disclaimer2 />}
 
               <main id="main" role="main">
-                <Breadcrumb page={pageData} />
+                <Breadcrumb page={currentPage} />
 
                 <article class="article" role="article">
                   <div class="id-title">
@@ -114,7 +95,7 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
                   <slot />
                 </article>
 
-                {/* <Related env={env} page={pageData} /> */}
+                {/* <Related env={env} page={currentPage} /> */}
 
                 {currentPage.frontmatter.type === "series" && (
                   <PageNav 
@@ -140,7 +121,7 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
           )}
 
           <Enquete />
-          <Footer page={pageData} />
+          <Footer page={currentPage} />
         </>
       )
     }

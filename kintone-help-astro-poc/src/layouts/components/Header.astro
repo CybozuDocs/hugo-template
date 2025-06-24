@@ -76,17 +76,9 @@ const logoAlt = `${env.productName} ${env.help}`;
     {dispSbox && <SearchBox page={page} />}
 
     {
-      page.isTranslated &&
-        env.langSelector &&
-        page.siteLanguage &&
-        page.translations &&
-        page.relPermalink && (
+        env.langSelector && (
           <LangSelector
-            page={{
-              siteLanguage: page.siteLanguage,
-              translations: page.translations,
-              relPermalink: page.relPermalink,
-            }}
+            relPermalink={page.relPermalink}
           />
         )
     }

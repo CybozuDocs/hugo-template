@@ -1,30 +1,17 @@
 ---
 import { env } from "@/lib/env";
-import type { BaseProps } from "./types";
 
 interface Props {
-  page: {
-    siteLanguage: {
-      languageName: string;
-    };
-    translations: Array<{
-      siteLanguageCode: string;
-      siteLanguage: {
-        languageName: string;
-      };
-      relPermalink: string;
-    }>;
-    relPermalink: string;
-  };
+  relPermalink: string;
 }
 
-const { page } = Astro.props;
+const { relPermalink } = Astro.props;
 
 // WOVN言語リストの処理
 const processWovnLanguages = () => {
   if (!env.useWovn || !env.languageData) return [];
 
-  const urlParts = page.relPermalink.split("/");
+  const urlParts = relPermalink.split("/");
 
   return env.languageData.languages.map((lang) => {
     const languageCode = lang.language_code;
@@ -70,9 +57,7 @@ const wovnLanguages = processWovnLanguages();
       aria-expanded="false"
     >
       <i class="fas fa-globe" aria-hidden="true"></i>
-      <span id="displang" class="lang-title">
-        {page.siteLanguage.languageName}
-      </span>
+      <span id="displang" class="lang-title"></span>
       <i class="fas fa-chevron-down" aria-hidden="true"></i>
     </button>
 
@@ -83,22 +68,6 @@ const wovnLanguages = processWovnLanguages();
       tabindex="-1"
       aria-hidden="true"
     >
-      {/* 通常の翻訳 */}
-      {
-        page.translations.map((translation) => (
-          <li
-            id={`lang_item_${translation.siteLanguageCode}`}
-            class="lang-item"
-            role="option"
-            desturl={translation.relPermalink}
-          >
-            <span class="lang-title">
-              {translation.siteLanguage.languageName}
-            </span>
-          </li>
-        ))
-      }
-
       {/* WOVN追加言語 */}
       {
         wovnLanguages.map((lang) => (

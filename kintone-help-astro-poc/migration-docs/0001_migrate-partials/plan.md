@@ -21,8 +21,9 @@ interface Props {
 }
 const { langCode } = Astro.props;
 // TODO: langCode によって wv-brk wv-brk-en を切り替える
-const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
+const className = langCode === "en" ? "wv-brk wv-brk-en" : "wv-brk";
 ---
+
 <span class={className}><slot /></span>
 ```
 
@@ -128,9 +129,9 @@ CSV や JSON ファイルはビルド時に静的に解決します。
 ```astro
 ---
 // Astro のトップレベルで import
-import csvData from '../data/icon_images.csv';
+import csvData from "../data/icon_images.csv";
 // または
-const csvData = await import('../data/icon_images.csv');
+const csvData = await import("../data/icon_images.csv");
 ---
 ```
 
@@ -224,10 +225,17 @@ JavaScript の制御構文と JSX の条件レンダリングを使用します�
 
 ```astro
 <!-- Hugo -->
-<script src="https://www.gstatic.com/prose/brand.js" targetId="{{$logoplace}}" hl="{{$glang}}"></script>
+<script
+  src="https://www.gstatic.com/prose/brand.js"
+  targetId="{{$logoplace}}"
+  hl="{{$glang}}"></script>
 
 <!-- Astro -->
-<script is:inline src="https://www.gstatic.com/prose/brand.js" data-target-id={logoplace} data-hl={glang}></script>
+<script
+  is:inline
+  src="https://www.gstatic.com/prose/brand.js"
+  data-target-id={logoplace}
+  data-hl={glang}></script>
 ```
 
 ### 11. Vue.js の使用箇所

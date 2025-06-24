@@ -986,3 +986,23 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - ビルドテスト成功（npm run build、2.37秒、エラーなし）
   - DOM構造の完全保持（nav > ul.g-nav + div.mega-nav）
   - TypeScript型安全性維持（BaseProps使用）
+
+#### PageLayout関連プロパティの削除対応 (2025年1月)
+- **削除対象プロパティ**:
+  - `page.isTranslated`: WOVNサービス利用により翻訳状態判定が不要
+  - `page.siteLanguage`: WOVN初期化で言語設定が不要
+  - `page.allTranslations`: WOVN利用により不要
+  - `page.translations`: 同様にWOVN利用により不要
+  - `scratch.sitename`: 利用箇所がないため削除
+- **重要な学習事項**:
+  - **WOVN統合の効果**: 外部翻訳サービス利用により、FW側の言語機能の大幅簡素化が可能
+  - **Hugo多言語機能の削除**: Hugo固有の翻訳関連プロパティは全て不要
+  - **PageLayoutの簡素化**: 独自定義オブジェクトの削除による構造簡素化
+- **技術的変更**:
+  - PageLayout.astroで定義していた独自pageDataオブジェクトを削除
+  - 翻訳関連のプロパティ設定を全て除去
+  - WOVN前提の設計に統一
+- **アーキテクチャ進化**:
+  - Hugo多言語システムからWOVN統合への完全移行
+  - 翻訳状態管理の外部サービス委譲
+  - フレームワーク側の言語処理負荷削減

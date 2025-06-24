@@ -95,11 +95,6 @@ export interface PageProps {
   siteNext?: PageProps;
   sitePrev?: PageProps;
 
-  // 翻訳
-  isTranslated?: boolean;
-  allTranslations?: PageProps[];
-  translations?: PageProps[];
-
   // ファイル情報
   fileContentBaseName?: string;
   aliases?: string[];

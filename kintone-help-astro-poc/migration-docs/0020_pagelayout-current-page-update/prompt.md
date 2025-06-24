@@ -24,6 +24,7 @@ PageLayout.astro について次の変更をしてください。
 ### 3. 実行プラン作成 ✅
 
 `migration-docs/0020_pagelayout-current-page-update/plan.md` を作成し、以下の作業順序を計画：
+
 1. lib/page.tsのPageProps型確認・拡張
 2. PageLayout.astroのProps型定義修正
 3. pageData作成部分の置き換え
@@ -32,6 +33,7 @@ PageLayout.astro について次の変更をしてください。
 ### 4. lib/page.ts の拡張 ✅
 
 **createPageData関数を拡張**:
+
 ```typescript
 // 追加されたプロパティ
 type: (frontmatter.type as string) || undefined,
@@ -46,6 +48,7 @@ params: {
 ### 5. PageLayout.astro の修正 ✅
 
 **Props型定義を簡素化**:
+
 ```typescript
 // 修正前
 type Props = MarkdownLayoutProps<{
@@ -69,6 +72,7 @@ type Props = MarkdownLayoutProps<{
 ```
 
 **pageData作成の置き換え**:
+
 ```typescript
 // 修正前: 独自でpageDataを作成
 const pageData = {
@@ -85,23 +89,24 @@ const pageData = {
   allTranslations: [],
   isTranslated: false,
   scratch: { sitename: env.productName },
-  siteLanguage: { languageName: "日本語" },
   translations: [],
 };
 ```
 
 **FrontMatterデータの取得**:
+
 ```typescript
 // getCurrentPage()の結果から値を取得
-const disabled = currentPage.params.disabled as string[] || [];
+const disabled = (currentPage.params.disabled as string[]) || [];
 const aliases = currentPage.aliases || [];
-const labels = currentPage.params.labels as string[] || [];
+const labels = (currentPage.params.labels as string[]) || [];
 const type = currentPage.type || "";
 ```
 
 ### 6. テストファイル修正 ✅
 
 **createPageData関数のテスト更新**:
+
 - paramsにdisabledとlabelsが自動追加されるため、期待値を更新
 - 2つの失敗していたテストケースを修正
 

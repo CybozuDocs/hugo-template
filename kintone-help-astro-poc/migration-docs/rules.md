@@ -19,6 +19,25 @@
   - kintone, slash, store の3製品を前提とした設計
   - 環境変数 `PUBLIC_PRODUCT` は削除済み
 
+## PageLayout オブジェクト簡素化原則
+
+### 独自pageDataオブジェクトの削除
+
+Hugo固有の翻訳関連プロパティを含む独自pageDataオブジェクトは削除し、getCurrentPage()の結果を活用する：
+
+#### 削除されたプロパティ
+- `pageData.isTranslated`: WOVN翻訳サービス利用により不要
+- `pageData.siteLanguage`: WOVN初期化により言語設定が不要  
+- `pageData.allTranslations`: WOVN使用により翻訳一覧が不要
+- `pageData.translations`: WOVN使用により翻訳リンクが不要
+- `scratch.sitename`: 利用箇所なしのため削除
+
+#### 設計原則
+- Hugo多言語システムからWOVN統合への完全移行
+- フレームワーク側の翻訳処理負荷を外部サービスに委譲
+- PageLayoutコンポーネントの構造簡素化
+- WOVN前提の設計に統一
+
 ### 削除された機能
 
 以下の機能は完全に削除され、実装時に考慮不要：
