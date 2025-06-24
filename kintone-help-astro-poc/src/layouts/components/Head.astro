@@ -144,21 +144,21 @@ const activeChatTargets = processChatSettings();
     <>
       <link rel="stylesheet" href="https://use.typekit.net/fmt1ojn.css" />
       {/* TODO: 本番環境判定 */}
-      {/* OneTrust Cookies Consent Notice start */}
-      <script
-        is:inline
-        type="text/javascript"
-        src="https://cookie-cdn.cookiepro.com/consent/9d6098cc-90be-4d07-a9ef-6e07312a3016/OtAutoBlock.js"
-      />
-      <script
-        is:inline
-        src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js"
-        type="text/javascript"
-        charset="UTF-8"
-        data-domain-script="9d6098cc-90be-4d07-a9ef-6e07312a3016"
-      />
-      <script type="text/javascript">function OptanonWrapper() {}</script>
-      {/* OneTrust Cookies Consent Notice end */}
+      {import.meta.env.MODE === 'production' && (
+        <script
+          is:inline
+          type="text/javascript"
+          src="https://cookie-cdn.cookiepro.com/consent/9d6098cc-90be-4d07-a9ef-6e07312a3016/OtAutoBlock.js"
+        />
+        <script
+          is:inline
+          src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js"
+          type="text/javascript"
+          charset="UTF-8"
+          data-domain-script="9d6098cc-90be-4d07-a9ef-6e07312a3016"
+        />
+        <script type="text/javascript">function OptanonWrapper() {}</script>
+      )}
     </>
   )
 }

@@ -20,4 +20,5 @@ dotenv.config({
 export default defineConfig({
   integrations: [mdx()],
   base: "/k/",
+  outDir: "./dist/k/",
 });
