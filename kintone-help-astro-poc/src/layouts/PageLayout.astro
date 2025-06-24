@@ -4,7 +4,6 @@ import Head from "./components/Head.astro";
 import { env } from "../lib/env.js";
 import { getCurrentPage, getSiteHomeSections } from "../lib/page";
 import Disclaimer2 from "./components/Disclaimer2.astro";
-// import Related from "./components/Related.astro";
 import Footer from "./components/Footer.astro";
 import Header from "./components/Header.astro";
 import TreeNav from "./components/TreeNav.astro";
@@ -94,8 +93,6 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
 
                   <slot />
                 </article>
-
-                {/* <Related env={env} page={currentPage} /> */}
 
                 {currentPage.frontmatter.type === "series" && (
                   <PageNav 

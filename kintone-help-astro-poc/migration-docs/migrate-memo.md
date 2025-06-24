@@ -1006,3 +1006,22 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - Hugo多言語システムからWOVN統合への完全移行
   - 翻訳状態管理の外部サービス委譲
   - フレームワーク側の言語処理負荷削減
+
+#### 0030_related-component-deletion 作業完了
+- **成果物**: Related.astro コンポーネントの完全削除
+  - Related.astro ファイル削除
+  - Related.md 変更記録ファイル削除
+  - PageLayout.astro からの参照削除（コメントアウトされていた箇所）
+- **重要な学習事項**:
+  - Hugo の Related Content 機能が設定と条件を満たさないため実際に使用されていなかった
+  - デフォルト設定のみで tags, keywords, categories が設定されていない状態
+  - 既にコメントアウトされており、削除による影響なし
+- **技術的実装**:
+  - **削除対象**: Related.astro, Related.md
+  - **修正対象**: PageLayout.astro（import文とコンポーネント呼び出しのコメント削除）
+  - **品質確保**: npm run build によるビルドテスト成功（2.92秒）
+- **削除理由の明確化**:
+  - Hugo 設定ファイルに related 設定が存在しない
+  - コンテンツに関連性判断用の属性（tags, keywords, categories）が設定されていない
+  - 関連性スコアの閾値を満たすコンテンツが存在しない
+  - 実際に表示されることがない機能
