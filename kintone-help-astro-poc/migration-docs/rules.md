@@ -13,10 +13,10 @@
   - templateVersion=1 の古い実装は削除済み
   - 全てのコンポーネントでtemplateVersion=2を前提とした実装
   - 環境変数 `PUBLIC_TEMPLATE_VERSION` は削除済み
-- **product**: `"kintone"` で固定
+- **product**: `"kintone"`, `"slash"`, `"store"` の3パターンが存在
   - Garoon、Mailwise、Office、Remote等の他製品は対象外
-  - support_guide、slash、store等の特別製品も対象外
-  - kintone固有の実装を前提とした設計
+  - support_guide等は対象外
+  - kintone, slash, store の3製品を前提とした設計
   - 環境変数 `PUBLIC_PRODUCT` は削除済み
 
 ### 削除された機能

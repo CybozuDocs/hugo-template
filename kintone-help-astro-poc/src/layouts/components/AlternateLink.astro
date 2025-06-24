@@ -11,6 +11,18 @@ const targetRegion = env.targetRegion;
 let regions = ["JP", "US", "CN"];
 const defLang = "en";
 
+// TODO: productパラメータによる地域制限の復活が必要
+// Hugoテンプレートでは以下の分岐が存在していた:
+// if eq $product "Garoon"
+//   $regions = slice "jp" "cn"
+// else if eq $product "store"
+//   $regions = slice "us"
+// else if eq $product "store-jp"
+//   $regions = slice "jp"
+// 現在はkintone固定によりこの判定が削除されているが、
+// 将来的にstore, store-jpのサポートが必要になった場合は
+// この製品別地域制限を復活させる必要がある
+
 if (targetRegion === "US") {
   regions = ["JP", "US"];
 } else if (targetRegion === "CN") {

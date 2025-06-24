@@ -1,6 +1,5 @@
 ---
 import { env } from "@/lib/env";
-import Wovn from "@/components/Wovn.astro";
 import type { BaseProps } from "./types";
 
 interface Props extends BaseProps {}
@@ -9,8 +8,10 @@ const { page } = Astro.props;
 
 // CSVデータの簡易実装（実際のCSVファイル読み込みの代替）
 // TODO: 実際のCSVファイルからの読み込み処理を実装
-const getMenuData = (lang: string, targetRegion: string) => {
+const getMenuData = (_lang: string, _targetRegion: string) => {
   // 簡易的なメニューデータ（実際のCSVデータで置き換えが必要）
+  // TODO: 現在のハードコードデータにはslash, storeのURLが含まれているが、
+  // kintone環境では不要。CSVファイルから読み込む際は製品に応じたフィルタリングが必要
   return {
     ids: ["1", "1", "1", "2", "2", "2", "3", "3", "3"],
     titles: [
@@ -28,17 +29,24 @@ const getMenuData = (lang: string, targetRegion: string) => {
       "/k/admin/",
       "/k/user/",
       "/k/developer/",
-      "/slash/business/",
-      "/slash/enterprise/",
-      "/slash/features/",
-      "/store/",
-      "/store/marketplace/",
-      "/store/apps/",
+      "/slash/business/",     // TODO: slash製品用のURL（kintone環境では不要）
+      "/slash/enterprise/",   // TODO: slash製品用のURL（kintone環境では不要）
+      "/slash/features/",     // TODO: slash製品用のURL（kintone環境では不要）
+      "/store/",             // TODO: store製品用のURL（kintone環境では不要）
+      "/store/marketplace/",  // TODO: store製品用のURL（kintone環境では不要）
+      "/store/apps/",        // TODO: store製品用のURL（kintone環境では不要）
     ],
   };
 };
 
-const tabnum = 1;
+// TODO: productパラメータによる分岐処理の復活が必要
+// Hugoテンプレートでは以下の分岐が存在していた:
+// - product="kintone" => tabnum=1
+// - product="slash" => tabnum=2
+// - product="store" => tabnum=3
+// 現在はkintone固定だが、将来的にslash, storeのサポートが必要になった場合は
+// この分岐を復活させる必要がある
+const tabnum = 1; // kintone 用のタブ番号（本来はproductによる分岐が必要）
 const strtabnum = "1";
 let curtab = "";
 

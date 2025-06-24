@@ -940,3 +940,26 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - Hugo メソッドの Astro での正確な再現手法の実証
   - テスト駆動開発による品質保証体制の構築
   - 段階的機能実装における拡張性の確保
+
+#### productパラメータに関する誤認識の調査（2025年1月）
+- **判明した事実**:
+  - rules.md に「product: 'kintone' で固定」と記載していたが、実際には "slash", "store" も存在
+  - Hugoテンプレートでは3製品（kintone, slash, store）の分岐処理が存在
+  - 0009_template-product-constants 作業で誤って全ての製品分岐を削除
+- **削除してしまった重要な分岐**:
+  1. **MegaNavKt.astro のtabnum設定**:
+     - Hugo: kintone=1, slash=2, store=3 の分岐
+     - Astro: kintone固定（tabnum=1）
+  2. **Header.astro のv2_prod判定**:
+     - Hugo: kintone, slash, store, support_guide, store-jp をv2製品として判定
+     - Astro: 判定処理自体を削除
+  3. **トップページコンテンツ生成**:
+     - Hugo: slash, store はkintoneからJSONコピー
+     - Astro: 未実装のため影響なし
+- **現状の問題点**:
+  - MegaNavKt.astroに slash, store のURLがハードコードされているが、実際にはkintone環境では不要
+  - 製品判定が必要な箇所で固定値になっているため、将来的な拡張性が失われている
+- **推奨対応**:
+  - 現時点ではkintone専用として最適化を継続
+  - slash, store のサポートが必要になった場合の拡張ポイントを明確化
+  - MegaNavKt.astroのハードコードされたメニューデータをCSVから読み込むよう修正

@@ -35,6 +35,16 @@ if (page.frontmatter.type === "search_result") {
 // ロゴ/タイトルの決定
 const logoAlt = `${env.productName} ${env.help}`;
 
+// TODO: productパラメータによるv2_prod判定の復活が必要
+// Hugoテンプレートでは以下の判定が存在していた:
+// v2_list := slice "kintone" "slash" "support_guide" "store" "store-jp"
+// $v2_prod := false
+// if in $v2_list $.Site.Params.product
+//   $v2_prod = true
+// 現在はkintone固定によりこの判定が削除されているが、
+// 将来的にslash, store, support_guideのサポートが必要になった場合は
+// この判定を復活させる必要がある
+
 // shouldUseImage が常に true のため logoTitle は不要
 // let logoTitle = "";
 ---
