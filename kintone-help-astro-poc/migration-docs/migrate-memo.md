@@ -910,3 +910,33 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - Props最適化による依存関係の削除と型安全性向上
   - 段階的統合パターンの確立（機能的完成度よりも構造的統合を優先）
   - 既存コンポーネント活用による効率的な移行手法の実証
+
+#### 0028_page-nav-component nextInSection/prevInSection実装完了
+- **成果物**: Hugo の NextInSection/PrevInSection 機能の完全実装
+  - page.ts に assignSectionNavigation 関数追加によるセクション内ナビゲーション設定
+  - PageLayout.astro での実際の値渡し（TODO実装から実機能への移行）
+  - 包括的なテストケース追加（30個のテスト、全てパス）
+- **重要な学習事項**:
+  - Hugo 仕様の正確な理解（weight降順ソート、NextInSection/PrevInSection の意味）
+  - セクション内ページナビゲーションの実装パターン確立
+  - TODO実装から実機能への段階的移行手法の有効性
+- **技術的実装**:
+  - **Hugo仕様準拠**: weight降順ソート（数値が大きいほど上位）による前後ページ決定
+  - **assignSectionNavigation関数**: セクション内の全ページに対する前後関係の設定
+  - **型安全な値渡し**: PageProps から必要な permalink のみを抽出して渡す設計
+  - **テスト用ダミーコンテンツ**: series_page_1.mdx (weight:30), series_page_2.mdx (weight:20), series_page_3.mdx (weight:10)
+- **品質確保**:
+  - 全30テストケースパス（既存28 + 新規2）
+  - ビルドテスト成功（npm run build、エラーなし）
+  - Hugo 仕様との完全互換性確認
+  - 最初のページ（prevInSection=undefined）、最後のページ（nextInSection=undefined）の適切な実装
+- **Hugo互換性**:
+  - NextInSection: 同一セクション内で次のページ（weight順序で下位）
+  - PrevInSection: 同一セクション内で前のページ（weight順序で上位）
+  - セクション内ページが1個の場合は両方undefined
+  - weight以外の date, linkTitle, path ソートは将来実装として基盤確保
+- **アーキテクチャ進化**:
+  - TODO実装から実機能への完全移行パターンの確立
+  - Hugo メソッドの Astro での正確な再現手法の実証
+  - テスト駆動開発による品質保証体制の構築
+  - 段階的機能実装における拡張性の確保

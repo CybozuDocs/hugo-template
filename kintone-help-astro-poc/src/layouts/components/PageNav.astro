@@ -1,13 +1,10 @@
 ---
 import Wovn from "@/components/Wovn.astro";
+import type { PageProps } from "./types";
 
 interface Props {
-  nextInSection?: {
-    permalink: string;
-  };
-  prevInSection?: {
-    permalink: string;
-  };
+  nextInSection?: PageProps;
+  prevInSection?: PageProps;
 }
 
 const { nextInSection, prevInSection } = Astro.props;
@@ -18,7 +15,7 @@ const { nextInSection, prevInSection } = Astro.props;
     nextInSection && (
       <div class="pagination-previous">
         <i class="fas fa-caret-left" />
-        <a href={nextInSection.permalink}>
+        <a href={nextInSection.relPermalink}>
           <Wovn>i18n__Previous_page</Wovn>
         </a>
       </div>
@@ -27,7 +24,7 @@ const { nextInSection, prevInSection } = Astro.props;
   {
     prevInSection && (
       <div class="pagination-next">
-        <a href={prevInSection.permalink}>
+        <a href={prevInSection.relPermalink}>
           <Wovn>i18n__Next_page</Wovn>
         </a>
         <i class="fas fa-caret-right" />

@@ -87,6 +87,10 @@ export function createPageData(
     sections: [],
     pages: [],
     parent: undefined, // 後で設定
+
+    // セクション内ナビゲーション（後で設定）
+    nextInSection: undefined,
+    prevInSection: undefined,
   };
 }
 
@@ -321,6 +325,43 @@ function sortPagesAndSections(sectionsMap: Map<string, PageProps>): void {
 }
 
 /**
+ * Hugo の NextInSection/PrevInSection ロジックを実装
+ * セクション内のページの前後関係を設定する
+ * 
+ * Hugo の仕様:
+ * - weight 降順でソート（数値が大きいほど上位）
+ * - NextInSection: 次のページ（weight順序で下位）
+ * - PrevInSection: 前のページ（weight順序で上位）
+ */
+function assignSectionNavigation(sectionsMap: Map<string, PageProps>): void {
+  for (const section of sectionsMap.values()) {
+    if (!section.pages || section.pages.length <= 1) {
+      continue; // ページが1個以下の場合はナビゲーション設定不要
+    }
+
+    // Hugo の仕様に合わせて weight 降順でソート
+    const sortedPages = [...section.pages].sort(
+      (a, b) => b.frontmatter.weight - a.frontmatter.weight
+    );
+
+    // 各ページに前後ページを設定
+    for (let i = 0; i < sortedPages.length; i++) {
+      const currentPage = sortedPages[i];
+      
+      // NextInSection: 配列内で次のページ（weight順序で下位）
+      if (i + 1 < sortedPages.length) {
+        currentPage.nextInSection = sortedPages[i + 1];
+      }
+      
+      // PrevInSection: 配列内で前のページ（weight順序で上位）
+      if (i - 1 >= 0) {
+        currentPage.prevInSection = sortedPages[i - 1];
+      }
+    }
+  }
+}
+
+/**
  * サイトホームのセクション一覧を取得
  * Hugo の .Site.Home.Sections に対応
  */
@@ -339,6 +380,9 @@ export async function getSiteHomeSections(): Promise<PageProps[]> {
 
   // ソート処理
   sortPagesAndSections(sectionsMap);
+
+  // セクション内ナビゲーションの設定
+  assignSectionNavigation(sectionsMap);
 
   // トップレベルのセクションのみを返す（親がホームのもの）
   const topLevelSections = Array.from(sectionsMap.values())

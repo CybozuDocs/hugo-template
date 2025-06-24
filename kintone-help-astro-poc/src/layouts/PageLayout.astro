@@ -112,8 +112,8 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
 
                 {currentPage.frontmatter.type === "series" && (
                   <PageNav 
-                    nextInSection={undefined} 
-                    prevInSection={undefined}
+                    nextInSection={currentPage.nextInSection} 
+                    prevInSection={currentPage.prevInSection}
                   />
                 )}
               </main>

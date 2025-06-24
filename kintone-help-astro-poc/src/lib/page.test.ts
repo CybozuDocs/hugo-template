@@ -601,4 +601,58 @@ describe("getSiteHomeSections integration", () => {
       }
     });
   });
+
+  // nextInSection/prevInSection のテストケースを追加
+  describe("nextInSection/prevInSection", () => {
+    it("should correctly set nextInSection and prevInSection for pages within the same section", async () => {
+      const sections = await getSiteHomeSections();
+      
+      // startセクションを取得
+      const startSection = sections.find(s => s.relPermalink === "/k/ja/start");
+      expect(startSection).toBeDefined();
+      expect(startSection!.pages).toBeDefined();
+      
+      // セクション内のすべてのページをweight降順で取得（Hugo仕様）
+      const sectionPages = startSection!.pages!
+        .sort((a, b) => b.frontmatter.weight - a.frontmatter.weight);
+      
+      // 実際のページ数を確認（少なくとも4つ：3つのseriesページ + whatskintone）
+      expect(sectionPages.length).toBeGreaterThanOrEqual(4);
+      
+      // 最初のページ（最高weight）のテスト
+      const firstPage = sectionPages[0];
+      expect(firstPage.prevInSection).toBeUndefined(); // 最初のページは前のページがない
+      expect(firstPage.nextInSection).toBeDefined(); // 次のページがある
+      
+      // 最後のページ（最低weight）のテスト
+      const lastPage = sectionPages[sectionPages.length - 1];
+      expect(lastPage.nextInSection).toBeUndefined(); // 最後のページは次のページがない
+      expect(lastPage.prevInSection).toBeDefined(); // 前のページがある
+      
+      // 中間ページのテスト
+      if (sectionPages.length > 2) {
+        const middlePage = sectionPages[1];
+        expect(middlePage.prevInSection).toBeDefined(); // 前のページがある
+        expect(middlePage.nextInSection).toBeDefined(); // 次のページがある
+        
+        // 前後関係の確認
+        expect(middlePage.prevInSection!.frontmatter.weight).toBeGreaterThan(middlePage.frontmatter.weight);
+        expect(middlePage.nextInSection!.frontmatter.weight).toBeLessThan(middlePage.frontmatter.weight);
+      }
+    });
+
+    it("should not set navigation for sections with only one page", async () => {
+      const sections = await getSiteHomeSections();
+      
+      // guideセクションを取得（1ページのみ）
+      const guideSection = sections.find(s => s.relPermalink === "/k/ja/guide");
+      expect(guideSection).toBeDefined();
+      expect(guideSection!.pages).toBeDefined();
+      expect(guideSection!.pages!).toHaveLength(1);
+      
+      const singlePage = guideSection!.pages![0];
+      expect(singlePage.nextInSection).toBeUndefined();
+      expect(singlePage.prevInSection).toBeUndefined();
+    });
+  });
 });
