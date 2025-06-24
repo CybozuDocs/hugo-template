@@ -134,6 +134,43 @@
 - CSVファイル読み込み処理の実装により、ハードコードからの脱却が可能
 - JavaScript での動的な動作（タブ切り替え等）は別途実装が必要
 
+## Props最適化（2025年1月追加）
+
+### 最適化の経緯
+
+PageLayoutコンポーネントでの実際の統合に合わせて、Props設計を最適化：
+
+1. **BaseProps削除**: 不要な依存関係を除去
+2. **必要最小限のプロパティ**: page全体ではなく、実際に使用される4つのプロパティのみ
+3. **型安全性の向上**: 明示的なプロパティ定義による型安全性確保
+
+### 最適化されたProps設計
+
+```typescript
+interface Props {
+  lang: string;           // page.lang
+  isHome: boolean;        // page.isHome  
+  type: string;           // page.frontmatter.type
+  relPermalink: string;   // page.relPermalink
+}
+```
+
+### PageLayoutでの統合
+
+```astro
+{env.meganav && (
+  <>
+    <div class="mnav-pad" />
+    <MegaNav 
+      lang={currentPage.lang}
+      isHome={currentPage.isHome}
+      type={currentPage.frontmatter.type}
+      relPermalink={currentPage.relPermalink}
+    />
+  </>
+)}
+```
+
 ## 統合による効果
 
 ### 簡素化
@@ -144,10 +181,79 @@
 
 ### 型安全性
 
-- BasePropsによる統一的な型設計
+- 必要最小限のPropsによる明確なインターフェース
 - TypeScript型安全性の維持
+- BaseProps依存の除去による独立性向上
 
 ### 性能向上
 
 - 不要なコンポーネントファイルの削除
 - 条件分岐の削減によるランタイム処理の軽量化
+- Props最適化による依存関係の削減
+
+### 実装の完了
+
+- PageLayout.astroでの実際の統合完了
+- MEGANAV PARTIALプレースホルダーから実コンポーネントへの移行
+- env.meganav条件による適切な制御の確保
+
+## 実データファイル対応（2025年1月追加）
+
+### ダミーデータから実データへの移行
+
+MegaNavコンポーネントで使用していたダミーデータを実際のCSVデータから変換したTypeScriptファイルに置き換え：
+
+### 作成されたファイル
+
+- **src/_data/menuitems.ts**: CSVデータをTypeScriptオブジェクトに変換
+- **元ファイル**: src/pages/_data/csv/menuitems.US.csv
+
+### 変換内容
+
+```typescript
+export interface MenuItemData {
+  id: string;
+  title: string;
+  url: string;
+}
+
+export const menuItems: MenuItemData[] = [
+  // CSVデータをオブジェクト配列に変換
+  { id: "1", title: "Kintoneの使いかた", url: "/k/ja/" },
+  { id: "1", title: "スタートガイド", url: "/k/ja/id/040130.html" },
+  // ... その他のメニューアイテム
+];
+
+export function getMenuData(_lang: string, _targetRegion: string) {
+  // 既存のgetMenuData関数と同じインターフェースを維持
+  return {
+    ids: menuItems.map(item => item.id),
+    titles: menuItems.map(item => item.title),
+    urls: menuItems.map(item => item.url),
+  };
+}
+```
+
+### MegaNav.astroの修正
+
+```astro
+---
+import { getMenuData } from "../../_data/menuitems";
+// ダミー関数を削除し、実際のデータファイルをインポート
+---
+```
+
+### 変更による効果
+
+1. **実データの使用**: CSVファイルから実際のメニューデータを使用
+2. **型安全性**: TypeScriptインターフェースによる型定義
+3. **保守性向上**: データとロジックの分離
+4. **拡張性**: 将来的な多言語・多リージョン対応への準備
+
+### データ構造
+
+- **カテゴリ1**: Kintoneの使いかた（15項目）
+- **カテゴリ2**: 管理（ユーザー／システム）（5項目）
+- **カテゴリ3**: 試用／購入（6項目）
+
+総計26項目のメニューデータを実装。

@@ -1,41 +1,31 @@
 ---
 import { env } from "@/lib/env";
-import type { BaseProps } from "./types";
+import { menuItems, type MenuItemData } from "../../pages/_data/menuitems";
 
-interface Props extends BaseProps {}
+interface Props {
+  lang: string;
+  isHome: boolean;
+  type: string;
+  relPermalink: string;
+}
 
-const { page } = Astro.props;
+const { lang, isHome, type, relPermalink } = Astro.props;
 
-// CSVデータの簡易実装（実際のCSVファイル読み込みの代替）
-// TODO: 実際のCSVファイルからの読み込み処理を実装
+// メニューデータの取得関数
 const getMenuData = (_lang: string, _targetRegion: string) => {
-  // 簡易的なメニューデータ（実際のCSVデータで置き換えが必要）
-  // TODO: 現在のハードコードデータにはslash, storeのURLが含まれているが、
-  // kintone環境では不要。CSVファイルから読み込む際は製品に応じたフィルタリングが必要
+  // IDの配列を生成
+  const ids: string[] = menuItems.map((item: MenuItemData) => item.id);
+  
+  // タイトルの配列を生成
+  const titles: string[] = menuItems.map((item: MenuItemData) => item.title);
+  
+  // URLの配列を生成
+  const urls: string[] = menuItems.map((item: MenuItemData) => item.url);
+  
   return {
-    ids: ["1", "1", "1", "2", "2", "2", "3", "3", "3"],
-    titles: [
-      "Admin",
-      "User",
-      "Developer",
-      "Business",
-      "Enterprise",
-      "Features",
-      "Store",
-      "Marketplace",
-      "Apps",
-    ],
-    urls: [
-      "/k/admin/",
-      "/k/user/",
-      "/k/developer/",
-      "/slash/business/",     // TODO: slash製品用のURL（kintone環境では不要）
-      "/slash/enterprise/",   // TODO: slash製品用のURL（kintone環境では不要）
-      "/slash/features/",     // TODO: slash製品用のURL（kintone環境では不要）
-      "/store/",             // TODO: store製品用のURL（kintone環境では不要）
-      "/store/marketplace/",  // TODO: store製品用のURL（kintone環境では不要）
-      "/store/apps/",        // TODO: store製品用のURL（kintone環境では不要）
-    ],
+    ids,
+    titles,
+    urls,
   };
 };
 
@@ -51,16 +41,16 @@ const strtabnum = "1";
 let curtab = "";
 
 // メニューデータの取得
-const menuData = getMenuData(page.lang, env.targetRegion);
+const menuData = getMenuData(lang, env.targetRegion);
 const menu_ids = ["", ...menuData.ids];
 const menu_titles = ["", ...menuData.titles];
 const menu_urls = ["", ...menuData.urls];
 
 // 現在のタブの決定
 if (
-  !page.isHome &&
-  page.frontmatter.type !== "search_result" &&
-  page.frontmatter.type !== "search_id"
+  !isHome &&
+  type !== "search_result" &&
+  type !== "search_id"
 ) {
   for (let i = 0; i < menu_ids.length; i++) {
     if (menu_ids[i] === strtabnum && curtab === "") {
@@ -71,7 +61,7 @@ if (
 }
 
 // ベースURL処理
-const baseurl = page.relPermalink.replace(/\.html$/, "");
+const baseurl = relPermalink.replace(/\.html$/, "");
 const baseparts = baseurl.split("/");
 const partslen = baseparts.length;
 
@@ -88,10 +78,10 @@ const generateMenuItems = () => {
     if (r === strid) {
       let current = "";
       if (
-        !page.isHome &&
+        !isHome &&
         menuid === tabnum &&
-        page.frontmatter.type !== "search_result" &&
-        page.frontmatter.type !== "search_id"
+        type !== "search_result" &&
+        type !== "search_id"
       ) {
         current = "current";
       }
@@ -129,7 +119,7 @@ const generatePanelContent = (panelNum: number) => {
         const menuhref = href.replace(/\.html$/, "");
 
         if (
-          !page.isHome &&
+          !isHome &&
           partslen >= 3 &&
           (menuhref.includes(baseurl) || baseurl.includes(menuhref))
         ) {
@@ -150,8 +140,8 @@ const generatePanelContent = (panelNum: number) => {
   return items;
 };
 
-const menuItems = generateMenuItems();
-const panelcnt = menuItems.length;
+const generatedMenuItems = generateMenuItems();
+const panelcnt = generatedMenuItems.length;
 ---
 
 <nav
@@ -182,7 +172,7 @@ const panelcnt = menuItems.length;
       <div id="mega-tab-bar" class="mega-tab-bar">
         <ul role="tablist">
           {
-            menuItems.map((item) => (
+            generatedMenuItems.map((item) => (
               <li id={`menuitem${item.menuid}`} role="presentation">
                 <button
                   class={`mega-tab ${item.current}`}

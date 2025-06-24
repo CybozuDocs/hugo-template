@@ -13,6 +13,7 @@ import TreeNavToggle from "./components/TreeNavToggle.astro";
 import GoToTop from "./components/GoToTop.astro";
 import SupportInquiry from "./components/SupportInquiry.astro";
 import Enquete from "./components/Enquete.astro";
+import MegaNav from "./components/MegaNav.astro";
 import LocaleModal from "./components/LocaleModal.astro";
 import ArticleLink from "./components/ArticleLink.astro";
 import ArticleNumber from "./components/ArticleNumber.astro";
@@ -80,7 +81,12 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
           {env.meganav && (
             <>
               <div class="mnav-pad" />
-              <div>[MEGANAV PARTIAL]</div>
+              <MegaNav 
+                lang={currentPage.lang}
+                isHome={currentPage.isHome}
+                type={currentPage.frontmatter.type}
+                relPermalink={currentPage.relPermalink}
+              />
             </>
           )}
 
