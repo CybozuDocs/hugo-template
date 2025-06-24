@@ -18,6 +18,7 @@ import ArticleLink from "./components/ArticleLink.astro";
 import ArticleNumber from "./components/ArticleNumber.astro";
 import HeaderLabel from "./components/HeaderLabel.astro";
 import PageNav from "./components/PageNav.astro";
+import AnnouncementBanner from "./components/AnnouncementBanner.astro";
 
 type Props = MarkdownLayoutProps<{
   title?: string;
@@ -50,10 +51,8 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
         <>
           {env.targetRegion === "US" && <LocaleModal />}
 
-          {/* <!-- Announcement banner --> */}
-          {/* <div>[ANNOUNCEMENT BANNER PARTIAL]</div> */}
+          <AnnouncementBanner />
 
-          {/* <!-- Header --> */}
           <Header page={currentPage} />
 
           <div class="page-pad" />

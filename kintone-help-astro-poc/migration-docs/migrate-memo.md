@@ -1025,3 +1025,32 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - コンテンツに関連性判断用の属性（tags, keywords, categories）が設定されていない
   - 関連性スコアの閾値を満たすコンテンツが存在しない
   - 実際に表示されることがない機能
+
+#### 0031_announcement-banner-integration 作業完了
+- **成果物**: AnnouncementBanner.astro の統合リファクタリングとPageLayout統合
+  - MakeAnnounceBanner.astro の機能を AnnouncementBanner.astro に完全統合
+  - Props設計の改善（配列からオブジェクト形式への変更）
+  - CSV ファイル読み込み関連コードの削除
+  - PageLayout.astro でのプレースホルダーから実コンポーネントへの移行
+  - MakeAnnounceBanner.astro/.md ファイル削除とドキュメント統合
+- **重要な学習事項**:
+  - コンポーネント分離設計から統合設計への移行パターンの確立
+  - Props 設計において配列形式よりオブジェクト形式の型安全性と可読性の優位性
+  - 未使用機能（CSV読み込み）の積極的削除による保守性向上効果
+  - Props最適化パターンの適用（BaseProps削除で必要最小限のコンポーネント実現）
+- **技術的実装**:
+  - **Props設計**: `msg?: MessageData` による省略可能なメッセージオブジェクト受け取り
+  - **DOM構造統合**: MakeAnnounceBanner の完全な DOM 構造を AnnouncementBanner に移植
+  - **型定義**: MessageData interface による型安全なプロパティ定義
+  - **機能保持**: Font Awesome アイコン、WOVN 翻訳、マークダウン処理機能の維持
+  - **PageLayout統合**: `[ANNOUNCEMENT BANNER PARTIAL]` プレースホルダーから `<AnnouncementBanner />` への移行
+  - **Props最適化**: BaseProps削除で依存関係を完全排除
+- **アーキテクチャ進化**:
+  - コンポーネント間の依存関係削除（MakeAnnounceBanner への依存排除）
+  - Props インターフェースの明確化（string[] → MessageData オブジェクト）
+  - 不要な実装（CSV読み込み、配列マッピング）の削除による簡素化
+  - プレースホルダーから実コンポーネントへの段階的統合パターンの確立
+- **品質確保**:
+  - TypeScript 型エラー解消（未使用変数 page の削除）
+  - ビルドテスト成功確認（統合前後でエラーなし）
+  - 既存 DOM 構造の完全保持

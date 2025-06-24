@@ -1,31 +1,72 @@
 ---
-import { env } from "@/lib/env";
 import Wovn from "@/components/Wovn.astro";
-import MakeAnnounceBanner from "./MakeAnnounceBanner.astro";
-import type { BaseProps } from "./types";
 
-interface Props extends BaseProps {}
+interface MessageData {
+  key: string;
+  bgColor?: string;
+  fontawesomeIcon?: string;
+  iconColor?: string;
+  title?: string;
+  text: string;
+}
 
-const { page } = Astro.props;
+interface Props {
+  msg?: MessageData;
+}
 
-// デフォルトのメッセージ
-const defaultMsg = [
-  "session-notice-1",
-  "#f9aeb6",
-  "fas fa-exclamation-triangle",
-  "#cd1b49",
-  "i18n__Unsupported_browser",
-  "i18n__Unsupported_message",
-];
+const { msg } = Astro.props;
 
-// CSVファイルの読み込み（静的な実装）
-const announcementfile = `csv/${env.lang}/announcement_${env.targetRegion}.csv`;
-let csvData = [];
+// デフォルトのメッセージ（オブジェクト形式）
+const defaultMessage: MessageData = {
+  key: "session-notice-1",
+  bgColor: "#f9aeb6",
+  fontawesomeIcon: "fas fa-exclamation-triangle",
+  iconColor: "#cd1b49",
+  title: "i18n__Unsupported_browser",
+  text: "i18n__Unsupported_message",
+};
 
-// TODO: 実際のCSVファイル読み込み処理を実装
-// 現在は静的な実装のため、CSVファイルの動的読み込みは未実装
+// 使用するメッセージを決定
+const message = msg || defaultMessage;
+
+// markdownify相当の処理（簡易実装）
+const processMarkdown = (text: string) => {
+  return text; // TODO: マークダウン処理の実装
+};
 ---
 
-<MakeAnnounceBanner data={defaultMsg} />
-
-{csvData.map((row) => <MakeAnnounceBanner data={row} />)}
+<aside
+  class={`announcement-banner ${message.key}`}
+  id={`announcement-banner-${message.key}`}
+  style={`display: none;${message.bgColor ? `background-color: ${message.bgColor};` : ""}`}
+>
+  <div class="announcement-banner-wrapper">
+    <div class="announcement-banner-icon">
+      <i
+        class={message.fontawesomeIcon}
+        style={message.iconColor ? `color: ${message.iconColor};` : ""}
+        aria-hidden="true"></i>
+    </div>
+    <div class="announcement-banner-content">
+      <div class="announcement-banner-content-content">
+        {message.title && <div class="announcement-banner-content-title">{message.title}</div>}
+        <div
+          class="announcement-banner-content-description"
+          set:html={processMarkdown(message.text)}
+        />
+      </div>
+      <div class="announcement-banner-content-button">
+        <button
+          type="submit"
+          id={`announcement-${message.key}`}
+          class="announcement-banner-content-button-close"
+          title="i18n__todo__Announcement_button_close"
+          tabindex="0"
+        >
+          <i class="fa fa-times-circle" aria-hidden="true"></i>
+          <span><Wovn>i18n__Close</Wovn></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</aside>
