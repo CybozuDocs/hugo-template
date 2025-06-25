@@ -1,0 +1,15 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  title?: string;
+}
+
+const { src, alt, title } = Astro.props;
+
+const isSimple = src.includes("/img/");
+---
+
+{
+  isSimple ? <img src={src} alt={alt} title={title} role="img" /> : <img class="screenshot" src={src} alt={alt} title={title} data-action="zoom" role="img" />
+}

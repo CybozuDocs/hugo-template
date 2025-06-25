@@ -1172,3 +1172,27 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - ソート処理の一元管理による保守性向上
   - 重複コード削除と型安全性の強化
   - Hugo仕様準拠の確実な実装
+
+#### 0033_img-component 作業完了
+- **成果物**: Img.astro コンポーネントの実装
+  - Hugo の `layouts/_default/_markup/render-image.html` を Astro コンポーネントとして実装
+  - product="kintone" 固定化による大幅な簡素化（20行 → 11行、45%削減）
+  - src, alt, title をpropsで受け取る汎用画像コンポーネント
+- **重要な学習事項**:
+  - product固定化による製品分岐処理の完全削除効果
+  - Hugo マークダウンレンダラーロジックのAstro移植パターン
+  - 画像タイプ判定の簡素化（/img/ パス判定のみ）
+  - Props最適化による独立性の高いコンポーネント設計
+- **技術的実装**:
+  - **Props設計**: `{ src: string; alt: string; title?: string }` による最小限のインターフェース
+  - **判定ロジック**: `src.includes("/img/")` による simple/screenshot 分岐
+  - **DOM構造保持**: Hugo実装と完全同等のHTML出力
+  - **削除された分岐**: Garoon, Mailwise, Remote, Office の製品別処理
+- **アーキテクチャ進化**:
+  - マークダウン専用 → 汎用画像コンポーネントへの進化
+  - 製品分岐の完全排除による保守性向上
+  - BaseProps非依存の独立性確保
+- **品質確保**:
+  - ビルドテスト成功（npm run build、1.68秒、エラーなし）
+  - TypeScript型安全性確保
+  - 変更記録ファイル（Img.md）作成完了

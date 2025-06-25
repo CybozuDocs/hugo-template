@@ -9,6 +9,7 @@ layout: "@/layouts/PageLayout.astro"
 import Kintone from "@/components/Kintone.astro";
 import Hint from "@/components/Hint.astro";
 import Note from "@/components/Note.astro";
+import Img from "@/components/Img.astro";
 
 <Kintone />のアプリでは、「レコード」という単位でデータを管理しています。たとえば、「社員情報アプリ」では、1人の社員の情報を1レコードとして登録して管理します。
 
@@ -17,13 +18,13 @@ import Note from "@/components/Note.astro";
 ここでは例として、「[アプリを作ってみよう](/k/ja/id/040133.html)」で作成した社員情報アプリに、実際に社員情報を登録してみます。
 
 1. <Kintone />のトップページの「アプリ」エリアで、[社員情報]をクリックします。
-  ![スクリーンショット：「アプリ」エリアで[社員情報]のアプリが枠線で強調されているトップページ](/k/kintone/img-ja/add_record_app_img01.png)
+   <Img src="/k/kintone/img-ja/add_record_app_img01.png" alt="スクリーンショット：「アプリ」エリアで[社員情報]のアプリが枠線で強調されているトップページ" />
 
 1. 画面右上の+の形をした「レコードを追加する」アイコンをクリックします。
-  ![スクリーンショット：「レコードを追加する」アイコンが枠線で強調された「レコードの一覧」画面](/k/kintone/img-ja/add_record_app_img02.png)
+   <Img src="/k/kintone/img-ja/add_record_app_img02.png" alt="スクリーンショット：「レコードを追加する」アイコンが枠線で強調された「レコードの一覧」画面" />
 
 1. 社員の情報を入力し、[保存]をクリックします。
-  ![スクリーンショット：情報の入力が完了した「レコードの詳細」画面](/k/kintone/img-ja/add_record_app_img03.png)
+   <Img src="/k/kintone/img-ja/add_record_app_img03.png" alt="スクリーンショット：情報の入力が完了した「レコードの詳細」画面" />
 
 これで、レコードの登録が完了しました。この手順を繰り返して、複数のレコードを登録してみましょう。
 
@@ -33,12 +34,12 @@ import Note from "@/components/Note.astro";
 
 * **登録済みの社員情報を一覧表示するには：**  
   パンくずリストまたは画面左上のアプリ名をクリックすると、手順2の画面に戻り、レコード（社員情報）の一覧が表示されます。
-  ![スクリーンショット：パンくずリストとアプリ名が枠線で強調された「レコードの詳細」画面](/k/kintone/img-ja/add_record_app_img04.png)
+  <Img src="/k/kintone/img-ja/add_record_app_img04.png" alt="スクリーンショット：パンくずリストとアプリ名が枠線で強調された「レコードの詳細」画面" />
 * **レコード一覧から各社員情報の詳細を確認するには：**  
   レコード一覧画面で、各レコードの左側にある「レコードの詳細を表示する」アイコンをクリックすると、レコードの詳細内容を表示できます。
-  ![スクリーンショット：「レコードの詳細を表示する」アイコンが枠線で強調された「レコードの一覧」画面](/k/kintone/img-ja/add_record_app_img05.png)
+  <Img src="/k/kintone/img-ja/add_record_app_img05.png" alt="スクリーンショット：「レコードの詳細を表示する」アイコンが枠線で強調された「レコードの一覧」画面" />
 * **登録済みの社員情報を編集するには：**  
   該当のレコードを表示し、「レコードを編集する」アイコンをクリックすると、編集できます。  
-  ![スクリーンショット：「レコードを編集する」アイコンが枠線で強調された「レコードの詳細」画面](/k/kintone/img-ja/edit_record_details_02.png)
+  <Img src="/k/kintone/img-ja/edit_record_details_02.png" alt="スクリーンショット：「レコードを編集する」アイコンが枠線で強調された「レコードの詳細」画面" />
 
 次は、「[アプリのレコードにコメントしてみよう](/k/ja/id/040132.html)」を参照しながら、登録したレコードにコメントを書き込んでみましょう。

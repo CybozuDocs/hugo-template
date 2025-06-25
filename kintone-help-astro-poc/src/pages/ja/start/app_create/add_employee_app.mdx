@@ -9,6 +9,7 @@ layout: "@/layouts/PageLayout.astro"
 import Kintone from "@/components/Kintone.astro";
 import Hint from "@/components/Hint.astro";
 import Note from "@/components/Note.astro";
+import Img from "@/components/Img.astro";
 
 <Kintone />では、さまざまな業務に対応するアプリを作成できます。ここでは、ドラッグアンドドロップで項目を追加して簡単なアプリを作る方法を紹介します。  
 操作手順に従って実際にアプリを作成し、<Kintone />のアプリの構成や特徴を体験してみましょう。
@@ -26,29 +27,29 @@ import Note from "@/components/Note.astro";
 
 **完成イメージ：**
 
-![スクリーンショット：完成した「レコード詳細」画面](/k/kintone/img-ja/add_employee_app_img08.png)
+<Img src="/k/kintone/img-ja/add_employee_app_img08.png" alt="スクリーンショット：完成した「レコード詳細」画面" />
 
 では、早速「社員情報アプリ」を作ってみましょう。
 
 1. <Kintone />のポータルで、「アプリ」エリアにある+の形をした「アプリを作成する」アイコンをクリックします。
-  ![スクリーンショット：「アプリ」エリアの「アプリを作成する」アイコンが枠線で強調されているトップページ](/k/kintone/img-ja/add_employee_app_img01.png)
+   <Img src="/k/kintone/img-ja/add_employee_app_img01.png" alt="スクリーンショット：「アプリ」エリアの「アプリを作成する」アイコンが枠線で強調されているトップページ" />
 
 1. [はじめから作成]をクリックします。
-  ![スクリーンショット：[はじめから作成]のリンクが枠線で強調された「アプリストア」画面](/k/kintone/img-ja/add_employee_app_img02.png)
-  新しいアプリの作成画面が表示されます。
+   <Img src="/k/kintone/img-ja/add_employee_app_img02.png" alt="スクリーンショット：[はじめから作成]のリンクが枠線で強調された「アプリストア」画面" />
+   新しいアプリの作成画面が表示されます。
 
 1. アプリ名の入力欄に「社員情報」と入力します。
-  ![スクリーンショット：アプリ名の入力欄が枠線で強調された「アプリの設定」画面](/k/kintone/img-ja/add_employee_app_img03.png)
+   <Img src="/k/kintone/img-ja/add_employee_app_img03.png" alt="スクリーンショット：アプリ名の入力欄が枠線で強調された「アプリの設定」画面" />
 
 1. 画面左側の項目（「フィールド」と呼びます）一覧から、まず社員の氏名入力欄として「文字列（1行）」というフィールドを右側のエリアにドラッグアンドドロップします。
-  ![動画：フィールドを画面左から画面右にドラッグアンドドロップしている](/k/kintone/img-ja/add_employee_app_img04.gif)
+   <Img src="/k/kintone/img-ja/add_employee_app_img04.gif" alt="動画：フィールドを画面左から画面右にドラッグアンドドロップしている" />
 
 1. 手順4で配置した文字列（1行）フィールドの右上にカーソルを乗せ、フィールド右上に歯車の形をした設定アイコンが表示されたら、[設定]をクリックします。
-  ![スクリーンショット：設定アイコンをクリックしている](/k/kintone/img-ja/add_employee_app_img05.png)
+   <Img src="/k/kintone/img-ja/add_employee_app_img05.png" alt="スクリーンショット：設定アイコンをクリックしている" />
 
 1. 「フィールド名」に「氏名」と入力して、[保存]をクリックします。
-  ![スクリーンショット：フィールド名の入力欄が枠線で強調されている「文字列（１行）の設定」画面](/k/kintone/img-ja/add_employee_app_img06.png)
-  これで、「氏名」という入力欄ができました。
+   <Img src="/k/kintone/img-ja/add_employee_app_img06.png" alt="スクリーンショット：フィールド名の入力欄が枠線で強調されている「文字列（１行）の設定」画面" />
+   これで、「氏名」という入力欄ができました。
 
 1. 手順4～6を繰り返し、次のフィールドをドラッグアンドドロップで配置してフィールド名を設定します。また、必要に応じて各フィールドの位置をドラッグアンドドロップで調整します。  
 
@@ -65,7 +66,7 @@ import Note from "@/components/Note.astro";
      フィールド名を「顔写真」に設定します。
 
    次のような画面ができたら、入力欄の配置は完了です。
-   ![スクリーンショット：入力欄の配置が完了した「アプリの設定」画面](/k/kintone/img-ja/add_employee_app_img09.png)
+   <Img src="/k/kintone/img-ja/add_employee_app_img09.png" alt="スクリーンショット：入力欄の配置が完了した「アプリの設定」画面" />
 
    <Note>
 
@@ -74,11 +75,11 @@ import Note from "@/components/Note.astro";
    </Note>
 
 1. 画面左上の[フォームを保存]をクリックします。  
-  フォームの設定内容が保存されます。この時点ではまだアプリは公開されないため、必要に応じて何度でも保存しながら設定をやり直すことができます。
+   フォームの設定内容が保存されます。この時点ではまだアプリは公開されないため、必要に応じて何度でも保存しながら設定をやり直すことができます。
 
 1. 画面右上の[アプリを公開]をクリックします。  
-  このボタンをクリックすることで、作成したアプリが公開され、ほかのユーザーも使用できるようになります。[アプリを公開]をクリックするまでは、アプリは公開されません。
-  ![スクリーンショット：[アプリを公開]ボタンが枠線で強調された「アプリの設定」画面](/k/kintone/img-ja/add_employee_app_img07.png)
+   このボタンをクリックすることで、作成したアプリが公開され、ほかのユーザーも使用できるようになります。[アプリを公開]をクリックするまでは、アプリは公開されません。
+   <Img src="/k/kintone/img-ja/add_employee_app_img07.png" alt="スクリーンショット：[アプリを公開]ボタンが枠線で強調された「アプリの設定」画面" />
 
 これで、社員情報アプリが完成しました。次は、「[アプリにデータを登録してみよう](/k/ja/id/040134.html)」を参照しながら、このアプリに社員情報を登録してみましょう。
 
