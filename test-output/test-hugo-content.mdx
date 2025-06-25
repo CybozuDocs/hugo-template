@@ -1,0 +1,92 @@
+---
+title: <Kintone />の基本機能
+weight: 150
+aliases: /ja/id/040150
+description: '{{< kintone >}}の基本的な使い方を説明します'
+layout: '@/layouts/PageLayout.astro'
+---
+
+import CorpName from "@/components/CorpName.astro";
+import CybozuCom from "@/components/CybozuCom.astro";
+import DevnetName from "@/components/DevnetName.astro";
+import DevnetTop from "@/components/DevnetTop.astro";
+import Disabled2 from "@/components/Disabled2.astro";
+import Enabled from "@/components/Enabled.astro";
+import Graynote from "@/components/Graynote.astro";
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Listsummary from "@/components/Listsummary.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Service from "@/components/Service.astro";
+import Slash from "@/components/Slash.astro";
+import SlashAdministrators from "@/components/SlashAdministrators.astro";
+import SlashHelp from "@/components/SlashHelp.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Store from "@/components/Store.astro";
+import Subtitle from "@/components/Subtitle.astro";
+import Warning from "@/components/Warning.astro";
+
+
+<Kintone />の基本機能について説明します。
+
+<Heading id="create-app">アプリの作成</Heading>
+<Note>
+初めてアプリを作成する場合は、以下の点に注意してください。
+- 管理者権限が必要です
+- <Slash />から設定を行います
+</Note>
+
+<Heading level={3} id="app-store">アプリストアから選ぶ</Heading>
+<Enabled for="JP">
+日本向けのアプリストアでは、<CybozuCom />が提供する豊富なテンプレートを利用できます。
+</Enabled>
+
+<Enabled for={["US", "CN"]}>
+アプリストアから選択する場合は、<Store />にアクセスしてください。
+</Enabled>
+
+<Img src="/k/kintone/img-ja/app_list_screen.png" alt="アプリ一覧画面" title="アプリ一覧画面の例" />
+
+<Reference>
+詳細については、[アプリの作成方法](/ja/app/create)を参照してください。
+</Reference>
+
+<Hint>
+アプリを作成する際は、用途に応じて適切なテンプレートを選ぶことが重要です。
+</Hint>
+
+<Heading id="use-space">スペースの活用</Heading>
+<Warning>
+スペースの作成には権限が必要です。<SlashAdministrators />で設定を確認してください。
+</Warning>
+
+<Graynote>
+スペースは最大1000個まで作成できます。
+</Graynote>
+
+<Disabled2 regions="CN">
+この機能は中国リージョンでは利用できません。
+</Disabled2>
+
+<Subtitle>スペースの種類</Subtitle>
+
+1. 通常スペース
+2. ゲストスペース
+
+<Listsummary>
+スペースを活用することで、チーム内のコミュニケーションが円滑になります。
+- プロジェクト管理
+- 情報共有
+- ディスカッション
+</Listsummary>
+
+詳細は<DevnetTop />の<DevnetName />をご覧ください。
+
+サービス名：<Service />
+ヘルプ：<SlashHelp />
+UI：<SlashUi />
+
+(c) <CorpName />
