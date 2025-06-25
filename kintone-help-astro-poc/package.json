@@ -14,9 +14,11 @@
     "format:check": "prettier . --check"
   },
   "dependencies": {
+    "@astrojs/check": "0.9.4",
     "@astrojs/mdx": "4.3.0",
     "astro": "5.8.1",
-    "dotenv": "16.5.0"
+    "dotenv": "16.5.0",
+    "typescript": "5.8.3"
   },
   "devDependencies": {
     "prettier": "3.5.3",
