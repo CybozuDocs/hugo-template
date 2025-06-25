@@ -1,0 +1,85 @@
+---
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+
+export interface Props {
+  title: string;
+  file: string;
+}
+
+const { title, file } = Astro.props;
+
+// Read and parse CSV file
+function parseCSV(filepath: string): Array<[string, string]> {
+  try {
+    // Try different possible paths
+    const possiblePaths = [
+      resolve(process.cwd(), 'src/pages/_data/csv', filepath),
+      resolve(process.cwd(), 'public', filepath),
+      resolve(process.cwd(), filepath)
+    ];
+    
+    let content: string | null = null;
+    for (const path of possiblePaths) {
+      try {
+        content = readFileSync(path, 'utf-8');
+        break;
+      } catch {
+        continue;
+      }
+    }
+    
+    if (!content) {
+      console.error(`CSV file not found: ${filepath}`);
+      return [];
+    }
+    
+    const lines = content.trim().split('\n');
+    const rows: Array<[string, string]> = [];
+    
+    for (const line of lines) {
+      const columns = line.split(',').map(col => col.trim().replace(/^"(.*)"$/, '$1'));
+      if (columns.length >= 2 && columns[0] && columns[1]) {
+        rows.push([columns[0], columns[1]]);
+      }
+    }
+    
+    return rows;
+  } catch (error) {
+    console.error(`Error reading CSV file ${filepath}:`, error);
+    return [];
+  }
+}
+
+const csvData = parseCSV(file);
+const firstFour = csvData.slice(0, 4);
+const remaining = csvData.slice(4);
+---
+
+<div class="col-tile col-topics col-flat">
+  <div class="tile-title">{title}</div>
+  <div class="hotArticle">
+    <ol>
+      {firstFour.map(([text, url]) => (
+        <li><a class="hotArticleLink" href={url}>{text}</a></li>
+      ))}
+      {remaining.length > 0 && (
+        <>
+          </ol>
+          </div>
+          <div class="hotArticle" id="hotArticles-others" style="display:none">
+            <ol start="5">
+              {remaining.map(([text, url]) => (
+                <li><a class="hotArticleLink" href={url}>{text}</a></li>
+              ))}
+            </ol>
+        </>
+      )}
+    </ol>
+  </div>
+  {remaining.length > 0 && (
+    <div id="hotArticles-showMore">
+      <span class="fa fa-chevron-down"></span>
+    </div>
+  )}
+</div>

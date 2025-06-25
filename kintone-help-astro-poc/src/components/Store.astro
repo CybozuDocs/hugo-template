@@ -1,0 +1,11 @@
+---
+/**
+ * Store コンポーネント
+ * 
+ * Store製品名を表示するコンポーネント。
+ * Hugo: {{$.Site.Params.store}} の代替実装。
+ */
+import { env } from "@/lib/env";
+---
+
+{env.store || "kintone"}

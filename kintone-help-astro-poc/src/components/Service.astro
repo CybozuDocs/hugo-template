@@ -1,0 +1,11 @@
+---
+/**
+ * Service コンポーネント
+ * 
+ * Service名を表示するコンポーネント。
+ * Hugo: {{$.Site.Params.service}} の代替実装。
+ */
+import { env } from "@/lib/env";
+---
+
+{env.service || "kintone"}

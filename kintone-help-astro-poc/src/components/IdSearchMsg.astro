@@ -1,0 +1,18 @@
+---
+/**
+ * IdSearchMsg コンポーネント
+ * 
+ * ID検索エラーメッセージの JavaScript 配列を生成するコンポーネント。
+ * Hugo: id_search_msg.html の代替実装。
+ */
+
+interface Props {
+  messages: string[];
+}
+
+const { messages = [] } = Astro.props;
+---
+
+<script define:vars={{ messages }}>
+  var id_error_msg = messages;
+</script>

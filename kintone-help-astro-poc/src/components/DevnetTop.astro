@@ -1,0 +1,11 @@
+---
+/**
+ * DevnetTop コンポーネント
+ * 
+ * 開発者サイトトップページへのリンクコンポーネント。
+ * Hugo: <a href="{{$.Site.Params.devnet_url}}">{{$.Site.Params.devnet_name}}</a> の代替実装。
+ */
+import { env } from "@/lib/env";
+---
+
+<a href={env.devnetUrl}>{env.devnetName}</a>

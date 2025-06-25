@@ -1,0 +1,11 @@
+---
+/**
+ * DevnetName コンポーネント
+ * 
+ * 開発者サイト名を表示するコンポーネント。
+ * Hugo: {{$.Site.Params.devnet_name}} の代替実装。
+ */
+import { env } from "@/lib/env";
+---
+
+{env.devnetName}

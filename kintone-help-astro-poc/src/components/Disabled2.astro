@@ -1,0 +1,33 @@
+---
+/**
+ * Disabled2 コンポーネント
+ * 
+ * 指定リージョンでコンテンツを無効化（非表示）するコンポーネント。
+ * Hugo: disabled2.html の正確な実装。
+ * 
+ * 動作: ショートコードのパラメータ（regions）に現在のTargetRegionが含まれている場合は非表示、
+ *       含まれていない場合は表示する。
+ */
+import { env } from "@/lib/env";
+
+// Hugo: .Params は個別のパラメータ文字列、Astroでは配列として受け取る
+// 使用例: {{< disabled2 "us" "jp" >}} → <Disabled2 regions={["us", "jp"]}>
+// 現在のTargetRegionが "us" なら非表示、"cn" なら表示
+
+// Hugo の .Params は位置引数（$0, $1, ...）だが、Astroでは名前付きPropsで受け取る
+// Hugo: if in .Params $.Site.Params.TargetRegion
+// Astro: if regions.includes(env.targetRegion)
+
+interface Props {
+  regions?: string[];
+}
+
+const { regions = [] } = Astro.props;
+
+// Hugo の正確なロジックを再現:
+// パラメータリストに現在のTargetRegionが含まれている場合は非表示（disabled）
+// 含まれていない場合は表示
+const shouldDisplay = !regions.includes(env.targetRegion);
+---
+
+{shouldDisplay && <slot />}

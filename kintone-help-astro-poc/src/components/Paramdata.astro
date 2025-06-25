@@ -1,0 +1,18 @@
+---
+/**
+ * Paramdata コンポーネント
+ * 
+ * 動的クラス生成用のdivラッパーコンポーネント。
+ * Hugo: {{.Get "type"}} の代替実装。
+ */
+
+interface Props {
+  type: string;
+}
+
+const { type } = Astro.props;
+---
+
+<div class={`tmp-${type}`}>
+  <slot />
+</div>

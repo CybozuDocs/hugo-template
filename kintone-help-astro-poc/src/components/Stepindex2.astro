@@ -1,0 +1,19 @@
+---
+/**
+ * Stepindex2 コンポーネント
+ * 
+ * ステップインデックス表示用のテーブルコンポーネント。
+ * Hugo: stepindex2.html の代替実装。
+ */
+
+interface Props {
+  target: string;
+}
+
+const { target } = Astro.props;
+---
+
+<div class="step-list-wrapper">
+  <strong>Steps:</strong>
+  <table class="step-list list-place" id={target}></table>
+</div>

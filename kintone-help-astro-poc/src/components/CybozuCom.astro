@@ -1,0 +1,11 @@
+---
+/**
+ * CybozuCom コンポーネント
+ * 
+ * cybozu.com サイト名を表示するコンポーネント。
+ * Hugo: {{$.Site.Params.cybozu_com}} の代替実装。
+ */
+import { env } from "@/lib/env";
+---
+
+{env.cybozuCom}

@@ -1,0 +1,84 @@
+---
+/**
+ * Tile2 コンポーネント
+ * 
+ * タイル表示用のリンクコンポーネント（完全実装）。
+ * Hugo: tile2.html の完全実装。
+ * 
+ * 機能:
+ * - 正規表現による tmp-tile-title/text 抽出
+ * - 6つのパラメータによる高度なカスタマイズ
+ * - 条件付きアイコン・色表示
+ * - 外部リンクの target 制御
+ * - 動的CSSクラス適用
+ */
+
+interface Props {
+  external?: string;          // "true" で target="_blank"
+  link_class?: string;        // 追加CSSクラス
+  link_href: string;          // リンクURL（必須）
+  fontawesome_icon?: string;  // FontAwesome アイコンクラス
+  fontawesome_color?: string; // アイコン色
+}
+
+const { 
+  external, 
+  link_class, 
+  link_href, 
+  fontawesome_icon, 
+  fontawesome_color 
+} = Astro.props;
+
+// スロットの内容を取得
+const slotContent = await Astro.slots.render('default') || '';
+
+// Hugo の正規表現ロジックを JavaScript で再現
+function extractTmpTileTitle(content: string): string {
+  const tmpTitlePref = '<div class="tmp-tile-title">';
+  const tmpTitlePattern = new RegExp(`${escapeRegExp(tmpTitlePref)}([\\s\\S]*?)</div>`, 'i');
+  const match = content.match(tmpTitlePattern);
+  if (match) {
+    return match[1].trim();
+  }
+  return '';
+}
+
+function extractTmpTileText(content: string): string {
+  const tmpTextPref = '<div class="tmp-tile-text">';
+  const tmpTextPattern = new RegExp(`${escapeRegExp(tmpTextPref)}([\\s\\S]*?)</div>`, 'i');
+  const match = content.match(tmpTextPattern);
+  if (match) {
+    return match[1].trim();
+  }
+  return '';
+}
+
+function escapeRegExp(string: string): string {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// タイトルとテキストを抽出
+const extractedTitle = extractTmpTileTitle(slotContent);
+const extractedText = extractTmpTileText(slotContent);
+
+// target の決定（Hugo: external="true" で "_blank"）
+const target = external === "true" ? "_blank" : "_self";
+
+// CSSクラスの組み立て
+const tileClasses = ['tile2', link_class].filter(Boolean).join(' ');
+
+// アイコンスタイルの生成
+const iconStyle = fontawesome_color ? `color: ${fontawesome_color};` : '';
+---
+
+<div class="col-tile">
+  <a class={tileClasses} href={link_href} target={target}>
+    <div class="tile-title tile2-title-title" set:html={extractedTitle} />
+    <div class="tile-link tile2-title-link">
+      {extractedText && <div set:html={extractedText} />}
+    </div>
+    {fontawesome_icon && (
+      <i class={fontawesome_icon} style={iconStyle} aria-hidden="true"></i>
+    )}
+  </a>
+</div>

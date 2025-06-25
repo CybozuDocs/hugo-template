@@ -1,0 +1,71 @@
+---
+/**
+ * Info コンポーネント
+ * 
+ * 情報表示用のアドモニションコンポーネント。
+ * Hugo: info.html の完全実装。
+ * 
+ * 機能:
+ * - カスタム色指定 (outer_color, icon_color, inner_color)
+ * - カスタムアイコン指定 (fontawesome_icon)
+ * - 正規表現による tmp-admonition-title/text 抽出
+ * - 動的スタイル適用
+ */
+
+interface Props {
+  outer_color?: string;     // 外側背景色
+  fontawesome_icon?: string; // FontAwesome アイコンクラス
+  icon_color?: string;      // アイコン色
+  inner_color?: string;     // 内側背景色
+}
+
+const { outer_color, fontawesome_icon, icon_color, inner_color } = Astro.props;
+
+// スロットの内容を取得（Astroではビルド時に処理）
+const slotContent = await Astro.slots.render('default') || '';
+
+// Hugo の正規表現ロジックを JavaScript で再現
+function extractTmpAdmonitionTitle(content: string): string {
+  const tmpTitlePref = '<div class="tmp-admonition-title">';
+  const tmpTitlePattern = new RegExp(`${escapeRegExp(tmpTitlePref)}([\\s\\S]*?)</div>`, 'i');
+  const match = content.match(tmpTitlePattern);
+  if (match) {
+    return match[1].trim();
+  }
+  return ''; // タイトルが見つからない場合は空文字
+}
+
+function extractTmpAdmonitionText(content: string): string {
+  const tmpTextPref = '<div class="tmp-admonition-text">';
+  const tmpTextPattern = new RegExp(`${escapeRegExp(tmpTextPref)}([\\s\\S]*?)</div>`, 'i');
+  const match = content.match(tmpTextPattern);
+  if (match) {
+    return match[1].trim();
+  }
+  return content; // テキストが見つからない場合は元のコンテンツをそのまま使用
+}
+
+function escapeRegExp(string: string): string {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// タイトルとテキストを抽出
+const extractedTitle = extractTmpAdmonitionTitle(slotContent);
+const extractedText = extractTmpAdmonitionText(slotContent);
+
+// 動的スタイルの生成
+const outerStyle = outer_color ? `background-color: ${outer_color};` : '';
+const iconStyle = icon_color ? `color: ${icon_color};` : '';
+const innerStyle = inner_color ? `background-color: ${inner_color};` : '';
+
+// アイコンクラスの決定（指定されていない場合はデフォルト）
+const iconClass = fontawesome_icon || 'fas fa-info-circle';
+---
+
+<aside class="admonition info" style={outerStyle}>
+  <div class="admonition-alt">
+    <i class={iconClass} style={iconStyle} aria-hidden="true"></i>
+    <span set:html={extractedTitle} />
+  </div>
+  <div class="admonition-content" style={innerStyle} set:html={extractedText} />
+</aside>

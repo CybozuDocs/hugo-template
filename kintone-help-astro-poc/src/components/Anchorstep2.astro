@@ -1,0 +1,133 @@
+---
+/**
+ * Anchorstep2 コンポーネント
+ * 
+ * アンカー付きステップ表示コンポーネント（完全実装）。
+ * Hugo: anchorstep2.html の完全実装。
+ * 
+ * 機能:
+ * - 複雑な正規表現による tmp-step-section/title 抽出
+ * - 動的なチェックボックス制御
+ * - カスタム色指定 (bgcolor, txtcolor)  
+ * - 残余コンテンツの適切な処理
+ * - 空コンテンツ時の step-memo-blank クラス適用
+ */
+
+interface Props {
+  id?: string;
+  number?: string;
+  checkbox?: string; // "true" | "false" | undefined
+  bgcolor?: string;
+  txtcolor?: string;
+}
+
+const { 
+  id, 
+  number, 
+  checkbox, 
+  bgcolor, 
+  txtcolor 
+} = Astro.props;
+
+// スロットの内容を取得
+const slotContent = await Astro.slots.render('default') || '';
+
+// Hugo の複雑なロジックを JavaScript で再現
+function extractTmpStepSection(content: string): string {
+  const tmpSectPref = '<div class="tmp-step-section">';
+  const tmpSectPattern = new RegExp(`${escapeRegExp(tmpSectPref)}([\\s\\S]*?)</div>`, 'i');
+  const match = content.match(tmpSectPattern);
+  if (match) {
+    return match[1].trim();
+  }
+  return '';
+}
+
+function extractTmpStepTitle(content: string): string {
+  const tmpTitlePref = '<div class="tmp-step-title">';
+  const tmpTitlePattern = new RegExp(`${escapeRegExp(tmpTitlePref)}([\\s\\S]*?)</div>`, 'i');
+  const match = content.match(tmpTitlePattern);
+  if (match) {
+    return match[1].trim();
+  }
+  return '';
+}
+
+function removeExtractedContent(content: string, section: string, title: string): string {
+  let result = content;
+  
+  // セクション部分を削除
+  if (section) {
+    const tmpSectPref = '<div class="tmp-step-section">';
+    const tmpSectPattern = new RegExp(`${escapeRegExp(tmpSectPref)}[\\s\\S]*?</div>`, 'gi');
+    result = result.replace(tmpSectPattern, '');
+  }
+  
+  // タイトル部分を削除
+  if (title) {
+    const tmpTitlePref = '<div class="tmp-step-title">';
+    const tmpTitlePattern = new RegExp(`${escapeRegExp(tmpTitlePref)}[\\s\\S]*?</div>`, 'gi');
+    result = result.replace(tmpTitlePattern, '');
+  }
+  
+  return result.trim();
+}
+
+function hasInnerContent(content: string): boolean {
+  // Hugo: findRE "\\S+" $inner の再現
+  return /\S+/.test(content);
+}
+
+function escapeRegExp(string: string): string {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// セクションとタイトルを抽出
+const extractedSection = extractTmpStepSection(slotContent);
+const extractedTitle = extractTmpStepTitle(slotContent);
+
+// 残余コンテンツを計算
+const remainingContent = removeExtractedContent(slotContent, extractedSection, extractedTitle);
+const hasRemainingContent = hasInnerContent(remainingContent);
+
+// checkboxの処理（Hugo: eq (.Get "checkbox") "false"）
+const checkboxEnabled = checkbox !== "false";
+
+// スタイルの生成
+const sectionStyles = [
+  bgcolor && `background-color: ${bgcolor};`,
+  txtcolor && `color: ${txtcolor}`
+].filter(Boolean).join(' ');
+
+// IDが存在し、numberが指定され、checkboxが有効な場合のみチェックボックスを表示
+const showCheckbox = id && number && checkboxEnabled;
+---
+
+{id ? (
+  <div class="step-wrap" id={id}>
+) : (
+  <div class="step-wrap">
+)}
+  <div class="step-label">
+    {number && (
+      <>
+        {showCheckbox && (
+          <input type="checkbox" class="step-check" id={`sbodyid_${id}`} />
+        )}
+        <label for={showCheckbox ? `sbodyid_${id}` : undefined}>
+          <div class="step-num">Step<span>{number}</span></div>
+        </label>
+      </>
+    )}
+    <div class="step-desc">
+      {extractedSection && (
+        <span class="step-section" style={sectionStyles} set:html={extractedSection} />
+      )}
+      <span class="step-title-body" set:html={extractedTitle} />
+    </div>
+  </div>
+</div>
+
+<div class={`step-memo${!hasRemainingContent ? ' step-memo-blank' : ''}`}>
+  <div set:html={remainingContent} />
+</div>

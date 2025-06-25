@@ -1,0 +1,28 @@
+---
+/**
+ * Subnavi コンポーネント
+ * 
+ * パラメータ付きサブナビゲーションコンポーネント。
+ * Hugo: subnavi.html の代替実装。
+ */
+
+interface Props {
+  msg: string;
+  url: string;
+  inquiry: string;
+}
+
+const { msg, url, inquiry } = Astro.props;
+---
+
+<nav class="subnavi">
+  <aside>
+    <div class="subnavimsg">{msg}</div>
+    <div class="subnavibtn">
+      <a href={url} target="_blank" class="subnavianc">
+        <i class="far fa-envelope" aria-hidden="true"></i>
+        <h4>{inquiry}</h4>
+      </a>
+    </div>
+  </aside>
+</nav>

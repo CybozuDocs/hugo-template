@@ -1,0 +1,13 @@
+---
+/**
+ * AdminButtonLabel コンポーネント
+ * 
+ * 管理者ボタンのラベルを表示するコンポーネント。
+ * Hugo: admin_button_label.html の代替実装。
+ */
+
+// Props は不要（環境変数から取得）
+const adminButtonLabel = import.meta.env.PUBLIC_ADMIN_BUTTON_LABEL || "管理者";
+---
+
+{adminButtonLabel}

@@ -1,0 +1,11 @@
+---
+/**
+ * CorpName コンポーネント
+ * 
+ * 企業名を表示するコンポーネント。
+ * Hugo: {{$.Site.Params.CorpName}} の代替実装。
+ */
+import { env } from "@/lib/env";
+---
+
+{env.corpName}

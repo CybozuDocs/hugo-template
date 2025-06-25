@@ -1,0 +1,61 @@
+---
+/**
+ * TileImg3 コンポーネント
+ * 
+ * ビデオ向けタイル表示用のリンクコンポーネント（完全実装）。
+ * Hugo: tile_img3.html の完全実装。
+ * 
+ * 機能:
+ * - 2つの正規表現による tmp-tile-title/time 抽出
+ * - ビデオ向けのDOM構造（col-video系）
+ * - 時間情報の表示機能
+ * - 画像表示機能
+ * - 固定のtarget="_self"とalt=""
+ */
+
+interface Props {
+  link_href: string;  // リンクURL（必須）
+  img_src: string;    // 画像ソース（必須）
+}
+
+const { link_href, img_src } = Astro.props;
+
+// スロットの内容を取得
+const slotContent = await Astro.slots.render('default') || '';
+
+// Hugo の正規表現ロジックを JavaScript で再現
+function extractTmpTileTitle(content: string): string {
+  const tmpTitlePref = '<div class="tmp-tile-title">';
+  const tmpTitlePattern = new RegExp(`${escapeRegExp(tmpTitlePref)}([\\s\\S]*?)</div>`, 'i');
+  const match = content.match(tmpTitlePattern);
+  if (match) {
+    return match[1].trim();
+  }
+  return '';
+}
+
+function extractTmpTileTime(content: string): string {
+  const tmpTimePref = '<div class="tmp-tile-time">';
+  const tmpTimePattern = new RegExp(`${escapeRegExp(tmpTimePref)}([\\s\\S]*?)</div>`, 'i');
+  const match = content.match(tmpTimePattern);
+  if (match) {
+    return match[1].trim();
+  }
+  return '';
+}
+
+function escapeRegExp(string: string): string {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// タイトルと時間を抽出
+const extractedTitle = extractTmpTileTitle(slotContent);
+const extractedTime = extractTmpTileTime(slotContent);
+---
+
+<div class="col-video">
+  <a class="col-video-link" href={link_href} target="_self"></a>
+  <div class="col-video-title" set:html={extractedTitle} />
+  <img class="col-video-img" src={img_src} alt="" />
+  <div class="col-video-time">{extractedTime}</div>
+</div>

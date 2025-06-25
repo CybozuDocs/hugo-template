@@ -1,0 +1,46 @@
+---
+/**
+ * Subnavi2 コンポーネント
+ * 
+ * 2つのリンクアイテムを持つサブナビゲーションコンポーネント。
+ * Hugo: subnavi2.html の代替実装。
+ */
+
+interface Props {
+  url_1: string;
+  icon_1: string;
+  title_1: string;
+  msg_1: string;
+  url_2: string;
+  icon_2: string;
+  title_2: string;
+  msg_2: string;
+}
+
+const { 
+  url_1, 
+  icon_1, 
+  title_1, 
+  msg_1,
+  url_2, 
+  icon_2, 
+  title_2, 
+  msg_2 
+} = Astro.props;
+---
+
+<aside>
+  <nav class="subnavi">
+    <a href={url_1} target="_blank" class="">
+      <i class={`${icon_1} subnavi2-icon`} aria-hidden="true"></i>
+      <span class="subnavi2-title">{title_1}</span>
+    </a>
+    <div class="subnavi2-msg">{msg_1}</div>
+    <hr class="subnavi-part" />
+    <a href={url_2} target="_blank" class="">
+      <i class={`${icon_2} subnavi2-icon`} aria-hidden="true"></i>
+      <span class="subnavi2-title">{title_2}</span>
+    </a>
+    <div class="subnavi2-msg">{msg_2}</div>
+  </nav>
+</aside>

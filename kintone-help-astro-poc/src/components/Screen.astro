@@ -1,0 +1,17 @@
+---
+/**
+ * Screen コンポーネント
+ * 
+ * スクリーンショット画像表示用コンポーネント。
+ * Hugo: screen.html の代替実装。
+ */
+
+interface Props {
+  src: string;
+  alt: string;
+}
+
+const { src, alt } = Astro.props;
+---
+
+<img class="screenshot" src={src} alt={alt} data-action="zoom" />

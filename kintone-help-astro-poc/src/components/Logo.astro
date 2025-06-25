@@ -1,0 +1,19 @@
+---
+/**
+ * Logo コンポーネント
+ * 
+ * ロゴ画像とリンクを表示するコンポーネント。
+ * Hugo: logo.html の代替実装。
+ */
+
+interface Props {
+  link_href: string;
+  img_src: string;
+}
+
+const { link_href, img_src } = Astro.props;
+---
+
+<a class="col-logo" href={link_href} target="_blank">
+  <img src={img_src} />
+</a>

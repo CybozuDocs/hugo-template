@@ -1,0 +1,46 @@
+---
+/**
+ * TileImg コンポーネント
+ * 
+ * 画像付きタイル表示用のリンクコンポーネント（完全実装）。
+ * Hugo: tile_img.html の完全実装。
+ * 
+ * 機能:
+ * - 5つのパラメータによるカスタマイズ
+ * - 画像表示機能
+ * - 外部リンクのtarget制御
+ * - Markdown処理（.Inner の直接処理）
+ * - Hugo .Scratch の変数制御を再現
+ */
+
+interface Props {
+  external?: string;    // "true" で target="_blank"
+  link_class?: string;  // a要素のCSSクラス
+  link_href: string;    // リンクURL（必須）
+  img_src: string;      // 画像ソース（必須）
+  img_alt: string;      // 画像alt属性（必須）
+}
+
+const { 
+  external, 
+  link_class, 
+  link_href, 
+  img_src, 
+  img_alt 
+} = Astro.props;
+
+// Hugo の .Scratch.Set/Get を再現
+// external="true" で "_blank"、それ以外は "_self"
+const target = external === "true" ? "_blank" : "_self";
+
+// スロットの内容を取得（Hugo: .Inner | markdownify）
+const slotContent = await Astro.slots.render('default') || '';
+---
+
+<div class="col-tile">
+  <a class={link_class} href={link_href} target={target}></a>
+  <div class="tile-title" set:html={slotContent} />
+  <div class="tile-img-wrap">
+    <img class="tile-img-entity" src={img_src} alt={img_alt} />
+  </div>
+</div>
