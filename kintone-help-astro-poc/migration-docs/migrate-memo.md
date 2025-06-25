@@ -1054,3 +1054,35 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - TypeScript 型エラー解消（未使用変数 page の削除）
   - ビルドテスト成功確認（統合前後でエラーなし）
   - 既存 DOM 構造の完全保持
+
+#### 0032_section-layout 作業完了
+- **成果物**: SectionLayout.astroコンポーネントの実装
+  - Hugo の `layouts/_default/section.html` を Astro コンポーネントとして完全移植
+  - セクションページリスト機能の実装（section.html固有の核心機能）
+  - PageLayout.astroをベースとした一貫性のある設計
+- **重要な学習事項**:
+  - toc_in_tree機能削除済みの確認（0015_treenav-integration作業での削除）
+  - セクションページリスト実装パターンの確立：`[...pages, ...sections]` 統合
+  - Hugo の ByWeight ソート（降順）の正確な再現
+  - disabled フィルタリングによる地域別表示制御
+- **技術的実装**:
+  - **DOM構造保持**: Hugo template と同等の `nav.section-pagelist` 構造
+  - **子ページ・セクション統合**: `(.Pages | union .Sections)` → `[...pages, ...sections]`
+  - **ソート実装**: `ByWeight` → `sort((a, b) => (b.weight || 0) - (a.weight || 0))`
+  - **i18n対応**: `{{ i18n "Articles_in_this_category" }}` → `<Wovn>i18n__Articles_in_this_category</Wovn>`
+  - **条件付きレンダリング**: disabled地域フィルタリング、表示数判定
+- **アーキテクチャ進化**:
+  - レイアウトコンポーネントの拡充（PageLayout + SectionLayout）
+  - Hugo機能のAstro再現パターン確立
+  - セクションページ特有の機能実装
+- **品質確保**:
+  - TypeScript型チェック成功（SectionLayout.astro にエラーなし）
+  - DOM構造の完全保持確認
+  - 既存コンポーネント活用による効率的実装
+- **残された課題（TODO）**:
+  - Pre/Post SafeHTML処理の実装（現在のkintoneコンテンツでは使用例少）
+  - PageProps型のPre/Postパラメータ拡張（必要に応じて）
+- **レイアウトシステムの完成**:
+  - **PageLayout.astro**: 単一ページ用（layouts/_default/single.html）
+  - **SectionLayout.astro**: セクションページ用（layouts/_default/section.html）
+  - Hugo のデフォルトレイアウト2種の完全移植達成
