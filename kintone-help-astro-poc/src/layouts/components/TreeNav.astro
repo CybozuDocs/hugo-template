@@ -1,6 +1,6 @@
 ---
 import { env } from "@/lib/env";
-import { getSiteHomeSections } from "@/lib/page";
+import { getSiteHomeSections, sortPagesByWeight } from "@/lib/page";
 import TreeNavMainMenu from "./TreeNavMainMenu.astro";
 import type { BaseProps } from "./types";
 
@@ -11,8 +11,8 @@ const { page } = Astro.props;
 // 初期設定
 let entries = await getSiteHomeSections();
 
-// 重み順にソート
-entries = entries.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+// 重み順にソート（共通関数を使用）
+entries = sortPagesByWeight(entries);
 ---
 
 <div id="tree-nav">

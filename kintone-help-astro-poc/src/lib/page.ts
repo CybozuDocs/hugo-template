@@ -2,6 +2,23 @@ import type { PageProps } from "../layouts/components/types";
 import type { AstroGlobal } from "astro";
 
 // =============================================================================
+// Page sorting utilities
+// =============================================================================
+
+/**
+ * ページを weight によってソート（Hugo の ByWeight と同等）
+ * 小さい weight 値が上位（昇順）
+ */
+export function sortPagesByWeight<T extends { weight?: number; frontmatter?: { weight?: number } }>(pages: T[]): T[] {
+  return pages.sort((a, b) => {
+    // frontmatter.weight または weight プロパティをチェック
+    const weightA = a.frontmatter?.weight ?? a.weight ?? 0;
+    const weightB = b.frontmatter?.weight ?? b.weight ?? 0;
+    return weightA - weightB;
+  });
+}
+
+// =============================================================================
 // Internal utility functions
 // =============================================================================
 

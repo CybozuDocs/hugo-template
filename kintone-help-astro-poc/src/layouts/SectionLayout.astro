@@ -2,7 +2,7 @@
 import type { MarkdownLayoutProps } from "astro";
 import Head from "./components/Head.astro";
 import { env } from "../lib/env.js";
-import { getCurrentPage, getSiteHomeSections } from "../lib/page";
+import { getCurrentPage, getSiteHomeSections, sortPagesByWeight } from "../lib/page";
 import Disclaimer2 from "./components/Disclaimer2.astro";
 import Footer from "./components/Footer.astro";
 import Header from "./components/Header.astro";
@@ -39,8 +39,8 @@ const isDisabled = currentPage.frontmatter.disabled.includes(env.targetRegion);
 // Hugo の (.Pages | union .Sections) に対応
 const childPages = [...(currentPage.pages || []), ...(currentPage.sections || [])];
 
-// Hugo の ByWeight（降順：重いほど上位）に対応
-const sortedChildPages = childPages.sort((a, b) => (b.frontmatter.weight || 0) - (a.frontmatter.weight || 0));
+// Hugo の ByWeight（昇順：小さいweight値ほど上位）に対応（共通関数を使用）
+const sortedChildPages = sortPagesByWeight(childPages);
 
 // disabled条件でフィルタリング（Hugo の disabled チェックと同等）
 const visibleChildPages = sortedChildPages.filter(page => 

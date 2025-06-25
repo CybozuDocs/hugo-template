@@ -1122,12 +1122,12 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 - **重要な学習事項**:
   - toc_in_tree機能削除済みの確認（0015_treenav-integration作業での削除）
   - セクションページリスト実装パターンの確立：`[...pages, ...sections]` 統合
-  - Hugo の ByWeight ソート（降順）の正確な再現
+  - Hugo の ByWeight ソート（昇順）の正確な再現
   - disabled フィルタリングによる地域別表示制御
 - **技術的実装**:
   - **DOM構造保持**: Hugo template と同等の `nav.section-pagelist` 構造
   - **子ページ・セクション統合**: `(.Pages | union .Sections)` → `[...pages, ...sections]`
-  - **ソート実装**: `ByWeight` → `sort((a, b) => (b.weight || 0) - (a.weight || 0))`
+  - **ソート実装**: `ByWeight` → `sort((a, b) => (a.weight || 0) - (b.weight || 0))`
   - **i18n対応**: `{{ i18n "Articles_in_this_category" }}` → `<Wovn>i18n__Articles_in_this_category</Wovn>`
   - **条件付きレンダリング**: disabled地域フィルタリング、表示数判定
 - **アーキテクチャ進化**:
@@ -1145,3 +1145,30 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
   - **PageLayout.astro**: 単一ページ用（layouts/_default/single.html）
   - **SectionLayout.astro**: セクションページ用（layouts/_default/section.html）
   - Hugo のデフォルトレイアウト2種の完全移植達成
+
+#### section-layout-sorting-fix 作業完了（緊急修正）
+- **成果物**: SectionLayout.astroとTreeNav.astroの表示順序統一とソート処理共通化
+  - SectionLayout.astroのソート順序をTreeNavと合わせる修正（降順→昇順）
+  - lib/page.tsにsortPagesByWeight共通関数を追加
+  - TreeNav.astroとSectionLayout.astroで共通ソート関数を使用
+- **問題の原因**:
+  - SectionLayout.astro: `(b.frontmatter.weight || 0) - (a.frontmatter.weight || 0)` 降順ソート
+  - TreeNav.astro: `(a.weight || 0) - (b.weight || 0)` 昇順ソート
+  - Hugo の ByWeight は実際には昇順（小さいweight値が上位）
+- **重要な学習事項**:
+  - Hugo ByWeight の仕様理解（昇順ソートが正しい）
+  - ソート処理共通化による再発防止の重要性
+  - TypeScriptジェネリクスによる型安全な共通関数設計
+- **技術的実装**:
+  - **共通関数**: `sortPagesByWeight<T extends { weight?: number; frontmatter?: { weight?: number } }>`
+  - **型安全性**: frontmatter.weight と weight 両方に対応
+  - **Hugo互換性**: ByWeight と同等の昇順ソート（小さいweight値が上位）
+  - **再利用性**: TreeNav, SectionLayout で同一関数使用
+- **品質確保**:
+  - ビルドテスト成功（1.51秒、エラーなし）
+  - 全30テストパス（既存機能に影響なし）
+  - 表示順序の完全統一確認
+- **アーキテクチャ進化**:
+  - ソート処理の一元管理による保守性向上
+  - 重複コード削除と型安全性の強化
+  - Hugo仕様準拠の確実な実装

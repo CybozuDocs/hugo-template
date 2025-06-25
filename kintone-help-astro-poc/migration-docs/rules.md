@@ -717,6 +717,50 @@ export interface PageProps {
 - ApplyParams で使用される全てのパラメータは ReplaceParams 型に明示的に定義
 - env オブジェクトを渡す場合は型整合性を確保
 
+## ページソート処理の統一ルール
+
+### 1. 共通ソート関数の使用
+
+**ルール**: ページのweight順ソートは必ず`sortPagesByWeight`共通関数を使用する
+
+```typescript
+import { sortPagesByWeight } from "@/lib/page";
+
+// ❌ 禁止: 個別実装によるソート
+const sorted = pages.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+
+// ✅ 正しい: 共通関数の使用
+const sorted = sortPagesByWeight(pages);
+```
+
+### 2. Hugo ByWeight 仕様の準拠
+
+- **ソート順序**: 昇順（小さいweight値が上位）
+- **デフォルト値**: weight未定義の場合は0として扱う
+- **型対応**: `frontmatter.weight`と`weight`両方に対応
+
+### 3. 共通関数の設計原則
+
+```typescript
+export function sortPagesByWeight<T extends { 
+  weight?: number; 
+  frontmatter?: { weight?: number } 
+}>(pages: T[]): T[] {
+  return pages.sort((a, b) => {
+    const weightA = a.frontmatter?.weight ?? a.weight ?? 0;
+    const weightB = b.frontmatter?.weight ?? b.weight ?? 0;
+    return weightA - weightB;
+  });
+}
+```
+
+### 4. 再発防止のメリット
+
+- **一貫性**: 全てのコンポーネントで同一のソート順序
+- **保守性**: ソート仕様変更時の変更箇所を1箇所に限定
+- **型安全性**: TypeScriptジェネリクスによる型制約
+- **Hugo互換性**: ByWeightと完全同等の動作保証
+
 ## 更新履歴
 
 - 2024 年 12 月 - 初版作成
@@ -726,3 +770,4 @@ export interface PageProps {
 - 2025 年 1 月 - データファイル管理（CSV読み込み）セクション追加
 - 2025 年 1 月 - env管理ルール追加（グローバル化原則の確立）
 - 2025 年 1 月 - FrontMatterデータのPageProps統合とApplyParams型定義を追加
+- 2025 年 1 月 - ページソート処理の統一ルール追加（SectionLayout表示順序問題対応）
