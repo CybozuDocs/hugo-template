@@ -1,0 +1,74 @@
+---
+title: 組織を追加する
+weight: 300
+aliases: /ja/id/040137
+layout: '@/layouts/PageLayout.astro'
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+
+
+<Kintone />を使う際に、ユーザーが所属する組織の情報を登録しておくと、組織ごとにさまざまな設定や操作を行うことができます。たとえば、次のような場面で活用できます。
+
+* 社員情報アプリの閲覧を、人事労務部だけに制限したい（[アクセス権機能](/k/ja/id/040588.html)）
+* 備品申請アプリで承認フローを設定し、<Kintone />上で総務部に承認してもらえるようにしたい（[プロセス管理機能](/k/ja/id/040568.html)）
+* 営業部全員宛てに<Kintone />上でメンションを送りたい
+
+組織の追加は任意です。  
+組織を追加したあとにユーザーを追加すると、所属する組織が設定された状態でユーザーを追加できるため、便利です。なお、ユーザーを追加してから組織を追加することも可能です。
+
+<Hint>
+
+* CSVファイルを使用して、複数の組織を一括で追加できます。  
+  [ファイルを使ってユーザーや組織などを追加または変更する](/general/ja/id/020160.html)
+* 組織の階層化や表示順の変更など、組織設定の詳細は、次のページを参照してください。  
+  [組織の設定](/general/ja/id/020161.html)
+
+</Hint>
+
+<Heading id="department_add_department_10">手順</Heading>
+<Slash />共通管理者だけが組織を追加できます。
+
+1. <Kintone />の画面上部の歯車の形をした[設定]アイコンをクリックし、[<SlashUi />]をクリックします。
+
+   <Enabled for="JP">
+   <Img src="/k/kintone/img-ja/slash_setting_menu.png" alt="スクリーンショット：[<SlashUi />]が枠線で囲まれている" />
+   </Enabled>
+   <Enabled for="CN">
+   <Img src="/k/kintone/img-ja/slash_setting_menu_cn.png" alt="スクリーンショット：[<SlashUi />]が枠線で囲まれている" />
+   </Enabled>
+   <Enabled for="US">
+   <Img src="/k/kintone/img-ja/slash_setting_menu_us.png" alt="スクリーンショット：[<SlashUi />]が枠線で囲まれている" />
+   </Enabled>
+
+1. <SlashUi />画面で、「ユーザー管理」にある[組織/ユーザー]をクリックします。  
+  <Img src="/k/kintone/img-ja/add_division_img01.png" alt="スクリーンショット：[組織/ユーザー]が枠線で強調された「組織とユーザーの設定」画面" />
+
+1. 「組織とユーザーの設定」画面で、[組織の追加]をクリックします。  
+  <Img src="/k/kintone/img-ja/add_division_img02.png" alt="スクリーンショット：[組織の追加]ボタンが枠線で強調された「組織とユーザーの設定」画面" />
+
+1. 「組織の追加」画面で、各項目を入力します。
+
+   * 組織名：  
+     * 表示名（必須）：  
+       組織名（部署名や部課名など）を入力します。
+     * 別言語での表示名：  
+       ユーザーの言語設定に応じて組織名の表示を変えたい場合に、言語ごとの表示名を入力します。たとえば、日本語ユーザーには「営業部」と表示し、英語ユーザーには「Sales.Dev」と表示するといった運用ができます。
+   * 組織コード：  
+     組織を識別するための文字列を入力します。ほかの組織コードと重複しない文字列を入力してください。何も入力しない場合は、自動で文字列が設定されます。
+   * 親組織：  
+     組織を階層化する場合に、追加済みの組織の中から親組織を選択します。
+   * 説明：  
+     必要に応じて、組織の概要やメンバーの属性などを入力します。ここで入力した内容は、<SlashUi />でのみ確認できます。<Kintone />の画面には表示されません。
+
+1. [保存]をクリックします。
+
+組織の追加が完了したら、ユーザーを追加してみましょう。  
+ユーザーを追加する手順の詳細は、次のページを参照してください。  
+[ユーザーを追加する](/k/ja/id/040138.html)
