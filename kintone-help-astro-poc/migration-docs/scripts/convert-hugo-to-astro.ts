@@ -369,11 +369,12 @@ function convertHeadings(content: string): { content: string; count: number } {
   const convertedContent = content.replace(headingRegex, (_match, hashes, title, id) => {
     count++;
     const level = hashes.length;
+    const trimmedTitle = title.trim();
     
     if (level === 2) {
-      return `<Heading id="${id}">${title}</Heading>`;
+      return `<Heading id="${id}">${trimmedTitle}</Heading>`;
     } else {
-      return `<Heading level={${level}} id="${id}">${title}</Heading>`;
+      return `<Heading level={${level}} id="${id}">${trimmedTitle}</Heading>`;
     }
   });
 
@@ -469,7 +470,8 @@ async function findTargetFiles(options: CliOptions, sourceDir: string): Promise<
 
 async function convertFile(inputPath: string, options: CliOptions, sourceDir: string, targetDir: string): Promise<ConversionResult> {
   const fullInputPath = join(sourceDir, inputPath);
-  const outputPath = inputPath.replace(/\.md$/, '.mdx');
+  // _index.md → index.mdx の変換ルール
+  const outputPath = inputPath.replace(/_index\.md$/, 'index.mdx').replace(/\.md$/, '.mdx');
   const fullOutputPath = join(targetDir, outputPath);
 
   try {

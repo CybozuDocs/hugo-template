@@ -6,7 +6,8 @@ Hugo の Markdown コンテンツを Astro MDX 形式に変換するスクリプ
 
 - **22種類の Shortcode** を Astro コンポーネントに変換
 - **20種類の FrontMatter プロパティ** を適切に処理
-- **画像記法**と**見出し記法**の自動変換
+- **画像記法**と**見出し記法**の自動変換（末尾スペース除去）
+- **ファイル名変換**（`_index.md` → `index.mdx`）
 - **Import 文**の自動生成
 - **段階的変換**機能（特定ディレクトリ、特定ファイルのみ変換）
 - **並列処理**による高速変換
@@ -156,16 +157,22 @@ layout: "@/layouts/PageLayout.astro"
 ---
 ```
 
-### 画像・見出し変換
+### 画像・見出し・ファイル名変換
 
 ```markdown
-# 変換前
+# 画像変換
 ![スクリーンショット](/k/img-ja/example.png)
-## 見出し{#heading-id}
-
-# 変換後
+↓
 <Img src="/k/kintone/img-ja/example.png" alt="スクリーンショット" />
+
+# 見出し変換（末尾スペース自動除去）
+## 見出し {#heading-id}
+↓
 <Heading id="heading-id">見出し</Heading>
+
+# ファイル名変換
+_index.md → index.mdx
+example.md → example.mdx
 ```
 
 ### 自動 Import 生成
@@ -287,3 +294,9 @@ const SHORTCODE_MAPPINGS = {
   },
 };
 ```
+
+### 最新のアップデート
+
+- **v1.1** (2024): 見出し変換で末尾スペース自動除去
+- **v1.1** (2024): `_index.md` → `index.mdx` ファイル名変換対応
+- **v1.0** (2024): 初回リリース - 22種類Shortcode対応
