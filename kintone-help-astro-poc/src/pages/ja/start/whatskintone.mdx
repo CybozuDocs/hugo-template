@@ -7,23 +7,24 @@ layout: "@/layouts/PageLayout.astro"
 
 import Kintone from "@/components/Kintone.astro";
 import Enabled from "@/components/Enabled.astro";
-import Heading from "@/components/Heading.astro";
+import Heading2 from "@/components/Heading2.astro";
+import Heading3 from "@/components/Heading3.astro";
 import Reference from "@/components/Reference.astro";
 import Img from "@/components/Img.astro";
 
-<Enabled for="JP">
+<Enabled regions={["JP"]}>
   <Kintone />（キントーン）は、開発の知識がなくても自社の業務に合わせたシステムをかんたんに作成できる、サイボウズのクラウドサービスです。業務アプリを直感的に作成でき、チーム内で共有して使えます。社員間のつながりを活性化する社内 SNS としての機能も備えているため、スピーディーに情報共有ができます。
 
   ここでは、<Kintone />の主な機能をご紹介します。
 </Enabled>
 
-<Enabled for={["US", "CN"]}>
+<Enabled regions={["US", "CN"]}>
   <Kintone />は、開発の知識がなくても自社の業務に合わせたシステムをかんたんに作成できる、クラウドサービスです。業務アプリを直感的に作成でき、チーム内で共有して使えます。社員間のつながりを活性化する社内 SNS としての機能も備えているため、スピーディーに情報共有ができます。
 
   ここでは、<Kintone />の主な機能をご紹介します。
 </Enabled>
 
-<Heading id="start_whatskintone_10">アプリ</Heading>
+<Heading2 id="start_whatskintone_10">アプリ</Heading2>
 データや業務プロセスの管理に便利な業務アプリを作る機能です。売上情報、顧客情報、問い合わせ対応履歴、ToDo、報告書、文書ファイルなど、さまざまなデータを管理できます。また、それらのデータにひも付く業務プロセスを、柔軟に構築できます。
 
 <Img src="/k/kintone/img-ja/whatskintone_img01.png" alt="イラスト：アプリで業務プロセスを管理" />
@@ -31,7 +32,7 @@ import Img from "@/components/Img.astro";
 アプリの作成はノンプログラミングで簡単です。  
 自分で 1 からアプリを作る以外にも、便利なアプリが豊富に用意された「<Kintone /> アプリストア」から選んでアプリを追加する方法もあります。
 
-<Heading id="start_whatskintone_20">スペース</Heading>
+<Heading2 id="start_whatskintone_20">スペース</Heading2>
 
 スペースは、チーム単位でのコミュニケーションに使う機能です。参加者を選んでスペースを作り、参加者同士で議論したり、情報を共有したりできます。
 
