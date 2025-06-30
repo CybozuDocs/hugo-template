@@ -1,431 +1,416 @@
-# Hugo to Astro MDX 変換スクリプト実装計画（更新版）
+# Hugo → Astro MDX 変換スクリプト 実装計画
 
-## 概要
+## プロジェクト概要
 
-Hugo の Markdown コンテンツ（776ファイル、`/Users/mugi/ghq/github.com/CybozuDocs/kintone/content/ja/` 配下）を Astro MDX 形式（`kintone-help-astro-poc/src/pages/ja/` 配下）に自動変換するスクリプトを作成します。
+Hugo コンテンツ（781個のMarkdownファイル）をすべて Astro 対応の MDX ファイルに変換するAST ベースの TypeScript スクリプトを作成する。
 
-網羅的調査により、22種類の Shortcode（6000回以上使用）と13種類の印刷用 FrontMatter プロパティが発見されました。
+## 技術要件
 
-## 変換要件
+### 必須仕様
+- **AST ベース解析**: MarkdownとMDXの構文解析
+- **TypeScript**: 型安全性確保、any型禁止、Classなし、type優先
+- **FrontMatter保持**: 元のメタデータを維持
+- **ディレクトリ構造維持**: 同一構造で変換
+- **ファイル名変換**: `_index.md` → `index.mdx`, 他は `.md` → `.mdx`
 
-### 1. ディレクトリ構造
+## 変換対象と構造
 
-- 元：`/Users/mugi/ghq/github.com/CybozuDocs/kintone/content/ja/`（776ファイル）
-- 先：`kintone-help-astro-poc/src/pages/ja/`
-- ディレクトリ構造は維持
-- ファイル拡張子を `.md` → `.mdx` に変更
+### 入力
+- **ソース**: `/Users/mugi/ghq/github.com/CybozuDocs/kintone/content/ja/`
+- **ファイル数**: 781個のMarkdownファイル
+- **階層**: 複雑なディレクトリ構造
 
-### 2. FrontMatter の変換
+### 出力
+- **出力先**: `kintone-help-astro-poc/src/pages/ja/`
+- **形式**: MDXファイル（.mdx拡張子）
+- **Layout追加**: FrontMatterにlayoutフィールド追加
 
-#### 基本プロパティ
+## 主要変換ルール
 
+### 1. FrontMatter変換
 ```yaml
-# Hugo (元)
+# 入力 (_index.md)
 ---
-title: "{{< kintone >}}とは？"
+title: "スタートガイド"
 weight: 100
-aliases: /ja/id/040145
-disabled: [US, CN]
-description: "アプリやスペースの説明文"
-labels: [2, 3]
-type: "series"
+aliases: /ja/id/040130
 ---
-# Astro (変換後)
+
+# 出力 (index.mdx)
 ---
-title: "<Kintone />とは？"
+title: "スタートガイド"
 weight: 100
-aliases: /ja/id/040145
-disabled: [US, CN]
-description: "アプリやスペースの説明文"
-labels: [2, 3]
-type: "series"
-layout: "@/layouts/PageLayout.astro"
+aliases: /ja/id/040130
+layout: "@/layouts/SectionLayout.astro"  # _index.md の場合
+# または
+layout: "@/layouts/PageLayout.astro"    # 通常ページの場合
 ---
 ```
 
-#### 印刷用プロパティ（13ファイル限定）
+### 2. ショートコード変換マッピング
 
-```yaml
-# 印刷用ページには以下も含まれる
-title2: "データの検索"
-company: "サイボウズ株式会社"
-version: "2025年4月版"
-chapter1: ""
-chapter2: "章"
-index: "目次"
-page: "ページ"
-issue: "発行日"
-issuedate: "2025年4月1日"
-update: "更新日"
-updatedate: ""
+#### 高頻度ショートコード (調査結果ベース)
+| Hugo ショートコード | 頻度 | Astro 変換 | コンポーネント |
+|---|---|---|---|
+| `{{< wv_brk >}}text{{< /wv_brk >}}` | 4,314回 | `text` | WOVNで削除 |
+| `{{< kintone >}}` | 1,915回 | `<Kintone />` | ✅ 存在 |
+| `{{< note >}}...{{< /note >}}` | 674回 | `<Note>...</Note>` | ✅ 存在 |
+| `{{< enabled2 JP CN >}}...{{< /enabled2 >}}` | 337回 | `<Enabled>...</Enabled>` | ✅ 存在 |
+| `{{< reference >}}...{{< /reference >}}` | 307回 | `<Reference>...</Reference>` | ✅ 存在 |
+| `{{< hint >}}...{{< /hint >}}` | 156回 | `<Hint>...</Hint>` | ✅ 存在 |
+| `{{< warning >}}...{{< /warning >}}` | 89回 | `<Warning>...</Warning>` | ✅ 存在 |
+
+#### その他のショートコード
+- `{{< slash >}}` → `<Slash />`
+- `{{< service >}}` → `<Service />`
+- `{{< graynote >}}...{{< /graynote >}}` → `<Graynote>...</Graynote>`
+
+### 3. 画像変換
+```markdown
+# 入力
+![スクリーンショット：説明](/k/img-ja/sample.png)
+
+# 出力
+<Img src="/k/kintone/img-ja/sample.png" alt="スクリーンショット：説明" />
 ```
 
-#### タイポ修正
-
-- `weght` → `weight`（2件）
-- `decription` → `description`（1件）
-- `disabled: US` → `disabled: [US]`（1件）
-
-### 3. 必要な import 文の自動追加
-
-使用されているコンポーネントに応じて自動的に import を追加：
-
-```javascript
-// 基本コンポーネント
-import Kintone from "@/components/Kintone.astro";
-import Enabled from "@/components/Enabled.astro";
-import Disabled2 from "@/components/Disabled2.astro";
-import Heading from "@/components/Heading.astro";
-import Reference from "@/components/Reference.astro";
-import Img from "@/components/Img.astro";
+### 4. import文生成
+使用するコンポーネントを自動検出してimport文を生成:
+```typescript
 import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
 import Note from "@/components/Note.astro";
-import Warning from "@/components/Warning.astro";
-import Wovn from "@/components/Wovn.astro";
-
-// 製品名・サービス名コンポーネント
-import Slash from "@/components/Slash.astro";
-import SlashUi from "@/components/SlashUi.astro";
-import CybozuCom from "@/components/CybozuCom.astro";
-import Store from "@/components/Store.astro";
-import Service from "@/components/Service.astro";
-import CorpName from "@/components/CorpName.astro";
-
-// 装飾コンポーネント
-import Graynote from "@/components/Graynote.astro";
-import Subtitle from "@/components/Subtitle.astro";
-import Listsummary from "@/components/Listsummary.astro";
-
-// 外部リンクコンポーネント
-import DevnetTop from "@/components/DevnetTop.astro";
-import DevnetName from "@/components/DevnetName.astro";
-import SlashHelp from "@/components/SlashHelp.astro";
-import SlashAdministrators from "@/components/SlashAdministrators.astro";
 ```
 
-### 4. 網羅的 Shortcode 変換パターン
+## Astro準拠のAST変換アーキテクチャ
 
-#### 高頻度 Shortcode（100回以上）
+### Astro公式アプローチに基づく設計
+Astro の `@astrojs/markdown-remark` パッケージと同じ remark/rehype エコシステムを使用:
 
-| Hugo Shortcode                               | 使用回数 | Astro Component                             |
-| -------------------------------------------- | -------- | ------------------------------------------- |
-| `{{< kintone >}}`                            | 1,888回  | `<Kintone />`                               |
-| `{{< wv_brk >}}...{{< /wv_brk >}}`           | 1,112回  | `<Wovn>...</Wovn>`                          |
-| `{{< note >}}...{{< /note >}}`               | 676回    | `<Note>...</Note>`                          |
-| `{{< enabled2 JP >}}...{{< /enabled2 >}}`    | 146回    | `<Enabled for="JP">...</Enabled>`           |
-| `{{< enabled2 US >}}...{{< /enabled2 >}}`    | 96回     | `<Enabled for="US">...</Enabled>`           |
-| `{{< enabled2 US CN >}}...{{< /enabled2 >}}` | 14回     | `<Enabled for={["US", "CN"]}>...</Enabled>` |
-| `{{< reference >}}...{{< /reference >}}`     | 307回    | `<Reference>...</Reference>`                |
-| `{{< slash >}}`                              | 207回    | `<Slash />`                                 |
-| `{{< slash_ui >}}`                           | 177回    | `<SlashUi />`                               |
-| `{{< hint >}}...{{< /hint >}}`               | 156回    | `<Hint>...</Hint>`                          |
+### 使用ライブラリ (Astro準拠)
+```typescript
+// Astroと同じMarkdown処理基盤
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkGfm from 'remark-gfm';  // Astroでデフォルト有効
 
-#### 中低頻度 Shortcode（50回未満）
+// MDX処理 (Astro互換)
+import remarkMdx from 'remark-mdx';
+import { remarkShiki } from '@astrojs/markdown-remark';  // Astro同等のシンタックスハイライト
 
-| Hugo Shortcode                               | 使用回数 | Astro Component                               |
-| -------------------------------------------- | -------- | --------------------------------------------- |
-| `{{< warning >}}...{{< /warning >}}`         | 84回     | `<Warning>...</Warning>`                      |
-| `{{< cybozu_com >}}`                         | 41回     | `<CybozuCom />`                               |
-| `{{< graynote >}}...{{< /graynote >}}`       | 38回     | `<Graynote>...</Graynote>`                    |
-| `{{< subtitle >}}...{{< /subtitle >}}`       | 21回     | `<Subtitle>...</Subtitle>`                    |
-| `{{< store >}}`                              | 20回     | `<Store />`                                   |
-| `{{< service >}}`                            | 18回     | `<Service />`                                 |
-| `{{< listsummary >}}...{{< /listsummary >}}` | 16回     | `<Listsummary>...</Listsummary>`              |
-| `{{< disabled2 US >}}...{{< /disabled2 >}}`  | 14回     | `<Disabled2 regions={["US"]}>...</Disabled2>` |
-| `{{< slash_help >}}`                         | 11回     | `<SlashHelp />`                               |
-| `{{< devnet_top >}}`                         | 5回      | `<DevnetTop />`                               |
-| `{{< slash_administrators >}}`               | 5回      | `<SlashAdministrators />`                     |
-| `{{< devnet_name >}}`                        | 2回      | `<DevnetName />`                              |
-| `{{< CorpName >}}`                           | 1回      | `<CorpName />`                                |
+// rehypeプラグイン (Astro準拠)
+import rehypeStringify from 'rehype-stringify';
 
-#### 特殊パターン
-
-- `{{% kintone %}}` → `<Kintone />`（誤記の修正）
-- 地域別表示制御：`enabled2`、`disabled2` に `JP US CN` の組み合わせ対応
-
-### 5. 画像パスの変換
-
-```markdown
-# Hugo
-
-![alt](/k/img-ja/example.png)
-
-# Astro（リスト内の場合、適切なインデント）
-
-1. テキスト
-   <Img src="/k/kintone/img-ja/example.png" alt="alt" />
+// FrontMatter処理
+import yaml from 'js-yaml';
+import { VFile } from 'vfile';
 ```
 
-### 6. 見出しの変換
+### Astro MDX 処理フロー
+1. **Astro準拠の解析** → `@astrojs/markdown-remark` と同等のパイプライン
+2. **remark プラグインチェーン** → FrontMatter → GFM → カスタム変換
+3. **ショートコード→コンポーネント変換** → remarkプラグインとして実装
+4. **rehype変換** → HTML AST → Astroコンポーネント埋め込み
+5. **MDX統合** → Astro互換のMDX出力
+6. **import文生成** → Astro MDXファイルのimportパターンに準拠
 
-```markdown
-# Hugo
+### カスタムremarkプラグイン実装
+```typescript
+// Hugo ショートコード変換をremarkプラグインとして実装
+export function remarkHugoShortcodes(): Plugin {
+  return (tree: Root, file: VFile) => {
+    visit(tree, 'text', (node: Text, index: number, parent: Parent) => {
+      // Hugo {{< >}} パターンを検出してAstroコンポーネントに変換
+    });
+  };
+}
 
-## 見出し{#id}
-
-### 見出し{#id}
-
-# Astro
-
-<Heading id="id">見出し</Heading>
-<Heading level={3} id="id">見出し</Heading>
+// 画像変換プラグイン
+export function remarkImageToComponent(): Plugin {
+  return (tree: Root, file: VFile) => {
+    visit(tree, 'image', (node: Image) => {
+      // Markdown画像をAstro Imgコンポーネントに変換
+    });
+  };
+}
 ```
 
-### 7. 特殊ケースの処理
+### 型定義
+```typescript
+type HugoShortcode = {
+  name: string;
+  params?: string[];
+  content?: string;
+  selfClosing: boolean;
+};
 
-- リスト内での画像：番号付きリストは3スペース、箇条書きは2スペースでインデント
-- 複数の shortcode が入れ子になっている場合の正しい処理
-- title 属性付き画像の変換
-- FrontMatter のタイポ修正
-- 印刷用プロパティの保持
+type ConversionResult = {
+  content: string;
+  imports: Set<string>;
+  errors: string[];
+};
 
-## 実装計画（更新版）
+type FileProcessResult = {
+  inputPath: string;
+  outputPath: string;
+  success: boolean;
+  imports: string[];
+  errors: string[];
+};
+```
 
-### Phase 1: 基本構造とファイル処理
+## スクリプト構成
 
-1. **コマンドライン引数解析**（commander.js）
-2. **対象ファイル絞り込み**（glob パターンマッチング）
-3. ファイルの読み込みと書き込み処理
-4. ディレクトリ構造の維持とファイル拡張子変更（`.md` → `.mdx`）
-5. FrontMatter の解析と変換（gray-matter 使用）
-6. 印刷用プロパティの特別処理（13ファイル限定）
-7. タイポ修正（`weght` → `weight`、`decription` → `description`）
+### ディレクトリ構造
+```
+kintone-help-astro-poc/
+├── migrate-scripts/
+│   ├── convert-to-mdx.ts        # メインスクリプト
+│   ├── lib/
+│   │   ├── ast-transformers.ts  # AST変換ロジック
+│   │   ├── shortcode-parser.ts  # ショートコード解析
+│   │   ├── component-mapper.ts  # コンポーネントマッピング
+│   │   ├── frontmatter.ts       # FrontMatter処理
+│   │   └── file-utils.ts        # ファイル操作
+│   ├── types/
+│   │   └── conversion.ts        # 型定義
+│   └── package.json             # 依存関係
+```
 
-### Phase 2: 高頻度 Shortcode 変換の実装（優先度高）
+### 主要モジュール詳細 (Astro準拠設計)
 
-1. `{{< kintone >}}`（1,888回）→ `<Kintone />`
-2. `{{< wv_brk >}}...{{< /wv_brk >}}`（1,112回）→ `<Wovn>...</Wovn>`
-3. `{{< note >}}...{{< /note >}}`（676回）→ `<Note>...</Note>`
-4. `{{< enabled2 [地域] >}}...{{< /enabled2 >}}`（332回）→ `<Enabled for="[地域]">...</Enabled>`
-5. `{{< reference >}}...{{< /reference >}}`（307回）→ `<Reference>...</Reference>`
+#### 1. convert-to-mdx.ts (メインスクリプト)
+```typescript
+// Astro MDX パイプライン使用
+export async function convertAllFiles(): Promise<void>
+export async function convertSingleFile(inputPath: string): Promise<FileProcessResult>
 
-### Phase 3: 中低頻度 Shortcode 変換の実装
+// Astro互換の処理パイプライン
+export function createAstroMdxProcessor(): Processor {
+  return unified()
+    .use(remarkParse)
+    .use(remarkFrontmatter, ['yaml'])
+    .use(remarkGfm)  // Astroデフォルト
+    .use(remarkHugoShortcodes)  // カスタムプラグイン
+    .use(remarkImageToComponent)  // カスタムプラグイン
+    .use(remarkMdx)  // MDX変換
+    .use(rehypeStringify);
+}
+```
 
-1. 製品名・サービス名系（`slash`、`slash_ui`、`cybozu_com`、`store`、`service`）
-2. コンテンツ装飾系（`warning`、`hint`、`graynote`、`subtitle`、`listsummary`）
-3. 地域別非表示制御（`disabled2`）
-4. 外部リンク系（`devnet_top`、`devnet_name`、`slash_help`、`slash_administrators`）
-5. 特殊パターン（`CorpName`、`{{% kintone %}}` 誤記修正）
+#### 2. remark-plugins.ts (Astro準拠プラグイン)
+```typescript
+// remark プラグインとしてショートコード変換実装
+export function remarkHugoShortcodes(): Plugin<[], Root>
+export function remarkImageToComponent(): Plugin<[], Root>
+export function remarkAstroImports(): Plugin<[], Root>
 
-### Phase 4: Markdown 記法の変換
+// unist-util-visit を使用したAST操作
+import { visit } from 'unist-util-visit';
+import type { Plugin } from 'unified';
+import type { Root, Text, Image } from 'mdast';
+```
 
-1. 画像記法の変換（Markdown → `<Img>` コンポーネント）
-2. 見出し記法の変換（`## 見出し{#id}` → `<Heading>` コンポーネント）
-3. リスト内画像のインデント調整
+#### 3. mdx-component-generator.ts (MDXコンポーネント生成)
+```typescript
+// Astro MDXファイル生成
+export function generateMdxWithImports(
+  frontmatter: string,
+  content: string,
+  imports: string[]
+): string
 
-### Phase 5: Import 文の自動生成
+// import文の適切な配置 (Astro MDXパターン)
+export function generateAstroImports(components: Set<string>): string[]
+```
 
-1. 使用されているコンポーネントの検出（22種類対応）
-2. 必要な import 文の生成と挿入
-3. 未使用 import の削除
+#### 4. astro-component-mapper.ts (Astro固有マッピング)
+```typescript
+// Astro コンポーネントパスマッピング
+export const ASTRO_COMPONENT_MAPPING: Record<string, AstroComponentInfo>
 
-### Phase 6: エッジケースとエラーハンドリング
+type AstroComponentInfo = {
+  importPath: string;           // "@/components/Kintone.astro"
+  selfClosing: boolean;         // <Kintone /> vs <Note>...</Note>
+  propsMapping?: Record<string, string>;  // Hugo パラメータ → Astro props
+}
+```
 
-1. 入れ子構造の正確な処理
-2. 地域別表示制御の複雑なパターン（`JP US CN` 組み合わせ）
-3. title 属性付き画像の変換
-4. バリデーションとエラーレポート
+## 実装段階
 
-### Phase 7: バッチ処理と品質保証
+### Phase 1: 基盤実装 (convert_prompt.md要件対応)
+1. **プロジェクト初期化**
+   - `kintone-help-astro-poc/migrate-scripts/` ディレクトリ作成 ✅
+   - TypeScript設定（strict設定、any型禁止）
+   - 依存ライブラリインストール（Astro準拠）
+   - 厳密な型定義（type優先、interface最小限）
 
-1. 776ファイルの一括処理
-2. 変換結果の詳細レポート生成
-3. 変換失敗ファイルの詳細ログ
-4. 統計情報（変換率、各 Shortcode の処理状況）
+2. **ファイル操作基盤**
+   - ディレクトリ走査（`/Users/mugi/ghq/github.com/CybozuDocs/kintone/content/ja/`）
+   - 出力先（`kintone-help-astro-poc/src/pages/ja/`）への変換
+   - `_index.md` → `index.mdx` 変換ロジック
 
-## スクリプト仕様
+### Phase 2: AST変換エンジン (懸念事項対応)
+1. **Markdown→MDX AST相互変換の実証**
+   - 簡単なテストケースでの変換可能性検証
+   - mdast → mdxast 変換パターンの確立
+   - ショートコード検出・分割アルゴリズムの実装
 
-### コマンドライン引数
+2. **FrontMatter処理**
+   - YAML解析・保持（要件：FrontMatter保持）
+   - Layout自動判定・追加
+   - 既存メタデータの完全保持
 
+### Phase 3: 変換ルール実装 (手動移行パターン準拠)
+1. **既存手動移行ファイルとの一致性確保**
+   - `content/ja/start/` パターンとの比較検証
+   - 変換結果の差分チェック機能
+   - 手動移行品質との一致性担保
+
+2. **ショートコード→コンポーネント変換**
+   - 8種類の主要ショートコード対応
+   - コンポーネントマッピング（`kintone-help-astro-poc/src/components/` 利用）
+   - 入れ子ショートコードの適切な処理
+
+3. **画像・import文変換**
+   - Markdown画像→Imgコンポーネント
+   - 使用コンポーネント自動検出
+   - import文の適切な配置
+
+### Phase 4: 品質保証・テスト
+1. **convert_prompt.md 要件への適合性検証**
+   - AST ベース解析の動作確認
+   - TypeScript型安全性（any型なし）の検証
+   - 全ファイル（781個）の変換成功率測定
+
+2. **既存手動移行との一致性テスト**
+   - `content/ja/start/` との比較
+   - 差分レポート生成
+   - 品質基準達成の確認
+
+## 技術的課題と対応策 (convert_prompt.md 懸念事項への対応)
+
+### 1. **最重要課題**: Markdown → MDX AST相互変換問題
+**懸念事項 (convert_prompt.md)**: 
+> Markdown として Parse し、MDX として出力するため、それぞれで異なる AST を用いる可能性がある
+
+**課題の詳細**: 
+- Markdown AST (mdast) と MDX AST (mdxast) の構造差分
+- Hugo ショートコードが Markdown テキストノード内に存在
+- MDX では JSX 要素として表現する必要
+
+**対応策**:
+```typescript
+// 段階的変換アプローチ
+1. Markdown AST でショートコード検出・抽出
+2. テキストノード分割（ショートコード前後）
+3. ショートコード部分を MDX JSX ノードに変換
+4. 再結合して MDX AST 構築
+
+// 実装例
+function convertShortcodeToMdxJsx(shortcode: HugoShortcode): MdxJsxFlowElement {
+  return {
+    type: 'mdxJsxFlowElement',
+    name: shortcode.astroComponent,
+    attributes: shortcode.props,
+    children: shortcode.content ? parseMarkdown(shortcode.content) : []
+  };
+}
+```
+
+### 2. AST 変換の技術的複雑性
+**課題**: Markdown テキストノード内のショートコード検出と分割
+**対応**:
+- 正規表現による事前検出 → AST ノード位置特定
+- `unist-util-visit` による段階的変換
+- 変換前後の AST 構造検証
+
+### 3. 既存手動移行パターンとの一致性確保
+**convert_prompt.md要件**: 
+> content/ja/start/ 配下のコンテンツは、一部手動で移行が完了しています。それらも参考にすること
+
+**対応**: 手動移行済みファイルのパターン解析結果を変換ルールに適用
+```typescript
+// 検証済み変換パターン
+- {{< kintone >}} → <Kintone />
+- {{< note >}}...{{< /note >}} → <Note>...</Note>
+- ![alt](src) → <Img src="..." alt="..." />
+- リスト内画像のインデント保持
+- import文の自動生成と配置
+```
+
+### 4. 型安全性とTypeScript要件の厳格な遵守
+**convert_prompt.md要件**:
+- any 型禁止、型アサーション極力回避
+- Class 不使用、type 優先
+
+**対応**:
+```typescript
+// 厳密な型定義
+type MdastNode = import('mdast').Node;
+type MdxNode = import('mdast-util-mdx').Node;
+
+type ConversionContext = {
+  readonly sourceFile: string;
+  readonly targetFile: string;
+  readonly usedComponents: ReadonlySet<string>;
+  readonly errors: readonly string[];
+};
+
+// any型回避パターン
+function isTextNode(node: MdastNode): node is import('mdast').Text {
+  return node.type === 'text';
+}
+```
+
+### 5. Astro MDX 互換性の確保
+**課題**: 生成されたMDXがAstroで正しく処理されること  
+**対応**: `@astrojs/markdown-remark` と同じremark/rehypeプラグインチェーンを使用
+
+## 実行方法
+
+### 開発時
 ```bash
-# 基本使用法
-node convert-hugo-to-astro.js [options]
-
-# 使用例
-node convert-hugo-to-astro.js --target admin/app_admin
-node convert-hugo-to-astro.js --target admin --exclude "*/log/*"
-node convert-hugo-to-astro.js --files "start/whatskintone.md,start/app_create/index.md"
-node convert-hugo-to-astro.js --dry-run --verbose
+cd kintone-help-astro-poc/migrate-scripts
+npm install
+npm run convert:test  # テストファイルのみ
+npm run convert:all   # 全ファイル変換
 ```
 
-### オプション仕様
-
-#### 対象絞り込みオプション
-
-| オプション            | 説明                                 | 例                                      |
-| --------------------- | ------------------------------------ | --------------------------------------- |
-| `--target <path>`     | 特定ディレクトリのみ変換             | `admin/app_admin`                       |
-| `--files <files>`     | 特定ファイルのみ変換（カンマ区切り） | `start/whatskintone.md,admin/_index.md` |
-| `--exclude <pattern>` | 除外パターン（glob形式）             | `"*/log/*"`, `"*/_index.md"`            |
-| `--include <pattern>` | 包含パターン（glob形式）             | `"*/admin/*"`                           |
-| `--depth <number>`    | ディレクトリ探索の深さ制限           | `2` (最大2階層まで)                     |
-
-#### 実行制御オプション
-
-| オプション            | 説明                                     | 用途                |
-| --------------------- | ---------------------------------------- | ------------------- |
-| `--dry-run`           | 実際の変換は行わず、対象ファイルのみ表示 | 事前確認            |
-| `--verbose`           | 詳細ログ出力                             | デバッグ            |
-| `--force`             | 既存ファイルを強制上書き                 | 再実行時            |
-| `--backup`            | 変換前にバックアップ作成                 | 安全性確保          |
-| `--parallel <number>` | 並列処理数指定                           | `4` (4ファイル並列) |
-
-#### 変換制御オプション
-
-| オプション           | 説明                    | 用途                |
-| -------------------- | ----------------------- | ------------------- |
-| `--skip-shortcodes`  | Shortcode変換をスキップ | FrontMatterのみ変換 |
-| `--skip-images`      | 画像変換をスキップ      | Shortcodeのみ変換   |
-| `--skip-headings`    | 見出し変換をスキップ    | 部分変換            |
-| `--only-frontmatter` | FrontMatterのみ変換     | 段階的移行          |
-
-### 使用例詳細
-
-#### 1. 特定ディレクトリの段階的変換
-
+### 変換オプション
 ```bash
-# admin 配下のみ変換
-node convert-hugo-to-astro.js --target admin
+# 特定ディレクトリのみ
+npm run convert -- --dir=start
 
-# admin/app_admin 配下のみ変換
-node convert-hugo-to-astro.js --target admin/app_admin
+# 差分更新のみ
+npm run convert -- --incremental
 
-# start 配下、ただし app_create は除外
-node convert-hugo-to-astro.js --target start --exclude "*/app_create/*"
+# ドライランモード
+npm run convert -- --dry-run
 ```
 
-#### 2. 特定ファイルのテスト変換
+## 成功の判定基準
 
-```bash
-# 手動変換済みファイルで動作確認
-node convert-hugo-to-astro.js --files "start/whatskintone.md" --dry-run
+1. **変換成功率**: 95%以上のファイルが正常変換
+2. **構文エラーなし**: 生成されたMDXファイルがAstroでビルド可能
+3. **コンテンツ保持**: 元の内容が適切に変換されている
+4. **パフォーマンス**: 全ファイル変換が10分以内
+5. **手動検証**: 数十ファイルの目視確認で品質確認
 
-# 複数ファイルを指定
-node convert-hugo-to-astro.js --files "start/whatskintone.md,start/app_create/index.md"
-```
+## リスク要因と緩和策
 
-#### 3. 安全な実行
+### 高リスク
+- **未知のショートコード**: 調査漏れのショートコード → 段階的実装・ログ出力
+- **AST変換の複雑性**: 変換ロジックの複雑化 → 単体テスト・段階実装
 
-```bash
-# 事前確認（何が変換されるかチェック）
-node convert-hugo-to-astro.js --target admin --dry-run --verbose
+### 中リスク  
+- **パフォーマンス**: 大量ファイル処理 → 並列化・最適化
+- **メモリ使用量**: AST処理でのメモリ不足 → ストリーミング処理
 
-# バックアップ付きで実行
-node convert-hugo-to-astro.js --target admin --backup
+### 低リスク
+- **ファイルパス**: パス変換ミス → テストケース充実
+- **エラーハンドリング**: 部分的失敗 → 詳細ログ・リトライ機能
 
-# 既存ファイルがある場合も強制実行
-node convert-hugo-to-astro.js --target admin --force
-```
-
-#### 4. 段階的変換
-
-```bash
-# Phase 1: FrontMatterのみ変換
-node convert-hugo-to-astro.js --target admin --only-frontmatter
-
-# Phase 2: 高頻度Shortcodeを追加
-node convert-hugo-to-astro.js --target admin --skip-images --skip-headings
-
-# Phase 3: 完全変換
-node convert-hugo-to-astro.js --target admin
-```
-
-### 出力レポート
-
-```bash
-# 実行結果例
-Hugo to Astro MDX Converter
-===========================
-
-Target: /content/ja/admin/app_admin
-Files found: 12 files
-Excluded: 0 files
-
-Processing...
-✓ admin/app_admin/_index.md → admin/app_admin/_index.mdx
-✓ admin/app_admin/confirm_app_license.md → admin/app_admin/confirm_app_license.mdx
-✗ admin/app_admin/complex_file.md (Error: Complex shortcode nesting)
-
-Summary:
-- Total files: 12
-- Successfully converted: 11 (91.7%)
-- Failed: 1 (8.3%)
-- Shortcodes converted: 156/160 (97.5%)
-- Processing time: 2.3 seconds
-
-Failed files saved to: conversion-errors.log
-```
-
-## 技術的実装詳細
-
-### 使用する技術スタック
-
-- **Node.js**: ES2022 モジュール
-- **commander.js**: コマンドライン引数解析
-- **gray-matter**: FrontMatter 解析（YAML対応）
-- **glob**: ファイルパターンマッチング
-- **正規表現エンジン**: 複雑な Shortcode パターンマッチング
-- **fs/promises**: 非同期ファイル操作（大量ファイル対応）
-- **path**: ディレクトリ構造の正確な再現
-
-### 変換ロジックの設計
-
-1. **優先順位付き変換**: 高頻度→低頻度の順で処理
-2. **状態管理**: 変換済み Shortcode の追跡
-3. **インデント保持**: リスト内要素の適切な配置
-4. **エスケープ処理**: 特殊文字の適切な処理
-
-### エラーハンドリング
-
-- **段階的処理**: 個別ファイルエラーでも続行
-- **詳細ログ**: ファイル名、行番号、エラー内容
-- **統計情報**: 成功率、各変換パターンの処理状況
-- **ロールバック機能**: 変換失敗時の原因調査用
-
-## 品質保証とテスト
-
-### テスト計画
-
-1. **単体テスト**: 各 Shortcode 変換パターンの個別検証
-2. **統合テスト**: 複数 Shortcode 組み合わせの動作確認
-3. **リグレッションテスト**: 手動変換済みサンプルとの比較
-4. **パフォーマンステスト**: 776ファイル一括処理の性能評価
-
-### 品質チェック項目
-
-- [ ] 全 22種類の Shortcode が正しく変換される
-- [ ] FrontMatter プロパティの完全性（タイポ修正含む）
-- [ ] Import 文の適切な生成（重複なし）
-- [ ] ディレクトリ構造の正確な再現
-- [ ] 変換後の Astro ビルドエラー無し
-
-## 予想される課題と対策
-
-### 技術的課題
-
-1. **複雑な入れ子構造**: パーサーの状態管理で対応
-2. **地域別制御の複雑性**: 設定パターンのマッピング表作成
-3. **大量ファイル処理**: 並列処理とメモリ最適化
-4. **文字エンコーディング**: UTF-8 統一とBOM対応
-
-### 運用上の課題
-
-1. **変換精度の保証**: サンプルファイルとの詳細比較
-2. **パフォーマンス**: 処理時間の許容範囲設定
-3. **エラー処理**: 失敗原因の特定と修正指針
-
-## 成功基準
-
-### 定量的基準
-
-- [ ] 変換成功率: 95%以上（736ファイル以上）
-- [ ] Shortcode 変換精度: 99%以上（5,940回以上）
-- [ ] 処理時間: 10分以内（776ファイル）
-- [ ] メモリ使用量: 2GB以内
-
-### 定性的基準
-
-- [ ] Astro プロジェクトでビルドエラー無し
-- [ ] 表示結果が Hugo 版と視覚的に同等
-- [ ] 手動変換済みサンプルと完全一致
-- [ ] 移行ルールドキュメントとの整合性
+この計画に基づき、段階的にスクリプトを実装していきます。
