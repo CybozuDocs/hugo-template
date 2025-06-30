@@ -1,0 +1,40 @@
+{
+  "name": "hugo-to-astro-mdx-converter",
+  "version": "1.0.0",
+  "description": "Convert Hugo content to Astro MDX files with AST-based processing",
+  "type": "module",
+  "scripts": {
+    "convert:all": "tsx src/convert-to-mdx.ts --all",
+    "convert:test": "tsx src/convert-to-mdx.ts --test",
+    "convert:dir": "tsx src/convert-to-mdx.ts --dir",
+    "test": "node --test --import tsx test/*.test.ts",
+    "test:watch": "node --test --watch --import tsx test/*.test.ts",
+    "build": "tsc --noEmit",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "dependencies": {
+    "unified": "^11.0.4",
+    "remark-parse": "^11.0.0",
+    "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-mdx": "^3.0.0",
+    "remark-stringify": "^11.0.0",
+    "rehype-stringify": "^10.0.0",
+    "unist-util-visit": "^5.0.0",
+    "vfile": "^6.0.1",
+    "js-yaml": "^4.1.0",
+    "glob": "^10.3.10",
+    "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "prettier": "^3.2.4"
+  }
+}

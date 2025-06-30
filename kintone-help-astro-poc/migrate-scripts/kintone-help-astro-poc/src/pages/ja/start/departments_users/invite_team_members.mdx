@@ -1,0 +1,84 @@
+---
+title: "チームメンバーを招待する"
+weight: 100
+disabled:
+  - "CN"
+aliases: "/ja/id/040139"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Enabled from "@/components/Enabled.astro";
+import Hint from "@/components/Hint.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+
+<Kintone />では、30日間の無料お試し期間に、招待機能を利用して<Kintone />にメンバーを追加できます。  
+部署やプロジェクトチームのメンバーを招待して、<Kintone />を使ったデータ共有やコミュニケーションを試してみましょう。
+
+<Enabled regions={["JP"]}>
+  <Hint>
+    * お試し期間中にチームメンバーを招待できるのは、<Slash />共通管理者のみです。  
+      参考：  
+      [契約中またお試し中サービスのサービス終了日はどこから確認できますか？](https://faq.cybozu.info/alphascope/cybozu/web/cybozu.com/Detail.aspx?id=1761)（日本語のみ）  
+      [<Slash />共通管理者の設定](/general/ja/id/0208.html)
+    * 初心者アイコンが表示されない場合は、次のページを参照してください。  
+      [初心者アイコンが表示されません](/k/ja/id/040435.html)
+    * お試し期間終了後は、招待機能は利用できません。<Kintone />にメンバーを追加したい場合は、管理者が<Slash />共通管理からユーザーを追加してください。詳細は、次のページを参照してください。  
+      [組織を追加する](/k/ja/id/040137.html)  
+      [ユーザーを追加する](/k/ja/id/040138.html)
+  </Hint>
+</Enabled>
+
+## ［{{< kintone >}}へようこそ！］ダイアログから招待機能を利用する{#departments_users_invite_team_members_10}
+
+無料お試しを申し込み後にはじめて<Kintone />にログインすると、［{{< kintone >}}へようこそ！］ダイアログが表示されます。招待機能は、このようこそダイアログから利用できます。
+
+1. ようこそダイアログの［次へ］をクリックします。  
+  ［チームメンバーを招待しましょう］ダイアログが表示されます。
+
+1. 招待したいメンバーのメールアドレスと名前を入力して、［招待］をクリックします。  
+   <Img src="/k/img-ja/invite_team_members_04.png" alt="スクリーンショット：［チームメンバーを招待しましょう］ダイアログ" />
+  <Note>
+  一度に4名まで招待できます。4名以上を招待したい場合は、最初の招待が完了したあと、次の方法で続けて招待できます。詳細は、次の項目を参照してください。  
+     [無料お試し期間中に招待機能を利用する](#departments_users_invite_team_members_20)
+</Note>
+  
+［招待メールを送信しました！］ダイアログが表示されたら、チームメンバーの招待は完了です。［次へ］をクリックすると、チュートリアルが開始されます。  
+<Img src="/k/img-ja/invite_team_members_06.png" alt="スクリーンショット：［招待メールを送信しました！］ダイアログ" />
+
+招待したメンバーにはメールが送信されます。
+<Img src="/k/img-ja/invite_team_members_05_1.png" alt="スクリーンショット：招待されたメンバーに届くメール" />
+
+<Enabled regions={["JP"]}>
+  招待メールを受け取ったチームメンバーが<Kintone />にログインする方法については、次のページを参照してください。  
+  [招待メールからログインする](/k/ja/id/040140.html)
+</Enabled>
+
+<Heading level={2} id="departments_users_invite_team_members_20">無料お試し期間中に招待機能を利用する</Heading>
+
+無料お試し期間中は、画面上部の初心者アイコンをクリックして何度でも招待機能を利用できます。
+
+1. <Kintone />の画面上部の初心者アイコンをクリックします。
+   <Img src="/k/img-ja/invite_team_members_07.png" alt="スクリーンショット：ポータル画面" />
+
+1. ［チームメンバーを招待する］をクリックします。
+   <Img src="/k/img-ja/invite_team_members_08.png" alt="スクリーンショット：［チームメンバーを招待する］が強調されている" />
+
+1. ［チームメンバーを招待しましょう］画面が表示されたら、招待したいメンバーのメールアドレスと名前を入力して、［招待］をクリックします。
+   <Img src="/k/img-ja/invite_team_members_09.png" alt="スクリーンショット：チームメンバーを招待しましょうのダイアログ" />
+  <Note>
+  * 一度に4名まで招待できます。無料お試し期間中は初心者アイコンをクリックして何度でも招待機能の利用が可能です。
+     * ［ユーザー管理］をクリックすると、{{< slash_ui >}}の［組織とユーザーの設定］画面が開き、現在登録されているユーザーを確認できます。
+</Note>
+
+［招待メールを送信しました！］ダイアログが表示されたら、チームメンバーの招待は完了です。 ［完了］をクリックしてください。
+
+招待したメンバーにはメールが送信されます。
+
+<Enabled regions={["JP"]}>
+  メールを受け取ったメンバーが<Kintone />にログインする方法については、次のページを参照してください。  
+  [招待メールからログインする](/k/ja/id/040140.html)
+</Enabled>
