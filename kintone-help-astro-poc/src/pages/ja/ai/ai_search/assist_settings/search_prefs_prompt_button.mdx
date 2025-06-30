@@ -1,0 +1,48 @@
+---
+title: "プロンプトボタンを設定する"
+weight: 800
+disabled:
+  - "US"
+  - "CN"
+aliases: "/ja/id/040882"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+
+プロンプトボタンを設定すると、ユーザーが検索AIを利用するときに、ボタンをクリックするだけで、検索AIへの質問や指示を送信できるようになります。  
+よく利用される質問や指示を事前に設定することで、ユーザーは質問内容を入力せずに済みます。  
+このページでは、プロンプトボタンの設定方法について説明します。  
+<Img src="/k/img-ja/search_prefs_prompt_button_01.png" alt="スクリーンショット：プロンプトボタンが設定されているチャットボット画面" />
+
+<Heading level={2} id="assist_settings_search_prefs_prompt_button_10">手順</Heading>
+
+1. <Kintone />の画面上部にある［設定］アイコン（歯車の形）をクリックし、［{{< kintone >}} AI管理］をクリックします。  
+   <Img src="/k/img-ja/ai_enable_01.png" alt="スクリーンショット：［<Kintone /> AI管理］の操作リンクが強調された［設定］メニュー" />
+
+1. ［{{< kintone >}} AI管理］画面の［{{< kintone >}} AIラボ］セクションの［検索AI］という機能名の下にある［設定］をクリックします。  
+   <Img src="/k/img-ja/assist_ceate_01.png" alt="スクリーンショット：［検索AI］という機能名の下にある［設定］の操作リンクが強調されている" />
+
+1. ［検索AI管理］画面で、プロンプトボタンを設定する［検索AI］の［設定］をクリックします。  
+   <Img src="/k/img-ja/search_prefs_change_01.png" alt="スクリーンショット：［検索AI管理］画面で［設定］が強調されている" />
+
+1. ［検索AI設定］画面で、［プロンプトボタン］タブをクリックします。
+
+1. ［ボタン表示内容］を入力します。  
+   入力された内容が、ユーザーが検索AIのチャットボット画面を開いたときのボタンの表記になります。
+
+1. ［実行するプロンプト］を入力します。
+   ユーザーがボタンをクリックしたときに、検索AIに送信する質問や指示の内容です。
+
+1. 画面右上にある［保存］をクリックします。
+
+<Heading level={2} id="assist_settings_search_prefs_prompt_button_20">プロンプトボタンを追加する</Heading>
+
+各ボタンの設定の右横にある［追加］アイコン（+の形）をクリックすると、プロンプトボタンを追加できます。  
+設定できるプロンプトボタンは、10個までです。
+
+<Heading level={2} id="assist_settings_search_prefs_prompt_button_30">プロンプトボタンを削除する</Heading>
+
+各ボタンの設定の右横にある［削除］アイコン（-の形）をクリックすると、プロンプトボタンを削除できます。

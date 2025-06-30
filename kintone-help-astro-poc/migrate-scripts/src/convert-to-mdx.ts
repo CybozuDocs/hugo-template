@@ -307,9 +307,25 @@ async function main(): Promise<void> {
     return;
   }
   
-  if (options['all'] || options['dir']) {
+  if (options['all']) {
     const config: ConversionConfig = {
       sourceDir: options['source'],
+      targetDir: options['target'],
+      dryRun: options['dryRun'] || false,
+      incremental: options['incremental'] || false,
+      verbose: options['verbose'] || false,
+      testMode: false,
+      maxConcurrency: 10
+    };
+    
+    await convertAllFiles(config);
+    return;
+  }
+  
+  if (options['dir']) {
+    const dirName = options['dir'];
+    const config: ConversionConfig = {
+      sourceDir: `${options['source']}/${dirName}`,
       targetDir: options['target'],
       dryRun: options['dryRun'] || false,
       incremental: options['incremental'] || false,

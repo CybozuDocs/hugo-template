@@ -1,0 +1,45 @@
+---
+title: "システムプロンプトを設定する"
+weight: 600
+disabled:
+  - "US"
+  - "CN"
+aliases: "/ja/id/040881"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Hint from "@/components/Hint.astro";
+import Kintone from "@/components/Kintone.astro";
+
+ユーザーが質問や指示などのプロンプトを検索AIに送信したときに、AIに提示するプロンプトを入力します。  
+回答生成時に気を付けてほしいことや、回答のトーンなども指示でき、複数の指示をまとめて記載可能です。
+
+たとえば、次のような指示を設定できます。
+
+* ビジネス用語を使わずに平易な表現にしてください
+* 顧客への案内文の例をあわせて記載してください
+* 3行程度の要約をつけてください
+
+<Heading level={2} id="assist_settings_search_prefs_prompt_10">手順</Heading>
+
+1. <Kintone />の画面上部にある［設定］アイコン（歯車の形）をクリックし、［{{< kintone >}} AI管理］をクリックします。  
+   <Img src="/k/img-ja/ai_enable_01.png" alt="スクリーンショット：［<Kintone /> AI管理］の操作リンクが強調された［設定］メニュー" />
+
+1. ［{{< kintone >}} AI管理］画面の［{{< kintone >}} AIラボ］セクションの［検索AI］という機能名の下にある［設定］をクリックします。  
+   <Img src="/k/img-ja/assist_ceate_01.png" alt="スクリーンショット：［検索AI］という機能名の下にある［設定］の操作リンクが強調されている" />
+
+1. ［検索AI管理］画面で、システムプロンプトを設定する検索AIの［設定］をクリックします。  
+   <Img src="/k/img-ja/search_prefs_change_01.png" alt="スクリーンショット：［検索AI管理］画面で［設定］が強調されている" />
+
+1. ［検索AI設定］画面で、［基本設定］タブをクリックします。
+
+1. ［システムプロンプト］を入力します。
+
+   <Hint>
+  ユーザーが回答を得やすくするシステムプロンプトは、次のページを参照してください。  
+     [システムプロンプトの活用ポイント](/k/ja/id/040885.html)
+</Hint>
+
+1. 画面右上にある［保存］をクリックします。
