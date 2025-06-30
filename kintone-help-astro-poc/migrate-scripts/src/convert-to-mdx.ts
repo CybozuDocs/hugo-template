@@ -15,7 +15,7 @@ import {
 } from './lib/file-utils.js';
 import { parseFrontMatter, addLayoutToFrontMatter, combineFrontMatterAndContent } from './lib/frontmatter.js';
 import { transformShortcodesInContent, transformImagesToComponents, generateImportStatements } from './lib/string-transformer.js';
-import type { ConversionConfig, FileProcessResult, ConversionProgress } from './types/conversion.js';
+import type { ConversionConfig, FileProcessResult, ConversionProgress, ImagePathTransform } from './types/conversion.js';
 
 /**
  * Convert a single file from Hugo Markdown to Astro MDX
@@ -23,7 +23,8 @@ import type { ConversionConfig, FileProcessResult, ConversionProgress } from './
 async function convertSingleFile(
   sourcePath: string,
   targetPath: string,
-  isIndexFile: boolean
+  isIndexFile: boolean,
+  config?: ConversionConfig
 ): Promise<FileProcessResult> {
   const usedComponents = new Set<string>();
   const errors: string[] = [];
@@ -41,13 +42,38 @@ async function convertSingleFile(
     // Add layout field
     const enhancedFrontmatter = addLayoutToFrontMatter(frontmatter, isIndexFile);
     
+    // Transform headers first (before shortcodes to handle headers with shortcodes)
+    const { transformHeadersToComponents } = await import('./lib/string-transformer.js');
+    const headerTransformedContent = transformHeadersToComponents(content, usedComponents);
+    
+    if (sourcePath.includes('ai/_index.md')) {
+      console.log('DEBUG ai/_index.md header transformation:');
+      console.log('Original content length:', content.length);
+      console.log('Transformed content length:', headerTransformedContent.length);
+      console.log('Before:', content.substring(2000, 2200));
+      console.log('After:', headerTransformedContent.substring(2000, 2200));
+      
+      // Search for the specific header line in both
+      const originalHeaderMatch = content.match(/## \{\{< kintone >\}\} AIラボのサポート\{#ai_index_40\}/);
+      const transformedHeaderMatch = headerTransformedContent.match(/## \{\{< kintone >\}\} AIラボのサポート\{#ai_index_40\}/);
+      const headingMatch = headerTransformedContent.match(/<Heading level=\{2\} id="ai_index_40">/);
+      
+      console.log('Original has header:', !!originalHeaderMatch);
+      console.log('Transformed still has header:', !!transformedHeaderMatch);
+      console.log('Transformed has Heading component:', !!headingMatch);
+    }
+    
     // Transform shortcodes
-    const shortcodeResult = transformShortcodesInContent(content, usedComponents);
+    const shortcodeResult = transformShortcodesInContent(headerTransformedContent, usedComponents);
     errors.push(...shortcodeResult.errors);
     warnings.push(...shortcodeResult.warnings);
     
     // Transform images
-    const imageResult = transformImagesToComponents(shortcodeResult.transformedContent, usedComponents);
+    const imageResult = transformImagesToComponents(
+      shortcodeResult.transformedContent, 
+      usedComponents,
+      config?.imagePathTransform
+    );
     errors.push(...imageResult.errors);
     
     // Apply post-processing fixes (e.g., numbered list indentation)
@@ -88,6 +114,106 @@ async function convertSingleFile(
       warnings,
       bytesProcessed
     } as const;
+  }
+}
+
+/**
+ * Convert files in a specific directory
+ */
+async function convertSpecificDirectory(config: ConversionConfig, dirName: string): Promise<void> {
+  console.log(`🚀 Starting Hugo to Astro MDX conversion for ${dirName}...\\n`);
+  
+  // Validate configuration
+  const validation = await validateConfig(config);
+  if (!validation.valid) {
+    console.error('❌ Configuration validation failed:');
+    validation.errors.forEach(error => console.error(`  ${error}`));
+    process.exit(1);
+  }
+  
+  // Find all markdown files and filter for specific directory
+  console.log(`📂 Scanning source directory: ${config.sourceDir}`);
+  const allFiles = await findMarkdownFiles(config.sourceDir);
+  const markdownFiles = allFiles.filter(file => {
+    const relativePath = file.replace(config.sourceDir + '/', '');
+    return relativePath.startsWith(dirName + '/');
+  });
+  
+  console.log(`📊 Found ${markdownFiles.length} markdown files in ${dirName}\\n`);
+  
+  // Create progress tracker
+  const progress: ConversionProgress = {
+    total: markdownFiles.length,
+    processed: 0,
+    successful: 0,
+    failed: 0,
+    skipped: 0,
+    startTime: Date.now()
+  };
+  
+  // Process files (rest same as convertAllFiles)
+  const results: FileProcessResult[] = [];
+  
+  for (const sourcePath of markdownFiles) {
+    const mapping = createPathMapping(sourcePath, config.sourceDir, config.targetDir);
+    
+    // Convert file
+    if (config.verbose) {
+      console.log(`🔄 Converting: ${mapping.sourcePath.split('/').slice(-3).join('/')}`);
+    }
+    
+    if (!config.dryRun) {
+      const result = await convertSingleFile(
+        mapping.sourcePath,
+        mapping.targetPath,
+        mapping.isIndexFile,
+        config
+      );
+      
+      results.push(result);
+      
+      if (result.success) {
+        progress.successful++;
+      } else {
+        progress.failed++;
+        console.error(`❌ Failed: ${mapping.sourcePath.split('/').slice(-3).join('/')}`);
+        result.errors.forEach(error => console.error(`  ${error}`));
+      }
+    }
+    
+    progress.processed++;
+  }
+  
+  // Final report (same as convertAllFiles)
+  console.log('\\n📊 Conversion Summary:');
+  console.log(`  Total files: ${progress.total}`);
+  console.log(`  Processed: ${progress.processed}`);
+  console.log(`  Successful: ${progress.successful}`);
+  console.log(`  Failed: ${progress.failed}`);
+  console.log(`  Skipped: ${progress.skipped}`);
+  
+  const totalBytes = results.reduce((sum, r) => sum + r.bytesProcessed, 0);
+  console.log(`  Total data processed: ${(totalBytes / 1024 / 1024).toFixed(2)} MB`);
+  
+  const elapsed = (Date.now() - progress.startTime) / 1000;
+  console.log(`  Total time: ${elapsed.toFixed(2)}s`);
+  
+  // Component usage statistics
+  const allComponents = new Set<string>();
+  results.forEach(r => r.imports.forEach(imp => {
+    const match = /import\\s+(\\w+)/.exec(imp);
+    if (match?.[1]) {
+      allComponents.add(match[1]);
+    }
+  }));
+  
+  console.log(`  Components used: [${Array.from(allComponents).sort().join(', ')}]`);
+  
+  if (progress.failed > 0) {
+    console.log('\\n❌ Some files failed to convert. Check error messages above.');
+    process.exit(1);
+  } else {
+    console.log('\\n✅ All files converted successfully!');
   }
 }
 
@@ -152,7 +278,8 @@ async function convertAllFiles(config: ConversionConfig): Promise<void> {
       const result = await convertSingleFile(
         mapping.sourcePath,
         mapping.targetPath,
-        mapping.isIndexFile
+        mapping.isIndexFile,
+        config
       );
       
       results.push(result);
@@ -296,11 +423,22 @@ async function main(): Promise<void> {
     .option('--dry-run', 'Show what would be converted without actually converting')
     .option('--verbose', 'Show detailed progress')
     .option('--source <path>', 'Source directory path', '/Users/mugi/ghq/github.com/CybozuDocs/kintone/content/ja')
-    .option('--target <path>', 'Target directory path', 'kintone-help-astro-poc/src/pages/ja');
+    .option('--target <path>', 'Target directory path', 'kintone-help-astro-poc/src/pages/ja')
+    .option('--img-path-from <prefix>', 'Image path prefix to replace (e.g., "/k/")')
+    .option('--img-path-to <prefix>', 'Image path prefix replacement (e.g., "/k/kintone/")');
   
   program.parse();
   
   const options = program.opts();
+  
+  // Build image path transform configuration if both options are provided
+  let imagePathTransform: ConversionConfig['imagePathTransform'];
+  if (options['imgPathFrom'] && options['imgPathTo']) {
+    imagePathTransform = {
+      from: options['imgPathFrom'],
+      to: options['imgPathTo']
+    };
+  }
   
   if (options['test']) {
     await testMode();
@@ -315,7 +453,8 @@ async function main(): Promise<void> {
       incremental: options['incremental'] || false,
       verbose: options['verbose'] || false,
       testMode: false,
-      maxConcurrency: 10
+      maxConcurrency: 10,
+      imagePathTransform
     };
     
     await convertAllFiles(config);
@@ -325,16 +464,18 @@ async function main(): Promise<void> {
   if (options['dir']) {
     const dirName = options['dir'];
     const config: ConversionConfig = {
-      sourceDir: `${options['source']}/${dirName}`,
+      sourceDir: options['source'],
       targetDir: options['target'],
       dryRun: options['dryRun'] || false,
       incremental: options['incremental'] || false,
       verbose: options['verbose'] || false,
       testMode: false,
-      maxConcurrency: 10
+      maxConcurrency: 10,
+      filterDir: dirName,  // Add filter for specific directory
+      imagePathTransform
     };
     
-    await convertAllFiles(config);
+    await convertSpecificDirectory(config, dirName);
     return;
   }
   

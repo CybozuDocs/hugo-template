@@ -22,14 +22,20 @@ import Note from "@/components/Note.astro";
 
 <Heading level={2} id="assist_settings_search_prefs_datasource_10">手順</Heading>
 
-1. <Kintone />の画面上部にある［設定］アイコン（歯車の形）をクリックし、［{{< kintone >}} AI管理］をクリックします。  
-   <Img src="/k/img-ja/ai_enable_01.png" alt="スクリーンショット：［<Kintone /> AI管理］の操作リンクが強調された［設定］メニュー" />
+1. <Kintone />の画面上部にある［設定］アイコン（歯車の形）をクリックし、［<Kintone /> AI管理］をクリックします。  
 
-1. ［{{< kintone >}} AI管理］画面の［{{< kintone >}} AIラボ］セクションの［検索AI］という機能名の下にある［設定］をクリックします。  
-   <Img src="/k/img-ja/assist_ceate_01.png" alt="スクリーンショット：［検索AI］という機能名の下にある［設定］の操作リンクが強調されている" />
+<Img src="/k/kintone/img-ja/ai_enable_01.png" alt="スクリーンショット：［<Kintone /> AI管理］の操作リンクが強調された［設定］メニュー" />
+
+
+1. ［<Kintone /> AI管理］画面の［<Kintone /> AIラボ］セクションの［検索AI］という機能名の下にある［設定］をクリックします。  
+
+<Img src="/k/kintone/img-ja/assist_ceate_01.png" alt="スクリーンショット：［検索AI］という機能名の下にある［設定］の操作リンクが強調されている" />
+
 
 1. ［検索AI管理］画面で、データソースを指定する検索AIの［設定］をクリックします。  
-   <Img src="/k/img-ja/search_prefs_change_01.png" alt="スクリーンショット：［検索AI管理］画面で［設定］が強調されている" />
+
+<Img src="/k/kintone/img-ja/search_prefs_change_01.png" alt="スクリーンショット：［検索AI管理］画面で［設定］が強調されている" />
+
 
 1. ［検索AI設定］画面で、［基本設定］タブをクリックします。
 
@@ -38,13 +44,15 @@ import Note from "@/components/Note.astro";
 1. ［アプリを検索］欄に、データソースに指定したいアプリ名を入力します。
 
 1. 表示された候補から、データソースに指定したいアプリをクリックします。  
-   <Img src="/k/img-ja/search_prefs_datasource_01.png" alt="スクリーンショット：データソースの設定でアプリの候補が表示されている" />
 
-   <Note>
-  * 一部のアプリは候補として表示されません。詳細は、次の項目を参照してください。  
-       [データソースに指定できないアプリ](/k/ja/id/040879.html#assist_settings_search_prefs_datasource_4000)
-     * データソースに指定したアプリ名の右横にある［開く］をクリックすると、そのアプリの［レコードの一覧］画面が表示され、どのアプリを指定したかを確認できます。  
-       ![スクリーンショット：データソースに指定したアプリ名の右側の[開く]が強調されている](/k/img-ja/search_prefs_datasource_02.png)
+<Img src="/k/kintone/img-ja/search_prefs_datasource_01.png" alt="スクリーンショット：データソースの設定でアプリの候補が表示されている" />
+
+<Note>
+* 一部のアプリは候補として表示されません。詳細は、次の項目を参照してください。  
+[データソースに指定できないアプリ](/k/ja/id/040879.html#assist_settings_search_prefs_datasource_4000)
+* データソースに指定したアプリ名の右横にある［開く］をクリックすると、そのアプリの［レコードの一覧］画面が表示され、どのアプリを指定したかを確認できます。  
+![スクリーンショット：データソースに指定したアプリ名の右側の[開く]が強調されている](/k/img-ja/search_prefs_datasource_02.png)
+
 </Note>
 
 1. ［フィールドを選択］で、データソースとして利用するフィールドにチェックを入れます。
@@ -86,7 +94,7 @@ import Note from "@/components/Note.astro";
   ［アプリコード］についての詳細は、次のページを参照してください。  
   [アプリコードを設定する](/k/ja/id/040478.html)
 
-### 回答内の［参考情報］{#assist_settings_search_prefs_datasource_4030}
+<Heading level={3} id="assist_settings_search_prefs_datasource_4030">回答内の［参考情報］</Heading>
 
 データソースとして指定したアプリへのリンクが、回答に［参考情報］として表示されます。  
 このリンクには、対応する［レコードのタイトル］が表示されます。［レコードのタイトルとして利用するフィールド］に［閲覧］の権限がない場合は、［レコード番号］が表示されます。

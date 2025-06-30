@@ -48,6 +48,12 @@ export const SHORTCODE_MAPPING: ReadonlyMap<string, AstroComponentInfo> = new Ma
     propsMapping: null
   }],
   
+  ['slash_ui', {
+    importPath: '@/components/SlashUi.astro',
+    selfClosing: true,
+    propsMapping: null
+  }],
+  
   ['service', {
     importPath: '@/components/Service.astro',
     selfClosing: true,
@@ -67,6 +73,12 @@ export const SHORTCODE_MAPPING: ReadonlyMap<string, AstroComponentInfo> = new Ma
     propsMapping: null
   }],
   
+  ['wv_brk', {
+    importPath: '@/components/Wovn.astro',
+    selfClosing: false,
+    propsMapping: null
+  }],
+  
   ['info', {
     importPath: '@/components/Info.astro',
     selfClosing: false,
@@ -78,6 +90,67 @@ export const SHORTCODE_MAPPING: ReadonlyMap<string, AstroComponentInfo> = new Ma
     importPath: '@/components/Enabled.astro',
     selfClosing: false,
     propsMapping: null  // Will handle regions specially
+  }],
+  
+  ['subtitle', {
+    importPath: '@/components/Subtitle.astro',
+    selfClosing: false,
+    propsMapping: null
+  }],
+  
+  // Additional frequently used shortcodes
+  ['cybozu_com', {
+    importPath: '@/components/CybozuCom.astro',
+    selfClosing: true,
+    propsMapping: null
+  }],
+  
+  ['listsummary', {
+    importPath: '@/components/Listsummary.astro',
+    selfClosing: false,
+    propsMapping: null
+  }],
+  
+  ['disabled2', {
+    importPath: '@/components/Disabled2.astro',
+    selfClosing: false,
+    propsMapping: null
+  }],
+  
+  ['slash_help', {
+    importPath: '@/components/SlashHelp.astro',
+    selfClosing: true,
+    propsMapping: null
+  }],
+  
+  ['slash_administrators', {
+    importPath: '@/components/SlashAdministrators.astro',
+    selfClosing: true,
+    propsMapping: null
+  }],
+  
+  ['devnet_top', {
+    importPath: '@/components/DevnetTop.astro',
+    selfClosing: true,
+    propsMapping: null
+  }],
+  
+  ['subnavi', {
+    importPath: '@/components/Subnavi.astro',
+    selfClosing: false,
+    propsMapping: null
+  }],
+  
+  ['devnet_name', {
+    importPath: '@/components/DevnetName.astro',
+    selfClosing: true,
+    propsMapping: null
+  }],
+  
+  ['CorpName', {
+    importPath: '@/components/CorpName.astro',
+    selfClosing: true,
+    propsMapping: null
   }]
 ]);
 

@@ -12,29 +12,34 @@ import Heading from "@/components/Heading.astro";
 import Img from "@/components/Img.astro";
 import Kintone from "@/components/Kintone.astro";
 import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
 
 ［検索AI管理］画面では、検索AIを新しく作成したり、作成した検索AIを管理したりできます。
 
 <Note>
   * 検索AIの作成や管理ができるのは、次のいずれかの条件に該当するユーザーです。
-    * ［{{< slash >}}共通管理者］に設定されている
+    * ［<Slash />共通管理者］に設定されている
     * ［アクセス権］の設定で［システムの管理］の権限が許可されている
   * 検索AIは、20個まで作成できます。
 </Note>
 
-## ［検索AI管理］画面の開きかた{#ai_search_assist_manage_10}
+<Heading level={2} id="ai_search_assist_manage_10">［検索AI管理］画面の開きかた</Heading>
 
-1. <Kintone />の画面上部にある［設定］アイコン（歯車の形）をクリックし、［{{< kintone >}} AI管理］をクリックします。  
-   <Img src="/k/img-ja/ai_enable_01.png" alt="スクリーンショット：［<Kintone /> AI管理］の操作リンクが強調された［設定］メニュー" />
+1. <Kintone />の画面上部にある［設定］アイコン（歯車の形）をクリックし、［<Kintone /> AI管理］をクリックします。  
 
-1. ［{{< kintone >}} AI管理］画面の［{{< kintone >}} AIラボ］セクションの［検索AI］という機能名の下にある［設定］をクリックします。  
-   <Img src="/k/img-ja/assist_ceate_01.png" alt="スクリーンショット：［検索AI］という機能名の下にある［設定］の操作リンクが強調されている" />
+<Img src="/k/kintone/img-ja/ai_enable_01.png" alt="スクリーンショット：［<Kintone /> AI管理］の操作リンクが強調された［設定］メニュー" />
 
-## ［検索AI管理］画面の構成{#ai_search_assist_manage_20}
 
-<Img src="/k/img-ja/assist_manage_01.png" alt="スクリーンショット：［検索AI管理］画面の各項目に番号を記載" />
+1. ［<Kintone /> AI管理］画面の［<Kintone /> AIラボ］セクションの［検索AI］という機能名の下にある［設定］をクリックします。  
 
-### (1) ［作成する］ボタン{#ai_search_assist_manage_2010}
+<Img src="/k/kintone/img-ja/assist_ceate_01.png" alt="スクリーンショット：［検索AI］という機能名の下にある［設定］の操作リンクが強調されている" />
+
+
+<Heading level={2} id="ai_search_assist_manage_20">［検索AI管理］画面の構成</Heading>
+
+<Img src="/k/kintone/img-ja/assist_manage_01.png" alt="スクリーンショット：［検索AI管理］画面の各項目に番号を記載" />
+
+<Heading level={3} id="ai_search_assist_manage_2010">(1) ［作成する］ボタン</Heading>
 
 検索AIを新規に作成します。作成手順については、次のページを参照してください。  
 [検索AIを作成する](/k/ja/id/040872.html)
@@ -65,14 +70,14 @@ import Note from "@/components/Note.astro";
 * ［利用を開始］  
   ステータスが［利用停止中］のときに表示されます。クリックすると、利用を再開できます。
 
-### (6) ［設定］{#ai_search_assist_manage_2060}
+<Heading level={3} id="ai_search_assist_manage_2060">(6) ［設定］</Heading>
 
 ［検索AI設定］画面を開きます。
 
-### (7) ［複製］{#ai_search_assist_manage_2070}
+<Heading level={3} id="ai_search_assist_manage_2070">(7) ［複製］</Heading>
 
 作成済みの検索AIを再利用して、新しい検索AIを作成します。元の検索AIの設定情報が引き継がれます。
 
-### (8) ［削除］{#ai_search_assist_manage_2080}
+<Heading level={3} id="ai_search_assist_manage_2080">(8) ［削除］</Heading>
 
 検索AIを削除します。削除した検索AIは復旧できません。運用に問題がないことを十分に確認してから削除するようにしてください。

@@ -12,6 +12,9 @@ import Heading from "@/components/Heading.astro";
 import Img from "@/components/Img.astro";
 import Kintone from "@/components/Kintone.astro";
 import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Subtitle from "@/components/Subtitle.astro";
 import Warning from "@/components/Warning.astro";
 
 <Kintone /> AIで提供されるさまざまな機能を利用するには、まず<Kintone /> AI自体を有効にする必要があります。  
@@ -19,30 +22,33 @@ import Warning from "@/components/Warning.astro";
 
 <Heading level={2} id="ai_ai_enable_10">手順</Heading>
 
-1. <Kintone />の画面上部にある［設定］アイコン（歯車の形）をクリックし、［{{< kintone >}} AI管理］をクリックします。  
-   <Img src="/k/img-ja/ai_enable_01.png" alt="スクリーンショット：［<Kintone /> AI管理］の操作リンクが強調された［設定］メニュー" />
+1. <Kintone />の画面上部にある［設定］アイコン（歯車の形）をクリックし、［<Kintone /> AI管理］をクリックします。  
 
-   <Note>
-  {{< subtitle >}}{{< wv_brk >}}［{{< kintone >}} AI管理］{{< /wv_brk >}}が表示されないときの対処{{< /subtitle >}}
+<Img src="/k/kintone/img-ja/ai_enable_01.png" alt="スクリーンショット：［<Kintone /> AI管理］の操作リンクが強調された［設定］メニュー" />
 
-     * まず前提として、<Kintone /> AIラボのサービスを利用するための条件を満たしていることを確認してください。詳細は、次のページを参照してください。  
-     [サービスを利用するための条件](/k/ja/id/040868.html#ai_index_20)
-     * ［{{< kintone >}} AI管理］を表示するには、次の条件をすべて満たす必要があります。
-       * ［{{< kintone >}}システム管理］の［アップデートオプション］画面で［「{{< kintone >}} AI」を無効にする］のチェックを外している
-       * ［{{< kintone >}} AI管理］を表示したいユーザーに対し、［{{< kintone >}}システム管理］の［アクセス権］画面で［システムの管理］の［許可］にチェックを入れている  
-         ［{{< slash >}}共通管理者］は［システムの管理］の権限が許可されています。
-       * ［{{< slash_ui >}}］の［組織間のアクセス権］画面で［組織間のアクセスを禁止する］のチェックを外している
+<Note>
+<Subtitle>［<Kintone /> AI管理］が表示されないときの対処</Subtitle>
+
+* まず前提として、<Kintone /> AIラボのサービスを利用するための条件を満たしていることを確認してください。詳細は、次のページを参照してください。  
+[サービスを利用するための条件](/k/ja/id/040868.html#ai_index_20)
+* ［<Kintone /> AI管理］を表示するには、次の条件をすべて満たす必要があります。
+* ［<Kintone />システム管理］の［アップデートオプション］画面で［「<Kintone /> AI」を無効にする］のチェックを外している
+* ［<Kintone /> AI管理］を表示したいユーザーに対し、［<Kintone />システム管理］の［アクセス権］画面で［システムの管理］の［許可］にチェックを入れている  
+［<Slash />共通管理者］は［システムの管理］の権限が許可されています。
+* ［<SlashUi />］の［組織間のアクセス権］画面で［組織間のアクセスを禁止する］のチェックを外している
+
 </Note>
 
-1. ［{{< kintone >}} AI管理］画面の［{{< kintone >}} AIの有効化］で［{{< kintone >}} AIを有効にする］にチェックを入れます。
+1. ［<Kintone /> AI管理］画面の［<Kintone /> AIの有効化］で［<Kintone /> AIを有効にする］にチェックを入れます。
 
-1. ［{{< kintone >}} AIラボ］セクションで、利用する機能の［利用する］にチェックを入れます。  
+1. ［<Kintone /> AIラボ］セクションで、利用する機能の［利用する］にチェックを入れます。  
    2025年4月現在、<Kintone /> AIラボで提供されている機能は、次のとおりです。
 
    * [検索AI](/k/ja/id/040870.html)
    * [アプリ作成AI](/k/ja/id/040871.html)
 
 1. 画面右下にある［保存］をクリックします。  
-   <Img src="/k/img-ja/ai_enable_02.png" alt="スクリーンショット：［<Kintone /> AI管理］画面" />
 
-   <Warning>［{{< kintone >}} AIを有効にする］のチェックを外して、<Kintone /> AI自体を無効にすると、各機能の［利用する］にチェックが入っていても、その機能は利用できません。</Warning>
+<Img src="/k/kintone/img-ja/ai_enable_02.png" alt="スクリーンショット：［<Kintone /> AI管理］画面" />
+
+<Warning>［<Kintone /> AIを有効にする］のチェックを外して、<Kintone /> AI自体を無効にすると、各機能の［利用する］にチェックが入っていても、その機能は利用できません。</Warning>

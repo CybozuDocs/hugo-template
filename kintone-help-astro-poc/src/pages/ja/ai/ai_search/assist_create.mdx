@@ -11,6 +11,7 @@ layout: "@/layouts/PageLayout.astro"
 import Heading from "@/components/Heading.astro";
 import Img from "@/components/Img.astro";
 import Kintone from "@/components/Kintone.astro";
+import Listsummary from "@/components/Listsummary.astro";
 import Note from "@/components/Note.astro";
 import Reference from "@/components/Reference.astro";
 
@@ -19,24 +20,26 @@ import Reference from "@/components/Reference.astro";
 
 このページでは、検索AIを作成するための、基本的な手順を説明します。
 
-{{< listsummary >}}
-
-1. [検索AIを作成する](#ai_search_assist_create_1010)
-1. [検索AIの名前を入力する](#ai_search_assist_create_1020)
-1. [データソースを指定する](#ai_search_assist_create_1030)
-1. [検索AIの設定を保存する](#ai_search_assist_create_1040)
-
-{{< /listsummary >}}
+<Listsummary>
+  1. [検索AIを作成する](#ai_search_assist_create_1010)
+  1. [検索AIの名前を入力する](#ai_search_assist_create_1020)
+  1. [データソースを指定する](#ai_search_assist_create_1030)
+  1. [検索AIの設定を保存する](#ai_search_assist_create_1040)
+</Listsummary>
 
 <Heading level={2} id="ai_search_assist_create_10">手順</Heading>
 
 <Heading level={3} id="ai_search_assist_create_1010">検索AIを作成する</Heading>
 
-1. <Kintone />の画面上部にある［設定］アイコン（歯車の形）をクリックし、［{{< kintone >}} AI管理］をクリックします。  
-   <Img src="/k/img-ja/ai_enable_01.png" alt="スクリーンショット：［<Kintone /> AI管理］の操作リンクが強調された［設定］メニュー" />
+1. <Kintone />の画面上部にある［設定］アイコン（歯車の形）をクリックし、［<Kintone /> AI管理］をクリックします。  
 
-1. ［{{< kintone >}} AI管理］画面の［{{< kintone >}} AIラボ］セクションの［検索AI］という機能名の下にある［設定］をクリックします。  
-   <Img src="/k/img-ja/assist_ceate_01.png" alt="スクリーンショット：［検索AI］という機能名の下にある［設定］の操作リンクが強調されている" />
+<Img src="/k/kintone/img-ja/ai_enable_01.png" alt="スクリーンショット：［<Kintone /> AI管理］の操作リンクが強調された［設定］メニュー" />
+
+
+1. ［<Kintone /> AI管理］画面の［<Kintone /> AIラボ］セクションの［検索AI］という機能名の下にある［設定］をクリックします。  
+
+<Img src="/k/kintone/img-ja/assist_ceate_01.png" alt="スクリーンショット：［検索AI］という機能名の下にある［設定］の操作リンクが強調されている" />
+
 
 1. ［検索AI管理］画面で、［作成する］をクリックします。  
    ［検索AI設定］画面が開きます。
@@ -60,10 +63,11 @@ import Reference from "@/components/Reference.astro";
 
 1. 表示された候補から、データソースに指定したいアプリをクリックします。
 
-   <Note>
-  * 一部のアプリは候補として表示されません。詳細は、次のページを参照してください。  
-       [データソースに指定できないアプリ](/k/ja/id/040879.html#assist_settings_search_prefs_datasource_4000)
-     * データソースにアプリを指定したあと、［開く］をクリックすると、［レコードの一覧］画面が表示され、どのアプリを指定したかを確認できます。
+<Note>
+* 一部のアプリは候補として表示されません。詳細は、次のページを参照してください。  
+[データソースに指定できないアプリ](/k/ja/id/040879.html#assist_settings_search_prefs_datasource_4000)
+* データソースにアプリを指定したあと、［開く］をクリックすると、［レコードの一覧］画面が表示され、どのアプリを指定したかを確認できます。
+
 </Note>
 
 1. ［フィールドを選択］で、データソースとして利用するフィールドにチェックを入れます。

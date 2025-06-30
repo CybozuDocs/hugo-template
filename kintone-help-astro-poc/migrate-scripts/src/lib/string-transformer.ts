@@ -53,10 +53,7 @@ function transformContentBody(
 ): string {
   let transformedContent = content;
   
-  // First transform markdown headers to Heading components
-  transformedContent = transformMarkdownHeaders(transformedContent, usedComponents);
-  
-  // Find all shortcodes in body content
+  // Find all shortcodes in body content (headers should be processed separately)
   const shortcodes = findAllShortcodes(transformedContent);
   
   // Process in reverse order to maintain positions
@@ -83,8 +80,15 @@ function transformContentBody(
  * Apply post-processing fixes for Astro-specific formatting
  */
 export function applyPostProcessingFixes(content: string): string {
+  let result = content;
+  
   // Fix: Numbered List内の<Img>コンポーネントのインデントを3スペースに調整
-  return fixNumberedListImageIndentation(content);
+  result = fixNumberedListImageIndentation(result);
+  
+  // Fix: Numbered List内のコンポーネントを適切な構造に修正
+  result = fixNumberedListComponents(result);
+  
+  return result;
 }
 
 /**
@@ -117,6 +121,71 @@ function fixNumberedListImageIndentation(content: string): string {
       result.push('   ' + line.substring(2));
     } else {
       result.push(line);
+    }
+  }
+  
+  return result.join('\n');
+}
+
+/**
+ * Fix component structure inside numbered lists for MDX compatibility
+ */
+function fixNumberedListComponents(content: string): string {
+  const lines = content.split('\n');
+  const result: string[] = [];
+  let i = 0;
+  
+  while (i < lines.length) {
+    const line = lines[i];
+    
+    // Check if this line is a numbered list item with component indentation issue
+    if (/^\d+\.\s/.test(line)) {
+      result.push(line);
+      i++;
+      
+      // Look ahead for indented components that should be moved outside the list
+      while (i < lines.length) {
+        const nextLine = lines[i];
+        
+        // If we hit a component that starts with 3+ spaces (problematic MDX structure)
+        if (/^\s{3,}<[A-Z]/.test(nextLine)) {
+          // Move this component outside the list structure
+          // First, add an empty line to close the list item
+          if (result[result.length - 1].trim() !== '') {
+            result.push('');
+          }
+          
+          // Add the component without excessive indentation
+          result.push(nextLine.replace(/^\s+/, ''));
+          i++;
+          
+          // Continue collecting related content
+          while (i < lines.length && (lines[i].startsWith('  ') || lines[i].trim() === '')) {
+            const contentLine = lines[i];
+            if (contentLine.trim() === '') {
+              result.push('');
+            } else {
+              // Remove excessive indentation but preserve structure
+              result.push(contentLine.replace(/^\s{2,}/, ''));
+            }
+            i++;
+          }
+          
+          // Add another empty line before next content
+          result.push('');
+          break;
+        } else if (/^\s{2,}/.test(nextLine) || nextLine.trim() === '') {
+          // Regular indented content or empty line - keep as is
+          result.push(nextLine);
+          i++;
+        } else {
+          // Non-indented line - we're out of this list item
+          break;
+        }
+      }
+    } else {
+      result.push(line);
+      i++;
     }
   }
   
@@ -212,6 +281,36 @@ function parseParams(paramsStr: string): readonly string[] {
 }
 
 /**
+ * Process nested shortcodes in wv_brk content
+ */
+function processNestedShortcodes(content: string, usedComponents: Set<string>): string {
+  let transformedContent = content;
+  
+  // Find all shortcodes in the content
+  const shortcodes = findAllShortcodes(transformedContent);
+  
+  // Process in reverse order to maintain positions
+  const shortcodesCopy = [...shortcodes];
+  for (const shortcode of shortcodesCopy.reverse()) {
+    try {
+      const replacement = transformSingleShortcode(shortcode, usedComponents);
+      
+      if (replacement !== null) {
+        // Replace the shortcode with the component
+        const before = transformedContent.substring(0, shortcode.startPos);
+        const after = transformedContent.substring(shortcode.endPos);
+        transformedContent = before + replacement + after;
+      }
+    } catch (error) {
+      // Skip errors in nested processing
+      continue;
+    }
+  }
+  
+  return transformedContent;
+}
+
+/**
  * Transform a single shortcode to Astro component
  */
 function transformSingleShortcode(
@@ -222,8 +321,13 @@ function transformSingleShortcode(
   // Handle special removal cases (wv_brk)
   if (shouldRemoveShortcode(shortcode.name)) {
     if (shortcode.name === 'wv_brk') {
-      // Remove wv_brk wrapper, keep content
-      return shortcode.content || '';
+      // Remove wv_brk wrapper, but recursively process inner content
+      const innerContent = shortcode.content || '';
+      if (innerContent.includes('{{<')) {
+        // Process nested shortcodes in the content
+        return processNestedShortcodes(innerContent, usedComponents);
+      }
+      return innerContent;
     }
     return ''; // Remove entirely
   }
@@ -282,12 +386,13 @@ function extractComponentName(importPath: string): string {
 /**
  * Transform markdown headers to Heading components
  */
-function transformMarkdownHeaders(
+export function transformHeadersToComponents(
   content: string,
   usedComponents: Set<string>
 ): string {
   // Pattern for markdown headers with optional IDs: ## Title{#id}
-  const headerPattern = /^(#{1,6})\s+([^{\n]+)(?:\{#([^}]+)\})?$/gm;
+  // Also match headers with shortcodes/components like ## {{< kintone >}} title{#id}
+  const headerPattern = /^(#{1,6})\s+(.*?)(?:\{#([^}]+)\})?$/gm;
   
   return content.replace(headerPattern, (match, hashes, title, id) => {
     const level = hashes.length;
@@ -308,8 +413,9 @@ function transformMarkdownHeaders(
  * Generate props string for component
  */
 function generateProps(shortcodeName: string, params: readonly string[]): string {
-  if (shortcodeName === 'enabled2' && params.length > 0) {
+  if ((shortcodeName === 'enabled2' || shortcodeName === 'disabled2') && params.length > 0) {
     // enabled2 JP CN -> regions={["JP", "CN"]}
+    // disabled2 US CN -> regions={["US", "CN"]}
     const regions = params.map(p => `"${p}"`).join(', ');
     return ` regions={[${regions}]}`;
   }
@@ -323,7 +429,8 @@ function generateProps(shortcodeName: string, params: readonly string[]): string
  */
 export function transformImagesToComponents(
   content: string,
-  usedComponents: Set<string>
+  usedComponents: Set<string>,
+  imagePathTransform?: { from: string; to: string }
 ): {
   readonly transformedContent: string;
   readonly errors: readonly string[];
@@ -363,8 +470,14 @@ export function transformImagesToComponents(
       // Track Img component usage
       usedComponents.add('Img');
       
+      // Apply path transformation if configured
+      let transformedSrc = image.src;
+      if (imagePathTransform && transformedSrc.startsWith(imagePathTransform.from)) {
+        transformedSrc = transformedSrc.replace(imagePathTransform.from, imagePathTransform.to);
+      }
+      
       // Generate Img component
-      const replacement = `<Img src="${image.src}" alt="${image.alt}" />`;
+      const replacement = `<Img src="${transformedSrc}" alt="${image.alt}" />`;
       
       const before = transformedContent.substring(0, image.index);
       const after = transformedContent.substring(image.index + image.match.length);

@@ -64,6 +64,12 @@ export type FrontMatterData = {
   readonly [key: string]: unknown;
 };
 
+/** Image path transformation configuration */
+export type ImagePathTransform = {
+  readonly from: string;  // 変換元プレフィックス (例: "/k/")
+  readonly to: string;    // 変換先プレフィックス (例: "/k/kintone/")
+};
+
 /** Configuration for the conversion process */
 export type ConversionConfig = {
   readonly sourceDir: string;
@@ -73,6 +79,8 @@ export type ConversionConfig = {
   readonly verbose: boolean;
   readonly testMode: boolean;
   readonly maxConcurrency: number;
+  readonly filterDir?: string;
+  readonly imagePathTransform?: ImagePathTransform;
 };
 
 /** Progress tracking for batch conversion */
