@@ -138,49 +138,71 @@ function fixNumberedListComponents(content: string): string {
   while (i < lines.length) {
     const line = lines[i];
     
-    // Check if this line is a numbered list item with component indentation issue
+    // Check if this line is a numbered list item
     if (/^\d+\.\s/.test(line)) {
       result.push(line);
       i++;
       
-      // Look ahead for indented components that should be moved outside the list
+      // Process subsequent lines that belong to this list item
       while (i < lines.length) {
         const nextLine = lines[i];
         
-        // If we hit a component that starts with 3+ spaces (problematic MDX structure)
-        if (/^\s{3,}<[A-Z]/.test(nextLine)) {
-          // Move this component outside the list structure
-          // First, add an empty line to close the list item
-          if (result[result.length - 1].trim() !== '') {
-            result.push('');
-          }
-          
-          // Add the component without excessive indentation
-          result.push(nextLine.replace(/^\s+/, ''));
+        // Check if this is a component that should be indented inside the list
+        if (/^(\s*)<[A-Z][a-zA-Z]*(\s|>|\s.*\/?>)/.test(nextLine)) {
+          // This is a component that should be part of the list item
+          const trimmedLine = nextLine.trim();
+          result.push('   ' + trimmedLine);  // Add 3-space indentation
           i++;
           
-          // Continue collecting related content
-          while (i < lines.length && (lines[i].startsWith('  ') || lines[i].trim() === '')) {
-            const contentLine = lines[i];
-            if (contentLine.trim() === '') {
-              result.push('');
-            } else {
-              // Remove excessive indentation but preserve structure
-              result.push(contentLine.replace(/^\s{2,}/, ''));
-            }
-            i++;
+          // If it's a self-closing component (like <Img />), move to next line
+          if (trimmedLine.includes('/>')) {
+            continue;
           }
           
-          // Add another empty line before next content
-          result.push('');
-          break;
-        } else if (/^\s{2,}/.test(nextLine) || nextLine.trim() === '') {
-          // Regular indented content or empty line - keep as is
+          // Handle multi-line components (like Note with content)
+          while (i < lines.length) {
+            const componentLine = lines[i];
+            
+            // If it's the closing tag or more component content
+            if (componentLine.trim() === '' || 
+                componentLine.startsWith('  ') ||
+                /^<\/[A-Z][a-zA-Z]*>$/.test(componentLine.trim()) ||
+                (componentLine.trim().length > 0 && !componentLine.startsWith('1. ') && !/^\d+\.\s/.test(componentLine))) {
+              
+              if (componentLine.trim() === '') {
+                result.push('');
+              } else if (/^<\/[A-Z][a-zA-Z]*>$/.test(componentLine.trim())) {
+                // Closing tag
+                result.push('   ' + componentLine.trim());
+                i++;
+                break; // Component is complete
+              } else if (componentLine.startsWith('  ')) {
+                // Already indented content - adjust to 3 spaces
+                result.push('   ' + componentLine.substring(2));
+              } else if (componentLine.trim().length > 0) {
+                // Regular content that should be indented
+                result.push('   ' + componentLine);
+              }
+              i++;
+            } else {
+              // We've hit something that's not part of this component
+              break;
+            }
+          }
+        } else if (nextLine.trim() === '' || nextLine.startsWith('   ')) {
+          // Empty line or properly indented content - keep as is
           result.push(nextLine);
           i++;
-        } else {
-          // Non-indented line - we're out of this list item
+        } else if (/^\d+\.\s/.test(nextLine)) {
+          // Another numbered list item - break out
           break;
+        } else if (nextLine.trim().length > 0 && !nextLine.startsWith(' ')) {
+          // Non-indented content - we're out of the list
+          break;
+        } else {
+          // Other content that might belong to the list item
+          result.push(nextLine);
+          i++;
         }
       }
     } else {
