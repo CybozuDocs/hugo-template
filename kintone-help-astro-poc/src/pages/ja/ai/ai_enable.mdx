@@ -1,0 +1,57 @@
+---
+title: "{{< kintone >}} AIの有効化と利用する機能の選択"
+weight: 100
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040869"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Subtitle from "@/components/Subtitle.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone /> AIで提供されるさまざまな機能を利用するには、まず<Kintone /> AI自体を有効にする必要があります。  
+<Kintone /> AIを有効にしたあと、利用する機能を選択します。
+
+<Heading id="ai_ai_enable_10">手順</Heading>
+1. <Kintone />の画面上部にある<Wovn>［設定］</Wovn>アイコン（歯車の形）をクリックし、<Wovn>［<Kintone /> AI管理］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/ai_enable_01.png" alt="スクリーンショット：［{{&lt; kintone &gt;}} AI管理］の操作リンクが強調された［設定］メニュー" />
+
+   <Note>
+
+   <Subtitle><Wovn>［<Kintone /> AI管理］</Wovn>が表示されないときの対処</Subtitle>
+
+   * まず前提として、<Kintone /> AIラボのサービスを利用するための条件を満たしていることを確認してください。詳細は、次のページを参照してください。  
+   [サービスを利用するための条件](/k/ja/id/040868.html#ai_index_20)
+   * <Wovn>［<Kintone /> AI管理］</Wovn>を表示するには、次の条件をすべて満たす必要があります。
+     * <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アップデートオプション］</Wovn>画面で<Wovn>［「<Kintone /> AI」を無効にする］</Wovn>のチェックを外している
+     * <Wovn>［<Kintone /> AI管理］</Wovn>を表示したいユーザーに対し、<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>画面で<Wovn>［システムの管理］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れている  
+       <Wovn>［<Slash />共通管理者］</Wovn>は<Wovn>［システムの管理］</Wovn>の権限が許可されています。
+     * <Wovn>［<SlashUi />］</Wovn>の<Wovn>［組織間のアクセス権］</Wovn>画面で<Wovn>［組織間のアクセスを禁止する］</Wovn>のチェックを外している
+
+   </Note>
+
+1. <Wovn>［<Kintone /> AI管理］</Wovn>画面の<Wovn>［<Kintone /> AIの有効化］</Wovn>で<Wovn>［<Kintone /> AIを有効にする］</Wovn>にチェックを入れます。
+
+1. <Wovn>［<Kintone /> AIラボ］</Wovn>セクションで、利用する機能の<Wovn>［利用する］</Wovn>にチェックを入れます。  
+   2025年4月現在、<Kintone /> AIラボで提供されている機能は、次のとおりです。
+
+   * [検索AI](/k/ja/id/040870.html)
+   * [アプリ作成AI](/k/ja/id/040871.html)
+
+1. 画面右下にある<Wovn>［保存］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/ai_enable_02.png" alt="スクリーンショット：［{{&lt; kintone &gt;}} AI管理］画面" />
+
+   <Warning>
+
+   <Wovn>［<Kintone /> AIを有効にする］</Wovn>のチェックを外して、<Kintone /> AI自体を無効にすると、各機能の<Wovn>［利用する］</Wovn>にチェックが入っていても、その機能は利用できません。
+
+   </Warning>

@@ -1,0 +1,54 @@
+---
+title: "アクセス権を設定する"
+weight: 1000
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040884"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+検索AIの利用者を、ユーザー、組織、またはグループで指定できます。  
+利用を許可したユーザーだけに、検索AIが表示されます。
+
+<Heading id="assist_settings_search_prefs_access_10">手順</Heading>
+1. <Kintone />の画面上部にある<Wovn>［設定］</Wovn>アイコン（歯車の形）をクリックし、<Wovn>［<Kintone /> AI管理］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/ai_enable_01.png" alt="スクリーンショット：［{{&lt; kintone &gt;}} AI管理］の操作リンクが強調された［設定］メニュー" />
+
+1. <Wovn>［<Kintone /> AI管理］</Wovn>画面の<Wovn>［<Kintone /> AIラボ］</Wovn>セクションの<Wovn>［検索AI］</Wovn>という機能名の下にある<Wovn>［設定］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/assist_ceate_01.png" alt="スクリーンショット：［検索AI］という機能名の下にある［設定］の操作リンクが強調されている" />
+
+1. <Wovn>［検索AI管理］</Wovn>画面で、アクセス権を設定する検索AIの<Wovn>［設定］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/search_prefs_change_01.png" alt="スクリーンショット：［検索AI管理］画面で［設定］が強調されている" />
+
+1. <Wovn>［検索AI設定］</Wovn>画面で、<Wovn>［アクセス権］</Wovn>タブをクリックします。
+
+1. <Wovn>［利用できるユーザー］</Wovn>を設定します。  
+   <Wovn>［利用できるユーザー］</Wovn>は、次の中から選択します。
+
+    * <Wovn>［すべてのユーザー］</Wovn>  
+      すべてのユーザーが、検索AIを利用できます。
+    * <Wovn>［指定したユーザー］</Wovn>  
+      指定したユーザー、組織、またはグループが、検索AIを利用できます。
+
+1. <Wovn>［指定したユーザー］</Wovn>を選択した場合は、ユーザー、組織、またはグループを指定します。  
+   ユーザー、組織、またはグループは、次の方法で追加できます。
+
+    * 検索ボックスで検索する
+    * 検索ボックスの右横にある<Wovn>［組織やグループから選択］</Wovn>アイコンをクリックし、<Wovn>［ユーザーを選択］</Wovn>ダイアログから選択する
+
+    組織を追加した場合、<Wovn>［子組織を含める］</Wovn>にチェックを入れると、その子組織に所属するユーザーにもアクセス権が適用されます。
+
+   <Note>
+
+   利用できるユーザー、組織、またはグループは、1つ以上選択する必要があります。
+
+   </Note>
+
+1. 画面右上にある<Wovn>［保存］</Wovn>をクリックします。

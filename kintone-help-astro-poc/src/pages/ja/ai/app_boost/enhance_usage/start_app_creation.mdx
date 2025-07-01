@@ -1,0 +1,108 @@
+---
+title: "アプリ作成AIを利用する"
+weight: 200
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040892"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+アプリ作成AIの利用方法を説明します。
+
+<Warning>
+
+* 2025年4月現在、アプリ作成AIが対応しているのは、<Wovn>［はじめから作成］</Wovn>を選択してアプリを作成する場合のフォームの設定だけです。そのためアプリ作成AIを利用するには、<Wovn>［アプリの作成］</Wovn>権限が付与されている必要があります。
+* アプリ作成AIの回答は変わることがあります。同じ指示をしても、毎回まったく同じ提案が得られることは保証されません。
+
+</Warning>
+
+<Heading id="enhance_usage_start_app_creation_10">手順</Heading>
+1. <Kintone />のポータルで、<Wovn>［アプリ］</Wovn>エリアにある<Wovn>［アプリを作成する］</Wovn>アイコン（+の形）をクリックします。
+
+1. <Wovn>［<Kintone />アプリストア］</Wovn>画面で、<Wovn>［はじめから作成］</Wovn>をクリックします。
+
+1. <Wovn>［アプリの設定］</Wovn>画面上部にある<Wovn>［<Kintone /> AI］</Wovn>アイコンをクリックします。
+
+1. <Wovn>［アプリ作成AI］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/open_app_creation_01.png" alt="スクリーンショット：［アプリ作成AI］の操作リンクが強調されているメニュー" />
+
+1. プロンプト入力欄に、作りたいアプリについて指示や質問を入力して、アプリ作成AIと会話します。  
+   アプリ作成AIとの会話例：
+
+   * 「営業活動の履歴を残すアプリを作りたいです」
+   * 「フィールドの構成はよくわからないのでおまかせしたいです」
+
+1. アプリ作成AIが提案した内容をフォームに反映する場合は、<Wovn>［この内容をフォームに反映］</Wovn>をクリックします。
+
+   <Hint>
+
+   一度アプリ作成AIからの提案をフォームに反映したあとも、アプリ作成AIと会話を続けて、フォームを修正できます。ただし、［アプリ作成AI］画面を閉じると会話がリセットされます。会話を続けてフォームを修正する可能性がある場合は、［アプリ作成AI］画面を開いたままにしてください。
+
+   </Hint>
+
+1. 必要に応じて、ユーザー自身がフォームのレイアウトを調整したり、ほかの機能を設定したりします。
+
+1. このままアプリを公開する場合は、<Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［アプリを公開］</Wovn>をクリックし、確認ダイアログで<Wovn>［OK］</Wovn>をクリックします。
+
+   <Hint>
+
+   たとえば、試しにアプリ作成AIを利用しただけで、アプリを公開しない場合や、運用開始前のアプリとして保存しない場合は、アプリの作成を終了してください。  
+   アプリの作成を終了する手順は、次のとおりです。  
+   * <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［作成を中止］</Wovn>をクリックし、確認ダイアログで<Wovn>［OK］</Wovn>をクリックします。
+
+   </Hint>
+
+1. ［アプリ作成AI］画面を閉じます。
+
+<Note>
+
+アプリ作成AIを開いて会話をしている途中で、再度<Wovn>［アプリの設定］</Wovn>画面上部にある<Wovn>［<Kintone /> AI］</Wovn>アイコンをクリックして、<Wovn>［アプリ作成AI］</Wovn>をクリックすると、会話がリセットされます。
+
+</Note>
+
+<Heading level={3} id="enhance_usage_start_app_creation_20">アプリ作成AIからフォームに設置できるフィールド</Heading>
+2025年4月現在、アプリ作成AIからフォームに設置できるフィールドは、次のとおりです。
+
+* <Wovn>［文字列（1行）］</Wovn>  
+  ただし、<Wovn>［計算式］</Wovn>についての提案内容は、フォームの設定に反映されません。
+* <Wovn>［リッチエディター］</Wovn>
+* <Wovn>［文字列（複数行）］</Wovn>
+* <Wovn>［数値］</Wovn>
+* <Wovn>［ラジオボタン］</Wovn>
+* <Wovn>［チェックボックス］</Wovn>
+* <Wovn>［複数選択］</Wovn>
+* <Wovn>［ドロップダウン］</Wovn>
+* <Wovn>［日付］</Wovn>
+* <Wovn>［時刻］</Wovn>
+* <Wovn>［日時］</Wovn>
+* <Wovn>［添付ファイル］</Wovn>
+* <Wovn>［リンク］</Wovn>
+* <Wovn>［ユーザー選択］</Wovn>
+* <Wovn>［組織選択］</Wovn>
+* <Wovn>［グループ選択］</Wovn>
+
+<Heading level={3} id="enhance_usage_start_app_creation_30">アプリ作成AIからフォームに設置できないフィールド</Heading>
+2025年4月現在、アプリ作成AIからフォームに設置できないフィールドは、次のとおりです。
+
+* <Wovn>［ラベル］</Wovn>
+* <Wovn>［計算］</Wovn>
+* <Wovn>［関連レコード一覧］</Wovn>
+* <Wovn>［ルックアップ］</Wovn>
+* <Wovn>［スペース］</Wovn>
+* <Wovn>［罫線］</Wovn>
+* <Wovn>［グループ］</Wovn>
+* <Wovn>［テーブル］</Wovn>
+* <Wovn>［レコード番号］</Wovn>
+* <Wovn>［作成者］</Wovn>
+* <Wovn>［作成日時］</Wovn>
+* <Wovn>［更新者］</Wovn>
+* <Wovn>［更新日時］</Wovn>

@@ -1,0 +1,72 @@
+---
+title: "検索AIを管理する"
+weight: 200
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040873"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Wovn>［検索AI管理］</Wovn>画面では、検索AIを新しく作成したり、作成した検索AIを管理したりできます。
+
+<Note>
+
+* 検索AIの作成や管理ができるのは、次のいずれかの条件に該当するユーザーです。
+  * <Wovn>［<Slash />共通管理者］</Wovn>に設定されている
+  * <Wovn>［アクセス権］</Wovn>の設定で<Wovn>［システムの管理］</Wovn>の権限が許可されている
+* 検索AIは、20個まで作成できます。
+
+</Note>
+
+<Heading id="ai_search_assist_manage_10">&lt;Wovn&gt;［検索AI管理］&lt;/Wovn&gt;画面の開きかた</Heading>
+1. <Kintone />の画面上部にある<Wovn>［設定］</Wovn>アイコン（歯車の形）をクリックし、<Wovn>［<Kintone /> AI管理］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/ai_enable_01.png" alt="スクリーンショット：［{{&lt; kintone &gt;}} AI管理］の操作リンクが強調された［設定］メニュー" />
+
+1. <Wovn>［<Kintone /> AI管理］</Wovn>画面の<Wovn>［<Kintone /> AIラボ］</Wovn>セクションの<Wovn>［検索AI］</Wovn>という機能名の下にある<Wovn>［設定］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/assist_ceate_01.png" alt="スクリーンショット：［検索AI］という機能名の下にある［設定］の操作リンクが強調されている" />
+
+<Heading id="ai_search_assist_manage_20">&lt;Wovn&gt;［検索AI管理］&lt;/Wovn&gt;画面の構成</Heading>
+<Img src="/k/kintone/img-ja/assist_manage_01.png" alt="スクリーンショット：［検索AI管理］画面の各項目に番号を記載" />
+
+<Heading level={3} id="ai_search_assist_manage_2010">(1) &lt;Wovn&gt;［作成する］&lt;/Wovn&gt;ボタン</Heading>
+検索AIを新規に作成します。作成手順については、次のページを参照してください。  
+[検索AIを作成する](/k/ja/id/040872.html)
+
+<Heading level={3} id="ai_search_assist_manage_2020">(2) 検索AIの一覧</Heading>
+作成した検索AIの一覧が表示されます。
+
+<Heading level={3} id="ai_search_assist_manage_2030">(3) 検索AIの名前</Heading>
+検索AIの名前です。検索AIの名前は、<Wovn>［検索AI設定］</Wovn>画面から変更できます。
+
+<Heading level={3} id="ai_search_assist_manage_2040">(4) ステータス</Heading>
+各検索AIのステータスを確認できます。
+
+* <Wovn>［利用中］</Wovn>  
+  ユーザーが検索AIを利用できる状態です。
+* <Wovn>［利用停止中］</Wovn>  
+  検索AIの利用を停止している状態です。ユーザーは検索AIを利用できません。
+
+<Heading level={3} id="ai_search_assist_manage_2050">(5) ステータスの切り替え</Heading>
+各検索AIのステータスを変更できます。
+
+* <Wovn>［利用を停止］</Wovn>  
+  ステータスが<Wovn>［利用中］</Wovn>のときに表示されます。クリックすると、利用を停止できます。
+* <Wovn>［利用を開始］</Wovn>  
+  ステータスが<Wovn>［利用停止中］</Wovn>のときに表示されます。クリックすると、利用を再開できます。
+
+<Heading level={3} id="ai_search_assist_manage_2060">(6) &lt;Wovn&gt;［設定］&lt;/Wovn&gt;</Heading>
+［検索AI設定］画面を開きます。
+
+<Heading level={3} id="ai_search_assist_manage_2070">(7) &lt;Wovn&gt;［複製］&lt;/Wovn&gt;</Heading>
+作成済みの検索AIを再利用して、新しい検索AIを作成します。元の検索AIの設定情報が引き継がれます。
+
+<Heading level={3} id="ai_search_assist_manage_2080">(8) &lt;Wovn&gt;［削除］&lt;/Wovn&gt;</Heading>
+検索AIを削除します。削除した検索AIは復旧できません。運用に問題がないことを十分に確認してから削除するようにしてください。
