@@ -1124,7 +1124,7 @@
                     return;
                 }
                 let cpdflg = false;
-                const text = codeblockContent[0].innerText+"\n";
+                const text = codeblockContent[0].innerText;
                 if(navigator.clipboard){
                     navigator.clipboard.writeText(text);
                     cpdflg = true;
