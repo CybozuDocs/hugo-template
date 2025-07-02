@@ -13,81 +13,99 @@ import Img from "@/components/Img.astro";
 グラフ機能で選択できるグラフの種類と、その使い分けを説明します。
 
 <Heading id="report_graph_type_10">横棒グラフ、縦棒グラフ</Heading>
+
 項目ごとの集計値を棒線で表現したグラフです。
 
 <Heading level={3} id="report_graph_type_1010">集合</Heading>
+
 項目ごとの集計値の大きさを比較する場合に適したグラフです。  
 「分類する項目」に指定した項目の値でレコードが分類され、グループごとの集計値が棒線で表現されます。
 <Img src="/k/kintone/img-ja/bar_graph1.png" alt="スクリーンショット：集合棒グラフ" />
 
 <Heading level={3} id="report_graph_type_1020">積み上げ</Heading>
+
 項目ごとの集計値の全体に対する割合と、全体の合計値を比較する場合に適したグラフです。  
 「分類する項目」に指定した項目の値でレコードが分類され、グループごとの集計値が積み上げられて棒線で表現されます。
 <Img src="/k/kintone/img-ja/bar_graph2.png" alt="スクリーンショット：積み上げ棒グラフ" />
 
 <Heading level={3} id="report_graph_type_1030">100%積み上げ</Heading>
+
 項目ごとの集計値の、全体に対する割合を比較する場合に適したグラフです。  
 「分類する項目」に指定した項目の値でレコードが分類され、グループごとの集計値の全体に対する割合が、棒線で表現されます。
 <Img src="/k/kintone/img-ja/bar_graph3.png" alt="スクリーンショット：100％積み上げ棒グラフ" />
 
 <Heading id="report_graph_type_20">折れ線グラフ</Heading>
+
 時間の経過に伴う集計値の変化を表現する場合に適したグラフです。
 <Img src="/k/kintone/img-ja/line_graph1.png" alt="スクリーンショット：折れ線グラフ" />
 
 <Heading id="report_graph_type_30">曲線グラフ</Heading>
+
 時間の経過に伴う集計値の変化を表現する場合に適したグラフです。グラフのそれぞれの点は、平滑曲線で結ばれます。
 <Img src="/k/kintone/img-ja/curve_graph1.png" alt="スクリーンショット：曲線グラフ" />
 
 <Heading id="report_graph_type_40">面グラフ</Heading>
+
 項目ごとの集計値を折れ線で表現し、X軸に向かった領域を色で塗りつぶしたグラフです。
 
 <Heading level={3} id="report_graph_type_4010">積み上げなし</Heading>
+
 時間の経過に伴う集計値の変化と、項目ごとの集計値の差を表現する場合に適したグラフです。  
 「分類する項目」に指定した項目の値でレコードが分類され、グループごとの集計値が折れ線で表現されます。
 <Img src="/k/kintone/img-ja/area_graph1.png" alt="スクリーンショット：面グラフ" />
 
 <Heading level={3} id="report_graph_type_4020">積み上げ</Heading>
+
 時間の経過に伴う項目ごとの集計値の変化と、全体の合計値の変化を表現する場合に適したグラフです。  
 「分類する項目」に指定した項目の値でレコードが分類され、グループごとの集計値が積み上げられて折れ線で表現されます。
 <Img src="/k/kintone/img-ja/area_graph2.png" alt="スクリーンショット：積み上げ面グラフ" />
 
 <Heading level={3} id="report_graph_type_4030">100%積み上げ</Heading>
+
 全体に対して各項目の集計値が占める割合の、時間の経過に伴う変化を表現する場合に適したグラフです。  
 「分類する項目」に指定した項目の値でレコードが分類され、グループごとの集計値の全体に対する割合が、折れ線で表現されます。
 <Img src="/k/kintone/img-ja/area_graph3.png" alt="スクリーンショット：100％積み上げ面グラフ" />
 
 <Heading id="report_graph_type_50">曲線面グラフ</Heading>
+
 項目ごとの集計値を平滑曲線で表現し、X軸に向かった領域を色で塗りつぶしたグラフです。
 
 <Heading level={3} id="report_graph_type_5010">積み上げなし</Heading>
+
 時間の経過に伴う集計値の変化と、項目ごとの集計値の差を表現する場合に適したグラフです。  
 「分類する項目」に指定した項目の値でレコードが分類され、グループごとの集計値が平滑曲線で表現されます。差の表現のため、それぞれの線のX軸に向かった領域が塗りつぶされます。
 <Img src="/k/kintone/img-ja/curve_areagraph1.png" alt="スクリーンショット：曲線面グラフ" />
 
 <Heading level={3} id="report_graph_type_5020">積み上げ</Heading>
+
 時間の経過に伴う項目ごとの集計値の変化と、全体の合計値の変化を表現する場合に適したグラフです。  
 「分類する項目」に指定した項目の値でレコードが分類され、グループごとの集計値が積み上げられて平滑曲線で表現されます。
 <Img src="/k/kintone/img-ja/curve_areagraph2.png" alt="スクリーンショット：積み上げ曲線面グラフ" />
 
 <Heading level={3} id="report_graph_type_5030">100%積み上げ</Heading>
+
 全体に対して各項目の集計値が占める割合の、時間の経過に伴う変化を表現する場合に適したグラフです。  
 「分類する項目」に指定した項目の値でレコードが分類され、グループごとの集計値の全体に対する割合が、平滑曲線で表現されます。
 <Img src="/k/kintone/img-ja/curve_areagraph3.png" alt="スクリーンショット：100%積み上げ曲線面グラフ" />
 
 <Heading id="report_graph_type_60">円グラフ</Heading>
+
 項目ごとの集計値の、全体に対する割合を表現する場合に適したグラフです。  
 「分類する項目」に指定した項目の値でレコードが分類され、グループごとの集計値の全体に対する割合が、円で表現されます。
 <Img src="/k/kintone/img-ja/circle_graph1.png" alt="スクリーンショット：円グラフ" />
 
 <Heading id="report_graph_type_70">表</Heading>
+
 集計結果の差や変化よりも、結果の数字自体に着目する場合には、グラフ形式よりも表形式での集計が適しています。
 
 <Heading level={3} id="report_graph_type_7010">表</Heading>
+
 レコードを分類せずに集計する、または1つのフィールドでレコードを分類して、集計結果を数字で表します。  
 たとえば、フィールド「コンビニの利用頻度」の値が「毎日」のレコードは27個、値が「週に2回以上」のレコードは90個、といった集計ができます。
 <Img src="/k/kintone/img-ja/graph_type_img2.png" alt="スクリーンショット：表" />
 
 <Heading level={3} id="report_graph_type_7020">クロス集計表</Heading>
+
 複数のフィールドでレコードを分類し、集計結果の数字を縦横に掛け合わせて表します。  
 たとえば、「表」の例で示したコンビニの利用頻度について、年代別の内訳を表せます。集計には、大項目に「コンビニの利用頻度」を、中項目に「年代」を指定します。
 <Img src="/k/kintone/img-ja/graph_type_img1.png" alt="スクリーンショット：クロス集計表" />

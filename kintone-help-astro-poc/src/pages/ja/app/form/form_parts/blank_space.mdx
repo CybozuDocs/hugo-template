@@ -6,7 +6,7 @@ aliases:
 layout: "@/layouts/PageLayout.astro"
 ---
 
-import Enabled from "@/components/Enabled.astro";
+import Enabled2 from "@/components/Enabled2.astro";
 import Heading from "@/components/Heading.astro";
 import Img from "@/components/Img.astro";
 
@@ -16,14 +16,16 @@ import Img from "@/components/Img.astro";
 
 カスタマイズ機能でボタンなどの要素を配置する場合にも、スペースフィールドを使用します。  
 詳細は、次のページを参照してください。  
-<Enabled regions={["JP"]}>[スペースフィールドの要素を取得する](https://cybozu.dev/ja/kintone/docs/js-api/record/get-space-element/)（日本語のみ）</Enabled>
-<Enabled regions={["US"]}>[Get Space Element - kintone.app.record.getSpaceElement()](https://kintone.dev/en/docs/kintone/js-api/get-data/get-record/#get-space-element)</Enabled>
-<Enabled regions={["CN"]}>[获取空白栏的元素](https://cybozudev.kf5.com/hc/kb/article/206920#step6)</Enabled>
+<Enabled2 regions={["JP"]} />[スペースフィールドの要素を取得する](https://cybozu.dev/ja/kintone/docs/js-api/record/get-space-element/)（日本語のみ）{{< /enabled2 >}}
+<Enabled2 regions={["US"]} />[Get Space Element - kintone.app.record.getSpaceElement()](https://kintone.dev/en/docs/kintone/js-api/get-data/get-record/#get-space-element){{< /enabled2 >}}
+<Enabled2 regions={["CN"]} />[获取空白栏的元素](https://cybozudev.kf5.com/hc/kb/article/206920#step6){{< /enabled2 >}}
 
 <Heading id="form_parts_blank_space_20">設定項目</Heading>
+
 <Img src="/k/kintone/img-ja/blank_space_03.png" alt="スクリーンショット：スペースフィールドの設定画面" />
 
 <Heading level={3} id="form_parts_blank_space_2010">要素ID</Heading>
+
 カスタマイズ機能で、スペースフィールドを使用する場合に指定します。
 
 要素IDに入力できるのは、アルファベットで始まる最大64文字です。  
@@ -38,6 +40,7 @@ import Img from "@/components/Img.astro";
   * 半角の「.」（ピリオド）
 
 <Heading id="form_parts_blank_space_10">使用例</Heading>
+
 フォームにフィールドを追加すると、上から順に左詰めで配置されます。  
 フォームの上側や左側に余白を追加したい場合や、フィールドの上下または左右の間隔を空けたい場合に、スペースフィールドを使用します。  
 間隔を空けたい箇所にスペースフィールドを挿入してサイズを変更し、フィールドの位置を調整します。

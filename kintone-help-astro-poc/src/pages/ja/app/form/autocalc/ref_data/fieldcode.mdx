@@ -17,15 +17,13 @@ import Note from "@/components/Note.astro";
 フィールドコードには初期値が設定されていますが、任意の値に変更できます。
 
 <Heading id="autocalc_fieldcode_10">手順</Heading>
+
 フィールドコードを確認、または変更する手順を説明します。
 
 <Note>
 
-
 フィールドコードを変更すると、計算式内のフィールドコードも自動で変更されます。  
-
 ただし、不正な計算式が入力されている場合、計算式内のフィールドコードは変更されません。
-
 
 </Note>
 
@@ -46,7 +44,6 @@ import Note from "@/components/Note.astro";
 
    フィールド名と同じ文字列をフィールドコードに設定すると、計算式を記述するときや、あとから計算式を確認するときなどにわかりやすくなります。
 
-   
    </Hint>
 
    <Img src="/k/kintone/img-ja/fieldcode_img4.png" alt="スクリーンショット：計算の設定ダイアログで「フィールドコード」が強調されている" />
@@ -58,6 +55,7 @@ import Note from "@/components/Note.astro";
 1. 「アプリを更新」ダイアログで[アプリを更新]をクリックします。
 
 <Heading id="autocalc_fieldcode_20">使用できる文字</Heading>
+
 フィールドコードに使用できる文字は、次のとおりです。
 
 * ひらがな
@@ -84,7 +82,9 @@ import Note from "@/components/Note.astro";
 * それ以外のスペース：「_」に置き換わる
 
 <Heading id="autocalc_fieldcode_30">フィールドコードの設定上の注意</Heading>
+
 <Heading level={3} id="autocalc_fieldcode_3010">フィールドコードの設定ルール</Heading>
+
 * フォーム内のほかのフィールドと同じフィールドコードは、設定できません。  
   ほかのフィールドで使用しているフィールドコードを設定した場合、フィールドコードの保存時に、「_通し番号」（例：文字列_0）が末尾に付与されます。
 * 次の文字列は、フィールドコードに設定できません。
@@ -96,6 +96,7 @@ import Note from "@/components/Note.astro";
 * フィールドコードの先頭に半角の数字が設定されている場合、フィールドコードの保存時に、「_」（半角のアンダースコア）が先頭に付与されます。
 
 <Heading level={3} id="autocalc_fieldcode_3020">特別な扱いが必要なフィールドコード</Heading>
+
 次のフィールドのフィールドコードには、あらかじめフィールド名と同じ文字列が割り当てられています。
 
 * レコード番号
@@ -112,6 +113,7 @@ import Note from "@/components/Note.astro";
 削除したフィールドをフォームに再配置すると、削除前に設定されていたフィールドコードがそのまま適用されます。
 
 <Heading id="autocalc_fieldcode_40">あらかじめ割り当てられているフィールドコードをほかのフィールドで使用する</Heading>
+
 あらかじめ割り当てられているフィールドコードを、ほかのフィールドで使用する手順を説明します。  
 ここでは例として、「レコード番号」というフィールドコードを、文字列（1行）フィールドに設定します。
 
@@ -129,6 +131,7 @@ import Note from "@/components/Note.astro";
 1. 手順3で配置したレコード番号フィールドを削除します。
 
 <Heading id="autocalc_fieldcode_50">エラーが表示されたときは</Heading>
+
 フィールドコードを入力して[保存]をクリックすると、使用できない文字が含まれていることを示すエラーが表示される場合があります。
 <Img src="/k/kintone/img-ja/fieldcode_01.png" alt="スクリーンショット：フィルドコードに使用できない文字が含まれていることを示すエラーメッセージ" />
 

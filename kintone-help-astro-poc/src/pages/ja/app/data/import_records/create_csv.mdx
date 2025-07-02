@@ -23,26 +23,21 @@ import SlashUi from "@/components/SlashUi.astro";
 
 <Note>
 
-
 * アプリに読み込みできるファイルは、次のとおりです。詳細については、「[レコード登録・上書き用のファイルを準備する](/k/ja/id/040771.html)」を参照してください。
   * ファイル形式（拡張子）  
   Excel形式（xlsx）／CSV形式（csv）／TXT形式（txt）／TSV形式（tsv）
   * ファイルのサイズと、行数・列数の上限値  
   Excelファイルの場合：最大1MB、1,000行まで  
   CSV／TXT／TSVファイルの場合：最大100MB、10万行まで
-
 * 次のフィールドには、ファイルから値を読み込むことはできません。  
-
 ラベル／計算／添付ファイル／関連レコード一覧／レコード番号
-
 * フィールドごとに、入力できる文字数などに制限があります。次のページも参考にしてください。  
-
 [フィールドの入力制限](/k/ja/id/040528.html)
-
 
 </Note>
 
 <Heading id="import_records_create_csv_01">フィールド名の書きかた</Heading>
+
 ファイルの列名（先頭行）に、フィールド名を記載しておくことをおすすめします。フィールド名を記載しなくても読み込みは可能ですが、その場合はファイルを読み込む際に、どの列のデータをどのフィールドに読み込むか、個別に指定する必要があります。ファイルの列名にフィールド名を記載しておくと、自動で対応付けされるため、便利です。
 
 ファイルの列名にフィールド名を記載する方法として、ファイルに直接入力する方法もありますが、<b>アプリのレコード一覧画面の「ファイルに書き出す」からデータを書き出す方法をおすすめします</b>。「ファイルに書き出す」を利用すると、レコードが登録されているかどうかにかかわらず、ファイルにフィールド名を書き出すことができます。フィールド名を直接入力するよりも手間がかからず、入力ミスを防ぐこともできるため、先にファイルを書き出し、そのファイルを元に編集する方法をおすすめします。  
@@ -51,6 +46,7 @@ import SlashUi from "@/components/SlashUi.astro";
 <Img src="/k/kintone/img-ja/create_csv_img01.png" alt="スクリーンショット：フィールド名の書きかたの例" />
 
 <Heading id="import_records_create_csv_02">レコードの書きかた</Heading>
+
 ファイルには、1レコードのデータを1行で記載してください。
 
 <Img src="/k/kintone/img-ja/create_csv_img02.png" alt="スクリーンショット：レコードの書きかたの例" />
@@ -59,9 +55,11 @@ import SlashUi from "@/components/SlashUi.astro";
 [テーブルを含むレコードを登録・上書きするためのファイルを準備する](/k/ja/id/040725.html)
 
 <Heading id="import_records_create_csv_03">各フィールドの値の書きかた</Heading>
+
 ファイルからアプリのフィールドに読み込むことができる形式は、フィールドの種類ごとに決まっています。以下を参考にし、各フィールドに適した形式で値を記載してください。
 
 <Heading level={3} id="import_records_create_csv_04">文字列（1行）・文字列（複数行）</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img3.png" alt="スクリーンショット：文字列フィールドの読み込みイメージ" />
 
 * ファイルには、フィールドに登録したい内容を記載してください。
@@ -69,13 +67,12 @@ import SlashUi from "@/components/SlashUi.astro";
 
 <Note>
 
-
 アプリの文字列（1行）フィールドの設定で、「自動計算する」にチェックが入っている場合は、ファイルを読み込んだ後に値が再計算されます。そのため、ファイルに値を記載する必要はありません。
-
 
 </Note>
 
 <Heading level={3} id="import_records_create_csv_05">数値</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img4.png" alt="スクリーンショット：数値フィールドの読み込みイメージ" />
 
 ファイルには、次のいずれかの形式で数値を記載してください。
@@ -89,11 +86,9 @@ import SlashUi from "@/components/SlashUi.astro";
 
 <Note>
 
-
 * CSV形式のファイルでは、次の記号は使用できません。
   * ,（桁区切り記号）
   * \（円記号）などの通貨記号
-
 
 * アプリの「高度な設定」の「数値と計算の精度」の設定内容によって、ファイルから読み込みできる桁数と、ファイルから読み込んだ際の端数の処理方法が異なります。
   * ファイルから読み込みできる桁数（整数部）：  
@@ -101,18 +96,18 @@ import SlashUi from "@/components/SlashUi.astro";
   * 端数の処理方法（小数部）：  
   「小数部の桁数」および「丸めかた」の設定内容に応じて、端数が処理されます。初期設定では、小数部の5桁目以降を端数として「最近接偶数への丸め」で処理されます。
 
-
 [数値の有効桁数と丸めかたを設定する](/k/ja/id/040482.html)
-
 
 </Note>
 
 <Heading level={3} id="im6ort_records_create_csv_01">リッチエディター</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img05.png" alt="スクリーンショット：リッチエディターフィールドの読み込みイメージ" />
 
 ファイルには、HTML形式で内容を記載してください。
 
 <Heading level={3} id="import_records_create_csv_07">チェックボックス・複数選択</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img06.png" alt="スクリーンショット：チェックボックスフィールドの読み込みイメージ" />
 
 * ファイルには、選択肢ごとに列を分け、列の先頭行に「フィールド名[選択肢名]」を記載してください。  
@@ -120,11 +115,13 @@ import SlashUi from "@/components/SlashUi.astro";
 * 選択したい項目のセルに「1」と記載し、選択しない項目のセルは空にしてください。
 
 <Heading level={3} id="import_records_create_csv_08">ラジオボタン・ドロップダウン</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img07.png" alt="スクリーンショット：ラジオボタンフィールドの読み込みイメージ" />
 
 ファイルには、フィールドごとに列を分けて、選択したい項目名を記載してください。
 
 <Heading level={3} id="import_records_create_csv_09">日付</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img08.png" alt="スクリーンショット：日付フィールドの読み込みイメージ" />
 
 * Excelファイルでは、Excelで日付と認識されるすべての形式で記載できます。
@@ -146,6 +143,7 @@ import SlashUi from "@/components/SlashUi.astro";
 例：「2022」は、「2022/01/01」に変換されます。
 
 <Heading level={3} id="import_records_create_csv_10">時刻</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img09.png" alt="スクリーンショット：時刻フィールドの読み込みイメージ" />
 
 * Excelファイルでは、Excelで時刻と認識されるすべての形式で記載できます。
@@ -161,6 +159,7 @@ import SlashUi from "@/components/SlashUi.astro";
 例：「11」は、「11:00」に変換されます。
 
 <Heading level={3} id="import_records_create_csv_12">日時</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img10.png" alt="スクリーンショット：日時フィールドの読み込みイメージ" />
 
 * Excelファイルでは、Excelで日時と認識されるすべての形式で記載できます。
@@ -193,6 +192,7 @@ import SlashUi from "@/components/SlashUi.astro";
   例：「20/12/2022 23:20」
 
 <Heading level={3} id="import_records_create_csv_13">リンク（Webサイトのアドレス）</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img11.png" alt="スクリーンショット：リンク（Webサイトのアドレス）フィールドの読み込みイメージ" />
 
 * 「http://」または「https://」で始まるアドレスを記載してください。
@@ -204,12 +204,14 @@ import SlashUi from "@/components/SlashUi.astro";
   アドレスの構成部位により、一部の記号は使用できない場合があります。
 
 <Heading level={3} id="import_records_create_csv_14">リンク（電話番号）</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img12.png" alt="スクリーンショット：リンク（電話番号）フィールドの読み込みイメージ" />
 
 * 電話番号を記載してください。
 * ハイフンあり／なしのどちらで記載しても問題ありません。
 
 <Heading level={3} id="import_records_create_csv_15">リンク（メールアドレス）</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img13.png" alt="スクリーンショット：リンク（メールアドレス）フィールドの読み込みイメージ" />
 
 * 「（ローカル部）@（ドメイン）」形式のメールアドレスを記載してください。
@@ -225,26 +227,20 @@ import SlashUi from "@/components/SlashUi.astro";
   .-
 
 <Heading level={3} id="import_records_create_csv_16">ユーザー選択</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img14.png" alt="スクリーンショット：ユーザー選択フィールドの読み込みイメージ" />
 
 * 選択したいユーザーのログイン名を記載してください。
 
 <Note>
 
-
 <Kintone />に登録されているユーザーだけがフィールドに読み込まれます。
-
 ユーザーのログイン名は、以下から確認できます。
 
-
 * <SlashUi />の「組織／ユーザー」（<Slash />共通管理者のみ確認可能）  
-
 <Img src="/k/kintone/img-ja/create_csv_img24.png" alt="スクリーンショット：{{&lt; slash_ui &gt;}}の組織情報編集画面" />
-
 * 各ユーザーのピープルのURL、またはプロフィール詳細のURL  
-
 <Img src="/k/kintone/img-ja/create_csv_img23.png" alt="スクリーンショット：ピープル画面のURL" />
-
 
 </Note>
 
@@ -255,6 +251,7 @@ import SlashUi from "@/components/SlashUi.astro";
 * ゲストユーザーを登録したい場合は、ゲストユーザーのメールアドレス（ログイン名）の先頭に「guest/」を記載してください。
 
 <Heading level={3} id="import_records_create_csv_17">組織選択</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img15.png" alt="スクリーンショット：組織選択フィールドの読み込みイメージ" />
 
 * 選択したい組織の組織コードを記載してください。
@@ -262,7 +259,6 @@ import SlashUi from "@/components/SlashUi.astro";
 
 <Kintone />に登録されている組織だけがフィールドに読み込まれます。
 組織コードは、<SlashUi />の「組織／ユーザー」で組織を選択し、編集画面を開くと確認できます。なお、<SlashUi />にアクセス可能なのは、<Slash />共通管理者のみです。
-
 </Note>
 
 * 複数の組織を選択したい場合は、組織コードを改行区切りで記載してください。
@@ -270,6 +266,7 @@ import SlashUi from "@/components/SlashUi.astro";
   * テキストエディターでCSVファイルを編集する場合は、1つのカラムの中で、組織コードを改行区切りで記載してください。
 
 <Heading level={3} id="import_records_create_csv_18">グループ選択</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img16.png" alt="スクリーンショット：グループ選択フィールドの読み込みイメージ" />
 
 * 選択したいグループのグループコードを記載してください。
@@ -277,7 +274,6 @@ import SlashUi from "@/components/SlashUi.astro";
 
 <Kintone />に登録されているグループだけがフィールドに読み込まれます。
 グループコードは、<SlashUi />の「グループ（ロール）」でグループを選択し、編集画面を開くと確認できます。なお、<SlashUi />にアクセス可能なのは、<Slash />共通管理者のみです。
-
 </Note>
 
 * 複数のグループを選択したい場合は、グループコードを改行区切りで記載してください。
@@ -285,6 +281,7 @@ import SlashUi from "@/components/SlashUi.astro";
   * テキストエディターでCSVファイルを編集する場合は、1つのカラムの中で、グループコードを改行区切りで記載してください。
 
 <Heading level={3} id="import_records_create_csv_19">ルックアップ</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img17.png" alt="スクリーンショット：ルックアップフィールドの読み込みイメージ" />
 
 * ファイルには、アプリのルックアップフィールドの設定で「コピー元のフィールド」に指定されているフィールドの値を記載してください。  
@@ -292,6 +289,7 @@ import SlashUi from "@/components/SlashUi.astro";
 * アプリのルックアップフィールドの設定で、「ほかのフィールドのコピー」に指定されているフィールドは、ファイルを読み込んだ後に再取得されます。そのため、ファイルに値を記載する必要はありません。
 
 <Heading level={3} id="import_records_create_csv_20">レコード番号</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img18.png" alt="スクリーンショット：レコード番号の読み込みイメージ" />
 
 * レコード番号を「一括更新のキー」に指定する場合は、更新したいレコードのレコード番号を記載してください。
@@ -300,6 +298,7 @@ import SlashUi from "@/components/SlashUi.astro";
   [アプリコードを設定する](/k/ja/id/040478.html)
 
 <Heading level={3} id="import_records_create_csv_21">カテゴリー</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img19.png" alt="スクリーンショット：カテゴリーの読み込みイメージ" />
 
 * 選択したいカテゴリー名を記載してください。
@@ -308,14 +307,13 @@ import SlashUi from "@/components/SlashUi.astro";
   * テキストエディターでCSVファイルを編集する場合は、1つのカラムの中で、カテゴリー名を改行区切りで記載してください。  
 
 <Note>
-
 カテゴリーのデータを読み込むには、アプリの設定でカテゴリー機能を有効にしておく必要があります。  
-
 [カテゴリーを設定する](/k/ja/id/040490.html)
 
 </Note>
 
 <Heading level={3} id="import_records_create_csv_22">テーブル</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img20.png" alt="スクリーンショット：テーブルの読み込みイメージ" />
 
 * テーブル内のフィールドごとに列を分けてください。
@@ -332,17 +330,16 @@ import SlashUi from "@/components/SlashUi.astro";
 テーブルを含むレコードを新規登録または更新する場合の手順については、次のページを参照してください。  
 [テーブルを含むレコードを登録・上書きするためのファイルを準備する](/k/ja/id/040725.html)
 
-
 </Reference>
 
 <Heading level={3} id="import_records_create_csv_23">作成者・更新者</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img21.png" alt="スクリーンショット：作成者フィールドの読み込みイメージ" />
 
 * ユーザーのログイン名を1つだけ記載してください。
 <Note>
 
 ユーザーのログイン名は、<SlashUi />の「組織／ユーザー」で確認できます。なお、<SlashUi />にアクセス可能なのは、<Slash />共通管理者のみです。
-
 </Note>
 
 * 作成者／更新者フィールドの値は、レコードを新規登録する場合のみ読み込み可能です。すでに登録されているレコードの作成者／更新者の値をファイルに記載しても、アプリの作成者／更新者フィールドの値は更新されません。
@@ -356,6 +353,7 @@ import SlashUi from "@/components/SlashUi.astro";
   * ゲストスペース内のアプリの場合、そのスペースに参加していないゲストユーザー
 
 <Heading level={3} id="import_records_create_csv_24">作成日時・更新日時</Heading>
+
 <Img src="/k/kintone/img-ja/create_csv_img22.png" alt="スクリーンショット：作成日時フィールドの読み込みイメージ" />
 
 * Excelファイルでは、Excelで日時と認識されるすべての形式で記載できます。
@@ -390,9 +388,11 @@ import SlashUi from "@/components/SlashUi.astro";
   例：「20/12/2022 23:20」
 
 <Heading id="import_records_create_csv_25">エラーが表示されてファイルが読み込めないときは</Heading>
+
 次のページを参照して、ファイル内のエラーを解消してからファイルを読み込んでください。  
 「[レコードの一括登録／更新に失敗した場合](/k/ja/id/040726.html)」
 
 <Heading id="import_records_create_csv_26">各フィールドの記載形式のサンプルファイル</Heading>
+
 参考として、各フィールドの記載形式のサンプルファイルを用意しています。各フィールドの記載形式を確認したい場合は、次の全フィールドのサンプルファイルをダウンロードしてください。    
 [sample_all_fields_app.csv](/k/files-ja/sample_all_fields_app.csv)

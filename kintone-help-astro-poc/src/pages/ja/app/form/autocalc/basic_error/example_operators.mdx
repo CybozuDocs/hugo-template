@@ -15,6 +15,7 @@ import Note from "@/components/Note.astro";
 計算式で利用できる演算子と関数の詳細は「[演算子と関数の一覧](/k/ja/id/040499.html)」を参照してください。
 
 <Heading id="autocalc_example_operators_10">演算子と関数の使用方法</Heading>
+
 <table>
   <thead>
     <tr>
@@ -148,15 +149,14 @@ import Note from "@/components/Note.astro";
 </table>
 
 <Heading id="autocalc_example_operators_20">数値の計算</Heading>
+
 「計算」フィールド、または「文字列（1行）」フィールドを使用して、数値を計算します。  
 「フィールドA」は、フィールドコードが「フィールドA」であるフィールドの値を表し、「フィールドB」は、フィールドコードが「フィールドB」であるフィールドの値を表します。
 
 <Note>
 
-
 * 「文字列（1行）」フィールドを使用した計算結果は、文字列として扱われます。   
   計算結果が「1」などの数字の場合でも、その計算結果を数値として扱うことはできません。
-
 
 </Note>
 
@@ -194,6 +194,7 @@ import Note from "@/components/Note.astro";
 </table>
 
 <Heading id="autocalc_example_operators_30">テーブルの合計</Heading>
+
 フォームに次のようなテーブルがあるとします。
 
 <table style="width: 458px; height: 149px">
@@ -261,6 +262,7 @@ import Note from "@/components/Note.astro";
 詳細は「[テーブル内のフィールドを計算する](/k/ja/id/040510.html)」で説明しています。
 
 <Heading id="autocalc_example_operators_40">日付・時間の計算</Heading>
+
 「計算」フィールドを使用して、次の計算ができます。
 
 * 日時の差分の計算
@@ -296,23 +298,20 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
-
 * 次の計算は、JavaScriptでカスタマイズすることで、実現可能です。
   * ユーザーの年齢
   * [経過年数を表示する](https://cybozu.dev/ja/kintone/tips/development/customize/date-format/display-elapsed-years/)（日本語のみ）
 
-
 * 日時フィールド、作成日時フィールド、または更新日時フィールドの計算結果を日付形式で表示する場合、計算結果はUTC（協定世界時）で表示されます。JST（日本標準時）の日付を表示する場合は、+9時間（60\*60\*9=32,400秒）を計算式に足す必要があります。
 
-
 </Note>
-
 
 </Enabled>
 
 詳細は「[日付、時刻、日時の計算](/k/ja/id/040502.html)」で説明しています。
 
 <Heading id="autocalc_example_operators_50">文字列の操作</Heading>
+
 「文字列（1行）」フィールドを使用して、文字列の結合やYEN関数の表示します。
 
 <table width="90%">
@@ -339,11 +338,9 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
-
 * 時刻、日付、または日時フィールドの値を文字として結合する場合、DATE_FORMAT関数を使用して、日時の形式を指定します。  
   日時の形式を指定しないと、日付や時刻が、UNIX時刻と呼ばれる数値で表示されます。  
   [[DATE_FORMAT関数]日付や時刻の表示形式を指定して表示する](/k/ja/id/040501.html)
-
 
 </Note>
 
@@ -362,6 +359,7 @@ import Note from "@/components/Note.astro";
 詳細は「[[&演算子]文字や数値の結合](/k/ja/id/040511.html)」で説明しています。
 
 <Heading id="autocalc_example_operators_60">参考：未入力フィールドの計算</Heading>
+
 未入力フィールドは「0」や空文字列として計算されます。
 
 * 未入力の数値型のフィールドは、「0」とみなされます。ただし、「&」演算子では「""」（空の文字列）とみなされます。
@@ -374,6 +372,7 @@ import Note from "@/components/Note.astro";
   個数が0のときは、0と表示せずに空欄になります。個数が0ではないときは、掛け算した金額を表示します。
 
 <Heading id="autocalc_example_operators_70">参考：数値と計算の値</Heading>
+
 「数値」フィールドと「計算」フィールドの値は、桁数に応じて丸められる場合があります。丸められる桁数や丸めの方式は、設定で変更可能です。  
 詳細は次のページを参照してください。
 

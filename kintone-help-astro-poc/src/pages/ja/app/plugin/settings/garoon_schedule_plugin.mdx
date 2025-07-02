@@ -29,19 +29,15 @@ Garoonの予定登録画面には、連携した<Kintone />のアプリからデ
 
 <Note>
 
-
 * <Kintone />のレコードには、非公開の予定は参加者だけに表示されます。
-
 * <Kintone />のレコードと紐付けされるのは、通常予定だけです。繰り返し予定と期間予定は、紐付けられません。
-
 * ゲストスペース内のアプリは連携できません。
-
 * モバイル版の画面では、連携は無効になります。
-
 
 </Note>
 
 <Heading id="add_plugin_garoon_schedule_plugin_10">連携を設定する</Heading>
+
 <Kintone />をGaroonのスケジュール機能と連携するために必要な設定を行います。
 設定は、次の流れで行います。
 
@@ -52,6 +48,7 @@ STEP4：アプリのIDを確認する
 STEP5：クラウド版Garoonの設定を行う
 
 <Heading level={3} id="add_plugin_garoon_schedule_plugin_1010">STEP1：フォームを設定する</Heading>
+
 アプリのフォームの設定で、予定を表示する場所に、<Wovn>［スペース］</Wovn>フィールドを配置します。  
 配置後、フィールドの設定で任意の「要素ID」を指定します。<Wovn></Wovn>  
 ほかのフィールドの配置は任意です。
@@ -62,11 +59,13 @@ STEP5：クラウド版Garoonの設定を行う
 その後、<Wovn>［アプリを更新］</Wovn>をクリックし、確認ダイアログで<Wovn>［アプリを更新］</Wovn>をクリックします。
 
 <Heading level={3} id="add_plugin_garoon_schedule_plugin_1020">STEP2：Garoon スケジュール連携プラグインを追加する</Heading>
+
 <Kintone />システム管理の<Wovn>［プラグイン］</Wovn>を開いて、<Wovn>［Garoon スケジュール連携プラグイン］</Wovn>の<Wovn>［インストール］</Wovn>をクリックします。  
 そのあと、アプリに「Garoon スケジュール連携」プラグインを追加します。<Wovn></Wovn>アプリにプラグインを追加する方法は、次のページを参照してください。  
 [プラグインを追加／削除する（アプリの設定）](/k/ja/id/040566.html)
 
 <Heading level={3} id="add_plugin_garoon_schedule_plugin_1030">STEP3：プラグインを設定する</Heading>
+
 STEP2で追加したプラグインに、必要な設定を行います。
 
 1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
@@ -94,11 +93,13 @@ STEP2で追加したプラグインに、必要な設定を行います。
 1. 確認ダイアログで<Wovn>［アプリを更新］</Wovn>をクリックします。
 
 <Heading level={3} id="add_plugin_garoon_schedule_plugin_1040">STEP4：アプリのIDを確認する</Heading>
+
 アプリの<Wovn>［レコードの一覧］</Wovn>画面を開いて、表示されるURLからアプリのIDを確認します。このIDは、Garoonの設定で使用します。  
 https://（サブドメイン名）.<CybozuCom />/k/**（アプリのID）**/
 <Img src="/k/kintone/img-ja/garoon_schedule_plugin08.png" alt="スクリーンショット：アプリの［レコードの一覧］画面のアドレスバー" />
 
 <Heading level={3} id="add_plugin_garoon_schedule_plugin_1050">STEP5：クラウド版Garoonの設定を行う</Heading>
+
 続けて、Garoonの設定を行います。
 
 1. Garoonにアクセスし、画面右上の歯車の形をした<Wovn>［管理者メニュー］</Wovn>アイコンをクリックして<Wovn>［Garoon システム管理］</Wovn>を選択します。
@@ -115,10 +116,9 @@ https://（サブドメイン名）.<CybozuCom />/k/**（アプリのID）**/
   ここで設定した項目名が、予定の項目に表示されます。
   <Note>
 
-  * <Wovn>［言語ごとに表示名を設定する］</Wovn>をクリックすると、複数の言語で項目名を設定できます。
-  * ユーザーが設定している言語の項目名を設定していない場合は、<Wovn>［標準］</Wovn>欄に設定された項目名が表示されます。
-
-    </Note>
+* <Wovn>［言語ごとに表示名を設定する］</Wovn>をクリックすると、複数の言語で項目名を設定できます。
+* ユーザーが設定している言語の項目名を設定していない場合は、<Wovn>［標準］</Wovn>欄に設定された項目名が表示されます。
+  </Note>
 
 1. <Wovn>［関連付ける予定メニュー］</Wovn>を設定します。
 

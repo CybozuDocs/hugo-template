@@ -16,6 +16,7 @@ import Reference from "@/components/Reference.astro";
 日付、時刻、日時のフィールドをフォームに配置し、計算式から参照できます。
 
 <Heading id="autocalc_date_time_10">日付、時刻、日時フィールドの値の扱われ方</Heading>
+
 日付、時刻、日時のフィールドの値は、UNIX時刻として扱われます。UNIX時刻とは、1970年1月1日午前0時 協定世界時（UTC）からの経過秒数のことです。UNIXタイムスタンプとも呼ばれます。たとえば、日時が2020年11月30日15時 UTCの場合、UNIX時刻は「1606748400」です。
 
 <Kintone />では、日付や日時は秒単位で扱います。計算式にも秒単位で指定します。たとえば1分間は「60」と入力します。1時間は「3600」または「60\*60」、1日は「86400」または「60\*60\*24」と入力します。  
@@ -23,6 +24,7 @@ import Reference from "@/components/Reference.astro";
 日付 + (60\*60\*24\*2)
 
 <Heading id="autocalc_date_time_20">日付の計算</Heading>
+
 計算フィールドに計算式を記載し、日付を計算できます。  
 たとえば、次のような計算が可能です。
 
@@ -34,10 +36,10 @@ import Reference from "@/components/Reference.astro";
 
 1分間は「60」と入力します。1時間は「3600」または「60\*60」、1日は「86400」または「60\*60\*24」と入力します。
 
-
 </Hint>
 
 <Heading level={3} id="autocalc_date_time_2010">日付の計算結果の表示形式</Heading>
+
 計算フィールドで、計算結果の表示形式を「数値」に設定している場合や、文字列（1行）フィールドで計算式を使用する場合は、日付や日時の計算結果は数字の羅列で表示され、日付の形式では表示されません（例：2020年11月13日 ⇒ 1605225600）。  
 これは、日付の値がUNIX時刻で扱われるためです。  
 日付や日時の計算結果を日付の形式で表示するには、次のように対応してください。
@@ -103,6 +105,7 @@ import Reference from "@/components/Reference.astro";
 </table>
 
 <Heading id="autocalc_date_time_2020">注意：日付フィールドが未入力の場合</Heading>
+
 DATE_FORMAT関数で参照している日付フィールドが空欄の場合、文字列（1行）フィールドには、1970-01-01が表示されます。  
 対処方法として、次の方法があります。
 
@@ -115,10 +118,10 @@ DATE_FORMAT関数で参照している日付フィールドが空欄の場合、
 
 * [[DATE_FORMAT関数]日付や時刻の表示形式を指定して表示する](/k/ja/id/040501.html)
 
-
 </Reference>
 
 <Heading id="autocalc_date_time_30">時間の計算</Heading>
+
 計算フィールドに計算式を記載し、時間を計算できます。  
 たとえば、次のような計算が可能です。
 
@@ -131,6 +134,7 @@ DATE_FORMAT関数で参照している日付フィールドが空欄の場合、
   <Img src="/k/kintone/img-ja/date_time_01.png" alt="スクリーンショット：時間の計算式と表示例" />
 
 <Heading level={3} id="autocalc_date_time_3010">時間の計算結果の表示形式</Heading>
+
 計算フィールドで計算結果の表示形式を「数値」に設定している場合は、時間の計算結果は数字の羅列で表示され、時間の形式では表示されません。  
 これは、時間の値がUNIX時刻で扱われるためです。  
 計算結果を時間の形式で表示するには、計算結果の表示形式を「時間」に設定してください。  
@@ -142,6 +146,5 @@ DATE_FORMAT関数で参照している日付フィールドが空欄の場合、
 
 * [DATE_FORMAT関数の構文](/k/ja/id/040501.html#autocalc_date_format_10)
 * [指定できる日時の形式](/k/ja/id/040501.html#autocalc_date_format_30)
-
 
 </Reference>

@@ -14,7 +14,6 @@ import Img from "@/components/Img.astro";
 import Kintone from "@/components/Kintone.astro";
 import Note from "@/components/Note.astro";
 import Reference from "@/components/Reference.astro";
-import Subtitle from "@/components/Subtitle.astro";
 
 
 アプリのレコード一覧画面では、条件を指定してレコードを絞り込むことができます。  
@@ -23,6 +22,7 @@ import Subtitle from "@/components/Subtitle.astro";
 <Img src="/k/kintone/img-ja/filter_records_01.png" alt="スクリーンショット：一覧のドロップダウンが表示されている" />
 
 <Heading id="app_collectdata_filter_records_10">手順</Heading>
+
 一覧に表示するレコードを絞り込む手順を説明します。
 
 1. 「レコード一覧」画面で、[絞り込む]アイコンをクリックします。
@@ -35,15 +35,12 @@ import Subtitle from "@/components/Subtitle.astro";
 
    <Note>
 
-
    * 絞り込みの条件を指定する際の注意事項は、次のページを参照してください。  
      * [「次のキーワードを含む」／「次のキーワードを含まない」を使用する場合の注意事項](#app_collectdata_filter_records_20)  
      * [フィールドの値の条件を組織で指定する場合の絞り込み結果の違い](#app_collectdata_filter_records_40)
-
    * 絞り込みの条件を複数組み合わせることも可能です。詳細は、次のページを参照してください。  
      [複数の条件を満たすレコードだけを表示する](/k/ja/id/040457.html)
 
-   
    </Note>
 
 1. 「ソート」で、レコードの表示順を指定します。  
@@ -55,14 +52,13 @@ import Subtitle from "@/components/Subtitle.astro";
    <Img src="/k/kintone/img-ja/filter_records_img05.png" alt="スクリーンショット：[保存]と[適用]が枠線で強調されている" />
 
    <Hint>
-   <Subtitle>[保存]と[適用]の違い   </Subtitle>
+   &#123;&#123;< subtitle >&#125;&#125;[保存]と[適用]の違い&#123;&#123;< /subtitle >&#125;&#125;
 
    * [保存]：設定した条件の一覧をアプリの設定に保存できます。今後何度も使う場合は保存しておくと便利です。なお、保存ボタンはアプリ管理権限のあるユーザーのみ表示されます。  
      保存した一覧は、アプリの設定画面の「一覧」タブから編集や削除が可能です。  
      [一覧を設定する](/k/ja/id/040612.html)
    * [適用]：その場限りで表示できます。目的に合わせてその都度条件を設定して絞り込み表示したい場合は便利です。アプリ管理権限がなくても利用できます。
 
-   
    </Hint>
 
 1. 手順4で[保存]をクリックした場合は、一覧名を付けて保存すると、絞り込んだ一覧が表示されます。  
@@ -70,21 +66,16 @@ import Subtitle from "@/components/Subtitle.astro";
 
 <Note>
 
-
 * テーブル内のフィールドを絞り込み条件に指定した場合、そのテーブル内に絞り込み条件を満たす行が1行以上存在するレコードが、絞り込み結果に表示されます。
-
 * 関連レコード一覧フィールド内のフィールドを絞り込み条件に指定した場合、その関連レコードに絞り込み条件を満たす行が1行以上存在するレコードが、絞り込み結果に表示されます。
-
 * 関連レコード一覧フィールドにレコードが存在しないレコードを絞り込むことはできません。
-
 * ステータスを条件に、レコードを絞り込めます。
-
 * モバイル版では、アプリの管理権限の有無にかかわらず、絞り込み条件を保存できません。
-
 
 </Note>
 
 <Heading id="app_collectdata_filter_records_20">「次のキーワードを含む」／「次のキーワードを含まない」を使用する場合の注意事項</Heading>
+
 * 絞り込みキーワードに指定できる文字数は、100文字までです。  
   また、言語、英数字、記号によって、絞り込み結果が異なります。  
   詳しくは、次の項目を参照してください。  
@@ -95,9 +86,11 @@ import Subtitle from "@/components/Subtitle.astro";
 * 複数の絞り込み条件を指定した場合は、各キーワードを含むレコードの合計が10万件を超えると、レコードが正しく絞り込まれません。
 
 <Heading level={3} id="app_collectdata_filter_records_2010">言語、英数字、記号による絞り込み結果の違い</Heading>
+
 絞り込みキーワードの言語や、入力した英数字、記号によっては、絞り込み結果が異なります。
 
 <Heading level={4} id="app_collectdata_filter_records_201010">日本語、または中国語で絞り込む場合</Heading>
+
 * カナの全角と半角は区別されません。
 * 2文字以上の単語は、2文字以上のキーワードで絞り込む必要があります。1文字の単語は、1文字のキーワードで絞り込むことができます。  
   例：値が「日本語」という文字列のフィールドを絞り込む場合
@@ -105,6 +98,7 @@ import Subtitle from "@/components/Subtitle.astro";
   * 絞り込みできないキーワード：「日」、「本」、または「語」
 
 <Heading level={4} id="app_collectdata_filter_records_201020">英数字で絞り込む場合</Heading>
+
 <Enabled regions={["JP", "CN"]}>
 
 * アルファベットの大文字と小文字、および全角と半角は区別されません。
@@ -115,7 +109,6 @@ import Subtitle from "@/components/Subtitle.astro";
   例：値が「cybozu_kintone」という文字列のフィールドを絞り込む場合  
   * 「cybozu_kintone」をひとまとまりでキーワードとして入力します。「cybozu」や「kintone」のみを入力しても絞り込まれません。
 
-
 </Enabled>
 
 <Enabled regions={["US"]}>
@@ -125,28 +118,30 @@ import Subtitle from "@/components/Subtitle.astro";
   例：値が「cybozu kintone2」という文字列のフィールドを絞り込む場合
   * 「cybozu」または「kintone2」をキーワードとして指定します。「cy」や「kintone」など部分一致するキーワードでは絞り込まれません。
 
-
 </Enabled>
 
 <Heading level={4} id="app_collectdata_filter_records_201030">記号で絞り込む場合</Heading>
+
 * 全角と半角は区別されません。
 * 次の記号は絞り込みキーワードから除かれます。
   * 日本語、および中国語の句読点
   * 全角、および半角の次の記号  
   <Enabled regions={["JP", "CN"]}>
   \- &amp; | / ! ( ) { } \[ \] ^ &quot; ~ * ? : ; \ $ % @ ' ` = \< > , .
-    </Enabled>
+  </Enabled>
   <Enabled regions={["US"]}>
   \- &amp; | / ! ( ) { } \[ \] ^ &quot; ~ * ? : ; \ $ % @ ' ` = \< > , . _ # +
-    </Enabled>
+  </Enabled>
 
   上記以外の記号も、絞り込みキーワードから除かれる可能性があります。
 
 <Heading id="app_collectdata_filter_records_21">「＝（等しい）」を使用する場合の注意事項</Heading>
+
 文字列（1行）フィールドまたはリンクフィールドに対し、条件に「＝（等しい）」を使用する場合、検索に使われるキーワードは全角または半角で64文字までです。  
 64文字を超えるキーワードを指定すると、先頭の64文字までが絞り込みに利用されます。
 
 <Heading id="app_collectdata_filter_records_40">フィールドの値の条件を組織で指定する場合の絞り込み結果の違い</Heading>
+
 次のフィールドの値の条件を組織で指定する場合、レコードの抽出結果がフィールドによって異なります。
 
 * 値がユーザーのフィールド（作成者、更新者、作業者、ユーザー選択）：  
@@ -155,6 +150,7 @@ import Subtitle from "@/components/Subtitle.astro";
   指定した組織、またはその下位組織を値とするレコードが絞り込まれます。
 
 <Heading id="app_collectdata_filter_records_30">値が空欄（未入力）のレコードを絞り込む</Heading>
+
 絞り込みの条件で「＝（等しい）」「≠（等しくない）」を選択できるフィールドは、絞り込み条件の値に空欄を指定することで、値が未入力のレコードを絞り込みできます。  
 たとえば、メールアドレスが入力済みのレコードを絞り込む場合、絞り込み条件を次のように設定します。
 
@@ -170,6 +166,7 @@ import Subtitle from "@/components/Subtitle.astro";
 * 値：Everyoneグループ
 
 <Heading id="anchor_filter_records_error">「処理に失敗しました。更新または参照するレコード数を減らしてください。」と表示される場合</Heading>
+
 次の条件にあてはまる場合、レコード情報の取得に失敗します。取得するレコード数、フィールド数、またはテーブルの行数／列数を減らしてください。
 
 * 取得するフィールド数が大量にある場合
@@ -179,9 +176,7 @@ import Subtitle from "@/components/Subtitle.astro";
 
 <Note>
 
-
 取得するフィールド数とは、APIの実行で取得するフィールド数ではなく、<Kintone />の内部処理で取得するフィールド数のことを指します。
-
 
 </Note>
 
@@ -192,6 +187,5 @@ import Subtitle from "@/components/Subtitle.astro";
 * [ページのブックマーク](/k/ja/id/040289.html)
 * [絞り込みで「AND」と「OR」の条件を同時に設定できますか？](/k/ja/id/040155.html)
 * [モバイル版でレコードを絞り込む](/k/ja/id/040664.html)
-
 
 </Reference>

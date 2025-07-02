@@ -23,20 +23,19 @@ import Wovn from "@/components/Wovn.astro";
 
 <Note>
 
-
 * ゲストスペースからの所属変更や、ゲストスペースへの所属変更はできません。
-
 * スペースに所属させることができるのは、Publicアプリグループに所属しているアプリのみです。
-
 
 </Note>
 
 <Heading id="app_settings_changespace_app_belongsto_60">活用シーンの例</Heading>
+
 * 「試験運用中のアプリを配置するスペース」と「本番運用中のアプリを配置するスペース」を作成したうえで、アプリの運用状況の変化に応じてアプリの所属するスペースを変更する
 * スペースの活用方針の変化に応じて、スペース内アプリの所属するスペースを変更する
 * あらかじめ作成済みの、スペースに所属していないアプリを、関連する部署やプロジェクトのスペースに所属させて分類する
 
 <Heading id="app_settings_changespace_app_belongsto_10">アプリの所属するスペースを変更できるユーザー</Heading>
+
 アプリの所属するスペースを変更できるのは、次の条件を満たすユーザーのみです。
 
 * 該当アプリの管理権限がある
@@ -49,6 +48,7 @@ import Wovn from "@/components/Wovn.astro";
 * スペース内アプリの所属スペースを変更する場合、現在アプリが所属しているスペースの管理者である
 
 <Heading id="app_settings_changespace_app_belongsto_20">所属の変更先として指定できないスペース</Heading>
+
 以下のスペースは、所属の変更先として指定できません。
 
 * ゲストスペース
@@ -62,10 +62,10 @@ import Wovn from "@/components/Wovn.astro";
 * [スペースの設定を変更する](/k/ja/id/040696.html)
 * [利用する機能の選択](/k/ja/id/04031.html)
 
-
 </Reference>
 
 <Heading id="app_settings_changespace_app_belongsto_30">注意事項</Heading>
+
 アプリの所属するスペースを変更する際は、以下の注意事項があります。  
 事前に注意事項を確認したうえで、アプリの所属するスペースを変更してください。
 
@@ -73,6 +73,7 @@ import Wovn from "@/components/Wovn.astro";
 * 所属するスペースの変更と、検索結果の更新処理を伴うその他の操作（ファイル読み込みなど）とが重なると、それぞれの変更内容が検索結果に反映されるまでの互いの処理時間が、通常より延びる場合があります。連続しての実行に注意してください。
 
 <Heading id="app_settings_changespace_app_belongsto_40">手順</Heading>
+
 アプリの所属するスペースを変更する手順は次のとおりです。
 
 1. <Wovn>［アプリの設定］</Wovn>画面を開きます。  
@@ -87,19 +88,15 @@ import Wovn from "@/components/Wovn.astro";
 
    <Note>
 
-
    * 検索結果に表示されるスペースは10件までです。
-
    * 所属の変更先として指定できないスペースは、検索結果に表示されません。  
     参考：[所属の変更先として指定できないスペース](#app_settings_changespace_app_belongsto_20)
-
 
    * 以下のいずれかに該当する場合、<Wovn>［スペースへの所属を解除］</Wovn>のラジオボタンは選択できません。
      * スペースに所属していないアプリの場合
      * システム管理者によって、<Wovn>［利用する機能の選択］</Wovn>の<Wovn>［スペースに所属しないアプリの作成を許可する］</Wovn>が無効に設定されている場合  
       参考：[利用する機能の選択](/k/ja/id/04031.html)
 
-  
    </Note>
 
 1. <Wovn>［変更］</Wovn>をクリックします。
@@ -113,12 +110,15 @@ import Wovn from "@/components/Wovn.astro";
   アプリの更新操作なしに、アプリの所属するスペースが変更されます。
 
 <Heading id="app_settings_changespace_app_belongsto_50">Q&amp;A／トラブルシューティング</Heading>
+
 「アプリの所属するスペースを変更する機能」に関するQ&A／トラブルシューティングです。<Wovn></Wovn>
 
 <Heading level={3} id="app_settings_changespace_app_belongsto_5010">アプリの設定画面に&lt;Wovn&gt;［アプリの所属するスペースを変更］&lt;/Wovn&gt;が表示されません</Heading>
+
 スペース機能が無効になっている可能性があります。システム管理者がスペース機能を無効にしている場合、アプリの所属するスペースを変更することはできません。
 
 <Heading level={3} id="app_settings_changespace_app_belongsto_5020">アプリの設定画面の&lt;Wovn&gt;［アプリの所属するスペースを変更］&lt;/Wovn&gt;がグレー表示されてクリックできません</Heading>
+
 <Wovn>［アプリの所属するスペースを変更］</Wovn>にカーソルを合わせると、クリックできない理由を説明するメッセージが表示されます。  
 メッセージの内容や以下の表を参考に、対処してください。
 
@@ -170,19 +170,19 @@ import Wovn from "@/components/Wovn.astro";
 </table>
 
 <Heading level={3} id="app_settings_changespace_app_belongsto_5030">アプリの所属するスペースが変更されたことを、監査ログで確認できますか？</Heading>
+
 アプリの所属するスペースが変更された場合、モジュール<Wovn>［App management］</Wovn>、アクション名<Wovn>［App move started］</Wovn>という内容で監査ログが出力されます。  
 <Wovn>［i］</Wovn>アイコンをクリックすると、変更日時や変更前／変更先のスペース名など、詳細を確認できます。  
 監査ログの確認方法は、次のページを参照してください。  
 [<Kintone />の監査ログの確認方法](/k/ja/id/04054.html)
 
 <Heading level={3} id="app_settings_changespace_app_belongsto_5040">アプリの所属するスペースを変更したあと、スペース内検索の結果に期待するデータが表示されなくなってしまいました</Heading>
+
 所属するスペースの変更がスペース内検索の結果に反映されるまでに時間がかかっている可能性があります。<Wovn></Wovn>  
 しばらく時間をおいて再度検索し、期待する検索結果が表示されるかどうか確認してください。
 
 <Note>
 
-
 アプリの所属するスペースの変更を実行する際には、スペース内検索の結果の更新処理（どのスペース内検索の結果に表示されるかを更新する処理）が行われます。<Wovn></Wovn><Wovn></Wovn>
-
 
 </Note>

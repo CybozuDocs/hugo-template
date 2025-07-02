@@ -22,21 +22,21 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
-
 * モバイル版では、1分単位で時刻を選択します。任意の時刻を直接入力できません。
-
 * 時刻のドロップダウンリストに表示する時刻の範囲は指定できません。たとえば、会社の始業時刻から終業時刻のみを表示するような指定はできません。
-
 
 </Note>
 
 <Heading id="form_parts_time_30">時刻フィールドの設定項目</Heading>
+
 <Img src="/k/kintone/img-ja/time_03.png" alt="スクリーンショット：時刻フィールドの設定画面" />
 
 <Heading level={3} id="form_parts_time_3010">フィールド名</Heading>
+
 入力項目の見出しを指定します。
 
 <Heading level={3} id="form_parts_time_3020">フィールド名を表示しない</Heading>
+
 「フィールド名を表示しない」にチェックを入れると、次の画面でフィールド名を非表示にします。
 
 * レコードの追加画面
@@ -46,9 +46,11 @@ import Note from "@/components/Note.astro";
 * フォームの設定画面
 
 <Heading level={3} id="form_parts_time_3030">必須項目にする</Heading>
+
 「必須項目にする」にチェックを入れると、値の指定が必須になります。
 
 <Heading level={3} id="form_parts_time_3040">初期値</Heading>
+
 初期値を設定できます。
 
 レコード登録時の時刻を初期値にする場合は、「レコード登録時の時刻を初期値にする」にチェックを入れます。  
@@ -56,19 +58,18 @@ import Note from "@/components/Note.astro";
 初期値を設定しない場合は、「レコード登録時の時刻を初期値にする」のチェックを外して、時刻の欄を空欄にします。
 
 <Heading level={3} id="form_parts_time_3050">フィールドコード</Heading>
+
 計算式やAPIでフィールドを指定するときに使用する文字列です。
 
 <Note>
 
-
 フィールドコードについては、次のページを参照してください。  
-
 [フィールドコード](/k/ja/id/040504.html)
-
 
 </Note>
 
 <Heading id="form_parts_time_20">使用例</Heading>
+
 時刻フィールドは、時刻や時間の長さを入力する項目で使用します。
 たとえば、勤怠管理アプリで、出勤時刻や退勤時刻を入力するフィールドとして使用します。  
 休憩時間の長さを入力するフィールドとしても使用できます。
@@ -76,6 +77,7 @@ import Note from "@/components/Note.astro";
 <Img src="/k/kintone/img-ja/time_02.png" alt="スクリーンショット：出勤時刻、退勤時刻、休憩時間を入力する欄として時刻フィールドを使用している例" />
 
 <Heading level={3} id="form_parts_time_2010">時刻フィールドを使って勤務時間を計算する例</Heading>
+
 時刻フィールドは計算式内で指定できるため、出勤時刻と退勤時刻と休憩時間から、勤務時間を自動で表示する計算式を設定できます。
 
 計算式は、計算フィールドを使って設定します。  
@@ -91,11 +93,8 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
-
 * 日付と時刻の両方を入力したい場合は、日時フィールドを使用します。日時フィールドの詳細は、次のページを参照してください。  
   [日時](/k/ja/id/040522.html)
-
 * 時刻フィールドは、ユーザーのタイムゾーンにかかわらず、すべてのユーザーで同じ時刻が表示されます。日時フィールドは、ユーザーのタイムゾーンに沿って表示されます。
-
 
 </Note>

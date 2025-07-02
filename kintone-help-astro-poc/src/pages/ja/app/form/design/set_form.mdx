@@ -24,9 +24,11 @@ import Reference from "@/components/Reference.astro";
 </Reference>
 
 <Heading id="form_set_form_10">フォームの設定画面を開く</Heading>
+
 フォームの設定画面を開く手順は、画面によって異なります。
 
 <Heading level={3} id="form_set_form_1010">レコード一覧画面から開く場合</Heading>
+
 次のどちらかの方法で、レコード一覧画面からフォームの設定画面を開くことができます。
 
 * 画面右上にある歯車の形をした[アプリを設定]アイコンをクリックする
@@ -35,6 +37,7 @@ import Reference from "@/components/Reference.astro";
 <Img src="/k/kintone/img-ja/set_form_img03.png" alt="スクリーンショット：レコード一覧画面の[アプリを設定]アイコンが表示されている" />
 
 <Heading level={3} id="form_set_form_1020">レコード詳細画面から開く場合</Heading>
+
 次のどちらかの方法で、レコード詳細画面からフォームの設定画面を開くことができます。
 
 * 画面右上にある歯車の形をした[アプリを設定]アイコンをクリックする
@@ -43,17 +46,18 @@ import Reference from "@/components/Reference.astro";
 <Img src="/k/kintone/img-ja/set_form_img04.png" alt="スクリーンショット：レコード詳細画面の[アプリを設定]アイコンが表示されている" />
 
 <Heading level={3} id="form_set_form_1030">アプリ管理画面から開く場合</Heading>
+
 アプリ管理画面の「アプリの一覧」で、アプリ名の右横にある歯車の形をした[設定]アイコンをクリックします。  
 [アプリ管理画面でアプリの一覧を確認する](/k/ja/id/04012.html)
 
 <Img src="/k/kintone/img-ja/set_form_img05.png" alt="スクリーンショット：アプリ管理画面の[アプリを設定]アイコンが表示されている" />
 
 <Heading id="form_set_form_20">目的に合ったフィールドを選んで配置する</Heading>
+
 <Enabled regions={["JP", "CN"]}>
 
 フォームの設定画面を開いたら、画面左側のフィールド一覧から配置するフィールドを選んで、右側のエリアにドラッグアンドドロップします。  
 フィールドは500個まで配置できます。
-
 
 </Enabled>
 
@@ -61,7 +65,6 @@ import Reference from "@/components/Reference.astro";
 
 フォームの設定画面を開いたら、画面左側のフィールド一覧から配置するフィールドを選んで、右側のエリアにドラッグアンドドロップします。  
 フィールドは150個まで配置できます。
-
 
 </Enabled>
 
@@ -143,14 +146,13 @@ import Reference from "@/components/Reference.astro";
 </table>
 
 <Heading id="form_set_form_30">配置したフィールドの設定を変更する</Heading>
+
 フォームに配置したフィールドは、フィールドごとに、名前や、入力を必須にするかどうかなどを設定できます。  
 フィールドの設定を変更するには、配置したフィールドの右上にカーソルを合わせ、歯車の形をした設定アイコンが表示されたら、[設定]をクリックします。
 <Img src="/k/kintone/img-ja/set_form_img2.png" alt="スクリーンショット：フィールドの設定アイコンを表示している" />
 
 <Note>
-
 配置済みのフィールドのフィールドタイプは変更できません。  
-
 参考：[フィールドタイプを変更したい](/k/ja/id/040776.html)
 
 </Note>
@@ -159,10 +161,10 @@ import Reference from "@/components/Reference.astro";
 
 「フィールド名を表示しない」設定にした場合でも、レコードを絞り込む時やエラーメッセージ上にフィールド名は表示されます。そのため、わかりやすいフィールド名をつけておきましょう。
 
-
 </Hint>
 
 <Heading id="form_set_form_40">配置したフィールドの位置や幅を変更する</Heading>
+
 フィールドの位置や、横幅／縦幅は、ドラッグアンドドロップで変更できます。
 
 フィールドの位置を変更するには、フィールドにカーソルを合わせ、変更したい位置までフィールドをドラッグします。青色で表示される移動後の位置を目安に、任意の位置でドロップします。  
@@ -171,14 +173,10 @@ import Reference from "@/components/Reference.astro";
 
 <Note>
 
-
 グループやテーブルの位置を変更する場合は、注意事項があります。詳細はそれぞれの説明ページを参照してください。
 
-
 * [テーブル](/k/ja/id/040529.html)
-
 * [グループ](/k/ja/id/040525.html)
-
 
 </Note>
 
@@ -188,12 +186,10 @@ import Reference from "@/components/Reference.astro";
 
 <Note>
 
-
 * 以下のフィールドの横幅は変更できません。
   * 関連レコード一覧
   * グループ
   * フィールドが1つも配置されていないテーブル
-
 
 * 以下のフィールドは、横幅を変更しても、入力欄の大きさは変わりません。
   * 日付
@@ -203,16 +199,15 @@ import Reference from "@/components/Reference.astro";
   * 組織選択
   * グループ選択
 
-
 * 縦幅を変更できるのは、以下のフィールドのみです。
   * リッチエディター
   * 文字列複数行
   * スペース
 
-
 </Note>
 
 <Heading id="form_set_form_50">フォームを保存する</Heading>
+
 フォームの設定が完了したら、[フォームを保存]をクリックします。
 
 [フォームを保存]をクリックしただけでは、フォームの内容は運用環境には反映されません。フォームの内容を運用環境に反映するには、[アプリを更新]をクリックし、「アプリを更新」ダイアログで、[アプリを更新]をクリックします。
@@ -221,6 +216,5 @@ import Reference from "@/components/Reference.astro";
 
 * [アプリの設定内容を反映する](/k/ja/id/040473.html#app_settings_app_changesettings_20)
 * [アプリの設定変更を本運用環境に反映させずに、途中で下書き保存できますか？](/k/ja/id/040223.html)
-
 
 </Reference>

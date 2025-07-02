@@ -17,9 +17,11 @@ import Slash from "@/components/Slash.astro";
 アクセス権に応じてユーザーが操作できる機能の詳細は、次のとおりです。
 
 <Heading id="rights_app_rights_detail_10">アプリの操作</Heading>
+
 基本的に、アプリ作成権限は<Kintone />システム管理、そのほかの操作権限は各アプリの設定画面で管理されています。
 
 <Heading level={3} id="rights_app_rights_detail_1010">アプリの作成</Heading>
+
 アプリを作成できるユーザーは、次のとおりです。
 
 * <Kintone />システム管理のアクセス権で「アプリの作成」が許可されているユーザー
@@ -33,15 +35,13 @@ import Slash from "@/components/Slash.astro";
 
 <Note>
 
-
 スペース内アプリを作成できるユーザーは、次のページを参照してください。  
-
 [ユーザーがスペースでできる操作](/k/ja/id/040705.html)
-
 
 </Note>
 
 <Heading level={3} id="rights_app_rights_detail_1020">ポータルへのアプリ表示</Heading>
+
 全ユーザーが、ポータルにアプリを表示できます。  
 ただし、ポータルに表示できるアプリは、次のどちらにも該当するアプリだけです。
 
@@ -49,50 +49,59 @@ import Slash from "@/components/Slash.astro";
 * アプリのアクセス権で「レコード閲覧」または「レコード追加」権限があるアプリ
 
 <Heading level={3} id="rights_app_rights_detail_1030">ファイル読み込み</Heading>
+
 アプリのアクセス権で、次の両方の権限を付与されたユーザーがファイルを読み込みできます。
 
 * 「ファイル読み込み」権限
 * 「レコード追加」権限
 
 <Heading level={3} id="rights_app_rights_detail_1040">ファイル書き出し</Heading>
+
 アプリのアクセス権で、次の両方の権限を付与されたユーザーがファイルを書き出しできます。
 
 * 「ファイル書き出し」権限
 * 「レコード閲覧」権限
 
 <Heading level={3} id="rights_app_rights_detail_1050">一覧の絞り込み</Heading>
+
 全ユーザーが、一覧の絞り込みと、一覧の絞り込み条件をブックマークに登録できます。  
 ただし、絞り込み条件を保存できるのは、アプリ管理者だけです。
 
 <Heading level={3} id="rights_app_rights_detail_1060">グラフまたは集計</Heading>
+
 全ユーザーが、グラフ機能または集計機能の利用と、集計条件をブックマークに登録できます。  
 ただし、集計条件を保存できるのは、アプリ管理者だけです。
 
 <Heading level={3} id="rights_app_rights_detail_1070">アプリの削除</Heading>
+
 アプリを削除できるユーザーは、次のとおりです。
 
 * アプリ管理者
 * <Slash />共通管理者
 
 <Heading level={3} id="rights_app_rights_detail_1080">設定の変更</Heading>
+
 アプリの設定を変更できるユーザーは、次のとおりです。
 
 * アプリ管理者
 * <Slash />共通管理者
 
 <Heading level={3} id="rights_app_rights_detail_1090">カスタマイズ形式の一覧の作成または編集</Heading>
+
 カスタマイズ形式の一覧を作成または編集できるユーザーは、次のとおりです。
 
 * アプリ管理者かつ<Kintone />システム管理者
 * <Slash />共通管理者
 
 <Heading level={3} id="rights_app_rights_detail_10100">JavaScript/CSSでカスタマイズ</Heading>
+
 JavaScriptまたはCSSでカスタマイズできるユーザーは、次のとおりです。
 
 * アプリ管理者かつ<Kintone />システム管理者
 * <Slash />共通管理者
 
 <Heading level={3} id="rights_app_rights_detail_10110">APIトークンの生成または確認</Heading>
+
 APIトークンを生成または確認できるユーザーは、次のとおりです。
 
 * アプリ管理者
@@ -104,6 +113,7 @@ APIトークンを生成または確認できるユーザーは、次のとお�
 * <Slash />共通管理者
 
 <Heading level={3} id="rights_app_rights_detail_10120">アプリグループの変更</Heading>
+
 アプリグループを変更できるユーザーは、次のとおりです。
 
 * アプリ管理者
@@ -117,6 +127,7 @@ APIトークンを生成または確認できるユーザーは、次のとお�
 スペース内アプリのアプリグループは「Public」固定のため、アプリグループの変更はできません。
 
 <Heading level={3} id="rights_app_rights_detail_10130">アプリの所属するスペースの変更</Heading>
+
 アプリの所属するスペースを変更できるユーザーは、次のすべての条件を満たすユーザーです。
 
 * 該当アプリの管理者である
@@ -134,45 +145,53 @@ APIトークンを生成または確認できるユーザーは、次のとお�
 * [ページのブックマーク](/k/ja/id/040289.html)
 * [組織間のアクセスを禁止する](/general/ja/id/020164.html)
 
-
 </Reference>
 
 <Heading id="rights_app_rights_detail_20">レコードの操作</Heading>
+
 <Heading level={3} id="rights_app_rights_detail_2010">レコードの閲覧</Heading>
+
 レコードを閲覧できるユーザーは、次のとおりです。
 
 * アプリのアクセス権で「レコード閲覧」権限があるユーザー
 * レコードのアクセス権が設定されている場合、「閲覧」権限があるユーザー
 
 <Heading level={3} id="rights_app_rights_detail_2020">レコードの追加</Heading>
+
 レコードを追加できるユーザーは、次のとおりです。
 
 * アプリのアクセス権で「レコード追加」権限があるユーザー
 
 <Heading level={3} id="rights_app_rights_detail_2030">レコードの編集</Heading>
+
 レコードを編集できるユーザーは、次のとおりです。
 
 * アプリのアクセス権で「レコード編集」権限があるユーザー
 * レコードのアクセス権が設定されている場合、「編集」権限があるユーザー
 
 <Heading level={3} id="rights_app_rights_detail_2040">レコードの削除</Heading>
+
 レコードを削除できるユーザーは、次のとおりです。
 
 * アプリのアクセス権で「レコード削除」権限があるユーザー
 * レコードのアクセス権が設定されている場合、「削除」権限があるユーザー
 
 <Heading level={3} id="rights_app_rights_detail_2050">レコードの一括削除</Heading>
+
 アプリ管理者、かつアプリのアクセス権で「レコード削除」権限があるユーザーが、レコードを一括削除できます。  
 ただし、初期設定では、レコードの一括削除はできません。  
 「高度な設定」で、レコード一括削除を有効にする必要があります。
 
 <Heading level={3} id="rights_app_rights_detail_2060">コメントの書き込みまたは表示</Heading>
+
 レコードを閲覧できるユーザー
 
 <Heading level={3} id="rights_app_rights_detail_2070">変更履歴の表示</Heading>
+
 レコードを閲覧できるユーザー
 
 <Heading level={3} id="rights_app_rights_detail_2080">変更履歴から過去の状態に戻す</Heading>
+
 レコードを編集できるユーザー
 
 <Reference>
@@ -181,17 +200,19 @@ APIトークンを生成または確認できるユーザーは、次のとお�
 * [レコードにアクセス権を設定する](/k/ja/id/040595.html)
 * [レコードを一括で削除する](/k/ja/id/040716.html)
 
-
 </Reference>
 
 <Heading id="rights_app_rights_detail_30">フィールドの操作</Heading>
+
 <Heading level={3} id="rights_app_rights_detail_3010">フィールドの閲覧</Heading>
+
 フィールドを閲覧できるユーザーは、次のとおりです。
 
 * レコードを閲覧できるユーザー
 * レコードのアクセス権が設定されている場合、「閲覧」権限があるユーザー
 
 <Heading level={3} id="rights_app_rights_detail_3020">フィールドの編集</Heading>
+
 フィールドを編集できるユーザーは、次のとおりです。
 
 * レコードを追加または編集できるユーザー
@@ -200,6 +221,5 @@ APIトークンを生成または確認できるユーザーは、次のとお�
 <Reference>
 
 [フィールドにアクセス権を設定する](/k/ja/id/040593.html)
-
 
 </Reference>

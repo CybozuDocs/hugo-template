@@ -18,11 +18,13 @@ import Img from "@/components/Img.astro";
 [ファイルにデータを書き出す](/k/ja/id/040452.html)
 
 <Heading id="import_records_import_file_table_10">1レコードごとのファイルの記載形式</Heading>
+
 登録済みレコードのテーブルに上書きする場合は、変更しないフィールドがあっても、ファイルには、該当テーブル内の全フィールドのデータを記載してください（ただし、再計算・再取得されるフィールドのデータは記載不要です）。
 
 レコードの記載形式は、1つのレコードにテーブルが1つある場合と複数ある場合で異なります。
 
 <Heading level={3} id="import_records_import_file_table_1010">テーブルが1つある場合</Heading>
+
 <Img src="/k/kintone/img-ja/import_file_table_01.png" alt="スクリーンショット：レコードにテーブルが1つある場合のファイルの記載形式" />
 
 テーブルが1つあるレコードの記載形式には、以下の3つのポイントがあります。
@@ -35,6 +37,7 @@ import Img from "@/components/Img.astro";
 * ポイント3：テーブル内のフィールドに登録・上書きするデータは、テーブルの行数にあわせて1行～複数行で記載します。  
 
 <Heading level={3} id="import_records_import_file_table_1020">テーブルが複数ある場合</Heading>
+
 <Img src="/k/kintone/img-ja/import_file_table_13.png" alt="スクリーンショット：レコードにテーブルが複数ある場合のファイルの記載形式" />
 
 テーブルが複数あるレコードの記載形式には、以下の2つのポイントがあります。  
@@ -44,13 +47,16 @@ import Img from "@/components/Img.astro";
 * ポイント2：テーブルのデータは、同じ行に複数テーブルのデータが存在しないように、1行ずつ記載します。1行に複数テーブルのデータが記載されていると、読み込みの際にエラーになります。
 
 <Heading id="import_records_import_file_table_20">テーブルに読み込むファイルの編集方法</Heading>
+
 <Heading level={3} id="import_records_import_file_table_2010">テーブルの内容を更新する場合</Heading>
+
 <Img src="/k/kintone/img-ja/import_file_table_10.png" alt="スクリーンショット：完成イメージ" />
 
 1. テーブル内の変更したい箇所のデータを修正します。  
    <Img src="/k/kintone/img-ja/import_file_table_06.png" alt="スクリーンショット：変更したい箇所を修正" />
 
 <Heading level={3} id="import_records_import_file_table_2020">すでにあるテーブルに行を追加する場合</Heading>
+
 <Img src="/k/kintone/img-ja/import_file_table_08.png" alt="スクリーンショット：完成イメージ" />
 
 1. テーブルに追加したい行数分の行を追加します。  
@@ -60,7 +66,8 @@ import Img from "@/components/Img.astro";
 1. 追加した行に、テーブル内のフィールドに登録するデータを記載します。  
    <Img src="/k/kintone/img-ja/import_file_table_09.png" alt="スクリーンショット：テーブルのフィールドにデータを記載" />
 
-<Heading level={3} id="import_records_import_file_table_2030">テーブルを含むレコードを新しく登録する場合</Heading>
+<Heading level={3} id="import_records_import_file_table_2030">テーブルを含むレコードを新しく登録する場合</Heading>  
+
 <Img src="/k/kintone/img-ja/import_file_table_07.png" alt="スクリーンショット：完成イメージ" />
 
 1. テーブルの行数分の行を追加します。  
@@ -73,6 +80,7 @@ import Img from "@/components/Img.astro";
    * テーブル内のフィールドに登録するデータは、テーブルの行数にあわせて1行～複数行で記載します。
 
 <Heading id="import_records_import_file_table_30">参考：テーブルにファイルからデータを読み込むときのポイント</Heading>
+
 * 登録済みのレコードのテーブルにデータを上書きする場合は、そのテーブル内のすべてフィールドを読み込み対象として指定する必要があります。  
   そのため、変更のないフィールドがあっても、ファイルには、そのテーブル内のすべてのフィールドに読み込むデータを記載してください（ただし、再計算・再取得されるフィールドのデータは記載不要です）。
 * 読み込み先のフィールドを指定する際、テーブル内のフィールドは、「テーブル名 > フィールド名」という形式で表示されます。  

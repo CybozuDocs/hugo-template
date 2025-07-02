@@ -16,6 +16,7 @@ import Img from "@/components/Img.astro";
 ファイルに書き出す操作の前に、ここで説明している注意事項をあらかじめご確認ください。
 
 <Heading id="export_export_preparation_10">ファイルに書き出す際の注意事項</Heading>
+
 * アプリのアクセス権で、「ファイル書き出し」権限が必要です。  
   アクセス権の初期設定では、「ファイル書き出し」はアプリの作成者だけに許可されています。  
   必要に応じて、操作するユーザーに対して、ファイル書き出しの権限を付与してください。  
@@ -31,6 +32,7 @@ import Img from "@/components/Img.astro";
 * 書き出すファイルが100MBを超えると、書き出しに失敗します。一度に書き出すフィールドやレコードを絞り込んでください。
 
 <Heading id="export_export_preparation_20">レコードの一括更新に使用するファイルを書き出す際の注意事項</Heading>
+
 出力されたファイルを使って、アプリに登録されているレコードのデータをまとめて上書きしたい場合は、ファイルに次のフィールドを書き出します。
 
 * 値を更新するフィールド
@@ -45,6 +47,7 @@ import Img from "@/components/Img.astro";
 <Img src="/k/kintone/img-ja/recordupdate_bulk_img1.png" alt="図：一括更新のキーに「顧客ID」が使われるときの、レコードの追加と更新のイメージを表している" />
 
 <Heading level={3} id="export_export_preparation_2010">一括更新のキーに指定できるフィールド</Heading>
+
 次のいずれかの種類のフィールドを一括更新のキーに指定できます。
 
 * レコード番号

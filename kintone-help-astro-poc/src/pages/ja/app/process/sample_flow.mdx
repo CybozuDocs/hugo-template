@@ -25,12 +25,15 @@ import SlashUi from "@/components/SlashUi.astro";
 ここでの「申請のワークフロー」とは、<Kintone />のプロセス管理を使って申請から承認までの流れをアプリで管理することを指しています。
 
 <Heading id="process_sample_flow_10">差し戻しや却下ができるワークフロー</Heading>
+
 差し戻しや却下を含む申請ワークフローの例です。
 
 <Heading level={3} id="process_sample_flow_1010">業務の流れの図</Heading>
+
 <Img src="/k/kintone/img-ja/sample_flow_01.png" alt="イラスト：差し戻しや却下を含む申請業務の流れの例" />
 
 <Heading level={3} id="process_sample_flow_1020">設定するステータス</Heading>
+
 * 最初のステータス：申請前
 * 2番目以降のステータス：
   * 申請中
@@ -39,7 +42,9 @@ import SlashUi from "@/components/SlashUi.astro";
   * 却下
 
 <Heading level={3} id="process_sample_flow_1030">設定するプロセス</Heading>
+
 <Heading level={4} id="process_sample_flow_103010">最初のプロセス</Heading>
+
 * ステータス：申請前
 * 作業者：作成者
 * 条件：なし
@@ -47,6 +52,7 @@ import SlashUi from "@/components/SlashUi.astro";
 * 次のステータス：申請中
 
 <Heading level={4} id="process_sample_flow_103020">ステータスが「申請中」のプロセス</Heading>
+
 * ステータス：申請中
 * 作業者： 承認者  
   承認者はフォームに配置したユーザー選択フィールドとします。
@@ -61,6 +67,7 @@ import SlashUi from "@/components/SlashUi.astro";
   * アクションが「差し戻す」の場合：差し戻し
 
 <Heading level={4} id="process_sample_flow_403030">ステータスが「差し戻し」のプロセス</Heading>
+
 * ステータス：差し戻し
 * 作業者： 作成者
 * 条件：なし
@@ -68,16 +75,20 @@ import SlashUi from "@/components/SlashUi.astro";
 * 次のステータス：申請中
 
 <Heading level={3} id="process_sample_flow_1040">プロセス管理の設定イメージ</Heading>
+
 <Img src="/k/kintone/img-ja/sample_flow_02_1.png" alt="スクリーンショット：レコードのステータスを設定しているプロセス管理画面" />
 <Img src="/k/kintone/img-ja/sample_flow_02_2.png" alt="スクリーンショット：レコードのプロセスを設定しているプロセス管理画面" />
 
 <Heading id="process_sample_flow_20">承認者が複数のワークフロー</Heading>
+
 複数の承認者全員の承認が必要なプロセスを含む申請ワークフローの例です。
 
 <Heading level={3} id="process_sample_flow_2010">業務の流れの図</Heading>
+
 <Img src="/k/kintone/img-ja/sample_flow_03.png" alt="イラスト：承認者が複数の申請業務の流れの例" />
 
 <Heading level={3} id="process_sample_flow_2020">設定するステータス</Heading>
+
 * 最初のステータス：登録
 * 2番目以降のステータス：
   * 法務確認中
@@ -85,7 +96,9 @@ import SlashUi from "@/components/SlashUi.astro";
   * 承認済
 
 <Heading level={3} id="process_sample_flow_2030">設定するプロセス</Heading>
+
 <Heading level={4} id="process_sample_flow_203010">最初のプロセス</Heading>
+
 * ステータス：登録
 * 作業者：作成者
 * 条件：なし
@@ -93,6 +106,7 @@ import SlashUi from "@/components/SlashUi.astro";
 * 次のステータス：法務確認中
 
 <Heading level={4} id="process_sample_flow_203020">ステータスが「法務確認中」のプロセス</Heading>
+
 * ステータス：法務確認中
 * 作業者： 法務担当者  
   <SlashUi />で法務担当者のグループ（ロール）を登録すると、プロセス管理の作業者に法務担当者グループを選択できます。詳細は、次のページを参照してください。  
@@ -105,6 +119,7 @@ import SlashUi from "@/components/SlashUi.astro";
 * 次のステータス：部長確認中
 
 <Heading level={4} id="process_sample_flow_203030">ステータスが「部長確認中」のプロセス</Heading>
+
 * ステータス：部長確認中
 * 作業者：法務部長
 * 条件：なし
@@ -112,16 +127,20 @@ import SlashUi from "@/components/SlashUi.astro";
 * 次のステータス：承認済
 
 <Heading level={3} id="process_sample_flow_2040">プロセス管理の設定イメージ</Heading>
+
 <Img src="/k/kintone/img-ja/sample_flow_18.png" alt="スクリーンショット：レコードのステータスを設定しているプロセス管理画面" />
 <Img src="/k/kintone/img-ja/sample_flow_19.png" alt="スクリーンショット：レコードのプロセスを設定しているプロセス管理画面" />
 
 <Heading id="process_sample_flow_30">条件分岐のあるワークフロー</Heading>
+
 条件分岐を含む申請ワークフローの例です。
 
 <Heading level={3} id="process_sample_flow_3010">業務の流れの図</Heading>
+
 <Img src="/k/kintone/img-ja/sample_flow_12.png" alt="イラスト：条件分岐のある申請業務の流れの例" />
 
 <Heading level={3} id="process_sample_flow_3020">設定するステータス</Heading>
+
 * 最初のステータス：申請前
 * 2番目以降のステータス：
   * 部長承認待ち
@@ -129,7 +148,9 @@ import SlashUi from "@/components/SlashUi.astro";
   * 承認済
 
 <Heading level={3} id="process_sample_flow_3030">設定するプロセス</Heading>
+
 <Heading level={4} id="process_sample_flow_303010">最初のプロセス</Heading>
+
 * ステータス：申請前
 * 作業者：作成者
 * 条件：
@@ -141,6 +162,7 @@ import SlashUi from "@/components/SlashUi.astro";
   * 費用が100万円未満の場合：課長承認待ち
 
 <Heading level={4} id="process_sample_flow_303020">ステータスが「部長承認待ち」のプロセス</Heading>
+
 * ステータス：部長承認待ち
 * 作業者：部長
 * アクション：
@@ -151,6 +173,7 @@ import SlashUi from "@/components/SlashUi.astro";
   * アクションが「差し戻す」の場合：申請前
 
 <Heading level={4} id="process_sample_flow_303030">ステータスが「課長承認待ち」のプロセス</Heading>
+
 * ステータス：課長承認待ち
 * 作業者：課長
 * アクション：
@@ -161,16 +184,20 @@ import SlashUi from "@/components/SlashUi.astro";
   * アクションが「差し戻す」の場合：申請前
 
 <Heading level={3} id="process_sample_flow_3040">プロセス管理の設定イメージ</Heading>
+
 <Img src="/k/kintone/img-ja/sample_flow_17.png" alt="スクリーンショット：レコードのステータスを設定しているプロセス管理画面" />
 <Img src="/k/kintone/img-ja/sample_flow_13.png" alt="スクリーンショット：レコードのプロセスを設定しているプロセス管理画面" />
 
 <Heading id="process_sample_flow_40">代理承認のワークフロー</Heading>
+
 作業者の代わりに、別のユーザーが代理で承認する場合の申請ワークフローの例です。
 
 <Heading level={3} id="process_sample_flow_4010">業務の流れの図</Heading>
+
 <Img src="/k/kintone/img-ja/sample_flow_20.png" alt="図：プロセス管理の設定例" />
 
 <Heading level={3} id="process_sample_flow_4020">設定するステータス</Heading>
+
 * 最初のステータス：登録
 * 2番目以降のステータス
   * 部長確認中
@@ -178,7 +205,9 @@ import SlashUi from "@/components/SlashUi.astro";
   * 承認済
 
 <Heading level={3} id="process_sample_flow_4030">設定するプロセス</Heading>
+
 <Heading level={4} id="process_sample_flow_403010">最初のプロセス</Heading>
+
 * ステータス：登録
 * 作業者：作成者
 * 条件：
@@ -190,6 +219,7 @@ import SlashUi from "@/components/SlashUi.astro";
   * 費用が100万円未満の場合：課長確認中
 
 <Heading level={4} id="process_sample_flow_403020">ステータスが「部長確認中」の場合</Heading>
+
 * ステータス：部長確認中
 * 作業者：承認者（部長）
 * 条件：承認者のコメントが入力されている
@@ -199,29 +229,36 @@ import SlashUi from "@/components/SlashUi.astro";
 * 次のステータス：承認済
 
 <Heading level={4} id="process_sample_flow_403030">ステータスが「課長確認中」の場合</Heading>
+
 * ステータス：課長確認中
 * 作業者：承認者（課長）
 * アクション：承認する
 * 次のステータス：承認済
 
 <Heading level={3} id="process_sample_flow_403030">プロセス管理の設定イメージ</Heading>
+
 <Img src="/k/kintone/img-ja/sample_flow_24.png" alt="スクリーンショット：レコードのステータスを設定しているプロセス管理画面" />
 <Img src="/k/kintone/img-ja/sample_flow_25.png" alt="スクリーンショット：レコードのプロセスを設定しているプロセス管理画面" />
 
 <Heading id="process_sample_flow_50">申請を取り戻して修正できるワークフロー</Heading>
+
 申請したあとに間違いに気づいて、自分で申請を取り戻して修正したい場合の申請ワークフロー例です。
 
 <Heading level={3} id="process_sample_flow_55010">業務の流れの図</Heading>
+
 <Img src="/k/kintone/img-ja/sample_flow_14.png" alt="イラスト：取り戻しを含む申請業務の流れの例" />
 
 <Heading level={3} id="process_sample_flow_55020">設定するステータス</Heading>
+
 * 最初のステータス：申請前
 * 2番目以降のステータス：
   * 申請中
   * 承認済
 
 <Heading level={3} id="process_sample_flow_55030">設定するプロセス</Heading>
+
 <Heading level={4} id="process_sample_flow_5503010">最初のプロセス</Heading>
+
 * ステータス：申請前
 * 作業者：作成者
 * 条件：なし
@@ -229,6 +266,7 @@ import SlashUi from "@/components/SlashUi.astro";
 * 次のステータス：申請中
 
 <Heading level={4} id="process_sample_flow_503020">ステータスが「申請中」のプロセス</Heading>
+
 * ステータス：申請中
 * 作業者： マネージャー  
   マネージャーはフォームに配置したユーザー選択フィールドとします。
@@ -244,16 +282,20 @@ import SlashUi from "@/components/SlashUi.astro";
   * 作業者以外でも実行できるアクションが「取り戻す」の場合：申請前
 
 <Heading level={3} id="process_sample_flow_5040">プロセス管理の設定イメージ</Heading>
+
 <Img src="/k/kintone/img-ja/sample_flow_15.png" alt="スクリーンショット：レコードのステータスを設定しているプロセス管理画面" />
 <Img src="/k/kintone/img-ja/sample_flow_16.png" alt="スクリーンショット：レコードのプロセスを設定しているプロセス管理画面" />
 
 <Heading id="process_sample_flow_60">承認をスキップできるワークフロー</Heading>
+
 途中の承認ステップをスキップして完了まで進める場合の申請ワークフローの例です。
 
 <Heading level={3} id="process_sample_flow_6010">業務の流れの図</Heading>
+
 <Img src="/k/kintone/img-ja/sample_flow_21.png" alt="イラスト：承認をスキップできる申請業務の流れの例" />
 
 <Heading level={3} id="process_sample_flow_6020">設定するステータス</Heading>
+
 * 最初のステータス：申請前
 * 2番目以降のステータス：
   * 副部長確認
@@ -262,7 +304,9 @@ import SlashUi from "@/components/SlashUi.astro";
   * 却下
 
 <Heading level={3} id="process_sample_flow_6030">設定するプロセス</Heading>
+
 <Heading level={4} id="process_sample_flow_603010">最初のプロセス</Heading>
+
 * ステータス：申請前
 * 作業者：作成者
 * 条件：なし
@@ -270,6 +314,7 @@ import SlashUi from "@/components/SlashUi.astro";
 * 次のステータス：副部長確認
 
 <Heading level={4} id="process_sample_flow_603020">ステータスが「副部長確認」のプロセス</Heading>
+
 * ステータス：副部長確認
 * 作業者： 副部長
 * 条件：なし
@@ -291,6 +336,7 @@ import SlashUi from "@/components/SlashUi.astro";
   * 作業者以外でも実行できるアクションが「差し戻す」の場合：申請前
 
 <Heading level={4} id="process_sample_flow_603030">ステータスが「部長確認」のプロセス</Heading>
+
 * ステータス：部長確認
 * 作業者： 部長
 * 条件：なし
@@ -304,5 +350,6 @@ import SlashUi from "@/components/SlashUi.astro";
   * アクションが「差し戻す」の場合：申請前
 
 <Heading level={3} id="process_sample_flow_6040">プロセス管理の設定イメージ</Heading>
+
 <Img src="/k/kintone/img-ja/sample_flow_22.png" alt="スクリーンショット：レコードのステータスを設定しているプロセス管理画面" />
 <Img src="/k/kintone/img-ja/sample_flow_23.png" alt="スクリーンショット：レコードのプロセスを設定しているプロセス管理画面" />

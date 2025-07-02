@@ -23,7 +23,9 @@ import Note from "@/components/Note.astro";
 ここでは、あらかじめ設定されている一覧と、新しく作成できる一覧について説明します。
 
 <Heading id="view_whatsview_10">あらかじめ設定されている一覧</Heading>
+
 <Heading level={3} id="view_whatsview_1010">「（すべて）」</Heading>
+
 初期設定では、「（すべて）」という名前の表形式の一覧があらかじめ設定されています。  
 [表形式](#view_whatsview_2010)  
 
@@ -44,13 +46,12 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
-
 業務に合わせた一覧に作り変えたい場合は、新しく一覧を作成します。
-
 
 </Note>
 
 <Heading id="view_whatsview_20">新しく作成できる一覧</Heading>
+
 業務に合わせて、新しく一覧を作成できます。新たに作成する一覧では、一覧の表示形式や表示するフィールドの種類、レコードの条件などを設定できます。  
 新しく一覧を作成・設定する手順の詳細は、次のページを参照してください。  
 [一覧を設定する](/k/ja/id/040612.html)
@@ -58,6 +59,7 @@ import Note from "@/components/Note.astro";
 ここでは、一覧の表示形式の詳細を説明します。表示形式には、表形式、カレンダー形式、カスタマイズの3種類があります。
 
 <Heading level={3} id="view_whatsview_2010">表形式</Heading>
+
 各フィールドを列に、レコードを行に配置する形式です。  
 表示するフィールドの種類や並び順、表示するレコードの条件を設定できます。
 <Img src="/k/kintone/img-ja/whatsview_img01.png" alt="スクリーンショット：表形式の一覧が表示されている" />
@@ -98,15 +100,13 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
-
 表形式の一覧では、フィールドに入力されているデータを一覧画面で編集できます。  
-
 [レコードの一覧画面でレコードを編集する](/k/ja/id/040718.html)
-
 
 </Note>
 
 <Heading level={3} id="view_whatsview_2020">カレンダー形式</Heading>
+
 カレンダーの日付欄に、レコードを表示します。  
 レコードを表示する日付は、値が日付、または日時のフィールドから選択して指定できます。
 <Img src="/k/kintone/img-ja/whatsview_img02.png" alt="スクリーンショット：カレンダー形式の一覧が表示されている" />
@@ -117,9 +117,7 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
-
 1ページのレコードの数が500件を超える場合、第一週の日曜から先頭500件のレコードが表示されます。
-
 
 </Note>
 
@@ -143,13 +141,12 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
-
 カレンダー形式の一覧をスペースのお知らせやスレッドに貼り付けると、表形式で表示されます。
-
 
 </Note>
 
 <Heading level={3} id="view_whatsview_2030">カスタマイズ</Heading>
+
 HTMLで記述して、レコードの一覧の次の部分をカスタマイズできます。
 
 <Enabled regions={["JP"]}>
@@ -157,7 +154,6 @@ HTMLで記述して、レコードの一覧の次の部分をカスタマイズ�
 
 * ご契約がライトコースの場合は、「カスタマイズ」を選択できません。
 * 「カスタマイズ」を選択できるのは、<Kintone />のシステム管理者だけです。
-
 </Note>
 
 </Enabled>
@@ -166,7 +162,6 @@ HTMLで記述して、レコードの一覧の次の部分をカスタマイズ�
 <Note>
 
 「カスタマイズ」を選択できるのは、<Kintone />のシステム管理者だけです。
-
 </Note>
 
 </Enabled>
@@ -180,14 +175,12 @@ HTMLで記述して、レコードの一覧の次の部分をカスタマイズ�
 「cybozu developer network」では、一覧のカスタマイズ例をご紹介しています。  
 [一覧画面のカスタマイズ](https://cybozu.dev/ja/kintone/tips/development/customize/record-list-customize/)（日本語のみ）
 
-
 </Enabled>
 
 <Enabled regions={["US"]}>
 
 「<Kintone /> Developer Program」では、一覧のカスタマイズ例をご紹介しています。  
 [Create a custom view](https://kintone.dev/en/tutorials/custom-view/create-a-custom-view/)（<Kintone /> Developer Program）
-
 
 </Enabled>
 
@@ -197,8 +190,6 @@ JavaScript/CSSカスタマイズ機能については、次のページを参照
 
 <Note>
 
-
 スペースのお知らせやスレッドにアプリを貼り付ける際、「カスタマイズ」形式の一覧は選択できません。
-
 
 </Note>

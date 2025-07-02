@@ -156,6 +156,13 @@ function processContentShortcodes(
           const innerContent = match[3];
           const closingIndent = match[4]; // Capture closing tag indent (but use opening indent for consistency)
           
+          // Only adjust content indentation for problematic cases
+          // Check if any line in the content has insufficient indentation
+          const hasProblematicIndentation = checkForProblematicIndentation(innerContent, indent);
+          const adjustedInnerContent = hasProblematicIndentation 
+            ? adjustContentIndentation(innerContent, indent)
+            : innerContent;
+          
           // Handle special cases and attributes
           let replacement;
           if (attributeString && (shortcode === 'enabled' || shortcode === 'enabled2' || shortcode === 'disabled2')) {
@@ -167,12 +174,12 @@ function processContentShortcodes(
                 const regions = attributes.regions.split(',').map(r => r.trim());
                 astroAttributes = ` regions={[${regions.map(r => `"${r}"`).join(', ')}]}`;
               }
-              replacement = `${indent}<${component}${astroAttributes}>${innerContent}${indent}</${component}>`;
+              replacement = `${indent}<${component}${astroAttributes}>${adjustedInnerContent}${indent}</${component}>`;
             } catch (error) {
-              replacement = `${indent}<${component}>${innerContent}${indent}</${component}>`;
+              replacement = `${indent}<${component}>${adjustedInnerContent}${indent}</${component}>`;
             }
           } else {
-            replacement = `${indent}<${component}>${innerContent}${indent}</${component}>`;
+            replacement = `${indent}<${component}>${adjustedInnerContent}${indent}</${component}>`;
           }
           
           processed = processed.replace(fullMatch, replacement);
@@ -285,6 +292,139 @@ function convertToAstroAttributes(
   }
   
   return astroAttrs.length > 0 ? ' ' + astroAttrs.join(' ') : '';
+}
+
+function checkForProblematicIndentation(content: string, baseIndent: string): boolean {
+  // If baseIndent is empty, no indentation issues possible
+  if (baseIndent.length === 0) {
+    return false;
+  }
+  
+  const lines = content.split('\n');
+  let hasContentWithoutIndent = false;
+  let hasContentWithIndent = false;
+  
+  for (const line of lines) {
+    // Skip empty lines
+    if (line.trim() === '') {
+      continue;
+    }
+    
+    // Calculate current indentation
+    const currentIndentMatch = line.match(/^(\s*)/);
+    const currentIndent = currentIndentMatch ? currentIndentMatch[1] : '';
+    
+    if (currentIndent.length === 0) {
+      hasContentWithoutIndent = true;
+    } else if (currentIndent.length > 0) {
+      hasContentWithIndent = true;
+    }
+  }
+  
+  // Only consider it problematic if we have a mixed situation:
+  // - Some content with no indentation AND the base tag has indentation
+  // - This indicates the content needs to be adjusted to match the tag's level
+  // BUT: if ALL content has no indentation, it might be intentional (like warning/hint content)
+  // So we need a more nuanced check: only if baseIndent > 0 AND we have content that starts at 0 indent
+  // AND that content should logically be indented (like content inside an indented Note)
+  
+  // For now, be very conservative: only adjust if baseIndent > 0 and we have unindented content
+  // that appears to be problematic (like when the opening tag itself is indented significantly)
+  return baseIndent.length > 0 && hasContentWithoutIndent && baseIndent.length >= 3;
+}
+
+function adjustContentIndentation(content: string, baseIndent: string): string {
+  // Don't adjust if baseIndent is empty (no indentation needed)
+  if (baseIndent.length === 0) {
+    return content;
+  }
+  
+  const lines = content.split('\n');
+  const adjustedLines: string[] = [];
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    
+    // Handle empty lines
+    if (line.trim() === '') {
+      // Check if this empty line is between a list item and its immediate sub-content
+      if (i > 0 && i + 1 < lines.length) {
+        const prevLine = lines[i - 1].trim();
+        const nextLineRaw = lines[i + 1];
+        const nextLine = nextLineRaw.trim();
+        
+        // If previous line is a list item and next line is indented content (link or text), skip this empty line
+        if (prevLine.startsWith('* ') && nextLine.length > 0 && !nextLine.startsWith('* ') && (nextLine.startsWith('[') || nextLineRaw.startsWith('  ') || nextLineRaw.startsWith('\t'))) {
+          continue;
+        }
+      }
+      
+      adjustedLines.push('');
+      continue;
+    }
+    
+    // Calculate current indentation
+    const currentIndentMatch = line.match(/^(\s*)/);
+    const currentIndent = currentIndentMatch ? currentIndentMatch[1] : '';
+    const trimmedLine = line.trim();
+    
+    // Only adjust lines that have insufficient indentation (strictly less than baseIndent length)
+    if (currentIndent.length < baseIndent.length) {
+      // Determine the appropriate indentation based on content type
+      let newIndent: string;
+      
+      // Check if this is a list item or sub-item
+      if (trimmedLine.startsWith('* ')) {
+        // List items should align with the opening tag (same as baseIndent)
+        newIndent = baseIndent;
+      } else {
+        // Check the context: if the previous non-empty line was a list item,
+        // this should be indented as a sub-item
+        let isSubItem = false;
+        for (let j = adjustedLines.length - 1; j >= 0; j--) {
+          const prevLine = adjustedLines[j].trim();
+          if (prevLine === '') continue; // Skip empty lines
+          if (prevLine.startsWith('* ')) {
+            isSubItem = true;
+          }
+          break; // Found the first non-empty previous line
+        }
+        
+        if (isSubItem && trimmedLine.startsWith('[')) {
+          // Link lines that are sub-items should be indented 2 spaces more than baseIndent
+          newIndent = baseIndent + '  ';
+        } else {
+          // Regular content should be indented one space more than baseIndent
+          newIndent = baseIndent + ' ';
+        }
+      }
+      
+      adjustedLines.push(newIndent + trimmedLine);
+    } else {
+      // Keep the line as is - it already has sufficient indentation
+      adjustedLines.push(line);
+    }
+  }
+  
+  // Remove consecutive empty lines while preserving single empty lines
+  let result = adjustedLines.join('\n');
+  
+  // Remove triple or more newlines, replace with double newlines
+  result = result.replace(/\n\n\n+/g, '\n\n');
+  
+  // Remove empty lines between list items and their sub-content
+  result = result.replace(/(\n\s*\*[^\n]*)\n\n(\s+\[[^\]]+\])/g, '$1\n$2');
+  
+  return result;
+}
+
+function findNextNonEmptyLine(lines: string[], startIndex: number): number {
+  for (let i = startIndex + 1; i < lines.length; i++) {
+    if (lines[i].trim() !== '') {
+      return i;
+    }
+  }
+  return -1;
 }
 
 

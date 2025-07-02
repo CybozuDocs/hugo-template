@@ -21,6 +21,7 @@ import Note from "@/components/Note.astro";
 <Img src="/k/kintone/img-ja/set_lookup_01.png" alt="スクリーンショット：ルックアップ完成イメージ" />
 
 <Heading id="lookup_set_lookup_10">ルックアップの基本</Heading>
+
 ルックアップの設定には、マスターデータ（参照先）となるアプリと、そのアプリからデータを取得するアプリが必要です。
 
 * マスターデータ（参照先）となるアプリを作成する  
@@ -34,7 +35,6 @@ import Note from "@/components/Note.astro";
 * ルックアップ
 * リンク
 * レコード番号  
-
 </Note>
 
 * データを取得するアプリに、ルックアップフィールドを配置する  
@@ -48,14 +48,17 @@ import Note from "@/components/Note.astro";
 [設定したルックアップを使ってみる](/k/ja/id/040548.html)
 
 <Heading id="lookup_set_lookup_20">ルックアップの設定例</Heading>
+
 具体的なアプリを用いて、ルックアップの設定例を説明します。ここでは、注文管理アプリと商品管理アプリを使用します。
 
 <Heading level={3} id="lookup_set_lookup_2010">マスターアプリにデータを登録する</Heading>
+
 商品管理アプリ（マスターアプリ）のデータを注文管理アプリに取り込むには、はじめに元データとなる商品管理アプリのデータ登録が必要です。  
 今回の例では、商品コード、商品名、単価などのデータを登録しておきます。
 <Img src="/k/kintone/img-ja/set_lookup_02.png" alt="スクリーンショット：商品管理アプリのレコード画面" />
 
 <Heading level={3} id="lookup_set_lookup_2020">ルックアップフィールドを設定する</Heading>
+
 次に、データを取得する注文管理アプリにルックアップフィールドを配置します。
 
 1. 注文管理アプリを開きます。
@@ -132,6 +135,7 @@ import Note from "@/components/Note.astro";
 1. 「アプリを更新」ダイアログで、[アプリを更新]をクリックします。
 
 <Heading id="lookup_set_lookup_25">そのほかのルックアップの設定例</Heading>
+
 ルックアップ設定の「ほかのフィールドのコピー」を利用することで、複数選択フィールド、チェックボックスフィールド、ドロップダウンフィールドなどのデータを取得できます。  
 ここでは、顧客リストアプリに登録している以下の内容を、案件管理アプリにもコピーする場合の設定例を紹介します。
 
@@ -183,6 +187,7 @@ import Note from "@/components/Note.astro";
 <Img src="/k/kintone/img-ja/set_lookup_13.png" alt="スクリーンショット：複数選択フィールド・チェックボックスフィールドの使用イメージ" />
 
 <Heading id="lookup_set_lookup_30">ルックアップの注意点</Heading>
+
 * 参照先のレコード（マスターデータ）に変更があっても、ルックアップで取得済みの値はそのまま維持されます。自動的に最新の値にはなりません。  
 再度[取得]をクリックすると、最新の値に上書きされます。  
 
@@ -194,18 +199,17 @@ import Note from "@/components/Note.astro";
   * ルックアップフィールドの設定の「ほかのフィールドのコピー」で選択したフィールド
 
 <Heading id="lookup_set_lookup_40">参考：動画で見るルックアップの設定</Heading>
+
 動画でも、<Disabled2 regions={["US"]} />顧客管理アプリと案件管理アプリを例に&#123;&#123;< /disabled2 >&#125;&#125;ルックアップの設定方法を説明しています。
 
 <Disabled2 regions={["US"]}>
 
 <iframe width="700" height="393.75" src="https://www.youtube.com/embed/8tG1_aLJem8" frameborder="0" allowfullscreen></iframe>
 
-
 </Disabled2>
 
 <Enabled regions={["US"]}>
 
 <iframe width="700" height="393.75" src="https://www.youtube.com/embed/wDj9zjN5Gp0?list=PLJOThIyQA7oO3I-EJ1_qFrZa_f_caz3S9" frameborder="0" allowfullscreen></iframe>
-
 
 </Enabled>

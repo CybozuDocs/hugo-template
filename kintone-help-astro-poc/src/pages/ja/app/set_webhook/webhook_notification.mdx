@@ -6,7 +6,7 @@ aliases:
 layout: "@/layouts/PageLayout.astro"
 ---
 
-import Enabled from "@/components/Enabled.astro";
+import Enabled2 from "@/components/Enabled2.astro";
 import Heading from "@/components/Heading.astro";
 import Kintone from "@/components/Kintone.astro";
 
@@ -15,6 +15,7 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
 各操作を行ったときの通知のパラメーターは、次のとおりです。
 
 <Heading id="set_webhook_webhook_notification_10">レコードの追加／編集／ステータスの変更</Heading>
+
 <table>
     <thead>
         <tr>
@@ -60,9 +61,9 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
             <td>
               レコードの情報を表すオブジェクトです。<br />
               オブジェクトの形式は、レコードを取得するREST APIと同様です。<br />
-              <Enabled regions={["JP"]}><a target="_blank" href="https://cybozu.dev/ja/id/ca1c4e932b47856d3eb1a819/">1件のレコードを取得する</a>（cybozu developer network）            </Enabled>
-              <Enabled regions={["US"]}><a target="_blank" href="https://kintone.dev/en/docs/kintone/rest-api/records/get-record/">Get Record</a>（cybozu developer network）            </Enabled>
-              <Enabled regions={["CN"]}><a target="_blank" href="https://cybozudev.kf5.com/hc/kb/article/201594/">获取记录（GET）</a>（cybozu developer network）            </Enabled>
+              <Enabled2 regions={["JP"]} /><a target="_blank" href="https://cybozu.dev/ja/id/ca1c4e932b47856d3eb1a819/">1件のレコードを取得する</a>（cybozu developer network）{{< /enabled2 >}}
+              <Enabled2 regions={["US"]} /><a target="_blank" href="https://kintone.dev/en/docs/kintone/rest-api/records/get-record/">Get Record</a>（cybozu developer network）{{< /enabled2 >}}
+              <Enabled2 regions={["CN"]} /><a target="_blank" href="https://cybozudev.kf5.com/hc/kb/article/201594/">获取记录（GET）</a>（cybozu developer network）{{< /enabled2 >}}
             </td>
         </tr>
         <tr>
@@ -83,6 +84,7 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
 </table>
 
 <Heading level={3} id="set_webhook_webhook_notification_1010">送信される通知の例</Heading>
+
 ```
 {
     "id":"01234567-0123-0123-0123-0123456789ab",
@@ -113,6 +115,7 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
 ```
 
 <Heading id="set_webhook_webhook_notification_20">レコードの削除</Heading>
+
 <table>
     <thead>
         <tr>
@@ -179,6 +182,7 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
 </table>
 
 <Heading level={3} id="set_webhook_webhook_notification_2010">送信される通知の例</Heading>
+
 ```
 {
     "app":{
@@ -198,6 +202,7 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
 ```
 
 <Heading id="set_webhook_webhook_notification_30">コメントの書き込み</Heading>
+
 <table>
     <thead>
         <tr>
@@ -228,9 +233,9 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
             <td>
               コメントの情報を表すオブジェクトです。<br />
               オブジェクトの形式は、レコードコメントを一括取得するREST APIと同様です。<br />
-              <Enabled regions={["JP"]}><a href="https://cybozu.dev/ja/kintone/docs/rest-api/records/get-comments/" target="_blank">レコードコメントの一括取得</a>（cybozu developer network）            </Enabled>
-              <Enabled regions={["US"]}><a href="https://kintone.dev/en/docs/kintone/rest-api/records/get-comments/" target="_blank">Get Comments</a>（cybozu developer network）            </Enabled>
-              <Enabled regions={["CN"]}><a href="https://cybozudev.kf5.com/hc/kb/article/1099206/" target="_blank">批量获取记录的回复</a>（cybozu developer network）            </Enabled>
+              <Enabled2 regions={["JP"]} /><a href="https://cybozu.dev/ja/kintone/docs/rest-api/records/get-comments/" target="_blank">レコードコメントの一括取得</a>（cybozu developer network）{{< /enabled2 >}}
+              <Enabled2 regions={["US"]} /><a href="https://kintone.dev/en/docs/kintone/rest-api/records/get-comments/" target="_blank">Get Comments</a>（cybozu developer network）{{< /enabled2 >}}
+              <Enabled2 regions={["CN"]} /><a href="https://cybozudev.kf5.com/hc/kb/article/1099206/" target="_blank">批量获取记录的回复</a>（cybozu developer network）{{< /enabled2 >}}
             </td>
         </tr>
         <tr>
@@ -260,6 +265,7 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
 </table>
 
 <Heading level={3} id="set_webhook_webhook_notification_3010">送信される通知の例</Heading>
+
 ```
 {
     "app":{

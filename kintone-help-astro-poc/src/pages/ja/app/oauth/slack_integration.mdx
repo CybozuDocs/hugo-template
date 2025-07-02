@@ -13,7 +13,6 @@ import Kintone from "@/components/Kintone.astro";
 import Note from "@/components/Note.astro";
 import Slash from "@/components/Slash.astro";
 import SlashUi from "@/components/SlashUi.astro";
-import Subtitle from "@/components/Subtitle.astro";
 import Wovn from "@/components/Wovn.astro";
 
 
@@ -23,6 +22,7 @@ Slackと<Kintone />を連携すると、レコードの作業者になったユ�
 <Enabled regions={["JP"]}>
 
 <Heading id="app_settings_slack_integration_10">注意事項</Heading>
+
 * <Kintone />のご契約がライトコースの場合は、Slack連携を利用できません。
 * <Kintone />に登録したメールアドレスと、Slackワークスペースに登録したメールアドレスが一致している必要があります。
 * 非公開スペース内のアプリや、ゲストスペース内のアプリにもSlack連携を設定できます。  
@@ -30,22 +30,22 @@ Slackと<Kintone />を連携すると、レコードの作業者になったユ�
 * <Wovn>［組織間のアクセス権］</Wovn>の設定を有効にすると、Slack連携は利用できなくなります。<Wovn>［組織間のアクセス権］</Wovn>の設定が無効になっていることを確認してください。  
   参考：[所属組織が異なるユーザーのプロフィールと組織の閲覧を制限する](/k/ja/id/04060.html)
 
-
 </Enabled>
 
 <Enabled regions={["US", "CN"]}>
 
 <Heading id="app_settings_slack_integration_10">Slack連携を利用できる条件</Heading>
+
 * <Kintone />に登録したメールアドレスと、Slackワークスペースに登録したメールアドレスが一致している必要があります。
 * 非公開スペース内のアプリや、ゲストスペース内のアプリにもSlack連携を設定できます。  
   ゲストユーザーも、<Kintone />に登録したメールアドレスとSlackワークスペースに登録したメールアドレスが一致していれば、Slack連携の通知を受け取ることができます。
 * <Wovn>［組織間のアクセス権］</Wovn>の設定を有効にすると、Slack連携は利用できなくなります。<Wovn>［組織間のアクセス権］</Wovn>の設定が無効になっていることを確認してください。  
   参考：[所属組織が異なるユーザーのプロフィールと組織の閲覧を制限する](/k/ja/id/04060.html)
 
-
 </Enabled>
 
 <Heading id="app_settings_slack_integration_20">設定の流れ</Heading>
+
 Slack連携は、次の流れで設定します。
 
 (1) Slack連携の通知を受け取るメールアドレスを設定する  
@@ -56,22 +56,19 @@ Slack連携は、次の流れで設定します。
 それぞれの設定について、以下で説明します。
 
 <Heading id="app_settings_slack_integration_30">Slack連携の通知を受け取るメールアドレスを設定する</Heading>
+
 <Kintone />とSlackワークスペースに同じメールアドレスを設定します。  
 <Kintone />にメールアドレスを設定する方法として、ここでは<SlashUi />でメールアドレスを設定する手順を説明します。  
 この設定には<Slash />共通管理権限が必要です。
 
 <Note>
 
-
 * ユーザーにメールアドレスの編集が許可されている場合は、ユーザー自身が<Wovn>［アカウント設定］</Wovn>画面の<Wovn>［プロフィール］</Wovn>タブでメールアドレスを入力、変更できます。  
   [プロフィールを変更する](/general/ja/user/list_personal/profile_edit.html)
-
 * ユーザーにメールアドレスの編集を許可したい場合は、次のページを参照してください。  
   [プロフィールの変更を許可する](/general/ja/id/020463.html)
-
 * ゲストユーザーは、<Wovn>［アカウント設定］</Wovn>からメールアドレスを変更できます。  
   [[ゲストの操作] メールアドレスを変更する](/k/ja/id/040642.html)
-
 
 </Note>
 
@@ -85,6 +82,7 @@ Slack連携は、次の流れで設定します。
 1. メールアドレスを入力し、<Wovn>［ユーザー情報を変更］</Wovn>をクリックします。
 
 <Heading id="app_settings_slack_integration_40">外部連携を有効にする</Heading>
+
 <SlashUi />で外部連携を有効にします。ここで外部連携を有効にしておくことにより、個別のアプリでSlack連携を設定できるようになります。  
 この設定には<Slash />共通管理権限が必要です。
 
@@ -96,21 +94,20 @@ Slack連携は、次の流れで設定します。
 1. <Wovn>［Slack］</Wovn>を<Wovn>［有効］</Wovn>に切り替えます。
 
 <Heading id="app_settings_slack_integration_50">&lt;Kintone /&gt;のアプリでプロセス管理を有効にする</Heading>
+
 Slack連携を設定したい<Kintone />のアプリで、プロセス管理を設定します。<Wovn></Wovn>  
 [プロセス管理を設定する](/k/ja/id/040575.html)  
 すでにプロセス管理を利用中の場合は、次の手順に進みます。
 
 <Note>
 
-
 <Kintone />でアプリを作成していない場合は、プロセス管理を設定する前にアプリを作成してください。<Wovn></Wovn>  
-
 [アプリを作成する方法](/k/ja/id/040620.html)
-
 
 </Note>
 
 <Heading id="app_settings_slack_integration_60">Slack連携を設定する</Heading>
+
 1. <Kintone />の<Wovn>［ポータル］</Wovn>画面で、Slackと連携したい<Kintone />アプリをクリックします。  
   ここでは例として、案件管理アプリを開きます。  
    <Img src="/k/kintone/img-ja/slack_integration03.png" alt="スクリーンショット：［ポータル］画面で案件管理アプリが枠線で強調されている" />
@@ -124,21 +121,14 @@ Slack連携を設定したい<Kintone />のアプリで、プロセス管理を�
    <Enabled regions={["JP"]}>
 
    <Note>
-
-   <Subtitle>Slack連携が表示されないときは
-   </Subtitle>
-
+   &#123;&#123;< subtitle >&#125;&#125;Slack連携が表示されないときは&#123;&#123;< /subtitle >&#125;&#125;
 
    * <SlashUi />の<Wovn>［外部連携］</Wovn>の<Wovn>［OAuth］</Wovn>で、<Wovn>［Slack］</Wovn>が<Wovn>［有効］</Wovn>になっているか確認してください。
-
    * <Wovn>［組織間のアクセス権］</Wovn>の設定を有効にすると、Slack連携は利用できなくなります。<Wovn>［組織間のアクセス権］</Wovn>の設定が無効になっていることを確認してください。
-
    * <Kintone />のご契約がライトコースでないか確認してください。ライトコースの場合は、Slack連携を利用できません。
 
-   
    </Note>
 
-   
    </Enabled>
 
 1. <Wovn>［Slack連携］</Wovn>画面で、<Wovn>［Add to Slack］</Wovn>をクリックします。  
@@ -152,10 +142,8 @@ Slack連携を設定したい<Kintone />のアプリで、プロセス管理を�
 
    <Note>
 
-
    1つの<Kintone />アプリに5件までSlackワークスペースを連携設定できます。
 
-   
    </Note>
 
 1. 画面左下の<Wovn>［アプリの設定に戻る］</Wovn>をクリックします。
@@ -165,6 +153,7 @@ Slack連携を設定したい<Kintone />のアプリで、プロセス管理を�
 1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
 
 <Heading id="app_settings_slack_integration_70">通知を送ってみよう</Heading>
+
 実際に通知を送信できるかどうか、試してみましょう。
 
 1. Slack連携を設定した<Kintone />アプリで、レコードを開きます。  
@@ -181,6 +170,7 @@ Slack連携を設定したい<Kintone />のアプリで、プロセス管理を�
 <Img src="/k/kintone/img-ja/slack_integration17.png" alt="スクリーンショット：作業者になったユーザーに届いたSlackの通知画面" />
 
 <Heading id="app_settings_slack_integration_80">Slack連携を解除する</Heading>
+
 <Wovn>［アプリの設定］</Wovn>画面で、Slackワークスペースとの連携を解除できます。
 
 1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  

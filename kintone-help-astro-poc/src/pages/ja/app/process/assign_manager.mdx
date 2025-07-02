@@ -17,6 +17,7 @@ import SlashUi from "@/components/SlashUi.astro";
 このページでは2つの設定例を紹介します。
 
 <Heading id="process_assign_manager_10">例1：上司を作業者に設定する</Heading>
+
 ユーザー情報のカスタマイズ項目に上司を設定して、プロセス管理の「次の作業者」にアクションを実行したユーザーの上司を自動で割り当る方法です。
 
 完成イメージ：  
@@ -29,10 +30,10 @@ import SlashUi from "@/components/SlashUi.astro";
 1. [カスタマイズ項目に「上司」を追加する](#process_assign_manager_1010)
 1. [作業者に「上司」を追加する](#process_assign_manager_1020)
 
-
 </Listsummary>
 
 <Heading level={3} id="process_assign_manager_1010">カスタマイズ項目に「上司」を追加する</Heading>
+
 この設定には、<SlashUi />権限が必要です。
 
 1. <Kintone />の画面上部の歯車の形をした[設定]アイコンをクリックし、[<SlashUi />]をクリックします。  
@@ -63,6 +64,7 @@ import SlashUi from "@/components/SlashUi.astro";
 1. [ユーザー情報を変更]をクリックします。
 
 <Heading level={3} id="process_assign_manager_1020">作業者に「上司」を追加する</Heading>
+
 1. 上司を作業者に追加する<Kintone />アプリを開き、「プロセス管理」画面を開きます。
 
 1. 作業者に上司を追加したいステータスで、「作業者」右横の[組織やグループから選択]アイコンをクリックします。
@@ -75,6 +77,7 @@ import SlashUi from "@/components/SlashUi.astro";
 1. [追加]をクリックします。
 
 <Heading id="process_assign_manager_20">例2：複数の承認ルートを設定する</Heading>
+
 申請者の所属部署や申請内容によって、承認者の組み合わせが複数ある場合は、承認ルートを別アプリに登録します。  
 登録した承認ルートをルックアップで取得することで、所属部署や申請内容に応じた作業者が設定され、プロセス管理を進めることができます。
 
@@ -88,10 +91,10 @@ import SlashUi from "@/components/SlashUi.astro";
 1. [承認ルートアプリを作成する](#process_assign_manager_2010)
 1. [承認ルートを取得する](#process_assign_manager_2020)
 
-
 </Listsummary>
 
 <Heading level={3} id="process_assign_manager_2010">承認ルートアプリを作成する</Heading>
+
 1. 承認ルートを登録するアプリを作成します。  
    アプリのフォームには、次のフィールドを配置します。
    * 承認ルート名：文字列（1行）フィールド
@@ -104,6 +107,7 @@ import SlashUi from "@/components/SlashUi.astro";
    <Img src="/k/kintone/img-ja/assign_manager_14.png" alt="スクリーンショット：承認ルートアプリのレコード一覧画面" />
 
 <Heading level={3} id="process_assign_manager_2020">承認ルートを取得する</Heading>
+
 1. 上司を作業者に追加する<Kintone />アプリを開きます。
 
 1. フォームに次のフィールドを配置します。

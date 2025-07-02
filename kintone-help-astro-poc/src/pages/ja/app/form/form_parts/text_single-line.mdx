@@ -17,21 +17,21 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
-
 フィールドのデータ型については、次のページを参照してください。  
-
 [フィールドのデータ型](/k/ja/id/040500.html#autocalc_calculation_type_10)
-
 
 </Note>
 
 <Heading id="form_parts_text_single-line_20">文字列（1行）フィールドの設定項目</Heading>
+
 <Img src="/k/kintone/img-ja/text_single-line_04.png" alt="スクリーンショット：文字列（1行）フィールドの設定画面" />
 
 <Heading level={3} id="form_parts_text_single-line_2010">フィールド名</Heading>
+
 入力項目の見出しを指定します。
 
 <Heading level={3} id="form_parts_text_single-line_2020">フィールド名を表示しない</Heading>
+
 「フィールド名を表示しない」にチェックを入れると、次の画面でフィールド名を非表示にします。
 
 * レコードの追加画面
@@ -41,6 +41,7 @@ import Note from "@/components/Note.astro";
 * フォームの設定画面
 
 <Heading level={3} id="form_parts_text_single-line_2030">自動計算する</Heading>
+
 「自動計算する」にチェックを入れると、計算式が設定できます。
 
 計算したいフィールドのフィールドコードを使って、計算式を指定します。  
@@ -48,25 +49,26 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
-
 計算式の基本的な使い方については、次のページを参照してください。  
-
 [計算式の基本的な使いかた](/k/ja/id/040509.html)
-
 
 </Note>
 
 <Heading level={4} id="form_parts_text_single-line_203010">計算式を表示しない</Heading>
+
 「自動計算する」にチェックを入れている場合に表示されます。  
 「計算式を表示しない」にチェックを入れると、レコード追加または編集画面で計算式が非表示になります。
 
 <Heading level={3} id="form_parts_text_single-line_2040">必須項目にする</Heading>
+
 「必須項目にする」にチェックを入れると、値の入力が必須になります。
 
 <Heading level={3} id="form_parts_text_single-line_2050">値の重複を禁止する</Heading>
+
 「値の重複を禁止する」にチェックを入れると、複数のレコードで同じ値が入力できなくなります。また、フィールドに入力できる最大文字数が、64文字までになります。
 
 <Heading level={3} id="form_parts_text_single-line_2060">文字数</Heading>
+
 最小文字数と最大文字数を、どちらか一方または両方とも指定できます。  
 文字数を指定すると、レコード追加または編集画面でフィールドの下に最小または最大文字数が表示されます。  
 入力した文字数が設定値を超えている場合は、レコード保存時にエラーが表示されます。
@@ -74,23 +76,24 @@ import Note from "@/components/Note.astro";
 「値の重複を禁止する」にチェックが入っている場合は、文字数の制限が64文字以下になるように設定してください。
 
 <Heading level={3} id="form_parts_text_single-line_2070">初期値</Heading>
+
 入力項目の初期値を表示したい場合に設定します。
 
 <Heading level={3} id="form_parts_text_single-line_2080">フィールドコード</Heading>
+
 計算式やAPIでフィールドを指定するときに使用する文字列です。
 
 <Note>
 
-
 フィールドコードについては、次のページを参照してください。  
-
 [フィールドコード](/k/ja/id/040504.html)
-
 
 </Note>
 
 <Heading id="form_parts_text_single-line_10">使用例</Heading>
+
 <Heading level={3} id="form_parts_text_single-line_1010">文字列を1行で入力する項目で使用する</Heading>
+
 1行で文字列を入力する項目で使用します。  
 たとえば、顧客情報アプリで「会社名」「部署名」「担当者名」を入力するフィールドとして使用します。
 
@@ -102,6 +105,7 @@ import Note from "@/components/Note.astro";
 <Img src="/k/kintone/img-ja/text_single-line_05.png" alt="スクリーンショット：「製品型番」のフィールドで文字列（1行）を使用している例" />
 
 <Heading level={3} id="form_parts_text_single-line_1020">計算結果を文字列で表示したい項目で使用する</Heading>
+
 計算結果が文字列になるような計算式を設定したい場合に使用します。
 
 たとえば、社員名簿アプリで、姓と名の入力文字を結合する計算式を指定して、フルネームを自動で表示するフィールドを設定できます。
@@ -124,13 +128,9 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
-
 複数行の文字列を入力する入力欄を作成したい場合は、文字列（複数行）フィールドやリッチエディターフィールドを使用します。
 
-
 * [文字列（複数行）](/k/ja/id/040538.html)
-
 * [リッチエディター](/k/ja/id/040537.html)
-
 
 </Note>

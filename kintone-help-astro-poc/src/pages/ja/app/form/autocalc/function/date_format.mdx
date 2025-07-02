@@ -18,6 +18,7 @@ import Service from "@/components/Service.astro";
 日付や時刻をほかの文字列と結合する場合にも、DATE_FORMAT関数を使用します。
 
 <Heading id="autocalc_date_format_10">DATE_FORMAT関数の構文</Heading>
+
 ```plaintext {copy=true}
 DATE_FORMAT(日時, "日時の形式", "タイムゾーン")
 
@@ -26,10 +27,12 @@ DATE_FORMAT(日時, "日時の形式", "タイムゾーン")
 DATE_FORMAT関数には、第1引数（日時）、第2引数（日時の形式）、第3引数（タイムゾーン）を指定します。
 
 <Heading level={3} id="autocalc_date_format_1010">第1引数：日時</Heading>
+
 第1引数には、表示形式を指定したい日時を指定します。  
 フィールドコード、UNIX時刻、または計算式で指定します。
 
 <Heading level={4} id="autocalc_date_format_101010">フィールドコードで指定する</Heading>
+
 フィールドコードで指定する場合、次のフィールドを指定できます。
 
 * 日時
@@ -43,16 +46,17 @@ DATE_FORMAT関数には、第1引数（日時）、第2引数（日時の形式�
 数値フィールドまたは計算フィールドを指定する場合は、そのフィールドの値がUNIX時刻として扱われます。
 
 <Heading level={4} id="autocalc_date_format_101020">UNIX時刻で指定する</Heading>
+
 UNIX時刻を直接指定できます。  
 UNIX時刻は、-30610224000以上、253402300799以下の範囲で指定します。
 
 <Note>
-
 UNIX時刻とは、1970年1月1日午前0時（協定世界時）からの経過秒数のことです。たとえば日時が2016年4月1日午前0時（協定世界時）の場合、UNIX時刻は「1459468800」です。
 
 </Note>
 
 <Heading level={4} id="autocalc_date_format_101030">計算式を指定する</Heading>
+
 日時に時間を足し引きするといった、計算結果の日時も指定できます。
 
 次の演算子と関数が使用できます。
@@ -80,6 +84,7 @@ DATE_FORMAT(日付+24*60*60*1, "YYYY/MM/dd", "Etc/GMT")
 </Reference>
 
 <Heading level={3} id="autocalc_date_format_1020">第2引数：日時の形式</Heading>
+
 第2引数には、日時の形式を指定します。  
 日時の形式は、次の方法で指定します。
 
@@ -94,6 +99,7 @@ DATE_FORMAT(日付+24*60*60*1, "YYYY/MM/dd", "Etc/GMT")
 * 文字列（複数行）フィールド
 
 <Heading level={4} id="autocalc_date_format_102010">日時の形式に記載した文字列を計算結果に表示したい場合</Heading>
+
 日時の形式に記載した文字列を計算結果に表示したい場合は、表示したい文字列をシングルクォーテーション（&#39;）で囲んでください。  
 たとえば計算結果を「Date: 日付」という形式で表示したい場合、次のように指定します。
 
@@ -116,6 +122,7 @@ DATE_FORMAT(フィールドコード, "'''DATE:' d''", "Asia/Tokyo")
 </Reference>
 
 <Heading level={3} id="autocalc_date_format_2030">第3引数：タイムゾーン</Heading>
+
 第3引数には、タイムゾーンを指定します。
 
 第1引数で時刻フィールドまたは日付フィールドを指定した場合は、「Etc/GMT」（協定世界時のタイムゾーンID）を指定します。「Etc/GMT」以外を指定すると、時刻や日付のずれが発生する場合があります。
@@ -135,9 +142,7 @@ DATE_FORMAT(日時, "YYYY年M月d日", "Asia/Tokyo")
 「system」を指定すると、<Service />共通管理で設定されているタイムゾーン（システムタイムゾーン）が適用されます。
 
 <Note>
-
 日時フィールドのタイムゾーンの処理は、1970年1月1日午前0時（協定世界時）から2050年1月1日午前0時（協定世界時）までの日時に対応しています。  
-
 1970年1月1日より前の日時をWebブラウザーから保存または表示する場合、一部制限事項があります。詳細は「[フィールドの入力制限](/k/ja/id/040528.html)」の「日時」を参照してください。
 
 </Note>
@@ -148,10 +153,10 @@ DATE_FORMAT(日時, "YYYY年M月d日", "Asia/Tokyo")
 * [システムタイムゾーンの設定](/general/ja/admin/list_systemadmin/list_localization/system_time.html)  
 * [DATE_FORMAT関数の計算結果で日付や時刻がずれて表示されます](/k/ja/id/040267.html)
 
-
 </Reference>
 
 <Heading level={4} id="autocalc_date_format_203010">サマータイムの扱い</Heading>
+
 サマータイムがあるタイムゾーンを指定した場合は、計算結果にサマータイムが反映されます。
 
 次の例は、サマータイムがあるタイムゾーンを指定している計算式です。
@@ -167,9 +172,11 @@ DATE_FORMAT(日時, "YYYY/MM/dd HH:mm ZZ", "America/Los_Angeles")
 * 協定世界時の「2018-08-01 00:00」は「2018/07/31 17:00 -07:00」に変換されます。
 
 <Heading id="autocalc_date_format_30">指定できる日時の形式</Heading>
+
 DATE_FORMAT関数の第2引数に指定できる日時の形式は、次のとおりです。
 
 <Heading level={3} id="autocalc_date_format_3010">年を表示する形式</Heading>
+
 <table>
   <tr>
     <th>形式</th>
@@ -184,6 +191,7 @@ DATE_FORMAT関数の第2引数に指定できる日時の形式は、次のと�
 </table>
 
 <Heading level={3} id="autocalc_date_format_3012">月を表示する形式</Heading>
+
 <table>
   <tr>
     <th>形式</th>
@@ -213,6 +221,7 @@ DATE_FORMAT関数の第2引数に指定できる日時の形式は、次のと�
 </table>
 
 <Heading level={3} id="autocalc_date_format_3014">日付を表示する形式</Heading>
+
 <table>
   <tr>
     <th>形式</th>
@@ -232,6 +241,7 @@ DATE_FORMAT関数の第2引数に指定できる日時の形式は、次のと�
 </table>
 
 <Heading level={3} id="autocalc_date_format_3016">時間を表示する形式</Heading>
+
 <table>
   <tr>
     <th>形式</th>
@@ -286,6 +296,7 @@ DATE_FORMAT関数の第2引数に指定できる日時の形式は、次のと�
 </table>
 
 <Heading level={3} id="autocalc_date_format_3018">分を表示する形式</Heading>
+
 <table>
   <tr>
     <th>形式</th>
@@ -305,6 +316,7 @@ DATE_FORMAT関数の第2引数に指定できる日時の形式は、次のと�
 </table>
 
 <Heading level={3} id="autocalc_date_format_3020">秒を表示する形式</Heading>
+
 <Kintone />の日時や時刻を扱うフィールドでは、秒数を保存していません。  
 第1引数でフィールドコードを指定すると、秒数は0秒として扱われます。
 
@@ -327,6 +339,7 @@ DATE_FORMAT関数の第2引数に指定できる日時の形式は、次のと�
 </table>
 
 <Heading level={3} id="autocalc_date_format_3022">タイムゾーンを表示する形式</Heading>
+
 <table>
   <tr>
     <th>形式</th>
@@ -351,10 +364,12 @@ DATE_FORMAT関数の第2引数に指定できる日時の形式は、次のと�
 </table>
 
 <Heading id="autocalc_date_format_40">計算式の例</Heading>
+
 計算式では、引数としてフィールド名ではなくフィールドコードを指定してください。  
 次の例では、フィールド名とフィールドコードをすべて一致させています。
 
 <Heading level={3} id="autocalc_date_format_4010">日付フィールドの形式を「\*\*\*\*年\*\*月\*\*日」に変更する</Heading>
+
 次の例は、日付フィールドの形式を「\*\*\*\*年\*\*月\*\*日」に変更する計算式です。
 
 ```plaintext {copy=true}
@@ -365,6 +380,7 @@ DATE_FORMAT(日付, "YYYY年M月d日", "Etc/GMT")
 「日付」フィールドに「2020-04-01」を入力すると、「2020年4月1日」が表示されます。
 
 <Heading level={3} id="autocalc_date_format_4020">日時フィールドの形式とタイムゾーンを変更する</Heading>
+
 次の例は、日時フィールドの形式を「YYYY-MM-dd HH:mm」に変更して、タイムゾーンを太平洋標準時にする計算式です。
 
 ```plaintext {copy=true}
@@ -375,6 +391,7 @@ DATE_FORMAT(日時, "YYYY-MM-dd HH:mm", "America/Los_Angeles")
 「日時」フィールドに日本時間「2020-04-01 13:00」を入力すると、計算結果は2020-03-31 21:00になります。
 
 <Heading level={3} id="autocalc_date_format_4030">氏名とレコード作成日時を結合して表示する</Heading>
+
 次の例は、氏名とレコード作成日時を「氏名-レコード作成日」の形で表示する計算式です。  
 氏名、ハイフン（-）、レコード作成日時を「&」を使って結合しています。
 
@@ -391,10 +408,10 @@ DATE_FORMAT(日時, "YYYY-MM-dd HH:mm", "America/Los_Angeles")
 
 [日付と文字列を結合して表示したい](/k/ja/id/040741.html)
 
-
 </Reference>
 
 <Heading level={3} id="autocalc_date_format_4040">生年月日から誕生月を表示する</Heading>
+
 次の例は、生年月日から誕生月を表示する計算式です。
 
 ```plaintext {copy=true}
@@ -407,6 +424,7 @@ DATE_FORMAT(生年月日, "MM", "Etc/GMT")
 「生年月日」フィールドに「1969-12-31」を入力すると、「12」が表示されます。
 
 <Heading level={3} id="autocalc_date_format_4050">申込日から30日後の試用終了日を計算する</Heading>
+
 次の例は、申込日から30日後の試用終了日を表示する計算式です。
 
 ```plaintext {copy=true}

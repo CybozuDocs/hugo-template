@@ -16,15 +16,13 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
-
 * 任意の文字やスペース（空白）を追加するには半角の「" "」を使います。
-
 * 未入力のフィールドは、空文字列として結合されます。
-
 
 </Note>
 
 <Heading id="autocalc_text_autocalc_10">「&amp;」演算子で結合できるフィールド</Heading>
+
 「&」演算子を利用してフィールドを結合する場合、次のフィールドタイプを結合対象として設定できます。
 
 * 文字列（1行）
@@ -47,6 +45,7 @@ import Note from "@/components/Note.astro";
 参考：[[DATE_FORMAT関数]日付や時刻の表示形式を指定して表示する](/k/ja/id/040501.html)
 
 <Heading id="autocalc_text_autocalc_20">手順</Heading>
+
 社員名簿アプリを例に、別々のフィールドに入力されている「姓」と「名」を1つのフィールドに結合する方法を説明します。
 
 完成イメージ：
@@ -72,10 +71,8 @@ import Note from "@/components/Note.astro";
 
    <Note>
 
-
    計算にはフィールドコードを利用します。
 
-   
    </Note>
 
 1. [保存]をクリックします。
@@ -90,6 +87,7 @@ import Note from "@/components/Note.astro";
    <Img src="/k/kintone/img-ja/text_autocalc_07.png" alt="スクリーンショット：「姓名」にフィールドの値を結合した値が表示されている" />
 
 <Heading level={3} id="autocalc_text_autocalc_2010">TIPS：未入力の項目がある場合</Heading>
+
 未入力のフィールドは、空文字列として結合されます。  
 たとえば住所フィールドに「都道府県&市区町村&丁目以下&建物名&" "&階」の計算式を設定している場合、「建物名」が空白でも、その他の文字列が結合されます。  
 <Img src="/k/kintone/img-ja/text_autocalc_08.png" alt="スクリーンショット：未入力の項目があってもフィールドの値を結合した値が表示されている" />

@@ -18,6 +18,7 @@ import Wovn from "@/components/Wovn.astro";
 カテゴリーを有効にして階層を追加する手順や、階層を削除する手順を説明します。
 
 <Heading id="category_set_category_10">カテゴリーを有効にして階層を追加する</Heading>
+
 カテゴリーを有効にして階層を追加する手順を説明します。
 
 1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
@@ -39,14 +40,11 @@ import Wovn from "@/components/Wovn.astro";
 
 <Note>
 
-
 * カテゴリーが有効の場合、カテゴリーの分類を、ファイルに書き出すことや、ファイルから読み込むことができます。  
   たとえば、レコードを登録したあとに、カテゴリーを設定した場合、ファイルからデータを読み込むことで、登録済みレコードもカテゴリーに分類できます。
   * [ファイルにデータを書き出す](/k/ja/id/040452.html)
   * [ファイルからレコードのデータをアプリに読み込む](/k/ja/id/040724.html)
-
 * カテゴリーには、アクセス権を設定できません。
-
 
 </Note>
 
@@ -54,15 +52,16 @@ import Wovn from "@/components/Wovn.astro";
 
 [カテゴリーを無効にする](/k/ja/id/040801.html)
 
-
 </Reference>
 
 <Heading id="category_set_category_20">カテゴリー別にレコードを分類する</Heading>
+
 設定したカテゴリーにレコードを分類するには、各レコードの編集画面を開いて、分類したいカテゴリーを選択してください。<Wovn></Wovn>  
 カテゴリーは複数選択できます。  
 <Img src="/k/kintone/img-ja/whatscategory_img01.png" alt="スクリーンショット：カテゴリーを有効にしたアプリのレコード編集画面" />
 
 <Heading id="category_set_category_30">カテゴリーの階層を削除する</Heading>
+
 カテゴリーの階層の削除は、次の手順で行います。
 
 <Listsummary>
@@ -70,10 +69,10 @@ import Wovn from "@/components/Wovn.astro";
 1. [削除したいカテゴリーの階層に分類されたレコードがないことを確認する](#category_set_category_3010)
 1. [カテゴリーの階層を削除する](#category_set_category_3020)
 
-
 </Listsummary>
 
 <Heading level={3} id="category_set_category_3010">削除したいカテゴリーの階層に分類されたレコードがないことを確認する</Heading>
+
 運用中のアプリ、およびアプリの動作テスト環境の両方を確認してください。  
 [アプリの動作テストをする](/k/ja/id/040483.html)
 
@@ -89,15 +88,13 @@ import Wovn from "@/components/Wovn.astro";
 
 <Note>
 
-
 カテゴリー機能が無効の場合は、カテゴリー機能を有効にしてから、削除したい階層に分類されたレコードがないか確認してください。  
-
 [カテゴリーを有効にして階層を追加する](#category_set_category_10)
-
 
 </Note>
 
 <Heading level={3} id="category_set_category_3020">カテゴリーの階層を削除する</Heading>
+
 1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
    <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが強調されている" />
 
@@ -112,12 +109,12 @@ import Wovn from "@/components/Wovn.astro";
 1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
 
 <Heading level={3} id="category_set_category_3030">エラーメッセージと対処方法</Heading>
+
 次のエラーメッセージが表示された場合の対処方法を説明します。
 
 <Graynote>
 
 処理に失敗しました。（エラーの内容：GAIA_CD07: カテゴリー「\*\*\*」を削除できません。運用中のアプリに、このカテゴリーに分類されているレコードがあります。）
-
 
 </Graynote>
 

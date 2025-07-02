@@ -15,13 +15,16 @@ import Kintone from "@/components/Kintone.astro";
 このページでは、計算式の基本となるポイントや、設定方法について説明します。
 
 <Heading id="autocalc_set_autocalc_10">計算式の基本</Heading>
+
 計算式を使うときに必要な3つのポイントについて説明します。
 
 <Heading level={3} id="autocalc_set_autocalc_1010">計算フィールドまたは文字列（1行）フィールドの設定画面で計算式を入力する</Heading>
+
 計算式を使用できるのは、計算フィールドまたは文字列（1行）フィールドです。  
 計算結果を数値として扱う場合は計算フィールドを、文字列として扱う場合は文字列（1行）フィールドを使います。
 
 <Heading level={3} id="autocalc_set_autocalc_1020">計算式でフィールドを参照するときは、フィールドコードを使用する</Heading>
+
 フィールドコードとは、フィールドを識別するための文字列です。計算式では、このフィールドコードを使用してほかのフィールドを参照します。  
 詳細は以下のページを参照してください。  
 [フィールドコードとは](/k/ja/id/040504.html)  
@@ -32,6 +35,7 @@ import Kintone from "@/components/Kintone.astro";
 <Img src="/k/kintone/img-ja/set_autocalc_07.png" alt="スクリーンショット：計算式の設定画面。[フィールドコードを挿入する]と一覧表示されたフィールドコードが赤枠で囲われている" />
 
 <Heading level={3} id="autocalc_set_autocalc_1030">関数や演算子を使用する</Heading>
+
 <Kintone />の計算式では、半角の「+」「-」「*」「/」などの演算子や、関数を使用できます。  
 演算子や関数はひとつの計算式の中で組み合わせて使うことができます。  
 [演算子と関数の一覧](/k/ja/id/040499.html)
@@ -41,6 +45,7 @@ import Kintone from "@/components/Kintone.astro";
 <Img src="/k/kintone/img-ja/set_autocalc_08.png" alt="スクリーンショット：計算式の設定画面。[関数を挿入する]と一覧表示された関数が赤枠で囲われている" />
 
 <Heading id="autocalc_set_autocalc_20">計算式の設定方法</Heading>
+
 ここでは例として、「単価」と「数量」を乗算して、「小計」を出す計算式を設定します。  
 計算には、数値を入力する数値フィールドと、計算結果を表示する計算フィールドを使用します。
 
@@ -101,6 +106,7 @@ import Kintone from "@/components/Kintone.astro";
 レコード追加またはレコード編集画面で単価と数量を入力すると、小計に計算結果が表示されます。
 
 <Heading id="autocalc_set_autocalc_30">エラーが表示されたときは</Heading>
+
 計算式の設定時やレコード入力時にエラーが表示された場合の対処方法は、次のページを参照してください。
 
 * [計算式で表示されるエラー](/k/ja/id/040497.html)

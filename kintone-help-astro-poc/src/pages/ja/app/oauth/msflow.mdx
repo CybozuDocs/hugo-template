@@ -26,29 +26,25 @@ Microsoft Power Automateを使って、<Kintone />とほかのWebサービスの
 <Warning>
 
 ご契約がライトコースの場合は、Microsoft Power Automateとの連携を利用できません。
-
 </Warning>
 
 </Enabled>
 
 <Note>
 
-
 * Microsoft Power Automateを使った連携には、Microsoft Power Automateの有償プランの契約が必要です。  
   また、<SlashUi />の<Wovn>［外部連携］</Wovn>の<Wovn>［OAuth］</Wovn>で、Microsoft Power Automateを<Wovn>［有効］</Wovn>にし、<Wovn>［利用者の設定］</Wovn>で利用ユーザーを許可する必要があります。許可する方法は、次のページを参照してください。  
   [ユーザーに外部サービスとの連携を許可する](/general/ja/id/02014.html)
-
 * ゲストスペース内のアプリとは連携できません。
-
 
 </Note>
 
 <Heading id="oauth_msflow_10">設定例：&lt;Kintone /&gt;にレコードが登録されたらOutlookでメールを送信する</Heading>
+
 <Warning>
 
 <Kintone />とOutlookは、Microsoft Power Automateで同じデータグループに設定する必要があります。  
 [データ グループについて詳しく学ぶ](https://learn.microsoft.com/ja-jp/power-automate/introduction-to-data-groups)（Microsoft Power Automateのサイト）
-
 
 </Warning>
 
@@ -94,21 +90,14 @@ Microsoft Power Automateを使って、<Kintone />とほかのWebサービスの
    <Img src="/k/kintone/img-ja/msflow05.png" alt="スクリーンショット：トリガー検索ページ" />
 
    <Note>
-
    選択できる<Kintone />のトリガーは次のとおりです。
 
-
    * レコードの追加
-
    * レコードの更新
-
    * レコードの削除
-
    * レコードコメント投稿
-
    * プロセス管理のステータス更新
 
-   
    </Note>
 
 1. 連携先の<Kintone />のドメインを入力し、<Wovn>［サインイン］</Wovn>をクリックします。
@@ -149,6 +138,7 @@ Microsoft Power Automateを使って、<Kintone />とほかのWebサービスの
 次に、逆のパターンとして、メールを受信したら<Kintone />のアプリにレコードを登録するように設定してみましょう。
 
 <Heading id="oauth_msflow_20">設定例：Gmailでメールを受信したら&lt;Kintone /&gt;にレコードを登録する</Heading>
+
 <Warning>
 
 <Kintone />とGmailは、Microsoft Power Automateで同じデータグループに設定する必要があります。  
@@ -208,15 +198,11 @@ Microsoft Power Automateを使って、<Kintone />とほかのWebサービスの
     <Img src="/k/kintone/img-ja/msflow15.png" alt="スクリーンショット：アクションの選択" />
 
    <Note>
-
    選択できる<Kintone />のアクションは次のとおりです。  
 
-
    * レコードの追加
-
    * レコードの更新
 
-   
    </Note>
 
 1. <Kintone />にログインする画面が表示された場合、ドメインを入力し、<Wovn>［サインイン］</Wovn>をクリックします。
@@ -246,8 +232,6 @@ Microsoft Power Automateを使って、<Kintone />とほかのWebサービスの
 * [kintoneコネクタ（Microsoft Power Automate）を使う前に知っておきたいこと](https://cybozu.dev/ja/kintone/tips/development/3rd-party-services/microsoft/essentials-for-kintone-connector/)（日本語のみ）
 * [Microsoft関連（Office 365, Azure, AD）](https://cybozu.dev/ja/kintone/tips/development/3rd-party-services/microsoft/microsoft-integration-summary/)（日本語のみ）
 
-
 </Reference>
-
 
 </Enabled>

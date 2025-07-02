@@ -16,20 +16,20 @@ import Kintone from "@/components/Kintone.astro";
 
 Excelファイルのデータが1MB、1,000行、500列の制限を超える場合の対処方法を説明します。
 
-
 </Enabled>
 
 <Enabled regions={["US"]}>
 
 Excelファイルのデータが1MB、1,000行、100列の制限を超える場合の対処方法を説明します。
 
-
 </Enabled>
 
 <Heading id="app_csv_substitute_app_excel_10">1MBを超える場合</Heading>
+
 主に3つの対処方法があります。
 
 <Heading level={3} id="app_csv_substitute_app_excel_1010">対処方法1：Excelファイルの容量を小さくする</Heading>
+
 容量の大きいファイルから新しいファイルへデータをコピー&ペーストすることで、必要なデータのみになるため、ファイル容量が軽くなる場合があります。  
 データが入力されている範囲だけを指定して新しいファイルにコピーするなどの方法をお試しください。
 
@@ -42,18 +42,22 @@ Excelファイルのデータが1MB、1,000行、100列の制限を超える場�
 * ブックが共有されている場合は解除する
 
 <Heading level={3} id="app_csv_substitute_app_excel_1020">対処方法2：1シートだけ別のExcelファイルに保存する</Heading>
+
 Excelファイルからアプリを作成する場合、読み込み可能なシートは1シートのみです。  
 複数のシートが含まれているためにファイル容量が大きくなっている場合、1シートだけ別ファイルに保存してからアプリ作成をお試しください。
 
 <Heading level={3} id="app_csv_substitute_app_excel_1030">対処方法3：CSVファイルとして保存しなおす</Heading>
+
 CSVファイルは100MBまでのデータを読み込んでアプリを作成できます。  
 ExcelファイルをCSVファイル形式で保存しなおして、CSVファイルからアプリを作成してください。  
 [CSVファイルからアプリを作成する](/k/ja/id/040624.html)
 
 <Heading id="app_csv_substitute_app_excel_20">1,000行を超える場合</Heading>
+
 主に2つの対処方法があります。
 
 <Heading level={3} id="app_csv_substitute_app_excel_2010">対処方法1：1,000行までのデータでアプリ作成したあと、追加の行をファイル読み込みする</Heading>
+
 1,001行以降のデータは、別シートやファイルにコピーしておきます。  
 そのあとファイルのデータを1,000行以下に減らしてから、Excelファイルを読み込んでアプリを作成してください。  
 [Excelファイルからアプリを作成する](/k/ja/id/040625.html)
@@ -62,6 +66,7 @@ ExcelファイルをCSVファイル形式で保存しなおして、CSVファイ
 [ファイルからレコードのデータをアプリに読み込む](/k/ja/id/040724.html)
 
 <Heading level={3} id="app_csv_substitute_app_excel_2020">対処方法2：CSVファイルとして保存しなおす</Heading>
+
 CSVファイルは10万行までのデータを読み込んでアプリを作成できます。  
 ExcelファイルをCSVファイル形式で保存しなおして、CSVファイルからアプリを作成してください。  
 [CSVファイルからアプリを作成する](/k/ja/id/040624.html)
@@ -69,17 +74,17 @@ ExcelファイルをCSVファイル形式で保存しなおして、CSVファイ
 <Enabled regions={["JP", "CN"]}>
 
 <Heading id="app_csv_substitute_app_excel_30">500列を超える場合</Heading>
+
 不要な列を削除できる場合は、ファイルから列の削除を行い、500列に収まる状態にしてください。  
 セル内の関数や数式は<Kintone />に読み込めません。計算結果の値だけを読み込めます。そのため、関数や数式の入力された列は削除することもご検討ください。
-
 
 </Enabled>
 
 <Enabled regions={["US"]}>
 
 <Heading id="app_csv_substitute_app_excel_40">100列を超える場合</Heading>
+
 不要な列を削除できる場合は、ファイルから列の削除を行い、100列に収まる状態にしてください。  
 セル内の関数や数式は<Kintone />に読み込めません。計算結果の値だけを読み込めます。そのため、関数や数式の入力された列は削除することもご検討ください。
-
 
 </Enabled>

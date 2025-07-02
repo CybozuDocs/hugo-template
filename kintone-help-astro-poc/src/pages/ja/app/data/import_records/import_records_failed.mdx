@@ -23,10 +23,10 @@ import SlashUi from "@/components/SlashUi.astro";
 このページで案内する対処を試してもエラーが解消されない場合は、弊社サポートに問い合わせてください。詳細は、次の項目を参照してください。  
 [対処を試してもエラーが表示されるときは](#import_records_import_recors_failed_40)
 
-
 </Enabled>
 
 <Heading id="import_records_import_recors_failed_10">エラーが表示される</Heading>
+
 ファイルの中に読み込みに失敗する行があった場合、「読み込まれたファイル」画面で読み込まれなかった行とエラー内容をCSVファイルでダウンロードできます。  
 ダウンロードしたCSVファイルに記載されているエラー内容に応じて、ファイルを修正してください。  
 ダウンロードしたCSVファイルが文字化けする場合は、次の項目を参照してください。  
@@ -34,37 +34,44 @@ import SlashUi from "@/components/SlashUi.astro";
 
 <Note>
 
-
 一部のエラーは、CSVファイルではなく「読み込まれたファイル」画面に表示されます。
-
 
 </Note>
 
 <Heading level={3} id="import_records_import_recors_failed_101010">エラー「GAIA_IL16」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10101010">エラー内容</Heading>
+
 GAIA_IL16: フィールド「\*\*\*」の値に問題があります。フィールド「\*\*\*」に設定されている条件（必須項目にする、値の重複を禁止するなど）を確認して、ファイルの値を修正してください。ドロップダウンやラジオボタンの場合は、設定されている選択肢のいずれかと、ファイルの値が一致していることを確認してください。
 
 <Heading level={4} id="import_records_import_recors_failed_10101020">原因と対処</Heading>
+
 <Heading level={5} id="import_records_import_recors_failed_1010102010">必須項目に値が入力されていない</Heading>
+
 必須項目として設定されているフィールドに値が入力されていません。エラー内容に示されているフィールドに値を入力してください。
 
 <Heading level={5} id="import_records_import_recors_failed_1010102020">重複が禁止されている</Heading>
+
 値の重複が禁止されているフィールドに、他のレコードと同じ値が記載されています。エラー内容に示されているフィールドで重複がないように値を記載してください。  
 また、値の重複が禁止されているフィールドでは、64文字を超える値を読み込むことができません。値の文字数が65文字以上になっていないかを確認してください。
 
 <Heading level={5} id="import_records_import_recors_failed_1010102070">レコード番号の不一致</Heading>
+
 レコード番号を「一括更新のキー」に指定してファイル読み込みを行っている場合、レコード番号の列に、アプリ内に存在しないレコード番号が記載されていないかを確認してください。
 
 <Heading level={5} id="import_records_import_recors_failed_1010102030">ラジオボタンやドロップダウンの値に誤りがある</Heading>
+
 フィールドがラジオボタンまたはドロップダウンの場合、フィールドに設定されていない選択肢がファイルに記載されている可能性があります。  
 アプリで設定されている選択肢に存在する値を記載してください。
 
 <Heading level={5} id="import_records_import_recors_failed_1010102040">文字列（1行）フィールドまたは数値フィールドでの制限超過</Heading>
+
 文字列（1行）フィールドまたは数値フィールドの設定で、文字数や数値の最大値／最小値を指定している場合、制限の範囲外の値は読み込めません。  
 また、値の重複が禁止されているフィールドでは、64文字を超える値を読み込むことができません。  
 エラー内容に示されているフィールドに、制限の範囲外の値が記載されていないかを確認してください。
 
 <Heading level={5} id="import_records_import_recors_failed_1010102050">リンクフィールドの形式に誤りがある</Heading>
+
 エラー内容に示されたリンクフィールドに、正しい形式の値が記載されているかを確認してください。
 
 * リンクフィールドの入力値の種類が[Webサイトのアドレス]の場合は、URLが「http://」または「https://」で始まっているかを確認してください。
@@ -74,6 +81,7 @@ GAIA_IL16: フィールド「\*\*\*」の値に問題があります。フィー
 [レコード登録・上書き用のファイルの記載形式](/k/ja/id/040722.html)
 
 <Heading level={5} id="import_records_import_recors_failed_1010102060">数値フィールドでの桁数超過</Heading>
+
 読み込むファイルに、桁数の多い数値が入力されている可能性があります。  
 エラー内容に示されたフィールドの値が、アプリの設定画面の[高度な設定]で指定された「全体の桁数」を超えていないかを確認してください。
 
@@ -81,10 +89,13 @@ GAIA_IL16: フィールド「\*\*\*」の値に問題があります。フィー
 [数値の有効桁数と丸めかたを設定する](/k/ja/id/040482.html)
 
 <Heading level={3} id="import_records_import_recors_failed_101015">エラー「GAIA_IL17」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10101510">エラー内容</Heading>
+
 GAIA_IL17: フィールド「\*\*\*」の記載形式に問題があります。<Kintone />では、フィールドの種類ごとに読み込める記載形式が異なります。フィールド「\*\*\*」の値を確認してください。
 
 <Heading level={4} id="import_records_import_recors_failed_10101520">原因と対処</Heading>
+
 エラー内容に示されたフィールドに、次のように記載形式が正しくない値が記載されています。  
 例：
 
@@ -96,37 +107,50 @@ GAIA_IL17: フィールド「\*\*\*」の記載形式に問題があります。
 [レコード登録・上書き用のファイルの記載形式](/k/ja/id/040722.html)
 
 <Heading level={3} id="import_records_import_recors_failed_101020">エラー「GAIA_IL19」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10102010">エラー内容</Heading>
+
 GAIA_IL19: フィールド「\*\*\*」の値でのルックアップ（取得）に失敗しました。参照先のアプリでは、該当するレコードが見つかりません。
 
 <Heading level={4} id="import_records_import_recors_failed_10102020">原因と対処</Heading>
+
 ルックアップの設定で「関連付けるアプリ」の「コピー元のフィールド」として設定されたフィールドの値が、参照先のアプリに登録されている値と完全に一致している必要があります。  
 
 対処するには、参照先のアプリにファイルに記載した値と一致した値を登録するか、読み込むファイルに参照先のアプリに登録されている値を記載してください。
 
 <Heading level={3} id="import_records_import_recors_failed_101025">エラー「GAIA_IL48」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10102510">エラー内容</Heading>
+
 GAIA_IL48: アプリには、「\*\*\*」カテゴリーはありません。アプリのカテゴリーの設定を確認してください。
 
 <Heading level={4} id="import_records_import_recors_failed_10102520">原因と対処</Heading>
+
 ファイルに記載された値が、アプリで設定されているカテゴリーの選択肢に存在しません。  
 カテゴリーと対応付けするファイルの列には、カテゴリーの選択肢に存在する値を記載してください。
 
 <Heading level={3} id="import_records_import_recors_failed_101030">エラー「GAIA_II02」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10103010">エラー内容</Heading>
+
 GAIA_II02：1行に複数のテーブルの値が含まれています。テーブルが複数ある場合は、1つのテーブルのデータのみがファイルの1行に含まれるようにしてください。
 
 <Heading level={4} id="import_records_import_recors_failed_10103020">原因と対処</Heading>
+
 1行に複数のテーブルの値を記載しないようにしてください。  
 ファイルの記載例：  
 <Img src="/k/kintone/img-ja/sample2.png" alt="スクリーンショット：ファイルの記載例" />
 
 <Heading level={3} id="import_records_import_recors_failed_101035">エラー「GAIA_II03」または「GAIA_II04」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10103510">エラー内容</Heading>
+
 GAIA_II03（またはGAIA_II04）: アプリのテーブルにデータを読み込もうとしています。アプリのテーブルにデータを読み込む場合は、データの1列目にレコードの開始行を示す列が必要です。アプリのテーブルにデータを読み込まない場合は、アプリのテーブル内のフィールドに、読み込むファイルの列を指定しないでください。
 
 <Heading level={4} id="import_records_import_recors_failed_10103520">原因と対処</Heading>
+
 <Heading level={5} id="import_records_import_recors_failed_1010352010">テーブルにデータを読み込む場合</Heading>
+
 読み込むファイルの先頭列が、テーブルへの読み込みに適した記載形式になっているか、次の点を確認してください。
 
 * ファイルの先頭列が、「レコードの開始行」という項目名になっているか
@@ -140,6 +164,7 @@ GAIA_II03（またはGAIA_II04）: アプリのテーブルにデータを読み
   [テーブルを含むレコードを登録・上書きするためのファイルを準備する](/k/ja/id/040725.html)
 
 <Heading level={5} id="import_records_import_recors_failed_1010352020">テーブルにデータを読み込まない場合</Heading>
+
 次のどちらかの方法で、テーブル内のフィールドにデータを読み込まないようにしてください。
 
 * 読み込むファイルから、テーブルのデータを列ごと削除する
@@ -149,20 +174,26 @@ GAIA_II03（またはGAIA_II04）: アプリのテーブルにデータを読み
 読み込みの対象から外すには、テーブル内のフィールドと対応している「ファイルの列」を、すべて「（指定しない）」にしてください。
 
 <Heading level={3} id="import_records_import_recors_failed_101040">エラー「GAIA_II08」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10104010">エラー内容</Heading>
+
 GAIA_II08: 「\*\*\*」フィールドと対応付けした列に、値が入力されていません。作成者／更新者フィールドにファイル読み込み画面で「ファイルの列」を対応付けした場合、追加するレコードでは、作成者／更新者フィールドは入力必須になります。ファイル読み込み時に「ファイルの列」で「（指定しない）」を選択するか、指定した列が正しいかを確認するか、ファイルを修正してください。
 
 <Heading level={4} id="import_records_import_recors_failed_10104020">原因と対処</Heading>
+
 作成者や更新者フィールドに「ファイルの列」を指定した場合、対応付けしたファイルの列は入力必須になります。  
 指定した列に値が記載されていない場合、正しい値を記載するか、指定した列が正しいかを確認してください。
 
 レコードの作成者や更新者を指定する必要がなければ、ファイルの列で「（指定しない）」を選択してください。その場合、ファイル読み込みを行ったユーザーが、レコードの作成者や更新者として登録されます。
 
 <Heading level={3} id="import_records_import_recors_failed_101045">エラー「GAIA_II09」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10104510">エラー内容</Heading>
+
 GAIA_II09: 「\*\*\*」フィールドと対応付けした列に、ログイン名ではない値が入力されているか、指定できないユーザー（存在しない／停止・削除されている／閲覧できないユーザーなど）が指定されています。ログイン名が正しく入力されているかを確認するか、<Slash />共通管理者にお問い合わせください。
 
 <Heading level={4} id="import_records_import_recors_failed_10104520">原因と対処</Heading>
+
 作成者や更新者フィールドに対応付けたファイルの列に、次のようなユーザーのログイン名が含まれている可能性があります。
 
 * ログイン名ではない値
@@ -180,75 +211,89 @@ GAIA_II09: 「\*\*\*」フィールドと対応付けした列に、ログイン
 レコードの作成者や更新者を指定する必要がなければ、ファイルの列で「（指定しない）」を選択してください。その場合、ファイル読み込みを行ったユーザーが、レコードの作成者や更新者として登録されます。
 
 <Heading level={3} id="import_records_import_recors_failed_101050">エラー「GAIA_II10」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10105010">エラー内容</Heading>
+
 GAIA_II10: 「\*\*\*」フィールドと対応付けした列に、改行が含まれています。改行を含めず、ユーザーのログイン名を1つだけ指定してください。
 
 <Heading level={4} id="import_records_import_recors_failed_10105020">原因と対処</Heading>
+
 作成者や更新者フィールドに対応付けた列に、改行が含まれている可能性があります。  
 ファイルの該当の列には、改行を含めずに、ユーザーのログイン名を1つだけ記載してください。
 
 レコードの作成者や更新者を指定する必要がなければ、ファイルの列で「（指定しない）」を選択してください。その場合、ファイル読み込みを行ったユーザーが、レコードの作成者や更新者として登録されます。
 
 <Heading level={3} id="import_records_import_recors_failed_101055">エラー「GAIA_II12」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10105510">エラー内容</Heading>
+
 GAIA_II12: 「\*\*\*」フィールドと対応付けした列に、値が入力されていません。作成日時／更新日時フィールドにファイル読み込み画面で「ファイルの列」を対応付けした場合、追加するレコードでは、作成日時／更新日時フィールドは入力必須になります。「ファイルの列」で「（指定しない）」を選択するか、指定した列が正しいかを確認するか、ファイルを修正してください。
 
 <Heading level={4} id="import_records_import_recors_failed_10105520">原因と対処</Heading>
+
 作成日時や更新日時フィールドに「ファイルの列」を指定した場合、対応付けしたファイルの列には、必ず値を入力する必要があります。  
 指定した列に値が記載されているか、または指定する列が正しいかを確認してください。
 
 レコードの作成日時や更新日時を指定する必要がなければ、ファイルの列で「（指定しない）」を選択してください。その場合、ファイル読み込みを行った日時が、レコードの作成日時や更新日時として登録されます。
 
 <Heading level={3} id="import_records_import_recors_failed_101060">エラー「GAIA_II13」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10106010">エラー内容</Heading>
+
 GAIA_II13: ファイルの\*\*\*行目の、「\*\*\*」フィールドと対応付けした列に、未来の日時が指定されています。過去の日時を指定してください。
 
 <Note>
 
-
 このエラーは「読み込まれたファイル」画面に表示されます。このエラーが発生した場合、読み込み処理は継続されません。
-
 
 </Note>
 
 <Heading level={4} id="import_records_import_recors_failed_10106020">原因と対処</Heading>
+
 作成日時や更新日時フィールドには、未来の日時を指定できません。  
 作成日時や更新日時フィールドと対応付けするファイルの列には、ファイル読み込み日時より過去の日時を記載してください。
 
 レコードの作成日時や更新日時を指定する必要がなければ、ファイルの列で「（指定しない）」を選択してください。その場合、ファイル読み込みを行った日時が、レコードの作成日時や更新日時として登録されます。
 
 <Heading level={3} id="import_records_import_recors_failed_101070">エラー「GAIA_LM01」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10107010">エラー内容</Heading>
+
 GAIA_LM01: ルックアップフィールド「\*\*\*」に値を読み込めません。参照先のアプリに、データ取得の候補となるレコードが複数存在しているため、ルックアップに失敗します。ファイル読み込み時に「ファイルの列」で「（指定しない）」を選択してください。なお、「\*\*\*」フィールドと対応付けした列の値でデータを取得するには、レコードの「\*\*\*」フィールドに手動で値を入力してください。
 
 <Heading level={4} id="import_records_import_recors_failed_10107020">原因と対処</Heading>
+
 ルックアップフィールドに読み込もうとしている値が、そのルックアップフィールドに関連付けたアプリ（取得したいデータが登録されているアプリ）内で重複して存在している場合は、ファイルから読み込むことができません。
 
 「レコードの追加」画面や「レコードの編集」画面で1件ずつ登録してください。
 
 <Heading level={3} id="import_records_import_recors_failed_101080">エラー「GAIA_RE10」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10108010">エラー内容</Heading>
+
 GAIA_RE10：レコード番号が\*\*\*のレコードの一括更新のキーが、ほかのレコードと重複しています。
 
 <Note>
 
-
 このエラーは「読み込まれたファイル」画面に表示されます。このエラーが発生した場合、読み込み処理は継続されません。
-
 
 </Note>
 
 <Heading level={4} id="import_records_import_recors_failed_10108020">原因と対処</Heading>
+
 <Kintone />では、読み込むファイル内で[一括更新のキー]に指定した値が重複している場合、後から読み込まれる行のデータで更新されます。  
 ただし、ファイルの行数や値の重複の位置によっては、このエラーが発生する場合があります。
 
 読み込むファイル内で[一括更新のキー]に設定した値が重複しないようにファイルを修正し、再度読み込んでください。
 
 <Heading level={3} id="import_records_import_recors_failed_101085">エラー「GAIA_SE02」が表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10108510">エラー内容</Heading>
+
 GAIA_SE02：ファイル読み込み時に、この行より前にエラーが発生したか、読み込み処理がキャンセルされたため、データの読み込みを中止しました。
 
 <Heading level={4} id="import_records_import_recors_failed_10108520">原因と対処</Heading>
+
 このエラーは、次の場合に表示されます。
 
 * 読み込み処理を手動で中止した
@@ -257,42 +302,54 @@ GAIA_SE02：ファイル読み込み時に、この行より前にエラーが�
 必要に応じて、中止された行やエラーが発生した行を確認し、再度読み込んでください。
 
 <Heading level={3} id="import_records_import_recors_failed_101075">テーブルに「ファイルの列」で対応付けしていないフィールドがあるときのエラーが表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10107510">エラー内容</Heading>
+
 テーブル内のフィールドを更新する場合は、そのテーブル内のすべてのフィールドに対して「ファイルの列」を指定してください。テーブル内に添付ファイルフィールドがある場合など、一部のテーブルは更新対象にできません。詳細はヘルプを参照してください。
 
 <Heading level={4} id="import_records_import_recors_failed_10107520">原因と対処</Heading>
+
 <Heading level={5} id="import_records_import_recors_failed_1010752010">「ファイルの列」を指定していない場合</Heading>
+
 [一括更新のキー]にチェックを付けた場合は、データを読み込みたいテーブル内で、「アプリのフィールド」に表示されている全フィールドに、ファイルの列を指定してください。変更が不要なフィールドでも「（指定しない）」以外の列を指定する必要があります。
 
 <Heading level={5} id="import_records_import_recors_failed_1010752020">添付ファイルフィールドが含まれている場合</Heading>
+
 テーブル内の全フィールドにファイルの列を指定してもエラーが表示される場合は、テーブルに添付ファイルフィールドが含まれている可能性があります。
 テーブルに添付ファイルフィールドが含まれていると、そのテーブルのデータは更新できません。該当テーブルのすべてのフィールドに「（指定しない）」を選択し、読み込み対象から外してください。
 
 <Heading level={3} id="import_records_import_recors_failed_101090">テーブルの読み込み開始に失敗したときのエラーが表示される</Heading>
+
 <Heading level={4} id="import_records_import_recors_failed_10109010">エラー内容</Heading>
+
 ファイル読み込みの設定中にアプリ設定の更新が行われ、読み込み開始に失敗しました。「テーブル内のフィールドが追加された」、「読み込み対象のフィールドの設定を変更した」などの原因が考えられます。更新された内容を確認して読み込みデータを修正したあと、再度ファイル読み込みを行ってください。
 
 <Heading level={4} id="import_records_import_recors_failed_10109020">原因と対処</Heading>
+
 ファイルの読み込み画面を表示中に、フォームの設定画面でフィールドの追加や設定変更が行われました。  
 追加されたフィールドをファイルにも反映し、再度読み込んでください。
 
 <Heading id="import_records_import_recors_failed_1040">ダウンロードしたCSVファイルを開くと文字化けする</Heading>
+
 「読み込まれたファイル」画面でダウンロードしたCSVファイルをダブルクリックしてExcelで開くと、ファイルの内容が文字化けすることがあります。  
 ダウンロードしたCSVファイルが文字化けする場合は、Excelのデータソースからデータをインポートする機能を使って、ダウンロードしたファイルを開きます。  
 詳細は、次のページを参照してください。  
 [Microsoft社のヘルプ：Excel で CSV UTF-8 ファイルを正しく開く](https://support.microsoft.com/ja-jp/office/8a935af5-3416-4edd-ba7e-3dfd2bc4a032)
 
 <Heading id="import_records_import_recors_failed_20">内容が空のレコードが作成される</Heading>
+
 CSVファイルに、読み込み時に指定した区切り文字（カンマ、セミコロン、スペース、タブ）のみの行があると、その行が空のレコードとして登録されます。  
 CSVファイルをテキストエディターなどで開いて、区切り文字だけの行を削除してください。
 
 <Heading id="import_records_import_recors_failed_30">リッチエディターフィールドの値が改行されない</Heading>
+
 リッチエディターフィールドの入力内容を改行した状態で登録するには、HTML形式で記載します。  
 読み込むファイルの改行したい箇所に「\<br />」を挿入してください。
 
 <Enabled regions={["JP"]}>
 
 <Heading id="import_records_import_recors_failed_40">対処を試してもエラーが表示されるときは</Heading>
+
 このページで案内する対処を試してもエラーが解消されない場合は、弊社サポートに次のファイルをお送りください。
 
 * エラーが確認できる画面キャプチャー
@@ -308,8 +365,6 @@ CSVファイルをテキストエディターなどで開いて、区切り文�
 * [カスタマーサポートに問い合わせる](/k/ja/id/040321.html)
 * [アプリをテンプレートとしてダウンロードする](/k/ja/id/040493.html)
 
-
 </Reference>
-
 
 </Enabled>

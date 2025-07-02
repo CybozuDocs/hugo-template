@@ -25,6 +25,7 @@ import Wovn from "@/components/Wovn.astro";
 * メールワイズで配信や受信したメールの履歴を、アプリで顧客ごとに確認する
 
 <Heading id="add_plugin_mailwise_plugin_10">メールワイズと連携するための条件</Heading>
+
 <Kintone />とメールワイズを連携するためには、次の条件が必要です。
 
 * **同じドメインで<Kintone />とメールワイズを利用している**  
@@ -36,6 +37,7 @@ import Wovn from "@/components/Wovn.astro";
 [価格・契約方法](https://kintone.cybozu.co.jp/mailwise_connect/price/)
 
 <Heading id="add_plugin_mailwise_plugin_20">メールワイズとの連携を利用するための条件</Heading>
+
 <Kintone />とメールワイズを連携した機能をユーザーが利用するためには、次の条件が必要です。
 
 * **ユーザーが<Kintone />とメールワイズの両方とも利用できる**  
@@ -47,6 +49,7 @@ import Wovn from "@/components/Wovn.astro";
   スマートフォンで<Kintone />を操作するときは、メールワイズと連携した機能を利用できません。
 
 <Heading id="add_plugin_mailwise_plugin_30">&lt;Kintone /&gt;とメールワイズを連携する</Heading>
+
 ここでは、<Kintone />のアプリで管理している顧客情報やメールテンプレートを利用して、メールワイズとの連携を設定する方法を説明します。
 
 <Img src="/k/kintone/img-ja/mailwise_plugin08.png" alt="イラスト：{{&lt; kintone &gt;}}とメールワイズの連携イメージ" />
@@ -58,6 +61,7 @@ import Wovn from "@/components/Wovn.astro";
 [STEP3：顧客情報を管理するアプリにプラグインを追加して設定する](#add_plugin_mailwise_plugin_3030)
 
 <Heading level={3} id="add_plugin_mailwise_plugin_3010">STEP1：アプリを用意する</Heading>
+
 次の2つのアプリを用意します。
 
 * 顧客情報を管理するアプリ
@@ -68,10 +72,10 @@ import Wovn from "@/components/Wovn.astro";
 アプリストアには、メールワイズとの連携で使用するサンプルアプリをまとめて追加できる「メールワイズ連携パック」が用意されています。  
 「メールワイズ連携パック」をインストールすると、顧客リストアプリとメール作成テンプレートアプリが追加されます。なお、追加したアプリで、メールワイズ連携のプラグインの設定が必要です。
 
-
 </Hint>
 
 <Heading level={4} id="add_plugin_mailwise_plugin_301010">顧客情報を管理するアプリを用意する</Heading>
+
 会社名やメールアドレスなどの顧客情報を管理するアプリを用意します。
 
 アプリには、顧客情報を登録するためのフィールドを配置します。  
@@ -84,17 +88,15 @@ import Wovn from "@/components/Wovn.astro";
 
 <Note>
 
-
 * 顧客情報のフィールドの値を、メールテンプレートの本文に埋め込むことができます。入力したいフィールドのフィールドコードを変数として使用します。
-
 * メールテンプレートの本文に埋め込むフィールドで、フィールドコードに<Wovn>［Company］</Wovn><Wovn>［Customer］</Wovn><Wovn>［Section］</Wovn>のいずれかを指定する場合は、頭文字を大文字にしてください。
-
 
 </Note>
 
 フォームを作成したら、顧客情報を登録してください。
 
 <Heading level={4} id="add_plugin_mailwise_plugin_301020">メールテンプレートを管理するアプリを用意する</Heading>
+
 メールテンプレートを管理するアプリを用意します。1つのレコードで1つのテンプレートを管理します。
 
 アプリには、メールの件名や本文のデータを入力するためのフィールドを配置します。
@@ -113,13 +115,12 @@ import Wovn from "@/components/Wovn.astro";
 
 <Note>
 
-
 最大100件のメールテンプレートを利用できます。レコードが100件以上ある場合は、レコード番号が大きい順に100件のレコードがメールテンプレートに利用できます。
-
 
 </Note>
 
 <Heading level={5} id="add_plugin_mailwise_plugin_30102010">メールの本文にフィールドの値を埋め込む</Heading>
+
 メールの本文に、埋め込みたいフィールドの値を変数で指定します。  
 変数として、埋め込みたいフィールドのフィールドコードを「%」（半角パーセント）で囲んで入力してください。  
 例：フィールドコードが<Wovn>［Company］</Wovn>の場合、「%Company%」と入力
@@ -135,22 +136,23 @@ import Wovn from "@/components/Wovn.astro";
 
 <Note>
 
-
 テーブル内のフィールドは指定できません。
-
 
 </Note>
 
 <Heading level={3} id="add_plugin_mailwise_plugin_3020">STEP2：&lt;Kintone /&gt;にメールワイズ連携のプラグインをインストールする</Heading>
+
 <Kintone />システム管理者が、<Wovn>［<Kintone />システム管理］</Wovn>画面でメールワイズ連携のプラグインをインストールします。
 
 詳細は、次のページを参照してください。  
 [プラグインストアからプラグインを追加する](/k/ja/id/0408.html#add_plugin_plugin_20)
 
 <Heading level={3} id="add_plugin_mailwise_plugin_3030">STEP3：顧客情報を管理するアプリにプラグインを追加して設定する</Heading>
+
 顧客情報を管理するアプリに、メールワイズ連携のプラグインを追加して設定します。
 
 <Heading level={4} id="add_plugin_mailwise_plugin_303010">メールワイズ連携のプラグインを追加する</Heading>
+
 1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
    <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
 
@@ -165,6 +167,7 @@ import Wovn from "@/components/Wovn.astro";
 続いて、メールワイズ連携のプラグインを設定します。
 
 <Heading level={4} id="add_plugin_mailwise_plugin_303020">メールワイズ連携のプラグインを設定する</Heading>
+
 1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［カスタマイズ／サービス連携］</Wovn>にある<Wovn>［プラグイン］</Wovn>をクリックします。
 
 1. <Wovn>［メールワイズ連携］</Wovn>の右側にある<Wovn>［設定］</Wovn>アイコンをクリックします。
@@ -179,6 +182,7 @@ import Wovn from "@/components/Wovn.astro";
    プラグインの設定がアプリに反映されます。
 
 <Heading level={5} id="add_plugin_mailwise_plugin_30302010">プラグインの設定項目</Heading>
+
 <Wovn>［プラグインの設定］</Wovn>画面の各項目について説明します。
 
 * **<Wovn>［利用する配信の種類］</Wovn>**  
@@ -226,16 +230,16 @@ import Wovn from "@/components/Wovn.astro";
   メールワイズでのメールの履歴を顧客ごとに<Wovn>［レコードの詳細］</Wovn>画面に表示する場合は、<Wovn>［スペース］</Wovn>フィールドの要素IDを選択します。<Wovn></Wovn>
 
   <Note>
-
   メールの履歴は、<Wovn>［「To」に使用するフィールド］</Wovn>で指定したフィールドのメールアドレスをもとに、<Wovn>［利用するメールスペース］</Wovn>に指定したメールスペースから抽出されます。<Wovn></Wovn><Wovn></Wovn><Wovn>［利用するメールアプリケーション］</Wovn>に指定したメールアプリケーション内の履歴に限りません。
 
-  
   </Note>
 
 <Heading id="add_plugin_mailwise_plugin_40">メールワイズと連携した機能を利用する</Heading>
+
 メールワイズと連携した<Kintone />のアプリから、顧客にメールを配信する方法や、顧客とのメールの履歴を確認する方法を説明します。
 
 <Heading level={3} id="add_plugin_mailwise_plugin_4010">アプリから顧客を選んで、メールを個別配信する</Heading>
+
 顧客情報を管理するアプリから顧客を選んで、メールを個別配信します。
 
 1. メールを配信する顧客の<Wovn>［レコードの詳細］</Wovn>画面を開きます。
@@ -249,15 +253,13 @@ import Wovn from "@/components/Wovn.astro";
 1. <Wovn>［メールの送信］</Wovn>画面で、メールの内容を確認して、<Wovn>［送信する］</Wovn>をクリックします。
 
 <Heading level={3} id="add_plugin_mailwise_plugin_4020">アプリから顧客を絞り込んで、メールを一斉配信する</Heading>
+
 顧客情報を管理するアプリから顧客を絞り込んで、メールを一斉配信します。
 
 <Note>
 
-
 * 1度に一斉配信できるメールの数は最大1,000件です。メールの数が1,000件を超える場合は、1,000件以内に収まるように配信先を絞り込み、複数回に分けてメールを配信してください。
-
 * <Wovn>［「To」に使用するフィールド］</Wovn>に複数のメールアドレスが登録されていても、先頭のメールアドレスのみにメールが配信されます。
-
 
 </Note>
 
@@ -275,6 +277,7 @@ import Wovn from "@/components/Wovn.astro";
   <Wovn>［配信実行］</Wovn>画面が表示されます。配信結果を確認してください。
 
 <Heading level={3} id="add_plugin_mailwise_plugin_4030">アプリで顧客ごとにメールの履歴を確認する</Heading>
+
 メールワイズ連携プラグインの設定で<Wovn>［履歴を表示するフィールド］</Wovn>を指定すると、顧客情報のレコードにメールの履歴が表示されます。  
 また、顧客のメールアドレスにひもづいた電話履歴と訪問履歴があれば、あわせて表示されます。
 
@@ -293,15 +296,11 @@ import Wovn from "@/components/Wovn.astro";
 
 <Note>
 
-
 * メールワイズのアドレス帳で顧客に複数のメールアドレスが登録されている場合、それらのメールアドレスとの履歴も表示されます。
-
 * メールワイズのアドレス帳で、顧客のメールアドレスを変更したことにより、履歴が表示されなくなった場合、変更前のメールアドレスを再度アドレス帳に登録してください。
-
 * メールワイズ連携のプラグインは、次のオープンソースソフトウェア（OSS）を使用しています。詳細は、次の各サイトを参照してください。
   * jQuery：[公式ページ](https://jquery.com/)・[ライセンスファイル](/k/files-ja/jquery_MIT-LICENSE.txt)
   * JsRender：[公式ページ](https://www.jsviews.com/)・[ライセンスファイル](/k/files-ja/JsRender_MIT-LICENSE.txt)
   * spin.js：[公式ページ](http://spin.js.org/)・[ライセンスファイル](/k/files-ja/spinjs_LICENSE.txt)
-
 
 </Note>

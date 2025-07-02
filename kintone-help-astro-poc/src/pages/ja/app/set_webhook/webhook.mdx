@@ -24,11 +24,11 @@ import Wovn from "@/components/Wovn.astro";
 <Note>
 
 ご契約がライトコースの場合は、Webhookを利用できません。
-
 </Note>
 </Enabled>
 
 <Heading id="set_webhook_webhook_10">Webhookの仕組み</Heading>
+
 Webhookの連携先として、多数のサービスとの連携を支援してくれるツールを指定すると、それらが対応しているさまざまなサービスと<Kintone />を連携できます。  
 連携を支援してくれるツールとしては、Zapier、Microsoft Power Automate、IFTTTなどがあります。
 
@@ -47,20 +47,16 @@ Webhookを設定すると、<Kintone />のアプリで次の操作が行われ�
 
 <Note>
 
-
 次の方法でレコードを操作した場合は、Webhookの通知は送信されません。
 
-
 * Excel/CSVファイルを読み込んでレコードを操作する
-
 * 複数のレコードを一括削除する
-
 * 複数のレコードを一括操作するREST APIを使用してレコードを操作する
-
 
 </Note>
 
 <Heading id="set_webhook_webhook_20">Webhookの設定の流れ</Heading>
+
 Webhookは次の手順で設定します。
 
 (1) 連携支援ツール（Zapierなど）でトリガーを設定する  
@@ -68,6 +64,7 @@ Webhookは次の手順で設定します。
 (3) 連携支援ツールでアクションの設定をする
 
 <Heading id="set_webhook_webhook_30">設定例</Heading>
+
 ここではZapierを使って、「<Kintone />にレコードが追加されたらGmailに通知する」設定例を説明します。
 
 <Warning>
@@ -78,10 +75,10 @@ Webhookは次の手順で設定します。
   [所属組織が異なるユーザーのプロフィールと組織の閲覧を制限する](/k/ja/id/04060.html)
 * 今回の設定例で利用する「Webhooks by Zapier」は、ZapierのFree Planを利用して設定しています。
 
-
 </Warning>
 
 <Heading level={3} id="set_webhook_webhook_3010">事前準備</Heading>
+
 Webhookを設定する前に、次を準備してください。
 
 * Gmailアカウントの作成
@@ -90,6 +87,7 @@ Webhookを設定する前に、次を準備してください。
 準備ができたら、次の設定をします。
 
 <Heading level={3} id="set_webhook_webhook_3020">(1) Zapierでトリガーを設定する</Heading>
+
 1. ZapierのWebサイトにアクセスし、<Wovn>［Sign up］</Wovn>をクリックしてZapierのアカウントを新規作成します。  
 すでにZapierのアカウントをお持ちの場合は、<Wovn>［Log in］</Wovn>をクリックしてご自身のアカウントにログインしてください。  
 [ZapierのWebサイト](https://zapier.com/)
@@ -100,7 +98,6 @@ Webhookを設定する前に、次を準備してください。
 
    Zapierでは、ひとつひとつの連携設定のことをZapと呼びます。連携元と連携先のサービスを選んでZapを作成します。
 
-   
    </Hint>
 
 1. トリガー選択画面で、検索ボックスに「Webhook」と入力し、<Wovn>［Webhooks by Zapier］</Wovn>をクリックします。
@@ -119,6 +116,7 @@ Webhookを設定する前に、次を準備してください。
 次に<Kintone />でWebhookを設定します。ZapierのWebページはそのまま開いておいてください。
 
 <Heading level={3} id="set_webhook_webhook_3030">(2) &lt;Kintone /&gt;でWebhookを設定する</Heading>
+
 1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
    <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
 
@@ -160,6 +158,7 @@ Webhookを設定する前に、次を準備してください。
   それでも失敗する場合、<Wovn>［Webhook URL］</Wovn>にコピー＆ペーストしたURLに誤りがないかなど、確認してください。
 
 <Heading level={3} id="set_webhook_webhook_3040">(3) Zapierでアクションの設定をする</Heading>
+
 1. Zapierのアクションの設定が表示されるので、<Wovn>［Gmail］</Wovn>を選択します。  
    <Img src="/k/kintone/img-ja/webhook_06.png" alt="スクリーンショット：［Gmail］が枠線で強調されている" />
 
@@ -184,15 +183,13 @@ Webhookを設定する前に、次を準備してください。
 
 <Note>
 
-
 * Webhookは1アプリにつき10個まで設定できます。
-
 * Webhookの通知は、ドメイン単位で1分間に60回まで送信されます。1分間に60回を超えてレコードを操作すると、61回目以降の操作ではWebhookの通知が送信されません。
-
 
 </Note>
 
 <Heading id="set_webhook_webhook_40">&lt;Kintone /&gt;のWebhookの設定を変更する</Heading>
+
 <Kintone />のWebhookの設定内容をあとから変更できます。手順は、次のとおりです。
 
 1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
@@ -217,7 +214,6 @@ cybozu developer networkでも、Zapierを介して<Kintone />と連携する例
 
 * [コーディングなしで超簡単！<Kintone />のWebhookでGmailに通知する](https://cybozu.dev/ja/kintone/tips/development/3rd-party-services/mail/notification-to-gmail-using-kintone-webhook/)
 * [【REST API × Webhook】お客様が来場した時、Slackに通知を送ってみよう！](https://cybozu.dev/ja/kintone/tips/development/3rd-party-services/chat/notify-in-slack-using-kintone-webhook/)
-
 </Reference>
 
 </Enabled>
