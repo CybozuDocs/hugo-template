@@ -5,6 +5,7 @@ export type ConversionConfig = {
   outputDir: string;
   filter?: string;
   imagePathPrefix?: PathReplacement;
+  preprocessorConfig?: string;
 };
 
 export type PathReplacement = {

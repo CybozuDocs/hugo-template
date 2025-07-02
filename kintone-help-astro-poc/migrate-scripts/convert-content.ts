@@ -19,6 +19,7 @@ import { processShortcodes } from './shortcode-processor.js';
 import { processHeadings } from './heading-processor.js';
 import { processEscaping } from './escape-processor.js';
 import { processHtml } from './html-processor.js';
+import { loadPreprocessorConfig, applyPreprocessing, type PreprocessorConfig, type PreprocessingResult } from './preprocessor.js';
 import type { ConversionConfig, ProcessingStats, ConversionResult } from './types.js';
 
 async function main(): Promise<void> {
@@ -34,6 +35,10 @@ async function main(): Promise<void> {
     
     if (config.imagePathPrefix) {
       console.log(`🖼️  Image path: ${config.imagePathPrefix.from} → ${config.imagePathPrefix.to}`);
+    }
+    
+    if (config.preprocessorConfig) {
+      console.log(`🔧 Preprocessor: ${config.preprocessorConfig}`);
     }
     
     const stats = await convertFiles(config);
@@ -55,6 +60,18 @@ async function convertFiles(config: ConversionConfig): Promise<ProcessingStats> 
     errors: 0,
   };
   
+  // Load preprocessor config if provided
+  let preprocessorConfig: PreprocessorConfig | undefined;
+  if (config.preprocessorConfig) {
+    try {
+      preprocessorConfig = await loadPreprocessorConfig(config.preprocessorConfig);
+      console.log(`🔧 Loaded ${preprocessorConfig.rules.length} preprocessor rules`);
+    } catch (error) {
+      console.error(`❌ Failed to load preprocessor config: ${error}`);
+      throw error;
+    }
+  }
+  
   // Find all markdown files
   console.log('🔍 Finding markdown files...');
   const files = await findMarkdownFiles(config.inputDir, config.filter);
@@ -75,7 +92,7 @@ async function convertFiles(config: ConversionConfig): Promise<ProcessingStats> 
         continue;
       }
       
-      const success = await convertFile(inputFile, config);
+      const success = await convertFile(inputFile, config, preprocessorConfig);
       stats.processedFiles++;
       
       if (success) {
@@ -95,12 +112,16 @@ async function convertFiles(config: ConversionConfig): Promise<ProcessingStats> 
   return stats;
 }
 
-async function convertFile(inputFile: string, config: ConversionConfig): Promise<boolean> {
+async function convertFile(inputFile: string, config: ConversionConfig, preprocessorConfig?: PreprocessorConfig): Promise<boolean> {
   // Read file content
   const content = await readMarkdownFile(inputFile);
   
   // Parse frontmatter and content
   const { frontmatter, content: bodyContent } = parseFrontMatter(content);
+  
+  // Apply preprocessing if configured
+  const preprocessingResult = applyPreprocessing(inputFile, bodyContent, preprocessorConfig);
+  const preprocessedContent = preprocessingResult.content;
   
   // Determine if this is an index file
   const isIndexFile = basename(inputFile) === '_index.md';
@@ -110,7 +131,7 @@ async function convertFile(inputFile: string, config: ConversionConfig): Promise
   
   // Collect all imports and process content
   const allImports = new Set<string>();
-  let processedContent = bodyContent;
+  let processedContent = preprocessedContent;
   let hasChanges = false;
   
   // Process images
@@ -175,6 +196,11 @@ async function convertFile(inputFile: string, config: ConversionConfig): Promise
     }
   } else {
     console.log(`📝 Processed: ${inputFile} → ${outputPath}`);
+  }
+  
+  // Report preprocessor application
+  if (preprocessingResult.rulesApplied.length > 0) {
+    console.log(`   🔧 Preprocessor applied: ${preprocessingResult.rulesApplied.join(', ')}`);
   }
   
   return true;

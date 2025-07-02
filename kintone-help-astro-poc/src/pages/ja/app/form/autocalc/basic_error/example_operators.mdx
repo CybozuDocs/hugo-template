@@ -35,8 +35,8 @@ import Note from "@/components/Note.astro";
       <td>1</td>
     </tr>
     <tr>
-      <td>*</td>
-      <td>3*2</td>
+      <td>&#42;</td>
+      <td>3&#42;2</td>
       <td>6</td>
     </tr>
     <tr>
@@ -65,28 +65,28 @@ import Note from "@/components/Note.astro";
       <td>Aに100、Bに10、Cに5を入れた場合：5</td>
     </tr>
     <tr>
-      <td><></td>
-      <td>IF(A<>100,B,C)</td>
+      <td>&lt;&gt;</td>
+      <td>IF(A&lt;&gt;100,B,C)</td>
       <td>Aに100、Bに10、Cに5を入れた場合：5</td>
     </tr>
     <tr>
-      <td><</td>
-      <td>IF(A<100,B,C)</td>
+      <td>&lt;</td>
+      <td>IF(A&lt;100,B,C)</td>
       <td>Aに100、Bに10、Cに5を入れた場合：5</td>
     </tr>
     <tr>
-      <td><=</td>
-      <td>IF(A<=100,B,C)</td>
+      <td>&lt;=</td>
+      <td>IF(A&lt;=100,B,C)</td>
       <td>Aに100、Bに10、Cに5を入れた場合：10</td>
     </tr>
     <tr>
-      <td>></td>
-      <td>IF(A>100,B,C)</td>
+      <td>&gt;</td>
+      <td>IF(A&gt;100,B,C)</td>
       <td>Aに100、Bに10、Cに5を入れた場合：5</td>
     </tr>
     <tr>
-      <td>>=</td>
-      <td>IF(A>=100,B,C)</td>
+      <td>&gt;=</td>
+      <td>IF(A&gt;=100,B,C)</td>
       <td>Aに100、Bに10、Cに5を入れた場合：10</td>
     </tr>
     <tr>
@@ -106,7 +106,7 @@ import Note from "@/components/Note.astro";
     </tr>
     <tr>
       <td>IF</td>
-      <td>IF(A<100,B,C)</td>
+      <td>IF(A&lt;100,B,C)</td>
       <td>Aの値が90の場合は結果がB、Aの値が110の場合は結果がC</td>
     </tr>
     <tr>
@@ -161,8 +161,10 @@ import Note from "@/components/Note.astro";
 <table width="90%">
   <tbody>
     <tr>
-      <td><b>和を計算：フィールドA + フィールドB</b><br /><br />
-      フィールドAが「1」、フィールドBが「2」の場合、計算結果は「3」となります。</td>
+      <td>
+        <b>和を計算：フィールドA + フィールドB</b><br /><br />
+        フィールドAが「1」、フィールドBが「2」の場合、計算結果は「3」となります。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -170,8 +172,10 @@ import Note from "@/components/Note.astro";
 <table width="90%">
   <tbody>
     <tr>
-      <td><b> ( )を使った計算：(フィールドA - 1000) * 2</b><br /><br />
-      フィールドAが「1,500」の場合、計算結果は「1,000」となります。</td>
+      <td>
+        <b> ( )を使った計算：(フィールドA - 1000) * 2</b><br /><br />
+        フィールドAが「1,500」の場合、計算結果は「1,000」となります。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -179,8 +183,10 @@ import Note from "@/components/Note.astro";
 <table width="90%">
   <tbody>
     <tr>
-      <td><b>* と + の組み合わせ：フィールドA*5 + フィールドB*10</b><br /><br />
-      フィールドAが「20」、フィールドBが「10」の場合、計算結果は「200」となります。</td>
+      <td>
+        <b>* と + の組み合わせ：フィールドA*5 + フィールドB*10</b><br /><br />
+        フィールドAが「20」、フィールドBが「10」の場合、計算結果は「200」となります。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -242,8 +248,10 @@ import Note from "@/components/Note.astro";
 <table width="90%">
   <tbody>
     <tr>
-      <td><b>計算式：SUM(フィールドA)</b><br /><br />
-      計算結果は「3,200」になります。</td>
+      <td>
+        <b>計算式：SUM(フィールドA)</b><br /><br />
+        計算結果は「3,200」になります。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -261,9 +269,11 @@ import Note from "@/components/Note.astro";
 <table width="90%">
   <tbody>
     <tr>
-      <td><b>秒単位で計算：フィールドA + (60 * 60 * 1)</b><br /><br />
-      フィールドAが「2014-01-01 09:00」の場合、計算結果は「2014-01-01 10:00」になります。<br />
-      フィールドの表示形式を「日時（例：2012-08-06 2:03）」に設定している場合の計算結果です。</td>
+      <td>
+        <b>秒単位で計算：フィールドA + (60 * 60 * 1)</b><br /><br />
+        フィールドAが「2014-01-01 09:00」の場合、計算結果は「2014-01-01 10:00」になります。<br />
+        フィールドの表示形式を「日時（例：2012-08-06 2:03）」に設定している場合の計算結果です。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -271,9 +281,11 @@ import Note from "@/components/Note.astro";
 <table width="90%">
   <tbody>
     <tr>
-      <td><b>表示形式を時間で設定：フィールドA - フィールドB</b><br /><br />
-      フィールドAが「2014-01-01 09:00」、フィールドBが「2014-01-01 08:00」の場合、計算結果は「1時間0分」になります。<br />
-      フィールドの表示形式を「時間（例：26時間3分）」に設定している場合の計算結果です。</td>
+      <td>
+        <b>表示形式を時間で設定：フィールドA - フィールドB</b><br /><br />
+        フィールドAが「2014-01-01 09:00」、フィールドBが「2014-01-01 08:00」の場合、計算結果は「1時間0分」になります。<br />
+        フィールドの表示形式を「時間（例：26時間3分）」に設定している場合の計算結果です。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -300,8 +312,10 @@ import Note from "@/components/Note.astro";
 <table width="90%">
   <tbody>
     <tr>
-      <td><b>ほかのフィールドの値を表示：フィールドA</b><br /><br />
-      フィールドAが「佐藤」の場合、計算結果は「佐藤」になります。</td>
+      <td>
+        <b>ほかのフィールドの値を表示：フィールドA</b><br /><br />
+        フィールドAが「佐藤」の場合、計算結果は「佐藤」になります。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -309,8 +323,10 @@ import Note from "@/components/Note.astro";
 <table width="90%">
   <tbody>
     <tr>
-      <td><b>文字列の結合：フィールドA &amp; &quot; &quot; &amp; フィールドB</b><br /><br />
-      フィールドAが「佐藤」、フィールドBが「昇」の場合、計算結果は「佐藤 昇」になります。</td>
+      <td>
+        <b>文字列の結合：フィールドA &amp; &quot; &quot; &amp; フィールドB</b><br /><br />
+        フィールドAが「佐藤」、フィールドBが「昇」の場合、計算結果は「佐藤 昇」になります。
+      </td>
     </tr>
   </tbody>
 </table>
@@ -326,9 +342,11 @@ import Note from "@/components/Note.astro";
 <table width="90%">
   <tbody>
     <tr>
-      <td><b>YEN関数の利用例：YEN(フィールドA * 1.1, 0)</b><br /><br />
-      フィールドAが「8,875」の場合、計算結果は「&yen;9,763」になります。<br />
-      「8,875 × 1.1 = 9762.5」を四捨五入した値です。</td>
+      <td>
+        <b>YEN関数の利用例：YEN(フィールドA * 1.1, 0)</b><br /><br />
+        フィールドAが「8,875」の場合、計算結果は「&yen;9,763」になります。<br />
+        「8,875 × 1.1 = 9762.5」を四捨五入した値です。
+      </td>
     </tr>
   </tbody>
 </table>

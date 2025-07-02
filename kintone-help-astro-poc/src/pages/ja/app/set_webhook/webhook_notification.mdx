@@ -32,10 +32,12 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
         <tr>
             <td>type</td>
             <td>文字列</td>
-            <td>操作の種類です。<br>
-            レコードを追加した：ADD_RECORD<br>
-            レコードを編集した：UPDATE_RECORD<br>
-            レコードのステータスを変更した：UPDATE_STATUS</td>
+            <td>
+              操作の種類です。<br />
+              レコードを追加した：ADD_RECORD<br />
+              レコードを編集した：UPDATE_RECORD<br />
+              レコードのステータスを変更した：UPDATE_STATUS
+            </td>
         </tr>
         <tr>
             <td>app</td>
@@ -55,18 +57,22 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
         <tr>
             <td>record</td>
             <td>オブジェクト</td>
-            <td>レコードの情報を表すオブジェクトです。<br>
-            オブジェクトの形式は、レコードを取得するREST APIと同様です。<br>
-            <Enabled regions={["JP"]}><a target="_blank" href="https://cybozu.dev/ja/id/ca1c4e932b47856d3eb1a819/">1件のレコードを取得する</a>（cybozu developer network）</Enabled>
-            <Enabled regions={["US"]}><a target="_blank" href="https://kintone.dev/en/docs/kintone/rest-api/records/get-record/">Get Record</a>（cybozu developer network）</Enabled>
-            <Enabled regions={["CN"]}><a target="_blank" href="https://cybozudev.kf5.com/hc/kb/article/201594/">获取记录（GET）</a>（cybozu developer network）</Enabled></td>
+            <td>
+              レコードの情報を表すオブジェクトです。<br />
+              オブジェクトの形式は、レコードを取得するREST APIと同様です。<br />
+              <Enabled regions={["JP"]}><a target="_blank" href="https://cybozu.dev/ja/id/ca1c4e932b47856d3eb1a819/">1件のレコードを取得する</a>（cybozu developer network）</Enabled>
+              <Enabled regions={["US"]}><a target="_blank" href="https://kintone.dev/en/docs/kintone/rest-api/records/get-record/">Get Record</a>（cybozu developer network）</Enabled>
+              <Enabled regions={["CN"]}><a target="_blank" href="https://cybozudev.kf5.com/hc/kb/article/201594/">获取记录（GET）</a>（cybozu developer network）</Enabled>
+            </td>
         </tr>
         <tr>
             <td>recordTitle</td>
             <td>文字列</td>
-            <td>レコードのタイトルです。<br>
-            タイトルにするフィールドは変更できます。<br>
-            <a href="/k/ja/id/040604.html">レコードタイトルを設定する</a></td>
+            <td>
+              レコードのタイトルです。<br />
+              タイトルにするフィールドは変更できます。<br />
+              <a href="/k/ja/id/040604.html">レコードタイトルを設定する</a>
+            </td>
         </tr>
         <tr>
             <td>url</td>
@@ -124,8 +130,10 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
         <tr>
             <td>type</td>
             <td>文字列</td>
-            <td>操作の種類です。<br />
-            レコードを削除した：DELETE_RECORD</td>
+            <td>
+              操作の種類です。<br />
+              レコードを削除した：DELETE_RECORD
+            </td>
         </tr>
         <tr>
             <td>app</td>
@@ -217,11 +225,13 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
         <tr>
             <td>comment</td>
             <td>オブジェクト</td>
-            <td>コメントの情報を表すオブジェクトです。<br />
-            オブジェクトの形式は、レコードコメントを一括取得するREST APIと同様です。<br />
-            <Enabled regions={["JP"]}><a href="https://cybozu.dev/ja/kintone/docs/rest-api/records/get-comments/" target="_blank">レコードコメントの一括取得</a>（cybozu developer network）</Enabled>
-            <Enabled regions={["US"]}><a href="https://kintone.dev/en/docs/kintone/rest-api/records/get-comments/" target="_blank">Get Comments</a>（cybozu developer network）</Enabled>
-            <Enabled regions={["CN"]}><a href="https://cybozudev.kf5.com/hc/kb/article/1099206/" target="_blank">批量获取记录的回复</a>（cybozu developer network）</Enabled></td>
+            <td>
+              コメントの情報を表すオブジェクトです。<br />
+              オブジェクトの形式は、レコードコメントを一括取得するREST APIと同様です。<br />
+              <Enabled regions={["JP"]}><a href="https://cybozu.dev/ja/kintone/docs/rest-api/records/get-comments/" target="_blank">レコードコメントの一括取得</a>（cybozu developer network）</Enabled>
+              <Enabled regions={["US"]}><a href="https://kintone.dev/en/docs/kintone/rest-api/records/get-comments/" target="_blank">Get Comments</a>（cybozu developer network）</Enabled>
+              <Enabled regions={["CN"]}><a href="https://cybozudev.kf5.com/hc/kb/article/1099206/" target="_blank">批量获取记录的回复</a>（cybozu developer network）</Enabled>
+            </td>
         </tr>
         <tr>
             <td>id</td>
@@ -236,8 +246,10 @@ Webhookを有効にすると、<Kintone />からJSON形式の通知が送信さ�
         <tr>
             <td>type</td>
             <td>文字列</td>
-            <td>操作の種類です。<br />
-            コメントを書き込んだ：ADD_RECORD_COMMENT</td>
+            <td>
+              操作の種類です。<br />
+              コメントを書き込んだ：ADD_RECORD_COMMENT
+            </td>
         </tr>
         <tr>
             <td>url</td>

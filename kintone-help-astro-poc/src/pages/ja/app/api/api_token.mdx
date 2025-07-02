@@ -24,7 +24,7 @@ APIトークンは、外部のプログラムから<Kintone /> REST APIを実行
 <caption>APIトークンを使用したリクエストの例：</caption>
     <tbody>
         <tr>
-                        <td>
+            <td>
               GET /k/v1/record.json?app=7&amp;id=100 HTTP/1.1<br />
               Host: example.<CybozuCom />:443<br />
               X-Cybozu-API-Token:<b>cJrAD9Es62qm0Z3eE6uzQQmaDxM3q9jiDay1oysX</b>
@@ -36,7 +36,7 @@ APIトークンは、外部のプログラムから<Kintone /> REST APIを実行
 <caption>複数のAPIトークンを使って、顧客名をルックアップで取得する例：</caption>
     <tbody>
         <tr>
-                        <td>
+            <td>
               curl -X POST -H "X-Cybozu-API-Token: <b>cJrAD9Es62qm0Z3eE6uzQQmaDxM3q9jiDay1oysX</b>, <b>6oDAV8hCY6HTa1AC6EZbNe2dpc1t8QnWZrHOMgMb</b>"
               "https://（サブドメイン名）.<CybozuCom />/k/v1/record.json" -H "Content-Type: application/json" -d '&#123;app: 20, record: &#123;"顧客名": &#123;value: "金都運総研"&#125;&#125;&#125;'
             </td>

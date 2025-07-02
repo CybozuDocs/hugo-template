@@ -23,6 +23,10 @@ export function parseCliArgs(): ConversionConfig {
       'image-path-to': {
         type: 'string',
       },
+      'preprocessor': {
+        type: 'string',
+        short: 'p',
+      },
       'help': {
         type: 'boolean',
         short: 'h',
@@ -61,6 +65,10 @@ export function parseCliArgs(): ConversionConfig {
     };
   }
 
+  if (values.preprocessor) {
+    config.preprocessorConfig = values.preprocessor;
+  }
+
   return config;
 }
 
@@ -77,6 +85,7 @@ Options:
   -f, --filter <pattern>     Filter files by path pattern (partial match)
   --image-path-from <path>   Source path prefix for image path replacement
   --image-path-to <path>     Target path prefix for image path replacement
+  -p, --preprocessor <file>  JavaScript file with custom preprocessing rules
   -h, --help                 Show this help message
 
 Examples:
@@ -90,6 +99,11 @@ Examples:
   tsx convert-content.ts \\
     --image-path-from "/k/" \\
     --image-path-to "/k/kintone/" \\
+    ./content ./pages
+
+  # With preprocessor
+  tsx convert-content.ts \\
+    --preprocessor ./preprocessors.js \\
     ./content ./pages
 `);
 }
