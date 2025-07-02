@@ -142,7 +142,7 @@ function processContentShortcodes(
     } else {
       // Match opening and closing tags with content, handling attributes and preserving indentation
       const regex = new RegExp(
-        `^(\\s*)\\{\\{<\\s*${shortcode}(\\s+[^>]*)?\\s*>\\}\\}([\\s\\S]*?)\\{\\{<\\s*/${shortcode}\\s*>\\}\\}`,
+        `^(\\s*)\\{\\{<\\s*${shortcode}(\\s+[^>]*)?\\s*>\\}\\}([\\s\\S]*?)^(\\s*)\\{\\{<\\s*/${shortcode}\\s*>\\}\\}`,
         'gm'
       );
       
@@ -154,6 +154,7 @@ function processContentShortcodes(
           const indent = match[1]; // Capture leading whitespace
           const attributeString = match[2];
           const innerContent = match[3];
+          const closingIndent = match[4]; // Capture closing tag indent (but use opening indent for consistency)
           
           // Handle special cases and attributes
           let replacement;
@@ -285,6 +286,7 @@ function convertToAstroAttributes(
   
   return astroAttrs.length > 0 ? ' ' + astroAttrs.join(' ') : '';
 }
+
 
 export function extractShortcodes(content: string): ShortcodeMatch[] {
   const matches: ShortcodeMatch[] = [];

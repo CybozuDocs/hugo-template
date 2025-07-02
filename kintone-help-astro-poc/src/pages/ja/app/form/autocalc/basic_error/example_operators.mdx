@@ -153,6 +153,7 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
+
 * 「文字列（1行）」フィールドを使用した計算結果は、文字列として扱われます。   
   計算結果が「1」などの数字の場合でも、その計算結果を数値として扱うことはできません。
 
@@ -295,9 +296,11 @@ import Note from "@/components/Note.astro";
 
 <Note>
 
+
 * 次の計算は、JavaScriptでカスタマイズすることで、実現可能です。
   * ユーザーの年齢
   * [経過年数を表示する](https://cybozu.dev/ja/kintone/tips/development/customize/date-format/display-elapsed-years/)（日本語のみ）
+
 
 * 日時フィールド、作成日時フィールド、または更新日時フィールドの計算結果を日付形式で表示する場合、計算結果はUTC（協定世界時）で表示されます。JST（日本標準時）の日付を表示する場合は、+9時間（60\*60\*9=32,400秒）を計算式に足す必要があります。
 
@@ -335,6 +338,7 @@ import Note from "@/components/Note.astro";
 </table>
 
 <Note>
+
 
 * 時刻、日付、または日時フィールドの値を文字として結合する場合、DATE_FORMAT関数を使用して、日時の形式を指定します。  
   日時の形式を指定しないと、日付や時刻が、UNIX時刻と呼ばれる数値で表示されます。  

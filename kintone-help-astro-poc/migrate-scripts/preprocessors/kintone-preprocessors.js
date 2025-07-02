@@ -130,32 +130,5 @@ export default {
         );
       },
     },
-    {
-      filePath: "app/using_app/delete_bulk.md",
-      transform: (content) => {
-        // Note内のインデントを統一（開始タグに合わせて4文字インデント）
-        return content.replace(
-          /(   \{\{< note >\}\}\n\n)([\s\S]*?)(   \{\{< \/note >\}\})/,
-          (match, openTag, noteContent, closeTag) => {
-            const indentedContent = noteContent
-              .split("\n")
-              .map((line) => {
-                if (line.trim() === "") return line;
-                // すべての行に4文字インデントを適用
-                if (line.startsWith(" ")) {
-                  // 既にスペースがある場合は置き換え
-                  return "    " + line.replace(/^ +/, "");
-                } else if (line.trim().length > 0) {
-                  // スペースがない場合は4文字追加
-                  return "    " + line;
-                }
-                return line;
-              })
-              .join("\n");
-            return openTag + indentedContent + closeTag;
-          },
-        );
-      },
-    },
   ],
 };

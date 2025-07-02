@@ -2,7 +2,7 @@ import type { ConversionResult } from './types.js';
 
 // Regular expression to match markdown headings with custom IDs
 // ## Title {#custom-id}
-const HEADING_REGEX = /^(#{1,6})\s+(.+?)\s*\{#([^}]+)\}\s*$/gm;
+const HEADING_REGEX = /^(#{1,6})\s+(.+?)\s*\{#([^}]+)\}/gm;
 
 export function processHeadings(content: string): ConversionResult {
   const imports: string[] = [];
