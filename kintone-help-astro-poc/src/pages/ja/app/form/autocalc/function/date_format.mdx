@@ -48,6 +48,7 @@ UNIX時刻は、-30610224000以上、253402300799以下の範囲で指定しま�
 
 <Note>
 UNIX時刻とは、1970年1月1日午前0時（協定世界時）からの経過秒数のことです。たとえば日時が2016年4月1日午前0時（協定世界時）の場合、UNIX時刻は「1459468800」です。
+
 </Note>
 
 <Heading level={4} id="autocalc_date_format_101030">計算式を指定する</Heading>
@@ -74,6 +75,7 @@ DATE_FORMAT(日付+24*60*60*1, "YYYY/MM/dd", "Etc/GMT")
 
 <Reference>
 [日付、時刻、日時の計算](/k/ja/id/040502.html)
+
 </Reference>
 
 <Heading level={3} id="autocalc_date_format_1020">第2引数：日時の形式</Heading>
@@ -109,6 +111,7 @@ DATE_FORMAT(フィールドコード, "'''DATE:' d''", "Asia/Tokyo")
 
 <Reference>
 [日付の計算結果の表示形式](/k/ja/id/040502.html#autocalc_date_time_2010)
+
 </Reference>
 
 <Heading level={3} id="autocalc_date_format_2030">第3引数：タイムゾーン</Heading>
@@ -133,6 +136,7 @@ DATE_FORMAT(日時, "YYYY年M月d日", "Asia/Tokyo")
 <Note>
 日時フィールドのタイムゾーンの処理は、1970年1月1日午前0時（協定世界時）から2050年1月1日午前0時（協定世界時）までの日時に対応しています。  
 1970年1月1日より前の日時をWebブラウザーから保存または表示する場合、一部制限事項があります。詳細は「[フィールドの入力制限](/k/ja/id/040528.html)」の「日時」を参照してください。
+
 </Note>
 
 <Reference>
@@ -140,6 +144,7 @@ DATE_FORMAT(日時, "YYYY年M月d日", "Asia/Tokyo")
 * [タイムゾーンの一覧](/general/ja/admin/list_systemadmin/list_localization/timezone.html)  
 * [システムタイムゾーンの設定](/general/ja/admin/list_systemadmin/list_localization/system_time.html)  
 * [DATE_FORMAT関数の計算結果で日付や時刻がずれて表示されます](/k/ja/id/040267.html)
+
 
 </Reference>
 
@@ -382,6 +387,7 @@ DATE_FORMAT(日時, "YYYY-MM-dd HH:mm", "America/Los_Angeles")
 <Reference>
 
 [日付と文字列を結合して表示したい](/k/ja/id/040741.html)
+
 
 </Reference>
 

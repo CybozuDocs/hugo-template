@@ -53,6 +53,7 @@ Webhookを設定すると、<Kintone />のアプリで次の操作が行われ�
 * 複数のレコードを一括削除する
 * 複数のレコードを一括操作するREST APIを使用してレコードを操作する
 
+
 </Note>
 
 <Heading id="set_webhook_webhook_20">Webhookの設定の流れ</Heading>
@@ -72,6 +73,7 @@ Webhookは次の手順で設定します。
 * <Slash />共通管理者によって、組織間のアクセスが禁止されている場合、Webhookを設定するには<Kintone />システム管理権限が必要です。  
   [所属組織が異なるユーザーのプロフィールと組織の閲覧を制限する](/k/ja/id/04060.html)
 * 今回の設定例で利用する「Webhooks by Zapier」は、ZapierのFree Planを利用して設定しています。
+
 
 </Warning>
 
@@ -94,6 +96,7 @@ Webhookを設定する前に、次を準備してください。
 
    Zapierでは、ひとつひとつの連携設定のことをZapと呼びます。連携元と連携先のサービスを選んでZapを作成します。
 
+   
    </Hint>
 
 1. トリガー選択画面で、検索ボックスに「Webhook」と入力し、<Wovn>［Webhooks by Zapier］</Wovn>をクリックします。
@@ -180,6 +183,7 @@ Webhookを設定する前に、次を準備してください。
 * Webhookは1アプリにつき10個まで設定できます。
 * Webhookの通知は、ドメイン単位で1分間に60回まで送信されます。1分間に60回を超えてレコードを操作すると、61回目以降の操作ではWebhookの通知が送信されません。
 
+
 </Note>
 
 <Heading id="set_webhook_webhook_40">&lt;Kintone /&gt;のWebhookの設定を変更する</Heading>
@@ -209,4 +213,5 @@ cybozu developer networkでも、Zapierを介して<Kintone />と連携する例
 * [【REST API × Webhook】お客様が来場した時、Slackに通知を送ってみよう！](https://cybozu.dev/ja/kintone/tips/development/3rd-party-services/chat/notify-in-slack-using-kintone-webhook/)
 
 </Reference>
+
 </Enabled>

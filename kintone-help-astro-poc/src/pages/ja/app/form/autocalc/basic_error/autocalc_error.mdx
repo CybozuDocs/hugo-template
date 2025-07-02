@@ -43,6 +43,7 @@ import Note from "@/components/Note.astro";
 
 IF=(オプション=”
 
+
 </Graynote>
 
 ただし、次の例のような場合、「（ビュッフェ）」の丸カッコが全角で入力されていますが、このエラーは表示されません。
@@ -51,12 +52,14 @@ IF=(オプション=”
 
   <Graynote>
   IF=(オプション="朝食（ビュッフェ）",1500,0)
+  
   </Graynote>
 
 * 全角記号が使用されているが、その前に半角の「"」が入力されており、まだ半角の「"」で閉じられていない
 
   <Graynote>
   IF=(オプション="朝食（ビュッフェ）
+  
   </Graynote>
 
 <Heading level={3} id="autocalc_autocalc_error_1020">誤った演算子を入力した</Heading>
@@ -204,6 +207,7 @@ CONTAINS関数とSUM関数の使いかたは、次のページを参照してく
 * [[CONTAINS関数]フィールドの中に、指定した文字列と完全一致するものがあるか判定する](/k/ja/id/040506.html)
 * [テーブル内のフィールドを計算する](/k/ja/id/040510.html)
 
+
 </Note>
 
 <Heading level={3} id="autocalc_autocalc_error_1092">演算子とデータ型の組み合わせが正しくない</Heading>
@@ -219,6 +223,7 @@ CONTAINS関数とSUM関数の使いかたは、次のページを参照してく
 <Graynote>
 
 文字列（1行）のフィールドコード+文字列（1行）のフィールドコード
+
 
 </Graynote>
 
@@ -245,6 +250,7 @@ CONTAINS関数とSUM関数の使いかたは、次のページを参照してく
 <Graynote>
 
 CONTAINS(ドロップダウンフィールドのフィールドコード, "済")
+
 
 </Graynote>
 

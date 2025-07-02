@@ -68,6 +68,7 @@ import Wovn from "@/components/Wovn.astro";
 アプリストアには、メールワイズとの連携で使用するサンプルアプリをまとめて追加できる「メールワイズ連携パック」が用意されています。  
 「メールワイズ連携パック」をインストールすると、顧客リストアプリとメール作成テンプレートアプリが追加されます。なお、追加したアプリで、メールワイズ連携のプラグインの設定が必要です。
 
+
 </Hint>
 
 <Heading level={4} id="add_plugin_mailwise_plugin_301010">顧客情報を管理するアプリを用意する</Heading>
@@ -85,6 +86,7 @@ import Wovn from "@/components/Wovn.astro";
 
 * 顧客情報のフィールドの値を、メールテンプレートの本文に埋め込むことができます。入力したいフィールドのフィールドコードを変数として使用します。
 * メールテンプレートの本文に埋め込むフィールドで、フィールドコードに<Wovn>［Company］</Wovn><Wovn>［Customer］</Wovn><Wovn>［Section］</Wovn>のいずれかを指定する場合は、頭文字を大文字にしてください。
+
 
 </Note>
 
@@ -111,6 +113,7 @@ import Wovn from "@/components/Wovn.astro";
 
 最大100件のメールテンプレートを利用できます。レコードが100件以上ある場合は、レコード番号が大きい順に100件のレコードがメールテンプレートに利用できます。
 
+
 </Note>
 
 <Heading level={5} id="add_plugin_mailwise_plugin_30102010">メールの本文にフィールドの値を埋め込む</Heading>
@@ -130,6 +133,7 @@ import Wovn from "@/components/Wovn.astro";
 <Note>
 
 テーブル内のフィールドは指定できません。
+
 
 </Note>
 
@@ -220,6 +224,7 @@ import Wovn from "@/components/Wovn.astro";
   <Note>
   メールの履歴は、<Wovn>［「To」に使用するフィールド］</Wovn>で指定したフィールドのメールアドレスをもとに、<Wovn>［利用するメールスペース］</Wovn>に指定したメールスペースから抽出されます。<Wovn></Wovn><Wovn></Wovn><Wovn>［利用するメールアプリケーション］</Wovn>に指定したメールアプリケーション内の履歴に限りません。
 
+  
   </Note>
 
 <Heading id="add_plugin_mailwise_plugin_40">メールワイズと連携した機能を利用する</Heading>
@@ -245,6 +250,7 @@ import Wovn from "@/components/Wovn.astro";
 
 * 1度に一斉配信できるメールの数は最大1,000件です。メールの数が1,000件を超える場合は、1,000件以内に収まるように配信先を絞り込み、複数回に分けてメールを配信してください。
 * <Wovn>［「To」に使用するフィールド］</Wovn>に複数のメールアドレスが登録されていても、先頭のメールアドレスのみにメールが配信されます。
+
 
 </Note>
 
@@ -286,5 +292,6 @@ import Wovn from "@/components/Wovn.astro";
   * jQuery：[公式ページ](https://jquery.com/)・[ライセンスファイル](/k/files-ja/jquery_MIT-LICENSE.txt)
   * JsRender：[公式ページ](https://www.jsviews.com/)・[ライセンスファイル](/k/files-ja/JsRender_MIT-LICENSE.txt)
   * spin.js：[公式ページ](http://spin.js.org/)・[ライセンスファイル](/k/files-ja/spinjs_LICENSE.txt)
+
 
 </Note>

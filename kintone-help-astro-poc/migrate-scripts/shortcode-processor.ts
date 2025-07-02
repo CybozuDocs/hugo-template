@@ -120,43 +120,63 @@ function processContentShortcodes(
   let processed = content;
   
   for (const [shortcode, component] of Object.entries(SHORTCODE_MAPPINGS.content)) {
-    // Match opening and closing tags with content, handling attributes
-    const regex = new RegExp(
-      `\\{\\{<\\s*${shortcode}(\\s+[^>]*)?\\s*>\\}\\}([\\s\\S]*?)\\{\\{<\\s*/${shortcode}\\s*>\\}\\}`,
-      'g'
-    );
-    
-    const matches = Array.from(processed.matchAll(regex));
-    
-    if (matches.length > 0) {
-      for (const match of matches) {
-        const fullMatch = match[0];
-        const attributeString = match[1];
-        const innerContent = match[2];
-        
-        // Handle special cases and attributes
-        let replacement;
-        if (shortcode === 'wv_brk') {
-          replacement = `<Wovn>${innerContent}</Wovn>`;
-        } else if (attributeString && (shortcode === 'enabled' || shortcode === 'enabled2' || shortcode === 'disabled2')) {
-          // Handle attributes for enabled/disabled2
-          try {
-            const attributes = parseAttributes(attributeString.trim());
-            let astroAttributes = '';
-            if (attributes.regions) {
-              const regions = attributes.regions.split(',').map(r => r.trim());
-              astroAttributes = ` regions={[${regions.map(r => `"${r}"`).join(', ')}]}`;
-            }
-            replacement = `<${component}${astroAttributes}>${innerContent}</${component}>`;
-          } catch (error) {
-            replacement = `<${component}>${innerContent}</${component}>`;
-          }
-        } else {
-          replacement = `<${component}>${innerContent}</${component}>`;
+    // Special handling for wv_brk (inline shortcode)
+    if (shortcode === 'wv_brk') {
+      const regex = new RegExp(
+        `\\{\\{<\\s*${shortcode}(\\s+[^>]*)?\\s*>\\}\\}([\\s\\S]*?)\\{\\{<\\s*/${shortcode}\\s*>\\}\\}`,
+        'g'
+      );
+      
+      const matches = Array.from(processed.matchAll(regex));
+      
+      if (matches.length > 0) {
+        for (const match of matches) {
+          const fullMatch = match[0];
+          const innerContent = match[2];
+          const replacement = `<Wovn>${innerContent}</Wovn>`;
+          
+          processed = processed.replace(fullMatch, replacement);
+          imports.add(`import ${component} from "@/components/${component}.astro";`);
         }
-        
-        processed = processed.replace(fullMatch, replacement);
-        imports.add(`import ${component} from "@/components/${component}.astro";`);
+      }
+    } else {
+      // Match opening and closing tags with content, handling attributes and preserving indentation
+      const regex = new RegExp(
+        `^(\\s*)\\{\\{<\\s*${shortcode}(\\s+[^>]*)?\\s*>\\}\\}([\\s\\S]*?)\\{\\{<\\s*/${shortcode}\\s*>\\}\\}`,
+        'gm'
+      );
+      
+      const matches = Array.from(processed.matchAll(regex));
+      
+      if (matches.length > 0) {
+        for (const match of matches) {
+          const fullMatch = match[0];
+          const indent = match[1]; // Capture leading whitespace
+          const attributeString = match[2];
+          const innerContent = match[3];
+          
+          // Handle special cases and attributes
+          let replacement;
+          if (attributeString && (shortcode === 'enabled' || shortcode === 'enabled2' || shortcode === 'disabled2')) {
+            // Handle attributes for enabled/disabled2
+            try {
+              const attributes = parseAttributes(attributeString.trim());
+              let astroAttributes = '';
+              if (attributes.regions) {
+                const regions = attributes.regions.split(',').map(r => r.trim());
+                astroAttributes = ` regions={[${regions.map(r => `"${r}"`).join(', ')}]}`;
+              }
+              replacement = `${indent}<${component}${astroAttributes}>${innerContent}${indent}</${component}>`;
+            } catch (error) {
+              replacement = `${indent}<${component}>${innerContent}${indent}</${component}>`;
+            }
+          } else {
+            replacement = `${indent}<${component}>${innerContent}${indent}</${component}>`;
+          }
+          
+          processed = processed.replace(fullMatch, replacement);
+          imports.add(`import ${component} from "@/components/${component}.astro";`);
+        }
       }
     }
   }
