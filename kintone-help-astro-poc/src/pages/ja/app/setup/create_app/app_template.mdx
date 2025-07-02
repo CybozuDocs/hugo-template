@@ -1,0 +1,59 @@
+---
+title: "登録済みのテンプレートからアプリを作成する"
+weight: 500
+aliases:
+  - "/ja/id/040632"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />に登録されているアプリテンプレート（ひな型）を元に、新しいアプリを作成できます。  
+<Wovn>［登録済みのテンプレートから作成］</Wovn>画面には、<Kintone />システム管理者が登録したアプリテンプレートが表示されます。  
+<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アプリテンプレート］</Wovn>にアプリテンプレートが登録されていない場合、アプリストアに<Wovn>［登録済みのテンプレートから作成］</Wovn>メニューは表示されません。
+
+<Hint>
+
+アプリテンプレートが登録されていなくても、手元に<Kintone />から書き出したアプリのテンプレートファイルがある場合は、テンプレートファイルを読み込んでアプリを作成できます。  
+[テンプレートファイルからアプリを作成する](/k/ja/id/040627.html)
+
+</Hint>
+
+1. <Kintone />のポータルで、<Wovn>［アプリ］</Wovn>エリアにある+の形をした<Wovn>［アプリを作成する］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/app_template_01.png" alt="スクリーンショット：[アプリを作成する]アイコンを枠線で強調している" />
+
+   <Note>
+   <Wovn>［アプリを作成する］</Wovn>アイコンが表示されない場合、以下の原因が考えられます。
+
+   * アプリ作成権限が付与されていない。  
+     <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>でアプリ作成権限を確認してください。  
+     詳細は、次のページを参照してください。  
+     [<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+   * スペースに所属しないアプリの作成が、許可されていない。  
+     <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［利用する機能の選択］</Wovn>で、<Wovn>［スペースに所属しないアプリの作成を許可する］</Wovn>の設定内容を確認してください。  
+     詳細は、次のページを参照してください。  
+     [利用する機能の選択](/k/ja/id/04031.html#admin_feature_activation_3010)
+
+   </Note>
+
+1. <Wovn>［<Kintone />アプリストア］</Wovn>画面で、<Wovn>［登録済みのテンプレートから作成］</Wovn>をクリックします。  
+  <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アプリテンプレート］</Wovn>にアプリのテンプレートが登録されていない場合は、<Wovn>［登録済みのテンプレートから作成］</Wovn>は表示されません。  
+   <Img src="/k/kintone/img-ja/app_template_02.png" alt="スクリーンショット：[登録済みのテンプレートから作成]を枠線で強調している" />
+
+1. <Wovn>［登録済みのテンプレートから作成］</Wovn>画面で、使用するテンプレートの<Wovn>［アプリを作成］</Wovn>をクリックします。  
+  <Wovn>［パック］</Wovn>と書かれたテンプレートを使用すると、テンプレートに含まれている複数のアプリが、同時に作成されます。  
+   <Img src="/k/kintone/img-ja/app_template_03.png" alt="スクリーンショット：登録済みのテンプレートの一覧が表示されている" />
+
+<Reference>
+
+* [アプリテンプレートとは](/k/ja/id/04022.html)
+* [作成済みのアプリをテンプレート化して<Kintone />に登録する](/k/ja/id/04018.html)
+* [<Kintone />の外に保存されているアプリテンプレートファイルを<Kintone />に登録する](/k/ja/id/04020.html)
+
+</Reference>

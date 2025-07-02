@@ -1,0 +1,119 @@
+---
+title: "カテゴリーを設定する"
+weight: 200
+aliases:
+  - "/ja/id/040490"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Graynote from "@/components/Graynote.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Listsummary from "@/components/Listsummary.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+カテゴリーを有効にして階層を追加する手順や、階層を削除する手順を説明します。
+
+<Heading id="category_set_category_10">カテゴリーを有効にして階層を追加する</Heading>
+カテゴリーを有効にして階層を追加する手順を説明します。
+
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［その他の設定］</Wovn>にある<Wovn>［カテゴリー］</Wovn>をクリックします。
+
+1. <Wovn>［カテゴリー］</Wovn>画面で、<Wovn>［カテゴリーを有効にする］</Wovn>にチェックを入れて、カテゴリーを有効にします。
+
+1. <Wovn>［カテゴリーの階層］</Wovn>で、フィールドの右側にある+の形をした<Wovn>［追加する］</Wovn>アイコンをクリックして、カテゴリー名を入力します。
+   * カテゴリーは、親カテゴリーを含め5階層、合計1,000個まで追加できます。
+   * カテゴリー名は、64文字以内で入力してください。
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. 画面右上の<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+<Note>
+
+* カテゴリーが有効の場合、カテゴリーの分類を、ファイルに書き出すことや、ファイルから読み込むことができます。  
+  たとえば、レコードを登録したあとに、カテゴリーを設定した場合、ファイルからデータを読み込むことで、登録済みレコードもカテゴリーに分類できます。
+  * [ファイルにデータを書き出す](/k/ja/id/040452.html)
+  * [ファイルからレコードのデータをアプリに読み込む](/k/ja/id/040724.html)
+* カテゴリーには、アクセス権を設定できません。
+
+</Note>
+
+<Reference>
+
+[カテゴリーを無効にする](/k/ja/id/040801.html)
+
+</Reference>
+
+<Heading id="category_set_category_20">カテゴリー別にレコードを分類する</Heading>
+設定したカテゴリーにレコードを分類するには、各レコードの編集画面を開いて、分類したいカテゴリーを選択してください。<Wovn></Wovn>  
+カテゴリーは複数選択できます。  
+<Img src="/k/kintone/img-ja/whatscategory_img01.png" alt="スクリーンショット：カテゴリーを有効にしたアプリのレコード編集画面" />
+
+<Heading id="category_set_category_30">カテゴリーの階層を削除する</Heading>
+カテゴリーの階層の削除は、次の手順で行います。
+
+<Listsummary>
+
+1. [削除したいカテゴリーの階層に分類されたレコードがないことを確認する](#category_set_category_3010)
+1. [カテゴリーの階層を削除する](#category_set_category_3020)
+
+</Listsummary>
+
+<Heading level={3} id="category_set_category_3010">削除したいカテゴリーの階層に分類されたレコードがないことを確認する</Heading>
+運用中のアプリ、およびアプリの動作テスト環境の両方を確認してください。  
+[アプリの動作テストをする](/k/ja/id/040483.html)
+
+1. アプリをクリックして<Wovn>［レコードの一覧］</Wovn>画面を表示します。
+
+1. 削除したいカテゴリーの階層をクリックします。
+
+1. その階層にレコードがあるかを確認します。
+
+1. レコードがある場合はレコードを編集し、階層を変更するか、階層の選択を解除します。
+
+削除したい階層に分類されたレコードがなくなるまで、手順2から4の操作を繰り返します。
+
+<Note>
+
+カテゴリー機能が無効の場合は、カテゴリー機能を有効にしてから、削除したい階層に分類されたレコードがないか確認してください。  
+[カテゴリーを有効にして階層を追加する](#category_set_category_10)
+
+</Note>
+
+<Heading level={3} id="category_set_category_3020">カテゴリーの階層を削除する</Heading>
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［その他の設定］</Wovn>にある<Wovn>［カテゴリー］</Wovn>を選択します。
+
+1. <Wovn>［カテゴリー］</Wovn>画面で、削除したい階層の右側にある<Wovn>［削除する］</Wovn>アイコンをクリックします。
+
+1. 画面右下の<Wovn>［保存］</Wovn>をクリックします。
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+<Heading level={3} id="category_set_category_3030">エラーメッセージと対処方法</Heading>
+次のエラーメッセージが表示された場合の対処方法を説明します。
+
+<Graynote>
+
+処理に失敗しました。（エラーの内容：GAIA_CD07: カテゴリー「\*\*\*」を削除できません。運用中のアプリに、このカテゴリーに分類されているレコードがあります。）
+
+</Graynote>
+
+削除しようとするカテゴリーの階層に分類されたレコードがあるため、階層を削除できません。  
+該当の階層に分類されているレコードがある場合は、その階層に分類されているレコードがない状態にしてください。  
+[削除したい階層に分類されたレコードがないことを確認する](#category_set_category_3010)
+
+なお、2つ以上の階層が削除できない場合でも、エラーメッセージには、1つのカテゴリーの階層名しか表示されません。

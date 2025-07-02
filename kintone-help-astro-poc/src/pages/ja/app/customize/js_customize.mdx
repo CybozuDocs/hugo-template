@@ -1,0 +1,93 @@
+---
+title: "JavaScriptやCSSでアプリをカスタマイズする"
+weight: 200
+aliases:
+  - "/ja/id/040556"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import DevnetTop from "@/components/DevnetTop.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+
+
+JavaScriptやCSSを利用して、アプリの動作や画面をカスタマイズできます。
+
+<Enabled regions={["JP"]}>
+
+<Kintone />の製品サイトでは、カスタマイズ機能の活用例を紹介しています。  
+[JavaScriptやCSSカスタマイズ（独自開発）でできること](https://kintone.cybozu.co.jp/support/arukikata/pages/04-05.html#section03)（日本語のみ）
+
+</Enabled>
+
+JavaScriptプログラムの作成には、APIを使用します。  
+JavaScriptやCSSでアプリをカスタマイズする方法について、詳しくは<DevnetTop />を参照してください。
+
+<Enabled regions={["JP"]}>
+<Note>
+
+* ライトコースをご契約の場合、JavaScriptやCSSを使用したカスタマイズを利用できません。
+
+</Note>
+</Enabled>
+
+<Heading id="app_settings_js_customize_10">JavaScriptファイルやCSSファイルを適用する</Heading>
+JavaScriptやCSSを用いて作成したカスタマイズファイルをアプリに適用する手順を説明します。  
+<Kintone />のシステム管理者だけが、<Kintone />にJavaScriptやCSSを適用できます。また、カスタマイズはPC用とスマートフォン用（スマートフォンアプリを含む）で分けて作成できます。
+
+<Kintone />に取り込んだカスタマイズファイルは、次の画面に適用されます。
+
+* レコードの一覧画面
+* レコードの登録画面
+* レコードの編集画面
+* レコードの詳細画面  
+  アプリからの通知を開くと表示されるレコード詳細画面にも適用されます。
+* レコードの印刷用画面
+* レコードを集計した表やグラフ
+* 動作テスト環境の上記の画面（PCのみ）
+
+<Note>
+
+アプリを次の画面に貼り付けた場合、貼り付けた画面にはカスタマイズが適用されません。  
+[スペースのお知らせやスレッドにアプリを貼り付ける](/k/ja/id/040702.html)
+
+* スレッドの本文
+* スペースのお知らせ
+* ポータルのお知らせ掲示板
+
+</Note>
+
+1. 「レコードの一覧」画面で、画面右上にある歯車の形をした[アプリを設定]アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：[アプリを設定]アイコンが枠線で強調されている" />
+
+1. 「アプリの設定」画面で、[設定]タブの「カスタマイズ／サービス連携」にある[JavaScript / CSSでカスタマイズ]をクリックします。
+
+1. 「JavaScript / CSSでカスタマイズ」画面で、カスタマイズの適用範囲を、次の中から選択します。
+
+    * すべてのユーザーに適用
+    * アプリ管理者だけに適用
+    * 適用しない
+
+    すべてのユーザーにカスタマイズを適用する前に、アプリ管理者だけに適用して、正しくカスタマイズされていることを確認してください。  
+    「すべてのユーザーに適用」を選択すると、カスタマイズはゲストユーザーにも適用されます。
+
+1. [URL指定で追加]または[アップロードして追加]をクリックし、取り込むファイルを選択します。  
+  複数のファイルを取り込んだ場合、ファイルは上から順番に読み込まれます。また、ファイルの順番は、ファイル名の左側にある[ドラッグして並び替え]アイコンをドラッグアンドドロップして変更できます。  
+   <Img src="/k/kintone/img-ja/js_customize_02.png" alt="カスタマイズファイル読み込み画面" />
+
+   <Note>
+
+   * [URL指定で追加]を利用して取り込むファイルを指定する場合、URLには<CybozuCom />以外のドメインも指定できます。
+   * ファイルは、それぞれ30個まで取り込めます。
+
+   </Note>
+
+1. 画面右下の[保存]をクリックします。
+
+1. 画面右上の[アプリを更新]をクリックします。
+
+1. 「アプリを更新」ダイアログで、[アプリを更新]をクリックします。

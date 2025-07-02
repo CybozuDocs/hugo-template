@@ -1,0 +1,54 @@
+---
+title: "[グラフの設定例]当月の売上額を集計する"
+weight: 100
+aliases:
+  - "/ja/id/040584"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+商品の売上を入力したアプリに、当月の売上額を合計する集計条件を設定します。
+
+完成イメージ：
+<Img src="/k/kintone/img-ja/report_example1_img02.png" alt="スクリーンショット：当月の売上額の合計が表示されている" />
+
+<Heading id="report_example1_30">設定に必要なフィールド</Heading>
+アプリのフォームには、次のフィールドがあるものとします。
+
+* 販売した日付を入力した「日付」フィールド
+* その日の販売金額を入力した「販売金額」フィールド
+
+<Heading id="report_example1_10">手順</Heading>
+<Note>
+
+グラフの設定を変更する手順の詳細は、次のページを参照してください。  
+[グラフの設定を変更する](/k/ja/id/040580.html#report_edit_report_10)
+
+</Note>
+
+1. グラフの設定画面で、「集計の方法」の各項目を指定します。
+
+    * グラフの種類  
+      [表]を選択します。
+    * 集計方法  
+      [合計]と[販売金額]を選択します。
+    * 条件  
+      次の条件を指定します。  
+      [日付] [＝（等しい）] [当月] [すべて]
+      <Img src="/k/kintone/img-ja/report_example1_img1.png" alt="スクリーンショット：集計方法の設定例" />
+
+1. 画面右下の[保存]をクリックします。
+
+設定した集計条件をアプリに適用すると、集計結果が表示されます。
+
+<Reference>
+
+* [[グラフの設定例]商品の売上額を、商品カテゴリー、商品名の順に分類してグラフにする](/k/ja/id/040585.html)
+* [[グラフの設定例]クロス集計表を作成する](/k/ja/id/040763.html)
+
+</Reference>

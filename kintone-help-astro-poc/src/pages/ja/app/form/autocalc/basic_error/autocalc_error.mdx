@@ -1,0 +1,311 @@
+---
+title: "計算式で表示されるエラー"
+weight: 400
+aliases:
+  - "/ja/id/040497"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Graynote from "@/components/Graynote.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+
+
+計算式のエラーには、計算式の設定時に表示されるエラーと、レコードの入力時に表示されるエラーがあります。
+
+<Heading id="autocalc_autocalc_error_10">計算式の設定時に表示されるエラー</Heading>
+計算式を入力または保存する時に表示されるエラーを説明します。次のような場合に、エラーが表示されます。
+
+* [全角記号を入力した](#autocalc_autocalc_error_1010)
+* [誤った演算子を入力した](#autocalc_autocalc_error_1020)
+* [誤ったフィールドコードを入力した](#autocalc_autocalc_error_1030)
+* [計算式で参照できないフィールドのフィールドコードを指定した](#autocalc_autocalc_error_1040)
+* [フィールドの参照が循環している](#autocalc_autocalc_error_1050)
+* [関数の引数の個数が不足している](#autocalc_autocalc_error_1060)
+* [使用できない関数を記述した](#autocalc_autocalc_error_1070)
+* [関数に指定できる引数の個数の上限を超えた](#autocalc_autocalc_error_1080)
+* [計算式を解釈できない](#autocalc_autocalc_error_1090)
+* [配列型フィールドの参照時に使用する関数が適切でない](#autocalc_autocalc_error_1091)
+* [演算子とデータ型の組み合わせが正しくない](#autocalc_autocalc_error_1092)
+* [関数と引数のデータ型の組み合わせが正しくない](#autocalc_autocalc_error_1093)
+
+<Heading level={3} id="autocalc_autocalc_error_1010">全角記号を入力した</Heading>
+<Heading level={4} id="autocalc_autocalc_error_101010">エラー内容</Heading>
+全角記号「\*\*\*」が入力されています。半角記号「\*\*\*」を入力するか、または入力した内容に誤りがないか確認してください。
+
+<Heading level={4} id="autocalc_autocalc_error_101020">原因と対処</Heading>
+計算式の設定で、半角にすべき記号を誤って全角で入力した場合に表示されます。  
+たとえば、次の計算式では全角の「”」が入力されているため、このエラーが表示されます。
+
+<Graynote>
+
+IF=(オプション=”
+
+</Graynote>
+
+ただし、次の例のような場合、「（ビュッフェ）」の丸カッコが全角で入力されていますが、このエラーは表示されません。
+
+* 計算式として正しい方法で全角記号が使用されている
+
+  <Graynote>
+  IF=(オプション="朝食（ビュッフェ）",1500,0)
+  </Graynote>
+
+* 全角記号が使用されているが、その前に半角の「"」が入力されており、まだ半角の「"」で閉じられていない
+
+  <Graynote>
+  IF=(オプション="朝食（ビュッフェ）
+  </Graynote>
+
+<Heading level={3} id="autocalc_autocalc_error_1020">誤った演算子を入力した</Heading>
+<Heading level={4} id="autocalc_autocalc_error_102010">エラー内容</Heading>
+* 「\*\*\*」が入力されています。「\*\*\*」を判定するには「\*\*\*」を入力してください。
+* 「\*\*\*」が入力されています。「\*\*\*」を計算するには「\*\*\*」を入力してください。
+
+<Heading level={4} id="autocalc_autocalc_error_102020">原因と対処</Heading>
+このエラーは、計算式の設定で、演算子の入力誤りと思われる特定の文字列を入力した場合に表示されます。  
+エラー内容を確認し、正しい演算子を入力してください。<Kintone />で使用できる演算子については、次のページを参照してください。  
+[演算子の説明](/k/ja/id/040499.html#autocalc_autocalc_format_10)
+
+<Heading level={3} id="autocalc_autocalc_error_1030">誤ったフィールドコードを入力した</Heading>
+<Heading level={4} id="autocalc_autocalc_error_103010">エラー内容</Heading>
+計算式に含まれるフィールドコード（\*\*\*）が存在しません。
+
+<Heading level={4} id="autocalc_autocalc_error_103020">原因と対処</Heading>
+このエラーが表示される原因は、次のとおりです。
+
+* 存在しないフィールドコードを計算式に含めている  
+  計算式で使用するフィールドのフィールドコードを確認し、指定してください。
+* & や四則演算（+ - * /）などの演算子を全角で入力している  
+  全角の演算子を含むフィールドコードとみなされる場合があります。演算子は半角で入力してください。
+* フォームに配置していない作成日時、更新日時、作成者、または更新者のフィールドコードを計算式に含めている  
+  作成日時、更新日時、作成者、または更新者のフィールドをフォームに配置してから、計算式で指定してください。
+
+<Heading level={3} id="autocalc_autocalc_error_1040">計算式で参照できないフィールドのフィールドコードを指定した</Heading>
+<Heading level={4} id="autocalc_autocalc_error_104010">エラー内容</Heading>
+計算式で利用できないフィールドタイプのフィールド(\*\*\*)が指定されています。以下の項目は計算式で利用できません：レコード番号、ラベル、リッチエディター、文字列（複数行）、添付ファイル、リンク、ユーザー選択、組織選択、グループ選択、関連レコード一覧、作業者、ステータス、カテゴリー。
+
+<Heading level={4} id="autocalc_autocalc_error_104020">原因と対処</Heading>
+このエラーは、計算式で参照できないフィールドのフィールドコードを指定していることが原因で表示されます。  
+次のページを参照して、計算式で参照できるフィールドのフィールドコードを指定してください。  
+[計算式で参照できるフィールド／参照できないフィールド](/k/ja/id/040498.html)
+
+<Heading level={3} id="autocalc_autocalc_error_1050">フィールドの参照が循環している</Heading>
+<Heading level={4} id="autocalc_autocalc_error_105010">エラー内容</Heading>
+フィールドの参照が循環しています。
+
+<Heading level={4} id="autocalc_autocalc_error_105020">原因と対処</Heading>
+このエラーは、計算式の設定で、直接または間接的に、自分自身を参照している場合に表示されます。自分自身を参照しないように計算式を修正してください。
+
+エラーが表示される原因の例は、次のとおりです。
+
+* 直接的に自分自身を参照している：  
+  「計算フィールドA」の計算式の設定で「計算フィールドA」のフィールドコードを指定している
+* 間接的に自分自身を参照している：  
+  「計算フィールドA」の計算式の設定で「計算フィールドB」のフィールドコードを指定しているが、「計算フィールドB」の計算式の設定で「計算フィールドA」のフィールドコードを指定している
+
+<Heading level={3} id="autocalc_autocalc_error_1060">関数の引数の個数が不足している</Heading>
+<Heading level={4} id="autocalc_autocalc_error_106010">エラー内容</Heading>
+* \*\*\*関数には\*\*\*個の引数が必要です。
+* \*\*\*関数には\*\*\*個以上の引数が必要です。
+* ROUND（またはROUNDUP/ROUNDDOWN）関数には1個または2個の引数が必要です。
+
+<Heading level={4} id="autocalc_autocalc_error_106020">原因と対処</Heading>
+次の関数で、引数の個数が不足していると「\*\*\*関数には\*\*\*個の引数が必要です。」というエラーが表示されます。
+
+* YEN
+* DATE_FORMAT
+* NOT
+* IF
+* CONTAINS
+
+次の関数で、引数の個数が不足していると「\*\*\*関数には\*\*\*個以上の引数が必要です。」というエラーが表示されます。
+
+* AND
+* OR
+* SUM
+
+次の関数で、引数の個数が不足していると「ROUND（またはROUNDUP/ROUNDDOWN）関数には1個または2個の引数が必要です。」というエラーが表示されます。
+
+* ROUND
+* ROUNDUP
+* ROUNDDOWN
+
+各関数で必要な引数の個数は異なります。次のページを確認して、引数の個数に不足がないように設定してください。
+
+* [[SUM関数]数値を合計する](/k/ja/id/040807.html)
+* [[YEN関数]計算結果を四捨五入して&#165;（円）形式で表示する](/k/ja/id/040808.html)
+* [[DATE_FORMAT関数]日付や時刻の表示形式を指定して表示する](/k/ja/id/040501.html)
+* [[IF関数]条件によって表示する値を変える](/k/ja/id/040505.html)
+* [[AND、OR、NOT関数]条件の組み合わせ](/k/ja/id/040496.html)
+* [[ROUND関数、ROUNDUP関数、ROUNDDOWN関数]数値を四捨五入、切り上げ、切り捨てする](/k/ja/id/040507.html)
+* [[CONTAINS関数]フィールドの中に、指定した文字列と完全一致するものがあるか判定する](/k/ja/id/040506.html)
+
+<Heading level={3} id="autocalc_autocalc_error_1070">使用できない関数を記述した</Heading>
+<Heading level={4} id="autocalc_autocalc_error_107010">エラー内容</Heading>
+\*\*\*関数は使用できません。
+
+<Heading level={4} id="autocalc_autocalc_error_107020">原因と対処</Heading>
+このエラーは、<Kintone />で使用できない関数を記述した場合に表示されます。  
+次のページを参照して、関数の記述に誤りがないか、<Kintone />で使用できる関数を記述しているかどうかを確認してください。  
+[演算子と関数の一覧](/k/ja/id/040499.html)
+
+<Heading level={3} id="autocalc_autocalc_error_1080">関数に指定できる引数の個数の上限を超えた</Heading>
+<Heading level={4} id="autocalc_autocalc_error_108010">エラー内容</Heading>
+\*\*\*関数に指定できる引数は、\*\*\*個までです。
+
+<Heading level={4} id="autocalc_autocalc_error_108020">原因と対処</Heading>
+このエラーは、計算式の設定で、関数に指定できる引数の個数の上限を超えた場合に表示されます。  
+各関数で必要な引数の個数は異なります。次のページを確認して、引数の個数の上限を超えないように設定してください。
+
+* [[SUM関数]数値を合計する](/k/ja/id/040807.html)
+* [[YEN関数]計算結果を四捨五入して&#165;（円）形式で表示する](/k/ja/id/040808.html)
+* [[DATE_FORMAT関数]日付や時刻の表示形式を指定して表示する](/k/ja/id/040501.html)
+* [[IF関数]条件によって表示する値を変える](/k/ja/id/040505.html)
+* [[AND、OR、NOT関数]条件の組み合わせ](/k/ja/id/040496.html)
+* [[ROUND関数、ROUNDUP関数、ROUNDDOWN関数]数値を四捨五入、切り上げ、切り捨てする](/k/ja/id/040507.html)
+* [[CONTAINS関数]フィールドの中に、指定した文字列と完全一致するものがあるか判定する](/k/ja/id/040506.html)
+
+<Heading level={3} id="autocalc_autocalc_error_1090">計算式を解釈できない</Heading>
+<Heading level={4} id="autocalc_autocalc_error_109010">エラー内容</Heading>
+計算式の文法が正しくありません。
+
+<Heading level={4} id="autocalc_autocalc_error_109020">原因と対処</Heading>
+このエラーは、計算式を解釈できない場合に表示されます。エラーが表示される原因の例は、次のとおりです。
+
+* カッコの対応がとれていない
+* 演算子が正しくない箇所にある
+* 「"」で囲まれた文字列の途中で改行している
+* 数値の途中で改行している
+
+<Heading level={3} id="autocalc_autocalc_error_1091">配列型フィールドの参照時に使用する関数が適切でない</Heading>
+<Heading level={4} id="autocalc_autocalc_error_109110">エラー内容</Heading>
+配列型の値に対して適切な関数が利用されていません。配列型の値やその利用方法についてはヘルプを確認してください。
+
+<Heading level={4} id="autocalc_autocalc_error_109120">原因と対処</Heading>
+このエラーが表示される原因は、次のとおりです。
+
+* 計算式で、チェックボックスフィールド、または複数選択フィールドを参照している  
+  チェックボックスフィールド、および複数選択フィールドは、配列型のフィールドです。
+* テーブル外の計算式から、テーブル内のフィールドを参照している  
+  テーブル外の計算式から、テーブル内の数値型フィールドや文字列型フィールドを参照すると、データ型が配列型のフィールドに変化します。
+
+計算式で参照する値のデータ型についての詳細は、次のページを参照してください。  
+[計算式で参照する値のデータ型](/k/ja/id/040500.html)
+
+配列型のフィールドを参照する場合は、CONTAINS関数かSUM関数を使用してください。
+
+<Note>
+
+CONTAINS関数とSUM関数の使いかたは、次のページを参照してください。
+
+* [[CONTAINS関数]フィールドの中に、指定した文字列と完全一致するものがあるか判定する](/k/ja/id/040506.html)
+* [テーブル内のフィールドを計算する](/k/ja/id/040510.html)
+
+</Note>
+
+<Heading level={3} id="autocalc_autocalc_error_1092">演算子とデータ型の組み合わせが正しくない</Heading>
+<Heading level={4} id="autocalc_autocalc_error_109210">エラー内容</Heading>
+演算子「\*\*\*」とデータ型の組み合わせが正しくありません。
+
+<Heading level={4} id="autocalc_autocalc_error_109220">原因と対処</Heading>
+各演算子によって、使用できる引数のデータ型が異なります。そのため、使用する演算子と引数のデータ型の組み合わせが正しくないと、このエラーが表示されます。次のページで、各演算子とデータ型の組み合わせを確認して、計算式を修正してください。  
+[計算式で参照する値のデータ型](/k/ja/id/040500.html)
+
+エラーが表示される計算式の例は、次のとおりです。
+
+<Graynote>
+
+文字列（1行）のフィールドコード+文字列（1行）のフィールドコード
+
+</Graynote>
+
+次のどちらかの方法で対処できます。
+
+* 使用する引数を変更する：  
+  演算子を変更したくない場合は、演算子に合った引数を指定してください。  
+  上記の例の場合、演算子「+」には数値型のフィールドを組み合わせてください。
+* 使用する演算子を変更する：  
+  引数を変更したくない場合は、引数に合った演算子を指定してください。  
+  上記の例の場合、演算子「&」を使用することで解決する場合があります。演算子「&」についての詳細は、次のページを参照してください。  
+  [[&演算子]文字や数値の結合](/k/ja/id/040511.html)
+
+<Heading level={3} id="autocalc_autocalc_error_1093">関数と引数のデータ型の組み合わせが正しくない</Heading>
+<Heading level={4} id="autocalc_autocalc_error_109310">エラー内容</Heading>
+\*\*\*関数と、引数のデータ型の組み合わせが正しくありません。
+
+<Heading level={4} id="autocalc_autocalc_error_109320">原因と対処</Heading>
+各関数によって、使用できる引数のデータ型が異なります。そのため、使用する関数と引数のデータ型の組み合わせが正しくないと、このエラーが表示されます。次のページで、各関数と引数のデータ型の組み合わせを確認して、計算式を修正してください。  
+[計算式で参照する値のデータ型](/k/ja/id/040500.html)
+
+エラーが表示される計算式の例は、次のとおりです。
+
+<Graynote>
+
+CONTAINS(ドロップダウンフィールドのフィールドコード, "済")
+
+</Graynote>
+
+次のどちらかの方法で対処できます。
+
+* 使用する引数を変更する：  
+  関数を変更したくない場合は、関数に合った引数を指定してください。  
+  上記の例の場合、CONTAINS関数の第1引数には、配列文字列型のフィールドを組み合わせてください。ただし、配列文字型のフィールドであっても、テーブル外の計算式から、テーブル内のチェックボックスフィールド、または複数選択フィールドは参照できないため、引数に指定できません。
+* 使用する関数を変更する：  
+  引数を変更したくない場合は、引数に合った関数を指定してください。  
+  上記の例の場合、IF関数を使用することで解決する場合があります。IF関数についての詳細は、次のページを参照してください。  
+  [[IF関数]条件によって表示する値を変える](/k/ja/id/040505.html)
+
+<Heading id="autocalc_autocalc_error_20">レコード入力時に表示されるエラー</Heading>
+レコード入力時に、計算式を設定したフィールドに表示されるエラーを説明します。次のようなエラーがフィールドに表示されることがあります。
+
+* [#CONVERT!](#autocalc_autocalc_error_2010)
+* [#PRECISION!](#autocalc_autocalc_error_2020)
+* [#VALUE!](#autocalc_autocalc_error_2030)
+* [#ERROR!](#autocalc_autocalc_error_2040)
+
+<Heading level={3} id="autocalc_autocalc_error_2010">#CONVERT!</Heading>
+このエラーは、計算フィールドの計算結果が文字列になって、値を変換できない場合に表示されます。  
+計算フィールドの計算結果は、数字、日時、日付、時刻、時間のいずれかである必要があります。
+<Img src="/k/kintone/img-ja/autocalc_error_04.png" alt="スクリーンショット：計算フィールドでの計算式の設定" />
+<Img src="/k/kintone/img-ja/autocalc_error_01.png" alt="スクリーンショット：CONVERTエラー" />
+この場合、文字列（1行）フィールドを使うことで、計算結果が表示されます。  
+文字列（1行）フィールドの「自動計算する」にチェックを入れて、計算式を入力します。
+<Img src="/k/kintone/img-ja/autocalc_error_02.png" alt="スクリーンショット：文字列1行フィールドでの計算式の設定" />
+計算結果が「クリア」と文字列で表示されるようになります。
+<Img src="/k/kintone/img-ja/autocalc_error_03.png" alt="スクリーンショット：計算結果" />
+
+<Heading level={3} id="autocalc_autocalc_error_2020">#PRECISION!</Heading>
+このエラーは、計算結果が有効桁数を超えた場合に表示されます。  
+「高度な設定」画面の「数値と計算の精度」で、「全体の桁数」の設定を見直してください。設定方法の詳細は、次のページを参照してください。  
+[数値の有効桁数と丸めかたを設定する](/k/ja/id/040482.html)
+
+<Heading level={3} id="autocalc_autocalc_error_2030">#VALUE!</Heading>
+このエラーは、計算する値のデータ型や演算子が適切ではない場合に表示されます。エラーが表示される原因の例は、次のとおりです。
+
+* 数値と文字列を足している  
+  たとえば、ドロップダウンフィールドに入力した数値は文字列として扱われます。数値として計算できません。
+* 文字列結合に「+」演算子を使用している
+
+次のページを参照して、計算する値のデータ型や演算子が適切であることを確認してください。  
+[計算式で参照する値のデータ型](/k/ja/id/040500.html)
+
+<Heading level={3} id="autocalc_autocalc_error_2040">#ERROR!</Heading>
+<Heading level={4} id="autocalc_autocalc_error_204010">DATE_FORMAT関数以外</Heading>
+このエラーは、計算できない場合に表示されます。エラーが表示される原因の例は、次のとおりです。
+
+* 数値を0で割っている
+* べき乗で指数が100を上回っている
+* べき乗で指数が-100を下回っている
+
+<Heading level={4} id="autocalc_autocalc_error_204020">DATE_FORMAT関数</Heading>
+DATE_FORMAT関数の場合、このエラーが表示される原因は、次のとおりです。
+
+* フィールドの値や計算結果が協定世界時で次のいずれかの日時である
+  * 1000年1月1日0時0分（UNIX時刻：-30610224000）より前
+  * 9999年12月31日23時59分（UNIX時刻：253402300799）より後
+* 計算式の中の文字数が64文字を超えた
+* 第3引数に無効なタイムゾーンを指定した  
+  例：DATE_FORMAT(日時, "YYYY/MM/DD a hh:mm", "Tokyo")

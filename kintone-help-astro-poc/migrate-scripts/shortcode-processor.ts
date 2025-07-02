@@ -46,6 +46,7 @@ export const SHORTCODE_MAPPINGS: ShortcodeMapping = {
     'tile2': 'Tile2',
     'wv_brk': 'Wovn',
     'enabled': 'Enabled',
+    'enabled2': 'Enabled',
     'disabled2': 'Disabled2',
   },
   
@@ -53,6 +54,7 @@ export const SHORTCODE_MAPPINGS: ShortcodeMapping = {
   attributes: {
     'screen': ['src', 'alt'],
     'enabled': ['regions'],
+    'enabled2': ['regions'],
     'disabled2': ['regions'],
     'heading': ['level', 'id', 'class'],
     'tile_img': ['src', 'alt'],
@@ -136,7 +138,7 @@ function processContentShortcodes(
         let replacement;
         if (shortcode === 'wv_brk') {
           replacement = `<Wovn>${innerContent}</Wovn>`;
-        } else if (attributeString && (shortcode === 'enabled' || shortcode === 'disabled2')) {
+        } else if (attributeString && (shortcode === 'enabled' || shortcode === 'enabled2' || shortcode === 'disabled2')) {
           // Handle attributes for enabled/disabled2
           try {
             const attributes = parseAttributes(attributeString.trim());
@@ -213,7 +215,7 @@ function getComponentName(shortcode: string): string {
 function parseAttributes(attributeString: string): Record<string, string> {
   const attributes: Record<string, string> = {};
   
-  // Simple attribute parsing - handles key="value" and key=value
+  // Handle key="value" and key=value patterns
   const attrRegex = /(\w+)=(?:"([^"]*)"|'([^']*)'|([^\s]+))/g;
   let match;
   
@@ -221,6 +223,19 @@ function parseAttributes(attributeString: string): Record<string, string> {
     const key = match[1];
     const value = match[2] || match[3] || match[4];
     attributes[key] = value;
+  }
+  
+  // Handle space-separated region values (for enabled/enabled2/disabled2)
+  // If no key=value pairs found, treat as regions
+  if (Object.keys(attributes).length === 0) {
+    const trimmed = attributeString.trim();
+    if (trimmed) {
+      // Split by whitespace and treat as regions
+      const regions = trimmed.split(/\s+/).filter(r => r.length > 0);
+      if (regions.length > 0) {
+        attributes.regions = regions.join(',');
+      }
+    }
   }
   
   return attributes;

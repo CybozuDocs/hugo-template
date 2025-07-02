@@ -1,0 +1,144 @@
+---
+title: "日付、時刻、日時の計算"
+weight: 700
+aliases:
+  - "/ja/id/040502"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+
+
+日付、時刻、日時のフィールドをフォームに配置し、計算式から参照できます。
+
+<Heading id="autocalc_date_time_10">日付、時刻、日時フィールドの値の扱われ方</Heading>
+日付、時刻、日時のフィールドの値は、UNIX時刻として扱われます。UNIX時刻とは、1970年1月1日午前0時 協定世界時（UTC）からの経過秒数のことです。UNIXタイムスタンプとも呼ばれます。たとえば、日時が2020年11月30日15時 UTCの場合、UNIX時刻は「1606748400」です。
+
+<Kintone />では、日付や日時は秒単位で扱います。計算式にも秒単位で指定します。たとえば1分間は「60」と入力します。1時間は「3600」または「60\*60」、1日は「86400」または「60\*60\*24」と入力します。  
+例：2日後の日付  
+日付 + (60\*60\*24\*2)
+
+<Heading id="autocalc_date_time_20">日付の計算</Heading>
+計算フィールドに計算式を記載し、日付を計算できます。  
+たとえば、次のような計算が可能です。
+
+* 日付フィールドの値の N 日後の計算  
+  例：試用期間（30日間）の終了日を計算する場合の計算式  
+  申込日 + (60\*60\*24\*30)
+
+<Hint>
+
+1分間は「60」と入力します。1時間は「3600」または「60\*60」、1日は「86400」または「60\*60\*24」と入力します。
+
+</Hint>
+
+<Heading level={3} id="autocalc_date_time_2010">日付の計算結果の表示形式</Heading>
+計算フィールドで、計算結果の表示形式を「数値」に設定している場合や、文字列（1行）フィールドで計算式を使用する場合は、日付や日時の計算結果は数字の羅列で表示され、日付の形式では表示されません（例：2020年11月13日 ⇒ 1605225600）。  
+これは、日付の値がUNIX時刻で扱われるためです。  
+日付や日時の計算結果を日付の形式で表示するには、次のように対応してください。
+
+* 計算フィールドの場合：計算結果の表示形式を「日時」または「日付」に設定する
+* 文字列（1行）フィールドの場合：DATE_FORMAT関数を使用して、次のように計算式に記述する
+
+<table>
+<thead>
+        <tr>
+            <th>書式</th>
+            <th>例</th>
+            <th>計算式</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>YYYY（年）</td>
+            <td>2020</td>
+            <td>DATE_FORMAT(日付, "YYYY", "Etc/GMT")</td>
+        </tr>
+        <tr>
+            <td>MM（月）</td>
+            <td>01</td>
+            <td>DATE_FORMAT(日付, "MM", "Etc/GMT")</td>
+        </tr>
+        <tr>
+            <td>M（月）</td>
+            <td>1</td>
+            <td>DATE_FORMAT(日付, "M", "Etc/GMT")</td>
+        </tr>
+        <tr>
+            <td>dd（日）</td>
+            <td>04</td>
+            <td>DATE_FORMAT(日付, "dd", "Etc/GMT")</td>
+        </tr>
+        <tr>
+            <td>d（日）</td>
+            <td>4</td>
+            <td>DATE_FORMAT(日付, "d", "Etc/GMT")</td>
+        </tr>
+        <tr>
+            <td>YYYY/MM/dd（年/月/日）</td>
+            <td>2020/01/04</td>
+            <td>DATE_FORMAT(日付, "YYYY/MM/dd", "Etc/GMT")</td>
+        </tr>
+        <tr>
+            <td>YYYY年MM月dd日（年月日）</td>
+            <td>2020年01月04日</td>
+            <td>DATE_FORMAT(日付, "YYYY年MM月dd日", "Etc/GMT")</td>
+        </tr>
+        <tr>
+            <td>MM/dd</td>
+            <td>01/04</td>
+            <td>DATE_FORMAT(日付, "MM/dd", "Etc/GMT")</td>
+        </tr>
+        <tr>
+            <td>M/d</td>
+            <td>1/4</td>
+            <td>DATE_FORMAT(日付, "M/d", "Etc/GMT")</td>
+        </tr>
+</tbody>
+</table>
+
+<Heading id="autocalc_date_time_2020">注意：日付フィールドが未入力の場合</Heading>
+DATE_FORMAT関数で参照している日付フィールドが空欄の場合、文字列（1行）フィールドには、1970-01-01が表示されます。  
+対処方法として、次の方法があります。
+
+* 日付フィールドの初期値を設定する
+* 文字列（1行）フィールドにIF関数の計算式を設定する  
+  日付が空欄の場合、文字列（1行）も空欄にできます。  
+  計算式：IF(日付="","",DATE_FORMAT(日付, "YYYY年M月d日", "Etc/GMT"))
+
+<Reference>
+
+* [[DATE_FORMAT関数]日付や時刻の表示形式を指定して表示する](/k/ja/id/040501.html)
+
+</Reference>
+
+<Heading id="autocalc_date_time_30">時間の計算</Heading>
+計算フィールドに計算式を記載し、時間を計算できます。  
+たとえば、次のような計算が可能です。
+
+* 時間の差分の計算  
+  例：1日の勤務時間を計算する場合の計算式  
+  退勤-出勤-休憩*60
+* 日時と時間の足し算、および引き算  
+  例：月の勤務時間合計を計算する場合の計算式  
+  SUM(勤務時間)  
+  <Img src="/k/kintone/img-ja/date_time_01.png" alt="スクリーンショット：時間の計算式と表示例" />
+
+<Heading level={3} id="autocalc_date_time_3010">時間の計算結果の表示形式</Heading>
+計算フィールドで計算結果の表示形式を「数値」に設定している場合は、時間の計算結果は数字の羅列で表示され、時間の形式では表示されません。  
+これは、時間の値がUNIX時刻で扱われるためです。  
+計算結果を時間の形式で表示するには、計算結果の表示形式を「時間」に設定してください。  
+<Img src="/k/kintone/img-ja/date_time_02.png" alt="スクリーンショット：計算結果の表示方式" />
+
+<Reference>
+
+日付や日時の書式は、次のページを参照してください。
+
+* [DATE_FORMAT関数の構文](/k/ja/id/040501.html#autocalc_date_format_10)
+* [指定できる日時の形式](/k/ja/id/040501.html#autocalc_date_format_30)
+
+</Reference>

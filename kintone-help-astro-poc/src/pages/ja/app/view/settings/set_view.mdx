@@ -1,0 +1,242 @@
+---
+title: "一覧を追加する"
+weight: 100
+aliases:
+  - "/ja/id/040612"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Listsummary from "@/components/Listsummary.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Warning from "@/components/Warning.astro";
+
+
+レコードの一覧を追加して、一覧に表示するフィールドの種類や、レコードの条件などを指定できます。
+
+設定は、次の手順で行います。
+
+<Listsummary>
+
+1. [一覧の名前を設定する](#view_set_view_10)
+1. [一覧の表示形式と表示する内容を設定する](#view_set_view_20)
+1. [一覧に表示したいレコードの条件を設定する](#view_set_view_30)
+1. [一覧に表示したいレコードの表示順を設定する](#view_set_view_40)
+1. [一覧の設定を保存する](#view_set_view_50)
+
+</Listsummary>
+
+<Heading id="view_set_view_10">一覧の名前を設定する</Heading>
+1. 「レコードの一覧」画面で、画面右上にある歯車の形をした[アプリを設定]アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：[アプリを設定]アイコンが枠線で強調されている" />
+
+1. 「アプリの設定」画面で、[一覧]タブをクリックします。
+
+1. 画面右側の+の形をした「一覧を追加する」アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/set_view_01.png" alt="スクリーンショット：画面右側の+の形をした[一覧を追加する]アイコンを赤枠で強調している" />
+
+1. 「一覧」画面で、「一覧名」に一覧の名前を入力します。  
+   <Img src="/k/kintone/img-ja/set_view_img2.png" alt="スクリーンショット：「一覧名」の入力欄を赤枠で強調している" />
+
+<Heading id="view_set_view_20">一覧の表示形式と表示する内容を設定する</Heading>
+1. 「レコード一覧の表示形式」で、表示形式を設定します。  
+  選択できる表示形式は、次の3種類です。
+
+   * 表形式
+   * カレンダー形式
+   * カスタマイズ
+
+   <Img src="/k/kintone/img-ja/set_view_img7.png" alt="スクリーンショット：「レコード一覧の表示形式」の項目名を赤枠で強調している" />
+
+   カスタマイズ形式の一覧を作成、または編集するには、<Kintone />システム管理権限が必要です。<Kintone />システム管理権限のないユーザーには、一覧の設定画面で「レコード一覧の表示形式」に[カスタマイズ]は表示されません。
+
+1. 選択した表示形式に応じて、表示する内容を設定します。
+
+   * [表形式を選択した場合](#view_set_view_2010)
+   * [カレンダー形式を選択した場合](#view_set_view_2020)
+   * [カスタマイズを選択した場合](#view_set_view_2030)
+
+<Heading level={3} id="view_set_view_2010">表形式を選択した場合</Heading>
+「レコードの一覧」画面に表示するフィールドを配置します。
+
+画面左側のフィールドから、「レコードの一覧」画面に表示するフィールドを選んで右側のエリアにドラッグアンドドロップで配置します。  
+配置したフィールドは、右側のエリアの並び順で「レコードの一覧」画面に表示されます。  
+<Img src="/k/kintone/img-ja/set_view_img9.png" alt="スクリーンショット：表形式の一覧の設定でフィールドの配置をしている" />
+
+<Hint>
+
+画面左側の検索ボックスにキーワードを入力すると、配置するフィールドの候補を絞り込むことができます。  
+<Img src="/k/kintone/img-ja/set_view_img10.png" alt="スクリーンショット：「一覧」画面でフィールドの検索窓が強調されている" />
+
+</Hint>
+
+フィールドの並び順を変更するには、フィールドをドラックアンドドロップします。  
+<Img src="/k/kintone/img-ja/set_view_13.png" alt="スクリーンショット：「一覧」画面でフィールドの並び順を変更している" />
+
+フィールドをひとつずつクリアするには、フィールド名の右横にある、歯車の形をした設定アイコンから[削除]を選択します。  
+<Img src="/k/kintone/img-ja/set_view_05.png" alt="スクリーンショット：「一覧」画面で[削除]が表示されている" />
+
+<Heading level={4} id="view_set_view_201030">フィールドをすべて追加する</Heading>
+フィールドをすべて追加するには、[すべて追加]をクリックします。  
+フィールドをひとつずつドラッグアンドドロップする必要なく、すべてのフィールドをまとめて追加できます。
+
+<Img src="/k/kintone/img-ja/set_view_11.png" alt="スクリーンショット：「一覧」画面で[すべて追加]が強調されている" />
+
+<Heading level={4} id="view_set_view_201040">フィールドをすべてクリアする</Heading>
+すでに追加されているフィールドをクリアするには、[すべてクリア]をクリックします。  
+設定済みの一覧を変更する場合や、フィールドの順番をいちから並べ替えたい場合などに、追加されているフィールドをすべてクリアしてから選びなおすことができます。
+
+<Img src="/k/kintone/img-ja/set_view_12.png" alt="スクリーンショット：「一覧」画面で[すべてクリア]が強調されている" />
+
+<Heading level={3} id="view_set_view_2020">カレンダー形式を選択した場合</Heading>
+「日付」と「タイトル」を設定します。
+
+<Img src="/k/kintone/img-ja/set_view_img4.png" alt="スクリーンショット：カレンダー形式の項目名を赤枠で強調している" />
+
+<Heading level={4} id="view_set_view_202010">日付</Heading>
+カレンダーのタイトルをどの日付に表示するかを指定するフィールドを選択します。  
+選択したフィールドの日付または日時をもとに、カレンダーにレコードが表示されます。
+
+選択できるフィールドの種類は、次のとおりです。
+
+* 作成日時
+* 更新日時
+* 日付
+* 日時
+
+<Heading level={4} id="view_set_view_202020">タイトル</Heading>
+カレンダーにタイトルとして表示するフィールドを選択します。
+
+選択できるフィールドの種類は、次のとおりです。
+
+* レコード番号
+* 文字列（1行）
+* 文字列（複数行）
+* リッチエディター
+* 添付ファイル
+* ユーザー選択
+* 組織選択
+* グループ選択
+* 作成者
+* 更新者
+* 作業者
+* 数値
+* 計算
+* リンク
+* ルックアップ
+
+<Heading level={3} id="view_set_view_2030">カスタマイズを選択した場合</Heading>
+「一覧を表示する範囲」と「ページネーションを表示する」、「HTML」を設定します。
+<Img src="/k/kintone/img-ja/set_view_img5.png" alt="スクリーンショット：カスタマイズ形式を選択している" />
+
+<Warning>
+
+* カスタマイズ形式の一覧を作成、または編集するには<Kintone />システム管理権限が必要です。
+* カスタマイズ形式で保存した一覧は、表形式やカレンダー形式に変更できません。
+
+</Warning>
+
+<Heading level={4} id="view_set_view_203010">一覧を表示する範囲</Heading>
+[PC版のみで表示する]または[PC版とモバイル版で表示する]のどちらかを選択します。
+
+<Heading level={4} id="view_set_view_203020">一覧ID</Heading>
+この一覧のIDです。自動的に割り振られます。
+
+<Heading level={4} id="view_set_view_203030">ページネーションを表示する</Heading>
+チェックを入れると、レコード一覧画面でページネーションを表示します。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+チェックの有無で、JavaScript APIで「レコード一覧画面を表示した後のイベント」を使って取得できる情報が変わります。  
+詳細は、cybozu developer networkサイトを確認してください。  
+[レコード一覧画面を表示した後のイベント](https://cybozu.dev/ja/id/a7cfce771ab828cfb4d654cf/)
+
+</Reference>
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+チェックの有無で、JavaScript APIで「レコード一覧画面を表示した後のイベント」を使って取得できる情報が変わります。  
+詳細は、Kintone Developer Programサイトを確認してください。  
+[Record List Events](https://kintone.dev/en/docs/kintone/js-api/events/record-list-events/)
+
+</Reference>
+</Enabled>
+
+<Heading level={4} id="view_set_view_203040">HTML</Heading>
+一覧のHTMLコードを記述します。  
+次のタグは不要です。
+
+```
+<html>
+<head>
+<body>
+
+```
+
+JavaScriptのコードは記述できません。JavaScriptを使用するには、JavaScript/CSSカスタマイズ機能を使用します。
+
+<Enabled regions={["JP"]}>
+<Hint>
+一覧のカスタマイズの詳細は、cybozu developer networkの次のページも参考にしてください（日本語のみ）。
+
+* [カスタマイズビューを作成してみよう](https://cybozu.dev/ja/id/7e80e028a22a8684271845e3/)
+* [一覧画面のカスタマイズ](https://cybozu.dev/ja/id/1325983aa8e379aad1c71f3b/)
+
+</Hint>
+</Enabled>
+
+<Heading id="view_set_view_30">一覧に表示したいレコードの条件を設定する</Heading>
+必要に応じて、レコード一覧画面に表示するレコードの条件を設定します。  
+「条件」から、レコードを絞り込むフィールドと、絞り込む条件を指定します。
+
+<Img src="/k/kintone/img-ja/set_view_img6.png" alt="スクリーンショット：「絞り込み」を赤枠で強調している" />
+
+<Note>
+
+* 値がユーザーのフィールドで、「優先する組織」を条件にした絞り込みを指定すると、アプリの利用者の「優先する組織」に設定された組織、またはその下位組織に所属するユーザーを値とするレコードが絞り込まれます。同様に、値が組織のフィールドで、「優先する組織」を条件にした絞り込みを指定すると、アプリの利用者の「優先する組織」に設定された組織、またはその下位組織を値とするレコードが絞り込まれます。
+* テーブル内のフィールドを使用してレコードを絞り込む場合、テーブルのいずれかの行でフィールドの値が絞り込み条件を満たせば、そのレコードは絞り込み結果に表示されます。
+* 関連レコード一覧フィールド内のフィールドを絞り込み条件に指定した場合、その関連レコードに絞り込み条件を満たす行が1行以上存在するレコードが、絞り込み結果に表示されます。
+* 関連レコード一覧フィールドに何も表示されていないレコードは絞り込めません。
+
+</Note>
+
+<Heading id="view_set_view_40">一覧に表示したいレコードの表示順を設定する</Heading>
+必要に応じて、レコード一覧画面に表示するレコードの表示順を設定します。  
+「ソート」で、レコードの表示順を指定します。表示順は、5つまで指定できます。
+
+<Reference>
+
+[「ソート」で選択できるフィールド・項目を知りたい](/k/ja/id/040225.html)
+
+</Reference>
+
+<Heading id="view_set_view_50">一覧の設定を保存する</Heading>
+1. 「一覧」画面で、右下の[保存]をクリックします。  
+   <Img src="/k/kintone/img-ja/set_view_img8.png" alt="スクリーンショット：「一覧」画面の右下の[保存]を赤枠で強調している" />
+
+1. 「アプリの設定」画面で、[アプリを更新]をクリックします。
+
+1. 「アプリを更新」ダイアログで、[アプリを更新]をクリックします。
+
+<Hint>
+
+一覧を複数作成した場合は、表示順を並べ替えたり、デフォルトで表示される一覧を変更したりできます。
+
+* [一覧のドロップダウンに表示される順番を並び替える](/k/ja/id/040610.html)
+* [デフォルトの一覧を変更する](/k/ja/id/040607.html)
+
+</Hint>
+
+<Reference>
+
+[JavaScriptやCSSでアプリをカスタマイズする](/k/ja/id/040556.html)
+
+</Reference>

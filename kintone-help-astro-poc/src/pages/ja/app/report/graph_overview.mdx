@@ -1,0 +1,42 @@
+---
+title: "グラフ機能の概要"
+weight: 100
+description: "グラフ機能の概要を説明しています。"
+aliases:
+  - "/ja/id/040577"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+
+
+グラフは、アプリに追加したレコードの内容やレコード数などを集計し、グラフや表形式で表示できる機能です。
+<Img src="/k/kintone/img-ja/whatsgraph_img02.png" alt="スクリーンショット：集計結果が棒グラフで表示されている" />
+
+<Enabled regions={["JP"]}>
+
+<Hint>
+
+グラフ機能を初めて使用される方向けに、サンプルアプリを操作しながら学べるガイドブックがあります。
+詳細は、次のページを参照してください。  
+[（PDF）便利に使おうガイドブック vol.03 グラフ・集計表](https://kintone.cybozu.co.jp/material/pdf/kintone_guidebook_vol03.pdf)（日本語のみ）
+
+</Hint>
+
+</Enabled>
+
+<Heading id="report__index_10">グラフの作成方法</Heading>
+グラフを作成するには、次の方法があります。
+
+* アプリの設定画面から作成する  
+  アプリの設定画面で、集計の条件を設定してグラフを作成します。アプリの管理権限が必要です。  
+  [アプリの設定画面からグラフを追加する](/k/ja/id/040586.html)
+* アプリの一覧画面から作成する  
+  アクリの一覧画面で、数値やレコード数を集計してグラフを作成します。アプリの管理権限がなくても利用できます。  
+  [グラフを作成する](/k/ja/id/040468.html)
+
+どちらの方法で設定しても、一度設定を保存すると、アプリのトップページ（レコード一覧）からいつでも最新のグラフを表示できます。  
+グラフの設定を保存するには、アプリの管理権限が必要です。

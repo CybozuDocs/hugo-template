@@ -1,0 +1,65 @@
+---
+title: "レコードタイトルを設定する"
+weight: 200
+aliases:
+  - "/ja/id/040604"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+レコードタイトルを設定することで、通知や検索結果に表示されるレコードのタイトルを適切なものに変更できます。レコードタイトルとは、次の項目で表示される文字列のことです。
+
+* 通知の見出し
+
+<Img src="/k/kintone/img-ja/title_field_01.png" alt="スクリーンショット：通知の見出しに表示されているレコードタイトルが枠線で強調されている" />
+
+* 検索結果に表示される各レコードの見出し
+
+<Img src="/k/kintone/img-ja/title_field_02.png" alt="スクリーンショット：検索結果に表示されているレコードタイトルが枠線で強調されている" />
+
+* <Wovn>［レコードの詳細］</Wovn>画面のページタイトル
+
+<Img src="/k/kintone/img-ja/title_field_03.png" alt="スクリーンショット：［レコードの詳細］画面のページタイトルに表示されているレコードタイトルが枠線で強調されている" />
+
+初期設定では、フォームの一番上にある<Wovn>［文字列（1行）］</Wovn>フィールドがレコードタイトルになります。
+任意のフィールドをレコードタイトルに指定できます。  
+[レコードタイトルに指定できるフィールド](#app_settings_title_field_20)
+
+<Heading id="app_settings_title_field_10">手順</Heading>
+任意のフィールドをレコードのタイトルにする手順は次のとおりです。
+
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［その他の設定］</Wovn>にある<Wovn>［レコードのタイトル］</Wovn>をクリックします。
+
+1. <Wovn>［レコードのタイトル］</Wovn>画面で、<Wovn>［レコードのタイトルとして利用するフィールド］</Wovn>にある<Wovn>［フィールドを選択する］</Wovn>を選択し、タイトルにするフィールドを指定します。  
+   <Img src="/k/kintone/img-ja/title_field_img3.png" alt="スクリーンショット：［レコードのタイトルとして利用するフィールド］が表示されている" />
+
+   <Note>
+
+   * 複数のフィールドは選択できません。
+   * レコードのタイトルに設定したフィールドを削除した場合、レコード番号がタイトルになります。<Wovn></Wovn>
+   * テーブル化したフィールドは選択できません。
+
+   </Note>
+
+1. 画面右下の<Wovn>［保存］</Wovn>をクリックします。
+
+1. 画面右上の<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+<Heading id="app_settings_title_field_20">レコードタイトルに指定できるフィールド</Heading>
+* <Wovn>［レコード番号］</Wovn>
+* <Wovn>［文字列（1行）］</Wovn>
+* <Wovn>［文字列（複数行）］</Wovn>
+* <Wovn>［リッチエディター］</Wovn>
+* <Wovn>［数値］</Wovn>
+* <Wovn>［計算］</Wovn>
+* <Wovn>［ルックアップ］</Wovn>

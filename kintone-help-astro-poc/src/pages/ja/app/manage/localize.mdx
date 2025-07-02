@@ -1,0 +1,106 @@
+---
+title: "言語ごとの名称を設定する"
+weight: 100
+aliases:
+  - "/ja/id/040557"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+アプリの説明やフィールド名などを、日本語、英語、中国語（簡体字）の言語ごとに設定できます。  
+ユーザーの表示言語設定に応じて、言語ごとの名称で設定した言語に画面の表示を切り替えます。  
+参考：[表示言語の種類](/general/ja/id/020410.html#list_personal_language_20)
+
+たとえば、英語と日本語のアプリ名を登録しておくと、画面を英語で表示しているユーザーには英語で、日本語で表示しているユーザーには日本語で、アプリ名が表示されます。繁体字で表示したい場合は、言語ごとの名称の<Wovn>［中文（簡体）］</Wovn>に文字列を設定します。プロフィールの言語設定で繁体字を選択すると、言語ごとの名称の<Wovn>［中文（簡体）］</Wovn>に設定した繁体字の表示に切り替わります。
+
+<Heading id="app_settings_localize_10">言語ごとの名称を設定できる項目</Heading>
+<Heading level={3} id="app_settings_localize_1010">アプリの設定の項目</Heading>
+以下の項目について、言語ごとの名称を設定できます。
+
+* アプリ名
+* アプリの説明
+* レコード一覧名
+* プロセス管理のステータスとアクション名
+* グラフ名
+* カテゴリー名
+* アプリアクションのアクション名
+
+<Heading level={3} id="app_settings_localize_1020">フォーム</Heading>
+以下のフィールドについて、言語ごとの名称を設定できます。
+
+* <Wovn>［レコード番号］</Wovn>
+* <Wovn>［更新者］</Wovn>
+* <Wovn>［作成者］</Wovn>
+* <Wovn>［更新日時］</Wovn>
+* <Wovn>［作成日時］</Wovn>
+* <Wovn>［ステータス］</Wovn>
+* <Wovn>［作業者］</Wovn>
+* <Wovn>［カテゴリー］</Wovn>
+* <Wovn>［文字列（1行）］</Wovn>
+* <Wovn>［文字列（複数行）］</Wovn>
+* <Wovn>［リッチエディター］</Wovn>
+* <Wovn>［数値］</Wovn>
+* <Wovn>［計算］</Wovn>
+* <Wovn>［ラジオボタン］</Wovn>
+* <Wovn>［チェックボックス］</Wovn>
+* <Wovn>［複数選択］</Wovn>
+* <Wovn>［ドロップダウン］</Wovn>
+* <Wovn>［日付］</Wovn>
+* <Wovn>［時刻］</Wovn>
+* <Wovn>［日時］</Wovn>
+* <Wovn>［添付ファイル］</Wovn>
+* <Wovn>［リンク］</Wovn>
+* <Wovn>［ユーザー選択］</Wovn>
+* <Wovn>［組織選択］</Wovn>
+* <Wovn>［グループ選択］</Wovn>
+* <Wovn>［ルックアップ］</Wovn>
+* <Wovn>［関連レコード一覧］</Wovn>
+* <Wovn>［テーブル］</Wovn>
+* <Wovn>［テーブル］</Wovn>内のフィールド
+* <Wovn>［グループ］</Wovn>内のフィールド
+
+<Note>
+
+* <Wovn>［ラジオボタン］</Wovn>、<Wovn>［チェックボックス］</Wovn>、<Wovn>［複数選択］</Wovn>、<Wovn>［ドロップダウン］</Wovn>の選択肢の項目も、言語ごとの名称の設定が可能です。
+* <Wovn>［ラベル］</Wovn>、<Wovn>［スペース］</Wovn>、<Wovn>［罫線］</Wovn>、<Wovn>［グループ］</Wovn>は言語ごとの名称を設定できません。  
+  なお、<Wovn>［グループ］</Wovn>内に配置したフィールドは言語ごとの名称を設定できます。
+
+</Note>
+
+<Warning>
+
+言語ごとの名称の設定は、ポータルやレコード一覧／詳細／登録画面、グラフ画面などには反映されますが、アプリの設定画面内には反映されません。
+
+</Warning>
+
+<Heading id="app_settings_localize_20">設定手順</Heading>
+言語ごとの名称を設定する手順を説明します。  
+言語ごとの名称を設定するには、そのアプリの管理権限が必要です。
+
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［その他の設定］</Wovn>にある<Wovn>［言語ごとの名称］</Wovn>をクリックします。
+
+1. <Wovn>［言語ごとの名称］</Wovn>画面で、タブごとに、それぞれの言語での名称を入力します。  
+   <Img src="/k/kintone/img-ja/localize_img01.png" alt="スクリーンショット：［言語ごとの名称］画面が表示されている" />
+  名称を設定していない言語がある場合、その言語で画面を表示しているユーザーには、<Wovn>［デフォルト］</Wovn>の名称が表示されます。
+
+1. 画面右下の<Wovn>［保存］</Wovn>をクリックします。
+
+1. 画面右上の<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+<Reference>
+
+[アプリ名やフィールド名などの名称を変更しても反映されません](/k/ja/id/040252.html)
+
+</Reference>

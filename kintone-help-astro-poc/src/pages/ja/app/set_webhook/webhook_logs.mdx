@@ -1,0 +1,65 @@
+---
+title: "Webhookの実行ログを確認する"
+weight: 300
+aliases:
+  - "/ja/id/040601"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Slash from "@/components/Slash.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+Webhookの設定ごとに、直近10件までの実行ログを確認できます。  
+実行ログでは、次の情報を確認できます。
+
+* 通知に成功したかどうか
+* 通知のID
+* 操作の種類
+* 操作の実行者
+* 実行日時
+
+直近10件より古いログを参照するには、監査ログを確認します。監査ログを確認できるのは、<Slash />共通管理者だけです。記録される監査ログの詳細は、次のページを参照してください。  
+[<Kintone />が出力する監査ログの一覧](/k/ja/id/040810.html)
+
+<Heading id="set_webhook_webhook_logs_10">手順</Heading>
+直近10件までの実行ログを確認する手順は、次のとおりです。
+
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［カスタマイズ／サービス連携］</Wovn>にある<Wovn>［Webhook］</Wovn>をクリックします。
+
+1. ログを確認するWebhookの<Wovn>［ログを確認］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/webhook_logs_img5.png" alt="スクリーンショット：Webhook設定画面" />
+
+1. ログの実行結果を確認します。  
+   <Img src="/k/kintone/img/webhook_logs_img3.png" alt="アイコン：成功を表す緑のチェックマークアイコン" />：通知に成功したことを表します。
+   <Img src="/k/kintone/img/webhook_logs_img2.png" alt="アイコン：失敗を表す赤の三角マークのアイコン" />：通知に失敗したことを表します。
+   <Img src="/k/kintone/img-ja/webhook_logs_img4.png" alt="スクリーンショット：Webhookログが表示されている" />
+
+<Heading id="set_webhook_webhook_logs_20">通知に失敗する原因</Heading>
+すべての通知が失敗している場合、Webhookの設定に誤りがある可能性があります。  
+Webhookの設定を確認してください。
+
+一部の通知だけが失敗している場合は、次の原因が考えられます。
+
+<Heading level={3} id="set_webhook_webhook_logs_2010">通知回数が1分間に60回を超えている</Heading>
+Webhookの通知は、1分間に最大60回まで送信されます。  
+1分間に60回を超えてレコードを操作すると、61回目以降の操作ではWebhookの通知が送信されません。
+
+<Heading level={3} id="set_webhook_webhook_logs_2020">&lt;Kintone /&gt;のエラーで通知に失敗した</Heading>
+次の原因が考えられます。
+
+* 送信する通知のデータが最大サイズ（1MB）を超えている。
+* <Kintone />でタイムアウトが発生した。
+
+<Heading level={3} id="set_webhook_webhook_logs_2030">通知を受け取るWebサービスのエラーで通知に失敗した</Heading>
+次の原因が考えられます。
+
+* 通知を受け取るWebサービスがシステムメンテナンスなどで停止している。
+* 通知を受け取るWebサービスでタイムアウトが発生した。
+* 通知を受け取るWebサービスが受け取れる通知の上限数を超えている。

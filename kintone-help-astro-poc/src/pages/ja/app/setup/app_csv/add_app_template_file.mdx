@@ -1,0 +1,78 @@
+---
+title: "テンプレートファイルからアプリを作成する"
+weight: 600
+aliases:
+  - "/ja/id/040627"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />から書き出したアプリのテンプレートファイルを読み込んで、アプリを作成できます。  
+ほかのドメインで利用している<Kintone />から書き出したテンプレートファイルを読み込むことも可能です。
+
+<Note>
+
+<Kintone />システム管理者ではないユーザーが読み込めるテンプレートファイルには、一部制限があります。  
+[エラーが表示されてアプリを作成できなかった場合](#app_csv_add_app_template_file_20)
+
+</Note>
+
+<Heading id="app_csv_add_app_template_file_10">手順</Heading>
+テンプレートファイルを読み込んでアプリを作成する手順は次のとおりです。
+
+1. <Kintone />のポータルで、<Wovn>［アプリ］</Wovn>エリアにある+の形をした<Wovn>［アプリを作成する］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/add_template_file_01.png" alt="スクリーンショット：ポータルのアプリ追加ボタンが枠線で強調されている" />
+
+   <Note>
+
+   <Wovn>［アプリを作成する］</Wovn>アイコンが表示されない場合、以下の原因が考えられます。
+
+   * アプリ作成権限が付与されていない。  
+     <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>でアプリ作成権限を確認してください。  
+     詳細は、次のページを参照してください。  
+     [<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+   * スペースに所属しないアプリの作成が、許可されていない。  
+     <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［利用する機能の選択］</Wovn>で、<Wovn>［スペースに所属しないアプリの作成を許可する］</Wovn>の設定内容を確認してください。  
+     詳細は、次のページを参照してください。  
+     [利用する機能の選択](/k/ja/id/04031.html#admin_feature_activation_3010)
+
+   </Note>
+
+1. <Wovn>［<Kintone />アプリストア］</Wovn>画面で、<Wovn>［テンプレートファイルを読み込んで作成］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/add_template_file_02.png" alt="スクリーンショット：アプリ作成画面の[テンプレートファイルを読み込んで作成]が枠線で強調されている" />
+
+1. <Wovn>［テンプレートファイルを読み込んで作成］</Wovn>ダイアログで、<Wovn>［参照］</Wovn>をクリックして、読み込むテンプレートファイルを指定します。  
+  zipファイルに複数のアプリテンプレートが含まれている場合、1度に複数のアプリを作成できます。例として、2つのアプリが含まれている「予実システム.zip」を読み込みます。  
+   <Img src="/k/kintone/img-ja/add_template_file_03.png" alt="スクリーンショット：テンプレートファイルを読み込んで作成する画面の[参照]が枠線で強調されている" />
+
+1. <Wovn>［アプリを作成］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/app_template_04.png" alt="スクリーンショット：テンプレートファイルを読み込んで作成する画面の[アプリを作成]が枠線で強調されている" />
+
+<Reference>
+
+* [アプリテンプレートとは](/k/ja/id/04022.html)
+* [アプリをテンプレートとしてダウンロードする](/k/ja/id/040493.html)
+* [<Kintone />に登録されているアプリテンプレートをファイルに書き出す](/k/ja/id/04019.html)
+
+</Reference>
+
+<Heading id="app_csv_add_app_template_file_20">エラーが表示されてアプリを作成できなかった場合</Heading>
+<Kintone />システム管理者ではないユーザーが読み込めるテンプレートファイルには、一部制限があります。  
+以下のアプリから作成されたテンプレートファイルは、<Kintone />システム管理者ではないユーザーは読み込むことができません。  
+
+* <Wovn>［JavaScript / CSSでカスタマイズ］</Wovn>の設定を含むアプリ  
+  JavaScriptやCSSのファイル、もしくはURLが1つも設定されていなくても、<Wovn>［適用範囲］</Wovn>で<Wovn>［すべてのユーザーに適用］</Wovn>以外が選択されていると、エラーになります。
+* カスタマイズ形式のレコード一覧の設定を含むアプリ
+* お使いの<Kintone />にインストールされていないプラグインが追加されているアプリ
+
+<Kintone />システム管理者ではないユーザーが、上記のアプリから作成されたテンプレートファイルを読み込もうとすると、次のエラーが表示されます。  
+アプリを作成できませんでした
+
+<Kintone />システム管理者であれば、同じテンプレートファイルからアプリを作成できます。<Kintone />システム管理者にてアプリを作成することを検討してください。

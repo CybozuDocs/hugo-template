@@ -1,0 +1,108 @@
+---
+title: "［アプリの設定］画面"
+weight: 200
+aliases:
+  - "/ja/id/040473"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Wovn>［アプリの設定］</Wovn>画面では、フォーム、一覧やグラフ、通知やアクセス権などのさまざまな機能を、業務に合わせて設定できます。  
+アプリの運用を開始した後でも、必要に応じてアプリの設定をいつでも変更できます。
+
+ここでは、<Wovn>［アプリの設定］</Wovn>画面の開きかたや、設定内容を反映する方法について説明します。  
+なお、設定項目の詳細については、次のページを参照してください。  
+[アプリの設定項目](/k/ja/id/040603.html)
+
+<Heading id="app_settings_app_changesettings_10">&lt;Wovn&gt;［アプリの設定］&lt;/Wovn&gt;画面を開く</Heading>
+<Wovn>［アプリの設定］</Wovn>画面を開くには、<Wovn>［レコードの一覧］</Wovn>画面または<Wovn>［レコードの詳細］</Wovn>画面で、次のいずれかのボタンをクリックします。
+
+<Img src="/k/kintone/img-ja/app_changesettings_img01.png" alt="スクリーンショット：［アプリの設定］画面を開く" />
+
+* <Img src="/k/kintone/img/settings.png" alt="アイコン：歯車" />（<Wovn>［アプリを設定］</Wovn>アイコン）：  
+  <Wovn>［アプリの設定］</Wovn>画面を開きます。
+* <Img src="/k/kintone/img/settings_shortcut.png" alt="アイコン：V字" />（<Wovn>［アプリ設定メニュー］</Wovn>アイコン）:  
+  各項目の設定画面へのショートカットが表示されます。詳細は、以下のとおりです。
+
+  <table>
+    <thead>
+        <tr>
+            <th><b>項目</b></th>
+            <th><b>内容</b></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td><Wovn>［この一覧の設定を開く］</Wovn><br />（作成済みの一覧を表示している場合のみ）</td>
+        <td>現在表示中の一覧の設定画面を開きます。</td>
+        </tr>
+        <tr>
+        <td><Wovn>［現在の列幅をアプリ設定に保存］</Wovn><br />（作成済みの一覧を表示している場合のみ）</td>
+        <td>現在の列幅を保存するための設定画面を開きます。</td>
+        </tr>
+        <tr>
+        <td><Wovn>［このグラフの設定を開く］</Wovn><br />（作成済みのグラフを表示している場合のみ）</td>
+        <td>現在表示中のグラフの設定画面を開きます。</td>
+        </tr>
+        <tr>
+        <td><Wovn>［フォームの設定を開く］</Wovn><br />（<Wovn>［レコードの詳細］</Wovn>画面を表示している場合のみ）</td>
+        <td>フォームの設定画面を開きます。</td>
+        </tr>
+        <tr>
+            <td><Wovn>［フォーム］</Wovn>、<Wovn>［一覧］</Wovn>、<Wovn>［グラフ］</Wovn>、<Wovn>［設定］</Wovn></td>
+            <td><Wovn>［アプリの設定］</Wovn>画面のそれぞれのタブの画面を開きます。</td>
+        </tr>
+        <tr>
+            <td><Wovn>［一般設定］</Wovn>、<Wovn>［通知］</Wovn>、<Wovn>［カスタマイズ／サービス連携］</Wovn>、<Wovn>［アクセス権］</Wovn>、<Wovn>［その他の設定］</Wovn></td>
+            <td>選択した項目の各設定画面を直接開きます。</td>
+        </tr>
+    </tbody>
+    </table>
+
+<Heading id="app_settings_app_changesettings_20">アプリの設定内容を反映する</Heading>
+アプリの設定を変更した場合は、画面右上の<Wovn>［アプリを更新］</Wovn>をクリックして、変更内容をアプリに反映する必要があります。  
+アプリに反映していない設定変更がある場合は、画面上部に<Wovn>［反映前の変更があります］</Wovn>というバナーが表示され、<Wovn>［アプリを更新］</Wovn>がクリック可能な状態になります。<Wovn>［アプリを更新］</Wovn>をクリックし、確認ダイアログで<Wovn>［アプリを更新］</Wovn>をクリックすると、設定変更がアプリに反映され、バナーが消えます。
+<Img src="/k/kintone/img-ja/update_app_01.png" alt="スクリーンショット：反映前の設定変更がある場合の画面" />
+
+<Warning>
+
+<Wovn>［アプリを更新］</Wovn>をクリックするまで、変更した設定はアプリに反映されません。
+
+</Warning>
+
+アプリの設定変更は、途中で下書き保存しておくことや、変更を破棄することもできます。詳細は、次のページを参照してください。  
+[アプリの設定変更を本運用環境に反映させずに、途中で下書き保存できますか？](/k/ja/id/040223.html)
+
+また、アプリの動作テスト機能を利用すると、アプリの設定変更を運用環境に適用する前に、意図どおりに変更が行われているかを確認することも可能です。  
+[アプリの動作テストをする](/k/ja/id/040483.html)  
+
+<Heading id="app_settings_app_changesettings_30">&lt;Wovn&gt;［アプリの設定］&lt;/Wovn&gt;画面を開けるユーザー</Heading>
+<Wovn>［アプリの設定］</Wovn>画面は、そのアプリの管理権限が設定されているユーザーと、<Slash />共通管理者だけが開くことができます。アプリ管理権限を持つユーザーと<Slash />共通管理者以外には、<Wovn>［アプリを設定］</Wovn>アイコンは表示されません。  
+初期設定では、アプリ作成者にアプリ管理権限が設定されています。  
+
+アプリの管理権限を変更したい場合、現在アプリ管理権限を持つユーザーが次の操作を行ってください。
+
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：[アプリを設定]アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［アクセス権］</Wovn>にある<Wovn>［アプリ］</Wovn>をクリックします。
+
+1. <Wovn>［アプリのアクセス権］</Wovn>画面にある<Wovn>［ユーザー／組織／グループとアクセス権］</Wovn>で、アプリ管理の権限を設定したいユーザー／組織／グループを追加します。  
+   <Img src="/k/kintone/img-ja/app_rights_img_05.png" alt="スクリーンショット：［アプリのアクセス権］画面" />
+
+1. 追加したユーザーなどに対して、<Wovn>［アプリ管理］</Wovn>にチェックを入れます。  
+   アクセス権の設定は、上の行の設定が優先されるので注意してください。
+   <Img src="/k/kintone/img-ja/app_changesettings_02.png" alt="スクリーンショット：［アプリのアクセス権］画面の設定例" />
+
+<Reference>
+
+[アプリにアクセス権を設定する](/k/ja/id/040589.html)
+
+</Reference>

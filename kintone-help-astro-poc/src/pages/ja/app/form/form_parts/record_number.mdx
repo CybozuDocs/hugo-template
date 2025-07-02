@@ -1,0 +1,84 @@
+---
+title: "レコード番号"
+weight: 2500
+aliases:
+  - "/ja/id/040536"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import DevnetTop from "@/components/DevnetTop.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+
+レコード番号フィールドを配置すると、レコード番号が表示されるフィールドを作成できます。
+
+<Img src="/k/kintone/img-ja/record_number_01.png" alt="スクリーンショット：レコード番号フィールドの例" />
+
+<Note>
+
+レコード番号フィールドは、フォームに配置していない場合でも、レコードの絞り込みの条件として使用できます。
+
+</Note>
+
+<Heading id="form_parts_record_number_30">レコード番号とは</Heading>
+レコード番号は、レコードに自動で付与される番号で、変更できません。レコードを作成した順に連番が付与されます。削除したレコードのレコード番号は欠番になります。
+
+レコード番号は、次の方法で確認できます。
+
+* レコードの一覧画面で「（すべて）」を選択して、「レコード番号」に表示される値を確認する
+* レコード番号フィールドを配置して、レコード詳細画面に表示される値を確認する
+
+<Heading level={3} id="form_parts_record_number_1010">アプリコード機能を使用している場合のレコード番号</Heading>
+アプリコード機能を使用している場合、アプリを識別するためのコードと番号の組み合わせがレコード番号になります。  
+たとえばアプリコードに「client」を設定すると、レコード番号は「client-1」のようになります。
+<Img src="/k/kintone/img-ja/record_number_03.png" alt="スクリーンショット：アプリコードを設定したアプリの例。レコード番号フィールドに「client-1」が表示されている" />
+
+アプリコードの設定については、次のページを参照してください。  
+[アプリコードを設定する](/k/ja/id/040478.html)
+
+<Heading id="form_parts_record_number_20">設定項目</Heading>
+<Img src="/k/kintone/img-ja/record_number_05.png" alt="スクリーンショット：レコード番号フィールドの設定画面" />
+
+<Heading level={3} id="form_parts_record_number_2010">フィールド名</Heading>
+入力項目の見出しを指定します。
+
+<Heading level={3} id="form_parts_record_number_2020">フィールド名を表示しない</Heading>
+[フィールド名を表示しない]にチェックを入れると、次の画面でフィールド名を非表示にします。
+
+* レコードの追加画面
+* レコードの編集画面
+* レコードの詳細画面
+* レコードの印刷用画面
+* フォームの設定画面
+
+<Heading level={3} id="form_parts_record_number_2030">フィールドコード</Heading>
+計算式やAPIでフィールドを指定するときに使用する文字列です。
+
+<Note>
+
+フィールドコードについては、次のページを参照してください。  
+[フィールドコード](/k/ja/id/040504.html)
+
+</Note>
+
+<Heading id="form_parts_record_number_10">使用例</Heading>
+レコード番号はレコードごとに別の番号が付与されるため、レコードを区別するために使用できます。  
+たとえば作業依頼申請アプリで、申請番号を表示するフィールドとして使用します。
+
+<Img src="/k/kintone/img-ja/record_number_02.png" alt="スクリーンショット：レコード番号フィールドを申請番号を表示するフィールドとして使用している例" />
+
+<Enabled regions={["JP"]}>
+<Note>
+
+レコード番号フィールドでは、番号の変更や、書式の指定はできません。  
+JavaScriptカスタマイズ機能を使うと、任意の書式の番号を採番できます。詳細は、<DevnetTop />の次のページを参照してください（日本語のみ）。
+
+* [自動採番して、レコード登録する](https://cybozu.dev/ja/kintone/tips/development/customize/validation-and-assistance/auto-numbering-and-record-registration/)
+* [顧客ごとの自動採番](https://cybozu.dev/ja/kintone/tips/development/customize/validation-and-assistance/customer-specific-automatic-sequential-numbering/)
+* [年次ごとの自動採番を行うワザ](https://cybozu.dev/ja/kintone/tips/development/customize/validation-and-assistance/yearly-auto-increment/)
+
+</Note>
+</Enabled>

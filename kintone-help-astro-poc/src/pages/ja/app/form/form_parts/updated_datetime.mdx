@@ -1,0 +1,55 @@
+---
+title: "更新日時"
+weight: 2900
+aliases:
+  - "/ja/id/040542"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+
+更新日時フィールドを配置すると、レコードを更新した日時が表示されるフィールドを作成できます。  
+レコードの内容を変更して保存した場合や、プロセス管理のステータスを進めた場合に、その操作をした日時が更新日時フィールドに表示されます。  
+更新日時は自動で設定され、変更できません。
+
+<Img src="/k/kintone/img-ja/updated_datetime_01.png" alt="スクリーンショット：更新日時フィールドの例" />
+
+<Note>
+
+更新日時フィールドは、フォームに配置していない場合でも、レコードの絞り込みや集計で使用できます。
+
+</Note>
+
+<Heading id="form_parts_updated_datetime_20">設定項目</Heading>
+<Img src="/k/kintone/img-ja/updated_datetime_03.png" alt="スクリーンショット：更新日時フィールドの設定画面" />
+
+<Heading level={3} id="form_parts_updated_datetime_2010">フィールド名</Heading>
+入力項目の見出しを指定します。
+
+<Heading level={3} id="form_parts_updated_datetime_2020">フィールド名を表示しない</Heading>
+[フィールド名を表示しない]にチェックを入れると、次の画面でフィールド名を非表示にします。
+
+* レコードの追加画面
+* レコードの編集画面
+* レコードの詳細画面
+* レコードの印刷用画面
+* フォームの設定画面
+
+<Heading level={3} id="form_parts_updated_datetime_2030">フィールドコード</Heading>
+計算式やAPIでフィールドを指定するときに使用する文字列です。
+
+<Note>
+
+フィールドコードについては、次のページを参照してください。  
+[フィールドコード](/k/ja/id/040504.html)
+
+</Note>
+
+<Heading id="form_parts_updated_datetime_10">使用例</Heading>
+更新日時フィールドは、レコードを更新した日時を自動で表示したい場合に使用します。  
+たとえば、顧客管理アプリに更新日時フィールドを配置すると、顧客情報の最終更新日時を自動で表示できます。
+
+<Img src="/k/kintone/img-ja/updated_datetime_02.png" alt="スクリーンショット：顧客管理アプリで更新日時フィールドを使用している例" />

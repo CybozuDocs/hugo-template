@@ -1,0 +1,85 @@
+---
+title: "プロセス管理の設計"
+weight: 300
+aliases:
+  - "/ja/id/040571"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+
+
+プロセス管理は、設定が複雑になりがちです。  
+<Kintone />上でプロセス管理を実際に設定する前に、あらかじめ業務の流れを把握し、プロセス管理の設計をしておくとスムーズに設定できます。  
+プロセス管理で設定したい業務の流れを、紙でメモしたりPowerPointやExcelなどのアプリケーションを利用したりして、図にしてみましょう。
+
+たとえば、申請や承認といった業務の流れを次のような図にします。
+<Img src="/k/kintone/img-ja/design_process_01.png" alt="図：業務の流れを図示している" />
+
+<Heading id="process_design_process_10">業務の流れ</Heading>
+業務の流れを表す図では、ステータスと作業者とアクションがわかるようにします。
+
+1. 最初の状況（ステータス）と最初の担当者（作業者）を決めます。  
+   最初の担当者（作業者）は、指定しないか、作成者にします。  
+   例：
+   * ステータス：申請前
+   * 作業者：作成者
+   <Img src="/k/kintone/img-ja/design_process_03.png" alt="図：最初のステータスを図で表現している" />
+
+1. 次の状況（ステータス）と次の担当者（作業者）を決めます。  
+   例：
+   * 次のステータス：申請中
+   * 次の作業者：承認者
+   <Img src="/k/kintone/img-ja/design_process_04.png" alt="図：次のステータスを表す図形を追加している" />
+
+1. 最初の状況（ステータス）から次の状況（ステータス）に進めるためのボタンの名前（アクション）を決めます。  
+   例：
+   * アクション：申請する
+   <Img src="/k/kintone/img-ja/design_process_02.png" alt="図：次のステータスを表す図形を追加している" />
+
+1. 業務の流れに応じて、手順2と手順3を繰り返します。  
+   差し戻したり、次の承認者に進めたりする場合の例：  
+   <Img src="/k/kintone/img-ja/design_process_05.png" alt="図：差し戻しや承認を表す図形を追加している" />  
+   条件によって次のステータスと次の作業者が分岐する場合の例：  
+   <Img src="/k/kintone/img-ja/design_process_06.png" alt="図：条件によってステータスが分岐している" />
+
+1. 完了となる、最後の状況（ステータス）と最後の状況（ステータス）に進めるためのボタンの名前（アクション）を決めます。  
+   完了のステータスの担当者（作業者）は不要です。  
+   例：
+   * アクション：承認する
+   * 最後のステータス：承認済
+   <Img src="/k/kintone/img-ja/design_process_07.png" alt="図：最後のステータスを表す図形を追加している" />
+
+<Heading id="process_design_process_20">プロセスの詳細</Heading>
+プロセスの詳細は、ステータスごとに設定します。  
+業務の流れの図からステータスをリストアップし、ステータスごとに作業者、条件、アクション、次のステータスを書き出します。
+
+<Heading level={3} id="process_design_process_2010">業務の流れの図</Heading>
+<Img src="/k/kintone/img-ja/design_process_01.png" alt="図：業務フローを表している" />
+
+<Heading level={3} id="process_design_process_2020">設定するステータス</Heading>
+* 最初のステータス：申請前
+* 2番目以降のステータス：
+  * 申請中
+  * 承認済
+
+<Heading level={3} id="process_design_process_2030">設定するプロセス</Heading>
+<Heading level={4} id="process_design_process_203010">最初のプロセス</Heading>
+* ステータス：申請前
+* 作業者：作成者
+* 条件：なし
+* アクション：申請する
+* 次のステータス：申請中
+
+<Heading level={4} id="process_design_process_203020">2番目以降のプロセス</Heading>
+今回の例では、ステータスが「申請中」のプロセスの設定です。
+
+* ステータス：申請中
+* 作業者： 承認者
+* 条件：なし
+* アクション：承認する
+* 次のステータス：承認済
+
+プロセスが完了となる最後のステータスは、その作業者やアクションがないため、一覧として書き出す必要はありません。

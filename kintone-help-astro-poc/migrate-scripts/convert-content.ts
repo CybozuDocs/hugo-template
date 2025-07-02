@@ -17,6 +17,8 @@ import {
 import { processImages, processImagePathInList } from './image-processor.js';
 import { processShortcodes } from './shortcode-processor.js';
 import { processHeadings } from './heading-processor.js';
+import { processEscaping } from './escape-processor.js';
+import { processHtml } from './html-processor.js';
 import type { ConversionConfig, ProcessingStats, ConversionResult } from './types.js';
 
 async function main(): Promise<void> {
@@ -132,6 +134,20 @@ async function convertFile(inputFile: string, config: ConversionConfig): Promise
   if (headingResult.converted) {
     processedContent = headingResult.content;
     headingResult.imports.forEach(imp => allImports.add(imp));
+    hasChanges = true;
+  }
+  
+  // Process HTML formatting (tables, self-closing tags)
+  const htmlResult = processHtml(processedContent);
+  if (htmlResult.converted) {
+    processedContent = htmlResult.content;
+    hasChanges = true;
+  }
+  
+  // Process escaping (must be done after all other processing)
+  const escapeResult = processEscaping(processedContent);
+  if (escapeResult.converted) {
+    processedContent = escapeResult.content;
     hasChanges = true;
   }
   

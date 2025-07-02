@@ -1,0 +1,188 @@
+---
+title: "計算式で参照する値のデータ型"
+weight: 200
+aliases:
+  - "/ja/id/040500"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+
+
+<Kintone />では、フィールドや計算結果によってデータ型が異なり、そのデータ型によって扱える演算子や関数も異なります。  
+データ型を理解することで、さまざまな計算式に応用できます。
+
+<Heading id="autocalc_calculation_type_10">フィールドのデータ型</Heading>
+フィールドを計算式で参照すると、その値は以下のデータ型として扱われます。
+
+<table>
+  <thead>
+    <tr>
+      <th>フィールド</th>
+      <th>データ型</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>数値</td>
+      <td rowspan="8">数値型</td>
+    </tr>
+    <tr>
+      <td>計算</td>
+    </tr>
+    <tr>
+      <td>日時</td>
+    </tr>
+    <tr>
+      <td>日付</td>
+    </tr>
+    <tr>
+      <td>時刻</td>
+    </tr>
+    <tr>
+      <td>作成日時</td>
+    </tr>
+    <tr>
+      <td>更新日時</td>
+    </tr>
+    <tr>
+      <td>ルックアップ（コピー元が数値型の場合）</td>
+    </tr>
+    <tr>
+      <td>文字列（1行）</td>
+      <td rowspan="6">文字列型</td>
+    </tr>
+    <tr>
+      <td>ドロップダウン</td>
+    </tr>
+    <tr>
+      <td>ラジオボタン</td>
+    </tr>
+    <tr>
+      <td>ルックアップ（コピー元が文字列型の場合）</td>
+    </tr>
+    <tr>
+      <td>作成者</td>
+    </tr>
+    <tr>
+      <td>更新者</td>
+    </tr>
+    <tr>
+      <td>チェックボックス</td>
+      <td rowspan="3">配列文字列型</td>
+    </tr>
+    <tr>
+      <td>複数選択</td>
+    </tr>
+    <tr>
+      <td>テーブル外のフィールドから参照したときの、テーブル内の文字列型フィールド</td>
+    </tr>
+    <tr>
+      <td>テーブル外のフィールドから参照したときの、テーブル内の数値型フィールド</td>
+      <td rowspan="1">配列数値型</td>
+    </tr>
+  </tbody>
+</table>
+
+<Heading id="autocalc_calculation_type_20">計算結果のデータ型</Heading>
+計算式内の関数と演算子の返り値の結果は、以下のデータ型になります。
+
+<table>
+  <thead>
+    <tr>
+      <th>関数</th>
+      <th>データ型</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SUM</td>
+      <td>例：SUM(1, 2, 3)<br>
+       引数は数値型および配列数値型、計算結果は数値型です。</td>
+    </tr>
+    <tr>
+      <td>ROUND</td>
+      <td>例：ROUND(A*1.1)<br>
+      引数および計算結果は数値型です。</td>
+    </tr>
+    <tr>
+      <td>ROUNDUP</td>
+      <td>例：ROUNDUP(A*1.1)<br>
+      引数および計算結果は数値型です。</td>
+    </tr>
+    <tr>
+      <td>ROUNDDOWN</td>
+      <td>例：ROUNDDOWN(A* 1.1)<br>
+      引数および計算結果は数値型です。</td>
+    </tr>
+    <tr>
+      <td>IF</td>
+      <td>例：IF(A=100,B,C)<br>
+      第1引数は論理型、第2、第3引数は数値型、文字列型、論理型のいずれかになります。<br>
+      関数の返り値は、第2引数、または第3引数の計算結果の型になります。</td>
+    </tr>
+    <tr>
+      <td>AND</td>
+      <td>例：IF(AND(A>10,B>=10),"1","0")<br>
+      引数および計算結果は論理型です。</td>
+    </tr>
+    <tr>
+      <td>OR</td>
+      <td>例：IF(OR(A>10,B>=10),"1","0")<br>
+      引数および計算結果は論理型です。</td>
+    </tr>
+    <tr>
+      <td>NOT</td>
+      <td>例：IF(NOT(A>10),"1","0")<br>
+      引数および計算結果は論理型です。</td>
+    </tr>
+    <tr>
+      <td>DATE_FORMAT</td>
+      <td>例：DATE_FORMAT(1522972800, "YYYY年M月d日", "system")<br>
+      第1引数は数値（UNIX時刻）、第2引数は文字列型（表示形式）、第3引数は文字列型（タイムゾーン）です。計算結果は文字列型です。</td>
+    </tr>
+    <tr>
+      <td>YEN</td>
+      <td>例：YEN(1100.5, 0)<br>
+      引数は数値、計算結果は文字列型です。</td>
+    </tr>
+    <tr>
+      <td>CONTAINS</td>
+      <td>例：IF(CONTAINS(出勤曜日, "日曜日"), "日曜出勤あり", "日曜出勤なし")<br>
+      第1引数は配列文字列型、第2引数は文字列型です。計算結果は論理型です。</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>演算子</th>
+      <th>データ型</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>+、 -、 *、 /、^</td>
+      <td>引数と計算結果は数値型です。</td>
+    </tr>
+    <tr>
+      <td>&</td>
+      <td>引数は数値型、文字列型、論理型です。計算結果は文字列型です。</td>
+    </tr>
+    <tr>
+      <td>=、 !=、 <></td>
+      <td>引数は数値型、文字列型、論理型です。計算結果は論理型です。</td>
+    </tr>
+    <tr>
+      <td><、 <=、 >、 >=</td>
+      <td>引数は数値型です。計算結果は論理型です。</td>
+    </tr>
+  </tbody>
+</table>
+
+演算子や関数の詳細、使いかたは、次のページを参照してください。
+
+* [演算子と関数の一覧](/k/ja/id/040499.html)
+* [演算子と関数の使用例](/k/ja/id/040503.html)

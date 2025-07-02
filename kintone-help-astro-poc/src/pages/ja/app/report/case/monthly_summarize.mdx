@@ -1,0 +1,55 @@
+---
+title: "[グラフの設定例]月単位の受注額を集計する"
+weight: 150
+aliases:
+  - "/ja/id/040747"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+
+
+<Kintone />では、アプリの集計画面で各項目を選択するだけで、日／月／年単位での集計結果を簡単にグラフ化できます。
+
+ここでは、受注状況を管理しているアプリで月単位の受注額を集計し、以下のような棒グラフで表示する方法を紹介します。
+
+<Img src="/k/kintone/img-ja/monthly_summarize_img01.png" alt="スクリーンショット：月単位の受注額を集計した棒グラフ" />
+
+アプリのフォームには、次のフィールドがあるものとします。
+
+* 「受注日」フィールド
+* 「受注金額」フィールド
+
+<Img src="/k/kintone/img-ja/monthly_summarize_img03.png" alt="スクリーンショット：受注日と受注金額のフィールドが枠線で強調されたレコードの詳細画面" />
+
+「受注金額」フィールドの合計額を集計し、「受注日」フィールドの情報をもとに月ごとに分類して、棒グラフで表示してみましょう。
+
+1. アプリのレコードの一覧画面で、「集計する」アイコンをクリックします。
+   <Img src="/k/kintone/img-ja/monthly_summarize_img04.png" alt="スクリーンショット：集計するアイコンが枠線で強調されている" />
+
+1. 「グラフの種類を選んで作成」で、[縦棒グラフ]をクリックします。
+
+1. 各項目を選択します。
+   * グラフの種類：「縦棒グラフ」、「集合」
+   * 分類する項目（大項目）：「受注日」、「月単位」
+   * 集計方法：「合計」、「受注金額」
+   * 条件：「すべてのレコード」
+   * ソート（大項目）：「昇順」
+   <Img src="/k/kintone/img-ja/monthly_summarize_img02.png" alt="スクリーンショット：グラフのオプションの設定項目" />
+
+1. [適用]ボタンをクリックします。  
+  月単位の受注額が集計され、グラフが表示されます。
+  <Hint>
+
+  アプリの管理権限がある場合、[保存する]ボタンが表示されます。クリックすると集計条件がアプリに保存され、アプリの利用者に公開されます。
+
+  </Hint>
+
+<Reference>
+
+* [グラフを作成する](/k/ja/id/040468.html)
+
+</Reference>

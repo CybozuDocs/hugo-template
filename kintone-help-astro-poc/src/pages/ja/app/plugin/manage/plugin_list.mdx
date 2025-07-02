@@ -1,0 +1,63 @@
+---
+title: "プラグインの一覧をCSV形式でダウンロードする"
+weight: 300
+aliases:
+  - "/ja/id/0409"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Slash />共通管理者は、プラグインの一覧をCSV形式（BOM付きUTF-8）でダウンロードできます。その時点で利用されているプラグインの情報を一覧として保存しておきたいときや、プラグインをその他の情報と組み合わせて管理したい場合などに活用できます。
+
+<Enabled regions={["JP", "CN"]}>
+
+ダウンロードの対象となるプラグインは、次のとおりです。
+
+* <Wovn>［読み込んだプラグイン］</Wovn>に表示されているプラグイン（ファイルから読み込んだプラグイン）
+* <Wovn>［プラグインストア］</Wovn>に表示されているプラグインのうち、ステータスが<Wovn>［インストール済み］</Wovn>のプラグイン
+
+<Img src="/k/kintone/img-ja/plugin_list_01.png" alt="スクリーンショット：［プラグイン］画面で［読み込んだプラグイン］と［プラグインストア］の［インストール済み］のプラグインを枠線で強調している" />
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+ダウンロードの対象となるプラグインは、<Wovn>［読み込んだプラグイン］</Wovn>に表示されているプラグイン（ファイルから読み込んだプラグイン）です。  
+<Img src="/k/kintone/img-ja/plugin_list_04.png" alt="スクリーンショット：［プラグイン］画面で［読み込んだプラグイン］のプラグインを枠線で強調している" />
+
+</Enabled>
+
+プラグインの一覧をダウンロードするには、<Kintone />システム管理の<Wovn>［プラグイン］</Wovn>画面を開き、<Wovn>［CSV形式でダウンロードする］</Wovn>をクリックします。
+<Img src="/k/kintone/img-ja/plugin_list_02.png" alt=" スクリーンショット：［プラグイン］画面で［CSV形式でダウンロードする］を枠線で強調している" />
+
+ダウンロードしたプラグイン一覧のファイルには、次の項目が含まれます。
+
+* プラグインのID
+* プラグイン名
+* プラグインのバージョン
+* プラグインの説明
+* プラグインを利用しているアプリのアプリID
+* プラグインを利用しているアプリのアプリ名
+
+<Img src="/k/kintone/img-ja/plugin_list_03.png" alt="スクリーンショット：ダウンロードしたプラグインの一覧のCSVファイル" />
+
+<Note>
+
+* 一覧は、<Kintone />システム管理の<Wovn>［プラグイン］</Wovn>画面の表示順と同じ順番で出力されます。
+* プラグインを利用しているアプリがない場合は、<Wovn>［アプリID］</Wovn>と<Wovn>［アプリ名］</Wovn>は空欄の状態で、プラグインの情報のみが出力されます。
+
+</Note>
+
+<Reference>
+
+[プラグインの利用状況を確認する](/k/ja/id/0405.html)
+
+</Reference>

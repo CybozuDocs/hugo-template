@@ -1,0 +1,74 @@
+---
+title: "[グラフの設定例]クロス集計表を作成する"
+weight: 300
+aliases:
+  - "/ja/id/040763"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+グラフ機能では、複数の項目をかけ合わせて集計するクロス集計表を作成できます。  
+ここでは、「コンビニ利用調査」アプリを用いて、年代別の内訳を表示する例を説明します。
+
+完成イメージ：  
+<Img src="/k/kintone/img-ja/pivot_table01.png" alt="スクリーンショット：年代別の内訳を示すクロス集計表" />
+
+<Heading id="summarize_pivot_table_10">手順</Heading>
+クロス集計表を作成する手順を説明します。
+
+1. レコード一覧画面で、[集計する]アイコンをクリックします。
+   <Img src="/k/kintone/img-ja/pivot_table02.png" alt="スクリーンショット：[集計する]が枠線で強調されている" />
+
+1. 「集計する」ダイアログで、「グラフの種類を選んで作成」から「クロス集計表」を選択します。  
+
+1. 「分類する項目」の大項目に「コンビニ利用頻度」、中項目に「年代」を選択します。  
+   大項目が横軸（行）、中項目が縦軸（列）に表示されます。  
+   「分類する項目」は小項目まで追加できます。小項目も縦軸（列）に表示されます。
+   <Img src="/k/kintone/img-ja/pivot_table03.png" alt="スクリーンショット：分類する項目が表示されている" />
+
+1. 集計方法を選択します。  
+   ここでは「レコード数」を選択します。
+
+1. レコードの絞り込み条件を設定します。  
+   特定のレコードに絞って集計するときは、絞り込み条件を設定します。今回は絞り込みをしないので、「すべてのレコード」のままにしておきます。
+
+1. 集計結果のソート方法（並び順）を選択します。  
+  ここでは「大項目」「昇順」、「中項目」「降順」を選択します。
+
+1. 画面右下の[保存する]をクリックします。
+
+   <Note>
+
+   作成したクロス集計表をアプリの設定に保存せず、その場限りで表示したい場合は[適用]をクリックしてください。  
+   自分の画面でのみ適用されます。
+
+   </Note>
+
+1. グラフ名を入力します。  
+   ここでは「年代別利用調査表」と入力して、[OK]をクリックします。
+
+<Enabled regions={["JP"]}>
+
+<Hint>
+
+「便利に使おうガイドブック」では、月ごとの拠点全体の売上を集計して、さらに「拠点」と「担当者」ごとの売上合計を表示するクロス集計表の例を説明しています。  
+「機能別の使い方」の「グラフ・集計表」をご覧ください。  
+[便利に使おうガイドブック](https://kintone.cybozu.co.jp/material/)（日本語のみ）
+
+</Hint>
+
+</Enabled>
+
+<Reference>
+
+* [[グラフの設定例]商品の売上額を、商品カテゴリー、商品名の順に分類してグラフにする](/k/ja/id/040585.html)
+* [[グラフの設定例]当月の売上額を集計する](/k/ja/id/040584.html)
+
+</Reference>

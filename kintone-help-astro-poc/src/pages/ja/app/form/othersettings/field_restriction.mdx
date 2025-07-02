@@ -1,0 +1,139 @@
+---
+title: "フィールドの入力制限"
+weight: 100
+aliases:
+  - "/ja/id/040528"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Note from "@/components/Note.astro";
+
+フィールド名とフィールドコードの最大文字数は、全角または半角で128文字です。  
+また、入力値には次の制限があります。
+
+<Note>
+
+ExcelファイルやCSVファイルをアプリに読み込んでレコードを登録・上書きする場合は、ここで説明している内容以外にも色々な注意点があります。詳細については、次のページを参照してください。  
+[レコード登録・上書き用のファイルの記載形式](/k/ja/id/040722.html)
+
+</Note>
+
+<table cellpadding="2" cellspacing="2" width="100%">
+<caption>フィールドの種類と入力制限</caption>
+    <thead>
+        <tr>
+            <th scope="col" style="vertical-align: top; width:130px;"><b>フィールドの種類</b></th>
+            <th scope="col" style="vertical-align: top; "><b>制限</b></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="vertical-align: top; ">文字列（1行）</td>
+            <td style="vertical-align: top; ">値の重複の禁止を設定すると、入力できる文字数が全角または半角で64文字までに制限されます。</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top; ">数値</td>
+            <td style="vertical-align: top; " rowspan="2" colspan="1">
+            <ul>
+                <li>アプリの「高度な設定」の、「全体の桁数」と「小数部の桁数」の設定によって、 入力できる桁数が次のように制限されます。<br />
+                <ul>
+                    <li>整数部<br />
+                    数値の整数部は、「全体の桁数」の値から「小数部の桁数」の値を引いた桁数で制限されます。<br />
+                    「全体の桁数」には1から30までの整数を、「小数部の桁数」には0から10までの整数を指定できます。<br />
+                    初期設定では、数値の整数部は12桁まで入力できます。</li>
+                    <li>小数部<br />
+                    数値の小数部は、「小数部の桁数」に指定した桁数で端数が処理されます。<br />
+                    処理のしかたは、「丸めかた」で指定します。初期設定では、小数部の5桁目以降を端数として「最近接偶数への丸め」で処理されます。</li>
+                </ul>
+                </li>
+            </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top; ">計算</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top; ">チェックボックス</td>
+            <td style="vertical-align: top; " rowspan="4" colspan="1">選択肢の最大文字数は全角または半角で128文字です。<br />
+            1,000個までの選択肢を設定できます。</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top; ">ラジオボタン</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top; ">ドロップダウン</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top; ">複数選択</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top; ">日付</td>
+            <td style="vertical-align: top; ">1000年1月1日から9999年12月31日までの日付を指定できます。</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top; ">日時</td>
+            <td style="vertical-align: top; ">1000年1月1日0時0分（協定世界時）から9999年12月31日23時59分（協定世界時）までの日時を指定できます。</br>
+            </br>
+            なお、タイムゾーンの処理は、1970年1月1日午前0時（協定世界時）から2050年1月1日午前0時（協定世界時）までの日時に対応しています。</br>
+            1970年1月1日より前の日時をWebブラウザーから保存／表示する際、タイムゾーンオフセット（「協定世界時から何時間前後させるか」という補正値）が正しく反映されない場合があります。たとえば日本の場合は、日本標準時（JST）が導入される1887年以前の日時や、1948年～1951年に一時導入されたサマータイムの期間において、ずれが発生します。
+        </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top; ">添付ファイル</td>
+            <td style="vertical-align: top; ">1つのファイルにつき1GBまでのファイルを添付できます。<br />
+            添付するファイルの数に制限はありません。<br />
+            画像ファイルを添付した場合に表示されるサムネイル（縮小画像）は、画像ファイルのサイズが大きいと表示されない場合があります。<br />
+            サムネイルを表示するには、画像ファイルのサイズを縮小してください。</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top; ">リンク（Webサイトのアドレス）</td>
+            <td style="vertical-align: top; ">
+            <ul>
+                <li>「http://」または「https://」で始まるアドレスだけを入力できます。</li>
+                <li>次の文字を使用できます。
+                <ul>
+                    <li>大文字または小文字のアルファベット</li>
+                    <li>アラビア数字</li>
+                    <li>次の記号<br />
+                    -_.!~*'():@&amp;=+$,;?/#%</li>
+                    アドレスの構成部位により、一部の記号は使用できない場合があります。 </ul>
+                    </li>
+                    <li>値の重複の禁止を設定すると、入力できる文字数が全角または半角で64文字までに制限されます。</li>
+                </ul>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top; ">リンク（電話番号）</td>
+                <td style="vertical-align: top; ">値の重複の禁止を設定すると、入力できる文字数が全角または半角で64文字までに制限されます。</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top; ">リンク（メールアドレス）</td>
+                <td style="vertical-align: top; ">
+                <ul>
+                    <li>
+                    <p>次の形式のメールアドレスだけを入力できます。<br />
+                    （ローカル部）@（ドメイン）<br />
+                    例：user@example.com</p>
+                    ローカル部は、最大64文字です。次の文字を使用できます。
+                    <ul>
+                        <li>大文字または小文字のアルファベット</li>
+                        <li>アラビア数字</li>
+                        <li>次の記号<br />
+                        .!#$&#39;%&amp;*+/=?^_-`{}|~</li>
+                    </ul>
+                    ドメインには、次の文字を使用できます。
+                    <ul>
+                        <li>大文字または小文字のアルファベット</li>
+                        <li>アラビア数字</li>
+                        <li>次の記号<br />
+                        .-</li>
+                    </ul>
+                    </li>
+                    <li>値の重複の禁止を設定すると、入力できる文字数が全角または半角で64文字までに制限されます。</li>
+                </ul>
+                </td>
+            </tr>
+        </tbody>
+</table>
+
+そのほかのフィールドには、文字数や入力値の制限はありません。

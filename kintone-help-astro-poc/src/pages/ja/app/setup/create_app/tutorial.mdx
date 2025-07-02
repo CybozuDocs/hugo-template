@@ -1,0 +1,122 @@
+---
+title: "アプリをはじめから作成する"
+weight: 300
+aliases:
+  - "/ja/id/040638"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+アプリをはじめから作ることができます。  
+このページでは、日報アプリを例に、アプリの設定の流れと基本的な操作を説明します。
+
+**アプリの完成イメージ**  
+<Img src="/k/kintone/img-ja/tutorial_img18.png" alt="スクリーンショット：完成後のアプリのレコード一覧画面を表示している" />
+
+<Heading id="create_app_tutorial_10">アプリを作成する</Heading>
+1. <Kintone />のポータルで、<Wovn>［アプリ］</Wovn>エリアにある+の形をした<Wovn>［アプリを作成する］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/tutorial_img19.png" alt="スクリーンショット：[アプリを作成する]アイコンを枠線で強調している" />
+
+   <Note>
+
+   <Wovn>［アプリを作成する］</Wovn>アイコンが表示されない場合、以下の原因が考えられます。
+
+   * アプリ作成権限が付与されていない。  
+     <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>でアプリ作成権限を確認してください。  
+     詳細は、次のページを参照してください。  
+     [<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+   * スペースに所属しないアプリの作成が、許可されていない。  
+    <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［利用する機能の選択］</Wovn>で、<Wovn>［スペースに所属しないアプリの作成を許可する］</Wovn>の設定内容を確認してください。  
+     詳細は、次のページを参照してください。  
+     [利用する機能の選択](/k/ja/id/04031.html#admin_feature_activation_3010)
+
+  </Note>
+
+1. <Wovn>［<Kintone />アプリストア］</Wovn>画面で、<Wovn>［はじめから作成］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/tutorial_01.png" alt="スクリーンショット：［はじめから作成］を枠線で強調している" />
+  新しいアプリの<Wovn>［アプリの設定］</Wovn>画面が表示されます。  
+   <Img src="/k/kintone/img-ja/tutorial_02.png" alt="スクリーンショット：新しいアプリの［アプリの設定］画面が表示されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、アプリ名を入力します。今回は入力欄に「日報」と入力します。アプリ名は、アプリの設定画面を開いてあとから変更できます。  
+   <Img src="/k/kintone/img-ja/tutorial_img03.png" alt="スクリーンショット：アプリ名を入力している" />
+  アプリアイコンをクリックすると、アイコンを変更できます。アプリを作成したあとにアイコンを変更することもできます。  
+   <Img src="/k/kintone/img-ja/tutorial_03.png" alt="スクリーンショット：［アイコンの変更］ダイアログが表示されている" />
+
+1. 左のフィールド一覧から、配置したいフィールドを右側にドラッグアンドドロップします。  
+  今回は、<Wovn>［日付］</Wovn>、<Wovn>［作成者］</Wovn>、<Wovn>［文字列（複数行）］</Wovn>のフィールドを配置します。  
+  配置したフィールドは、横幅や縦幅を広げることができます。 
+
+   <Img src="/k/kintone/img-ja/time.png" alt="スクリーンショット：日付フィールド" />
+   <Img src="/k/kintone/img-ja/createdby.png" alt="スクリーンショット：作成者フィールド" />
+   <Img src="/k/kintone/img-ja/text_multi_01.png" alt="スクリーンショット：文字列（複数行）フィールド" />
+   <Img src="/k/kintone/img-ja/giftutorial_01.gif" alt="動画：フォーム設定画面で上記フィールドを配置する" />
+
+   <Hint>
+
+   目的によって、適したフィールドを選択しましょう。各フィールドの特長は、次のページを参照してください。  
+   [フォームを設定する](/k/ja/id/040554.html)  
+   [<Kintone />で利用できるフィールド一覧](/k/ja/id/040513.html)
+
+   </Hint>
+
+1. <Wovn>［文字列（複数行）］</Wovn>フィールドを複製して、同じタイプのフィールドを2つ追加します。  
+  フィールドの右上にカーソルを乗せ、歯車の形をした設定アイコンが表示されたら<Wovn>［複製］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/giftutorial_02.gif" alt="動画：フィールドを複製する" />
+
+1. 配置したフィールドの名前を変更します。  
+  配置した<Wovn>［文字列（複数行）］</Wovn>フィールドの右上にカーソルを乗せ、歯車の形をした設定アイコンが表示されたら、<Wovn>［設定］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/tutorial_img21.png" alt="スクリーンショット：フィールドの設定メニューを枠線で表示している" />
+
+1. <Wovn>［フィールド名］</Wovn>に「今日やったこと」と入力して、<Wovn>［保存］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/tutorial_img04.png" alt="スクリーンショット：［文字列（複数行）］フィールドの設定ダイアログが表示されている" />
+
+1. 同様の手順で、残りのフィールド名も変更します。今回の日報アプリでは、フィールド名を「明日やること」や「所感」と変更します。  
+   <Img src="/k/kintone/img-ja/tutorial_05.png" alt="スクリーンショット：フォームを設定する画面が表示されている" />
+
+1. 画面左上の<Wovn>［フォームを保存］</Wovn>をクリックして、フォームを保存します。  
+  右上の<Wovn>［アプリを公開］</Wovn>をクリックすると、利用している環境にアプリが公開されます。  
+   <Img src="/k/kintone/img-ja/tutorial_img22.png" alt="スクリーンショット：[フォームを保存]と[アプリを公開]を枠線で強調している" />
+
+   <Note>
+
+   <Wovn>［作成を中止］</Wovn>をクリックした場合は、アプリが破棄されます。あとからアプリの作成を再開できません。
+
+   </Note>
+
+<Heading id="create_app_tutorial_20">アプリの設定を変更する</Heading>
+作成したアプリの設定は、いつでも変更できます。
+
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：[アプリを設定]アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、アプリの設定を変更します。  
+  一度配置したフィールドの位置を移動することも可能です。  
+  移動したいフィールド名の上にカーソルを乗せ、ドラッグアンドドロップします。  
+   <Img src="/k/kintone/img-ja/giftutorial_03.gif" alt="動画：ドラッグアンドドロップでフィールドを複製する" />
+  横1行に並べたフィールドも、まとめて上下に移動できます。  
+   <Img src="/k/kintone/img-ja/giftutorial_04.gif" alt="動画：まとめて上下に移動する" />
+
+1. <Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+<Note>
+
+配置済みのフィールドのフィールドタイプを変更することはできません。  
+参考：[フィールドタイプを変更したい](/k/ja/id/040776.html)
+
+</Note>
+
+<Reference>
+
+[アプリの設定項目](/k/ja/id/040603.html)
+
+</Reference>

@@ -1,0 +1,166 @@
+---
+title: "プロセス管理の設定変更時の注意点"
+weight: 1000
+aliases:
+  - "/ja/id/040570"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+
+
+プロセス管理の設定を変更するときの注意点と、エラーの対処方法を説明します。
+
+<Heading id="process_change_processsettings_10">プロセス管理を無効にするときの注意点</Heading>
+プロセス管理を無効にしても、既存のレコードのステータスやステータスの変更履歴の情報は保持されます。  
+ただし、レコードの絞り込みとアクセス権の設定のうち、作業者を条件にした設定は削除されます。
+
+プロセス管理を再度有効にすると、各レコードは、プロセス管理を無効にする直前のステータスになります。
+
+<Heading level={3} id="process_change_processsettings_1010">プロセス管理を無効にするときに表示されるエラー</Heading>
+エラーメッセージによって対処方法が異なります。
+
+<Heading level={4} id="process_change_processsettings_101010">ほかのアプリのフィールドで参照されている場合</Heading>
+<Heading level={5} id="process_change_processsettings_10101010">「ルックアップ」フィールドで参照されている</Heading>
+<Heading level={6} id="process_change_processsettings_1010101010">エラー内容</Heading>
+プロセス管理を無効にできません。ステータス、または作業者が、「\*\*\*」アプリのルックアップフィールド「\*\*\*」から参照されています。参照元のルックアップフィールドの設定を変更するか、または削除してください。「\*\*\*」アプリの設定画面へ
+
+<Heading level={6} id="process_change_processsettings_1010101020">原因と対処方法</Heading>
+ほかのアプリの「ルックアップ」フィールドの設定で、このアプリのプロセス管理の作業者／ステータスが指定されています。この場合、プロセス管理は無効にできません。  
+プロセス管理を無効にするには、エラーメッセージに表示された「アプリの設定」画面を開いて、「ルックアップ」フィールドを削除または設定変更してください。  
+[ルックアップを設定する](/k/ja/id/040547.html)
+
+<Heading level={5} id="process_change_processsettings_10101020">「関連レコード一覧」フィールドで参照されている</Heading>
+<Heading level={6} id="process_change_processsettings_1010102010">エラー内容</Heading>
+プロセス管理を無効にできません。ステータス、または作業者が、「\*\*\*」アプリの関連レコード一覧フィールド「\*\*\*」から参照されています。参照元の関連レコード一覧フィールドの設定を変更するか、または削除してください。「\*\*\*」アプリの設定画面へ
+
+<Heading level={6} id="process_change_processsettings_1010102020">原因と対処方法</Heading>
+ほかのアプリの「関連レコード一覧」フィールドの設定で、このアプリのプロセス管理の作業者／ステータスが指定されています。この場合、プロセス管理は無効にできません。  
+プロセス管理を無効にするには、エラーメッセージに表示された「アプリの設定」画面を開いて、「関連レコード一覧」フィールドを削除または設定変更してください。  
+[関連レコード一覧を設定する](/k/ja/id/040552.html)
+
+<Heading level={4} id="process_change_processsettings_101020">削除済みアプリのフィールドで参照されている場合</Heading>
+<Heading level={5} id="process_change_processsettings_10102010">「ルックアップ」フィールドで参照されている</Heading>
+<Heading level={6} id="process_change_processsettings_1010201010">エラー内容</Heading>
+プロセス管理を無効にできません。ステータス、または作業者が、削除済みかつ復旧可能なアプリ「\*\*\*」のルックアップフィールド「\*\*\*」から参照されています。プロセス管理を無効にするには、アプリ「\*\*\*（アプリID:\*\*\*）」を一度復旧し、ルックアップフィールドを削除または設定変更してください。※アプリを復旧できるのは「<Slash />共通管理者」のみです。詳細はヘルプを参照してください。
+
+<Heading level={6} id="process_change_processsettings_1010201020">原因と対処方法</Heading>
+削除済みアプリの「ルックアップ」フィールドの設定で、このアプリのプロセス管理の作業者／ステータスが指定されています。アプリの復旧が必要になった場合にルックアップのデータが失われないよう、このプロセス管理は無効化できません。  
+プロセス管理を無効にするには、削除済みのアプリを復旧したあとに、「ルックアップ」フィールドを削除または設定変更してください。または、アプリを削除してから14日以上経過すると、アプリを復旧できなくなるためプロセス管理も無効化できるようになります。  
+アプリを復旧できるのは、「<Slash />共通管理者」（ユーザー・組織の登録やセキュリティの設定をする管理者）のみです。  
+[削除したアプリを復旧する](/k/ja/id/04016.html)  
+[ルックアップを設定する](/k/ja/id/040547.html)
+
+<Heading level={5} id="process_change_processsettings_10102020">「関連レコード一覧」フィールドで参照されている</Heading>
+<Heading level={6} id="process_change_processsettings_1010202010">エラー内容</Heading>
+プロセス管理を無効にできません。ステータス、または作業者が、削除済みかつ復旧可能なアプリ「\*\*\*」の関連レコード一覧フィールド「\*\*\*」から参照されています。プロセス管理を無効にするには、アプリ「\*\*\*（アプリID:\*\*\*）」を一度復旧し、関連レコード一覧フィールドを削除または設定変更してください。※アプリを復旧できるのは「<Slash />共通管理者」のみです。詳細はヘルプを参照してください。
+
+<Heading level={6} id="process_change_processsettings_1010202020">原因と対処方法</Heading>
+削除済みアプリの「関連レコード一覧」フィールドの設定で、このアプリのプロセス管理の作業者／ステータスが指定されています。アプリの復旧が必要になった場合に「関連レコード一覧」のデータが失われないよう、このプロセス管理は無効化できません。  
+プロセス管理を無効にするには、削除済みのアプリを復旧したあとに、関連レコード一覧フィールドを削除または設定変更してください。または、アプリを削除してから14日以上経過すると、アプリを復旧できなくなるためプロセス管理も無効化できるようになります。  
+アプリを復旧できるのは、「<Slash />共通管理者」（ユーザー・組織の登録やセキュリティの設定をする管理者）のみです。  
+[削除したアプリを復旧する](/k/ja/id/04016.html)  
+[関連レコード一覧を設定する](/k/ja/id/040552.html)
+
+<Heading id="process_change_processsettings_20">ステータスを削除するときの注意点</Heading>
+そのステータスのレコードが存在しないステータスだけを削除できます。  
+過去に削除したステータスと同じステータス名を付けることはできません。
+
+<Heading level={3} id="process_change_processsettings_2010">ステータスを削除するときに表示されるエラー</Heading>
+ステータスを削除しようとしたとき、すでに該当ステータスのレコードが存在すると次のエラーが表示されます。
+
+<Heading level={4} id="process_change_processsettings_201010">エラー内容</Heading>
+削除しようとしているステータスのレコードが存在するため、ステータスを削除できません。該当レコードを削除するか、他のステータスに変更すると、削除できるようになります。
+
+<Heading level={4} id="process_change_processsettings_201020">原因と対処方法</Heading>
+このエラーが表示された場合、該当のレコードを削除するか、次のステータスに進めることで、ステータスを削除できるようになります。
+
+<Hint>
+
+削除しようとしているステータスのレコードは、レコードの絞り込み機能を利用して一覧画面で確認できます。  
+[一覧に表示するレコードを絞り込む](/k/ja/id/040458.html)
+
+</Hint>
+
+<Heading id="process_change_processsettings_30">作業者の設定を変更するときの注意点</Heading>
+作業者の設定を変更するときの注意点は、次のとおりです。
+
+<Heading level={3} id="process_change_processsettings_3010">作業者の設定を変更する場合</Heading>
+作業者の設定を変更しても、作成済みのレコードに設定された作業者は変更されません。  
+作業者の変更が必要なレコードがある場合は、アプリの管理者が個別に変更してください。
+
+<Heading level={3} id="process_change_processsettings_3020">作業者に指定されているユーザーの&lt;Kintone /&gt;の利用を停止する場合</Heading>
+利用を停止するユーザーが作業者に指定されていると、レコードのステータスを変更できなくなります。  
+アプリの管理者が、作業者を現在<Kintone />を使用中のユーザーに変更すると、ステータスを変更できるようになります。  
+
+<Heading level={3} id="process_change_processsettings_3040">作業者の指定方法を変更する場合</Heading>
+変更対象のステータスに、作業者が指定されたレコードが存在する場合、作業者の指定方法（「次のユーザーから作業者を選択」「次のユーザー全員」「次のユーザーのうち1人」のいずれか）は変更できません。  
+作業者の指定方法を変更しようとすると、次のエラーが表示されます。
+
+<Heading level={4} id="process_change_processsettings_304010">エラー内容</Heading>
+このステータスのレコードが存在し、作業者がすでに割り当てられているため、作業者の指定方法を変更できません。作業者の指定方法を変更するには、該当するレコードを開いて、「現在の作業者を変更」から作業者の割り当てを削除するか、他のステータスに変更してください。
+
+<Heading level={4} id="process_change_processsettings_304020">原因と対処方法</Heading>
+このエラーが表示された場合、以下のいずれかの対処をすることで作業者の指定方法を変更できるようになります。
+
+* 該当ステータスのレコードを削除する
+* 該当ステータスのレコードを、別のステータスに変更する
+* 該当ステータスのレコードの詳細画面で、[現在の作業者を変更]をクリックして、現在の作業者をすべて削除する
+  <Img src="/k/kintone/img-ja/change_processsettings_03.png" alt="スクリーンショット：レコード詳細画面で［現在の作業者を変更］をクリックして、現在の作業者を表示している。作業者の右側にある削除するボタンを赤枠で強調している" />
+
+<Heading id="process_change_processsettings_40">アクションを変更または削除するときの注意点</Heading>
+<Heading level={3} id="process_change_processsettings_4010">アクションの設定を変更するとき</Heading>
+ステータスを変更するアクションの設定を変更しても、既存のレコードのステータスは変わりません。
+
+<Heading level={3} id="process_change_processsettings_4020">アクションを削除するとき</Heading>
+次の条件の両方に当てはまる場合、アクションを削除できません。
+
+* 該当のアクションを実行可能なステータスのレコードが存在する
+* 該当のアクションを削除すると、上記のレコードで実行できるアクションがなくなる
+
+<Heading id="process_change_processsettings_50">アプリを更新するときに表示されるエラー</Heading>
+プロセス管理の設定を変更し、アプリを更新しようとすると、エラーが表示される場合があります。
+
+<Heading level={3} id="process_change_processsettings_5010">作業者が設定されたレコードが存在する</Heading>
+作業者の設定を変更しアプリを更新するまでの間に、該当するステータスのレコードが作成され、作業者が割り当てられた場合、[アプリの更新]をクリックすると次のエラーが発生します。
+
+<Heading level={4} id="process_change_processsettings_501010">エラー内容</Heading>
+処理に失敗しました。（エラーの内容：GAIA_IL35: プロセス管理の作業者の設定を変更できません。運用中のアプリにある、作業者の設定を変更するステータスのレコードに、作業者が指定されています。）
+
+<Heading level={4} id="process_change_processsettings_501020">原因と対処方法</Heading>
+該当のレコードを削除するか、ステータスを変更することで、プロセス管理の設定を変更できるようになります。
+
+<Heading level={3} id="process_change_processsettings_5020">削除したステータスのレコードが存在する</Heading>
+ステータスを削除してからアプリを更新するまでの間に、削除したステータスのレコードが作成された場合、[アプリの更新]をクリックすると次のエラーが発生します。
+
+<Heading level={4} id="process_change_processsettings_502010">エラー内容</Heading>
+処理に失敗しました。（エラーの内容：GAIA_IL10: ステータスを削除できません。運用中のアプリに、削除しようとしているステータスのレコードがあります。）
+
+<Heading level={4} id="process_change_processsettings_502020">原因と対処方法</Heading>
+該当のレコードを削除するか、ステータスを変更することで、プロセス管理の設定を変更できるようになります。
+
+<Note>
+
+現在の作業者がステータスを進めることができない場合、アプリ管理者が作業者を変更してください。  
+[現在の作業者を変更](/k/ja/id/040573.html#process_requiredsettings_process_3010)
+
+</Note>
+
+<Heading id="process_change_processsettings_60">フィールドを削除するときに表示されるエラー</Heading>
+プロセス管理の作業者として利用しているフィールドを削除しようとすると、次のエラーが表示される場合があります。
+
+<Heading level={3} id="process_change_processsettings_6010">エラー内容</Heading>
+プロセス管理の作業者に設定したフィールド（\*\*\*）は、削除できません。
+
+<Heading level={3} id="process_change_processsettings_6020">原因と対処方法</Heading>
+削除しようとしているフィールドが、プロセス管理の作業者に設定されていることが原因です。  
+プロセス管理の設定を開いて、作業者から該当フィールドを外したあとにフォームのフィールドを削除してください。
+
+たとえば「承認者」フィールドを削除しようとしてエラーが表示された場合、プロセス管理の「3.プロセス」で、「承認者」を作業者から削除する必要があります。  
+<Img src="/k/kintone/img-ja/change_processsettings_02.png" alt="スクリーンショット：「プロセス管理」画面で「承認者」から作業者を削除している" />
+その後、フォーム画面から「承認者」フィールドの削除が可能です。

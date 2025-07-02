@@ -1,0 +1,190 @@
+---
+title: "CSVファイルからアプリを作成する"
+weight: 300
+aliases:
+  - "/ja/id/040624"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Disabled2 from "@/components/Disabled2.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+CSVファイルを読み込んで、新規でアプリを作成できます。アプリの作成と同時に、ファイル内のデータも取り込めます。
+
+<Note>
+
+同様の手順で、TSVファイルまたはTXTファイルからアプリを作成することも可能です。
+
+</Note>
+
+Excelファイルからデータを読み込む場合は、次のページを参照してください。  
+[Excelファイルからアプリを作成する](/k/ja/id/040625.html)
+
+すでに作成しているアプリにCSVファイルのデータを読み込む場合は、次のページを参照してください。  
+[ファイルからレコードのデータをアプリに読み込む](/k/ja/id/040724.html)
+
+<Heading id="app_csv_add_app_csv_10">CSVファイルからアプリを作成する流れ</Heading>
+(1) CSVファイルやそのコピーファイルを手元に用意します。   
+(2) <Kintone />で読み込めるようにCSVファイルを整形し、保存します。   
+(3) ウィザードに従って、ファイルを読み込みます。
+
+<Heading id="app_csv_add_app_csv_20">CSVファイルからアプリを作成する手順</Heading>
+1. <Kintone />で読み込めるように、CSVファイルを整形します。整形したファイルは、パソコンに保存してください。  
+  参考：[CSVファイルを整形するときのポイント](#app_csv_add_app_csv_30)
+
+1. <Kintone />のポータルで、<Wovn>［アプリ］</Wovn>エリアにある+の形をした<Wovn>［アプリを作成する］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/add_app_csv_img02.png" alt="スクリーンショット：[アプリを作成する]アイコンを枠線で強調している" />
+
+   <Note>
+
+   <Wovn>［アプリを作成する］</Wovn>アイコンが表示されない場合、以下の原因が考えられます。
+
+   * アプリ作成権限が付与されていない。  
+     <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>でアプリ作成権限を確認してください。  
+     詳細は、次のページを参照してください。  
+     [<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+   * スペースに所属しないアプリの作成が、許可されていない。  
+     <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［利用する機能の選択］</Wovn>で、<Wovn>［スペースに所属しないアプリの作成を許可する］</Wovn>の設定内容を確認してください。  
+     詳細は、次のページを参照してください。  
+     [利用する機能の選択](/k/ja/id/04031.html#admin_feature_activation_3010)
+
+  </Note>
+
+1. <Wovn>［<Kintone />アプリストア］</Wovn>画面で、<Wovn>［新しくアプリをつくる］</Wovn>にある<Wovn>［CSVを読み込んで作成］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/add_app_csv_img04.png" alt="スクリーンショット：[CSVを読み込んで作成]を枠線で強調している" />
+
+1. <Wovn>［CSVを読み込んで作成］</Wovn>画面で、<Wovn>［作成を開始する］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/add_app_csv_img09.png" alt="スクリーンショット：[作成を開始する]を枠線で強調している" />
+
+1. チェック項目を確認してチェックを入れたあと、<Wovn>［アップロードへ進む］</Wovn>をクリックします。
+
+   <Disabled2 regions={["US"]}>
+   <Img src="/k/kintone/img-ja/add_app_csv_img10.png" alt="スクリーンショット：[アップロードへ進む]を枠線で強調している" />
+   </Disabled2>
+
+1. <Wovn>［CSVファイルをアップロードする］</Wovn>にある<Wovn>［参照］</Wovn>をクリックし、読み込むファイルを選択します。  
+   <Img src="/k/kintone/img-ja/add_app_csv_img03.png" alt="スクリーンショット：[参照]を枠線で強調している" />
+
+1. <Wovn>［プレビューを確認する］</Wovn>で、読み込んだファイルの内容が正しく表示されていることを確認します。  
+  文字が化けている場合、<Wovn>［文字コード］</Wovn>を変更します。  
+  列が正しく区切られていない場合、<Wovn>［区切り文字］</Wovn>を変更します。  
+   <Img src="/k/kintone/img-ja/add_app_csv_img05.png" alt="スクリーンショット：文字コードと区切り文字を選択するメニューが表示されている" />
+
+1. <Wovn>［アプリの作成を開始する］</Wovn>で、自動選択されたフィールドタイプに問題がないか、確認します。  
+  フィールドタイプは、CSVファイルの内容をもとにおすすめのものが自動的に選択されています。基本的に変更は必要ありません。  
+  アプリに読み込まないCSVファイルの項目は<Wovn>［（この列を無視する）］</Wovn>を選択します。  
+   <Img src="/k/kintone/img-ja/add_app_csv_img06.png" alt="スクリーンショット：フィールド名とフィールドタイプが表示されている" />
+
+   <Note>
+
+   フィールドタイプを変更する際、一部選択できないフィールドタイプがあります。詳細は次のページを参照してください。  
+   [選択できないフィールドタイプ](/k/ja/id/040629.html#app_csv_suggestedtype_30)
+
+   </Note>
+
+1. 画面右下の<Wovn>［作成］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/add_app_csv_img08.png" alt="スクリーンショット：[作成]を枠線で強調している" />
+
+1. 確認ダイアログで<Wovn>［OK］</Wovn>をクリックします。
+
+1. 読み込みが完了したら、作成されたアプリを確認します。  
+   <Img src="/k/kintone/img-ja/add_app_csv_img07.png" alt="スクリーンショット：読み込み完了後の画面が表示されている" />
+  なお、アプリ名やアイコン、フィールドの配置などは、変更が可能です。
+
+   * [アプリ名を変更する](/k/ja/id/040472.html)
+   * [アイコンの変更とアプリの説明を記載する](/k/ja/id/040475.html)
+   * [フォームを設定する](/k/ja/id/040554.html)
+
+アプリの作成に失敗した場合は、次のページを参照してください。  
+[Excel／CSVファイルからアプリの作成に失敗した場合](/k/ja/id/040626.html)
+
+<Heading id="app_csv_add_app_csv_30">CSVファイルを整形するときのポイント</Heading>
+<Enabled regions={["JP", "CN"]}>
+
+* アプリ作成できるのは、最大100MB、500列、10万行までのファイルです。  
+  <Kintone />では、500個（500列）までのフィールドのアプリを作成できます。  
+  100MBや10万行を超える場合は、複数のファイルに分けることを検討してください。1つ目のファイルでアプリを作成したあと、残りのデータはあとからファイルを読み込んで追加登録できます。  
+  [ファイルからレコードのデータをアプリに読み込む](/k/ja/id/040724.html)
+* 日本語と英数字以外の文字が含まれている場合、<Wovn>［文字コード］</Wovn>で<Wovn>［UTF-8（Unicode）］</Wovn>を指定してファイルを保存してください。
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+* アプリ作成できるのは、最大100MB、100列、10万行までのファイルです。  
+  100MBや10万行を超える場合は、複数のファイルに分けることを検討してください。1つ目のファイルでアプリを作成したあと、残りのデータはあとからファイルを読み込んで追加登録できます。  
+  [ファイルからレコードのデータをアプリに読み込む](/k/ja/id/040724.html)
+* 日本語と英数字以外の文字が含まれている場合、文字コードに<Wovn>［文字コード］</Wovn>で<Wovn>［UTF-8（Unicode）］</Wovn>を指定してファイルを保存してください。
+
+</Enabled>
+
+<Heading level={3} id="app_csv_add_app_csv_3010">数値を読み込む場合</Heading>
+次の記号は使用できません。
+
+* ,（桁区切り記号）
+* \（円記号）などの通貨記号
+
+<Heading level={3} id="app_csv_add_app_csv_3020">日時項目を読み込む場合</Heading>
+CSV形式のファイルでは、年月日や時刻は次のいずれかの形式で入力します。
+
+* YYYY-MM-DD（例：2014-12-20）
+* YYYY/MM/DD（例：2014/12/20）
+* YY/MM/DD（例：14/12/20）
+* MM/DD/YYYY（例：12/20/2014）
+* MM/DD/YY（例：12/20/14）
+* DD/MM/YYYY（例：20/12/2014）
+* DD/MM/YY（例：20/12/14）
+* HH:MM AM/PM（例：11:20 PM）
+* HH:MM（例：23:20）
+
+1桁の月、日、時刻は、1桁と2桁のいずれの形式でも入力できます。  
+たとえば「8」は、「8」または「08」と入力します。
+
+<Heading level={4} id="app_csv_add_app_csv_302010">CSVファイルの記載例</Heading>
+```plaintext {copy=true}
+フィールド名
+2023/8/8 11:02 PM
+2023/08/08 23:02 PM
+2023/8/8 23:2
+
+```
+
+<Heading level={3} id="app_csv_add_app_csv_3030">氏名、組織名、またはグループ名を読み込む場合</Heading>
+次のいずれかの種類のフィールドとして読み込めます。
+
+* 文字列タイプ（<Wovn>［文字列（1行）］</Wovn>または<Wovn>［文字列（複数行）］</Wovn>）
+* 選択肢タイプ（<Wovn>［ラジオボタン］</Wovn>または<Wovn>［ドロップダウン］</Wovn>）
+* <Wovn>［ユーザー選択］</Wovn>（<Kintone />の利用ユーザーから1人または複数人を選択するフィールド）
+* <Wovn>［組織選択］</Wovn>（組織を選択するフィールド）
+* <Wovn>［グループ選択］</Wovn>（グループを選択するフィールド）
+
+<Heading level={3} id="app_csv_add_app_csv_3040">&lt;Wovn&gt;［ユーザー選択］&lt;/Wovn&gt;、&lt;Wovn&gt;［組織選択］&lt;/Wovn&gt;、または&lt;Wovn&gt;［グループ選択］&lt;/Wovn&gt;フィールドとして読み込む場合</Heading>
+次の文字列を入力します。
+
+* <Wovn>［ユーザー選択］</Wovn>フィールドの場合：ログイン名
+* <Wovn>［組織選択］</Wovn>フィールドの場合：組織コード
+* <Wovn>［グループ選択］</Wovn>フィールドの場合：グループコード
+
+1つのフィールドで複数のユーザー、組織、またはグループを選択する場合は、改行で区切って入力します。
+
+<Heading level={4} id="app_csv_add_app_csv_303010">CSVファイルの記載例</Heading>
+```plaintext {copy=true}
+氏名
+"noboru_sato
+misaki_kato
+takuya_suzuki"
+
+```
+
+<Note>
+
+<Kintone />に登録されているユーザー、組織、またはグループだけがフィールドに読み込まれます。  
+CSVファイルに入力したにもかかわらずフィールドに読み込まれなかった場合は、入力したユーザーのログイン名、組織の組織コード、またはグループのグループコードが<Kintone />に登録されていることを確認してください。
+
+</Note>

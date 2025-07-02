@@ -1,0 +1,117 @@
+---
+title: "組織選択"
+weight: 1700
+aliases:
+  - "/ja/id/040523"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+
+
+組織選択フィールドを配置すると、<Kintone />に登録されている組織を選択する入力欄を作成できます。  
+複数の組織を選択できます。
+
+<Note>
+
+ゲストスペース内のアプリでは、組織選択フィールドを使用できません。
+
+</Note>
+
+<Heading id="form_parts_department_selection_40">設定項目</Heading>
+<Img src="/k/kintone/img-ja/department_selection_05.png" alt="スクリーンショット：組織選択フィールドの設定項目" />
+
+<Heading level={3} id="form_parts_department_selection_4010">フィールド名</Heading>
+入力項目の見出しを指定します。
+
+<Heading level={3} id="form_parts_department_selection_4020">フィールド名を表示しない</Heading>
+[フィールド名を表示しない]にチェックを入れると、次の画面でフィールド名を非表示にします。
+
+* レコードの追加画面
+* レコードの編集画面
+* レコードの詳細画面
+* レコードの印刷用画面
+* フォームの設定画面
+
+<Heading level={3} id="form_parts_department_selection_4030">必須項目にする</Heading>
+[必須項目にする]にチェックを入れると、組織の選択が必須になります。
+
+<Heading level={3} id="form_parts_department_selection_4040">選択肢を指定する</Heading>
+[選択肢を指定する]にチェックを入れて、選択肢として表示する組織を指定します。
+
+選択肢を指定しておくと、レコードの追加または編集画面で、指定した組織が一覧で表示されます。  
+<Img src="/k/kintone/img-ja/department_selection_06.png" alt="スクリーンショット：選択肢を指定した場合の画面" />
+
+選択肢を指定しない場合、レコードの追加または編集画面では、次の方法で組織を選択します。
+
+* 組織名や組織コードを検索して選択する
+* フィールドの右側にある[組織の一覧から選択]アイコンをクリックして、「組織を選択」ダイアログを表示し、組織の中から選択する
+
+<Heading level={3} id="form_parts_department_selection_4050">初期値</Heading>
+初期値を設定できます。
+
+初期値に特定の組織を指定しておくと、指定した組織の値が自動的に入力された状態でレコードの追加画面が開きます。
+
+<Hint>
+
+初期値には、「優先する組織」を指定できます。  
+初期値に「優先する組織」を指定すると、レコードの追加画面で、レコードを追加しているユーザーの優先する組織が、組織選択フィールドに自動で入力されます。ただし、ユーザーの優先する組織が選択肢に含まれていない場合は、自動で入力されません。
+
+</Hint>
+
+<Heading level={3} id="form_parts_department_selection_4060">フィールドコード</Heading>
+APIでフィールドを指定するときに使用する文字列です。
+
+<Note>
+
+フィールドコードについては、次のページを参照してください。  
+[フィールドコード](/k/ja/id/040504.html)
+
+</Note>
+
+<Heading id="form_parts_department_selection_30">使用例</Heading>
+<Kintone />に登録されている組織を選択するときに使用します。  
+たとえば、次のような場合に使用します。
+
+* 配属管理アプリや人事評価管理アプリで、所属部署を登録するためのフィールドとして使用する
+* 案件管理アプリや在庫管理アプリで、管轄部署を登録するためのフィールドとして使用する
+
+<Img src="/k/kintone/img-ja/department_selection_03.png" alt="スクリーンショット：「管理部署」として組織選択フィールドを使用している例" />
+
+<Heading level={3} id="form_parts_department_selection_3010">他の機能と組み合わせた活用方法</Heading>
+組織選択フィールドと、<Kintone />アプリの機能を組み合わせることで、次のように活用できます。
+
+<Heading level={4} id="form_parts_department_selection_301010">在庫を管理部署で絞り込んで一覧表示する</Heading>
+在庫管理アプリの「管理部署」フィールドに、組織選択フィールドを使用します。  
+一覧の設定で、絞り込み条件に「管理部署」フィールドを指定すると、管理部署で在庫を絞り込めます。
+
+一覧での絞り込みについては、次のページを参照してください。  
+[一覧に表示するレコードを絞り込む](/k/ja/id/040458.html)
+
+<Heading level={4} id="form_parts_department_selection_301020">担当部署別に案件数を集計する</Heading>
+案件管理アプリの「担当部署」フィールドに、組織選択フィールドを使用します。  
+集計の項目や条件に「担当部署」フィールドを指定すると、担当部署別に案件数を集計できます。
+
+集計については、次のページを参照してください。  
+[グラフを作成する](/k/ja/id/040468.html)
+
+<Heading level={4} id="form_parts_department_selection_301030">在庫の有効期限が近づいたら管理部署に連絡する</Heading>
+在庫管理アプリの「管理部署」フィールドに、組織選択フィールドを使用します。  
+通知先に「管理部署」フィールドを指定すると、選択されている管理部署に通知できます。
+
+アプリの通知設定については、次のページを参照してください。  
+[アプリの通知設定でできること](/k/ja/id/040565.html)
+
+<Heading level={4} id="form_parts_department_selection_301040">備品購入申請の承認部署を設定する</Heading>
+備品購入申請アプリの「承認部署」フィールドに、組織選択フィールドを使用します。  
+プロセス管理の作業者に「承認部署」フィールドを指定すると、選択されている承認部署に所属するユーザーを、プロセス管理の作業者に設定できます。
+
+プロセス管理については、次のページを参照してください。  
+[プロセス管理でできること](/k/ja/id/040576.html)
+
+<Heading level={4} id="form_parts_department_selection_301050">所属部署や特定の部署だけにレコードの閲覧または編集を許可する</Heading>
+レコードやフィールドのアクセス権に組織選択フィールドを指定すると、選択している組織に所属するユーザーだけにレコードの閲覧や編集を許可できます。

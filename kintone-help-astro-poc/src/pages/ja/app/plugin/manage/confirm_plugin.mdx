@@ -1,0 +1,73 @@
+---
+title: "プラグインの利用状況を確認する"
+weight: 400
+aliases:
+  - "/ja/id/0405"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Slash from "@/components/Slash.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+プラグインの利用状況は、<Kintone />システム管理の<Wovn>［プラグイン］</Wovn>画面で確認できます。ここでは、<Wovn>［プラグイン］</Wovn>画面の見かたや、プラグインが追加されているアプリを確認する方法を説明します。
+
+<Heading id="add_plugin_confirm_plugin_10">&lt;Wovn&gt;［プラグイン］&lt;/Wovn&gt;画面の見かた</Heading>
+<Kintone />システム管理の<Wovn>［プラグイン］</Wovn>画面には、次の項目が表示されます。該当するプラグインが存在しない項目は表示されません。
+
+<Enabled regions={["JP", "CN"]}>
+
+* <Wovn>［インストールが必要なプラグイン］</Wovn>
+* <Wovn>［読み込んだプラグイン］</Wovn>
+* <Wovn>［プラグインストア］</Wovn>
+
+<Img src="/k/kintone/img-ja/confirm_plugin_01.png" alt="スクリーンショット：［プラグイン］画面が表示されている" />
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+* <Wovn>［インストールが必要なプラグイン］</Wovn>
+* <Wovn>［読み込んだプラグイン］</Wovn>
+
+<Img src="/k/kintone/img-ja/confirm_plugin_01_us.png" alt="スクリーンショット：［プラグイン］画面が表示されている" />
+
+</Enabled>
+
+<Heading level={3} id="add_plugin_confirm_plugin_1010">&lt;Wovn&gt;［インストールが必要なプラグイン］&lt;/Wovn&gt;</Heading>
+アプリに追加されているプラグインのうち、<Kintone />にインストールされていないプラグインが表示されます。この欄に表示されているプラグインは、アプリで利用できない状態となっています。
+
+プラグインをアプリで利用できるようにするには、次のいずれかの方法でプラグインをインストールする必要があります。
+
+* <Wovn>［ステータス］</Wovn>列に<Wovn>［インストール］</Wovn>と表示されている場合  
+  <Wovn>［インストール］</Wovn>をクリックします。
+* <Wovn>［ステータス］</Wovn>列に<Wovn>［インストールできません。］</Wovn>と表示されている場合<Wovn></Wovn>  
+  再度ファイルを読み込んで、プラグインをインストールします。
+
+<Heading level={3} id="add_plugin_confirm_plugin_1020">&lt;Wovn&gt;［読み込んだプラグイン］&lt;/Wovn&gt;</Heading>
+ファイルから読み込んだプラグインが表示されます。プラグインのバージョンや説明を確認できます。
+
+<Wovn>［利用許可の設定］</Wovn>をクリックして、そのプラグインで利用を許可するアプリ、スペースを確認、設定できます。
+
+<Enabled regions={["JP", "CN"]}>
+
+<Heading level={3} id="add_plugin_confirm_plugin_1030">&lt;Wovn&gt;［プラグインストア］&lt;/Wovn&gt;</Heading>
+弊社が提供するプラグインが表示されます。プラグインのバージョンや説明を確認できます。
+
+<Wovn>［ステータス］</Wovn>列の<Wovn>［インストール］</Wovn>をクリックすると、プラグインを無料でインストールできます。  
+<Wovn>［ステータス］</Wovn>列に<Wovn>［インストール済み］</Wovn>と表示されている場合は、<Wovn>［利用許可の設定］</Wovn>をクリックして、そのプラグインで利用を許可するアプリ、スペースを確認、設定できます。
+
+</Enabled>
+
+<Heading id="add_plugin_confirm_plugin_20">プラグインが追加されているアプリを確認する</Heading>
+プラグインが追加されているアプリがある場合は、<Wovn>［プラグイン］</Wovn>画面の<Wovn>［プラグインが必要なアプリ］</Wovn>列や<Wovn>［追加しているアプリ］</Wovn>列に表示されます。  
+<Slash />共通管理者には、アプリ名が表示されます。アプリ名をクリックすると、<Wovn>［アプリの設定］</Wovn>画面を開くことができます。  
+<Slash />共通管理権限がない場合は、プラグインが追加されているアプリの個数が表示されます。アプリ名は表示されません。
+
+<Slash />共通管理者は、プラグインの一覧をCSV形式でダウンロードすることもできます。  
+詳細は、次のページを参照してください。  
+[プラグインの一覧をCSV形式でダウンロードする](/k/ja/id/0409.html)

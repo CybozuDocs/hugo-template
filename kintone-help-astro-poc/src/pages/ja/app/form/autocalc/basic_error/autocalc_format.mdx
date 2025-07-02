@@ -1,0 +1,159 @@
+---
+title: "演算子と関数の一覧"
+weight: 200
+aliases:
+  - "/ja/id/040499"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+
+
+計算式で利用できる演算子と関数を説明します。  
+計算する対象が数値か文字列かで、利用できる演算子と関数が異なります。
+
+<Heading id="autocalc_autocalc_format_10">演算子の説明</Heading>
+次の演算子が使用できます。
+
+<table>
+  <thead>
+    <tr>
+      <th nowrap style="" colspan="1" rowspan="2">演算子</th>
+      <th colspan="1" rowspan="2">説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center;">+</td>
+      <td>数値の足し算を行います。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">-</td>
+      <td>数値の引き算を行います。<br />
+      単項演算子として、フィールドの値の正負を変換する目的にも使用できます。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">*</td>
+      <td>数値の掛け算を行います。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">/</td>
+      <td>数値の割り算を行います。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">^</td>
+      <td>数値のべき算を行います。-100乗から100乗まで計算できます。<br />
+      べき指数に小数を指定すると、整数に切り下げて計算されます。<br />
+      例：3^2.5は3^2に変換され、計算結果は9になります。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><a href="/k/ja/id/040511.html">&amp;</a></td>
+      <td>文字列または数値を結合します。<br />
+      数値型または文字列型のフィールドが参照されていて未入力の場合は、空文字列とみなして結合します。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">=</td>
+      <td>文字列または数値の値が等しければ真、等しくなければ偽を返します。型が異なる比較は偽になります。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">!=</td>
+      <td>「=」の比較結果を反転させたものになります。型が異なる比較は真になります。<br />
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><></td>
+      <td>!=と同様の結果になります。<br /></td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><</td>
+      <td>左の値が右の値より小さければ真、右の値以上であれば偽を返します。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><=</td>
+      <td>左の値が右の値以下であれば真、右の値より大きければ偽を返します。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">></td>
+      <td>左の値が右の値より大きければ真、右の値以下であれば偽を返します。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">>=</td>
+      <td>左の値が右の値以上であれば真、右の値より小さければ偽を返します。</td>
+    </tr>
+  </tbody>
+</table>
+
+<Heading level={3} id="autocalc_autocalc_format_2010">演算子の優先順位</Heading>
+演算子の優先順位を、優先度の高い順に記載します。
+
+* \+ , -（正符号および負符号の単項演算子：+1、-2など）
+* ^（べき算）
+* \* , /（掛け算と割り算）
+* \+ , -（足し算と引き算）
+* &（文字列演算子）
+* =,  !=,  <>,  <,  >,  <=,  >=（比較演算子）
+
+<Heading id="autocalc_autocalc_format_20">関数の説明</Heading>
+関数は大文字と小文字のどちらでも入力できます。  
+次の関数が使用できます。
+
+<table>
+  <thead>
+    <tr>
+      <th style="" colspan="1" rowspan="2">関数</th>
+      <th colspan="1" rowspan="2">説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center;"><a href="/k/ja/id/040807.html" target="_blank">SUM</a></td>
+      <td>
+      <p>数値のフィールドコード、値が数値になる計算式、または数値を合計します。</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><a href="/k/ja/id/040808.html" target="_blank">YEN</a></td>
+      <td>
+      <p>計算結果を、指定した桁数で四捨五入し、3桁ごとの桁区切りの「&yen;（円）」形式で表示します。</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><a href="/k/ja/id/040501.html" target="_blank">DATE_FORMAT</a></td>
+      <td>日時の形式やタイムゾーンを変更します。<br /></td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><a href="/k/ja/id/040505.html" target="_blank">IF</a></td>
+      <td>条件を指定し、その条件の真偽によって異なった値を返します。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><a href="/k/ja/id/040496.html" target="_blank">AND</a></td>
+      <td>計算式で指定した条件が全て真となる時は真を返し、そうでなければ偽を返します。<br />
+      32個までの引数を指定できます。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><a href="/k/ja/id/040496.html" target="_blank">OR</a></td>
+      <td>計算式で指定した条件のいずれかが真となる時は真を返し、そうでなければ偽を返します。<br />
+      32個までの引数を指定できます。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><a href="/k/ja/id/040496.html" target="_blank">NOT</a></td>
+      <td>条件を反転させます。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><a href="/k/ja/id/040507.html" target="_blank">ROUND</a></td>
+      <td>数値を四捨五入します。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><a href="/k/ja/id/040507.html" target="_blank">ROUNDDOWN</a></td>
+      <td>数値を切り捨てます。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><a href="/k/ja/id/040507.html" target="_blank">ROUNDUP</a></td>
+      <td>数値を切り上げます。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><a href="/k/ja/id/040506.html" target="_blank">CONTAINS</a></td>
+      <td>指定したフィールドが条件（選択肢）と一致しているか、またはテーブル内に条件（検索文字列）と一致する行があるかどうかを判定します。</td>
+    </tr>
+  </tbody>
+</table>

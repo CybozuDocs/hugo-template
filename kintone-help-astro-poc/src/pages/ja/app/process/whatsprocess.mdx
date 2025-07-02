@@ -1,0 +1,43 @@
+---
+title: "プロセス管理でできること"
+weight: 100
+aliases:
+  - "/ja/id/040576"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+
+
+プロセス管理を設定すると、どの状態（ステータス）で、誰（作業者）が、何をする（アクション）かがアプリに追加されます。
+
+このページでは、プロセス管理を設定すると、ユーザーがどんなことができるのかを説明します。  
+用語についての詳細は、次のページを参照してください。  
+[ステータス、作業者、アクションとは](/k/ja/id/040573.html)
+
+<Heading id="process_whatsprocess_10">ステータスで作業の進捗を確認できる</Heading>
+プロセス管理を設定すると、各レコードのステータスが表示されるようになります。  
+<Img src="/k/kintone/img-ja/whatsprocess_img02.png" alt="スクリーンショット：レコード詳細画面にステータスが表示されている" />
+
+<Heading id="process_whatsprocess_20">アクションを使ってステータスを変更できる</Heading>
+アクションを実行すると、次のステータスに移ります。  
+自分が作業者に指定されているレコードには、アクションのボタンが表示されます。  
+ボタンをクリックし、次のステータスと作業者を確認して［実行］をクリックすると、レコードのステータスが変更されます。  
+<Img src="/k/kintone/img-ja/whatsprocess_img06.png" alt="スクリーンショット：レコード詳細画面でステータスを変更している" />
+
+<Heading id="process_whatsprocess_30">作業者は自分の担当レコードや通知を確認できる</Heading>
+ステータスごとに、レコードを編集または確認してステータスを変更するユーザーが作業者として指定されます。
+
+<Heading level={3} id="process_whatsprocess_3010">作業者に指定されたレコードの件数</Heading>
+<Kintone />のポータル（トップページ）には、自分が作業者に指定されているレコードの件数が、アプリごとに表示されます。  
+<Img src="/k/kintone/img-ja/whatsprocess_img04.png" alt="スクリーンショット：ポータルの「未処理」欄。自分が作業者に指定されているレコードの件数がアプリごとに表示されている" />
+
+表示されたアプリをクリックすると、自分が作業者に指定されているレコードの一覧が表示されます。  
+<Img src="/k/kintone/img-ja/whatsprocess_img05.png" alt="スクリーンショット：自分が作業者に指定されているレコード一覧を開くまでの動線を示している" />
+
+<Heading level={3} id="process_whatsprocess_3020">作業者に指定されたレコードの通知</Heading>
+プロセス管理の作業者になったユーザーには、「自分宛」の通知が届きます。  
+通知をクリックすると、レコードの詳細が表示されます。  
+<Img src="/k/kintone/img-ja/whatsprocess_03.png" alt="スクリーンショット：「通知」画面に自分が作業者に指定されたレコードのお知らせが表示されている" />

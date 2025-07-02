@@ -1,0 +1,105 @@
+---
+title: "ファイルの読み込み状況を確認する"
+weight: 900
+aliases:
+  - "/ja/id/040727"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+
+
+アプリには、ExcelファイルやCSVファイルからデータを読み込むことができます。  
+自分が実行したファイル読み込みの状況は「読み込まれたファイル」画面で確認します。
+
+「読み込まれたファイル」画面では、次のことが確認できます。
+
+* どこまでファイル読み込みの処理が進んでいるか
+* ファイルの読み込みに失敗した場合に、ファイルのどこに問題があるか
+
+<Heading id="import_records_imported_files_10">「読み込まれたファイル」画面の表示方法</Heading>
+「読み込まれたファイル」画面を表示するには、次のいずれかの方法を行ってください。
+
+* ファイルの読み込み中や読み込み失敗時に、レコード一覧画面の上部に表示されるメッセージ内のリンクをクリックする  
+  <Img src="/k/kintone/img-ja/imported_files_00.png" alt="スクリーンショット：ファイルの読み込み中の画面" />
+  <Img src="/k/kintone/img-ja/imported_files_01.png" alt="スクリーンショット：ファイルの読み込み失敗時の画面" />
+* <Kintone />の画面上部の歯車の形をした[設定]アイコンをクリックし、[読み込まれたファイル]をクリックする  
+  <Img src="/k/kintone/img-ja/imported_files_02.png" alt="スクリーンショット：[読み込まれたファイル]のリンクを枠線で強調している" />
+
+<Heading id="import_records_imported_files_20">「読み込まれたファイル」画面で状況を確認する</Heading>
+<Img src="/k/kintone/img-ja/imported_files_03.png" alt="読み込まれたファイル画面" />
+
+「読み込まれたファイル」画面には、自分が実行したファイル読み込みの進捗状況や操作の結果が、読み込み開始日時の新しい順に上から表示されます。
+
+画面表示は、自動的に更新されます。  
+なお、読み込み開始日時から3日経過した結果や削除されたアプリの結果は、画面に表示されなくなります。
+
+<Note>
+
+ <Slash />共通管理者は、「読み込まれたファイル」画面に表示されなくなった操作やほかのユーザーの操作を、監査ログで確認できます。  
+  ファイルからの読み込みを行った際、監査ログに記録されるタイミングは、「読み込むファイルを登録したとき」「ファイル読み込みの処理が開始されたとき」「ファイル読み込みの処理が完了したとき」です。「ファイルの読み込みを中止したとき」は記録されません。  
+  [<Kintone />の監査ログの確認方法](/k/ja/id/04054.html)  
+  [ファイル読み込みの監査ログを確認する](/k/ja/id/04055.html)
+
+</Note>
+
+<Heading level={3} id="import_records_imported_files_2010">読み込み開始日時</Heading>
+読み込むファイルが登録された日時が表示されます。
+
+<Heading level={3} id="import_records_imported_files_2020">読み込み終了日時</Heading>
+ファイルの読み込みが完了した日時が表示されます。  
+ステータスが「待機中」や「読み込み中」の場合、読み込みが完了するまでは、空欄になります。
+
+<Heading level={3} id="import_records_imported_files_2030">アプリ名</Heading>
+ファイルが読み込まれたアプリのアプリ名が表示されます。  
+アプリ名のリンクをクリックすると、そのアプリのレコード一覧画面が表示されます。  
+ただし、レコードの閲覧・追加権限を持たないアプリの場合は、「（閲覧権限がありません）」と表示されます。
+
+<Heading level={3} id="import_records_imported_files_2040">ファイル名</Heading>
+アプリに読み込まれたファイルの名前が表示されます。
+
+<Heading level={3} id="import_records_imported_files_2050">ステータス</Heading>
+ファイルの読み込みの状態が、以下の5通りで表示されます。
+
+* 待機中
+* 読み込み中
+* エラー
+* 完了
+* キャンセル
+
+<Heading level={3} id="import_records_imported_files_2060">詳細</Heading>
+ステータスによって、表示される内容が異なります。
+
+<Heading level={4} id="import_records_imported_files_206010">ステータスが「待機中」の場合</Heading>
+待機中であることが表示されます。  
+ファイルの読み込みをキャンセルするには、右側の列の[キャンセル]をクリックします。
+
+<Heading level={4} id="import_records_imported_files_206020">ステータスが「読み込み中」の場合</Heading>
+読み込むファイルの全行数のうち、読み込みが完了した行数が表示されます。  
+ファイルの読み込みを中止するには、右側の列の[読み込みを中止する]をクリックします。
+
+<Heading level={4} id="import_records_imported_files_206030">ステータスが「エラー」の場合</Heading>
+エラーコードとエラーメッセージが表示されます。  
+一度の読み込みで複数エラーがあっても、1つのエラーのみが表示されます。  
+エラーの対処方法については、次のページを参照してください。  
+[レコードの一括登録／更新に失敗した場合](/k/ja/id/040725.html)
+
+<Note>
+
+修正したファイルから再度データを読み込むときに、[アップロードをやり直す]ボタンをクリックできます。  
+表示されたファイル読み込み画面で、修正済みのファイルを再アップロードすると、前回読み込みを実行したときの、フィールドとファイルの列との対応付けなどが自動的に引き継がれます。  
+（なお、前回読み込み時にファイルの先頭行をフィールド名とした場合、かつ再アップロードしたファイルの先頭行のフィールド名・並び順が、前回アップロードしたファイルと同じ場合に限ります。）
+
+</Note>
+
+<Heading level={4} id="import_records_imported_files_206040">ステータスが「完了」の場合</Heading>
+読み込みが完了した行数が表示されます。  
+エラーや中止により読み込まれなかった行数も、あわせて表示されます。  
+また、読み込まれなかった行と原因をCSV形式でダウンロードできます。
+
+<Heading level={4} id="import_records_imported_files_206050">ステータスが「キャンセル」の場合</Heading>
+ファイルの読み込みがキャンセルされたことが表示されます。

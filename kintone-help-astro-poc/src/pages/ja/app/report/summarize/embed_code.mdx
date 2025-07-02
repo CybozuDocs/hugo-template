@@ -1,0 +1,43 @@
+---
+title: "集計結果の埋め込み用タグを取得する"
+weight: 200
+aliases:
+  - "/ja/id/040466"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+HTML形式のコード（埋め込み用タグ）を取得して、外部サイトのページに、<Kintone />のアプリのグラフや表を埋め込むことができます。  
+アプリに保存したグラフのみ、埋め込み用タグを取得できます。
+
+<Note>
+
+* 外部サイトのページで、埋め込んだ<Kintone />のグラフや表を表示するには、閲覧者が<Kintone />にログインしている必要があります。
+* 使用しているWebブラウザーの設定によっては、サードパーティー Cookieの読み取りを許可する必要があります。
+
+</Note>
+
+<Heading id="summarize_embed_code_10">手順</Heading>
+埋め込み用タグを取得する手順を説明します。
+
+1. 「レコード一覧」画面で、埋め込み用タグを取得するグラフを選択します。
+   <Img src="/k/kintone/img-ja/embed_code_img01.png" alt="スクリーンショット：レコード一覧画面でグラフを選択している" />
+
+1. 画面右上の[オプション]アイコンをクリックし、[埋め込み用タグ]をクリックします。
+   <Img src="/k/kintone/img-ja/embed_code_img02.png" alt="スクリーンショット：オプションから「埋め込み用タグ」を選択している" />
+
+1. 「埋め込み用タグ」から、埋め込み用タグをコピーします。
+
+1. グラフを埋め込むサイトのHTMLソースに、コピーしたタグを貼り付けます。
+
+<Reference>
+
+[グラフの設定](/k/ja/id/040577.html)
+
+</Reference>

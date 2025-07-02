@@ -1,0 +1,63 @@
+---
+title: "画像のサムネイル表示を設定する"
+weight: 300
+aliases:
+  - "/ja/id/040481"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+
+レコードに添付した画像のサムネイル（縮小画像）を表示するかどうかを設定します。  
+初期設定では、サムネイルの表示の設定は有効です。
+
+<Heading id="app_othersettings_set_thumbnail_10">サムネイルが表示されるファイルの形式</Heading>
+サムネイルの表示が有効な場合、「添付ファイル」フィールドに次の形式の画像を添付すると、画像のサムネイルが表示されます。
+
+* BMP
+* GIF
+* JPG
+* PNG
+
+<Heading id="app_othersettings_set_thumbnail_20">サムネイルの表示の設定による表示の違い</Heading>
+設定によって、次のとおり表示が異なります。
+
+<Heading level={3} id="app_othersettings_set_thumbnail_2010">設定が有効の場合</Heading>
+レコードにサムネイルが表示されます。  
+<Img src="/k/kintone/img-ja/thumbnail_img1_1.png" alt="スクリーンショット：添付したファイルのサムネイルが表示されている" />
+
+サムネイルをクリックすると、原寸大の画像が表示されます。  
+原寸大の画像がWebブラウザーのサイズよりも大きい場合は、Webブラウザーに合わせたサイズで画像が表示されます。  
+表示された画像は、拡大または縮小できます。
+
+<Heading level={3} id="app_othersettings_set_thumbnail_2020">設定が無効の場合</Heading>
+レコードにファイル名が表示されます。  
+<Img src="/k/kintone/img-ja/thumbnail_img2_1.png" alt="スクリーンショット：添付したファイルのファイル名が表示されている" />
+
+<Note>
+
+* 画像のファイルサイズが10MBを超える場合は、サムネイルの設定に関わらず、ファイル名が表示されます。サムネイルは表示されません。
+* 画像の画素数が5,000万画素を超える場合は、サムネイルにはダミー画像が表示されます。ファイル名は表示されません。
+
+</Note>
+
+<Heading id="app_othersettings_set_thumbnail_30">手順</Heading>
+画像のサムネイル表示を設定する手順は次のとおりです。
+
+1. 「レコードの一覧」画面で、画面右上にある歯車の形をした[アプリを設定]アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：[アプリを設定]アイコンが枠線で強調されている" />
+
+1. 「アプリの設定」画面で、[設定]タブの「その他の設定」にある[高度な設定]をクリックします。
+
+1. 「高度な設定」画面で、「サムネイルを表示する」の設定を変更します。  
+  サムネイルの表示を有効にする場合、チェックボックスにチェックを入れます。  
+  無効にする場合、チェックボックスを外します。
+
+1. 画面右下の[保存]をクリックします。
+
+1. 画面右上の[アプリを更新]をクリックします。
+
+1. 「アプリを更新」ダイアログで、[アプリを更新]をクリックします。

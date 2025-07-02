@@ -1,0 +1,37 @@
+---
+title: "アクセス権の設定"
+weight: 800
+aliases:
+  - "/ja/id/040588"
+layout: "@/layouts/SectionLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Hint from "@/components/Hint.astro";
+import Kintone from "@/components/Kintone.astro";
+
+
+<Kintone />では、アプリごと、レコードごと、フィールドごとの3つのレベルでアクセス権を設定できます。
+
+* すべてのレコードに対する権限は「アプリのアクセス権」で設定します。
+* 特定のレコードだけに設定する権限は「レコードのアクセス権」で設定します。
+* 特定のフィールドだけに設定する権限は、「フィールドのアクセス権」で設定します。
+
+アクセス権を設定すると、ユーザーによって、閲覧・編集できるデータを制限できます。  
+たとえば、次のような設定例があります。
+
+* 案件管理は、営業部のメンバーしか使えないようにする（アプリのアクセス権）
+* 社員名簿は、自分の情報しか見られないようにする（レコードのアクセス権）
+* 日報の上司の入力欄は、上司しか編集できないようにする（フィールドのアクセス権）
+
+<Enabled regions={["JP"]}>
+
+<Hint>
+
+アクセス権を初めて設定される方向けに、サンプルアプリを操作しながら学べるガイドブックがあります。
+詳細は、次のページを参照してください。  
+[（PDF）便利に使おうガイドブック vol.08 アクセス権](https://kintone.cybozu.co.jp/material/pdf/kintone_guidebook_vol08.pdf)（日本語のみ）
+
+</Hint>
+
+</Enabled>

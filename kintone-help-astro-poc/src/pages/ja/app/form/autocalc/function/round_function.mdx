@@ -1,0 +1,136 @@
+---
+title: "[ROUND関数、ROUNDUP関数、ROUNDDOWN関数]数値を四捨五入、切り上げ、切り捨てする"
+weight: 400
+aliases:
+  - "/ja/id/040507"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Subtitle from "@/components/Subtitle.astro";
+
+
+計算式にROUND関数を設定すると、指定した桁数で数値を四捨五入します。  
+ROUNDUP関数では数値の切り上げが、ROUNDDOWN関数では数値の切り捨てができます。
+
+<Heading id="autocalc_round_function_10">関数の構文</Heading>
+ROUND関数は、指定した桁数で数値を四捨五入します。
+
+```plaintext {copy=true}
+ROUND(数値, [桁数])
+
+```
+
+ROUNDUP関数は、指定した桁数で数値を切り上げます。
+
+```plaintext {copy=true}
+ROUNDUP(数値, [桁数])
+
+```
+
+ROUNDDOWN関数は、指定した桁数で数値を切り捨てます。
+
+```plaintext {copy=true}
+ROUNDDOWN(数値, [桁数])
+
+```
+
+ROUND関数、ROUNDUP関数、ROUNDDOWN関数には、数値型の引数を指定します。  
+「桁数」は省略できます。「桁数」を省略した場合は、「0」を指定したとみなされます。
+
+「数値」に指定できるのは、数値フィールドのフィールドコード、値が数値になる計算式、または数値です。
+
+「桁数」の引数には、桁数を指定します。  
+小数点以下の桁を処理したい場合は、正の数を指定します。  
+小数点の左側（整数部分）を処理したい場合は、0または負の数を指定します。
+
+<Note>
+<Subtitle>ROUND関数とYEN関数の違い</Subtitle>
+
+* ROUND関数の計算結果に「&yen;（円）」マークと「,（カンマ）」は付与されません。
+* ROUND関数の計算結果は数値型になります。YEN関数の計算結果は文字型になります。
+
+</Note>
+
+<Heading id="autocalc_round_function_20">桁数の指定方法</Heading>
+<Heading level={3} id="autocalc_round_function_2010">桁数に「2」を指定した場合</Heading>
+小数第3位で処理されます。  
+数値に「1234.567」を指定した場合の計算結果は、以下のとおりです。
+
+* 四捨五入：1234.57
+* 切り捨て：1234.56
+* 切り上げ：1234.57
+
+<Heading level={3} id="autocalc_round_function_2020">桁数に「1」を指定した場合</Heading>
+小数第2位で処理されます。  
+数値に「1234.567」を指定した場合の計算結果は、以下のとおりです。
+
+* 四捨五入：1234.6
+* 切り捨て：1234.5
+* 切り上げ：1234.6
+
+<Heading level={3} id="autocalc_round_function_2030">桁数として「0」を指定した場合</Heading>
+小数第1位で処理されます。  
+数値に「1234.567」を指定した場合の計算結果は、以下のとおりです。
+
+* 四捨五入：1235
+* 切り捨て：1234
+* 切り上げ：1235
+
+「桁数」を省略した場合も、「0」を指定したとみなされます。
+
+<Heading level={3} id="autocalc_round_function_2040">桁数として「-1」を指定した場合</Heading>
+1の位で処理されます。  
+数値に「1234.567」を指定した場合の計算結果は、以下のとおりです。
+
+* 四捨五入：1230
+* 切り捨て：1230
+* 切り上げ：1240
+
+<Heading level={3} id="autocalc_round_function_2050">桁数として「-2」を指定した場合</Heading>
+10の位で処理されます。  
+数値に「1234.567」を指定した場合の計算結果は、以下のとおりです。
+
+* 四捨五入：1200
+* 切り捨て：1200
+* 切り上げ：1300
+
+<Heading id="autocalc_round_function_30">計算式の例</Heading>
+計算式では、引数としてフィールド名ではなくフィールドコードを指定してください。  
+次の例では、フィールド名とフィールドコードをすべて一致させています。
+
+<Heading level={3} id="autocalc_round_function_3010">販売価格の算出に四捨五入を使用する計算式</Heading>
+次の例は、本体価格に手数料（1.1）をかけた数値を四捨五入して、販売価格を計算する計算式です。  
+販売価格として整数を求めるため、「桁数」の引数は「0」を指定します。「桁数」の引数は省略されると「0」とみなされるため、ここでは省略しています。
+
+```plaintext {copy=true}
+ROUND(本体価格 * 1.1)
+
+```
+
+<Img src="/k/kintone/img-ja/round_function_02.png" alt="スクリーンショット：販売価格を自動で計算している画面" />
+「本体価格」フィールドに価格を入力すると、手数料10%をかけて、小数点以下を四捨五入した販売価格が計算されます。
+
+<Heading level={3} id="autocalc_round_function_3020">販売価格の算出に切り上げを使用する計算式</Heading>
+次の例は、本体価格に手数料（1.1）をかけた数値を切り上げて、販売価格を計算する計算式です。  
+販売価格として整数を求めるため、「桁数」の引数は「0」を指定します。「桁数」の引数は、省略されると「0」とみなされるためここでは省略しています。
+
+```plaintext {copy=true}
+ROUNDUP(本体価格 * 1.1)
+
+```
+
+「本体価格」フィールドに価格を入力すると、手数料10%をかけて、小数点以下を切り上げた販売価格が計算されます。
+
+<Heading level={3} id="autocalc_round_function_3030">販売価格の算出に切り捨てを使用する計算式</Heading>
+次の例は、本体価格に手数料（1.1）をかけた数値を切り捨てて、販売価格を計算する計算式です。  
+販売価格として整数を求めるため、「桁数」の引数は「0」を指定します。「桁数」の引数は、省略されると「0」とみなされるためここでは省略しています。
+
+```plaintext {copy=true}
+ROUNDDOWN(本体価格 * 1.1)
+
+```
+
+「本体価格」フィールドに価格を入力すると、手数料10%をかけて、小数点以下を切り捨てた販売価格が計算されます。

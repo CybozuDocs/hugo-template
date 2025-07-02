@@ -1,0 +1,84 @@
+---
+title: "JavaScriptやCSSを使用した{{< kintone >}}全体のカスタマイズ"
+weight: 100
+aliases:
+  - "/ja/id/04042"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import DevnetTop from "@/components/DevnetTop.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+
+
+JavaScriptやCSSを利用して、<Kintone />全体の動作や画面をカスタマイズできます。PC用とスマートフォン用（スマートフォンアプリを含む）とで分けてカスタマイズします。
+
+JavaScript/CSSファイルは、<Kintone />のシステム管理から適用します。<Kintone />のトップページのポータルや、スペースのポータルをカスタマイズする場合も同様です。  
+アプリを個別にカスタマイズする場合は、アプリの設定画面からJavaScript/CSSファイルを適用します。
+詳細は、「[JavaScriptやCSSでアプリをカスタマイズする](/k/ja/id/040556.html)」を参照してください。
+
+<Kintone />に適用するカスタマイズファイルの作成には、<Kintone />が提供するAPIを利用できます。APIの詳細は、<DevnetTop />を参照してください。
+
+<Note>
+
+<Enabled regions={["JP"]}>
+
+ライトコースをご契約の場合、JavaScriptやCSSを使用したカスタマイズを利用できません。
+
+</Enabled>
+<Enabled regions={["US", "CN"]}>
+
+JavaScriptやCSSを使用したカスタマイズは、ご契約内容によっては利用できない場合があります。
+
+</Enabled>
+</Note>
+
+<Heading id="system_customization_javascript_fullcustomize_10">カスタマイズが適用されない画面</Heading>
+カスタマイズが適用されない画面は、次のとおりです。
+
+* <Kintone />システム管理から設定できる画面
+* アプリの設定画面
+* 個人設定画面
+* 埋め込み用タグを使用して外部サイトに埋め込んだグラフ
+
+上記の画面を除き、すべての画面に適用されます。
+
+<Heading id="system_customization_javascript_fullcustomize_20">JavaScriptファイルやCSSファイルを適用する</Heading>
+JavaScriptやCSSを用いて作成したカスタマイズファイルを<Kintone />に適用する手順を説明します。  
+<Kintone />のシステム管理者だけがカスタマイズを適用できます。
+
+1. <Kintone />システム管理画面を開きます。  
+  [<Kintone />システム管理画面を開く](/k/ja/id/04046.html)
+
+1. [JavaScript / CSSでカスタマイズ]をクリックします。
+
+1. カスタマイズの適用範囲を、次の3種類から選択します。
+
+   * すべてのユーザーに適用
+   * <Kintone />のシステム管理者だけに適用
+   * 適用しない
+
+    すべてのユーザーにカスタマイズを適用する前に、システム管理者だけに適用して、正しくカスタマイズされていることを確認してください。  
+    ここでの設定にかかわらず、ゲストユーザーにはカスタマイズは適用されません。
+
+1. [URL指定で追加]または[アップロードして追加]をクリックし、取り込むファイルを選択します。  
+   複数のファイルを取り込んだ場合、上から順番に読み込まれます。また、ファイルの順番は、ファイル名の左側にある「ドラッグして並び替え」アイコンをドラッグアンドドロップして変更できます。  
+   <Img src="/k/kintone/img-ja/javascript_fullcustomize_01.png" alt="スクリーンショット：全体カスタマイズ画面" />
+   <Note>
+
+   * [URL指定で追加]を利用して取り込むファイルを指定する場合、URLには<CybozuCom />以外のドメインも指定できます。
+   * ファイルは、それぞれ30個まで取り込めます。
+
+   </Note>
+
+1. 画面左上の[保存]をクリックします。
+
+<Note>
+
+アプリで個別にJavaScriptやCSS、プラグインを設定している場合、アプリの個別の設定よりも、ここで取り込んだJavaScriptやCSSが先に読み込まれます。
+
+</Note>

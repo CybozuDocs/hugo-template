@@ -1,0 +1,41 @@
+---
+title: "［レコードの一覧］でのレコードの直接編集と削除を無効にする"
+weight: 600
+description: "［レコードの一覧］画面でのインライン編集を無効にする方法を説明しています。"
+aliases:
+  - "/ja/id/040833"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+アプリごとに、<Wovn>［レコードの一覧］</Wovn>画面でのレコードの直接編集と削除を無効にするかどうかを設定できます。初期設定では、有効に設定されています。
+
+* レコードの直接編集と削除が有効な場合の例  
+  <Img src="/k/kintone/img-ja/inline_edit_and_delete_01.png" alt="スクリーンショット：［編集する］アイコンと［削除する］アイコンが表示された［レコードの一覧］画面" />
+* レコードの直接編集と削除が無効な場合の例  
+  <Img src="/k/kintone/img-ja/inline_edit_and_delete_02.png" alt="スクリーンショット：［編集する］アイコンと［削除する］アイコンが表示されていない［レコードの一覧］画面" />
+
+<Warning>
+
+<Wovn>［レコードの一覧］</Wovn>画面に関連するJavaScriptカスタマイズを適用した状態で、レコードの直接編集と削除を無効にした場合、カスタマイズの内容によっては画面が正常に表示されなくなる場合があります。
+
+</Warning>
+
+<Heading id="app_othersettings_inline_edit_and_delete_10">手順</Heading>
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［その他の設定］</Wovn>にある<Wovn>［高度な設定］</Wovn>をクリックします。
+
+1. <Wovn>［高度な設定］</Wovn>画面で、<Wovn>［レコード一覧でのインライン編集］</Wovn>にある<Wovn>［レコード一覧でのレコードの直接編集と削除を有効にする］</Wovn>のチェックを外します。
+
+1. 画面右下の<Wovn>［保存］</Wovn>をクリックします。
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>のダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。

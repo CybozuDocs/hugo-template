@@ -1,0 +1,46 @@
+---
+title: "集計結果をファイルに書き出す"
+weight: 100
+aliases:
+  - "/ja/id/040467"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+
+グラフ機能の集計結果を、表形式でCSVファイルに書き出すことができます。書き出される集計結果は、グラフ画面で適用されている集計条件や設定に応じます。
+
+<Note>
+
+* 集計結果をファイルに書き出すには、アプリに対して「ファイル書き出し」の権限が必要です。  
+  [アプリにアクセス権を設定する](/k/ja/id/040589.html)
+* クロス集計表は、後述する「[クロス集計表をExcel形式で書き出す](#summarize_export_summary_20)」の手順で書き出します。CSVファイルには書き出せません。
+
+</Note>
+
+<Heading id="summarize_export_summary_10">集計結果をCSVファイルに書き出す</Heading>
+集計結果をCSVファイルに書き出す手順を説明します。
+
+1. 書き出す集計結果を表示して、画面右上の[オプション]アイコンから[CSV形式で書き出す]をクリックします。
+   <Img src="/k/kintone/img-ja/export_summary_img01.png" alt="スクリーンショット：[CSV形式で書き出す]をクリックするまでの動線を示している" />
+
+1. 次の各項目を設定します。
+    * 先頭行に項目名を書き出す  
+      表の項目をファイルに書き出す場合は、チェックを入れます。
+    * 文字コード  
+      書き出すファイルの文字コードを選択します。  
+      書き出したファイルを日本語版のExcelで閲覧する場合は、「Shift-JIS」を選択します。  
+      文字コードの使い分けの詳細は、次の記事を参照してください。  
+      [ファイル書き出し時の文字コードの選びかたを知りたい](/k/ja/id/040169.html)
+    * 区切り文字  
+      項目の区切り文字を選択します。
+
+1. [書き出す]をクリックします。
+
+<Heading id="summarize_export_summary_20">クロス集計表をExcel形式で書き出す</Heading>
+アプリで集計したクロス集計表は、Excel形式で書き出せます。  
+書き出す集計結果を表示して、画面右上の[オプション]アイコンの[Excelブック形式で書き出す]をクリックします。
+<Img src="/k/kintone/img-ja/export_summary_img04_1_1.png" alt="スクリーンショット：[Excelブック形式で書き出す]をクリックするまでの動線を示している" />

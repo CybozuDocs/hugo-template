@@ -1,0 +1,98 @@
+---
+title: "グループ選択"
+weight: 1800
+aliases:
+  - "/ja/id/040530"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+
+
+グループ選択フィールドを配置すると、<Kintone />に登録されているグループ（ロール）を選択する入力欄を作成できます。  
+複数のグループを選択できます。
+
+<Heading id="form_parts_group_selection_40">設定項目</Heading>
+<Img src="/k/kintone/img-ja/group_selection_05.png" alt="スクリーンショット：グループ選択フィールドの設定画面" />
+
+<Heading level={3} id="form_parts_group_selection_4010">フィールド名</Heading>
+入力項目の見出しを指定します。
+
+<Heading level={3} id="form_parts_group_selection_4020">フィールド名を表示しない</Heading>
+[フィールド名を表示しない]にチェックを入れると、次の画面でフィールド名を非表示にします。
+
+* レコードの追加画面
+* レコードの編集画面
+* レコードの詳細画面
+* レコードの印刷用画面
+* フォームの設定画面
+
+<Heading level={3} id="form_parts_group_selection_4030">必須項目にする</Heading>
+[必須項目にする]にチェックを入れると、グループの選択が必須になります。
+
+<Heading level={3} id="form_parts_group_selection_4040">選択肢を指定する</Heading>
+[選択肢を指定する]にチェックを入れて、選択肢として表示するグループを設定します。
+
+選択肢を指定しておくと、レコードの追加または編集画面で、指定したグループが一覧で表示されます。  
+<Img src="/k/kintone/img-ja/group_selection_06.png" alt="スクリーンショット：選択肢を指定した場合の画面" />
+
+選択肢を指定しない場合、レコードの追加または編集画面では、次の方法でグループを選択します。
+
+* グループ名やグループコードを検索して選択する
+* フィールドの右側にある[グループの一覧から選択]アイコンをクリックして、「グループを選択」ダイアログを表示し、グループの中から選択する
+
+<Heading level={3} id="form_parts_group_selection_4050">初期値</Heading>
+初期値を設定できます。
+
+初期値に特定のグループを指定しておくと、指定したグループの値が自動的に入力された状態でレコードの追加画面が開きます。
+
+<Heading level={3} id="form_parts_group_selection_4060">フィールドコード</Heading>
+APIでフィールドを指定するときに使用する文字列です。
+
+<Note>
+
+フィールドコードについては、次のページを参照してください。  
+[フィールドコード](/k/ja/id/040504.html)
+
+</Note>
+
+<Heading id="form_parts_group_selection_30">使用例</Heading>
+<Kintone />に登録されているグループを選択するときに使用します。  
+たとえば、案件管理アプリや在庫管理アプリで、担当グループを登録するためのフィールドとして使用する場合に使用します。
+
+<Heading level={3} id="form_parts_group_selection_3010">他の機能と組み合わせた活用方法</Heading>
+グループ選択フィールドと、<Kintone />アプリの機能を組み合わせることで、次のように活用できます。
+
+<Heading level={4} id="form_parts_group_selection_301010">案件を担当グループで絞り込んで一覧表示する</Heading>
+案件管理アプリの「担当グループ」フィールドに、グループ選択フィールドを使用します。  
+一覧の設定で、絞り込み条件に「担当グループ」フィールドを指定すると、担当グループで案件を絞り込めます。
+
+一覧での絞り込みについては、次のページを参照してください。  
+[一覧に表示するレコードを絞り込む](/k/ja/id/040458.html)
+
+<Heading level={4} id="form_parts_group_selection_301020">担当グループ別に案件数を集計する</Heading>
+案件管理アプリの「担当グループ」フィールドに、グループ選択フィールドを使用します。  
+集計の項目や条件に「担当グループ」フィールドを指定すると、担当グループ別に案件数を集計できます。
+
+集計については、次のページを参照してください。  
+[グラフを作成する](/k/ja/id/040468.html)
+
+<Heading level={4} id="form_parts_group_selection_301030">在庫の有効期限が近づいたら管理グループに連絡する</Heading>
+在庫管理アプリの「管理グループ」フィールドに、グループ選択フィールドを使用します。  
+通知先に「管理グループ」フィールドを指定すると、選択されている管理グループに通知できます。
+
+アプリの通知設定については、次のページを参照してください。  
+[アプリの通知設定でできること](/k/ja/id/040565.html)
+
+<Heading level={4} id="form_parts_group_selection_301040">備品購入申請の承認グループを設定する</Heading>
+備品購入申請アプリの「承認グループ」フィールドに、グループ選択選択フィールドを使用します。  
+プロセス管理の作業者に「承認グループ」フィールドを指定すると、選択されている承認グループに所属するユーザーを、プロセス管理の作業者に設定できます。
+
+プロセス管理については、次のページを参照してください。  
+[プロセス管理でできること](/k/ja/id/040576.html)
+
+<Heading level={4} id="form_parts_group_selection_301050">所属グループや特定のグループだけにレコードの閲覧または編集を許可する</Heading>
+レコードやフィールドのアクセス権にグループ選択フィールドを指定すると、選択しているグループに所属するユーザーだけにレコードの閲覧や編集を許可できます。

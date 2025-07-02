@@ -1,0 +1,276 @@
+---
+title: "入出力できるデータの一覧"
+weight: 100
+aliases:
+  - "/ja/id/04056"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+
+
+ファイルから入力できるデータと、ファイルに出力できるデータを説明します。
+
+<Heading id="other_import_export_10">各機能のデータの入出力</Heading>
+下記の表では、入出力できる項目を次の記号で表しています。
+
+* **&#10004;**：入出力できる
+* **空白**：入出力できない
+
+<table>
+<caption>各機能のデータの入出力</caption>
+    <thead>
+        <tr>
+            <th>データの種類</th>
+            <th>入力</th>
+            <th>出力</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>アプリの設定</td>
+            <td>&#10004; <sup>*1</sup></td>
+            <td>&#10004; <sup>*1</sup></td>
+        </tr>
+        <tr>
+            <td style="width: 170px;">アプリのデータ</td>
+            <td style="width: 58px;">&#10004; <sup>*2</sup></td>
+            <td style="width: 58px;">&#10004; <sup>*2</sup></td>
+        </tr>
+        <tr>
+            <td style="width: 170px;">スペースの設定</td>
+            <td style="width: 58px;">&#10004; <sup>*1</sup></td>
+            <td style="width: 58px;">&#10004; <sup>*1</sup></td>
+        </tr>
+        <tr>
+            <td>スペースのデータ</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ピープルのデータ</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>システム設定</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<sup>\*1</sup>：アプリやスペースの設定をテンプレート化すると、ファイルとして入出力できるようになります。  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[アプリをテンプレートとしてダウンロードする](/k/ja/id/040493.html)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[作成済みのアプリをテンプレート化して<Kintone />に登録する](/k/ja/id/04018.html)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[スペースをテンプレート化する](/k/ja/id/04075.html)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;テンプレートには、一部の設定は含まれません。  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[アプリテンプレートに含まれない設定](/k/ja/id/04021.html)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[スペーステンプレートに含まれるデータと含まれないデータ](/k/ja/id/04078.html)  
+<sup>\*2</sup>：アプリの入出力できるデータについては、[アプリのデータの入出力](#appdata)を参照してください。
+
+<Heading id="appdata">アプリのデータの入出力</Heading>
+データの入出力には、CSV形式のファイルを使用します。詳細は下記のページを参照してください。
+
+* データを入力する手順：[レコードの一括登録と一括更新](/k/ja/id/040720.html)
+* データを出力する手順：[ファイルにデータを書き出す](/k/ja/id/040452.html)
+
+下記の表では、入出力できる項目を次の記号で表しています。
+
+* **&#10004;**：入出力できる
+* **空白**：入出力できない
+
+<table>
+<caption>各フィールドの値の入出力</caption>
+    <thead>
+        <tr>
+            <th>フィールドの種類</th>
+            <th>入力</th>
+            <th>出力</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ラベル</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>文字列（1行）</td>
+            <td>&#10004; <sup>*1</sup></td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>リッチエディター</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>文字列（複数行）</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>数値</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>計算</td>
+            <td><sup>*1</sup></td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>ラジオボタン</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>チェックボックス</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>複数選択</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>ドロップダウン</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>日付</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td style="width: 170px;">時刻</td>
+            <td style="width: 58px;">&#10004;</td>
+            <td style="width: 58px;">&#10004;</td>
+        </tr>
+        <tr>
+            <td>日時</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>添付ファイル</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>リンク</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>ユーザー選択</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>組織選択</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>グループ選択</td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>関連レコード一覧</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ルックアップ</td>
+            <td>&#10004; <sup>*2</sup></td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>レコード番号</td>
+            <td></td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>レコードの作成者</td>
+            <td>&#10004; <sup>*3</sup></td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>レコードの作成日時</td>
+            <td>&#10004; <sup>*3</sup></td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>レコードの更新者</td>
+            <td>&#10004; <sup>*3</sup></td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>レコードの更新日時</td>
+            <td>&#10004; <sup>*3</sup></td>
+            <td>&#10004;</td>
+        </tr>
+    </tbody>
+</table>
+
+<sup>\*1</sup>：文字列（1行）フィールドで自動計算を設定している場合、および計算フィールドの場合は、ファイル読み込み後に値が再計算されます。  
+<sup>\*2</sup>：「ほかのフィールドのコピー」に指定されているフィールドは、ルックアップフィールドに指定された値に従って、値が更新されます。  
+<sup>\*3</sup>：レコードの作成者／作成日時／更新者／更新日時フィールドは、そのアプリに新規登録するレコードの場合のみ、ファイルからデータを入力できます。なお、ファイル読み込みの権限だけでなく、アプリの管理権限が必要です。
+
+<Note>
+
+* テーブルとして設定したフィールドに、ファイルからデータを入力すると、テーブルの内容を更新／追加できます。  
+  [フォームにテーブル（表）を追加／削除する](/k/ja/id/040555.html)  
+  [ファイルからレコードのデータをアプリに読み込む](/k/ja/id/040724.html)
+
+</Note>
+
+<table>
+<caption>フィールド以外の情報の入出力</caption>
+    <thead>
+        <tr>
+            <th style="width: 170px;">種類</th>
+            <th style="width: 58px;">入力</th>
+            <th style="width: 58px;">出力</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>カテゴリー <sup>*1</sup></td>
+            <td>&#10004;</td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>ステータス <sup>*2</sup></td>
+            <td></td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>作業者 <sup>*2</sup></td>
+            <td></td>
+            <td>&#10004;</td>
+        </tr>
+        <tr>
+            <td>コメント</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>変更履歴</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<sup>\*1</sup>：カテゴリー機能を有効にしている場合のみ、カテゴリーを入出力できます。  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[カテゴリーの設定](/k/ja/id/040489.html)  
+<sup>\*2</sup>：プロセス管理機能を有効にしている場合のみ、ステータス、および作業者を出力できます。  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[プロセス管理の設定](/k/ja/id/040568.html)

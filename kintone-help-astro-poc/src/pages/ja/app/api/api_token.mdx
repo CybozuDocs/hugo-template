@@ -1,0 +1,125 @@
+---
+title: "APIトークンを生成する"
+weight: 100
+aliases:
+  - "/ja/id/040471"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+APIトークンは、外部のプログラムから<Kintone /> REST APIを実行する際、認証に使用する文字列です。
+
+リクエストの<Wovn>［X-Cybozu-API-Token］</Wovn>ヘッダーにAPIトークンを指定することで、リクエストが認証され、APIが実行されます。複数のAPIトークンを使用する場合は、カンマ区切りで指定します。
+
+<table style="width: 700px;">
+<caption>APIトークンを使用したリクエストの例：</caption>
+    <tbody>
+        <tr>
+                        <td>
+              GET /k/v1/record.json?app=7&amp;id=100 HTTP/1.1<br />
+              Host: example.<CybozuCom />:443<br />
+              X-Cybozu-API-Token:<b>cJrAD9Es62qm0Z3eE6uzQQmaDxM3q9jiDay1oysX</b>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table style="width: 700px;">
+<caption>複数のAPIトークンを使って、顧客名をルックアップで取得する例：</caption>
+    <tbody>
+        <tr>
+                        <td>
+              curl -X POST -H "X-Cybozu-API-Token: <b>cJrAD9Es62qm0Z3eE6uzQQmaDxM3q9jiDay1oysX</b>, <b>6oDAV8hCY6HTa1AC6EZbNe2dpc1t8QnWZrHOMgMb</b>"
+              "https://（サブドメイン名）.<CybozuCom />/k/v1/record.json" -H "Content-Type: application/json" -d '&#123;app: 20, record: &#123;"顧客名": &#123;value: "金都運総研"&#125;&#125;&#125;'
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+
+<Enabled regions={["JP"]}>
+
+APIトークンを使用した認証の詳細は、次のページの「APIトークン認証」を参照してください。  
+[APIトークン認証](https://cybozu.dev/ja/id/edae2a9d04c6e7d0afffda3a/#api-token)
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+APIトークンを使用した認証の詳細は、次のページの「API token authentication」を参照してください。  
+[API token authentication](https://kintone.dev/en/docs/common/authentication/#api-token-authentication)
+
+</Enabled>
+
+<Warning>
+
+生成したAPIトークンは、第三者に知られないようにしてください。
+
+</Warning>
+
+<Heading id="app_settings_api_token_10">APIトークンを生成する</Heading>
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［カスタマイズ／サービス連携］</Wovn>にある<Wovn>［APIトークン］</Wovn>をクリックします。
+
+1. <Wovn>［APIトークン］</Wovn>画面で、<Wovn>［生成する］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/api_token_img1.png" alt="スクリーンショット：［生成する］ボタン" />
+
+1. 生成されたAPIトークンに対して、<Wovn>［アクセス権］</Wovn>で許可する操作にチェックを入れます。
+   <Img src="/k/kintone/img-ja/api_token_img2.png" alt="スクリーンショット：許可する操作のチェックボックス" />
+
+   <Note>
+
+   アプリの次の設定に関わらず、APIトークンに対して設定したアクセス権が優先されます。
+   * アプリのアクセス権
+   * レコードのアクセス権
+   * フィールドのアクセス権
+
+   </Note>
+
+1. 必要に応じて、<Wovn>［メモ］</Wovn>の<Wovn>［編集する］</Wovn>アイコンをクリックして、各APIトークンのメモを入力します。  
+  担当者や利用目的などを記載しておくことで、APIトークンの管理に役立ちます。  
+   <Img src="/k/kintone/img-ja/api_token_03.png" alt="スクリーンショット：［メモ］を枠線で強調している" />
+   * 入力欄の右下の角をマウスでつかんで広げると、横幅と縦幅を広げることができます。
+   * 200文字まで入力できます。
+
+1. &#10004;の形をした<Wovn>［保存］</Wovn>アイコンをクリックしてメモを保存します。  
+   <Img src="/k/kintone/img-ja/api_token_04.png" alt="スクリーンショット：［保存］アイコン" />
+
+1. 画面右下の<Wovn>［保存］</Wovn>をクリックします。
+
+1. 画面右上の<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+<Enabled regions={["JP"]}>
+<Note>
+
+* ご契約がライトコースの場合は、APIトークンを利用できません。
+* 生成できるトークンは、アプリ1つにつき20個までです。
+* 組織間のアクセス権の設定を有効にした場合、APIトークンの生成または確認ができるのは、<Kintone />システム管理権限を持つユーザーのみになります。
+* APIトークン認証は、<Kintone />システム管理権限が必要な操作には対応していません。  
+  そのため、<Kintone />システム管理権限が必要なカスタマイズ形式の一覧の変更には対応していません。
+
+</Note>
+</Enabled>
+
+<Enabled regions={["US", "CN"]}>
+<Note>
+
+* 生成できるトークンは、アプリ1つにつき20個までです。
+* 組織間のアクセス権の設定を有効にした場合、APIトークンの生成または確認ができるのは、<Kintone />システム管理権限を持つユーザーのみになります。
+* APIトークン認証は、<Kintone />システム管理権限が必要な操作には対応していません。  
+  そのため、<Kintone />システム管理権限が必要なカスタマイズ形式の一覧の変更には対応していません。
+
+</Note>
+</Enabled>

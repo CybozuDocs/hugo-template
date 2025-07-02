@@ -1,0 +1,62 @@
+---
+title: "アプリコードを変更する"
+weight: 400
+description: "一度設定したアプリコードを変更したり、未設定にする方法と注意事項を説明しています。"
+aliases:
+  - "/ja/id/040826"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+設定済みのアプリコードを変更する手順と、注意点について説明します。
+
+<Heading id="app_othersettings_change_appcode_10">手順</Heading>
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［その他の設定］</Wovn>にある<Wovn>［高度な設定］</Wovn>を選択します。
+
+1. <Wovn>［高度な設定］</Wovn>画面で、<Wovn>［アプリコード］</Wovn>欄の右側にある、鉛筆の形をした<Wovn>［編集する］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/change_appcode_img01.png" alt="スクリーンショット：アプリコード欄右側の［編集する］アイコンを強調している" />
+
+1. <Wovn>［アプリコード］</Wovn>欄のアプリコードを編集します。
+   <Img src="/k/kintone/img-ja/change_appcode_img03.png" alt="スクリーンショット：［アプリコード］欄のアプリコードを編集している" />
+
+   <Note>
+
+   * アプリコードは、ほかのアプリと重複できません。
+   * アプリコードは、アルファベットから始まる半角英数字である必要があります。
+   * <Wovn>［アプリコード］</Wovn>欄を空欄にすると、アプリコードが未設定の状態になります。
+   * <Wovn>［アプリコード］</Wovn>欄の右側の<Wovn>［キャンセル］</Wovn>アイコンをクリックすると、編集前の状態に戻ります。  
+    <Img src="/k/kintone/img-ja/change_appcode_img04.png" alt="スクリーンショット：アプリコード右側の［キャンセル］アイコンを赤枠で強調している" />
+
+   </Note>
+
+1. <Wovn>［アプリコード］</Wovn>欄の右側にある、&#10004;の形をした<Wovn>［保存する］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/change_appcode_img02.png" alt="スクリーンショット：アプリコード欄右側の［保存する］アイコンを強調している" />
+
+1. 画面右下の<Wovn>［保存］</Wovn>をクリックします。
+
+1. 画面右上の<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+<Heading id="app_othersettings_change_appcode_20">アプリコードを変更するときの注意点</Heading>
+アプリコードを変更するときは次の点に注意してください。
+
+* アプリコードを変更すると、アプリコードを含んだレコード番号の自動リンクは解除されます。
+* 過去に使用していたアプリコードを設定した場合、アプリコードを含んだレコード番号の自動リンクが置き換わります。  
+すでにアプリやスペースに記載されている自動リンクについても、現在そのアプリコードを設定しているアプリへの自動リンクに置き換わります。
+* アプリコードを変更すると、<Wovn>［レコード番号］</Wovn>フィールドの情報が変更されます。CSVファイルへの書き出しやAPIを利用する際にご留意ください。
+
+<Reference>
+
+[アプリコードを設定する](/k/ja/id/040478.html)
+
+</Reference>

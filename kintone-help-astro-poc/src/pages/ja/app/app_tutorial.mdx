@@ -1,0 +1,155 @@
+---
+title: "アプリとは"
+weight: 100
+aliases:
+  - "/ja/id/040616"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />には、あなたの仕事に合わせた業務システムを、あなたの仕事の数だけ追加できます。この業務システムのことを「アプリ」と呼びます。たとえば勤怠管理、交通費申請、顧客対応履歴など、業務に応じたさまざまなアプリを作成可能です。
+
+<Heading id="app_app_tutorial_10">アプリ例</Heading>
+アプリの例をいくつか紹介します。  
+なお、ここで紹介する例のほかにも、<Kintone />では色々なサンプルアプリが準備されています。  
+参考：[サンプルアプリを追加する](/k/ja/id/040622.html)
+
+* 日報アプリ  
+  日々の業務内容、報告事項、所感などを記載していくアプリです。
+* 案件管理アプリ  
+  顧客案件ごとに、受注の確度や金額はもちろん、活動の履歴も記録できるアプリです。
+* 問い合わせ管理アプリ  
+  お客様からのお問い合わせ内容・対応履歴を記録するアプリです。
+* 交通費申請アプリ  
+  往訪など、交通費の立替金が発生したときに申請するアプリです。
+
+<Heading id="app_app_tutorial_30">アプリを作成するには</Heading>
+アプリは複数の方法で作成できます。作成方法の例をいくつか紹介します。
+
+* はじめから作成する  
+  <Kintone />ではさまざまな入力形式の項目が準備されており、これらをドラッグ＆ドロップで配置しながら、アプリをゼロから作成できます。  
+  <Img src="/k/kintone/img-ja/app_tutorial_img9.gif" alt="スクリーンショット：アプリのフォームにさまざまな項目をドラッグ＆ドロップで配置している動画" />
+
+* ExcelやCSVから作成する  
+  業務で利用しているExcelやCSVを読み込んで、アプリを作成できます。
+
+* <Kintone />アプリストアから作成する  
+  <Kintone />アプリストアでは100種類以上のサンプルアプリが用意されています。  
+  <Kintone />アプリストアからサンプルアプリを追加し、実際に操作しながら設定を変更し、自由に作り変えることができます。
+
+なお、アプリを作成して運用を始めた後でも、アプリの設定は柔軟に変更できます。
+
+<Reference>
+
+[アプリの作成と削除](/k/ja/id/040621.html)
+
+</Reference>
+
+<Heading id="app_app_tutorial_40">アプリの構成</Heading>
+<Heading level={3} id="app_app_tutorial_4010">レコードとフィールド</Heading>
+<Kintone />のアプリは、「レコード」という単位でデータを管理します。たとえば、従業員名簿アプリでは、1人の社員の情報を1レコードとして登録して管理します。  
+また、レコードを構成する1つ1つの項目を「フィールド」と呼びます。たとえば従業員名簿アプリの場合、氏名、住所、メールアドレスなどの各項目がフィールドに当たります。
+
+<Img src="/k/kintone/img-ja/app_tutorial_img12.png" alt="スクリーンショット：従業員名簿アプリを例にレコードとフィールドを示している" />
+
+登録したレコードは、アプリのトップページで一覧表示されます。この画面を、<Wovn>［レコードの一覧］</Wovn>画面と呼びます。  
+<Wovn>［レコードの一覧］</Wovn>画面から<Wovn>［レコードの詳細］</Wovn>画面を表示すると、レコード内容の詳細を1件ずつ確認できます。
+
+<Img src="/k/kintone/img-ja/app_tutorial_img8.png" alt="スクリーンショット：レコード一覧画面とレコード詳細画面を表示している" />
+
+<Heading level={3} id="app_app_tutorial_4020">レコード詳細の入力画面（フォーム）</Heading>
+レコード詳細を入力するための画面のことを「フォーム」と呼びます。アプリを作成するには、まずこのフォームを作成しましょう。  
+フォームを設定する画面には入力形式に応じたフィールドが用意されており、ドラッグアンドドロップで配置しながらアプリを作成していくことが可能です。
+
+<Img src="/k/kintone/img-ja/app_tutorial_img9.gif" alt="スクリーンショット：フォームを設定する画面を表示している" />
+
+<Reference>
+
+[フォームの設定](/k/ja/id/040494.html)
+
+</Reference>
+
+<Heading level={3} id="app_app_tutorial_4030">レコード一覧</Heading>
+アプリを開くと、登録したレコードの一覧が表示されます。  
+初期設定では、すべてのレコードの全フィールドが一覧表示されますが、一覧を設定することにより、表示するレコードやフィールドを絞り込んだり、表示形式を変更したりできます。
+
+例）
+
+* タスク管理アプリで、担当者が自分（ログインユーザー）のレコードのみ一覧表示する
+* 従業員名簿アプリで、在職中の社員のレコードのみ一覧表示する
+
+<Img src="/k/kintone/img-ja/app_tutorial_img10.png" alt="スクリーンショット：レコード一覧画面を表示している" />
+
+<Reference>
+
+[レコードの一覧の設定](/k/ja/id/040605.html)
+
+</Reference>
+
+<Heading id="app_app_tutorial_50">よく使用するアプリの機能</Heading>
+<Kintone />を使いこなすうえで特におすすめしたい機能の一部を、目的別に紹介します。
+
+<Heading level={3} id="app_app_tutorial_5010">データを閲覧できる人を制限したい</Heading>
+<Heading level={4} id="app_app_tutorial_501010">活用例</Heading>
+* 顧客情報アプリは、営業部メンバーのみ編集できるようにする
+* 従業員名簿アプリでは、人事部メンバーは全従業員情報を閲覧できるようにし、そのほかの社員は自分の情報だけを閲覧できるようにする
+
+<Heading level={4} id="app_app_tutorial_501020">使用する機能</Heading>
+[アクセス権](/k/ja/id/040588.html)
+
+<Heading level={4} id="app_app_tutorial_501030">利用イメージ</Heading>
+<Img src="/k/kintone/img-ja/app_various_functions_img03.png" alt="スクリーンショット：アクセス権の設定によってメンバーごとに閲覧できる情報が違うことを示している" />
+
+<Heading level={3} id="app_app_tutorial_5020">別のアプリのデータを表示したい・コピーしたい（アプリ間連携）</Heading>
+<Heading level={4} id="app_app_tutorial_502010">活用例</Heading>
+* 人事評価アプリに、従業員情報を呼びだす
+* 顧客管理アプリに、その顧客の案件履歴を一覧表示する
+* 応募者管理アプリから面接管理アプリに、採用面接に進む応募者情報を転記する
+
+<Heading level={4} id="app_app_tutorial_502020">使用する機能</Heading>
+* [ルックアップ](/k/ja/id/040544.html)
+* [関連レコード一覧](/k/ja/id/040550.html)
+* [アプリアクション](/k/ja/id/040484.html)
+
+<Heading level={4} id="app_app_tutorial_50230">利用イメージ</Heading>
+<Img src="/k/kintone/img-ja/app_various_functions_img04.png" alt="スクリーンショット：関連レコード一覧を使ってレコード詳細画面に別のアプリのデータが表示されている" />  
+<Img src="/k/kintone/img-ja/app_various_functions_img01.png" alt="スクリーンショット：アプリアクションを使って別のアプリのデータを転記している" />
+
+<Heading level={3} id="app_app_tutorial_5030">申請や承認を行いたい・進捗管理をしたい</Heading>
+<Heading level={4} id="app_app_tutorial_503010">活用例</Heading>
+* 出張申請アプリで、申請や承認をできるようにする（ワークフロー）
+* チームのToDoリストアプリで、作業の進捗を管理する
+
+<Heading level={4} id="app_app_tutorial_503020">使用する機能</Heading>
+[プロセス管理](/k/ja/id/040568.html)
+
+<Heading level={4} id="app_app_tutorial_503030">利用イメージ</Heading>
+<Img src="/k/kintone/img-ja/app_various_functions_img02.png" alt="スクリーンショット：レコード詳細画面にワークフローを回すためのボタンや現在のステータスが表示されている" />
+
+<Heading level={3} id="app_app_tutorial_5040">アプリから自動的に通知を送りたい</Heading>
+<Heading level={4} id="app_app_tutorial_504010">活用例</Heading>
+* 案件管理アプリで、案件が登録されたときに自動で営業担当者に通知する
+* 交通費申請アプリで、承認者に対して承認依頼が来ていることを通知する
+
+<Heading level={4} id="app_app_tutorial_504020">使用する機能</Heading>
+[アプリの通知設定](/k/ja/id/040559.html)
+
+<Heading level={4} id="app_app_tutorial_504030">利用イメージ</Heading>
+<Img src="/k/kintone/img-ja/app_tutorial_img14.png" alt="スクリーンショット：ポータル画面にレコードが追加された旨の通知が表示されている" />
+
+<Heading level={3} id="app_app_tutorial_5050">アプリに登録したデータを集計したい</Heading>
+<Heading level={4} id="app_app_tutorial_505010">活用例</Heading>
+* 売上管理アプリで、月ごとの売上額を集計する
+* 商品の売上額を、商品カテゴリー、商品名の順に分類してグラフにする
+
+<Heading level={4} id="app_app_tutorial_505020">使用する機能</Heading>
+[グラフ機能](/k/ja/id/040587.html)
+
+<Heading level={4} id="app_app_tutorial_505030">利用イメージ</Heading>
+<Img src="/k/kintone/img-ja/app_tutorial_img13.png" alt="スクリーンショット：月ごとの売上額が棒グラフで表示されている" />

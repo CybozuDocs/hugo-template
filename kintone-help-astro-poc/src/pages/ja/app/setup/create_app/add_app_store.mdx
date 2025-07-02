@@ -1,0 +1,67 @@
+---
+title: "サンプルアプリを追加する"
+weight: 200
+aliases:
+  - "/ja/id/040622"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />には、さまざまな業務に使えるサンプルアプリが用意されています。  
+サンプルアプリは、アプリのひな型です。そのまま使うことも、デザインや設定を変更して使うことも可能です。
+
+<Enabled regions={["JP"]}>
+<Hint>
+
+サンプルアプリは、<Kintone />内のアプリストア、または製品サイトの次のページで確認できます。  
+[サンプルアプリ](https://kintone-sol.cybozu.co.jp/apps/#apps)（日本語のみ）
+
+</Hint>
+</Enabled>
+
+ここでは、アプリストアからサンプルアプリを追加する方法を説明します。
+
+1. <Kintone />のポータルで、<Wovn>［アプリ］</Wovn>エリアにある+の形をした<Wovn>［アプリを作成する］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/add_app_store_img02.png" alt="スクリーンショット：[アプリを作成する]アイコンを枠線で強調している" />
+
+   <Note>
+
+   <Wovn>［アプリを作成する］</Wovn>アイコンが表示されない場合、以下の原因が考えられます。
+
+   * アプリ作成権限が付与されていない。  
+    <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>でアプリ作成権限を確認してください。  
+     詳細は、次のページを参照してください。  
+     [<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+   * スペースに所属しないアプリの作成が、許可されていない。  
+    <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［利用する機能の選択］</Wovn>で、<Wovn>［スペースに所属しないアプリの作成を許可する］</Wovn>の設定内容を確認してください。  
+    詳細は、次のページを参照してください。  
+    [利用する機能の選択](/k/ja/id/04031.html#admin_feature_activation_3010)
+
+   </Note>
+
+1. <Wovn>［<Kintone />アプリストア］</Wovn>画面で、アプリストアの左パネル、または<Wovn>［おすすめのアプリ］</Wovn>欄から用途にあったアプリを選びます。  
+   アプリ名をクリックすると、アプリの詳細を確認できます。  
+  アプリの詳細を確認せずにアプリを追加する場合は、該当のアプリの右端の<Wovn>［このアプリを追加］</Wovn>または<Wovn>［このアプリパックを追加］</Wovn>をクリックしてください。  
+   <Img src="/k/kintone/img-ja/add_app_store_img03.png" alt="スクリーンショット：アプリストアのカテゴリーとおすすめアプリを枠線で強調している" />
+
+1. <Wovn>［アプリの詳細］</Wovn>画面で<Wovn>［このアプリを追加］</Wovn>または<Wovn>［このアプリパックを追加］</Wovn>をクリックします。  
+  あらかじめサンプルデータとして登録されたレコードがある場合、<Wovn>［アプリの詳細］</Wovn>画面に<Wovn>［サンプルデータを含める］</Wovn>のチェックボックスが表示されます。  
+  サンプルデータが不要なときは、<Wovn>［サンプルデータを含める］</Wovn>のチェックを外してください。  
+   <Img src="/k/kintone/img-ja/add_app_store_img04.png" alt="スクリーンショット：[このアプリを追加]を枠線で強調している" />
+
+1. <Wovn>［アプリの追加］</Wovn>ダイアログで、<Wovn>［追加］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/add_app_store_img05.png" alt="スクリーンショット：[追加]を枠線で強調している" />
+
+データ（レコード）の追加や、設定を変更することも可能です。詳細は次のページを参照してください。  
+[レコードの登録と削除](/k/ja/id/040714.html)  
+[アプリの設定項目](/k/ja/id/040603.html)
+
+追加したサンプルアプリは、<Wovn>［アプリの設定］</Wovn>画面から削除できます。  
+[アプリを削除する](/k/ja/id/040633.html)

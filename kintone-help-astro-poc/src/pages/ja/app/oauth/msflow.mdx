@@ -1,0 +1,234 @@
+---
+title: "Microsoft Power Automateと{{< kintone >}}を連携する"
+weight: 100
+aliases:
+  - "/ja/id/040677"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+Microsoft Power Automateを使って、<Kintone />とほかのWebサービスの間でデータをやり取りできます。たとえば、<Kintone />にレコードが登録されたときにSlackなどのチャットアプリに投稿する、逆にSlackに特定のキーワードを含む投稿があったときに<Kintone />にレコードを登録する、といった連携が可能です。
+
+このページでは、OutlookやGmailとの連携を例にMicrosoft Power Automateと<Kintone />の連携を説明します。
+
+<Enabled regions={["JP"]}>
+<Warning>
+
+ご契約がライトコースの場合は、Microsoft Power Automateとの連携を利用できません。
+
+</Warning>
+</Enabled>
+
+<Note>
+
+* Microsoft Power Automateを使った連携には、Microsoft Power Automateの有償プランの契約が必要です。  
+  また、<SlashUi />の<Wovn>［外部連携］</Wovn>の<Wovn>［OAuth］</Wovn>で、Microsoft Power Automateを<Wovn>［有効］</Wovn>にし、<Wovn>［利用者の設定］</Wovn>で利用ユーザーを許可する必要があります。許可する方法は、次のページを参照してください。  
+  [ユーザーに外部サービスとの連携を許可する](/general/ja/id/02014.html)
+* ゲストスペース内のアプリとは連携できません。
+
+</Note>
+
+<Heading id="oauth_msflow_10">設定例：&lt;Kintone /&gt;にレコードが登録されたらOutlookでメールを送信する</Heading>
+<Warning>
+
+<Kintone />とOutlookは、Microsoft Power Automateで同じデータグループに設定する必要があります。  
+[データ グループについて詳しく学ぶ](https://learn.microsoft.com/ja-jp/power-automate/introduction-to-data-groups)（Microsoft Power Automateのサイト）
+
+</Warning>
+
+1. <Kintone />のアプリを作成します。  
+    メールに送信する情報として、次のフィールドを用意します。
+    <table>
+    <thead>
+        <tr>
+        <th>フィールド名</th>
+        <th>フィールドタイプ</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td>日付</td>
+        <td><Wovn>［日付］</Wovn>フィールド</td>
+        </tr>
+        <tr>
+        <td>店舗</td>
+        <td><Wovn>［ドロップダウン］</Wovn>フィールド</td>
+        </tr>
+        <tr>
+        <td>売上</td>
+        <td><Wovn>［数値］</Wovn>フィールド</td>
+        </tr>
+    </tbody>
+    </table>
+
+    <Img src="/k/kintone/img-ja/msflow01.png" alt="スクリーンショット：店舗日報アプリ" />
+
+1. Microsoft Power Automateにサインインして、左側のメニューから<Wovn>［マイフロー］</Wovn>をクリックします。  
+  [Microsoft Power Automate](https://make.powerautomate.com)（Microsoft Power Automateのサイト）  
+  Microsoft Power Automateでは、連携設定を「フロー」と呼びます。  
+   <Img src="/k/kintone/img-ja/msflow02.png" alt="スクリーンショット：Microsoft Power Automateにサインインしたページ" />
+
+1. <Wovn>［新しいフロー］</Wovn>をクリックし、<Wovn>［自動化したクラウド フロー］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/msflow03.png" alt="スクリーンショット：新しいフローを作成するページ" />
+
+1. フロー名を任意で入力し、<Wovn>［すべてのトリガーを検索する］</Wovn>に<Kintone />と入力して検索します。  
+   <Img src="/k/kintone/img-ja/msflow04.png" alt="スクリーンショット：トリガー検索ページ" />
+
+1. <Wovn>［レコードがアプリに追加されたとき］</Wovn>をクリックして、<Wovn>［作成］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/msflow05.png" alt="スクリーンショット：トリガー検索ページ" />
+
+   <Note>
+   選択できる<Kintone />のトリガーは次のとおりです。
+
+   * レコードの追加
+   * レコードの更新
+   * レコードの削除
+   * レコードコメント投稿
+   * プロセス管理のステータス更新
+
+   </Note>
+
+1. 連携先の<Kintone />のドメインを入力し、<Wovn>［サインイン］</Wovn>をクリックします。
+   * ドメインは、<Kintone />のURLのうち、「（サブドメイン名）.<CybozuCom />」に該当する部分です。  
+   たとえば、URLが「https://example.<CybozuCom />/k/#/portal」の場合は、「example.<CybozuCom />」の部分が該当します。
+
+   <Img src="/k/kintone/img-ja/msflow06.png" alt="スクリーンショット：ドメイン入力ページ" />
+
+1. 連携を許可するかどうか確認する画面が表示されたら、<Wovn>［許可］</Wovn>をクリックします。
+    <Img src="/k/kintone/img-ja/msflow07.png" alt="スクリーンショット：連携を許可するダイアログ" />
+
+1. 連携で利用するアプリのIDを入力します。
+   * アプリIDはアプリのURLで確認できます。  
+   たとえば、アプリのURLがhttps://example.<CybozuCom />/k/23/ の場合は、「23」がアプリIDです。
+
+   <Img src="/k/kintone/img-ja/msflow08.png" alt="スクリーンショット：アプリID入力ボックス" />
+
+1. <Wovn>［新しいステップ］</Wovn>をクリックします。
+    <Img src="/k/kintone/img-ja/msflow09.png" alt="スクリーンショット：新しいステップボタン" />
+
+1. 操作の選択画面で「Outlook」と検索して、<Wovn>［メールの送信］</Wovn>のアクションをクリックします。
+    <Img src="/k/kintone/img-ja/msflow24.png" alt="スクリーンショット：アクション選択ページ" />
+
+1. メールに載せる情報を設定します。  
+    メールに載せる情報は、<Kintone />のアプリのデータと、固定の文字列を組み合わせて柔軟に指定できます。たとえば、次のように設定します。
+    * 宛先：送信先のメールアドレス
+    * 件名：今日の売り上げ「<Wovn>［日付］</Wovn>フィールド」
+    * 本文：本日の売上金額です。
+    * 「<Wovn>［店舗］</Wovn>フィールド」 「<Wovn>［売上］</Wovn>フィールド」
+
+   <Img src="/k/kintone/img-ja/msflow10.png" alt="スクリーンショット：メール送信画面" />
+
+1. <Wovn>［保存］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/msflow11.png" alt="スクリーンショット：メール送信画面" />
+
+フローの設定は以上で完了です。  
+<Kintone />のアプリにレコードが登録されたら、Outlookからメールが送られるようになります。  
+次に、逆のパターンとして、メールを受信したら<Kintone />のアプリにレコードを登録するように設定してみましょう。
+
+<Heading id="oauth_msflow_20">設定例：Gmailでメールを受信したら&lt;Kintone /&gt;にレコードを登録する</Heading>
+<Warning>
+
+<Kintone />とGmailは、Microsoft Power Automateで同じデータグループに設定する必要があります。  
+[データ グループについて詳しく学ぶ](https://learn.microsoft.com/ja-jp/power-automate/introduction-to-data-groups)（Microsoft Power Automateのサイト）
+</Warning>
+
+1. <Kintone />のアプリを作成します。  
+    ゲストスペース内のアプリとは連携できません。  
+    受信したメールの件名と本文を登録するフィールドを用意します。
+    <table>
+      <thead>
+          <tr>
+              <th>フィールド名</th>
+              <th>フィールドタイプ</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>件名</td>
+              <td><Wovn>［文字列（1行）］</Wovn>フィールド</td>
+          </tr>
+          <tr>
+              <td>本文</td>
+              <td><Wovn>［文字列（複数行）］</Wovn>フィールド</td>
+          </tr>
+      </tbody>
+    </table>
+
+    <Img src="/k/kintone/img-ja/msflow28.png" alt="スクリーンショット：アプリのフォーム画面" />
+
+1. Microsoft Power Automateにサインインして、左側のメニューから<Wovn>［マイフロー］</Wovn>をクリックします。  
+    [Microsoft Power Automate](https://make.powerautomate.com)（Microsoft Power Automateのサイト）  
+    Microsoft Power Automateでは、連携設定を「フロー」と呼びます。  
+   <Img src="/k/kintone/img-ja/msflow02.png" alt="スクリーンショット：Microsoft Power Automateにサインインしたページ" />
+
+1. <Wovn>［新しいフロー］</Wovn>をクリックし、<Wovn>［自動化したクラウド フロー］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/msflow03.png" alt="スクリーンショット：新しいフローを作成するページ" />
+
+1. フロー名を任意で入力し、<Wovn>［すべてのトリガーを検索する］</Wovn>欄にGmailと入力して検索します。  
+   <Img src="/k/kintone/img-ja/msflow27.png" alt="スクリーンショット：トリガー検索ページ" />
+
+1. <Wovn>［新しいメールが届いたとき］</Wovn>をクリックして、<Wovn>［作成］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/msflow13.png" alt="スクリーンショット：トリガー検索ページ" />
+
+1. Gmailへの接続が求められたら、<Wovn>［サインイン］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/msflow20.png" alt="スクリーンショット：Gmailに接続" />
+
+1. Googleアカウントへのアクセスリクエストが表示されたら、<Wovn>［許可］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/msflow21.png" alt="スクリーンショット：Googleアカウントへのアクセスリクエスト" />
+
+1. <Wovn>［新しいステップ］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/msflow14.png" alt="スクリーンショット：新しいステップボタン" />
+
+1. 操作の選択画面で「<Kintone />」と入力して検索し、設定したいアクションを選択します。  
+   今回はレコードの追加のアクションを選択します。<Wovn></Wovn>  
+    <Img src="/k/kintone/img-ja/msflow15.png" alt="スクリーンショット：アクションの選択" />
+
+   <Note>
+   選択できる<Kintone />のアクションは次のとおりです。  
+
+   * レコードの追加
+   * レコードの更新
+
+   </Note>
+
+1. <Kintone />にログインする画面が表示された場合、ドメインを入力し、<Wovn>［サインイン］</Wovn>をクリックします。
+   * ドメインは、<Kintone />のURLのうち、「（サブドメイン名）.<CybozuCom />」に該当する部分です。  
+   たとえば、URLが「https://example.<CybozuCom />/k/#/portal」の場合は、「example.<CybozuCom />」の部分が該当します。
+
+   <Img src="/k/kintone/img-ja/msflow16.png" alt="スクリーンショット：ドメイン入力画面" />
+
+1. 連携を許可するかどうか確認する画面が表示されたら、<Wovn>［許可］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/msflow07.png" alt="スクリーンショット：連携を許可するダイアログ" />
+
+1. <Kintone />のアプリのレコードに登録する情報を設定します。  
+   レコードに登録する情報は、メールの項目と、固定の文字列を組み合わせて柔軟に指定できます。  
+   <Img src="/k/kintone/img-ja/msflow17.png" alt="スクリーンショット：レコードに登録する情報" />
+
+1. <Wovn>［保存］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/msflow18.png" alt="スクリーンショット：保存ボタン" />
+
+フローの設定は以上で完了です。Gmailでメールを受信すると、<Kintone />にレコードが登録されます。  
+<Img src="/k/kintone/img-ja/msflow23.png" alt="スクリーンショット：{{&lt; kintone &gt;}}アプリにメールの内容が登録されている" />
+そのほかにも、さまざまな便利な連携が可能です。ぜひ試してみてください。
+
+<Enabled regions={["JP"]}>
+
+<Reference>
+
+* [kintoneコネクタ（Microsoft Power Automate）を使う前に知っておきたいこと](https://cybozu.dev/ja/kintone/tips/development/3rd-party-services/microsoft/essentials-for-kintone-connector/)（日本語のみ）
+* [Microsoft関連（Office 365, Azure, AD）](https://cybozu.dev/ja/kintone/tips/development/3rd-party-services/microsoft/microsoft-integration-summary/)（日本語のみ）
+
+</Reference>
+
+</Enabled>

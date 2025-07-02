@@ -1,0 +1,69 @@
+---
+title: "リッチエディター"
+weight: 300
+aliases:
+  - "/ja/id/040537"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+
+リッチエディターを配置すると、装飾付きの文字を入力できる入力欄を作成できます。  
+文字色、背景色、文字サイズの変更や、下線や箇条書きの設定などができます。
+
+リッチエディターフィールドでは、入力欄の右下をマウスでつかんで広げると、横幅と縦幅を広げることができます。
+<Img src="/k/kintone/img-ja/rich_text_04.png" alt="スクリーンショット：リッチエディターフィールドの入力欄の右下を赤枠で強調している" />
+
+<Note>
+
+* リッチエディターフィールドに画像やファイルを添付する機能はありません。
+* リッチエディターフィールドのデータをファイルに書き出す場合は、装飾情報などのHTMLタグが含まれた状態で出力するか、HTMLタグを取り除いたテキスト形式で出力するかを選択できます。
+
+</Note>
+
+<Heading id="form_parts_rich_text_20">リッチエディターの設定項目</Heading>
+<Img src="/k/kintone/img-ja/rich_text_03.png" alt="スクリーンショット：リッチエディターフィールドの設定画面" />
+
+<Heading level={3} id="form_parts_rich_text_2010">フィールド名</Heading>
+入力項目の見出しを指定します。
+
+<Heading level={3} id="form_parts_rich_text_2020">フィールド名を表示しない</Heading>
+「フィールド名を表示しない」にチェックを入れると、次の画面でフィールド名を非表示にします。
+
+* レコードの追加画面
+* レコードの編集画面
+* レコードの詳細画面
+* レコードの印刷用画面
+* フォームの設定画面
+
+<Heading level={3} id="form_parts_rich_text_2030">必須項目にする</Heading>
+「必須項目にする」にチェックを入れると、値の入力が必須になります。
+
+<Heading level={3} id="form_parts_rich_text_2040">初期値</Heading>
+入力項目の初期値を表示したい場合に設定します。
+
+<Heading level={3} id="form_parts_rich_text_2050">フィールドコード</Heading>
+APIでフィールドを指定するときに使用する文字列です。
+
+<Note>
+
+フィールドコードについては、次のページを参照してください。  
+[フィールドコード](/k/ja/id/040504.html)
+
+</Note>
+
+<Heading id="form_parts_rich_text_10">使用例</Heading>
+入力した文字を装飾したい場合に使用します。  
+たとえば、見出しに文字の大きさや色をつけて強調したい場合や、箇条書きを使用したい場合に使用します。
+
+<Img src="/k/kintone/img-ja/rich_text_02.png" alt="スクリーンショット：リッチエディターフィールドで文字装飾を使用している例" />
+
+<Note>
+
+複数行の文字列を入力する入力欄で文字装飾が不要な場合は、文字列（複数行）フィールドを使用します。  
+[文字列（複数行）](/k/ja/id/040538.html)
+
+</Note>
