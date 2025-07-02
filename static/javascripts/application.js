@@ -1124,14 +1124,9 @@
                     return;
                 }
                 let cpdflg = false;
-                // text() を使うと末尾に2つスペースが入るので除去する
-                const text = codeblockContent.text().replace(/  $/g,'');
+                const text = codeblockContent[0].innerText+"\n";
                 if(navigator.clipboard){
                     navigator.clipboard.writeText(text);
-                    cpdflg = true;
-                } else if(window.clipboardData){
-                    // for IE
-                    window.clipboardData.setData("Text" , text);
                     cpdflg = true;
                 }
                 if (cpdflg) {
