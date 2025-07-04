@@ -2,16 +2,19 @@
 title: "スレッドでチームメンバーとやり取りしてみよう"
 weight: 200
 type: "series"
-aliases: "/ja/id/040144"
+aliases:
+  - "/ja/id/040144"
 layout: "@/layouts/PageLayout.astro"
 ---
 
 import Heading from "@/components/Heading.astro";
-import Img from "@/components/Img.astro";
 import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
 import Kintone from "@/components/Kintone.astro";
 import Listsummary from "@/components/Listsummary.astro";
 import Note from "@/components/Note.astro";
+import Wovn from "@/components/Wovn.astro";
+
 
 スレッドとは、スペース内でテーマごとに作成できる掲示板のような機能です。複数のテーマがある場合でも、情報を整理しながらコミュニケーションを円滑に進めることができます。
 
@@ -23,39 +26,45 @@ import Note from "@/components/Note.astro";
 次の操作手順に沿ってスレッドを作成し、チームメンバーとやり取りすることで、スレッドの使い方をイメージしてみましょう。
 
 <Listsummary>
-  1. [スレッドを作成する](#space_create_add_thread_comment_10)
-  1. [スレッドにコメントを書き込む](#space_create_add_thread_comment_20)
-  1. [スレッドのコメントの通知を確認する](#space_create_add_thread_comment_30)
+
+1. [スレッドを作成する](#space_create_add_thread_comment_10)
+1. [スレッドにコメントを書き込む](#space_create_add_thread_comment_20)
+1. [スレッドのコメントの通知を確認する](#space_create_add_thread_comment_30)
+
 </Listsummary>
 
-<Heading level={2} id="space_create_add_thread_comment_10">スレッドを作成する</Heading>
+<Heading id="space_create_add_thread_comment_10">スレッドを作成する</Heading>
 
-1. <Kintone />のポータルで、［スペース］エリアにある「営業部スペース」をクリックします。
+1. <Kintone />のポータルで、<Wovn>［スペース］</Wovn>エリアにある「営業部スペース」をクリックします。<Wovn></Wovn>
    <Img src="/k/kintone/img-ja/add_thread_commnent_img01.png" alt="スクリーンショット：［スペース］エリアの「営業部スペース」が枠線で強調されている［ポータル］画面" />
 
-1. スペースのポータルで、［スレッド］エリアにある+の形をした［スレッドを作成］アイコンをクリックします。
+1. スペースのポータルで、<Wovn>［スレッド］</Wovn>エリアにある+の形をした<Wovn>［スレッドを作成］</Wovn>アイコンをクリックします。
    <Img src="/k/kintone/img-ja/add_thread_commnent_img02.png" alt="スクリーンショット：［スレッドを作成］アイコンが枠線で強調されているスペースのポータル" />
 
 1. スレッドを作成する画面で、それぞれ次の内容を入力します。
-   * ［スレッドのタイトル］：「商談対応スレッド」
-   * ［本文］：「商談対応の状況を共有しましょう。商談で使用した資料やデモデータも是非共有してください。」
+   * <Wovn>［スレッドのタイトル］</Wovn>：「商談対応スレッド」
+   * <Wovn>［本文］</Wovn>：「商談対応の状況を共有しましょう。商談で使用した資料やデモデータも是非共有してください。」
 
    <Img src="/k/kintone/img-ja/add_thread_commnent_img03.png" alt="スクリーンショット：［スレッドのタイトル］と［本文］の入力欄が枠線で囲まれている" />
 
-   <Hint>スレッドの本文には、スレッドの目的や注意事項などを記載しておくと、誰がいつ見てもスレッドの内容を把握しやすくなります。</Hint>
+   <Hint>
 
-1. スレッドを作成したことをスペースのメンバーに通知したい場合には、［スレッドの作成をスペース参加メンバーに「自分宛」で通知する］にチェックを入れます。
+   スレッドの本文には、スレッドの目的や注意事項などを記載しておくと、誰がいつ見てもスレッドの内容を把握しやすくなります。
 
-1. ［スレッドを作成］をクリックします。
+   </Hint>
 
-   <Heading level={2} id="space_create_add_thread_comment_20">スレッドにコメントを書き込む</Heading>
+1. スレッドを作成したことをスペースのメンバーに通知したい場合には、<Wovn>［スレッドの作成をスペース参加メンバーに「自分宛」で通知する］</Wovn>にチェックを入れます。
 
-   次に、このスレッド上でチームメンバーにコメントを書き込んでみましょう。
+1. <Wovn>［スレッドを作成］</Wovn>をクリックします。
 
-1. スレッドのコメント欄（［投稿する］エリア）をクリックします。
+<Heading id="space_create_add_thread_comment_20">スレッドにコメントを書き込む</Heading>
+
+次に、このスレッド上でチームメンバーにコメントを書き込んでみましょう。
+
+1. スレッドのコメント欄（<Wovn>［投稿する］</Wovn>エリア）をクリックします。
    <Img src="/k/kintone/img-ja/add_thread_commnent_img04.png" alt="スクリーンショット：コメント欄が枠線で強調されている" />
 
-1. ［宛先指定］をクリックするか、コメント欄に「@」（半角アットマーク）を入力します。
+1. <Wovn>［宛先指定］</Wovn>をクリックするか、コメント欄に「@」（半角アットマーク）を入力します。
    <Img src="/k/kintone/img-ja/add_thread_commnent_img05.png" alt="スクリーンショット：［宛先指定］のリンクが枠線で強調されている" />
 
 1. コメントの宛先に指定したい名前の一部を入力し、表示された候補から宛先を選択します。  
@@ -63,22 +72,26 @@ import Note from "@/components/Note.astro";
    <Img src="/k/kintone/img-ja/add_thread_commnent_img06.png" alt="スクリーンショット：表示された候補から宛先を選択している" />
 
    <Note>
-   組織やグループも宛先に指定できます。また、指定した組織やグループをクリックし、［宛先になるユーザーを確認］をクリックすると、宛先に含まれているユーザーを確認できます。  
-      <Img src="/k/kintone/img-ja/comment_address_img05_1.png" alt="スクリーンショット：［宛先になるユーザーを確認］のリンクが枠線で強調されている" />
+
+   組織やグループも宛先に指定できます。また、指定した組織やグループをクリックし、<Wovn>［宛先になるユーザーを確認］</Wovn>をクリックすると、宛先に含まれているユーザーを確認できます。  
+   <Img src="/k/kintone/img-ja/comment_address_img05_1.png" alt="スクリーンショット：［宛先になるユーザーを確認］のリンクが枠線で強調されている" />
+
    </Note>
 
-1. コメントを入力し、［書き込む］をクリックします。  
+1. コメントを入力し、<Wovn>［書き込む］</Wovn>をクリックします。  
   コメントの書き込みが完了し、指定した宛先の<Kintone />に通知が届きます。
 
-   <Note>
-   * 一度書き込んだコメントは、編集できません。
-   * コメントを削除したい場合は、削除したいコメントにマウスをあわせて［削除］をクリックしてください。
-   </Note>
+<Note>
 
-   <Heading level={2} id="space_create_add_thread_comment_30">スレッドのコメントの通知を確認する</Heading>
+* 一度書き込んだコメントは、編集できません。
+* コメントを削除したい場合は、削除したいコメントにマウスをあわせて<Wovn>［削除］</Wovn>をクリックしてください。
 
-   宛先として指定した加藤 大輔さんの<Kintone />では、［通知］欄に新着コメントが表示されます。  
-   <Img src="/k/kintone/img-ja/add_thread_commnent_img07.png" alt="スクリーンショット：［通知］欄の新着コメントが枠線で強調されている［ポータル］画面" />
+</Note>
 
-   通知をクリックすると「商談対応スレッド」が開いて該当のコメント欄が表示されます。また、<Kintone />の画面上部のベルの形をした［通知一覧］アイコンには新着通知の数が表示されます。
-   <Img src="/k/kintone/img-ja/add_thread_commnent_img08.png" alt="スクリーンショット：［通知］欄の新着コメントをクリックしたあとのスレッド" />
+<Heading id="space_create_add_thread_comment_30">スレッドのコメントの通知を確認する</Heading>
+
+宛先として指定した加藤 大輔さんの<Kintone />では、<Wovn>［通知］</Wovn>欄に新着コメントが表示されます。  
+<Img src="/k/kintone/img-ja/add_thread_commnent_img07.png" alt="スクリーンショット：［通知］欄の新着コメントが枠線で強調されている［ポータル］画面" />
+
+通知をクリックすると「商談対応スレッド」が開いて該当のコメント欄が表示されます。また、<Kintone />の画面上部のベルの形をした<Wovn>［通知一覧］</Wovn>アイコンには新着通知の数が表示されます。
+<Img src="/k/kintone/img-ja/add_thread_commnent_img08.png" alt="スクリーンショット：［通知］欄の新着コメントをクリックしたあとのスレッド" />

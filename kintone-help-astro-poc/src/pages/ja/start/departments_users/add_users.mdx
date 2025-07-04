@@ -1,19 +1,22 @@
 ---
 title: "ユーザーを追加する"
 weight: 400
-aliases: "/ja/id/040138"
+aliases:
+  - "/ja/id/040138"
 layout: "@/layouts/PageLayout.astro"
 ---
 
-import Heading from "@/components/Heading.astro";
-import Img from "@/components/Img.astro";
 import CybozuCom from "@/components/CybozuCom.astro";
 import Disabled2 from "@/components/Disabled2.astro";
 import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
 import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
 import Kintone from "@/components/Kintone.astro";
 import Slash from "@/components/Slash.astro";
 import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
 
 <Kintone />を利用するユーザーを追加しましょう。
 
@@ -24,146 +27,157 @@ import SlashUi from "@/components/SlashUi.astro";
 [組織を追加する](/k/ja/id/040137.html)
 
 <Hint>
-  * CSVファイルを使用して、複数のユーザーを一括で追加できます。  
-    [ファイルを使ってユーザーや組織などを追加または変更する](/general/ja/id/020160.html)
-  * ユーザー情報の項目追加など、さらに詳しい内容は、次のページを参照してください。  
-    [ユーザーの設定](/general/ja/id/020217.html)
+
+* CSVファイルを使用して、複数のユーザーを一括で追加できます。  
+  [ファイルを使ってユーザーや組織などを追加または変更する](/general/ja/id/020160.html)
+* ユーザー情報の項目追加など、さらに詳しい内容は、次のページを参照してください。  
+  [ユーザーの設定](/general/ja/id/020217.html)
+
 </Hint>
 
-<Heading level={2} id="department_add_user_10">手順</Heading>
+<Heading id="department_add_user_10">手順</Heading>
 
 <Slash />共通管理者だけがユーザーを追加できます。
 
-1. <Kintone />の画面上部の歯車の形をした［設定］アイコンをクリックし、［<SlashUi />］をクリックします。
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［<SlashUi />］</Wovn>をクリックします。
 
-   <Enabled regions={["JP"]}><Img src="/k/kintone/img-ja/slash_setting_menu.png" alt="スクリーンショット：［<SlashUi />］が枠線で囲まれている" /></Enabled>
-   <Enabled regions={["CN"]}><Img src="/k/kintone/img-ja/slash_setting_menu_cn.png" alt="スクリーンショット：［<SlashUi />］が枠線で囲まれている" /></Enabled>
-   <Enabled regions={["US"]}><Img src="/k/kintone/img-ja/slash_setting_menu_us.png" alt="スクリーンショット：［<SlashUi />］が枠線で囲まれている" /></Enabled>
+   <Enabled regions={["JP"]}>
+   <Img src="/k/kintone/img-ja/slash_setting_menu.png" alt="スクリーンショット：［{{&lt; slash_ui &gt;}}］が枠線で囲まれている" />
 
-1. ［<SlashUi />］画面で、［ユーザー管理］にある［組織/ユーザー］をクリックします。  
+   </Enabled>
+   <Enabled regions={["CN"]}>
+   <Img src="/k/kintone/img-ja/slash_setting_menu_cn.png" alt="スクリーンショット：［{{&lt; slash_ui &gt;}}］が枠線で囲まれている" />
+   </Enabled>
+   <Enabled regions={["US"]}>
+   <Img src="/k/kintone/img-ja/slash_setting_menu_us.png" alt="スクリーンショット：［{{&lt; slash_ui &gt;}}］が枠線で囲まれている" />
+   </Enabled>
+
+1. <Wovn>［<SlashUi />］</Wovn>画面で、<Wovn>［ユーザー管理］</Wovn>にある<Wovn>［組織/ユーザー］</Wovn>をクリックします。  
    <Img src="/k/kintone/img-ja/add_division_img01.png" alt="スクリーンショット：［組織/ユーザー］が枠線で強調された［組織とユーザーの設定］画面" />
 
 1. ユーザーを組織に所属させるかどうかによって、次のどちらかを選択します。  
    なお、後からでも、ユーザーが所属する組織を設定または変更することも可能です。
    * 追加済みの組織にユーザーを追加する場合：組織のツリーを展開し、ユーザーを追加する組織を選択します。
-   <Img src="/k/kintone/img-ja/add_user_img06.png" alt="スクリーンショット：組織のツリーを展開して組織を選択している" />
-   * 組織に所属しないユーザーを追加する場合：［組織に未所属のユーザー］をクリックします。
-   <Img src="/k/kintone/img-ja/add_user_img02.png" alt="スクリーンショット：［組織に未所属のユーザー］のリンクが枠線で強調された［組織とユーザーの設定］画面" />
+     <Img src="/k/kintone/img-ja/add_user_img06.png" alt="スクリーンショット：組織のツリーを展開して組織を選択している" />
+   * 組織に所属しないユーザーを追加する場合：<Wovn>［組織に未所属のユーザー］</Wovn>をクリックします。
+     <Img src="/k/kintone/img-ja/add_user_img02.png" alt="スクリーンショット：［組織に未所属のユーザー］のリンクが枠線で強調された［組織とユーザーの設定］画面" />
 
-1. ［ユーザーの追加］をクリックします。
-   <Img src="/k/kintone/img-ja/add_user_img03.png" alt="スクリーンショット：［ユーザーの追加］ボタンが枠線で強調された［組織とユーザーの設定］画面" />
+1. <Wovn>［ユーザーの追加］</Wovn>をクリックします。
+    <Img src="/k/kintone/img-ja/add_user_img03.png" alt="スクリーンショット：［ユーザーの追加］ボタンが枠線で強調された［組織とユーザーの設定］画面" />
 
-1. ［ユーザーの追加］画面で、各項目を設定します。
+1. <Wovn>［ユーザーの追加］</Wovn>画面で、各項目を設定します。
 
-   * **［アカウント］：**  
-     * ［表示名］（必須）：  
-   <Kintone />でのユーザーの表示名を入力します。
-     * ［メールアドレス］：  
+   * **<Wovn>［アカウント］</Wovn>：**  
+     * <Wovn>［表示名］</Wovn>（必須）：  
+       <Kintone />でのユーザーの表示名を入力します。
+     * <Wovn>［メールアドレス］</Wovn>：  
        ユーザーのメールアドレスを入力します。このメールアドレスは、<Kintone />から送信されるメール通知や、パスワードを忘れた際のパスワードリセットに使用されます。共有のメールアドレスは設定しないでください。
-     * ［メールアドレスをログイン名として使用する］：  
+     * <Wovn>［メールアドレスをログイン名として使用する］</Wovn>：  
         初期値ではチェックが入って有効になっています。ユーザーがメールアドレスを持っていない場合や、メールアドレスをログイン名として使用したくない場合は、チェックを外してログイン名を設定します。
-     * ［ログイン名］（必須）：  
-       ［メールアドレスをログイン名として使用する］のチェックを外した場合に、<Kintone />にログインするためのIDを入力します。ログイン名に使用できる文字種や最長文字数は、次のページを参照してください。  
+     * <Wovn>［ログイン名］</Wovn>（必須）：  
+       <Wovn>［メールアドレスをログイン名として使用する］</Wovn>のチェックを外した場合に、<Kintone />にログインするためのIDを入力します。ログイン名に使用できる文字種や最長文字数は、次のページを参照してください。  
        [ログイン名やパスワードに使用できる文字](/general/ja/id/020256.html)  
-     * ［パスワード］（必須）：  
+     * <Wovn>［パスワード］</Wovn>（必須）：  
        ユーザーのパスワードを、次のいずれかの方法で設定します。
          * パスワードを自動生成する場合：  
-         ［パスワードを自動生成する］にチェックを入れます。初期値ではチェックが入っています。
+         <Wovn>［パスワードを自動生成する］</Wovn>にチェックを入れます。初期値ではチェックが入っています。
          * パスワードを手動で設定する場合：  
-         ［パスワードを自動生成する］のチェックを外して、パスワードを入力します。パスワードに使用できる文字種や最長文字数は、次のページを参照してください。  
+         <Wovn>［パスワードを自動生成する］</Wovn>のチェックを外して、パスワードを入力します。パスワードに使用できる文字種や最長文字数は、次のページを参照してください。  
            [ログイン名やパスワードに使用できる文字](/general/ja/id/020256.html)  
 
-   <Img src="/k/kintone/img-ja/add_user_img05.png" alt="スクリーンショット：パスワードの設定画面" />
+         <Img src="/k/kintone/img-ja/add_user_img05.png" alt="スクリーンショット：パスワードの設定画面" />  
 
-         * ［パスワードを表示する］にチェックを入れると、［パスワード］に入力したパスワードが表示されます。
-         * ［パスワードの有効期限を無期限にする］にチェックを入れると、パスワードポリシーの設定にかかわらず、選択したユーザーのパスワードのみ、有効期間を無期限にできます。パスワードポリシーの設定項目は、次のページを参照してください。  
+         * <Wovn>［パスワードを表示する］</Wovn>にチェックを入れると、<Wovn>［パスワード］</Wovn>に入力したパスワードが表示されます。
+         * <Wovn>［パスワードの有効期限を無期限にする］</Wovn>にチェックを入れると、パスワードポリシーの設定にかかわらず、選択したユーザーのパスワードのみ、有効期間を無期限にできます。パスワードポリシーの設定項目は、次のページを参照してください。  
            [パスワードポリシー](/general/ja/id/02052.html#list_login_overview_30)
 
-   * **［アカウントの使用状態］：**  
-     * ［使用状態］：  
-       アカウントの使用状態を［使用中］と［停止中］で切り替えます。
-     * ［利用するサービス］：  
-       契約中、またはお試しを申し込んでいるサービスが表示されます。［<Kintone />］にチェックが入っていることを確認します。  
-   * **［基本情報］：**  
-     * ［プロフィール写真］：  
+   * **<Wovn>［アカウントの使用状態］</Wovn>：**  
+     * <Wovn>［使用状態］</Wovn>：  
+       アカウントの使用状態を<Wovn>［使用中］</Wovn>と<Wovn>［停止中］</Wovn>で切り替えます。
+     * <Wovn>［利用するサービス］</Wovn>：  
+       契約中、またはお試しを申し込んでいるサービスが表示されます。<Wovn>［<Kintone />］</Wovn>にチェックが入っていることを確認します。  
+   * **<Wovn>［基本情報］</Wovn>：**  
+     * <Wovn>［プロフィール写真］</Wovn>：  
        サイズが800KB以内の画像ファイルを選択します。使用できる画像のファイル形式は、gif、jpeg、png、およびbmpです。  
-     * ［姓］と［名］：  
+     * <Wovn>［姓］</Wovn>と<Wovn>［名］</Wovn>：  
        ユーザーの名前の姓名を漢字で入力します。
-     * ［よみがな（姓）］と［よみがな（名）］：  
+     * <Wovn>［よみがな（姓）］</Wovn>と<Wovn>［よみがな（名）］</Wovn>：  
        ユーザーの名前の姓名のよみがなを入力します。  
-   * **［組織］：**  
-     * ［組織］：  
+   * **<Wovn>［組織］</Wovn>：**  
+     * <Wovn>［組織］</Wovn>：  
        ユーザーが所属する組織と役職を設定します。組織と役割の追加方法については、次のページを参照してください。  
        * [組織を追加する](/k/ja/id/040137.html)  
        * [役職の設定](/general/ja/id/020203.html)  
-     * ［優先する組織］：  
+     * <Wovn>［優先する組織］</Wovn>：  
        ユーザーが複数の組織に所属する場合に、ユーザー画面で優先的に表示される組織を選択します。
-   * **［連絡先］：**  
-     * ［電話番号］：  
+   * **<Wovn>［連絡先］</Wovn>：**  
+     * <Wovn>［電話番号］</Wovn>：  
        電話番号を入力します。
-     * ［内線］：  
+     * <Wovn>［内線］</Wovn>：  
        内線番号を入力します。
-     * ［携帯電話］：  
+     * <Wovn>［携帯電話］</Wovn>：  
        携帯電話番号を入力します。
-     * ［URL］：  
+     * <Wovn>［URL］</Wovn>：  
        WebページのURLを入力します。
-     * ［Skype名］：  
+     * <Wovn>［Skype名］</Wovn>：  
        Skype名を入力します。
-   * **［ロケール］：**  
-     * ［言語］：  
-   <Kintone />でユーザーが使用する言語を選択します。
-     * ［タイムゾーン］：  
+   * **<Wovn>［ロケール］</Wovn>：**  
+     * <Wovn>［言語］</Wovn>：  
+       <Kintone />でユーザーが使用する言語を選択します。
+     * <Wovn>［タイムゾーン］</Wovn>：  
        ユーザーのタイムゾーンを選択します。
-   * **［別言語での表示名］：**  
-     * ［指定する言語］：  
-   <Kintone />でユーザーが使用する別言語を指定します。
-     * ［別言語での表示名］：  
-       指定した別言語で<Kintone />に表示される名前を入力します。設定しない場合は、［表示名］に設定している名前が<Kintone />に表示されます。
-   * **［その他］：**  
-       ［その他］の設定項目の詳細は、次のページを参照してください。  
+   * **<Wovn>［別言語での表示名］</Wovn>：**  
+     * <Wovn>［指定する言語］</Wovn>：  
+       <Kintone />でユーザーが使用する別言語を指定します。
+     * <Wovn>［別言語での表示名］</Wovn>：  
+       指定した別言語で<Kintone />に表示される名前を入力します。設定しない場合は、<Wovn>［表示名］</Wovn>に設定している名前が<Kintone />に表示されます。
+   * **<Wovn>［その他］</Wovn>：**  
+       <Wovn>［その他］</Wovn>の設定項目の詳細は、次のページを参照してください。  
         [ユーザー情報の項目](/general/ja/id/020245.html)
-   * **［表示順］：**  
-     * ［表示優先度］：  
+   * **<Wovn>［表示順］</Wovn>：**  
+     * <Wovn>［表示優先度］</Wovn>：  
        ユーザーの選択画面などにおけるユーザーの表示順の優先度を指定します。詳細は、次のページを参照してください。  
         [ユーザーの表示順を変更する](/general/ja/id/020254.html)
 
-1. ［ユーザーを追加］をクリックします。
+1. <Wovn>［ユーザーを追加］</Wovn>をクリックします。
    <Img src="/k/kintone/img-ja/add_user_img04.png" alt="スクリーンショット：［ユーザーを追加］ボタンが枠線で強調されている［ユーザーの追加］画面" />
 
-1. ［ユーザーを追加］ダイアログが表示されます。ユーザーに対して、パスワードとログイン方法を通知する方法を選択します。
-   * メールで通知する場合： ［メールをプレビュー］をクリックし、必要に応じて宛先や本文を変更して［送信］をクリックします。
-   * メールで通知しない場合：［メールを送信せずユーザーを追加］をクリックします。ユーザーには、次の情報を連絡します。
+1. <Wovn>［ユーザーを追加］</Wovn>ダイアログが表示されます。ユーザーに対して、パスワードとログイン方法を通知する方法を選択します。
+   * メールで通知する場合： <Wovn>［メールをプレビュー］</Wovn>をクリックし、必要に応じて宛先や本文を変更して<Wovn>［送信］</Wovn>をクリックします。
+   * メールで通知しない場合：<Wovn>［メールを送信せずユーザーを追加］</Wovn>をクリックします。ユーザーには、次の情報を連絡します。
      * <Kintone />のアクセスURL（例：https://サブドメイン名.<CybozuCom />/k/）
      * ログイン名
      * パスワード
 
-   <Heading level={2} id="department_add_user_20">ユーザーのセキュリティ設定</Heading>
+<Heading id="department_add_user_20">ユーザーのセキュリティ設定</Heading>
 
-   ユーザーのアクセスを制御するための機能として、次のようなセキュリティ機能を提供しています。必要に応じてご検討ください。
+ユーザーのアクセスを制御するための機能として、次のようなセキュリティ機能を提供しています。必要に応じてご検討ください。
 
-   <Heading level={3} id="department_add_user_2010">SAML認証を使用したシングルサインオン</Heading>
+<Heading level={3} id="department_add_user_2010">SAML認証を使用したシングルサインオン</Heading>
 
-   Identity Provider（IdP）に登録されたユーザーアカウントで、<Kintone />にシングルサインオン（SSO）できます。  
-   詳細は、次のページを参照してください。  
-   [SAML認証の設定](/general/ja/id/02034.html)
+Identity Provider（IdP）に登録されたユーザーアカウントで、<Kintone />にシングルサインオン（SSO）できます。  
+詳細は、次のページを参照してください。  
+[SAML認証の設定](/general/ja/id/02034.html)
 
-   <Heading level={3} id="department_add_user_2020">2要素認証（認証アプリによる認証）</Heading>
+<Heading level={3} id="department_add_user_2020">2要素認証（認証アプリによる認証）</Heading>
 
-   ログイン名とパスワードによる認証に加え、認証アプリ（Google Authenticator、Microsoft Authenticatorなど）に表示される確認コードを入力して、よりセキュアに<Kintone />にログインできます。  
-   詳細は、次のページを参照してください。  
-   [2要素認証](/general/ja/id/02042.html)
+ログイン名とパスワードによる認証に加え、認証アプリ（Google Authenticator、Microsoft Authenticatorなど）に表示される確認コードを入力して、よりセキュアに<Kintone />にログインできます。  
+詳細は、次のページを参照してください。  
+[2要素認証](/general/ja/id/02042.html)
 
-   <Heading level={3} id="department_add_user_2030">IPアドレス制限</Heading>
+<Heading level={3} id="department_add_user_2030">IPアドレス制限</Heading>
 
-   <Kintone />にアクセス可能なネットワークをIPアドレスで制限できます。  
-   詳細は、次のページを参照してください。  
-   [IPアドレス制限](/general/ja/id/02045.html)
+<Kintone />にアクセス可能なネットワークをIPアドレスで制限できます。  
+詳細は、次のページを参照してください。  
+[IPアドレス制限](/general/ja/id/02045.html)
 
-   <Disabled2 regions={["US"]}>
-   <Heading level={3} id="department_add_user_2040">Basic認証</Heading>
+<Disabled2 regions={["US"]}>
 
-   各ユーザーのログイン名やパスワードでの認証とは別に、管理者が指定した認証情報の入力をユーザーに要求します。  
-   Basic認証は、IPアドレスを制限している場合のみ設定できます。  
-   詳細は、次のページを参照してください。  
-   [Basic認証](/general/ja/id/02044.html)
-   </Disabled2>
+<Heading level={3} id="department_add_user_2040">Basic認証</Heading>
+
+各ユーザーのログイン名やパスワードでの認証とは別に、管理者が指定した認証情報の入力をユーザーに要求します。  
+Basic認証は、IPアドレスを制限している場合のみ設定できます。  
+詳細は、次のページを参照してください。  
+[Basic認証](/general/ja/id/02044.html)
+
+</Disabled2>
