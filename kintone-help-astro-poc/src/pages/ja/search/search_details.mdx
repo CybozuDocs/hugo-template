@@ -1,0 +1,285 @@
+---
+title: "データを検索する"
+weight: 100
+aliases:
+  - "/ja/id/040689"
+description: "{{< kintone >}}の検索方法や検索結果画面の見かたについて説明しています。"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />の画面右上の検索ボックスに入力したキーワードを元に、アプリのレコードやスペース・ピープルの投稿などのデータを検索できます。  
+検索ボックスにキーワードを入力して、虫眼鏡の形をした<Wovn>［検索］</Wovn>アイコンをクリックすると、検索結果が表示されます。  
+<Img src="/k/kintone/img-ja/search_details_img01.png" alt="スクリーンショット：ポータルの検索ボックスが強調されている" />
+ここでは、検索画面の各要素や、検索できるデータの対象、キーワード入力時の注意事項などについて説明します。
+
+<Note>
+
+アプリに登録されているレコードを、キーワードや値などの条件を指定して一覧表示する方法については、次のページを参照してください。  
+[一覧に表示するレコードを絞り込む](/k/ja/id/040458.html)
+
+</Note>
+
+<Heading id="search_search_details_20">検索画面の概要</Heading>
+
+検索画面の各要素について説明します。  
+<Img src="/k/kintone/img-ja/search_details_img05.png" alt="スクリーンショット：検索画面" />
+
+[1:検索ボックス](#search_search_details_2010)  
+[2:検索範囲](#search_search_details_2020)  
+[3:タイトル検索メニュー](#search_search_details_2030)  
+[4:絞り込み](#search_search_details_2040)  
+[5:検索結果](#search_search_details_2050)  
+
+<Heading level={3} id="search_search_details_2010">検索ボックス</Heading>
+
+検索したいキーワードを入力します。
+
+<Heading level={3} id="search_search_details_2020">検索範囲</Heading>
+
+表示されている検索結果の検索範囲が表示されます。
+検索範囲は次のいずれかです。
+
+* <Kintone />全体
+* アプリ内
+* スペース内
+
+<Kintone />のポータル画面の検索ボックスにキーワードを入力して検索した場合は、<Kintone />全体で検索します。  
+アプリ内やスペース内だけに限定して検索する方法は、次の項目を参照してください。  
+[検索範囲を限定して検索する](#search_search_details_40)  
+
+<Heading level={3} id="search_search_details_2030">タイトル検索メニュー</Heading>
+
+検索キーワードを名前に含むアプリ、スペース、スレッド、およびピープルを検索します。  
+タイトル検索の検索結果の表示内容は次の項目を参照してください。  
+[タイトル検索の検索結果](#search_search_details_205010)
+
+<Heading level={3} id="search_search_details_2040">絞り込み</Heading>
+
+検索結果を絞り込むことができます。  
+作成者や作成日のほか、レコードや添付ファイルなどのデータの種類を指定して絞り込むことができます。  
+なお、検索範囲によって指定できるデータの種類が異なります。  
+
+<Note>
+
+作成者を指定した場合、<Wovn>［作成者］</Wovn>フィールドに閲覧の権限がないアプリのデータは検索されません。<Wovn></Wovn>
+
+</Note>
+
+<Heading level={3} id="search_search_details_2050">検索結果</Heading>
+
+検索ボックスに入力されたキーワードと絞り込み内容に応じた検索結果が表示されます。  
+検索対象は、次の項目を参照してください。  
+[検索対象](#search_search_details_30)
+
+<Wovn>［検索結果］</Wovn>に表示される項目：
+
+* アプリのアイコン、スペースのカバー画像、またはピープルのプロフィール写真  
+* アプリ、スペースまたはピープルなどのタイトル  
+* キーワードとして入力した単語を含むデータ  
+キーワードとして入力した単語が、太字で強調表示されます。  
+
+<Heading level={4} id="search_search_details_205010">タイトル検索の場合</Heading>
+
+タイトル検索では、名前にキーワードを含むアプリ、スペース、スレッド、およびピープルをそれぞれ表示します。  
+なお、検索範囲や絞り込みの内容はタイトル検索の結果に反映されません。
+
+<Heading level={5} id="search_search_details_20501010">&lt;Wovn&gt;［タイトルにキーワードを含むアプリ］&lt;/Wovn&gt;に表示される項目</Heading>
+
+* アプリのアイコン
+* アプリの名前
+* アプリの所属するスペース名（スペースに所属している場合のみ）
+* アプリの説明（アプリの設定で、アプリの説明が設定されている場合のみ）
+
+<Note>
+
+言語ごとの名称が設定されている場合、デフォルトのアプリ名に加えて、表示言語に設定している言語のアプリ名でも検索できます。<Wovn></Wovn>
+
+</Note>
+
+<Heading level={5} id="search_search_details_20501020">&lt;Wovn&gt;［タイトルにキーワードを含むスペース］&lt;/Wovn&gt;に表示される項目</Heading>
+
+* スペースのカバー画像
+* スペース名
+
+<Heading level={5} id="search_search_details_20501030">&lt;Wovn&gt;［タイトルにキーワードを含むスレッド］&lt;/Wovn&gt;に表示される項目</Heading>
+
+* スレッドのタイトル
+* スレッドが所属するスペースのカバー画像
+* スレッドが所属するスペース名
+
+<Heading level={5} id="search_search_details_20501040">&lt;Wovn&gt;［タイトルにキーワードを含むピープル］&lt;/Wovn&gt;に表示される項目</Heading>
+
+* プロフィール写真
+* ユーザーの表示名
+* 優先する組織
+* メッセージへのリンク<Wovn></Wovn>
+* ピープルへのリンク
+
+<Note>
+
+ピープルは、次の項目でも検索できます。
+
+* ユーザーの別言語での表示名
+* ユーザーの姓名のよみがな
+* ユーザーのログイン名
+
+</Note>
+
+<Heading id="search_search_details_30">検索対象</Heading>
+
+<Kintone />内の次のデータが検索対象です。
+
+* レコード  
+次のフィールドが検索されます。  
+なお、<Wovn>［作成日時］</Wovn>フィールドに閲覧の権限がないレコードのデータは検索されません。
+  * 文字列（1行）
+  * 文字列（複数行）<Wovn></Wovn>
+  * リッチエディター
+  * リンク
+  * ルックアップ（<Wovn>［コピー元のフィールド］</Wovn>に指定したフィールドが<Wovn>［文字列（1行）］</Wovn><Wovn>［リンク］</Wovn>の場合）
+* レコードのコメント
+* スペース
+  * スペース名
+  * スペースの本文
+* スレッド
+  * スレッドのタイトル
+  * スレッドの本文
+  * スレッドのコメント
+* ピープル
+  * ピープルのコメント
+* 個人メッセージ
+* 添付ファイル
+  * ファイル名
+  * ファイルの内容
+
+<Note>
+
+* 検索結果は、上記の「検索対象」ごとに1件ずつ表示されます。たとえば、同じ添付ファイルに検索キーワードが複数見つかった場合は、そのうちの1件が検索結果に表示されます。  
+* 検索されるファイルの形式は、次のページを参照してください。  
+[検索対象のファイル形式](/k/ja/id/040690.html)
+* 閲覧権限のないデータは検索されません。
+
+</Note>
+
+<Heading id="search_search_details_40">検索範囲を限定して検索する</Heading>
+
+<Kintone />では、全体検索とは別に、特定のアプリやスペース内に検索範囲を限定して検索できます。
+
+<Heading level={3} id="search_search_details_4010">アプリ内検索</Heading>
+
+検索範囲を特定のアプリ内に限定します。  
+対象のアプリを開いて、画面上部の検索ボックスにキーワードを入力します。  
+<Img src="/k/kintone/img-ja/search_details_img02.png" alt="スクリーンショット：アプリの検索ボックスが強調されている" />
+
+<Note>
+
+アプリに登録されているレコードを、キーワードや値などの条件を指定して一覧表示する方法については、次のページを参照してください。  
+[一覧に表示するレコードを絞り込む](/k/ja/id/040458.html)
+
+</Note>
+
+<Heading level={3} id="search_search_details_4020">スペース内検索</Heading>
+
+検索の範囲を特定のスペース内に限定します  
+対象のスペースを開いて、画面上部の検索ボックスにキーワードを入力します。  
+<Img src="/k/kintone/img-ja/search_details_img06.png" alt="スクリーンショット：スペースポータルの検索ボックスが強調されている" />
+
+<Heading id="search_search_details_50">複数のキーワードで検索する</Heading>
+
+複数のキーワードを指定してAND検索できます。  
+キーワードを半角または全角スペースで区切ると、指定したキーワードをすべて含むデータが検索されます。OR検索やNOT検索はできません。  
+スペースを含むキーワードを検索する場合は、キーワードをダブルクォーテーション（"）で囲んで検索します。
+
+例：キーワード「ABC」「DEF」「GHI」のすべてを含むレコードを検索する場合  
+「ABC DEF GHI」と指定することで、キーワードをすべて含むデータが検索されます。  
+<Img src="/k/kintone/img-ja/search_details_img07.png" alt="スクリーンショット：検索ボックスに「ABC DEF GHI」と入力している" />
+
+例：キーワード「ABC DEF GHI」を検索する場合  
+「"ABC DEF GHI"」と指定することで、1つのキーワードとして検索されます。  
+<Img src="/k/kintone/img-ja/search_details_img08.png" alt="スクリーンショット：検索ボックスに「&quot;ABC DEF GHI&quot;」と入力している" />
+
+<Note>
+
+* 指定できる検索キーワードは10個までです。
+* 次のAND検索はできません。
+  * テーブル内のフィールドに含まれるキーワードと、テーブル外のフィールドに含まれるキーワード
+  * テーブルの別の行に含まれるキーワード
+  * 別のテーブルのフィールドに含まれるキーワード
+
+</Note>
+
+<Heading id="search_search_details_60">検索キーワード入力時の注意事項</Heading>
+
+検索ボックスに入力可能なのは100文字までです。  
+また、言語、英数字、記号によって、次の注意事項があります。
+
+<Heading level={3} id="search_search_details_6010">日本語、または中国語で検索する場合</Heading>
+
+* カナの全角と半角は区別されません。
+* 指定できる検索キーワードは10個までです。
+* 2文字以上の単語は、2文字以上のキーワードで検索する必要があります。1文字の単語は、1文字のキーワードで検索できます。  
+  例：値が「日本語」という文字列のフィールドを検索する場合
+  * 検索可能なキーワード：「日本」、「本語」または「日本語」
+  * 検索できないキーワード：「日」、「本」、または「語」
+
+<Heading level={3} id="search_search_details_6020">英数字で検索する場合</Heading>
+
+<Enabled regions={["JP", "CN"]}>
+
+* アルファベットの大文字と小文字、および全角と半角は区別されません。
+* 指定できる検索キーワードは10個までです。
+* 単語単位で検索されます。  
+  例：値が「cybozu kintone2」という文字列のフィールドを検索する場合
+  * 「cybozu」または「kintone2」をキーワードとして指定します。「cy」や「kintone」など部分一致する検索キーワードでは検索されません。
+  * 「cybozu」で1単語、「kintone2」で1単語、とカウントします。「cybozu kintone2」で検索すると、2単語の検索となります。
+* アンダースコア（_）、番号記号（#）、およびプラス（+）は、全角および半角共に単語の一部とみなされます。
+  例：値が「cybozu_kintone」という文字列のフィールドを検索する場合  
+  * 「cybozu_kintone」をひとまとまりでキーワードとして入力します。「cybozu」や「kintone」のみを入力しても検索されません。
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+* アルファベットの大文字と小文字、および全角と半角は区別されません。
+* 指定できる検索キーワードは10個までです。
+* 単語単位で検索されます。  
+  例：値が「cybozu kintone2」という文字列のフィールドを検索する場合
+  * 「cybozu」または「kintone2」をキーワードとして指定します。「cy」や「kintone」など部分一致する検索キーワードでは検索されません。
+  * 「cybozu」で1単語、「kintone2」で1単語、とカウントします。「cybozu kintone2」で検索すると、2単語の検索となります。
+
+</Enabled>
+
+<Heading level={3} id="search_search_details_6030">記号で検索する場合</Heading>
+
+* 全角と半角は区別されません。
+* 指定できる検索キーワードは10個までです。
+* 次の記号は検索キーワードから除かれます。
+  * 日本語、および中国語の句読点
+  * 全角、および半角の次の記号  
+  <Enabled regions={["JP", "CN"]}>
+  \- &amp; | / ! ( ) { } \[ \] ^ &quot; ~ * ? : ; \ $ % @ ' ` = \< > , .
+  </Enabled>
+  <Enabled regions={["US"]}>
+  \- &amp; | / ! ( ) { } \[ \] ^ &quot; ~ * ? : ; \ $ % @ ' ` = \< > , . _ # +
+  </Enabled>
+
+  上記以外の記号も、検索キーワードから除かれる可能性があります。
+
+<Enabled regions={["JP"]}>
+<Note>
+
+検索したいデータがヒットしない場合は、次のページを参照してください。
+
+* [検索したいデータがヒットしません。](https://kintone-faq.cybozu.co.jp/hc/ja/articles/40851218614553)
+* [<Kintone />の検索のしくみと注意事項](https://cybozu.dev/ja/id/efa3df271da785617c8e5b38/)
+</Note>
+
+</Enabled>

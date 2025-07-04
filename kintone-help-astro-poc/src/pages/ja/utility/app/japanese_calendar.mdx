@@ -1,0 +1,110 @@
+---
+title: "日付を和暦で表示したい"
+weight: 2800
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040777"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+ <Kintone />で和暦を表示するには、計算式による変換、プラグイン、またはJavaScriptによるカスタマイズが必要です。  
+ここでは、計算式を使って、日付フィールドに入力した日付を和暦で表示させる方法を説明します。  
+<Img src="/k/kintone/img-ja/japanese_calendar01.png" alt="和暦表示" />
+
+設定は以下のように行います。
+
+<Heading id="app_japanese_calendar_10">配置するフィールド</Heading>
+
+アプリの設定画面を開き、フォームに日付フィールド、計算フィールド（2つ）、文字列（1行）フィールドを配置します。  
+フィールド名とフィールドコードは任意ですが、このページは例として以下のように設定します。  
+
+* 日付フィールド  
+  フィールド名とフィールドコード：日付  
+
+* 計算フィールド1  
+  フィールド名とフィールドコード：年  
+
+* 計算フィールド2  
+  フィールド名とフィールドコード：年月日  
+
+* 文字列（1行）フィールド  
+  フィールド名とフィールドコード：和暦年月日
+
+<Heading id="app_japanese_calendar_20">計算式の設定</Heading>
+
+計算フィールド2つと文字列（1行）フィールドに、次のように計算式を設定します。  
+
+* **計算フィールド1**  
+  フィールド名：年（計算フィールド）  
+  計算式：DATE_FORMAT(日付, "YYYY", "Etc/GMT")  
+  「数値（例：1000）」を選択します。  
+  <Img src="/k/kintone/img-ja/japanese_calendar02.png" alt="年フィールド" />
+
+* **計算フィールド2**  
+  フィールド名：年月日（計算フィールド）  
+  計算式：DATE_FORMAT(日付, "YYYYMMdd", "Etc/GMT")  
+  「数値（例：1000）」を選択します。  
+  <Img src="/k/kintone/img-ja/japanese_calendar03.png" alt="年フィールド" />
+
+* **文字列（1行）フィールド**  
+  フィールド名：和暦年月日（文字列（1行）フィールド）  
+  計算式： 「自動計算する」を選択し、以下の計算式を設定します。
+
+```
+IF(年月日 >= 20190501, "令和" & 年-2018 & "年",
+  IF(年月日 >= 19890108, "平成" & 年-1988 & "年",
+                         "昭和" & 年-1925 & "年" ))
+                          & DATE_FORMAT(日付, "M月d日", "Etc/GMT")
+
+```
+
+上記のように設定することで、「和暦年月日」フィールドに年月日が和暦で表示されます。  
+たとえば日付フィールドに2022年3月14日を入力した場合、和暦年月日フィールドには「令和4年3月14日」と表示されます。
+
+参考までに、この計算式が設定されたアプリのテンプレートを、次のリンクからダウンロードできます。  
+<table>
+    <thead>
+        <tr>
+            <th style="text-align: center;">アプリテンプレート「japanese_calendar.zip」（日本語のみ）</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <div style="text-align: center;">
+                <a href="/k/files-ja/japanese_calendar.zip"><img src="/k/img/icon_add_tmpl_file.png" alt="" /><br />
+                </a>
+              </div>
+              <div style="text-align: center;">
+                <a href="/k/files-ja/japanese_calendar.zip">japanese_calendar.zip</a>
+              </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+リンクをクリックしてテンプレートファイル（zip）をダウンロードしたあと、解凍せずに<Kintone />で読み込んでください。  
+
+<Reference>
+
+* [テンプレートファイルからアプリを作成する](/k/ja/id/040627.html)  
+* [[DATE_FORMAT関数]日付や時刻の表示形式を指定して表示する](/k/ja/id/040501.html)
+
+</Reference>
+
+<Heading id="app_japanese_calendar_30">参考：プラグインを利用する</Heading>
+
+計算式を設定する方法以外に、プラグインを利用して日付を和暦で表示できます。  
+プラグインの詳細は、次のページを参照してください。  
+[和暦変換のプラグイン](https://kintone-sol.cybozu.co.jp/integrate/search/?keyword=%E5%92%8C%E6%9A%A6)  
+
+<Note>
+
+ライトコースをご契約の場合は、プラグインを利用できません。
+
+</Note>

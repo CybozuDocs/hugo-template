@@ -1,0 +1,56 @@
+---
+title: "TIPS：[フォームのフィールドを追加]から選択できる通知先"
+weight: 300
+aliases:
+  - "/ja/id/040560"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+アプリの通知設定では、<Wovn>［フォームのフィールドを追加］</Wovn>で通知先に指定したいフィールドを選択できます。  
+ここでは、<Wovn>［フォームのフィールドを追加］</Wovn>から選択できるフィールドについて、詳細を説明します。  
+<Img src="/k/kintone/img-ja/add_field_oftheform_03.png" alt="スクリーンショット：［アプリの条件通知］画面で[フォームのフィールドを追加]から通知先を指定している" />
+
+<Heading id="notification_add_field_oftheform_20">通知先に作成者、更新者、作業者を指定する</Heading>
+
+レコードの<Wovn>［作成者］</Wovn>や<Wovn>［更新者］</Wovn>、プロセス管理の<Wovn>［作業者］</Wovn>を、<Wovn>［フォームのフィールドを追加］</Wovn>に指定できます。<Wovn></Wovn>  
+指定できる項目の詳細は、次のとおりです。
+
+* <Wovn>［作成者］</Wovn>：レコードを作成したユーザー
+* <Wovn>［更新者］</Wovn>：レコードを最後に更新したユーザー
+* <Wovn>［作業者］</Wovn>：プロセス管理上で、現在のステータスの作業担当になっているユーザー
+
+<Note>
+
+* レコードの条件通知では、<Wovn>［更新者］</Wovn>を通知先に指定することはできません。<Wovn></Wovn>  
+* プロセス管理が有効になっていないアプリでは、<Wovn>［作業者］</Wovn>は選択肢に表示されません。
+
+</Note>
+
+<Heading level={3} id="notification_add_field_oftheform_2010">例：作業者にリマインダーの通知を設定する</Heading>
+
+<Wovn>［フォームのフィールドを追加］</Wovn>から<Wovn>［作業者］</Wovn>を選択します。  
+<Img src="/k/kintone/img-ja/add_field_oftheform_01.png" alt="スクリーンショット：［作業者］を通知先に指定している" />
+
+<Heading id="notification_add_field_oftheform_30">通知先に&lt;Wovn&gt;［ユーザー選択］&lt;/Wovn&gt;・&lt;Wovn&gt;［組織選択］&lt;/Wovn&gt;・&lt;Wovn&gt;［グループ選択］&lt;/Wovn&gt;フィールドを指定する</Heading>
+
+アプリのフォームに配置したフィールドを、<Wovn>［フォームのフィールドを追加］</Wovn>に指定できます。  
+通知先に指定すると、レコードごとに選択されたユーザーや組織などに対して通知できます。  
+指定できるフィールドは、次のとおりです。
+
+* <Wovn>［ユーザー選択］</Wovn>
+* <Wovn>［組織選択］</Wovn>
+* <Wovn>［グループ選択］</Wovn>
+
+<Wovn>［組織選択］</Wovn>フィールドを指定した場合は、フィールド名の下に<Wovn>［下位組織に通知する］</Wovn>のチェックボックスが表示されます。<Wovn></Wovn>  
+チェックを入れると、組織に所属する下位の組織にも通知が送信されます。
+
+<Heading level={3} id="notification_add_field_oftheform_3010">例：アプリの条件通知で、対応担当者（&lt;Wovn&gt;［ユーザー選択］&lt;/Wovn&gt;フィールド）に設定されたユーザーへ通知するように設定する</Heading>
+
+<Wovn>［フォームのフィールドを追加］</Wovn>から「対応担当者」を選択します。  
+<Img src="/k/kintone/img-ja/add_field_oftheform_02.png" alt="スクリーンショット：「対応担当者」を通知先に指定している" />

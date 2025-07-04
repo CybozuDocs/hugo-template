@@ -1,0 +1,82 @@
+---
+title: "デスクトップ通知を設定する"
+weight: 500
+aliases:
+  - "/ja/id/040828"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />では、「自分宛」の通知が届いたときにデスクトップ通知を表示できます。  
+デスクトップ通知を有効にすると、Webブラウザーに<Kintone />の画面を開いているタブがある状態で「自分宛」の通知を受信した場合、パソコンのデスクトップに通知タイトル、通知メッセージが表示されます。  
+<Img src="/k/kintone/img-ja/set_desktop_notification_01.png" alt="スクリーンショット：デスクトップ通知の画面" />
+
+<Note>
+
+* デスクトップ通知機能は、Google ChromeまたはMicrosoft Edgeをお使いの場合のみ利用できます。
+* <Kintone />のデスクトップ通知が表示されるのは、「自分宛」の通知のみです。「自分宛」以外の通知を受信しても、デスクトップ通知は表示されません。  
+  通知の種類についての詳細は、次のページを参照してください。  
+  [「自分宛」通知と「すべて」通知の違い](/k/ja/id/040674.html)
+
+</Note>
+
+<Heading id="notifications_set_desktop_notification_10">操作手順</Heading>
+
+デスクトップ通知を設定するには、次の手順を行います。
+
+<Heading level={3} id="notifications_set_desktop_notification_1010">Webブラウザー・OSでの設定</Heading>
+
+1. Webブラウザーで、<Kintone />からの通知を許可します。  
+  Webブラウザーの通知設定で、通知の送信を許可するサイトとして、利用している<Kintone />のURLを追加します。
+
+   <Note>
+
+   <Kintone />での設定後Webブラウザーに表示されるポップアップからも、<Kintone />からの通知を許可できます。  
+   <Kintone />での設定については、次の項目を参照してください。  
+   [<Kintone />での設定](/k/ja/id/040828.html#notifications_set_desktop_notification_1020)
+
+   </Note>
+
+1. OSの通知設定で、Webブラウザーの通知の受信を有効化します。
+
+   * Windowsの場合：<Wovn>［設定］</Wovn>メニューの<Wovn>［通知］</Wovn>から設定する。
+   * macOSの場合：<Wovn>［システム設定］</Wovn>の<Wovn>［通知］</Wovn>から設定する。
+
+   <Note>
+
+   利用しているOSのバージョンによって、メニュー名が異なります。
+
+   </Note>
+
+<Heading level={3} id="notifications_set_desktop_notification_1020">&lt;Kintone /&gt;での設定</Heading>
+
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［個人設定］</Wovn>をクリックします。<Wovn></Wovn>  
+   <Img src="/k/kintone/img-ja/set_desktop_notification_02.png" alt="スクリーンショット：画面上部の［設定］アイコンと[個人設定]を枠線で強調している" />
+
+1. <Wovn>［個人設定］</Wovn>画面の<Wovn>［デスクトップ通知］</Wovn>で、<Wovn>［有効にする］</Wovn>を選択します。  
+   <Img src="/k/kintone/img-ja/set_desktop_notification_03.png" alt="スクリーンショット：［デスクトップ通知］を有効にしている" />
+
+   <Note>
+   次の場合は、デスクトップ通知機能の対象外のため、<Wovn>［デスクトップ通知］</Wovn>は表示されません。
+
+   * Google Chrome、Microsoft Edge以外のWebブラウザーをお使いのとき
+   * ゲストユーザーでログインしたとき  
+
+   </Note>
+
+1. <Wovn>［保存］</Wovn>をクリックします。  
+  Webブラウザーに<Kintone />からの通知送信を許可するかを確認するポップアップが表示されたら、許可します。
+
+<Warning>
+
+<Kintone />で「自分宛」の通知を受信後、デスクトップ通知が表示されるまでに時間差があります。  
+デスクトップ通知が表示される前に、Webブラウザーで<Kintone />の「自分宛」の通知を閲覧した場合、デスクトップ通知は表示されません。
+
+</Warning>

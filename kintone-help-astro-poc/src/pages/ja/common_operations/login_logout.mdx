@@ -1,0 +1,82 @@
+---
+title: "ログイン／ログアウト"
+weight: 100
+aliases:
+  - "/ja/id/040355"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Service from "@/components/Service.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />にログインする方法、および<Kintone />からログアウトする方法を説明します。
+
+ログインする際は、WebブラウザーにURLを入力して、ログイン画面にアクセスします。  
+ログアウト操作は、<Kintone />の画面で行います。  
+
+<Heading id="login_trouble_login_logout_10">&lt;Kintone /&gt;にログインする</Heading>
+
+1. ログインURL「https://（サブドメイン名）.<CybozuCom />/」を、Webブラウザーのアドレスバーに入力し、アクセスします。<Wovn></Wovn>  
+  ログインURLがわからない場合は、システム管理者に確認してください。  
+<Enabled regions={["JP"]}>
+
+  システム管理者に確認してもログインURLがわからない場合は、次のページを参照してください。  
+  [ログインURLがわからない](/general/ja/id/020273.html)
+
+  <Note>
+
+   <Kintone />のURLが記載されたメールが手元に届いている場合は、次のページを参照して、<Kintone />にログインしてください。
+
+  * [無料お試しを申し込み後にログインする](/k/ja/id/040141.html)
+
+  * [招待メールからログインする](/k/ja/id/040140.html)
+
+  </Note>
+</Enabled>
+
+1. ログイン画面で、ログイン名とパスワードを入力し、<Wovn>［ログイン］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/login_logout_02.png" alt="スクリーンショット：ログインに必要な情報を入力し、ログインしている" />
+
+   <Enabled regions={["JP", "CN"]}>
+   <Note>
+
+   * ログイン名やパスワードがわからない場合の対処方法は、次のページを参照してください。  
+    [<Service />へのログインに関するトラブル](/general/ja/id/020262.html)
+   * オフィス外からアクセスする場合は、次のページを参照してください。  
+    [クライアント証明書](/general/ja/id/020400.html)
+   </Note>
+
+   </Enabled>
+
+   <Enabled regions={["US"]}>
+   <Note>
+
+   ログイン名やパスワードがわからない場合の対処方法は、次のページを参照してください。  
+   [<Service />へのログインに関するトラブル](/general/ja/id/020262.html)
+   </Note>
+
+   </Enabled>
+
+1. サービスを選択する画面で、<Wovn>［<Kintone />］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/login_logout_03.png" alt="スクリーンショット：サービスを選択する画面で[{{&lt; kintone &gt;}}]を枠線で強調している" />
+
+<Hint>
+
+「https://（サブドメイン名）.<CybozuCom />/k/」というように、URLの末尾に「/k/」をつけてアクセスすると、サービスを選択する画面を経由せず、直接<Kintone />のポータル画面を表示できます。<Wovn></Wovn>
+
+</Hint>
+
+<Heading id="login_trouble_login_logout_20">&lt;Kintone /&gt;からログアウトする</Heading>
+
+1. <Kintone />画面右上のV字の形をした<Wovn>［アカウントメニュー］</Wovn>アイコンをクリックします。
+
+1. <Wovn>［ログアウト］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/login_logout_04.png" alt="スクリーンショット：[ログアウト]を枠線で強調している" />

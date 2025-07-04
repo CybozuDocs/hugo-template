@@ -1,0 +1,102 @@
+---
+title: "アプリの条件通知：アプリへの操作を条件にした通知を設定する"
+weight: 200
+aliases:
+  - "/ja/id/040561"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+レコードの追加や編集、プロセス管理のステータスの更新など、アプリが操作されたことを通知できます。  
+たとえば、「総務への依頼受付アプリ」に、いずれかの操作が行われたときに、必ず「総務部」メンバーに通知が届くように設定する、といった設定が可能です。  
+通知先ごとに、通知する操作の条件を指定できます。
+
+<Heading id="notification_app_condition_10">手順</Heading>
+
+アプリの条件通知の設定方法を説明します。
+
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［通知］</Wovn>にある<Wovn>［アプリの条件通知］</Wovn>をクリックします。
+
+1. <Wovn>［アプリの条件通知］</Wovn>画面で、<Wovn>［ユーザーを追加］</Wovn>から通知先のユーザーや組織を追加するか、<Wovn>［フォームのフィールドを追加］</Wovn>をクリックして通知先に指定したいフィールドを選択します。  
+   <Img src="/k/kintone/img-ja/app_notification_06.png" alt="スクリーンショット：通知先を設定している" />
+  <Wovn>［フォームのフィールドを追加］</Wovn>では、以下のフィールドを選択できます。
+   * <Wovn>［作成者］</Wovn>
+   * <Wovn>［更新者］</Wovn>
+   * <Wovn>［作業者］</Wovn><sup>*1</sup>
+   * <Wovn>［ユーザー選択］</Wovn>フィールド<sup>*2</sup>
+   * <Wovn>［組織選択］</Wovn>フィールド<sup>*2</sup>
+   * <Wovn>［グループ選択］</Wovn>フィールド<sup>*2</sup>
+
+   <sup>\*1</sup> プロセス管理が有効な場合のみ、選択できます。
+   <sup>\*2</sup> フィールドをフォームに配置している場合のみ、選択できます。
+
+   <Note>
+
+   通知先にユーザー／組織／グループを直接指定する場合と、フィールドを指定する場合とでは、受信する通知の種類が異なります。詳細は、次の項目を参照してください。  
+   [受信する通知の違い](#notification_app_condition_20)
+
+   </Note>
+
+1. 通知先で指定したユーザーに通知を送信するための条件を指定します。  
+   <Img src="/k/kintone/img-ja/app_notification_01.png" alt="スクリーンショット：通知先の条件を指定している" />
+  <Wovn>［レコード追加］</Wovn>、<Wovn>［レコード編集］</Wovn>、<Wovn>［コメント書き込み］</Wovn>、プロセス管理の<Wovn>［ステータスの更新］</Wovn>、<Wovn>［ファイル読み込み］</Wovn>の中から、通知を送信したい操作にチェックをつけます。<Wovn></Wovn>
+
+   <Note>
+
+   * チェックを付けられない操作に対しては、通知を送信できません。
+     * <Wovn>［更新者］</Wovn>：<Wovn>［コメント書き込み］</Wovn>のみ条件に指定できます。
+     * <Wovn>［作成者］</Wovn>：<Wovn>［レコード編集］</Wovn>、<Wovn>［コメント書き込み］</Wovn>、プロセス管理の<Wovn>［ステータスの更新］</Wovn>を条件に指定できます。
+     * <Wovn>［作業者］</Wovn>：<Wovn>［レコード編集］</Wovn>、<Wovn>［コメント書き込み］</Wovn>、プロセス管理の<Wovn>［ステータスの更新］</Wovn>を条件に指定できます。
+     * <Wovn>［ユーザー選択］</Wovn>・<Wovn>［組織選択］</Wovn>・<Wovn>［グループ選択］</Wovn>：  
+       <Wovn>［レコード追加］</Wovn>、<Wovn>［レコード編集］</Wovn>、<Wovn>［コメント書き込み］</Wovn>、プロセス管理の<Wovn>［ステータスの更新］</Wovn>を条件に指定できます。
+   * アプリを操作した本人、およびアプリ／レコードに閲覧権限を持たないユーザーには、通知は送信されません。
+
+   </Note>
+
+   <Warning>
+
+   作業者の<Wovn>［ステータスの更新］</Wovn>のチェックを外す、または作業者の行自体を削除すると、プロセス管理のステータスが更新された際に、作業者に通知が届かなくなります。<Wovn></Wovn>
+
+   </Warning>
+
+1. 画面右下の<Wovn>［保存］</Wovn>をクリックします。
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+<Heading id="notification_app_condition_20">受信する通知の違い</Heading>
+
+通知先として、ユーザーや組織を直接指定した場合と、<Wovn>［フォームのフィールドを追加］</Wovn>からフィールドを指定した場合とでは、受信する通知の種類が異なります。
+
+<Heading level={3} id="notification_app_condition_2010">通知先にユーザーや組織を直接指定した場合</Heading>
+
+<Img src="/k/kintone/img-ja/app_notification_02.png" alt="スクリーンショット：通知先にユーザーを指定している" />
+
+「すべて」の通知として受信します。<Kintone />の画面上部のベルの形をした<Wovn>［通知一覧］</Wovn>アイコンに未読件数は表示されません。<Wovn></Wovn>
+<Img src="/k/kintone/img-ja/app_notification_03.png" alt="スクリーンショット：「すべて」の通知として受信している" />
+
+<Heading level={3} id="notification_app_condition_2020">通知先にフィールドを指定した場合</Heading>
+
+<Img src="/k/kintone/img-ja/app_notification_04.png" alt="スクリーンショット：通知先にフィールドを指定している" />
+
+「自分宛」の通知として受信します。「自分宛」の通知は、<Kintone />の画面上部のベルの形をした<Wovn>［通知一覧］</Wovn>アイコンに未読件数が表示されます。<Wovn></Wovn>
+<Img src="/k/kintone/img-ja/app_notification_05.png" alt="スクリーンショット：「自分宛」の通知として受信している" />
+
+<Reference>
+
+* [TIPS：[フォームのフィールドを追加]から選択できる通知先](/k/ja/id/040560.html)
+* [通知が送信されるタイミングと宛先](/k/ja/id/040673.html)
+
+</Reference>

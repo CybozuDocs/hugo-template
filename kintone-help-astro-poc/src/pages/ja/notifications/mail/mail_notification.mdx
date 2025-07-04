@@ -1,0 +1,172 @@
+---
+title: "メール通知を設定する"
+weight: 300
+aliases:
+  - "/ja/id/040670"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import Disabled2 from "@/components/Disabled2.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import SlashHelp from "@/components/SlashHelp.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+メール通知の概要と、メール通知を受信するために必要な設定を説明します。
+
+<Heading id="notifications_mail_notification_20">メール通知とは</Heading>
+
+メール通知は、<Kintone />で受信した通知をメールでも受け取りできる機能です。  
+アプリ、スペース、ピープル、メッセージの通知をメールで受信できます。
+
+メールの件名は、通知される内容によって異なります。  
+詳細は、次のページを参照してください。  
+[メール通知の件名](/k/ja/id/040671.html)
+
+<Note>
+
+メール通知の本文は変更できません。
+
+</Note>
+
+<Heading id="notifications_mail_notification_10">必要な設定</Heading>
+
+メール通知を受信するには、次の設定が必要です。
+
+* ユーザーのメールアドレスの設定をする（<Slash />共通管理者または各ユーザー）
+* メール通知機能を有効にする（<Kintone />システム管理者）
+* 必要に応じて、アプリごとに通知を設定する（アプリ管理者）
+* 個人設定でメール通知を設定する（各ユーザー）
+
+<Enabled regions={["JP", "CN"]}>
+<Note>
+
+初期設定では、<CybozuCom />が提供するメールサーバーを使用してメールが送信されます。  
+お客様が準備したメールサーバーを使用したい場合には、<Slash />共通管理者がメールサーバーを変更してください。  
+[システムメールのメールサーバーを変更する](/general/ja/id/020121.html)（<SlashHelp />）
+</Note>
+
+</Enabled>
+
+<Heading level={3} id="notifications_mail_notification_1010">ユーザーのメールアドレスを設定する（&lt;Slash /&gt;共通管理者または各ユーザー）</Heading>
+
+<Slash />共通管理者が、メール通知を受信するユーザーのユーザー情報に、メールアドレスを設定します。  
+[ユーザー情報を変更する](/general/ja/id/020234.html)（<SlashHelp />）
+
+メールアドレスの変更が許可されている場合は、ユーザーが自分のプロフィールを編集して、メールアドレスを設定することも可能です。  
+[プロフィールを変更する](/general/ja/id/020412.html)（<SlashHelp />）
+
+<Heading level={3} id="notifications_mail_notification_1020">メール通知機能を有効にする（&lt;Kintone /&gt;システム管理者）</Heading>
+
+<Kintone />システム管理者が、メール通知機能を有効にします。
+
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［<Kintone />システム管理］</Wovn>をクリックします。<Wovn></Wovn>  
+   <Img src="/k/kintone/img-ja/manage_apps_img03.png" alt="スクリーンショット：ポータルの設定メニュー" />
+
+1. <Wovn>［<Kintone />システム管理］</Wovn>画面で、<Wovn>［利用する機能の選択］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/feature_activ02.png" alt="スクリーンショット：［利用する機能の選択］を枠線で強調している" />
+
+1. <Wovn>［利用する機能の選択］</Wovn>画面の<Wovn>［通知のメール送信］</Wovn>で、 <Wovn>［通知のメール送信機能を利用する］</Wovn>にチェックを入れます。  
+   <Img src="/k/kintone/img-ja/feature_activ05.png" alt="スクリーンショット：［通知のメール送信機能を利用する］が選択されている" />  
+   必要に応じて<Wovn>［受信設定の既定値］</Wovn>、<Wovn>［メール通知の形式］</Wovn>、<Wovn>［その他の設定］</Wovn>を設定します。  
+   各設定項目の詳細は、次のページを参照してください。  
+   [通知のメール送信機能の利用設定](/k/ja/id/0403.html)
+
+1. <Wovn>［保存］</Wovn>をクリックします。
+
+<Heading level={3} id="notifications_mail_notification_1030">アプリごとに通知を設定をする（アプリ管理者）</Heading>
+
+アプリの通知を受信したい場合は、アプリ管理者がアプリごとに通知を設定します。  
+設定できる通知の詳細は、次のページを参照してください。  
+[アプリの通知設定](/k/ja/id/040559.html)  
+<Img src="/k/kintone/img-ja/enable_mail_notification04.png" alt="スクリーンショット：［アプリの設定］画面の［通知］を枠線で強調している" />
+
+アプリの通知設定では、さまざまな通知条件を設定できます。  
+たとえば、「レコードが登録されたらAさんに通知を送る」「ステータスが”承認”になったら登録者に通知を送る」といった運用も可能です。
+
+<Heading level={3} id="notifications_mail_notification_1040">個人設定でメール通知を設定する（各ユーザー）</Heading>
+
+メール通知を受信したいユーザーは、個人設定でメール通知を設定します。
+
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［個人設定］</Wovn>をクリックします。<Wovn></Wovn>  
+   <Img src="/k/kintone/img-ja/mail_notification_img4.png" alt="スクリーンショット：画面上部の[設定メニューを表示する]アイコンと[個人設定]を枠線で強調している" />
+
+1. <Wovn>［個人設定］</Wovn>画面で、メール通知の受信設定、受信する対象、受信形式を選択します。  
+   <Img src="/k/kintone/img-ja/enable_mail_notification05.png" alt="スクリーンショット：［メール通知］を枠線で強調している" />
+
+   「自分宛」の通知と「すべて」の通知の違いは、次のページを参照してください。  
+   [「自分宛」通知と「すべて」通知の違い](/k/ja/id/040674.html)  
+   通知を受信する操作の詳細は、次のページを参照してください。  
+   [通知が送信されるタイミングと宛先](/k/ja/id/040673.html)  
+
+   <Warning>
+
+   <Wovn>［すべての通知］</Wovn>にチェックを入れた場合、自分宛を含む「すべて」の通知がメールで通知されます。  
+   そのため、非常に多くのメールが届いてしまう可能性があります。
+
+   </Warning>
+
+1. <Wovn>［保存］</Wovn>をクリックします。
+
+<Heading id="notifications_mail_notification_60">アクセス制限が設定されている場合</Heading>
+
+<Disabled2 regions={["US"]}>
+
+管理者がアクセス制限を設定している場合、メール通知に記載されたURLから<Kintone />にアクセスするには、次のいずれかの設定が必要です。
+
+<Heading level={3} id="notifications_mail_notification_6010">セキュアアクセスを利用している</Heading>
+
+メール通知に記載されたURLにアクセスすると、次の画面が表示されます。  
+<Img src="/k/kintone/img-ja/mail_notification_img2.png" alt="スクリーンショット：［アクセスするには認証が必要です］のエラーメッセージが表示されている" />
+
+お使いの端末にセキュアアクセスの利用に必要な設定をしている場合、チェックボックスを選択してURLをクリックすれば、<Kintone />にアクセスできます。
+
+<Heading level={3} id="notifications_mail_notification_6020">Basic認証が設定されている</Heading>
+
+メール通知に記載されたURLにアクセスすると、認証画面が表示されます。
+
+認証画面にBasic認証のユーザー名とパスワードを入力してください。  
+ユーザー名とパスワードは、管理者に確認してください。
+
+</Disabled2>
+
+<Heading level={3} id="notifications_mail_notification_6030">2要素認証を有効にしている</Heading>
+
+メール通知に記載されたURLにアクセスすると、ユーザー名とパスワードを入力してログインしたあとに確認コードの入力が求められます。  
+<Img src="/k/kintone/img-ja/mail_notification06.png" alt="スクリーンショット：2要素認証の確認コードを入力する画面が表示されている" />
+
+Google Authenticatorなどの認証アプリを起動して、表示される6桁の確認コードを入力してください。  
+確認コードの入手方法の詳細は、次のページを参照してください。  
+[2要素認証の確認コードを入手するには](/general/ja/id/020418.html)
+
+<Enabled regions={["JP", "CN"]}>
+
+<Reference>
+
+* [アクセス制限に関するセキュリティの概要](/general/ja/id/02046.html)
+* [管理者が一括でメール通知を停止するには](/k/ja/id/040372.html)
+* [各ユーザーが自分のメール通知を停止するには](/k/ja/id/040381.html)
+
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+<Reference>
+
+* [アクセス制限に関するセキュリティの概要](/general/ja/id/02046.html)
+* [管理者が一括でメール通知を停止するには](/k/ja/id/040372.html)
+* [各ユーザーが自分のメール通知を停止するには](/k/ja/id/040381.html)
+
+</Reference>
+
+</Enabled>

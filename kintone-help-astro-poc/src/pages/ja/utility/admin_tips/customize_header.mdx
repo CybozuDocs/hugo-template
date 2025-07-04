@@ -1,0 +1,67 @@
+---
+title: "ヘッダーのロゴを変更する"
+weight: 600
+aliases:
+  - "/ja/id/04040"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+
+
+ヘッダーに表示するロゴと、ロゴをクリックしたしたときに表示されるページのURLを変更できます。  
+変更したロゴやURLは、すべてのユーザーに適用されます。  
+たとえば、<Kintone />をより身近に感じてもらうために、自社のロゴやホームページのURLを設定する方法などもおすすめです。
+
+<Enabled regions={["JP"]}>
+<Img src="/k/kintone/img/customize_header_img01.png" alt="ヘッダーのロゴ" />
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Img src="/k/kintone/img/customize_header_img02.png" alt="ヘッダーのロゴ" />
+
+</Enabled>
+
+<Enabled regions={["CN"]}>
+<Img src="/k/kintone/img/customize_header_img03.png" alt="ヘッダーのロゴ" />
+
+</Enabled>
+
+<Note>
+
+* ロゴやURLを変更できるのは、<Slash />共通管理者のみです。
+* ロゴ画像の推奨サイズは、幅87 × 高さ26pxです。
+
+</Note>
+
+変更手順は以下のとおりです。
+
+1. <Kintone />の画面上部の歯車の形をした[設定]アイコンをクリックし、[<SlashUi />]をクリックします。  
+  <Enabled regions={["JP"]}>
+   <Img src="/k/kintone/img-ja/restore_app_img01.png" alt="スクリーンショット：[{{&lt; slash_ui &gt;}}]が枠線で強調されている" />
+  </Enabled>
+
+1. 「カスタマイズ」の[ロゴ]をクリックします。
+
+1. ロゴの画像ファイルや、ロゴをクリックしたときに表示されるページのURLを設定します。
+  <Note>
+
+  URLを空欄にした場合、<Kintone />の画面でロゴをクリックすると<Kintone />のトップページが表示されます。
+  </Note>
+
+1. [保存]をクリックします。
+
+<Reference>
+
+* [ヘッダーの色を変更する](/k/ja/id/04039.html)
+* [ログイン画面をカスタマイズする](/k/ja/id/04041.html)
+* [<Slash />共通管理者の設定](/general/ja/id/0208.html)
+
+</Reference>

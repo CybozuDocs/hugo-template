@@ -1,0 +1,105 @@
+---
+title: "年度単位で集計したい"
+weight: 2100
+aliases:
+  - "/ja/id/040761"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+
+
+「年度」という集計単位は、<Kintone />の集計機能には用意されていません。別途「年度」を表示するフィールドを用意して、該当のフィールドを集計の「分類する項目」に設定することで、年度単位で集計できます。  
+ここでは、年度単位で集計するための設定例を紹介します。なお、この例では、年度の始まりを4月としています。
+
+<Heading id="calculation_yearly_summarize_10">準備</Heading>
+
+アプリの設定画面のフォームタブを開き、以下のフィールドを配置します。
+
+* (1)日付フィールド
+* (2)計算フィールド
+* (3)計算フィールド
+* (4)文字列（1行）フィールド
+
+<Heading id="calculation_yearly_summarize_20">各フィールドの設定</Heading>
+
+配置した各フィールドの設定画面を開き、フィールド名、フィールドコード、計算式、表示形式を設定します。  
+[フィールドコードとは](/k/ja/id/040504.html)
+
+<Heading level={3} id="calculation_yearly_summarize_2010">(1)日付フィールド</Heading>
+
+* フィールド名：日付
+* フィールドコード：日付
+
+このフィールドでは、計算式と表示形式は設定しません。
+
+<Heading level={3} id="calculation_yearly_summarize_2020">(2)計算フィールド</Heading>
+
+* フィールド名：年
+* フィールドコード：年
+* 表示形式：「数値（例：1000）」を選択
+* 計算式：以下の計算式を設定します。
+
+  ```plaintext {copy=true}
+  DATE_FORMAT(日付, "YYYY", "Asia/Tokyo")
+
+  ```
+
+<Heading level={3} id="calculation_yearly_summarize_2030">(3)計算フィールド</Heading>
+
+* フィールド名：月
+* フィールドコード：月
+* 表示形式：「数値（例：1000）」を選択
+* 計算式：以下の計算式を設定します。
+
+  ```plaintext {copy=true}
+  DATE_FORMAT(日付, "MM", "Asia/Tokyo")
+
+  ```
+
+<Heading level={3} id="calculation_yearly_summarize_2040">(4)文字列（1行）フィールド</Heading>
+
+* フィールド名：年度
+* フィールドコード：年度
+* 計算式：「自動計算する」にチェックをつけ、以下の計算式を設定します。
+
+  ```plaintext {copy=true}
+  IF( 日付 = "" , "" ,
+  IF ( 月 <= 3 , ( 年 - 1 ) & "年度" , DATE_FORMAT(日付, "YYYY年度", "Asia/Tokyo")
+   )
+  )
+
+  ```
+
+このフィールドでは、表示形式は設定しません。
+
+<Heading id="calculation_yearly_summarize_30">集計の設定</Heading>
+
+集計画面を開き、次のとおり設定します。  
+この例では、横軸が年度、縦軸がレコード数の縦棒グラフを表示できます。
+
+* グラフの種類：縦棒グラフ 、集合
+* 分類する項目（大項目）：年度
+* 集計方法：レコード数
+* 条件：すべてのレコード
+* ソート：大項目、昇順
+
+<Reference>
+
+* [グラフを作成する](/k/ja/id/040468.html)
+* [アプリの設定画面からグラフを追加する](/k/ja/id/040586.html)
+
+</Reference>
+
+<Heading id="calculation_yearly_summarize_40">計算式の解説</Heading>
+
+日付フィールドに入力した日付のうち、年と月だけが表示されるようにあらかじめ計算フィールドを設定します。年度の始まりを4月とする場合、1月、2月、および3月は年と年度とが一致しないので、1月、2月、および3月は（「年」-1）の値を、それ以外の場合は日付フィールドの年を「年度」に表示させています。
+
+<Kintone />の「DATE_FORMAT関数」では、計算結果を文字列として扱います。ただし、「計算」フィールドで「DATE_FORMAT関数」を使用して、計算結果が数値のみとなる場合には、その計算結果を数値として扱えます。
+
+<Reference>
+[[DATE_FORMAT関数]日付や時刻の表示形式を指定して表示する](/k/ja/id/040501.html)
+
+</Reference>

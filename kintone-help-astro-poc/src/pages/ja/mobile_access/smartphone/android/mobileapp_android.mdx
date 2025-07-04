@@ -1,0 +1,130 @@
+---
+title: "Androidのモバイルアプリを利用する"
+weight: 100
+aliases:
+  - "/ja/id/040655"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />のモバイルアプリを利用すると、<Kintone />の通知をプッシュ通知で受け取ることができます。外出先でもすばやく通知を確認できます。
+
+<Heading id="android_mobileapp_android_10">モバイルアプリをダウンロードする</Heading>
+
+Android端末にモバイルアプリをダウンロードします。  
+次のページで「<Kintone />」を検索して、<Wovn>［インストール］</Wovn>をタップします。<Wovn></Wovn>  
+[Google Play](https://play.google.com/store/apps/details?id=com.cybozu.kintone.mobile)  
+<a href='https://play.google.com/store/apps/details?id=com.cybozu.kintone.mobile'><img alt="Google Playで手に入れよう" src="/k/img-ja/google-play-badge.png" width="150"/></a>
+
+<Enabled regions={["JP"]}>
+
+モバイルアプリを使用できるOSやバージョンについては、次のページを参照してください。  
+[動作環境](https://www.cybozu.com/jp/service/requirements.html#app)（日本語のみ）
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+モバイルアプリを利用できるOSやバージョンについては、次のページを参照してください。  
+[動作環境](https://trust-center.kintone.com/service/requirements/#app)
+
+</Enabled>
+
+<Heading id="android_mobileapp_android_15">モバイルアプリをアップデートする</Heading>
+
+Android端末で、モバイルアプリをアップデートします。  
+次のページで「<Kintone />」を検索して、<Wovn>［更新］</Wovn>をタップします。<Wovn></Wovn>  
+[Google Play](https://play.google.com/store/apps/details?id=com.cybozu.kintone.mobile)  
+<a href='https://play.google.com/store/apps/details?id=com.cybozu.kintone.mobile'><img alt="Google Playで手に入れよう" src="/k/img-ja/google-play-badge.png" width="150"/></a>
+
+<Heading id="android_mobileapp_android_20">モバイルアプリを設定する</Heading>
+
+モバイルアプリをはじめてインストールするときのみ設定が必要です。
+
+1. Android端末にダウンロードしたモバイルアプリのアイコンをタップします。
+
+1. アクセスする<Kintone />のサブドメインを入力し、<Wovn>［次へ］</Wovn>をタップします。  
+  サブドメインは、<Kintone />にアクセスするURLの「<CybozuCom />」の前にある文字列です。  
+  アクセスするURLは、<Kintone />を表示しているときのWebブラウザーのアドレスバーで確認できます。  
+  https://（サブドメイン）.<CybozuCom />/k/
+   <Img src="/k/kintone/img-ja/mobileapp_android_01.png" alt="スクリーンショット：サブドメインを入力する画面" />
+
+   <Note>
+
+   <Wovn>［.<CybozuCom /> 以外のドメインを入力する］</Wovn>のスイッチをタップして、他の地域のドメインを入力できます。初期設定ではご利用の地域のドメインが表示されています。
+
+   </Note>
+
+以降はご利用の環境に応じた手順に進んでください。
+
+<Enabled regions={["JP", "CN"]}>
+
+<Heading level={3} id="android_mobileapp_android_2010">Basic認証を使用している場合</Heading>
+
+1. Basic認証のユーザー名とパスワードを入力し、<Wovn>［OK］</Wovn>をタップします。
+
+1. <Kintone />にアクセスするログイン名とパスワードを入力し、<Wovn>［ログイン］</Wovn>をタップします。  
+   <Img src="/k/kintone/img-ja/mobileapp_android_03.png" alt="スクリーンショット：ログイン名とパスワードを入力する画面" />
+
+1. 2要素認証を有効にしている場合は、<Wovn>［ログイン］</Wovn>をタップしたあとに確認コードを入力します。  
+  確認コードには、Google Authenticatorなどの認証アプリを起動して、表示される6桁の確認コードを入力してください。  
+  [2要素認証の確認コードを入手するには](/general/ja/id/020418.html)
+
+</Enabled>
+
+<Heading level={3} id="android_mobileapp_android_2020">シングルサインオン（SSO）でログインする場合</Heading>
+
+1. SSOで使用しているサービスのログイン名とパスワードを入力し、ログインします。
+
+<Heading level={3} id="android_mobileapp_android_2030">&lt;Kintone /&gt;のログイン名とパスワードを使ってログインする場合</Heading>
+
+1. <Kintone />にアクセスするログイン名とパスワードを入力し、<Wovn>［ログイン］</Wovn>をタップします。  
+   <Img src="/k/kintone/img-ja/mobileapp_android_03.png" alt="スクリーンショット：ログイン名とパスワードを入力する画面" />
+
+1. 2要素認証を有効にしている場合は、<Wovn>［ログイン］</Wovn>をタップしたあとに確認コードを入力します。  
+  確認コードには、Google Authenticatorなどの認証アプリを起動して、表示される6桁の確認コードを入力してください。  
+  [2要素認証の確認コードを入手するには](/general/ja/id/020418.html)
+
+<Heading id="android_mobileapp_android_30">エラーやトラブルが発生したときは</Heading>
+
+モバイルアプリの設定時にエラーやトラブルが発生した場合、次の原因が考えられます。
+
+<Enabled regions={["JP", "CN"]}>
+
+<Heading level={3} id="android_mobileapp_android_3010">セキュアアクセスが必要なドメインで、クライアント証明書をインストールしていない</Heading>
+
+セキュアアクセスを利用していて、次のようなエラーが表示されている場合、クライアント証明書のインストールが必要です。  
+エラー：  
+IPアドレス制限によって、アクセスが制限されています  
+許可されているIPアドレスからアクセスするか、セキュアアクセスを利用してアクセスしてください。  
+
+セキュアアクセスの設定方法は、次のページを参照してください。  
+[セキュアアクセスでモバイルを利用する（Android）](/k/ja/id/040656.html)
+
+</Enabled>
+
+<Heading level={3} id="android_mobileapp_android_3020">2要素認証の確認コードが入手できない</Heading>
+
+モバイルのWebブラウザーやパソコンから<Kintone />にアクセスできる場合は、そのユーザーの<Wovn>［アカウント設定］</Wovn>から<Wovn>［ログイン名とパスワード］</Wovn>画面を開き、2要素認証を一度無効にしてください。2要素認証を再度有効にすると、確認コードを再取得できます。  
+どの端末からもアクセスできなくなった場合は、管理者に依頼して2要素認証の設定を無効にしてもらう必要があります。  
+詳細は、次のページを参照してください。  
+[2要素認証](/general/ja/id/020439.html)
+
+<Enabled regions={["JP", "CN"]}>
+
+<Reference>
+
+[エラーが表示されてAndroid端末で接続設定ができない場合](/k/ja/id/040362.html)
+
+</Reference>
+
+</Enabled>

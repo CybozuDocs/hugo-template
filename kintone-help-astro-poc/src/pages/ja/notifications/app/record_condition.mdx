@@ -1,0 +1,98 @@
+---
+title: "レコードの条件通知：レコードが特定の条件を満たしたときの通知を設定する"
+weight: 400
+aliases:
+  - "/ja/id/040563"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+レコードの条件通知を設定すると、次のときに、アプリの利用者に通知されます。
+
+* フィールドの値が特定の条件を満たすレコードを登録したとき
+* レコードを編集した結果、フィールドの値が特定の条件を満たしたとき
+
+たとえば、特定の商品が選択された時に、案件担当者に通知する、といった設定が可能です。  
+レコードを編集する前に、フィールドの値が条件をすでに満たしていた場合は、通知されません。
+
+<Heading id="notification_record_condition_10">手順</Heading>
+
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［通知］</Wovn>にある<Wovn>［レコードの条件通知］</Wovn>をクリックします。
+
+1. <Wovn>［レコードの条件通知］</Wovn>画面で、<Wovn>［追加する］</Wovn>をクリックします。
+
+1. <Wovn>［レコードの条件］</Wovn>に、通知する条件を設定します。  
+  ここでは例として、「製品名フィールドで<Kintone />が選択されたとき、案件担当者に通知する」という条件通知を設定します。  
+   <Img src="/k/kintone/img-ja/record_condition_img05.png" alt="スクリーンショット：通知する条件を入力している" />
+  条件を指定する際の注意事項は、次のページを参照してください。  
+  [フィールドの値の条件を組織で指定する場合の絞り込み結果の違い](/k/ja/id/040458.html#app_collectdata_filter_records_40)
+
+   <Note>
+
+   * 次のフィールドの値を使用した条件は、指定できません。
+     * <Wovn>［文字列（複数行）］</Wovn>
+     * <Wovn>［リッチエディター］</Wovn>
+     * <Wovn>［添付ファイル］</Wovn>
+     * <Wovn>［関連レコード一覧］</Wovn>
+   * <Wovn>［テーブル］</Wovn>に設定したフィールドを使用した条件を設定する場合：  
+     <Wovn>［テーブル］</Wovn>のいずれかの行でフィールドの値が条件を満たしたときに通知されます。ただし、ほかの行のフィールドの値が条件をすでに満たしていた場合は、通知されません。
+
+   </Note>
+
+1. <Wovn>［ユーザーを追加］</Wovn>から通知先のユーザーなどを追加するか、または<Wovn>［フォームのフィールドを追加］</Wovn>で通知先に指定したいフィールドを選択します。  
+  <Wovn>［フォームのフィールドを追加］</Wovn>では、次のフィールドを選択できます。
+
+    * <Wovn>［作成者］</Wovn>
+    * <Wovn>［ユーザー選択］</Wovn>フィールド<sup>\*1</sup>
+    * <Wovn>［組織選択］</Wovn>フィールド<sup>\*1</sup>
+    * <Wovn>［グループ選択］</Wovn>フィールド<sup>\*1</sup>
+    * <Wovn>［作業者］</Wovn><sup>\*2</sup>
+
+    <sup>\*1</sup> フィールドをフォームに配置している場合のみ、選択できます。  
+    <sup>\*2</sup> プロセス管理機能を有効にしている場合のみ、選択できます。
+   <Img src="/k/kintone/img-ja/record_condition_img06.png" alt="スクリーンショット：レコードの条件通知設定画面の通知先設定" />
+
+   <Note>
+
+   通知先を指定しなくても、条件通知の設定を保存できます。<Wovn></Wovn>  
+   ただし、通知先が指定されていない通知設定からは、通知が送信されません。
+
+   </Note>
+
+1. 必要に応じて、<Wovn>［通知内容］</Wovn>に、通知の件名に挿入する文を入力します。  
+   <Img src="/k/kintone/img-ja/record_condition_img07.png" alt="スクリーンショット：［通知内容］を入力している" />
+  入力した文は、以下のように通知に表示されます。  
+   <Img src="/k/kintone/img-ja/record_condition_img02.png" alt="スクリーンショット：通知の例" />
+
+1. 画面右下の<Wovn>［保存］</Wovn>をクリックします。
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+<Heading id="notification_record_condition_20">注意事項</Heading>
+
+* 次のユーザーには、通知は送信されません。
+  * レコードを操作した本人
+  * アプリやレコードの閲覧権限を持たないユーザー
+* ExcelファイルやCSVファイルを読み込んでレコードを登録、または更新した場合は、フィールドの値が通知設定の条件を満たしても、通知は送信されません。
+
+<Reference>
+
+* [TIPS：選択肢形式のフィールドが更新されたときに通知する（レコードの条件通知）](/k/ja/id/040562.html)  
+  <Wovn>［ラジオボタン］</Wovn>と<Wovn>［ドロップダウン］</Wovn>フィールドで、選択した選択肢にかかわらず、フィールドの値が更新された場合に送信する通知を設定する手順を説明しています。<Wovn></Wovn><Wovn></Wovn>
+* [TIPS：[フォームのフィールドを追加]から選択できる通知先](/k/ja/id/040560.html)
+* [通知が送信されるタイミングと宛先](/k/ja/id/040673.html)
+* [プロセス管理のステータスが更新された際に、独自のメッセージを作業者に送りたい](/k/ja/id/040775.html)
+
+</Reference>

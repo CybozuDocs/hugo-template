@@ -1,0 +1,29 @@
+---
+title: "テーブルの行数をカウントしたい"
+weight: 500
+disabled: []
+aliases:
+  - "/ja/id/040758"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Img from "@/components/Img.astro";
+
+
+テーブルに数値フィールドを配置して、計算フィールドのSUM関数で合計することで、テーブルの行数をカウントできます。
+<Img src="/k/kintone/img-ja/tableline_count_05.png" alt=" " />
+<br />
+テーブルに数値フィールドを配置して、フィールド右上にある歯車の形をした設定アイコンの[設定]をクリックします。
+<Img src="/k/kintone/img-ja/tableline_count_01.png" alt=" " />
+
+フィールド名とフィールドコードに任意の文字列、初期値に「1」を入力します。  
+ここでは例として、フィールド名とフィールドコードに「カウント」と入力します。  
+<Img src="/k/kintone/img-ja/tableline_count_02.png" alt=" " />
+
+テーブルの外に計算フィールドを配置して、フィールド右上にある歯車の形をした設定アイコンの[設定]をクリックします。  
+<Img src="/k/kintone/img-ja/tableline_count_03.png" alt=" " />
+
+フィールド名に任意の文字列、計算式に「SUM(カウント)」と入力して、保存します。
+<Img src="/k/kintone/img-ja/tableline_count_04.png" alt=" " />
+
+これでテーブルの行数がカウントされます。

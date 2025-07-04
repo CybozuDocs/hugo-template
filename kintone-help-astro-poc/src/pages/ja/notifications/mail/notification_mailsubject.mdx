@@ -1,0 +1,200 @@
+---
+title: "メール通知の件名"
+weight: 400
+aliases:
+  - "/ja/id/040671"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Kintone from "@/components/Kintone.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />のメール通知は、次の件名で送信されます。  
+
+<Heading id="notifications_notification_mailsubject_10">アプリのメール通知</Heading>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width:85px;">機能</th>
+            <th>通知される条件</th>
+            <th>メールの件名</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="1" rowspan="6">登録と更新</td>
+            <td>レコードが登録された</td>
+            <td>［<Kintone />］ ［（アプリ名）］ （レコードタイトル） - レコードが追加されました。</td>
+        </tr>
+        <tr>
+            <td>レコードが更新された</td>
+            <td>［<Kintone />］ ［（アプリ名）］ （レコードタイトル） - レコードが更新されました。</td>
+        </tr>
+        <tr>
+            <td>レコードの一括登録／更新が完了した</td>
+            <td>［<Kintone />］ ［（アプリ名）］ ***件のレコードが追加され、***件のレコードが更新されました。</td>
+        </tr>
+        <tr>
+            <td>レコードの一括登録／更新に失敗した</td>
+            <td>［<Kintone />］ ［（アプリ名）］ レコードの読み込みに失敗しました。</td>
+        </tr>
+        <tr>
+            <td>レコードの一括登録／更新をキャンセルした</td>
+            <td>［<Kintone />］ ［（アプリ名）］ レコードの読み込みがキャンセルされました。</td>
+        </tr>
+        <tr>
+            <td>レコードにコメントが書き込まれた</td>
+            <td>［<Kintone />］ ［（アプリ名）］ （投稿者） さんが （レコードタイトル） にコメントを書き込みました。</td>
+        </tr>
+        <tr>
+            <td colspan="1" rowspan="3">一括削除</td>
+            <td>レコードの一括削除が完了した</td>
+            <td>［<Kintone />］ ［（アプリ名）］ レコードの一括削除が完了しました。</td>
+        </tr>
+        <tr>
+            <td>レコードの一括削除に失敗した</td>
+            <td>［<Kintone />］ ［（アプリ名）］ のレコードの一括削除に失敗しました。</td>
+        </tr>
+        <tr>
+            <td>レコードの一括削除が途中終了した <sup>*1             </sup></td>
+            <td>［<Kintone />］ ［（アプリ名）］ レコードの一括削除が途中終了しました。</td>
+        </tr>
+        <tr>
+            <td colspan="1" rowspan="3">書き出し</td>
+            <td>レコードがファイルに書き出された</td>
+            <td>［<Kintone />］ ［（アプリ名）］ ***件のレコードがファイルに書き出されました。</td>
+        </tr>
+        <tr>
+            <td>レコードのファイルへの書き出しに失敗した</td>
+            <td>［<Kintone />］ ［（アプリ名）］ レコードの書き出しに失敗しました。</td>
+        </tr>
+        <tr>
+            <td>レコードのファイルへの書き出しをキャンセルした</td>
+            <td>［<Kintone />］ ［（アプリ名）］ レコードの書き出しがキャンセルされました。</td>
+        </tr>
+        <tr>
+            <td colspan="1" rowspan="2">条件通知</td>
+            <td>レコードが指定した条件を満たした</td>
+            <td>［<Kintone />］ ［（アプリ名）］ （レコードタイトル） - （<Wovn>［通知内容］</Wovn>で設定した通知文）</td>
+        </tr>
+        <tr>
+            <td>リマインダーの通知条件を満たした</td>
+            <td>［<Kintone />］ ［（アプリ名）］ （レコードタイトル） - （<Wovn>［通知内容］</Wovn>で設定した通知文）</td>
+        </tr>
+        <tr>
+            <td colspan="1" rowspan="6">集計</td>
+            <td>集計結果がファイルに書き出された</td>
+            <td>［<Kintone />］ ［（アプリ名）］ 集計結果が書き出されました。</td>
+        </tr>
+        <tr>
+            <td>集計結果のファイルへの書き出しに失敗した</td>
+            <td>［<Kintone />］ ［（アプリ名）］ 集計結果の書き出しに失敗しました。</td>
+        </tr>
+        <tr>
+            <td>クロス集計結果がExcelファイルに書き出された</td>
+            <td>［<Kintone />］ ［（アプリ名）］ クロス集計結果が書き出されました。</td>
+        </tr>
+        <tr>
+            <td>クロス集計結果のExcelファイルへの書き出しに失敗した</td>
+            <td>［<Kintone />］ ［（アプリ名）］ クロス集計結果の書き出しに失敗しました。</td>
+        </tr>
+        <tr>
+            <td>定期レポートが作成された</td>
+            <td>［<Kintone />］ ［（アプリ名）］ 定期レポートが作成されました。</td>
+        </tr>
+        <tr>
+            <td>定期レポートの作成に失敗した</td>
+            <td>［<Kintone />］ ［（アプリ名）］ 定期レポートの作成に失敗しました。</td>
+        </tr>
+        <tr>
+            <td colspan="1" rowspan="2">プロセス管理</td>
+            <td>レコードのステータスが更新された</td>
+            <td>［<Kintone />］ ［（アプリ名）］ （レコードタイトル） - &quot;（変更前のステータス）&quot; &rarr; &quot;（変更後のステータス）&quot;</td>
+        </tr>
+        <tr>
+            <td>レコードの作業者が変更された</td>
+            <td>［<Kintone />］ ［（アプリ名）］ （レコードタイトル） - 作業者が変更されました。</td>
+        </tr>
+    </tbody>
+</table>
+
+<sup>*1</sup>：削除対象のレコードの件数が多いと、一括削除が途中で終了します。一度に削除できるレコードは、5万件までです。
+
+<Hint>
+
+件名に表示される以下の項目を変更したい場合は、それぞれのヘルプを参照してください。  
+
+* レコードタイトル  
+  [レコードタイトルを設定する](/k/ja/id/040604.html)  
+  なお、メールの件名では、レコードタイトルの28文字目以降は省略されます。
+* <Wovn>［レコードの条件通知］</Wovn>の通知文  
+  [レコードの条件通知：レコードが特定の条件を満たしたときの通知を設定する](/k/ja/id/040563.html)
+* <Wovn>［リマインダーの条件通知］</Wovn>の通知文  
+  [リマインダーの条件通知：日時を条件にしたリマインド通知を設定する](/k/ja/id/040564.html)  
+
+</Hint>
+
+<Heading id="notifications_notification_mailsubject_20">スペースのメール通知</Heading>
+
+<table>
+    <tbody>
+        <tr>
+            <th>通知される条件</th>
+            <th>メールの件名</th>
+        </tr>
+        <tr>
+            <td>スペースが作成された</td>
+            <td>［<Kintone />］ ［（スペース名）］ スペースが作成されました。</td>
+        </tr>
+        <tr>
+            <td>スペースの本文が編集された</td>
+            <td>［<Kintone />］ （更新者） さんが ［（スペース名）］ スペースの本文を変更しました。</td>
+        </tr>
+        <tr>
+            <td>スレッドが作成された</td>
+            <td>［<Kintone />］ （スレッドのタイトル） スレッドが作成されました。</td>
+        </tr>
+        <tr>
+            <td>スレッドの本文が更新された</td>
+            <td>［<Kintone />］ （更新者） さんが （スレッドのタイトル） の本文を変更しました。</td>
+        </tr>
+        <tr>
+            <td>スレッドにコメントが書き込まれた</td>
+            <td>［<Kintone />］ （投稿者） さんが （スレッドのタイトル） にコメントを書き込みました。</td>
+        </tr>
+    </tbody>
+</table>
+
+<Heading id="notifications_notification_mailsubject_30">ピープルのメール通知</Heading>
+
+<table>
+    <tbody>
+        <tr>
+            <th>通知される条件</th>
+            <th>メールの件名</th>
+        </tr>
+        <tr>
+            <td>ピープルにコメントが書き込まれた</td>
+            <td>［<Kintone />］ （投稿者） さんが （ピープルのオーナー） さんのピープルにコメントを書き込みました。</td>
+        </tr>
+    </tbody>
+</table>
+
+<Heading id="notifications_notification_mailsubject_40">メッセージのメール通知</Heading>
+
+<table>
+    <tbody>
+        <tr>
+            <th>通知される条件</th>
+            <th>メールの件名</th>
+        </tr>
+        <tr>
+            <td>メッセージが書き込まれた</td>
+            <td>［<Kintone />］ （投稿者） さんからメッセージが届きました。</td>
+        </tr>
+    </tbody>
+</table>

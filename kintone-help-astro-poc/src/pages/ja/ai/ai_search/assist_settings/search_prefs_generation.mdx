@@ -15,6 +15,7 @@ import Wovn from "@/components/Wovn.astro";
 検索AIによる回答生成の仕組みと、利用されるデータソースについて説明します。
 
 <Heading id="assist_settings_search_prefs_generation_10">回答生成の仕組み</Heading>
+
 検索AIが回答を生成する仕組みは、次のとおりです。
 
 (1) ユーザーが、検索AIに質問や指示を送信する  
@@ -23,10 +24,12 @@ import Wovn from "@/components/Wovn.astro";
 (4) 検索AIが、関連度の高い上位5件までのレコードをもとに回答を生成する
 
 <Heading id="assist_settings_search_prefs_generation_20">利用されるデータソース</Heading>
+
 検索AIが利用するデータソースは、<Wovn>［検索AI設定］</Wovn>画面の<Wovn>［回答生成に使用するデータソース］</Wovn>で設定します。  
 ただし、回答生成の仕組み（3）と（4）で利用されるフィールドは異なります。
 
 <Heading level={3} id="assist_settings_search_prefs_generation_2010">検索対象となるフィールド</Heading>
+
 回答生成の仕組み（3）で、検索AIが、データソースに指定したアプリ内から検索キーワードを検索するときには、データソースに指定したフィールドのうち、次のフィールドが検索対象となります。
 
 * <Wovn>［文字列（1行）］</Wovn>
@@ -38,6 +41,7 @@ import Wovn from "@/components/Wovn.astro";
 * <Wovn>［添付ファイル］</Wovn>
 
 <Heading level={3} id="assist_settings_search_prefs_generation_2020">回答生成に利用されるフィールド</Heading>
+
 回答生成の仕組み（4）で、検索AIが、関連度の高い上位5件までのレコードをもとに回答を生成するときには、データソースに指定したフィールドが利用されます。  
 ただし、<Wovn>［カテゴリー］</Wovn>や、<Wovn>［テーブル］</Wovn>内または<Wovn>［グループ］</Wovn>内のフィールドなどは、回答生成時に参照されない場合があります。
 

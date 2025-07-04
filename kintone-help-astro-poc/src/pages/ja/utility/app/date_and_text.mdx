@@ -1,0 +1,67 @@
+---
+title: "日付と文字列を結合して表示したい"
+weight: 2000
+aliases:
+  - "/ja/id/040741"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+
+計算式の中でDATE_FORMAT関数を使うと、日付、日時、時刻を文字列として扱えるようになります。  
+DATE_FORMAT関数を使わず「"報告書作成日" & 日付」のようにフィールドコードを指定すると、「報告書作成日1575504000」という表記になり、日付として判別できません。これは、日付の値がUNIX時刻で扱われるためです。
+
+DATE_FORMAT関数を使って「"報告書作成日" & DATE_FORMAT(日付, "MM月dd日", "Etc/GMT")」と書くことで、「報告書作成日12月05日」と日付が表示できるようになります。
+
+<Heading id="app_date_and_text_10">設定例</Heading>
+
+作業報告書アプリを例に、DATE_FORMAT関数と文字列を結合する方法を説明します。  
+完成イメージ：
+<Img src="/k/kintone/img-ja/example_date_format_01.png" alt="スクリーンショット：完成イメージ" />
+
+1. 「レコードの一覧」画面で、画面右上にある歯車の形をした[アプリを設定]アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：[アプリを設定]アイコンが枠線で強調されている" />
+
+1. 「アプリの設定」画面で、[フォーム]タブをクリックします。
+
+1. 画面左側のパーツ一覧から日付フィールドと作成者フィールドを配置します。
+   <Img src="/k/kintone/img-ja/example_date_format_02.png" alt="スクリーンショット：フィールドの配置" />
+
+1. タイトルとして表示するための文字列（1行）フィールドを配置します。  
+  タイトルが1行で表示されるように、フィールドの横幅を長くします。
+   <Img src="/k/kintone/img-ja/example_date_format_03.png" alt="スクリーンショット：フィールドの配置" />
+
+1. 文字列（1行）フィールドの設定画面を開いて、フィールド名を「タイトル」に変更します。  
+  フィールドの設定画面は開いたままにします。
+   <Img src="/k/kintone/img-ja/example_date_format_01.gif" alt="動画：フィールド名の変更" />
+
+1. 「自動計算する」にチェックを入れ、計算式を入力します。  
+
+    * 計算式：  
+    "報告書作成日" & " " & DATE_FORMAT(日付, "MM月dd日", "Etc/GMT") & " " & 作成者
+    <Img src="/k/kintone/img-ja/example_date_format_04.png" alt="スクリーンショット：計算式の設定" />
+  <Note>
+  日付フィールドのフォーマットを変える場合、DATE_FORMAT（日付のフィールドコード,"フォーマット","タイムゾーン")で設定します。  
+  DATE_FORMAT関数で使える書式の一覧は、「[[DATE_FORMAT関数]日付や時刻の表示形式を指定して表示する](/k/ja/id/040501.html)」を参照してください。
+  </Note>
+
+1. フィールドの設定画面の[保存]をクリックします。
+
+1. 画面左上の[フォームを保存]をクリックして、画面右上の[アプリを更新]をクリックします。
+   <Img src="/k/kintone/img-ja/example_date_format_05.png" alt="スクリーンショット：フォームを更新ボタンとアプリを更新ボタン" />
+
+1. 確認ダイアログで[アプリを更新]をクリックします。
+
+作業報告書アプリのレコードを登録するとき、DATE_FORMAT関数で指定した「報告書作成日」と、日付および作成者が結合されて表示されます。
+<Img src="/k/kintone/img-ja/example_date_format_06.png" alt="スクリーンショット：計算結果" />
+
+「タイトル」フィールドをレコードのタイトルとして設定すると、通知の見出しとして表示されます。また、レコード一覧に表示することも可能です。
+<Img src="/k/kintone/img-ja/example_date_format_07.png" alt="スクリーンショット：通知の見出し" />
+<Img src="/k/kintone/img-ja/example_date_format_08.png" alt="スクリーンショット：レコード一覧" />
+参考：[レコードタイトルを設定する](/k/ja/id/040604.html)  
+参考：[一覧を設定する](/k/ja/id/040612.html)
+
+日報アプリなど、日付とユーザー名で情報を判別したい場合にも便利な使い方です。

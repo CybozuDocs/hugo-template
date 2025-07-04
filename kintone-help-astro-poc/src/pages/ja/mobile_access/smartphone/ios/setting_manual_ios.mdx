@@ -1,0 +1,80 @@
+---
+title: "iOS Safariで{{< kintone >}}を使う"
+weight: 300
+aliases:
+  - "/ja/id/040662"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Service from "@/components/Service.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+新たにアプリをインストールしなくても、iOSのWebブラウザー「Safari」でモバイル用に最適化された<Kintone />を利用できます。
+
+このページでは、iPhoneのSafariで<Kintone />を使う方法を説明します。  
+iPadも同様の手順で<Kintone />を開けますが、表示される画面はPCと同様になります。
+
+<Heading id="ios_setting_manual_10">iOS Safariで&lt;Kintone /&gt;にアクセスする手順</Heading>
+
+1. iOS Safariを開きます。
+
+1. SafariのURL欄に、利用中の<Kintone />のドメイン名を入力します。  
+ 例）example.<CybozuCom />
+
+1. ログイン画面が表示されたら、ログイン名とパスワードを入力してログインします。
+
+   <Note>
+
+   2要素認証を有効にしている場合は、確認コードの入力が必要です。  
+   [2要素認証の確認コードを入手する](/general/ja/id/020418.html)
+
+   </Note>
+
+1. <Service />の画面が表示されたら、<Wovn>［<Kintone />］</Wovn>をタップします。  
+   <Img src="/k/kintone/img-ja/setting_manual_01.png" alt="スクリーンショット：{{&lt; service &gt;}}の画面が表示されている" />
+
+PC版の画面が表示された場合は、<Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンから<Wovn>［モバイル版を表示］</Wovn>をタップすると、モバイル版の画面が表示されます。<Wovn></Wovn>
+<Img src="/k/kintone/img-ja/setting_manual_03.png" alt="スクリーンショット：[モバイル版を表示]までの動線を示している" />
+
+<Enabled regions={["JP", "CN"]}>
+
+<Heading id="ios_setting_manual_20">エラーが表示されたときは</Heading>
+
+<Kintone />の画面が表示されずにエラーが表示される場合、セキュリティの設定により、アクセスできない可能性があります。  
+主に次の原因が考えられます。
+
+* <SlashUi />でIPアドレス制限を設定している
+* セキュアアクセスが必要なドメインで、クライアント証明書のインストールをしていない
+* 「動作環境」のページに掲載されていないWebブラウザーでアクセスしている  
+  [動作環境](https://www.cybozu.com/jp/service/requirements.html)（日本語のみ）
+
+セキュアアクセスの設定方法は、次のページを参照してください。  
+[セキュアアクセスでモバイルを利用する（iOS）](/k/ja/id/040661.html)
+
+エラーの対処方法については、次のページを参照してください。  
+[エラーが表示されてiOS端末で接続設定ができない場合](/k/ja/id/040363.html)
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+<Heading id="ios_setting_manual_20">エラーが表示されたときは</Heading>
+
+<Kintone />の画面が表示されずにエラーが表示される場合、セキュリティの設定により、アクセスできない可能性があります。  
+主に次の原因が考えられます。
+
+* <SlashUi />でIPアドレス制限を設定している
+* 「動作環境」のページに掲載されていないWebブラウザーでアクセスしている  
+  [動作環境](https://trust-center.kintone.com/service/requirements/#app)
+
+セキュリティの設定や、動作環境を確認してください。
+
+</Enabled>

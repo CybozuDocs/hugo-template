@@ -1,0 +1,116 @@
+---
+title: "検索対象のファイル形式"
+weight: 200
+aliases:
+  - "/ja/id/040690"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Note from "@/components/Note.astro";
+
+
+次の形式の添付ファイルの内容を検索できます。
+
+<Heading id="search_searched_fileformats_10">Microsoft Word</Heading>
+
+Windows
+: Word 97 / 98 / 2000 / 2002 (XP) / 2003 / 2007 / 2010 / 2013 / 2016 / 2019 / 2021
+
+macOS
+: Word 98 / 2001 / 2004 / 2008 / 2011 / 2016 / 2019 / 2021 for Mac
+
+<Heading id="search_searched_fileformats_20">Microsoft Excel</Heading>
+
+Windows
+: Excel 97 / 2000 / 2002 (XP) / 2003 / 2007 / 2010 / 2013 / 2016 / 2019 / 2021
+
+macOS
+: Excel 98 / 2001 / 2004 / 2008 / 2011 / 2016 / 2019 / 2021 for Mac
+
+<Heading id="search_searched_fileformats_30">Microsoft PowerPoint</Heading>
+
+Windows
+: PowerPoint 97 / 2000 / 2002 (XP) / 2003 / 2007 / 2010 / 2013 / 2016 / 2019 / 2021
+
+macOS
+: PowerPoint 98 / 2001 / 2004 / 2008 / 2011 / 2016 / 2019 / 2021 for Mac
+
+<Heading id="search_searched_fileformats_40">Microsoft Visio</Heading>
+
+Visio 2002 (XP) / 2003 / 2007 / 2010 / 2013 / 2016 / 2019 / 2021
+
+<Heading id="search_searched_fileformats_50">ODF</Heading>
+
+バージョン
+: 1.1 / 1.2
+
+種類
+: Writer（文書ドキュメント）/ Calc（表計算ドキュメント）/ Impress（プレゼンテーションファイル）
+
+<Heading id="search_searched_fileformats_60">OpenOffice</Heading>
+
+3.0 / 3.1 / 3.2 / 3.3
+
+<Heading id="search_searched_fileformats_70">LibreOffice</Heading>
+
+3.4
+
+<Heading id="search_searched_fileformats_80">Adobe Acrobat</Heading>
+
+4.0 / 5.0 / 6.0 / 7.0 / 8.0 / 9.0 / X / XI / DC
+
+<Heading id="search_searched_fileformats_90">PDF</Heading>
+
+1.2 / 1.3 / 1.4 / 1.5 / 1.6 / 1.7
+
+<Note>
+
+暗号化されたPDFファイルも検索できます。ただし、Acrobat X以降の256-bit AES暗号化には未対応です。
+
+</Note>
+
+<Heading id="search_searched_fileformats_100">JustSystems 一太郎</Heading>
+
+* Ver.5からVer.13
+* 2004から2021
+
+<Enabled regions={["JP", "CN"]}>
+
+<Heading id="search_searched_fileformats_110">DocuWorks</Heading>
+
+* DocuWorks文書
+* DocuWorksバインダー
+
+<Note>
+
+一部未対応の形式があります。  
+DocuWorksについては、富士フイルムビジネスイノベーション株式会社のWebサイトを参照してください。  
+[富士フイルムビジネスイノベーション株式会社 DocuWorks](https://www.fujifilm.com/fb/product/software/docuworks)（日本語のみ）
+
+</Note>
+
+</Enabled>
+
+<Heading id="search_searched_fileformats_120">Microsoft XML Paper Specification (XPS)</Heading>
+
+1.0
+
+<Heading id="search_searched_fileformats_130">RTF</Heading>
+
+1.0から1.9
+
+<Heading id="search_searched_fileformats_140">次の文字コードでエンコードされているテキスト文書</Heading>
+
+JIS (ISO-2022-JP) / EUC-JP / Shift-JIS / UTF-8 / UTF-16
+
+<Heading id="search_searched_fileformats_150">マークアップ言語</Heading>
+
+HTML / XML / SGML
+
+<Heading id="search_searched_fileformats_160">制限事項</Heading>
+
+* 50MB以上のファイルは、ファイル名のみ検索できます。ファイル内のテキストは検索できません。
+* 50MB未満のファイル内のテキストを検索する場合、テキストの先頭から1MBまでが検索対象になります。
+* Unicode私用領域を利用した文字（例：外字）は、検索できない場合があります。また、検索結果画面に正しく表示されない場合があります。

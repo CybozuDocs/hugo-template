@@ -18,6 +18,7 @@ import Wovn from "@/components/Wovn.astro";
 回答を得やすい表現は<Kintone />アプリに登録されている情報によって異なります。
 
 <Heading id="assist_settings_search_prefs_prompt_tips_10">回答者の立場を入れる</Heading>
+
 検索AIに求める役割を指定します。
 
 例：
@@ -26,6 +27,7 @@ import Wovn from "@/components/Wovn.astro";
 * 「あなたは社内ヘルプデスク担当です」
 
 <Heading id="assist_settings_search_prefs_prompt_tips_20">質問者の立場や回答のトーンを入れる</Heading>
+
 ユーザーが初心者なのか、専門知識を持った方なのかを考慮し、それに応じたレベルの説明を指示します。
 
 例：
@@ -35,6 +37,7 @@ import Wovn from "@/components/Wovn.astro";
 * 「同僚からの問い合わせに簡潔かつ丁寧に回答してください」
 
 <Heading id="assist_settings_search_prefs_prompt_tips_30">データソースの用途を入れる</Heading>
+
 データソースの概要を説明します。  
 検索対象となるデータソース全体を表現するには「コンテキスト」という単語を使用できます。  
 データソースに指定したアプリのフィールドを指定するときは<Wovn>［フィールド名］</Wovn>を使用します。
@@ -45,6 +48,7 @@ import Wovn from "@/components/Wovn.astro";
 * 「『回答用』フィールドは顧客回答用のトークスクリプトが記載されています」
 
 <Heading id="assist_settings_search_prefs_prompt_tips_40">回答方針を入れる</Heading>
+
 回答を生成する際の制約や、応答の仕方を具体的に書くことで、期待どおりの応答が得やすくなります。
 
 例：
@@ -53,11 +57,13 @@ import Wovn from "@/components/Wovn.astro";
 * 「例を挙げながら説明してください」
 
 <Heading id="assist_settings_search_prefs_prompt_tips_50">参考：システムプロンプトの例</Heading>
+
 システムプロンプトの設定例を記載します。  
 実際の運用に合わせて記載内容は変更してください。  
 また、期待する回答が生成されるかは、データソースに登録されている情報によって異なります。
 
 <Heading level={3} id="assist_settings_search_prefs_prompt_tips_5010">例1：問い合わせ対応マニュアルから回答を作成する</Heading>
+
 あなたは、問い合わせ対応のスペシャリストです。  
 顧客からのお問い合わせに適切かつ簡潔に回答するために必要な情報を生成してください。  
 その際、次のルールを厳守して回答してください。
@@ -68,11 +74,13 @@ import Wovn from "@/components/Wovn.astro";
 * 入力された質問が、与えられたコンテキストに複数合致する場合は、回答用の内容を融合させ、簡潔に回答すること
 
 <Heading level={3} id="assist_settings_search_prefs_prompt_tips_5020">例2：SFAアプリの情報を参照して質問に回答する</Heading>
+
 あなたは営業のプロフェッショナルです。  
 与えられたコンテキストは、SFAシステムに登録されている顧客情報、案件情報、商談情報、担当者情報です。  
 営業活動を成功させ、自社の売上を向上させるために必要な情報を生成してください。
 
 <Heading level={3} id="assist_settings_search_prefs_prompt_tips_5030">例3：社内システムのお困りごとに回答する</Heading>
+
 あなたは勤務先の同僚から社内システムなどについて問い合わせを受けるヘルプデスクの担当者です。所属部署名は情報システム部です。  
 与えられたコンテキストは、社内で利用しているシステムなどに関するFAQです。  
 コンテキストをもとに、同僚からの問い合わせに簡潔かつ丁寧に回答してください。

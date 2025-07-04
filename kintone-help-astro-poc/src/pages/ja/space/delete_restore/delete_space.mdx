@@ -1,0 +1,66 @@
+---
+title: "スペースを削除する"
+weight: 100
+aliases:
+  - "/ja/id/040698"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+不要になったスペースを削除します。  
+スペースを削除できるのは、スペース管理者および<Kintone />システム管理者です。
+
+スペースは、次の2つの画面から削除できます。
+
+* スペース管理者は、スペースの<Wovn>［オプション］</Wovn>メニューから削除できます。
+* <Kintone />システム管理者は、<Wovn>［<Kintone />システム管理］</Wovn>画面から削除できます。  
+  削除方法の詳細は、次のページを参照してください。  
+  [スペースの管理画面からスペースを削除する](/k/ja/id/04072.html)
+
+ここでは、スペースの<Wovn>［オプション］</Wovn>メニューから削除する方法を説明します。
+
+<Warning>
+
+* スペースを削除すると、スペースに配置されているアプリを含めた、スペース内のすべてのデータが利用できなくなります。
+* 今後も使う可能性のあるデータは、ファイルに書き出して保存してからスペースを削除してください。詳細は、次のページを参照してください。  
+  [レコードのバックアップ](/k/ja/id/04030.html)
+
+</Warning>
+
+<Note>
+
+スペースを誤って削除してしまった場合、<Slash />共通管理者がスペースを復旧できる可能性があります。ただし、削除してから14日以上経過したスペースは復旧できません。また、スペースの復旧には一部制限があります。  
+詳細は、次のページを参照してください。  
+[削除したスペースを復旧する](/k/ja/id/04080.html)
+
+</Note>
+
+<Heading id="space_delete_space10">&lt;Wovn&gt;［オプション］&lt;/Wovn&gt;メニューから削除する</Heading>
+
+1. 削除するスペースを開きます。
+
+1. スペース画面右上の<Wovn>［オプション］</Wovn>アイコンから<Wovn>［スペースを削除］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/delete_space_02.png" alt="スクリーンショット：スペース画面右上の［オプション］アイコンと［スペースを削除］を赤枠で強調している" />
+
+1. 確認ダイアログで<Wovn>［このスペースを削除］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/delete_space_03.png" alt="スクリーンショット：スペースの削除確認ダイアログが表示されている" />
+
+1. 確認ダイアログが再度表示されたら、<Wovn>［削除の実行］</Wovn>をクリックします。
+
+<Note>
+
+&#123;&#123;< subtitle >&#125;&#125;ゲストスペースの削除について&#123;&#123;< /subtitle >&#125;&#125;
+
+利用中の<Kintone />のアカウントと、招待されたゲストスペースのアカウントを共通化している場合、ゲストスペースを削除しても14日間は<Wovn>［参加中のゲストスペース（連携先ドメイン）］</Wovn>の一覧に表示されます。ただし、クリックすると、次のようなエラーが表示され、ゲストスペースは開けません。  
+エラー：  
+指定されたスペース(id: \*\*\*)が見つかりません。削除されている可能性があります。
+
+</Note>

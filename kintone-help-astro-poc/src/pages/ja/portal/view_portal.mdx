@@ -1,0 +1,317 @@
+---
+title: "ポータルの見かた"
+weight: 100
+aliases:
+  - "/ja/id/040687"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+
+
+<Kintone />のトップページは、ポータルと呼びます。  
+ポータルは、<Kintone />の入り口の役割を持つページです。使用するアプリ／スペースへの移動や、通知の確認ができます。また、お知らせ掲示板でメンバーに共有したい情報を掲載し、ダッシュボードとしても活用できます。
+
+<Enabled regions={["JP"]}>
+
+<Img src="/k/kintone/img-ja/portal_img2.png" alt="スクリーンショット：各パーツに1から13までの番号が振られているポータル画面" />
+
+[1: サイドメニュー／ポータル／通知／ブックマーク](#portal_view_portal_10)  
+[2: 初心者アイコン](#portal_view_portal_15)  
+[3: 設定アイコン](#portal_view_portal_20)  
+[4: ヘルプアイコン](#portal_view_portal_25)  
+[5: ピープル](#portal_view_portal_30)  
+[6: アカウント設定／ログアウト](#portal_view_portal_35)  
+[7: 検索](#portal_view_portal_40)  
+[8: オプションメニュー](#portal_view_portal_45)  
+[9: お知らせ掲示板](#portal_view_portal_50)  
+[10: 未処理一覧](#portal_view_portal_55)  
+[11: 通知一覧](#portal_view_portal_60)  
+[12: スペース一覧](#portal_view_portal_65)  
+[13: アプリ一覧](#portal_view_portal_70)
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+<Img src="/k/kintone/img-ja/portal_img_2_us.png" alt="スクリーンショット：各パーツに1から13までの番号が振られているポータル画面" />
+
+[1: サイドメニュー／ポータル／通知／ブックマーク](#portal_view_portal_10)  
+[2: school-capアイコン](#portal_view_portal_16)  
+[3: 設定アイコン](#portal_view_portal_20)  
+[4: ヘルプアイコン](#portal_view_portal_25)  
+[5: ピープル](#portal_view_portal_30)  
+[6: アカウント設定／ログアウト](#portal_view_portal_35)  
+[7: 検索](#portal_view_portal_40)  
+[8: オプションメニュー](#portal_view_portal_45)  
+[9: お知らせ掲示板](#portal_view_portal_50)  
+[10: 未処理一覧](#portal_view_portal_55)  
+[11: 通知一覧](#portal_view_portal_60)  
+[12: スペース一覧](#portal_view_portal_65)  
+[13: アプリ一覧](#portal_view_portal_70)
+
+</Enabled>
+
+<Enabled regions={["CN"]}>
+<Img src="/k/kintone/img-ja/portal_img_2_cnus.png" alt="スクリーンショット：各パーツに1から12までの番号が振られているポータル画面" />
+
+[1: サイドメニュー／ポータル／通知／ブックマーク](#portal_view_portal_10)  
+[2: 設定アイコン](#portal_view_portal_20)  
+[3: ヘルプアイコン](#portal_view_portal_25)  
+[4: ピープル](#portal_view_portal_30)  
+[5: アカウント設定／ログアウト](#portal_view_portal_35)  
+[6: 検索](#portal_view_portal_40)  
+[7: オプションメニュー](#portal_view_portal_45)  
+[8: お知らせ掲示板](#portal_view_portal_50)  
+[9: 未処理一覧](#portal_view_portal_55)  
+[10: 通知一覧](#portal_view_portal_60)  
+[11: スペース一覧](#portal_view_portal_65)  
+[12: アプリ一覧](#portal_view_portal_70)
+
+</Enabled>
+
+<Heading id="portal_view_portal_10">サイドメニュー／ポータル／通知／ブックマーク</Heading>
+
+* サイドメニュー  
+<Img src="/k/kintone/img/sidemenu.png" alt=" " />  
+<Kintone />の各機能（スペース／アプリ／ピープル）に移動するためのサイドメニューを表示します。
+
+* ポータル  
+<Img src="/k/kintone/img/home.png" alt=" " />  
+ポータルを表示します。
+
+* 通知一覧  
+<Img src="/k/kintone/img/notification.png" alt=" " />  
+通知の一覧を表示します。  
+詳細は、次のページを参照してください。  
+[通知](/k/ja/id/040669.html)  
+
+* ブックマーク  
+<Img src="/k/kintone/img/star.png" alt=" " />  
+<Kintone />のページのブックマークや、登録したブックマークの表示ができます。  
+詳細は、次のページを参照してください。  
+[ページのブックマーク](/k/ja/id/040289.html)  
+
+<Enabled regions={["JP"]}>
+
+<Heading id="portal_view_portal_15">初心者アイコン</Heading>
+
+初心者ガイドが表示されます。  
+初心者ガイドには、<Kintone />を始めたばかりのときや、困ったときに参照するメニューが集約されています。  
+初心者アイコンは、次のすべての条件を満たす場合に表示されます。
+
+* 30日間の試用期間中である
+* 言語を日本語に設定している
+* <Kintone />システム管理のアクセス権の設定で、アプリの作成権限を付与されている
+  設定の詳細は、次のページを参照してください。
+  [<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+* <Kintone />システム管理の利用する機能の選択で、[スペースに所属しないアプリの作成を許可する]が有効になっている
+  設定の詳細は、次のページを参照してください。
+  [利用する機能の選択](/k/ja/id/04031.html)  
+
+<Note>
+
+ 初心者ガイドは、ユーザーの権限によって表示されるメニューが異なります。  
+
+* <Slash />共通管理者に表示されるメニュー
+  * チュートリアル
+  * チームメンバーを招待する
+  * サンプルアプリを追加する
+  * Excelからアプリをつくる
+  * サポートコンテンツ
+  * 導入相談カフェを予約する
+  * ヘルプ
+  * お問い合わせ
+* すべてのユーザーに表示されるメニュー
+  * チュートリアル
+  * サンプルアプリを追加する
+  * Excelからアプリをつくる
+  * サポートコンテンツ
+  * ヘルプ
+
+</Note>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+<Heading id="portal_view_portal_16">school-capアイコン</Heading>
+
+初心者ガイドが表示されます。  
+初心者ガイドには、<Kintone />を始めたばかりのときや、困ったときに参照するメニューが集約されています。  
+school-capアイコンは、次のすべての条件を満たす場合に表示されます。
+
+* 30日間の試用期間中である
+* 言語を英語に設定している
+* <Kintone />システム管理のアクセス権の設定で、アプリの作成権限を付与されている
+  設定の詳細は、次のページを参照してください。  
+  [<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+* <Kintone />システム管理の利用する機能の選択で、[スペースに所属しないアプリの作成を許可する]が有効になっている
+  設定の詳細は、次のページを参照してください。  
+  [利用する機能の選択](/k/ja/id/04031.html)
+
+<Note>
+
+ 初心者ガイドは、ユーザーの権限によって表示されるメニューが異なります。  
+
+* <Slash />共通管理者に表示されるメニュー
+  * Tutorial
+  * Invite Team Members
+  * Add Apps from <Kintone /> Marketplace
+  * Create App From Excel
+  * <Kintone /> Blog
+  * <Kintone /> Hive
+  * Contact Support
+  * Help
+* すべてのユーザーに表示されるメニュー
+  * Tutorial
+  * Add Apps from <Kintone /> Marketplace
+  * Create App From Excel
+  * <Kintone /> Blog
+  * <Kintone /> Hive
+  * Help
+
+</Note>
+
+</Enabled>
+
+<Heading id="portal_view_portal_20">設定アイコン</Heading>
+
+個人設定、および<Kintone />の全般的な操作や設定を行います。  
+<Kintone />システム管理権限を持つユーザーは、この設定アイコンをクリックして表示されたメニューから<Kintone />システム管理画面に移動できます。<Kintone />システム管理では、機能の権限設定やカスタマイズなど、<Kintone />の管理や保守に関する設定を行います。  
+<Slash />共通管理者は、この設定アイコンをクリックして表示されるメニューから<SlashUi />に移動できます。<SlashUi />では、ユーザーおよび組織の追加や、セキュリティの設定ができます。  
+詳細は、次のページを参照してください。  
+[<Kintone />システム管理画面を開く](/k/ja/id/04046.html)  
+[<SlashUi />での権限設定](/k/ja/id/04059.html)
+
+<Heading id="portal_view_portal_25">ヘルプアイコン</Heading>
+
+製品の理解や活用に役立つ各種コンテンツにアクセスできます。
+
+<Enabled regions={["JP"]}>
+
+<Slash />共通管理者は、このヘルプアイコンをクリックして表示されるメニュー内の[お問い合わせ]からサポートに問い合わせできます。
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+<Slash />共通管理者は、このヘルプアイコンをクリックして表示されるメニュー内の[Contact US]からサポートに問い合わせできます。
+
+</Enabled>
+
+<Heading id="portal_view_portal_30">ピープル</Heading>
+
+自分のピープルページを表示します。  
+詳細は、次のページを参照してください。  
+[ピープル](/k/ja/id/040679.html)
+
+<Heading id="portal_view_portal_35">アカウント設定／ログアウト</Heading>
+
+アカウントの設定、または<Kintone />からのログアウトを行います。  
+詳細は、次のページを参照してください。  
+[アカウントの設定](/general/ja/id/020406.html)  
+[ログイン／ログアウト](/k/ja/id/040355.html)
+
+<Heading id="portal_view_portal_40">検索</Heading>
+
+<Kintone />のデータを検索します。  
+詳細は、次のページを参照してください。  
+[データを検索する](/k/ja/id/040689.html)
+
+<Heading id="portal_view_portal_45">オプションメニュー</Heading>
+
+アプリやスペースを作成します。  
+<Kintone />システム管理権限を持つユーザーと<Slash />共通管理者は、このメニューからポータルを設定できます。
+
+<Heading id="portal_view_portal_50">お知らせ掲示板</Heading>
+
+ユーザーに共有したい情報を集約できるエリアです。  
+メンバーに共有したい情報を記載したり、グラフやリンク集を作ったりして、ダッシュボードとして活用できます。  
+掲示した内容は、<Kintone />の全ユーザーのトップページに表示されます。  
+お知らせ掲示板の内容を編集できるのは、<Kintone />システム管理権限を持つユーザーと<Slash />共通管理者です。  
+詳細は、次のページを参照してください。  
+[お知らせ掲示板の編集](/k/ja/id/04070.html)
+
+<Heading id="portal_view_portal_55">未処理一覧</Heading>
+
+プロセス管理機能を利用したアプリで、自分が作業者に指定されているレコードの件数が、アプリごとに表示されます。
+表示される情報はユーザーごとに異なります。自分のタスクがない場合は、表示されません。
+
+<Heading id="portal_view_portal_60">通知一覧</Heading>
+
+アプリ、スペースやピープルなどの更新通知が表示されるエリアです。表示される情報はユーザーごとに異なります。  
+詳細は、次のページを参照してください。  
+[通知](/k/ja/id/040669.html)
+
+<Heading id="portal_view_portal_65">スペース一覧</Heading>
+
+スペースの一覧が表示されます。  
+ドロップダウンリストから、表示するスペースの一覧を切り替えることができます。ドロップダウンリストから選択できる一覧は、次のとおりです。
+
+* お気に入りのスペース  
+お気に入りに登録したスペースが一覧表示されます。[編集]をクリックして表示される「お気に入りのスペース」の設定画面で、スペースの並び順を変更できます。  
+詳細は、次のページを参照してください。  
+[スペースをお気に入りに登録する／解除する](/k/ja/id/040706.html)  
+[お気に入りのスペースを並び替える](/k/ja/id/040686.html)
+  
+* 最近開いたスペース  
+最近開いたスペースが、最近開いた順に50件まで一覧表示されます。  
+PC版で次の操作を行った場合に、スペースを開いたとみなされます。  
+  * スペースのトップページを開いた
+  * スレッドを開いた
+* 参加中のスペース
+* 作成したスペース
+* すべてのスペース
+* 参加中のゲストスペース
+* 参加中のゲストスペース（連携先ドメイン）  
+招待されたゲストスペースのゲストアカウントを、<Kintone />アカウントと共通化している場合に表示されます。  
+詳細は、次のページを参照してください。  
+[ゲストアカウントをkintoneアカウントと共通化する](/k/ja/id/040644.html)
+
+<Note>
+
+* [お気に入りのスペース]以外の一覧では、スペースの並び順を変更できません。
+* ゲストユーザーの場合は、[お気に入りのスペース]と[参加中のスペース]のみが表示されます。
+* スペース機能が無効な場合、ポータルにスペースウィジェットは表示されません。
+* [参加中のゲストスペース一覧（連携先ドメイン）]では、対象のゲストスペースが削除されても、14日間はそのゲストスペースが表示されます。  
+ただし、そのゲストスペースをクリックすると[指定されたスペース(id: \*\*\*)が見つかりません。削除されている可能性があります。]というエラーが表示され、ゲストスペースを開くことはできません。
+
+</Note>
+
+<Heading id="portal_view_portal_70">アプリ一覧</Heading>
+
+アプリの一覧が表示されます。  
+ドロップダウンリストから、表示するアプリの一覧を切り替えることができます。ドロップダウンリストから選択できる一覧は、次のとおりです。
+
+* お気に入りのアプリ  
+お気に入りに登録したアプリが一覧表示されます。並び順を変更できます。  
+詳細は、次のページを参照してください。  
+[アプリをお気に入りに登録する解除する／解除する](/k/ja/id/040635.html)  
+[お気に入りのアプリを並び替える](/k/ja/id/040685.html)  
+
+* 最近開いたアプリ  
+最近開いたアプリが、最近開いた順に50件まで一覧表示されます。  
+次の操作を行った場合に、アプリを開いたとみなされます。  
+  * レコードの一覧、詳細、編集、追加、または再利用画面のいずれかを開いた
+  * アプリの設定画面を開いた
+* 作成したアプリ  
+自分で作成したアプリが、最近作成した順に一覧表示されます。ゲストユーザーの場合、この一覧は表示されません。
+* 最近公開されたアプリ  
+すべてのアプリが、最近公開された順に一覧表示されます。自分が参加していないスペースに所属するアプリは表示されません。
+* すべてのアプリ  
+すべてのアプリが、名前順に一覧表示されます。自分が参加していないスペースに所属するアプリは表示されません。  
+
+<Note>
+
+* [お気に入りのアプリ]以外の一覧では、アプリの並び順を変更できません。
+* 作成途中で未公開のアプリは表示されません。
+* レコードの閲覧またはレコードの追加権限がないアプリは表示されません。
+
+</Note>

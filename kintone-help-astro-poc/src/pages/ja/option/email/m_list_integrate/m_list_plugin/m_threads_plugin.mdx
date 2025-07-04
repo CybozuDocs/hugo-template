@@ -1,0 +1,74 @@
+---
+title: "メールスレッド表示プラグイン"
+weight: 200
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040904"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Listsummary from "@/components/Listsummary.astro";
+
+
+メールスレッド表示プラグインは、メール共有オプションから<Kintone />に転記されたメールのスレッドをレコードに表示するプラグインです。関連するメールがツリー形式で表示され、経緯が追いやすくなります。
+
+メールスレッド表示プラグインを使用するには、メール転記の設定が必要です。このプラグインは<Kintone />メール転記アプリで利用します。メール転記の詳細は、次のページを参照してください。  
+[メール転記](/k/ja/id/040925.html)
+
+<Img src="/k/kintone/img-ja/m_threads_plugin_01.png" alt="スクリーンショット：レコードにメールスレッドが表示されている" />
+
+次の手順で、<Kintone />メール転記アプリにメールスレッド表示プラグインを設定します。各ステップの詳細は後述しています。
+
+<Listsummary>
+
+1. [メール転記を設定する](#m_list_plugin_m_threads_plugin_10)
+1. [プラグインをインストールする](#m_list_plugin_m_threads_plugin_20)
+1. [アプリにプラグインを追加する](#m_list_plugin_m_threads_plugin_30)
+1. [プラグインの設定を変更する](#m_list_plugin_m_threads_plugin_40)
+
+</Listsummary>
+
+<Heading id="m_list_plugin_m_threads_plugin_10">メール転記を設定する</Heading>
+
+メール共有オプションで、メールスレッド表示プラグインを利用するアプリをメールの転記先として連携します。詳細は、次のページを参照してください。  
+[メール転記を設定する](/k/ja/id/040926.html)
+
+<Heading id="m_list_plugin_m_threads_plugin_20">プラグインをインストールする</Heading>
+
+<Kintone />システム管理者がメールスレッド表示プラグインを<Kintone />にインストールします。詳細は、次のページを参照してください。  
+[プラグインストアからプラグインを追加する](/k/ja/id/0408.html#add_plugin_plugin_20)
+
+<Heading id="m_list_plugin_m_threads_plugin_30">アプリにプラグインを追加する</Heading>
+
+アプリ管理者がメールスレッド表示プラグインをアプリに追加します。詳細は、次のページを参照してください。  
+[アプリにプラグインを追加する](/k/ja/id/040566.html#app_settings_plugin_10)
+
+<Heading id="m_list_plugin_m_threads_plugin_40">プラグインの設定を変更する</Heading>
+
+メールスレッド表示プラグインの設定を変更します。
+
+<Heading level={3} id="m_list_plugin_m_threads_plugin_4010">手順</Heading>
+
+1. <Kintone />メール転記アプリの画面右上にある歯車の形をした[アプリを設定]アイコンをクリックします。  
+    <Img src="/k/kintone/img-ja/m_history_plugin_02.png" alt="スクリーンショット：[アプリを設定]アイコンを枠線で強調している" />
+
+1. 「アプリの設定」画面で[設定]タブを選択し、「カスタマイズ／サービス連携」の[プラグイン]をクリックします。
+
+1. 「メールスレッド表示」の右側にある歯車の形をした[プラグインの設定]アイコンをクリックします。  
+    <Img src="/k/kintone/img-ja/m_threads_plugin_02.png" alt="スクリーンショット：[プラグインの設定]アイコンを枠線で強調している" />
+
+1. 「メールスレッドを表示するフィールド」をドロップダウンリストから選択します。  
+スペースフィールドの要素IDが選択肢として表示されます。何も表示されない場合は、スペースフィールドをフォームに配置し、要素IDを設定してください。  
+    <Img src="/k/kintone/img-ja/m_threads_plugin_03.png" alt="スクリーンショット：メールスレッドを表示するフィールドが選択されている" />
+
+1. 「転記したメールのURLが保存されるフィールド」をドロップダウンリストから選択します。  
+    <Img src="/k/kintone/img-ja/m_threads_plugin_04.png" alt="スクリーンショット：転記したメールのURLが保存されるフィールドが選択されている" />
+
+1. [保存]をクリックします。
+
+1. 「アプリの設定」画面に戻り、画面右上の[アプリを更新]をクリックします。
+
+1. 「アプリの設定」ダイアログで、[アプリを更新]をクリックします。

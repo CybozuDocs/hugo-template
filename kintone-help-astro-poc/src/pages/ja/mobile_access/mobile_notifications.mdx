@@ -1,0 +1,44 @@
+---
+title: "モバイルの通知の見かた"
+weight: 300
+aliases:
+  - "/ja/id/040665"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+OSのモバイル端末では、モバイルアプリをインストールしている場合、プッシュ通知を受信できます。<Wovn>［<Kintone />］</Wovn>アイコン右上には「自分宛」の通知の未読件数が表示されます。  
+次の場合に、自動的にアイコンの通知の数は更新されます（iOSのみ）。
+
+* 「自分宛」の通知を受信したとき
+* 通知を既読にしたとき
+* 通知を既読から未読に戻したとき
+
+<Img src="/k/kintone/img-ja/mobile_notifications_01.png" alt="スクリーンショット：［{{&lt; kintone &gt;}}］アイコン右上に通知の数が表示されている" />
+
+iOS／Android両方とも、モバイルアプリの<Wovn>［<Kintone />］</Wovn>アイコンをタップするか、またはWebブラウザーからポータル画面を開くと、右上のベルの形をした<Wovn>［通知一覧］</Wovn>アイコンに「自分宛」の通知の未読件数が表示されます。  
+<Wovn>［通知一覧］</Wovn>アイコンの未読件数は自動的には更新されません。画面が再読み込みされたタイミングで更新されます。<Wovn></Wovn>  
+<Img src="/k/kintone/img-ja/mobile_notifications_02.png" alt="スクリーンショット：ポータル画面の［通知一覧］アイコンを枠線で強調している" />
+
+<Heading id="mobile_access_mobile_notifications_10">通知一覧と未処理一覧の違い</Heading>
+
+<Heading level={3} id="mobile_access_mobile_notifications_1010">通知一覧</Heading>
+
+<Wovn>［自分宛］</Wovn>／<Wovn>［あとで読む］</Wovn>／<Wovn>［すべて］</Wovn>（または作成した絞り込み）の通知が表示されます。  
+どの画面からも、右上のベルの形をした<Wovn>［通知一覧］</Wovn>アイコンをタップすると通知一覧が表示されます。<Wovn>［未読］</Wovn>／<Wovn>［既読］</Wovn>の切り替え、<Wovn>［自分宛］</Wovn>／<Wovn>［あとで読む］</Wovn>／<Wovn>［すべて］</Wovn>（または作成した絞り込み）を切り替えて確認できます。  
+<Wovn>［自分宛］</Wovn>と<Wovn>［すべて］</Wovn>の未読通知はタップすると既読になり、未読の一覧には表示されなくなります。<Wovn>［あとで読む］</Wovn>ためのフラグを付けた通知は、フラグを外すまで表示され続けます。  
+また、PC版と同様に、通知はまとめて表示される場合があります。詳細は、次のページを参照してください。  
+[通知のグループ化](/k/ja/id/040672.html#notifications_notification_tutoria_20)
+
+<Heading level={3} id="mobile_access_mobile_notifications_1020">未処理一覧</Heading>
+
+未処理一覧はナビゲーションメニューから確認できます。プロセス管理で<Wovn>［作業者が自分］</Wovn>になったレコードがある場合に、<Wovn>［未処理一覧］</Wovn>のメニュー右に赤いバッジが表示されます。  
+<Wovn>［未処理一覧］</Wovn>をタップすると、自分が処理するアプリと、未処理のレコード件数が表示されます。  
+<Img src="/k/kintone/img-ja/mobile_notifications_03.png" alt="スクリーンショット：［未処理一覧］画面にアプリの一覧が表示されている" />
+未処理のレコード件数とは別に、自分が作業者になった通知は「自分宛」の通知として通知一覧の未読に表示されます。  
+<Wovn>［未処理一覧］</Wovn>でアクションを進めても、<Wovn>［作業者が自分］</Wovn>になった通知は既読になりません。

@@ -1,0 +1,74 @@
+---
+title: "アプリ一覧のCSVファイルを利用してアプリを管理する"
+weight: 300
+aliases:
+  - "/ja/id/040736"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+
+
+アプリ管理画面から、管理権限のあるアプリの一覧をCSVファイルとしてダウンロードできます。
+<Slash />共通管理者のみダウンロード可能です。  
+[アプリの一覧をCSV形式でダウンロードする](/k/ja/id/04014.html)
+
+その時点で存在するアプリを一覧として保存しておきたいときや、アプリの利用状況を分析したいとき、増えたアプリの整理や削除を進めたいときなどに活用できます。
+
+ダウンロードしたCSVファイルは、次のようなことにお使いいただけます。
+
+<Heading id="app_management_applist_csv_tips_20">Excelでさらに管理しやすく</Heading>
+
+CSVファイルをExcelで開いて、ユーザーごとにアプリ作成数を集計したり、レコード数や設定の最終更新日時などで絞り込みをして、アプリの利用状況を確認したりできます。  
+また、入力欄を追加してアプリの用途をメモしておくと、アプリを開いて確認する手間なく、どんなアプリかを把握できます。
+<Img src="/k/kintone/img-ja/applist_csv_tips_01.png" alt="スクリーンショット：Excelで開いたCSVファイル" />
+
+<Heading id="app_management_applist_csv_tips_30">アプリを管理するアプリを作成</Heading>
+
+ダウンロードしたCSVファイルを使って、アプリを管理するアプリを作成できます。
+<Img src="/k/kintone/img-ja/applist_csv_tips_04.png" alt="スクリーンショット：アプリを管理するアプリの完成例" />
+
+レコードの絞り込み条件でフィールド数や設定の最終更新日時などを組み合わせて、利用されていないアプリがないかを確認するときなどに便利です。  
+また、アプリURLからアプリを開いて、どんなアプリかを確認した上で、不要なアプリがあれば削除することもできます。
+
+<Enabled regions={["JP"]}>
+
+<Hint>
+
+アプリストアには、<Kintone />のアプリ管理を目的としたサンプルアプリ「<Kintone />アプリ管理」が用意されています。このサンプルアプリに、ダウンロードしたCSVファイルを読み込むことで、アプリを管理するアプリを作成できます。  
+[サンプルアプリを追加する](/k/ja/id/040622.html)  
+[ファイルからレコードのデータをアプリに読み込む](/k/ja/id/040724.html)
+
+</Hint>
+
+</Enabled>
+
+ここでは、ダウンロードしたCSVファイルから、アプリを新規作成する方法を紹介します。
+
+<Heading level={3} id="app_management_applist_csv_tips_3010">アプリの作成方法</Heading>
+
+「[CSVファイルからアプリを作成する手順](/k/ja/id/040624.html#app_csv_add_app_csv_20)」に従って、「アプリの一覧」のCSVファイルを読み込みます。
+
+読み込んだCSVファイルの文字コードが「BOM付きUTF-8」のため、プレビュー画面で、文字コードを「Unicode（UTF-8）」に設定する必要があります。
+<Img src="/k/kintone/img-ja/applist_csv_tips_02.png" alt="スクリーンショット：文字コードを変更するパーツが枠線で強調されている" />
+
+続いて、自動選択されたフィールドタイプに問題がないかを確認します。  
+「作成者（ログイン名）」や「設定の最終更新者（ログイン名）」は、フィールドタイプを「ユーザー選択」に設定しておくと、ユーザー情報と紐付けることができます。  
+アプリに読み込まない項目がある場合は、「（この列を無視する）」を選択します。
+<Img src="/k/kintone/img-ja/applist_csv_tips_03.png" alt="スクリーンショット：フィールドタイプが自動選択されている" />
+
+[作成]ボタンをクリックすると、アプリが完成します。
+
+<Reference>
+
+* [アプリの一覧をCSV形式でダウンロードする](/k/ja/id/04014.html)
+* [CSVファイルからアプリを作成する手順](/k/ja/id/040624.html#app_csv_add_app_csv_20)
+* [一覧に表示するレコードを絞り込む](/k/ja/id/040458.html)
+
+</Reference>

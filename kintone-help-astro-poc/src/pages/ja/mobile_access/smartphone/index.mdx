@@ -1,0 +1,142 @@
+---
+title: "モバイルで{{< kintone >}}を使う"
+weight: 600
+aliases:
+  - "/ja/id/040668"
+layout: "@/layouts/SectionLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+モバイルから<Kintone />にアクセスして、通知の確認や書き込みなどが可能です。そのため、外出先でも<Kintone />の情報をいつでも確認できます。  
+モバイルから<Kintone />を使うには、次の2通りの方法があります。
+
+<Heading id="mobile_access_smartphone_10">方法1：モバイルのWebブラウザーでアクセスする</Heading>
+
+iOS SafariまたはAndroid Chromeから<Kintone />にアクセスできます。
+
+iOS SafariまたはAndroid Chromeを起動し、URL欄に利用中の<Kintone />のURLを入力すると、モバイル用に最適化された<Kintone />にアクセスできます。  
+設定方法の詳細は次のページを参照してください。  
+[iOS Safariで<Kintone />を使う](/k/ja/id/040662.html)  
+[Android Chromeで<Kintone />を使う](/k/ja/id/040657.html)
+
+iOS SafariおよびAndroid Chromeで<Kintone />を使うメリットは、<Kintone />内のリンクを別タブで開けることです。
+
+<Enabled regions={["JP", "CN"]}>
+
+社内のセキュリティ体制によっては、事前に設定が必要な場合があります。iOS SafariおよびAndroid ChromeでURLを入力してエラーが表示される場合は、クライアント証明書のインストールが必要です。
+詳細は、次のページを参照してください。  
+[クライアント証明書](/general/ja/id/020400.html)
+
+</Enabled>
+
+<Heading id="mobile_access_smartphone_20">方法2：モバイル用アプリを利用する</Heading>
+
+モバイルアプリ（kintone モバイル）を使って<Kintone />にアクセスできます。  
+App StoreまたはGoogle Playで「<Kintone />」と検索するか、次のバナーをクリックして、モバイルアプリをダウンロードしてください。
+
+<a href="https://apps.apple.com/jp/app/kintone/id674312865" ><img alt="App Storeからダウンロード" src="/k/img-ja/appstore-apple.svg" width="150"/></a>
+<a href='https://play.google.com/store/apps/details?id=com.cybozu.kintone.mobile'><img alt="Google Playで手に入れよう" src="/k/img-ja/google-play-badge.png" width="150"/></a>
+
+モバイルアプリのインストールを実行して、サブドメインやログイン名などを設定したあと利用できます。
+
+<Enabled regions={["JP", "CN"]}>
+
+インストール方法の詳細は、次のページを参照してください。  
+[iOSのモバイルアプリを利用する](/k/ja/id/040660.html)  
+[Androidのモバイルアプリを利用する](/k/ja/id/040655.html)
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+インストール方法の詳細は、次のページを参照してください。  
+[iOSのモバイルアプリを利用する](/k/ja/id/040660.html)  
+[Androidのモバイルアプリを利用する](/k/ja/id/040655.html)
+
+</Enabled>
+
+モバイルアプリを使うメリットは、プッシュ通知を受け取れることです。チームメンバーからの連絡やワークフローの通知をすばやく確認できます。
+
+<Note>
+
+ゲストはモバイルアプリを使用できません。ゲストがモバイルで<Kintone />にアクセスするには、Webブラウザーを使用します。
+
+</Note>
+
+<Reference>
+
+[モバイル版の画面の説明](/k/ja/id/040667.html)
+
+</Reference>
+
+<Heading id="mobile_access_smartphone_30">モバイル版でできないこと</Heading>
+
+<Kintone />をモバイルで利用する場合、モバイル版とPC版のいずれかの表示モードを利用できます。  
+ただし、モバイル版では、次の操作はできません。PC版を利用してください。
+
+<Heading level={3} id="mobile_access_smartphone_3010">ポータル</Heading>
+
+* お知らせ掲示板の編集<Wovn></Wovn>
+* ポータルでの通知および未処理の表示
+* アプリ貼り付けで表示されるレコード一覧での、<Wovn>［変更］</Wovn>と<Wovn>［削除］</Wovn>のアイコン表示／変更と削除の操作
+* ポータルに表示するアプリの一覧の切り替え  
+  なお、ナビゲーションメニューで<Wovn>［すべてのアプリ］</Wovn>一覧と<Wovn>［最近開いたアプリ］</Wovn>一覧を切り替えることは可能です。
+* ポータルに表示するスペースの一覧の切り替え
+* お気に入りのアプリ・お気に入りのスペースの並び替え
+
+<Heading level={3} id="mobile_access_smartphone_3020">アプリ</Heading>
+
+* アプリの作成および設定画面の操作<Wovn></Wovn>
+* <Wovn>［レコードの一覧］</Wovn>画面での<Wovn>［テーブル］</Wovn>フィールドと<Wovn>［添付ファイル］</Wovn>フィールドの表示
+* <Wovn>［ルックアップ］</Wovn>フィールドのデータ取得時に、絞り込み条件やソート条件を変更する操作
+* 絞り込み条件を保存して新しく一覧を作成する操作
+* レコードコメントの投稿日時をタップしてそのコメントのリンクへ遷移する操作
+* <Wovn>［変更履歴］</Wovn>で、レコードを過去のバージョンに戻す操作
+* レコードの集計条件の指定
+* 表、クロス集計表、および定期レポートの表示
+* グラフの要素をクリックして、該当するレコードを絞り込んだ<Wovn>［レコードの一覧］</Wovn>画面に移動する操作
+* 集計結果のCSVファイルへの書き出し
+* 集計結果の埋め込み用タグの取得
+* 装飾付きの文字の入力  
+  <Wovn>［リッチエディター］</Wovn>フィールドには、プレーンテキスト（装飾のないテキスト）のみ入力できます。
+
+<Heading level={3} id="mobile_access_smartphone_3030">スペース</Heading>
+
+* スペースとスレッドの作成
+* スペースへの参加、スペースの退会
+* お知らせやスレッド本文の編集<Wovn></Wovn>
+* スレッドのフォロー、フォローの解除
+* スペースとスレッドの削除
+* スレッドアクションの操作
+* 管理画面の操作<Wovn></Wovn>
+* アプリ貼り付けで表示されるレコード一覧での、<Wovn>［変更］</Wovn>と<Wovn>［削除］</Wovn>のアイコン表示／変更と削除の操作
+* <Wovn>［アプリ］</Wovn>タブに表示するアプリの一覧の切り替え
+* 装飾付きの文字の入力  
+  スレッドのコメント欄には、プレーンテキスト（装飾のないテキスト）のみ入力できます。
+
+<Heading level={3} id="mobile_access_smartphone_3040">ピープルとメッセージ</Heading>
+
+* 装飾付きの文字の入力  
+  プレーンテキスト（装飾のないテキスト）のみ入力できます。
+
+<Heading level={3} id="mobile_access_smartphone_3050">その他</Heading>
+
+* <Kintone />のブックマーク機能の操作
+* <Wovn>［アプリ管理］</Wovn>画面の操作
+* <Wovn>［読み込まれたファイル］</Wovn>／<Wovn>［出力されたファイル］</Wovn>の表示
+* <Wovn>［<Kintone />システム管理］</Wovn>画面の操作
+* <Wovn>［<SlashUi />］</Wovn>画面の操作
+
+そのほかの制限事項については、次のページの「iOS Safari」および「Android」の内容を参照してください。  
+[制限事項](https://www.cybozu.com/jp/service/restrictions.html)（日本語のみ）  
+
+また、モバイルでも、画面を切り替えることで、PCと同じ画面を利用できます。切り替える手順は、次のページを参照してください。 
+[PC版の画面をモバイルから利用する](/k/ja/id/040666.html)

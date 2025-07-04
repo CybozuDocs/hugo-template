@@ -1,0 +1,59 @@
+---
+title: "メールヘッダーを変更する"
+weight: 800
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040999"
+labels: "[2]"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+
+
+送信メールのメールヘッダーに記載される、Reply-ToやX-Mailerに関する設定を変更します。
+
+<Heading id="m_list_set_m_email_header_10">Reply-Toを指定する</Heading>
+
+通常、メールヘッダーのFromに記載された、差出人のメールアドレスがメールの返信先に使用されます。差出人以外のメールアドレスに返信したい場合に、Reply-Toを指定します。
+
+<Heading level={3} id="m_list_set_m_email_header_1010">手順</Heading>
+
+1. メール共有オプションの画面上部にある歯車の形をしたアイコンをクリックします。
+
+1. [運用管理]をクリックします。
+    <Img src="/k/kintone/img-ja/m_set_item_02.png" alt="スクリーンショット：[運用管理]を枠線で強調している" />
+
+1. メールアプリケーションが複数ある場合は、「（メールアプリケーション名）」タブを選択します。
+
+1. 「カスタマイズ」の[詳細設定]をクリックします。
+
+1. [変更する]をクリックします。
+
+1. 返信先のメールアドレスを「Reply-To」に入力します。
+
+1. [変更する]をクリックします。
+
+<Heading id="m_list_set_m_email_header_20">X-Mailerを記載しない</Heading>
+
+メールヘッダーのX-Mailerには、メールの送信者が使用しているメールソフトの情報が記載されます。メール共有オプションから送信したメールには「Cybozu MailWise（バージョン番号）」と記載されます。  
+送信メールのメールヘッダーにX-Mailerを記載しないように変更できます。
+
+<Heading level={3} id="m_list_set_m_email_header_2010">手順</Heading>
+
+1. メール共有オプションの画面上部にある歯車の形をしたアイコンをクリックします。
+
+1. [運用管理]をクリックします。
+    <Img src="/k/kintone/img-ja/m_set_item_02.png" alt="スクリーンショット：[運用管理]を枠線で強調している" />
+
+1. メールアプリケーションが複数ある場合は、「（メールアプリケーション名）」タブを選択します。
+
+1. 「カスタマイズ」の[詳細設定]をクリックします。
+
+1. [変更する]をクリックします。
+
+1. 「X-Mailer」の[メールヘッダに X-Mailer の記述をしない]にチェックを入れます。  
+メールヘッダーにX-Mailerを記載する場合は、チェックを外します。
+
+1. [変更する]をクリックします。

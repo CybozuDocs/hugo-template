@@ -1,0 +1,39 @@
+---
+title: "スマートフォンでの表示の初期設定"
+weight: 100
+aliases:
+  - "/ja/id/04048"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Slash from "@/components/Slash.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+スマートフォンのWebブラウザーから<Kintone />にアクセスした際、モバイル版の画面を表示するかPC版の画面を表示するか選択できます。  
+初期設定ではモバイル版の表示が選択されており、ユーザーによる表示の切り替えが許可されています。  
+なお、iPhone版／Android版アプリでは、常にモバイル版の画面が表示されます。
+
+<Enabled regions={["JP"]}>
+<Img src="/k/kintone/img-ja/mobile_defaultview_img1.png" alt="スクリーンショット：PC版とモバイル版の比較" />
+
+</Enabled>
+
+<Enabled regions={["US", "CN"]}>
+<Img src="/k/kintone/img-ja/mobile_defaultview_img1_uscn.png" alt="スクリーンショット：PC版とモバイル版の比較" />
+
+</Enabled>
+
+設定手順は次のとおりです。<Slash />共通管理者と<Kintone />のシステム管理者が設定可能です。
+
+1. <Wovn>［<Kintone />システム管理］</Wovn>画面を開きます。  
+  [<Kintone />システム管理画面を開く](/k/ja/id/04046.html)
+
+1. <Wovn>［スマートフォンでの表示］</Wovn>をクリックします。
+
+1. スマートフォンでの表示方法と、表示の切り替えをユーザーに許可するかどうかを設定します。
+
+1. <Wovn>［保存］</Wovn>をクリックします。

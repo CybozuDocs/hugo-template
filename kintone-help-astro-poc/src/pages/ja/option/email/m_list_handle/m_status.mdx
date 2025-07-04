@@ -1,0 +1,61 @@
+---
+title: "メールの処理状況を変更する"
+weight: 300
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040967"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+
+メールの処理状況を変更できます。処理状況を変更すると、そのメールの対応状況が視覚的に分かりやすくなります。
+
+次のメールは、処理状況を変更できません。
+
+* 編集ロックされているメール
+* 送信予約済みメール
+
+<Heading id="m_list_handle_m_status_10">処理状況を個別に変更する</Heading>
+
+メールの一覧画面で、1件ずつメールの処理状況を変更します。
+
+<Heading level={3} id="m_list_handle_m_status_1010">手順</Heading>
+
+1. メールの一覧画面で、メールの「状況・確認者」項目をクリックします。  
+    <Img src="/k/kintone/img-ja/m_status_01.png" alt="スクリーンショット：「状況・確認者」項目にマウスオーバーしている" />
+
+1. ポップアップウィンドウで、「状況」のドロップダウンリストから処理状況を選択します。  
+    <Img src="/k/kintone/img-ja/m_status_02.png" alt="スクリーンショット：「状況」を枠線で強調している" />
+
+1. [変更する]をクリックします。
+
+<Note>
+
+* 「メールの詳細」画面で、「状況」の項目を直接クリックして変更することもできます。
+* 「メールの詳細」画面で、[処理済みにする]をクリックする方法でも、メールを処理済みにできます。
+* 運用管理者は、処理状況の種類をカスタマイズできます。詳細は、次のページを参照してください。  
+  [処理状況を設定する](/k/ja/id/040939.html)
+
+</Note>
+
+<Heading id="m_list_handle_m_status_20">複数のメールの処理状況を一括変更する</Heading>
+
+複数のメールを選択して、メールの処理状況を一括変更できます。
+
+<Heading level={3} id="m_list_handle_m_status_2010">手順</Heading>
+
+1. 目的のメールにチェックを入れ、[一括設定]をクリックします。
+
+1. 「状況」のドロップダウンリストから処理状況を選択します。
+
+1. [設定する]をクリックします。
+
+<Note>
+メールの受信時に、設定した条件を満たすメールの処理状況を自動的に「（処理済み）」に変更できます。詳細は、次のページを参照してください。  
+[メールを自動で処理済みにする](/k/ja/id/040968.html)
+
+</Note>

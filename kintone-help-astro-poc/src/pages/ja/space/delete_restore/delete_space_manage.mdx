@@ -1,0 +1,57 @@
+---
+title: "スペースの管理画面からスペースを削除する"
+weight: 200
+aliases:
+  - "/ja/id/04072"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />システム管理者は、<Wovn>［<Kintone />システム管理］</Wovn>画面からスペースを削除できます。
+
+<Warning>
+
+* スペースを削除すると、スペースに配置されているアプリを含めた、スペース内のすべてのデータが利用できなくなります。
+* 今後も使う可能性のあるデータは、ファイルに書き出して保存してからスペースを削除してください。詳細は、次のページを参照してください。  
+  [レコードのバックアップ](/k/ja/id/04030.html)
+
+</Warning>
+
+<Note>
+
+スペースを削除してしまった場合、<Slash />共通管理者がスペースを復旧できる可能性があります。ただし、削除してから14日以上経過したスペースは復旧できません。また、スペースの復旧には一部制限があります。  
+詳細は、次のページを参照してください。  
+[削除したスペースを復旧する](/k/ja/id/04080.html)
+
+</Note>
+
+<Heading id="space_admin_delete_space_manage_10">スペースを削除するには</Heading>
+
+1. <Wovn>［スペース管理］</Wovn>画面を開きます。  
+  [スペース管理画面を開く](/k/ja/id/04073.html#space_admin_manage_spaces_10)
+
+1. 削除したいスペースの右側にある<Wovn>［削除］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/delete_space_manage_01.png" alt="スクリーンショット：スペース管理画面" />
+
+1. <Wovn>［スペースの削除］</Wovn>のダイアログを確認し、<Wovn>［このスペースを削除］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/delete_space_manage_02.png" alt="スクリーンショット：このスペースを削除をクリック" />
+
+1. <Wovn>［削除の実行］</Wovn>のダイアログを確認し、<Wovn>［削除の実行］</Wovn>をクリックします。
+
+<Note>
+
+&#123;&#123;< subtitle >&#125;&#125;ゲストスペースの削除について&#123;&#123;< /subtitle >&#125;&#125;
+
+利用中の<Kintone />のアカウントと、招待されたゲストスペースのアカウントを共通化している場合、ゲストスペースを削除しても14日間は<Wovn>［参加中のゲストスペース（連携先ドメイン）］</Wovn>の一覧に表示されます。ただし、クリックすると、次のようなエラーが表示され、ゲストスペースを開くことはできません。  
+エラー：  
+指定されたスペース(id: \*\*\*)が見つかりません。削除されている可能性があります。
+
+</Note>

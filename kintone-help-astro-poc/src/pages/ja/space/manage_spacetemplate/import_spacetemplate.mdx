@@ -1,0 +1,45 @@
+---
+title: "ファイルからスペーステンプレートを読み込む"
+weight: 500
+aliases:
+  - "/ja/id/04077"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+ファイルからスペーステンプレートを読み込みます。  
+他のドメインで利用いただいている<Kintone />で書き出したテンプレートファイルも読み込めます。
+
+<Note>
+
+* スペーステンプレートを読み込むには、<Kintone />のシステム管理権限およびスペースの作成権限が必要です。  
+  また、スペース内アプリを含むスペースのテンプレートを読み込むには、アプリの作成権限も必要です。
+* 2019年5月以前の<Kintone />で書き出されたテンプレートファイルは読み込むことができません。
+
+</Note>
+
+1. <Wovn>［<Kintone />システム管理］</Wovn>画面を開きます。  
+  [<Kintone />システム管理画面を開く](/k/ja/id/04046.html)
+
+1. <Wovn>［スペーステンプレート］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/import_spacetemplate_img01.png" alt="スクリーンショット：［スペーステンプレート］が枠線で強調されている" />
+
+1. <Wovn>［読み込む］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/import_spacetemplate_img02.png" alt="スクリーンショット：［読み込む］ボタンが枠線で強調されている" />
+
+1. <Wovn>［参照］</Wovn>をクリックし、読み込むファイルを選択します。  
+   <Img src="/k/kintone/img-ja/import_spacetemplate_img03.png" alt="スクリーンショット：［参照］ボタンが枠線で強調されている" />
+
+1. <Wovn>［読み込む］</Wovn>をクリックします。  
+  これで、読み込んだテンプレートを使用してスペースを作成できるようになります。
+
+<Reference>
+[スペーステンプレートをファイルに書き出す](/k/ja/id/04076.html)
+
+</Reference>

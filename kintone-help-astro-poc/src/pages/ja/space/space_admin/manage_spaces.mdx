@@ -1,0 +1,126 @@
+---
+title: "スペースを管理する"
+weight: 200
+aliases:
+  - "/ja/id/04073"
+description: "{{< kintone >}}システム管理のスペース管理画面で、スペースの利用状況を確認する方法を説明しています。"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+システム管理者は、<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［スペース管理］</Wovn>画面で、ご使用の環境におけるスペースのライセンス使用状況や、作成されたすべてのスペースを一覧で確認できます。  
+スペースの利用状況を把握し、必要に応じて、スペースを整理する際などに活用できます。
+
+<Note>
+
+個別のスペースの設定は、各スペースの管理ダイアログで行います。詳細については、次のページを参照してください。  
+[スペースの設定を変更する](/k/ja/id/040696.html)
+
+</Note>
+
+<Img src="/k/kintone/img-ja/manage_spaces_00.png" alt="スクリーンショット：［スペース管理］管理画面" />
+
+<Wovn>［スペースの一覧］</Wovn>では、スペースごとに管理者数や参加メンバー数、設定の最終更新者や最終更新日時などを確認できます。  
+また、必要に応じて、スペースの参加／退会／削除を行うことができます。  
+[スペースの一覧を確認する](#space_admin_manage_spaces_30)  
+[スペースの管理画面からスペースを削除する](/k/ja/id/04072.html)
+
+<Note>
+
+システム管理者以外のユーザーがスペースの参加／退会を行うには、次のいずれかの方法を行ってください。
+
+* [スペースのメンバーを追加／削除する](/k/ja/id/040703.html)
+* [スペースに参加／退会する](/k/ja/id/040701.html)（公開スペースのみ可能）
+
+</Note>
+
+<Heading id="space_admin_manage_spaces_10">&lt;Wovn&gt;［スペース管理］&lt;/Wovn&gt;画面を開く</Heading>
+
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［<Kintone />システム管理］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/manage_spaces_01.png" alt="スクリーンショット：ポータルの画面" />
+
+1. <Wovn>［スペース管理］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/manage_spaces_02.png" alt="スクリーンショット：スペース管理を開く" />
+
+<Heading id="space_admin_manage_spaces_20">スペースのライセンス使用状況を確認する</Heading>
+
+<Wovn>［スペース管理］</Wovn>画面の<Wovn>［ライセンスの使用状況］</Wovn>では、お使いの環境でのライセンスの上限値や使用状況を確認できます。  
+ライセンスの上限値は、ご契約のコースによって異なります。
+<Img src="/k/kintone/img-ja/manage_spaces_04.png" alt="スクリーンショット：ライセンスの使用状況が枠線で強調された［スペースの管理］画面" />
+
+<Heading id="space_admin_manage_spaces_30">スペースの一覧を確認する</Heading>
+
+<Wovn>［スペースの一覧］</Wovn>では、スペースの種別にかかわらず、作成されているすべてのスペースを確認できます。  
+ただし、参加していない非公開スペースやゲストスペースにはアクセスすることはできません。
+
+<Wovn>［スペースの一覧］</Wovn>では、スペースの参加メンバー数や設定の最終更新日時などの確認や、必要に応じて、スペースの参加／退会／削除が可能です。
+
+<Img src="/k/kintone/img-ja/manage_spaces_03.png" alt="スクリーンショット：［スペースの一覧］でスペースの参加／退会／削除が可能な操作リンクが枠線で強調されている" />
+
+* **スペースに参加する**  
+  自分が参加していないスペースに表示される<Wovn>［管理者として参加］</Wovn>をクリックします。  
+  システム管理者は、スペースに参加すると、自動的にスペースの管理者に設定されます。
+* **スペースから退会する**  
+  自分が参加しているスペースに表示される<Wovn>［退会］</Wovn>をクリックします。
+  <Note>
+  スペースには、1人以上の管理者が必要です。  
+  退会時に自分だけがスペースの管理者になっている場合は、ほかのユーザーをスペースの管理者に設定してから退会してください。
+  </Note>
+* **スペースを削除する**  
+  削除したいスペースの右側にある<Wovn>［削除］</Wovn>アイコンをクリックします。  
+  詳細は、次のページを参照してください。  
+  [スペースの管理画面からスペースを削除する](/k/ja/id/04072.html)
+  <Warning>
+  スペースを削除すると、スペースに配置されているアプリを含めた、スペース内のすべてのデータが利用できなくなります。
+  </Warning>
+
+次の項目は、項目名をクリックして昇順/降順で並べ替えることができます。
+
+* <Wovn>［ID］</Wovn>
+* <Wovn>［スペース名］</Wovn>
+* <Wovn>［種別］</Wovn>
+* <Wovn>［メンバー数／管理者数］</Wovn>
+* <Wovn>［作成者］</Wovn>
+* <Wovn>［作成日時］</Wovn>
+* <Wovn>［設定の最終更新者］</Wovn>
+* <Wovn>［設定の最終更新日時］</Wovn>
+
+<Heading id="space_admin_manage_spaces_40">スペースの一覧をCSVファイルでダウンロードする</Heading>
+
+<Slash />共通管理者は、スペースの一覧をCSV形式（BOM付きUTF-8）でダウンロードできます。  
+ダウンロードしたCSVファイルは、他のデータと組み合わせたり、Excelで管理したりすることで、スペースの確認や管理、棚卸しなどにお使いいただけます。
+
+<Img src="/k/kintone/img-ja/manage_spaces_05.png" alt="スクリーンショット：CSV形式でダウンロードするための操作リンクが枠線で強調されている" />
+
+<Wovn>［CSV形式でダウンロードする］</Wovn>をクリックすると、スペースIDの昇順で並んだスペースの一覧がダウンロードされます。
+<Img src="/k/kintone/img-ja/manage_spaces_06.png" alt="スクリーンショット：ダウンロードしたファイルの画面例" />
+
+ダウンロードされる項目は、次のとおりです。
+
+* <Wovn>［ID］</Wovn>
+* <Wovn>［スペース名］</Wovn>
+* <Wovn>［スペースURL］</Wovn>
+* <Wovn>［種別］</Wovn>
+* <Wovn>［管理者数］</Wovn>
+* <Wovn>［メンバー数］</Wovn>
+* <Wovn>［作成者］</Wovn>（表示名）
+* <Wovn>［作成者（ログイン名）］</Wovn>
+* <Wovn>［作成日時］</Wovn>
+* <Wovn>［設定の最終更新者］</Wovn>（表示名）
+* <Wovn>［設定の最終更新者（ログイン名）］</Wovn>
+* <Wovn>［設定の最終更新日時］</Wovn>
+
+<Note>
+
+* <Wovn>［メンバー数］</Wovn>には、ゲストユーザーも含まれます。
+* <Wovn>［作成日時］</Wovn>と<Wovn>［設定の最終更新日時］</Wovn>は、ユーザーのタイムゾーンに沿って、24時間表記（yyyy/MM/dd HH:mm）で出力されます。
+
+</Note>

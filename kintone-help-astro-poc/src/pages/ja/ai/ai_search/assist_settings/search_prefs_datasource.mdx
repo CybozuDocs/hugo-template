@@ -26,6 +26,7 @@ import Wovn from "@/components/Wovn.astro";
 </Note>
 
 <Heading id="assist_settings_search_prefs_datasource_10">手順</Heading>
+
 1. <Kintone />の画面上部にある<Wovn>［設定］</Wovn>アイコン（歯車の形）をクリックし、<Wovn>［<Kintone /> AI管理］</Wovn>をクリックします。  
    <Img src="/k/kintone/img-ja/ai_enable_01.png" alt="スクリーンショット：［{{&lt; kintone &gt;}} AI管理］の操作リンクが強調された［設定］メニュー" />
 
@@ -58,14 +59,18 @@ import Wovn from "@/components/Wovn.astro";
 1. 画面右上にある<Wovn>［保存］</Wovn>をクリックします。
 
 <Heading id="assist_settings_search_prefs_datasource_20">データソースを追加する</Heading>
+
 アプリ名の右横にある<Wovn>［追加］</Wovn>アイコン（+の形）をクリックすると、データソースを追加できます。  
 設定できるデータソースは、10個までです。
 
 <Heading id="assist_settings_search_prefs_datasource_30">データソースを削除する</Heading>
+
 アプリ名の右横にある<Wovn>［削除］</Wovn>アイコン（-の形）をクリックすると、データソースを削除できます。
 
 <Heading id="assist_settings_search_prefs_datasource_40">補足</Heading>
+
 <Heading level={3} id="assist_settings_search_prefs_datasource_4000">データソースに指定できないアプリ</Heading>
+
 データソースに指定できないアプリは、次のとおりです。<Wovn>［アプリを検索］</Wovn>欄にアプリ名を入力しても、候補として表示されません。
 
 * <Wovn>［アプリのアクセス権］</Wovn>の設定で、<Wovn>［レコード閲覧］</Wovn>または<Wovn>［レコード追加］</Wovn>の権限がないアプリ
@@ -75,11 +80,13 @@ import Wovn from "@/components/Wovn.astro";
 * ゲストスペースに所属するアプリ
 
 <Heading level={3} id="assist_settings_search_prefs_datasource_4010">回答生成に使用されるフィールド</Heading>
+
 回答生成に利用されるフィールドは、検索AIによる回答生成の各処理で異なります。  
 詳細は、次のページを参照してください。  
 [回答生成の仕組みと利用されるデータソース](/k/ja/id/040880.html)
 
 <Heading level={3} id="assist_settings_search_prefs_datasource_4020">自動的にリンクとして表示される文字列</Heading>
+
 * 生成された回答内のWebサイトのURLは、自動的にリンクとして表示されます。  
   <Kintone />の<Wovn>［リンク］</Wovn>フィールド以外のフィールドに記載されたURLも、リンクとして表示されます。
 * <Wovn>［アプリコード］</Wovn>を設定した<Wovn>［レコード番号］</Wovn>フィールドの値は、対応するレコードに自動でリンクされます。  
@@ -87,5 +94,6 @@ import Wovn from "@/components/Wovn.astro";
   [アプリコードを設定する](/k/ja/id/040478.html)
 
 <Heading level={3} id="assist_settings_search_prefs_datasource_4030">回答内の&lt;Wovn&gt;［参考情報］&lt;/Wovn&gt;</Heading>
+
 データソースとして指定したアプリへのリンクが、回答に<Wovn>［参考情報］</Wovn>として表示されます。  
 このリンクには、対応する<Wovn>［レコードのタイトル］</Wovn>が表示されます。<Wovn>［レコードのタイトルとして利用するフィールド］</Wovn>に<Wovn>［閲覧］</Wovn>の権限がない場合は、<Wovn>［レコード番号］</Wovn>が表示されます。

@@ -1,0 +1,61 @@
+---
+title: "ユーザー情報の表示"
+weight: 300
+aliases:
+  - "/ja/id/040831"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />でユーザー名をクリックすると、そのユーザーの情報がポップアップで表示されます。  
+表示された画面では、ユーザーの所属組織やユーザーへのメッセージ画面など関連するリンクが確認できます。  
+<Img src="/k/kintone/img-ja/userinformation_popup_01.png" alt="スクリーンショット：ユーザー情報の表示のポップアップ" />
+
+ポップアップで表示される画面には、対象のユーザーの次の情報が表示されます。
+
+<Enabled regions={["JP", "CN"]}>
+
+* 表示名
+* 優先する組織
+* プロフィール写真
+* メッセージ画面へのリンク
+* ピープル画面へのリンク
+* Garoonのスケジュールへのリンク
+* プロフィール画面へのリンク
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+* 表示名
+* 優先する組織
+* プロフィール写真
+* メッセージ画面へのリンク
+* ピープル画面へのリンク
+* プロフィール画面へのリンク
+
+</Enabled>
+
+<Note>
+
+* ログインユーザーまたは表示対象のユーザーが利用していない機能へのリンクは、表示されません。
+* 表示対象のユーザーがログインユーザーの場合は、メッセージ画面へのリンクは表示されません。
+* アプリ管理画面、システム管理画面、検索結果画面など一部画面は、この機能の対象外です。<Wovn></Wovn>
+
+</Note>
+
+<Reference>
+
+* [プロフィールを確認する](/general/ja/id/020411.html)
+* [メッセージ](/k/ja/id/040651.html)
+* [ピープル](/k/ja/id/040679.html)
+* [サービスの利用許可](/general/ja/id/020247.html)
+
+</Reference>

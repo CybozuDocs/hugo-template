@@ -1,0 +1,147 @@
+---
+title: "個人設定"
+weight: 600
+aliases:
+  - "/ja/id/040713"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Wovn>［個人設定］</Wovn>では、各ユーザーが時刻表記、メール通知、デスクトップ通知について設定できます。<Wovn></Wovn><Wovn></Wovn><Wovn></Wovn>  
+ここで保存した設定は、自分だけに適用されます。  
+<Img src="/k/kintone/img-ja/personal_settings_08.png" alt="スクリーンショット：［個人設定］の画面" />
+
+<Note>
+<Wovn>［メール通知］</Wovn>の項目が表示されていない場合は、システム管理の<Wovn>［通知のメール送信］</Wovn>で<Wovn>［通知のメール送信機能を利用する］</Wovn>が無効になっています。  
+[通知のメール送信機能の利用設定](/k/ja/id/0403.html)
+
+</Note>
+
+<Wovn>［個人設定］</Wovn>を開くには、<Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［個人設定］</Wovn>をクリックします。
+<Img src="/k/kintone/img-ja/personal_settings_01.png" alt="スクリーンショット：［個人設定］をクリックして開く" />
+
+<Wovn>［戻る］</Wovn>をクリックすると、<Wovn>［個人設定］</Wovn>画面を開く前の画面に戻ることができます。
+<Img src="/k/kintone/img-ja/personal_settings_06.png" alt="スクリーンショット：［個人設定］の［戻る］ボタン" />
+
+各項目について、以下に説明します。  
+
+* [時刻表記](#user_settings_personal_settings_10)  
+* [メール通知](#user_settings_personal_settings_20)  
+* [デスクトップ通知](#user_settings_personal_settings_30)  
+
+<Heading id="user_settings_personal_settings_10">時刻表記</Heading>
+
+<Enabled regions={["JP"]}>
+<Kintone />に表示される時刻の表記を、24時間表記、または12時間表記のどちらかに設定できます。
+<br />
+初期設定では、24時間表記が設定されています。
+
+</Enabled>
+<Enabled regions={["US", "CN"]}>
+<Kintone />の時刻の表記を、12時間表記、または24時間表記に切り替えます。
+<br />
+初期設定では、12時間表記が設定されています。
+</Enabled>
+
+<Img src="/k/kintone/img-ja/personal_settings_02.png" alt="スクリーンショット：時刻表記のドロップダウン" />
+
+時刻表記を変更する場合は、ドロップダウンで<Wovn>［12時間表記］</Wovn>、または<Wovn>［24時間表記］</Wovn>に切り替えたあと、<Wovn>［保存］</Wovn>をクリックしてください。  
+時刻表記の設定を変更すると、コメントの書き込み時刻などが変更されます。  
+
+* 24時間表記  
+  <Img src="/k/kintone/img-ja/personal_settings_03.png" alt="スクリーンショット：24時間表記の画面例" />
+
+* 12時間表記
+  <Img src="/k/kintone/img-ja/personal_settings_04.png" alt="スクリーンショット：12時間表記の画面例" />
+
+<Heading id="user_settings_personal_settings_20">メール通知</Heading>
+
+メール通知を受信するかどうかや、受信するメール通知の対象や形式を選択できます。  
+<Img src="/k/kintone/img-ja/personal_settings_05.png" alt="スクリーンショット：メール通知の設定項目" />
+
+初期設定では、システム管理の<Wovn>［通知のメール送信］</Wovn>で設定されている<Wovn>［受信設定の既定値］</Wovn>および<Wovn>［メール通知の形式］</Wovn>と同じ設定項目が選択されています。  
+参考：[通知のメール送信機能の利用設定](/k/ja/id/0403.html)
+
+メール通知の設定を変更する場合は、設定項目を変更したあと、<Wovn>［保存］</Wovn>をクリックしてください。  
+
+メール通知の設定項目について、詳細は次のとおりです。
+
+<Heading level={3} id="user_settings_personal_settings_2010">受信する／受信しない</Heading>
+
+<Kintone />に届く通知をメール通知するかどうか設定します。  
+<Wovn>［受信する］</Wovn>を選択する場合は、次の項目も設定します。
+
+<Heading level={4} id="user_settings_personal_settings_201010">メール通知の対象</Heading>
+
+「自分宛」の通知のみ受信するか、「すべて」の通知を受信するかを選択します。
+
+* <Wovn>［自分宛の通知のみ］</Wovn>を選択した場合：  
+  宛先に自分を指定された通知がメール通知されます。  
+  <br />
+* <Wovn>［すべての通知］</Wovn>を選択した場合：  
+  「自分宛」の通知を含むすべての通知がメール通知されます。  
+  そのため、非常に多くのメールが届いてしまう可能性があります。  
+
+「自分宛」の通知と「すべて」の通知の違いは、次のページを参照してください。  
+[「自分宛」通知と「すべて」通知の違い](/k/ja/id/040674.html)  
+メール通知には一部対応していないものもあります。対応していないメール通知については、次のページの表の下の補足を参照してください。  
+[通知が送信されるタイミングと宛先](/k/ja/id/040673.html)  
+
+<Note>
+
+ゲストユーザーの場合、初期設定では<Wovn>［受信する］</Wovn>と<Wovn>［すべての通知］</Wovn>が選択されています。
+
+</Note>
+
+<Heading level={4} id="user_settings_personal_settings_201020">メール通知の形式</Heading>
+
+メール通知をHTML形式／テキスト形式のどちらで受信するかを選択します。  
+
+* HTML形式のメール通知の例：  
+  <Img src="/k/kintone/img-ja/enable_mail_notification_img1.png" alt="スクリーンショット：HTML形式のメールの例" />  
+* テキスト形式のメール通知の例：  
+  <Img src="/k/kintone/img-ja/enable_mail_notification_img2.png" alt="スクリーンショット：テキスト形式のメール通知の例" />
+
+<Note>
+
+<Wovn>［受信する］</Wovn>が選択されているときに、<Wovn>［メール通知の形式］</Wovn>の設定項目がグレー表示され、変更できない状態になっている場合は、システム管理の<Wovn>［通知のメール送信］</Wovn>で<Wovn>［個人設定による変更を許可する］</Wovn>が無効になっています。  
+この場合、システム管理で設定されているメール形式が適用されます。HTML形式／テキスト形式のどちらが適用されているかは、<Wovn>［個人設定］</Wovn>の画面上でも確認できます。  
+[通知のメール送信機能の利用設定](/k/ja/id/0403.html)
+
+</Note>
+
+<Reference>
+
+* [通知が送信されるタイミングと宛先](/k/ja/id/040673.html)  
+* [「自分宛」通知と「すべて」通知の違い](/k/ja/id/040674.html)  
+* [メール通知を設定する](/k/ja/id/040670.html)  
+* [メール通知が届かないときは](/k/ja/id/040377.html)  
+* [各ユーザーが自分のメール通知を停止するには](/k/ja/id/040381.html)
+
+</Reference>
+
+<Heading id="user_settings_personal_settings_30">デスクトップ通知</Heading>
+
+<Kintone />で「自分宛」の通知が届いたときに、デスクトップ通知を表示するかを設定します。
+
+<Img src="/k/kintone/img-ja/personal_settings_07.png" alt="スクリーンショット：デスクトップ通知の画面" />
+
+<Note>
+
+* デスクトップ通知機能は、Google ChromeまたはMicrosoft Edgeをお使いの場合のみ利用できます。  
+* 以下の場合は、<Wovn>［デスクトップ通知］</Wovn>は表示されません。  
+  * Google Chrome、Microsoft Edge以外のWebブラウザーをお使いのとき  
+  * ゲストユーザーでログインしたとき  
+
+</Note>
+
+詳細は、次のページを参照してください。  
+[デスクトップ通知を設定する](/k/ja/id/040828.html)

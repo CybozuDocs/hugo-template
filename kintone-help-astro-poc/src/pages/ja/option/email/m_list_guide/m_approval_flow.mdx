@@ -1,0 +1,71 @@
+---
+title: "メール承認フロー"
+weight: 200
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040931"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Listsummary from "@/components/Listsummary.astro";
+
+
+メール承認フローとは、メールを送信する際に承認者の許可を得る一連の流れです。メール承認フローを取り入れることで、メールの誤送信や情報漏洩の防止が期待できます。
+
+メール共有オプションでは、次の機能を利用して、メール承認フローを実現できます。
+
+* 処理状況
+* 担当者
+* 確認者
+
+次の手順で、メールの処理を行います。各ステップの詳細は後述しています。
+
+<Listsummary>
+
+1. [担当者が確認者にメールの承認を申請する](#m_list_guide_m_approval_flow_10)
+1. [確認者がメールを承認または差し戻す](#m_list_guide_m_approval_flow_20)
+1. [担当者がメールを送信する](#m_list_guide_m_approval_flow_30)
+
+</Listsummary>
+
+<Hint>
+
+次の処理状況を追加しておくと、メール承認フローを実行する際に、メールのステータスを進めやすくなります。処理状況の名前は任意です。
+
+* 申請：担当者がメールの承認を申請するときに使用する処理状況です。
+* 差し戻し：確認者がメールを差し戻すときに使用する処理状況です。
+
+処理状況を追加する方法は、次のページを参照してください。  
+[処理状況を設定する](/k/ja/id/040939.html)
+
+</Hint>
+
+<Heading id="m_list_guide_m_approval_flow_10">担当者が確認者にメールの承認を申請する</Heading>
+
+担当者がメールの承認を申請します。担当者は、作成したメールを送信せずに書きかけ保存してください。処理状況と確認者を次のように変更します。
+
+* 処理状況：申請
+* 確認者：メールの承認者
+
+<Img src="/k/kintone/img-ja/m_approval_flow_01.png" alt="スクリーンショット：「メールの作成」画面で処理状況と確認者が設定されている。[書きかけ保存する]が枠線で強調されている" />
+
+<Heading id="m_list_guide_m_approval_flow_20">確認者がメールを承認または差し戻す</Heading>
+
+メールの承認者は、処理状況が「申請」の確認メールを開き、メールを内容を確認後、承認するか差し戻します。処理状況と確認者を次のように変更します。
+
+* 処理状況：承認する場合は「（送信待ち）」、差し戻す場合は「差し戻し」
+* 確認者：メールの担当者
+
+メールの内容を確認したことや、メールを差し戻す理由をメモに記入しておくと、その後の対応がスムーズになります。
+
+<Img src="/k/kintone/img-ja/m_approval_flow_02.png" alt="スクリーンショット：「メール情報の変更」画面で、処理状況に「差し戻し」が選択され、メモに理由が記入されている" />
+
+<Heading id="m_list_guide_m_approval_flow_30">担当者がメールを送信する</Heading>
+
+承認されたメールを送信します。  
+差し戻されたメールは、確認者からの指示に従って処理します。
+
+<Img src="/k/kintone/img-ja/m_approval_flow_03.png" alt="スクリーンショット：承認されたメールの処理状況と確認者が枠線で強調されている" />

@@ -1,0 +1,46 @@
+---
+title: "N年前の日付を計算したい"
+weight: 1900
+aliases:
+  - "/ja/id/040742"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Hint from "@/components/Hint.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+
+
+1年を365日として、N年前の日付を計算できます。  
+<Kintone />では、日付、時刻、日時のフィールドの値はUNIX時刻として扱われます。このため、日付や日時は秒単位で扱い、計算式も秒単位で指定します。たとえば1分間は「60」と入力します。1時間は「3600」または「60\*60」、1日は「86400」または「60\*60\*24」と入力します。
+
+* **「日付」フィールドに入力している日付の2年前を計算する場合**  
+  「計算」フィールドを配置し、次の計算式を設定します。
+  * 計算式：日付-(2\*365\*24\*60\*60)
+  * 形式：日付（例：2012-08-06）
+
+  なお、この計算式の例では、うるう年（366日）に対応した計算はできませんので、ご注意ください。
+
+<Enabled regions={["JP"]}>
+<Hint>
+ご契約によっては、APIやJavaScriptを利用したカスタマイズができます。  
+カスタマイズを行うと、年の計算が可能です。
+
+ご契約の詳細は、次の製品サイトを参照してください。  
+[料金](https://kintone.cybozu.co.jp/price/)（日本語のみ）  
+カスタマイズについては、次のページを参照してください。  
+[経過年数を表示する](https://cybozu.dev/ja/id/567832fcb3f4f4f7ac7d6e6f/)（日本語のみ）  
+APIに関する問い合わせ方法は、次のページを参照してください。  
+[API、カスタマイズ、プラグインや連携サービスに関する問い合わせ](/k/ja/id/040274.html)
+</Hint>
+
+</Enabled>
+
+<Reference>
+
+* [フォームを設定する](/k/ja/id/040554.html)
+* [計算](/k/ja/id/040517.html)
+* [計算式の基本的な使いかた](/k/ja/id/040509.html)
+
+</Reference>

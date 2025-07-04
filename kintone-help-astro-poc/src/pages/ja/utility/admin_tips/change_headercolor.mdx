@@ -1,0 +1,53 @@
+---
+title: "ヘッダーの色を変更する"
+weight: 700
+aliases:
+  - "/ja/id/04039"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+
+
+<Kintone />のヘッダーの色を変更できます。変更したヘッダーの色は、すべてのユーザーに適用されます。  
+たとえば、<Kintone />をより身近に感じてもらうために、自社のコーポレートカラーを設定する方法などもおすすめです。
+
+<Enabled regions={["JP"]}>
+<Img src="/k/kintone/img-ja/change_headercolor_img2_1.png" alt="スクリーンショット：ヘッダーが枠線で強調されている" />
+
+</Enabled>
+
+<Enabled regions={["US", "CN"]}>
+<Img src="/k/kintone/img-ja/change_headercolor_img2_1cnus.png" alt="スクリーンショット：ヘッダーが枠線で強調されている" />
+
+</Enabled>
+
+変更手順は以下のとおりです。この操作は、<Slash />共通管理者と<Kintone />のシステム管理者が可能です。
+
+1. <Kintone />システム管理画面を開きます。  
+  [<Kintone />システム管理画面を開く](/k/ja/id/04046.html)
+
+1. [ヘッダーの色]をクリックします。
+
+1. カラーパレットの選択肢をクリックしてヘッダーの色を選択します。
+  <Note>
+  カラーパレットにない色を指定する場合は、16進数カラー値を、「#」から始まる半角英数字6文字で指定します。
+  0から9までの整数と、aからfまでの大文字と小文字を使用できます。
+  </Note>
+   <Img src="/k/kintone/img-ja/change_headercolor_img1.png" alt="スクリーンショット：カラーパレットでヘッダーの色を選択している" />
+
+1. [保存]をクリックします。
+
+ヘッダーの色が変更されます。
+
+<Reference>
+
+* [ヘッダーのロゴを変更する](/k/ja/id/04040.html)  
+* [ログイン画面をカスタマイズする](/k/ja/id/04041.html)
+
+</Reference>

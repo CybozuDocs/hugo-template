@@ -1,0 +1,105 @@
+---
+title: "日付の値に応じて月末日を表示したい（うるう年を考慮した表示）"
+weight: 2600
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040765"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+
+
+日付フィールドと、うるう年を判定する計算式を設定したフィールドを配置することで、うるう年を考慮した月末日を表示できます。
+
+**完成イメージ**
+<Img src="/k/kintone/img-ja/leap_year_01.png" alt="スクリーンショット：うるう年の計算結果" />
+
+<Heading id="app_leap_year_10">準備</Heading>
+
+フォームに以下のフィールドを配置し、フィールド名とフィールドコードを設定してください。
+
+* 「日付」フィールド  
+  フィールド名、フィールドコード：日付
+* 「計算」フィールド  
+  フィールド名、フィールドコード：年
+* 「計算」フィールド  
+  フィールド名、フィールドコード：月
+* 「文字列（1行）」フィールド  
+  フィールド名、フィールドコード：うるう年判定
+* 「文字列（1行）」フィールド  
+  フィールド名、フィールドコード：月末日
+
+<Img src="/k/kintone/img-ja/leap_year_02.png" alt="スクリーンショット：配置したフィールド完成図" />
+
+<Reference>
+
+* [計算式の基本的な使いかた](/k/ja/id/040509.html)
+* [フィールドコードとは](/k/ja/id/040504.html)
+
+</Reference>
+
+<Heading id="app_leap_year_20">計算式の設定</Heading>
+
+計算フィールドと文字列（1行）フィールドに計算式を設定します。
+
+* 「年」フィールドの計算式
+
+  ```plaintext {copy=true}
+  DATE_FORMAT(日付, "YYYY", "Etc/GMT")
+
+  ```
+
+* 「月」フィールドの計算式
+
+  ```plaintext {copy=true}
+  DATE_FORMAT(日付, "M", "Etc/GMT")
+
+  ```
+
+* 「うるう年判定」フィールドの計算式
+
+  ```plaintext {copy=true}
+  IF(OR(年/4-ROUNDDOWN(年/4)!=0,AND(年/100-ROUNDDOWN(年/100)=0,年/400-ROUNDDOWN(年/400)!=0)),"平年","うるう年")
+
+  ```
+
+* 「月末日」フィールドの計算式
+
+  ```plaintext {copy=true}
+  IF(OR(月=4,月=6,月=9,月=11),DATE_FORMAT(日付, "YYYY年M月30日", "Etc/GMT"),IF(AND(月=2,うるう年判定="うるう年"),DATE_FORMAT(日付, "YYYY年M月29日", "Etc/GMT"),IF(AND(月=2,うるう年判定="平年"),DATE_FORMAT(日付, "YYYY年M月28日", "Etc/GMT"),DATE_FORMAT(日付, "YYYY年M月31日", "Etc/GMT"))))
+
+  ```
+
+<Heading id="app_leap_year_30">参考：アプリテンプレート</Heading>
+
+この計算式が設定されたアプリのテンプレートを、以下からダウンロードできます。
+
+アプリテンプレート：[leap_year.zip](/k/files-ja/leap_year.zip)（日本語のみ）
+
+リンクをクリックしてテンプレートファイル（zip）をダウンロードしたあと、解凍せずに<Kintone />で読み込んでください。
+
+<Reference>
+
+* [テンプレートファイルからアプリを作成する](/k/ja/id/040627.html)  
+* [[DATE_FORMAT関数]日付や時刻の表示形式を指定して表示する](/k/ja/id/040501.html)
+
+</Reference>
+
+<Heading id="app_leap_year_40">計算式の解説</Heading>
+
+* 「うるう年判定」フィールドでは、「年」フィールドの値に応じて「平年」または「うるう年」のどちらかが表示されます。  
+  「平年」と「うるう年」のどちらに当てはまるかは、法令上の取扱いを元に算出しています。  
+  詳細は、参議院法制局の次のページを参照してください。  
+  [うるう年をめぐる法令](https://houseikyoku.sangiin.go.jp/column/column077.htm)
+  * 西暦が4で割り切れる年は「うるう年」とする
+  * 西暦が100で割り切れて、400で割り切れない年は、「平年」とする
+* 「月末日」フィールドでは、IF関数を使い、月末日を以下の4通りに場合わけしています。
+  * 4月、6月、9月、11月は末日が30日
+  * うるう年の2月は末日が29日
+  * 平年の2月は末日が28日
+  * それ以外の月（1月、3月、5月、7月、8月、10月、12月）は末日が31日  
+    [[IF関数]条件によって表示する値を変える](/k/ja/id/040505.html)

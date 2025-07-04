@@ -1,0 +1,58 @@
+---
+title: "選択肢によって表示する日付の形式を変える"
+weight: 2100
+aliases:
+  - "/ja/id/040744"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+IF関数とDATE_FORMAT関数を使うと、日付や日時を、指定した日時形式の文字列に変換できます。
+
+ここでは、ラジオボタンフィールドで選択した国によって、表示する日付の形式を変更する例を説明します。日本式を選ぶと日本の日付、アメリカ式を選ぶとUSの日付、イギリス式を選ぶとイギリスの日付が自動的に表示されます。
+
+<Img src="/k/kintone/img-ja/example_date_format_09.png" alt="スクリーンショット：各国の日付を表示する設定をしたフィールドを赤枠で強調している" />
+
+<Heading id="app_example_date_format_10">準備</Heading>
+
+フォームに以下のフィールドを配置し、フィールド名とフィールドコードを設定してください。
+
+* 「日付」フィールド
+  * フィールド名、フィールドコード：日付
+* 文字列（1行）フィールド
+  * フィールド名、フィールドコード：変換後の日付
+* ラジオボタンフィールド
+  * フィールド名、フィールドコード：表示方法
+  * 項目：日本式、アメリカ式、イギリス式
+
+<Img src="/k/kintone/img-ja/example_date_format_10.png" alt="スクリーンショット：フォームタブで日付フィールドを配置している" />
+<Img src="/k/kintone/img-ja/example_date_format_11.png" alt="スクリーンショット：フォームタブで文字列（1行）フィールドとラジオボタンフィールドを配置している" />
+<Img src="/k/kintone/img-ja/example_date_format_12.png" alt="スクリーンショット：歯車の形をした設定アイコンと[設定]を赤枠で強調している" />
+<Img src="/k/kintone/img-ja/example_date_format_13.png" alt="スクリーンショット：ラジオボタンの設定画面で「フィールド名」と「項目と順番」を赤枠で強調している" />
+
+<Heading id="app_example_date_format_20">計算式の設定</Heading>
+
+文字列（1行）フィールドに計算式を設定します。
+
+```plaintext {copy=true}
+IF(表示方法="日本式", DATE_FORMAT(日付, "yyyy/MM/dd", "Etc/GMT"), IF(表示方法="アメリカ式", DATE_FORMAT(日付, "MM/dd/yyyy", "Etc/GMT"), DATE_FORMAT(日付, "dd/MM/yyyy", "Etc/GMT")))
+
+```
+
+<Note>
+
+計算結果が文字列になる場合、計算フィールドに直接DATE_FORMAT関数の計算式を指定するとエラーが表示されます。IF関数の条件式の中で利用してください。
+
+</Note>
+
+<Reference>
+
+* [[DATE_FORMAT関数]日付や時刻の表示形式を指定して表示する](/k/ja/id/040501.html)
+* [[IF関数]条件によって表示する値を変える](/k/ja/id/040505.html)
+
+</Reference>

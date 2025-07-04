@@ -1,0 +1,79 @@
+---
+title: "ポータルでの主な操作の権限"
+weight: 200
+aliases:
+  - "/ja/id/04067"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Slash from "@/components/Slash.astro";
+
+
+<Kintone />のポータルでできる操作は、ユーザーのアクセス権によって異なります。
+
+<Img src="/k/kintone/img-ja/portal_rights01.png" alt="スクリーンショット：ポータル画面" />
+
+<table>
+<caption>ポータルでできる主な操作</caption>
+    <thead>
+        <tr>
+            <th colspan="2" style="text-align: center;">操作</th>
+            <th style="text-align: center; ">操作ができるユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th colspan="2" style="vertical-align: top;"><a href="/k/ja/id/04069.html">ポータルの設定／変更</a></th>
+            <td><Kintone />システム管理者、または<Slash />共通管理者</td>
+        </tr>
+        <tr>
+            <th colspan="2" style="vertical-align: top;"><a href="/k/ja/id/04070.html">お知らせ掲示板の編集</a></th>
+            <td>(同上)</td>
+        </tr>
+        <tr>
+            <th colspan="2" style="vertical-align: top;">スペース</th>
+            <td>「<a href="/k/ja/id/040705.html">ユーザーがスペースでできる操作</a>」を参照してください。</td>
+        </tr>
+        <tr>
+            <th colspan="2" style="vertical-align: top;">アプリ</th>
+            <td>「<a href="/k/ja/id/040590.html">ユーザーがアプリでできる操作</a>」を参照してください。</td>
+        </tr>
+        <tr>
+            <th colspan="2" style="vertical-align: top;">ピープル（ほかのユーザーの表示）</th>
+            <td>
+              組織間のアクセス権の設定を有効にした場合、同じ最上位組織のユーザーのみ可<br />
+              <a href="/general/ja/id/020164.html">組織間のアクセスを禁止する</a>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2" style="vertical-align: top;">検索</th>
+            <td>
+              <ul>
+                <li>アプリの検索：アクセス可能なアプリ、レコード、フィールドのみ可能</li>
+                <li>スペースの検索：公開スペース、または参加している非公開スペースのみ可能</li>
+                <li>
+                  ユーザーの検索：組織間のアクセス権の設定を有効にした場合、同じ最上位組織のユーザーのみ可能<br />
+                  <a href="/general/ja/id/020164.html">組織間のアクセスを禁止する</a>
+                </li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="1" style="vertical-align: top;; width: 8%;"><img src="/k/img-ja/portal_rights03.png" alt="" /></th>
+            <th style="vertical-align: top;"><a href="/k/ja/id/04046.html"><Kintone />システム管理</a></th>
+            <td><Kintone />システム管理者、または<Slash />共通管理者</td>
+        </tr>
+        <tr>
+            <th colspan="1" style="vertical-align: top;; width: 8%;"><img src="/k/img-ja/portal_rights03.png" alt="" /></th>
+            <th style="vertical-align: top;"><Slash />共通管理</th>
+            <td><Slash />共通管理者</td>
+        </tr>
+        <tr>
+            <th colspan="1" style="vertical-align: top;; width: 8%;"><img src="/k/img-ja/portal_rights02.png" alt="" /></th>
+            <th style="vertical-align: top;">お問い合わせ</th>
+            <td><Slash />共通管理者</td>
+        </tr>
+    </tbody>
+</table>

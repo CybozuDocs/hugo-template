@@ -1,0 +1,47 @@
+---
+title: "エラーが表示されて、スペースを復旧できない"
+weight: 400
+aliases:
+  - "/ja/id/040432"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Reference from "@/components/Reference.astro";
+
+
+スペースを復旧しようとしてエラーメッセージが表示された場合は、次の対処方法をご確認ください。
+
+<Heading id="space_trouble_restore_space_error10">復旧できないスペースのスペースIDを指定している</Heading>
+
+<Heading level={3} id="space_trouble_restore_space_error1010">エラー内容</Heading>
+
+指定したスペース（id: \*\*\*）は復旧できません。復旧可能なスペースではないか、削除から14日以上経過している可能性があります。
+
+<Heading level={3} id="space_trouble_restore_space_error1020">対処方法</Heading>
+
+次のようなスペースのスペースIDを指定している可能性があります。
+
+* 削除していないスペース
+* 存在しないスペース
+* 14日以上前に削除したスペース
+
+復旧するスペースのスペースIDを確認し、正しいスペースIDを指定してください。
+
+<Heading id="space_trouble_restore_space_error20">ライセンスの上限を超えている</Heading>
+
+<Heading level={3} id="space_trouble_restore_space_error2010">エラー内容</Heading>
+
+スペースの数またはアプリの数がライセンスの上限を超えるため、指定したスペース（id: \*\*\*）は復旧できませんでした。  
+指定したスペース（id: \*\*\*）は復旧できません。復旧可能なスペースではないか、削除から14日以上経過している可能性があります。
+
+<Heading level={3} id="space_trouble_restore_space_error2020">対処方法</Heading>
+
+復旧後のスペース数が、利用できるライセンスの上限を超えています。使用していないスペースを削除してから復旧してください。  
+利用できるスペース数は、ご契約のコースによって異なります。
+
+<Reference>
+
+[削除したスペースを復旧する](/k/ja/id/04080.html)
+
+</Reference>

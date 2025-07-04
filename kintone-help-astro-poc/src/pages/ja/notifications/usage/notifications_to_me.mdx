@@ -1,0 +1,77 @@
+---
+title: "「自分宛」通知と「すべて」通知の違い"
+weight: 300
+aliases:
+  - "/ja/id/040674"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />の通知は、「自分宛」と「すべて」の2つがあります。  
+このページでは、2つの通知の違いを説明します。
+
+<Heading id="notifications_notifications_to_me_10">「自分宛」の通知</Heading>
+
+宛先に自分を指定（メンション）された通知は、自分宛に届きます。  
+「自分宛」の通知を受信すると、画面上部の<Wovn>［通知一覧］</Wovn>アイコンに、受信した通知の数が表示されます。<Wovn></Wovn>
+
+<Img src="/k/kintone/img-ja/notifications_to_me_img2.png" alt="スクリーンショット：［通知一覧］アイコンに通知の数が表示されている" />
+
+主に次の通知が、「自分宛」の通知として届きます。
+
+* あなたやあなたが含まれるグループを宛先に指定したコメントが書き込まれたときの通知  
+  注：自分を宛先指定してコメントを書き込んだ場合は、通知は届きません。
+* プロセス管理の作業者になったときの通知
+* <Wovn>［リマインダーの条件通知］</Wovn>で設定した条件を満たしたときの通知
+* <Wovn>［アプリの条件通知］</Wovn>で<Wovn>［ユーザー選択］</Wovn>、<Wovn>［組織選択］</Wovn>、<Wovn>［グループ選択］</Wovn>フィールドを通知先に指定していて、設定した条件を満たしたときの通知
+* <Wovn>［レコードの条件通知］</Wovn>で設定した条件を満たしたときの通知
+* メッセージを受信したときの通知
+
+「自分宛」の通知を受信するユーザーについては、次のページを参照してください。  
+[通知が送信されるタイミングと宛先](/k/ja/id/040673.html)
+
+<Heading id="notifications_notifications_to_me_20">「すべて」の通知</Heading>
+
+フォローしているスレッドに書き込みがあった場合や、コメントに「いいね！」が押された場合などに、「すべて」の通知として届きます。画面上部の<Wovn>［通知一覧］</Wovn>アイコンに通知の数は表示されません。  
+「すべて」の通知には、「自分宛」の通知も含まれます。  
+<Img src="/k/kintone/img-ja/notifications_to_me_01.png" alt="スクリーンショット：［通知］画面の「すべて」の通知が表示されている" />
+
+主に次の通知が、「すべて」の通知として届きます。
+
+* <Wovn>［アプリの条件通知］</Wovn>で設定した操作（レコード追加、コメント書き込みなど）が行われたとき、通知先に指定されたユーザー宛の通知
+* 一度コメントを書き込んだレコードに、別のユーザーがコメントを書き込んだときの通知
+* スペース本文を編集したとき、スペース参加者に届く通知
+* レコードコメントに「いいね！」が押されたときの通知<Wovn></Wovn>
+* 定期レポートが記録されたときの通知
+* フォローしているスレッドに書き込みがあったときの通知
+
+「すべて」の通知を受信するユーザーについては、次のページを参照してください。  
+[通知が送信されるタイミングと宛先](/k/ja/id/040673.html)
+
+<Heading id="notifications_notifications_to_me_30">補足</Heading>
+
+<Heading level={3} id="notifications_notifications_to_me_3010">「アプリの条件通知」の通知先</Heading>
+
+「アプリの条件通知」を設定している場合、通知先によって、「自分宛」の通知か「すべて」の通知か異なります。  
+ユーザー／組織／グループを通知先に指定した場合は、**「すべて」の通知**として届きます。  
+<Img src="/k/kintone/img-ja/notifications_to_me_02.png" alt="スクリーンショット：［アプリの条件通知］画面で通知先にユーザーを指定している" />
+
+<Wovn>［フォームのフィールドを追加］</Wovn>からフィールドを選択して通知先に指定した場合は、**「自分宛」の通知**として届きます（「すべて」の通知にも表示されます）。  
+<Img src="/k/kintone/img-ja/notifications_to_me_03.png" alt="スクリーンショット：［アプリの条件通知］画面で通知先にユーザー選択フィールドを指定している" />
+
+<Heading level={3} id="notifications_notifications_to_me_3020">通知の絞り込み</Heading>
+
+「自分宛」の通知と「すべて」の通知のほかに、通知の絞り込みを作成し、特定の条件を満たした通知を表示できます。  
+絞り込みの作成方法は、次のページを参照してください。  
+[表示する通知を絞り込む](/k/ja/id/040672.html#anchor_filter_notification)
+
+<Heading level={3} id="notifications_notifications_to_me_3030">通知のグループ化</Heading>
+
+「自分宛」の通知は、条件によってまとめて表示される場合があります。  
+詳細は、次のページを参照してください。  
+[通知のグループ化](/k/ja/id/040672.html#notifications_notification_tutoria_20)

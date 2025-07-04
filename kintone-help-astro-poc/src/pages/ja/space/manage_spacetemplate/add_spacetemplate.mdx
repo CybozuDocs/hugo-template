@@ -1,0 +1,42 @@
+---
+title: "スペースをテンプレート化する"
+weight: 200
+aliases:
+  - "/ja/id/04075"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+作成済みのスペースをテンプレート化します。
+
+スペースをテンプレート化するには、<Kintone />のシステム管理権限が必要です。  
+また、スペース内アプリを含むスペースをテンプレート化する場合は、そのスペース内アプリの管理権限も必要です。
+
+<Heading id="manage_spacetemplate_add_spacetemplate_10">スペースをテンプレート化する場合の注意</Heading>
+
+* 一部の設定項目は、テンプレートに含まれません。詳細は、次のページを参照してください。  
+  [スペーステンプレートに含まれるデータと含まれないデータ](/k/ja/id/04078.html)
+* テンプレート化するスペース内のスレッドとスペース内アプリの数には、次の制限があります。  
+  * スレッドの最大数：10個
+  * スペース内アプリの最大数：20個
+* テンプレート化したスペースのスペース内アプリに<Wovn>［組織選択］</Wovn>フィールドがある場合、そのテンプレートはゲストスペースの作成には使用できません。
+
+<Heading id="manage_spacetemplate_add_spacetemplate_20">スペースをテンプレート化する手順</Heading>
+
+スペースをテンプレート化する手順は次のとおりです。
+
+1. テンプレート化するスペースのポータルで、画面右側の<Wovn>［オプション］</Wovn>アイコンをクリックし、<Wovn>［テンプレートを作成］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/add_spacetemplate_img01.png" alt="スクリーンショット：［テンプレートを作成］の操作リンクが枠線で強調されたスペースのポータル画面" />
+
+1. テンプレートの名前（最大30文字）と説明（最大200文字）を入力します。  
+  入力した内容は、スペースを作成する際の画面に表示されるため、テンプレートを選択する場合の参考になります。
+   <Img src="/k/kintone/img-ja/add_spacetemplate_img02.png" alt="スクリーンショット：［スペーステンプレートの作成］画面の入力項目とテンプレートを作成する際の画面の項目を対応させている" />
+
+1. <Wovn>［保存］</Wovn>をクリックします。  
+  作成したテンプレートは、ファイルに書き出せます。詳細は、次のページを参照してください。  
+  [スペーステンプレートをファイルに書き出す](/k/ja/id/04076.html)

@@ -1,0 +1,82 @@
+---
+title: "スレッドアクションでできること"
+weight: 400
+aliases:
+  - "/ja/id/040710"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+スレッドアクションとは、スレッドに書き込まれたコメントやURLを、指定したアプリのレコードに転記できる機能です。  
+スレッドの書き込みをピックアップして保存しておきたいときに便利です。  
+スレッドアクションを使用すると、スレッドのコメント内容やURLなどを、指定したアプリのレコードに転記できます。
+
+たとえば、以下のような利用ができます。
+
+* スレッドのコメントで依頼されたタスクをToDo管理アプリに登録する
+* スレッドのコメントで教えてもらった業務内容を自分のマニュアルアプリに登録する
+
+スレッドアクションは、スレッドなどの各コメント欄から作成できます。  
+詳細な手順は、次のページを参照してください。  
+[スレッドアクションを作成する](/k/ja/id/040704.html)
+
+<Heading id="thredaction_whats_threadaction_20">スレッドアクションの作成例</Heading>
+
+坂上さんの依頼を受けて、加藤さんがToDoアプリに登録するというアクションの例です。
+<Img src="/k/kintone/img-ja/whats_threadaction_img01.png" alt="スクリーンショット：ToDoアプリに登録するアクションメニューを枠線で強調している" />
+
+スレッドアクションを作成すると、アクションメニューに追加されます。  
+アクションメニューは、スレッドやピープル、メッセージのコメントで<Wovn>［アクション］</Wovn>をクリックすると表示されます。
+
+作成したアクションをクリックすると、指定したアプリのフィールドにコメント内容などが転記されたレコード追加画面が表示されます。  
+必要に応じて、他のフィールドにも入力して、<Wovn>［保存］</Wovn>をクリックすると、新しいレコードとして登録されます。
+<Img src="/k/kintone/img-ja/whats_threadaction_img02.png" alt="スクリーンショット：スレッドアクションからアプリのレコードに転記するイメージ" />
+
+スレッドアクションの設定で、コピー先のアプリとフィールドを指定します。  
+コピー先として指定できるフィールドは次のとおりです。
+
+<Heading id="thredaction_whats_threadaction_10">コピー先に指定できるフィールド</Heading>
+
+転記するデータの種類によって、コピー先に指定できるフィールドが異なります。
+
+<Heading level={3} id="thredaction_whats_threadaction_1010">&lt;Wovn&gt;［コメントの内容］&lt;/Wovn&gt;</Heading>
+
+次のフィールドを<Wovn>［コメントの内容］</Wovn>のコピー先に指定できます。
+
+* <Wovn>［文字列（複数行）］</Wovn>
+* <Wovn>［リッチエディター］</Wovn>
+
+<Heading level={3} id="thredaction_whats_threadaction_1020">&lt;Wovn&gt;［コメントの投稿日時］&lt;/Wovn&gt;</Heading>
+
+次のフィールドを<Wovn>［コメントの投稿日時］</Wovn>のコピー先に指定できます。
+
+* <Wovn>［日時］</Wovn>
+* <Wovn>［日付］</Wovn>
+
+<Heading level={3} id="thredaction_whats_threadaction_1030">&lt;Wovn&gt;［コメントの投稿者］&lt;/Wovn&gt;</Heading>
+
+ユーザー選択フィールドを、<Wovn>［コメントの投稿者］</Wovn>のコピー先に指定できます。
+
+<Heading level={3} id="thredaction_whats_threadaction_1040">&lt;Wovn&gt;［コメントのURL］&lt;/Wovn&gt;</Heading>
+
+<Wovn>［リンク］</Wovn>フィールドを、<Wovn>［コメントのURL］</Wovn>のコピー先に指定できます。ただし、<Wovn>［リンク］</Wovn>フィールドの設定で、入力値の種類を<Wovn>［Webサイトのアドレス］</Wovn>にしている場合に限ります。
+
+<Note>
+
+* テーブル内のフィールドをコピー先に指定することはできません。
+* ゲストユーザーはアクションを作成できません。
+* ゲストスペースでは、スレッドアクションを使用できません。
+
+</Note>
+
+<Reference>
+
+[スレッドアクションを作成する](/k/ja/id/040704.html)
+
+</Reference>

@@ -1,0 +1,56 @@
+---
+title: "メールのスレッド"
+weight: 300
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040949"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+
+
+メールのスレッドとは、1つのメールに対する返信や転送など、関連するメールのやりとりをまとめる機能です。関連するメールがツリー形式で表示され、経緯が追いやすくなります。
+
+<Img src="/k/kintone/img-ja/m_threads_01.png" alt="スクリーンショット：「スレッド」項目が枠線で強調されている" />
+
+<Hint>
+メールスレッド表示プラグインを利用すると、<Kintone />のアプリにメールのスレッドを表示できます。詳細は、次のページを参照してください。  
+[メールスレッド表示プラグイン](/k/ja/id/040904.html)
+
+</Hint>
+
+<Heading id="m_list_view_m_threads_10">スレッドを表示または非表示にする</Heading>
+
+メールのスレッドの表示、非表示を切り替えられます。
+
+<Heading level={3} id="m_list_view_m_threads_1010">手順</Heading>
+
+1. メールの件名をクリックします。
+
+1. 「メールの詳細」画面で、[スレッド]のチェックを入れるか、チェックを外します。
+
+<Heading id="m_list_view_m_threads_20">スレッドを修正する</Heading>
+
+メールがスレッドに表示されない場合や、異なるスレッドに表示されている場合は、手動でスレッドを修正できます。  
+最初に受信または送信したメールを「親メール」、親メールに対して返信または転送したメールを「子メール」と呼びます。
+
+<Heading level={3} id="m_list_view_m_threads_2010">手順</Heading>
+
+1. メールの件名をクリックします。
+
+1. 「メールの詳細」画面で、[その他の操作]をクリックし、[スレッドを修正する]をクリックします。
+
+1. 「スレッドの修正」画面で、親メールを選択します。  
+親メールを設定しない場合は、画面上部の[親メールを設定しない]をクリックします。
+
+1. 確認画面で、[はい]をクリックします。
+
+<Note>
+メール共有オプションのメールのスレッドは、メールヘッダーのIn-Reply-toの情報に基づいて自動的に作成されます。メールヘッダーのIn-Reply-toには、返信先のメールに関する情報が記載されています。メールヘッダーにIn-Reply-toが記載されていないメールを受信した場合、そのメールはスレッドに表示されません。
+
+</Note>

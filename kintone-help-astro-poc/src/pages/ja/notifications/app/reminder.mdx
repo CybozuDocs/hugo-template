@@ -1,0 +1,162 @@
+---
+title: "リマインダーの条件通知：日時を条件にしたリマインド通知を設定する"
+weight: 600
+aliases:
+  - "/ja/id/040564"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+リマインダーとは、<Wovn>［日付］</Wovn>フィールドや<Wovn>［日時］</Wovn>フィールドの値を基に日時の条件を指定して、通知を送信できる機能です。  
+「～日前」、「～日後」といった設定ができるので、事前に確認の通知を届けたり、一定期間経過したらお知らせしたりと、様々な用途に活用できます。
+
+<Heading id="notification_reminder_10">手順</Heading>
+
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［通知］</Wovn>にある<Wovn>［リマインダーの条件通知］</Wovn>をクリックします。
+
+1. <Wovn>［リマインダーの条件通知］</Wovn>画面で、<Wovn>［追加する］</Wovn>をクリックします。
+
+1. リマインドの条件を指定します。  
+  リマインドの条件は、10件まで指定できます。  
+  <Wovn>［通知のタイミング］</Wovn>に指定したタイミングで、<Wovn>［通知の条件］</Wovn>に指定した条件を満たしていれば、通知が送信されます。  
+  設定内容の詳細は、次の項目を参照してください。
+   * [通知のタイミング](#notification_reminder_3010)
+   * [通知の条件](#notification_reminder_3020)
+
+   <Img src="/k/kintone/img-ja/reminder_01.png" alt="スクリーンショット：リマインダーの条件を指定している" />
+
+1. 通知先を指定します。  
+  <Wovn>［ユーザーを追加］</Wovn>から通知先のユーザーなどを追加するか、または<Wovn>［フォームのフィールドを追加］</Wovn>で通知先に指定したいフィールドを選択します。  
+  <Wovn>［フォームのフィールドを追加］</Wovn>では、次のフィールドを選択できます。
+   * <Wovn>［作成者］</Wovn>
+   * <Wovn>［更新者］</Wovn>
+   * <Wovn>［ユーザー選択］</Wovn>フィールド<sup>*1</sup>
+   * <Wovn>［組織選択］</Wovn>フィールド<sup>*1</sup>
+   * <Wovn>［グループ選択］</Wovn>フィールド<sup>*1</sup>
+   * <Wovn>［作業者］</Wovn><sup>*2</sup>
+
+   <sup>\*1</sup> フィールドをフォームに配置している場合のみ、選択できます。  
+   <sup>\*2</sup> プロセス管理機能を有効にしている場合のみ、選択できます。
+   <Img src="/k/kintone/img-ja/reminder_03.png" alt="スクリーンショット：通知先" />
+
+1. 必要に応じて、<Wovn>［通知内容］</Wovn>に、通知の件名として表示する文を入力します。  
+   <Img src="/k/kintone/img-ja/reminder_04.png" alt="スクリーンショット：［通知内容］を入力している" />
+  入力した文が、<Wovn>［通知］</Wovn>に表示されます。  
+   <Img src="/k/kintone/img-ja/reminder_img3.png" alt="スクリーンショット：［通知］に［通知内容］に入力した内容が表示されている" />
+
+1. 必要に応じて、<Wovn>［リマインド時刻のタイムゾーン］</Wovn>を選択します。
+
+1. 画面右下の<Wovn>［保存］</Wovn>をクリックします。
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+<Heading level={3} id="notification_reminder_3010">通知のタイミング</Heading>
+
+フィールドに入力された日付または日時から、いつリマインド通知するのかを指定します。
+
+<Heading level={4} id="notification_reminder_301010">基準日</Heading>
+
+通知を送信する基準日を、フィールドで指定します。  
+次のフィールドを指定できます。
+
+* <Wovn>［日付］</Wovn>フィールド
+* <Wovn>［日時］</Wovn>フィールド
+* <Wovn>［作成日時］</Wovn>フィールド
+* <Wovn>［更新日時］</Wovn>フィールド
+
+<Heading level={4} id="notification_reminder_301020">基準日を起点にした通知の送信日</Heading>
+
+基準日のフィールドに指定された日付を起点として、何日前または何日後に通知を送信するかを指定します。  
+日数を入力し、<Wovn>［前］</Wovn>または<Wovn>［後］</Wovn>を選択します。
+
+<Heading level={4} id="notification_reminder_301030">時刻</Heading>
+
+リマインド通知を送信する時刻を指定します。  
+時刻の指定方法は、次のとおりです。
+
+* 相対時刻を指定  
+  基準日のフィールドに指定された時刻を起点として、何時間前または何時間後に通知を送信するかを指定します。  
+  時間を入力し、<Wovn>［前］</Wovn>または<Wovn>［後］</Wovn>を選択します。  
+  基準日に<Wovn>［日付］</Wovn>フィールドを指定した場合、相対時刻での指定はできません。
+* 絶対時刻を指定  
+  特定の時刻に通知を送信する場合に設定します。  
+  時刻は10分刻みで指定できます。
+
+<Heading level={3} id="notification_reminder_3020">通知の条件</Heading>
+
+ここで指定した条件を満たしたレコードに対し、通知が送信されます。  
+<Wovn>［テーブル］</Wovn>内のフィールドの値を使用した条件の場合、<Wovn>［テーブル］</Wovn>のいずれかの行が条件を満たすたびに通知が送信されます。
+
+リマインダーの条件通知の設定1つにつき、1回の通知タイミングで対象となるレコードは、レコード番号が大きい順に最大500件までです。  
+対象となるレコードが501件以上ある場合は、リマインダーの条件通知の設定を複数に分けてください。  
+<Wovn>［通知の条件］</Wovn>でレコードを絞り込み、各設定の対象となるレコードが500件以下になるようにします。
+
+<Heading level={4} id="notification_reminder_302010">通知の条件に指定できないフィールド</Heading>
+
+<Wovn>［関連レコード一覧］</Wovn>フィールドの値を使用した条件は、指定できません。  
+
+<Heading id="notification_reminder_40">設定例</Heading>
+
+<Heading level={3} id="notification_reminder_4010">当日に通知を送信する例</Heading>
+
+「締切日」フィールドを使って、当日の9時に、ステータスが「未処理」のレコードから通知を送信する場合、次のように設定します。
+
+* <Wovn>［通知のタイミング］</Wovn>：  
+  「締切日」「0日」「前」「9:00」  
+* <Wovn>［通知の条件］</Wovn>：  
+  <Wovn>［ステータス］</Wovn><Wovn>［次のいずれかを含む］</Wovn><Wovn>［未処理］</Wovn>
+
+<Img src="/k/kintone/img-ja/reminder_02.png" alt="スクリーンショット：通知のタイミングと通知の条件を指定している" />
+
+<Heading id="notification_reminder_20">注意事項</Heading>
+
+* アプリやレコードに閲覧権限を持たないユーザーには、通知は送信されません。
+* 通知は、指定した時間から数分ずれる場合があります。
+* 定期メンテナンスで<Kintone />の停止中にリマインド条件を満たした通知があった場合、メンテナンス終了後にまとめて通知が送信されます。
+
+<Heading level={3} id="notification_reminder_2010">サマータイムがあるタイムゾーンを設定する場合</Heading>
+
+<Wovn>［日時］</Wovn>フィールドの値とリマインドの通知時刻が、サマータイムの開始時刻や終了時刻をまたぐ場合、通知される時刻が1時間ずれます。
+<table width="100%">
+<caption>2012年のサマータイムの開始時刻（3月11日 午前2時）と終了時刻（11月4日 午前2時）をまたぐ場合の例</caption>
+    <thead>
+      <tr>
+      <th>リマインダーのタイムゾーンの設定</th>
+      <th><Wovn>［日時］</Wovn>フィールドの値</th>
+      <th>リマインド通知の設定</th>
+      <th>通知の送信時刻</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>太平洋標準時（米国およびカナダ）</td>
+        <td>3月13日 午後6時</td>
+        <td>3日前に通知</td>
+        <td>3月10日 午後5時</td>
+      </tr>
+      <tr>
+        <td>太平洋標準時（米国およびカナダ）</td>
+        <td>11月5日 午後6時</td>
+        <td>3日前に通知</td>
+        <td>11月2日 午後7時</td>
+      </tr>
+    </tbody>
+</table>
+
+<Reference>
+
+* [TIPS：[フォームのフィールドを追加]から選択できる通知先](/k/ja/id/040560.html)
+* [通知が送信されるタイミングと宛先](/k/ja/id/040673.html)
+
+</Reference>

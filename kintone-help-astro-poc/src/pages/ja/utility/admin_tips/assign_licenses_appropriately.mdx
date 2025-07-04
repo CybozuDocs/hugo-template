@@ -1,0 +1,95 @@
+---
+title: "{{< kintone >}}の利用状況に応じて、ライセンスを付与するユーザーを見直したい"
+weght: 400
+aliases:
+  - "/ja/id/040786"
+description: "各ユーザーの{{< kintone >}}の利用状況を把握し、ライセンスの要不要を判断する手順例を紹介します。"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Service from "@/components/Service.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+
+
+このページでは、各ユーザーの<Kintone />の利用状況を把握し、ライセンスの付与を見直す手順例を紹介します。たとえば、次の場合などにこの方法を活用できます。
+
+* <Kintone />のライセンスの棚卸し（ライセンスを付与するユーザーの定期的な見直し）をしたい
+* 新たなユーザーに<Kintone />のライセンスを付与することになったので、未活用のライセンスがないか確認したい
+
+各ユーザーの<Kintone />の利用状況を把握するには、「ユーザーのアクセス状況」画面を利用します。「ユーザーのアクセス状況」画面では、<Kintone />を利用しているユーザーごとに、<Kintone />への最終アクセス日や、直近のアクセス日数を確認できます。  
+[ユーザーのアクセス状況の確認](/k/ja/id/040782.html)
+
+<Heading id="admin_tips_assign_licenses_appropriately_10">「ユーザーのアクセス状況」画面を利用する際の注意事項</Heading>
+
+「ユーザーのアクセス状況」画面を利用するには、いくつか注意点があります。
+
+* 「ユーザーのアクセス状況」画面を利用できるのは、<Slash />共通管理者のみです。
+* 「ユーザーのアクセス状況」画面には、2022年6月12日の<Kintone />のアップデート以降のアクセス状況が反映されます。2022年6月11日以前のアクセス状況は確認できません。
+* 次のユーザーのアクセス状況は表示されません。
+  * ゲストユーザー
+  * <Kintone />の利用は許可されているが、使用状態が「停止中」のユーザー  
+    参考：[ユーザーを使用停止にする](/general/ja/id/020252.html)
+
+<Enabled regions={["JP", "CN"]}>
+
+* 次のような場合は、ユーザーのアクセス状況は更新されません。
+  * <Kintone />にはアクセスせず、<Service />のそのほかのサービス（Garoonや<SlashUi />など）のみにアクセスした場合
+  * <Kintone />へのアクセスに失敗してエラーが表示され、正常にアクセスできなかった場合
+  * APIを実行したが、<Kintone />の画面にはアクセスしていない場合
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+* 次のような場合は、ユーザーのアクセス状況は更新されません。
+  * <Kintone />にはアクセスせず、<SlashUi />のみにアクセスした場合
+  * <Kintone />へのアクセスに失敗してエラーが表示され、正常にアクセスできなかった場合
+  * APIを実行したが、<Kintone />の画面にはアクセスしていない場合
+
+</Enabled>
+
+<Heading id="admin_tips_assign_licenses_appropriately_20">手順例</Heading>
+
+各ユーザーの<Kintone />の利用頻度を把握し、ライセンスの付与を見直す手順例は、以下のとおりです。
+
+1. <Kintone />の画面上部の歯車の形をした[設定]アイコンをクリックし、[<Kintone />システム管理]をクリックします。  
+   <Img src="/k/kintone/img-ja/manage_apps_img03.png" alt="スクリーンショット：ポータルの設定メニュー" />
+「<Kintone />システム管理」画面が表示されます。
+
+1. [ユーザーのアクセス状況]をクリックします。  
+   <Img src="/k/kintone/img-ja/user_monitoring_img03.png" alt="スクリーンショット：{{&lt; kintone &gt;}}システム管理画面" />
+<Note>
+
+[ユーザーのアクセス状況]は、<Slash />共通管理権限がある場合のみ表示されます。
+</Note>
+「ユーザーのアクセス状況」画面が表示されます。
+
+1. 「ユーザーのアクセス状況」画面で、「最終アクセス日」や「過去30日間のアクセス日数」の列名をクリックし、日付やアクセス日数の昇順で一覧を並び替えます。  
+   <Img src="/k/kintone/img-ja/user_monitoring_img05.png" alt="スクリーンショット：アクセス状況一覧のソート例" />
+<Note>
+
+[「アクセス状況の一覧」の見かた](/k/ja/id/040782.html#admin_user_monitoring_30)
+</Note>
+
+1. さらに詳細な条件を絞り込みたい場合は、「CSV形式でダウンロードする」をクリックして一覧をダウンロードし、Excelでユーザーを絞り込みます。  
+例：  
+   * 「最終アクセス日」が「\*\*\*月以前」のユーザーを絞り込む
+   * 特定の部署に所属しており、かつ「過去30日間のアクセス日数」が「\*\*\*以下」であるユーザーを絞り込む  
+   <Img src="/k/kintone/img-ja/user_monitoring_img02.png" alt="スクリーンショット：ユーザーのアクセス状況画面のCSVダウンロードボタン" />
+<Note>
+
+[「アクセス状況の一覧」をCSV形式でダウンロードする](/k/ja/id/040782.html#admin_user_monitoring_40)
+</Note>
+
+1. <Kintone />へのアクセスが少ないユーザーがいる場合は、関係者にヒアリングを行ったり、必要に応じてライセンスの付与の見直しなどを行います。
+
+1. <Kintone />の利用ユーザーを変更したい場合は、<SlashUi />の「サービスの利用ユーザー」から設定を行います。
+<Note>
+[サービスの利用者を変更する（サービス単位）](/general/ja/id/020250.html)
+</Note>

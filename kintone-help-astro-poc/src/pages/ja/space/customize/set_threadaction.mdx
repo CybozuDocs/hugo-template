@@ -1,0 +1,90 @@
+---
+title: "スレッドアクションを作成する"
+weight: 500
+aliases:
+  - "/ja/id/040704"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+スレッドアクションを作成すると、スレッドのコメント内容などを指定したアプリに転記するためのアクションメニューを追加できます。
+
+作成したアクションは、スレッドやピープル、メッセージのコメントで<Wovn>［アクション］</Wovn>をクリックすると表示されるアクションメニューから利用できます。
+<Img src="/k/kintone/img-ja/set_threadaction_00.png" alt="スクリーンショット：［アクション］とアクションメニューを枠線で強調している" />
+
+スレッドアクションで転記できるデータは、コメントの内容、投稿日時、投稿者、URLです。  
+転記するデータによって、コピー先に指定できるフィールドが異なります。  
+スレッドアクションを作成する前に、コピー先のアプリに該当フィールドが配置されているかをご確認ください。  
+[コピー先に指定できるフィールド](/k/ja/id/040710.html#thredaction_whats_threadaction_10)
+
+<Heading id="space_set_threadaction_10">手順</Heading>
+
+ここでは例として、コメントの内容、投稿者、URLを、To Doアプリに登録するアクションを作成する手順を説明します。
+
+1. 任意のスレッドのコメントにカーソルを合わせ、<Wovn>［アクション］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/set_threadaction_01.png" alt="スクリーンショット：［アクション］を枠線で強調している" />
+
+1. <Wovn>［アクションを作成する］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/set_threadaction_02.png" alt="スクリーンショット：［アクションを作成する］を枠線で強調している" />
+  アクションを設定していきます。
+
+1. <Wovn>［アクション名］</Wovn>で、アクションメニューに表示されるアクションの名前を入力します。  
+  ここでは、「ToDoに登録」という名前にします。
+   <Img src="/k/kintone/img-ja/set_threadaction_03.png" alt="スクリーンショット：［アクション名］を入力している" />
+
+1. <Wovn>［コピー先：］</Wovn>で、データのコピー先のアプリを選択します。  
+  ここでは、To Doアプリを選択します。
+   <Img src="/k/kintone/img-ja/set_threadaction_04.png" alt="スクリーンショット：［コピー先：］を指定している" />
+
+1. <Wovn>［フィールドの関連付け：］</Wovn>で、転記するデータの種類とコピー先のフィールドを指定します。  
+   <Img src="/k/kintone/img-ja/set_threadaction_05.png" alt="スクリーンショット：［フィールドの関連付け：］指定している" />
+  すでに設定されている関連付けを、<Wovn>［すべてクリア］</Wovn>をクリックして一括削除することもできます。
+
+   <Note>
+
+   転記するデータの種類によって、コピー先に指定できるフィールドが異なります。  
+   詳細は、次のページを参照してください。  
+   [コピー先に指定できるフィールド](/k/ja/id/040710.html#thredaction_whats_threadaction_10)
+
+   </Note>
+
+1. <Wovn>［アクションの利用者：］</Wovn>で、アクションメニューを表示するユーザーを指定できます。  
+  必要に応じて、アクションを利用するユーザー、組織、またはグループを追加します。  
+   <Img src="/k/kintone/img-ja/set_threadaction_06.png" alt="スクリーンショット：［アクションの利用者：］を指定している" />
+  組織やグループを追加すると、その組織やグループのメンバー全員がアクションを利用できます。  
+  すべてのユーザーがアクションを利用する場合は、<Wovn>［Everyone］</Wovn>を追加します。
+
+   <Warning>
+
+   <Wovn>［アクションの利用者：］</Wovn>には、コピー先のアプリに対して次の権限が必要です。
+
+   * レコードの追加権限
+   * コピー先のフィールドの編集権限
+
+   </Warning>
+
+1. <Wovn>［保存］</Wovn>をクリックします。
+
+<Note>
+
+* 作成したアクションが複数ある場合は、アクションメニューには作成日時の昇順で表示されます。
+* コピー先に指定したアプリが削除されると、アクションの設定ごと削除されます。
+* 自分が作成したアクションは、設定変更や削除が可能です。  
+  また、<Kintone />システム管理者は、スレッドアクションの管理画面から、作成済みのすべてのアクションを確認、設定変更、削除ができます。<Wovn></Wovn>  
+  [スレッドアクションの管理画面を開く](/k/ja/id/04081.html)
+
+</Note>
+
+<Reference>
+
+[アクセス権の設定](/k/ja/id/040588.html)
+
+</Reference>

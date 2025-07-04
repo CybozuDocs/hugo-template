@@ -1,0 +1,30 @@
+---
+title: "日付や日時フィールドの N 年後などを計算したい"
+weight: 1900
+aliases:
+  - "/ja/id/040748"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+
+
+時間を秒単位にした計算式を設定して、計算する方法があります。  
+<Kintone />では、日付、時刻、日時のフィールドの値はUNIX時刻として扱われます。このため、日付や日時は秒単位で扱い、計算式も秒単位で指定します。たとえば1分間は「60」と入力します。1時間は「3600」または「60\*60」、1日は「86400」または「60\*60\*24」と入力します。
+
+<Heading id="calculation_n_years_later_10">日時フィールドの例</Heading>
+
+日時フィールドと計算フィールドを配置し、計算フィールドに以下の計算式を設定します。
+
+* N <b>年</b>後の計算式：日時+(N\*<b>60\*60\*24\*365</b>)
+* N <b>日</b>後の計算式：日時+(N\*<b>60\*60\*24</b>)
+* N <b>時間</b>後の計算式：日時+(N\*<b>60\*60</b>)
+* N <b>分</b>後の計算式：日時+(N\*<b>60</b>)
+
+<Reference>
+
+[日付、時刻、日時の計算](/k/ja/id/040502.html)
+
+</Reference>

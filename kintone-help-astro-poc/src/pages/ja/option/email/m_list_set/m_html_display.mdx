@@ -1,0 +1,44 @@
+---
+title: "HTMLメールの表示方法を変更する"
+weight: 100
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040992"
+labels: "[3]"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Warning from "@/components/Warning.astro";
+
+
+HTMLメールの書式や埋め込み画像を表示するかどうかを設定します。
+
+<Warning>
+HTMLメールの表示を無効にすると、HTML形式で装飾されたレイアウトが崩れたり、画像が表示されなかったりすることがあります。
+
+</Warning>
+
+<Heading id="m_list_set_m_html_display_10">手順</Heading>
+
+1. メール共有オプションの画面上部にある歯車の形をしたアイコンをクリックします。
+
+1. [メール共有 システム管理]をクリックします。  
+    <Img src="/k/kintone/img-ja/m_server_01.png" alt="スクリーンショット：[メール共有 システム管理]を枠線で強調している" />
+
+1. 「基本設定」の[HTMLメールの表示設定]をクリックします。
+
+1. HTMLメールの表示方法を選択します。
+
+    * HTMLメールの表示を有効にする場合：[文字装飾や図を一緒に表示する]を選択します。
+    * HTMLメールの表示を無効にする場合：[テキストのみ表示する]を選択します。
+
+1. [設定する]をクリックします。
+
+<Note>
+テキストで表示されたHTMLメールをHTML形式で閲覧する場合は、HTMLファイルをダウンロードします。詳細は次のページを参照してください。  
+[HTMLファイルをダウンロードする](/k/ja/id/040954.html)
+
+</Note>

@@ -1,0 +1,100 @@
+---
+title: "ポータルを使いやすくするためのアイデア集"
+weight: 400
+aliases:
+  - "/ja/id/040802"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+
+
+ポータル（<Kintone />のトップページ）を工夫して、<Kintone />をより使いやすくできます。  
+ユーザーがよく利用する情報にたどり着きやすくする、ユーザーに特に見てほしい情報に絞った画面にするなど、様々な工夫が可能です。  
+ここでは、具体的なアイデアを3つ紹介します。
+
+<Img src="/k/kintone/img-ja/portal_tips_img01.png" alt="スクリーンショット：ポータルとお知らせ掲示板の画像" />
+
+(1) よく使うアプリへのリンクを配置する  
+(2) 特定のアプリのグラフや一覧を表示する  
+(3) 必要なコンテンツのみ表示する（例：「アプリ」と「お知らせ掲示板」のみ）
+
+それぞれの手順について、以下に説明します。  
+なお、この操作を実行できるのは、<Kintone />システム管理者または<Slash />共通管理者のみです。
+
+<Note>
+
+お知らせ掲示板の詳細については、「[お知らせ掲示板の編集](/k/ja/id/04070.html)」を参照してください。
+
+</Note>
+
+<Heading id="portal_portal_tips_10">よく使うアプリへのリンクを配置する</Heading>
+
+お知らせ掲示板に、よく使うアプリへのリンクを配置します。目的のアプリに簡単にたどり着けるようになり、便利です。  
+ここでは画像を使用した、見やすく使いやすいリンク集を作成する方法を紹介します。
+<Img src="/k/kintone/img-ja/portal_tips_img02.png" alt="スクリーンショット：お知らせ掲示板のリンク集の画像" />
+
+<Heading level={3} id="portal_portal_tips_1010">手順</Heading>
+
+<Enabled regions={["JP"]}>
+<iframe width="700" height="393.75" src="https://www.youtube.com/embed/AkLRUIbWtKo" frameborder="0" allowfullscreen></iframe>
+
+</Enabled>
+
+1. お知らせ掲示板の右上の「お知らせ掲示板を編集する」アイコンをクリックします。
+
+1. お知らせ入力欄上部の「ファイルを添付する」アイコンをクリックして、画像を添付します。
+
+1. 添付した画像をドラッグで範囲選択して、ハイライト表示します。
+
+1. お知らせ入力欄上部の「リンク」アイコンをクリックして、リンク先を指定します。
+
+1. [保存]をクリックします。
+
+<Heading id="portal_portal_tips_20">特定のアプリのグラフや一覧を表示する</Heading>
+
+お知らせ掲示板に、アプリやグラフの一覧を表示します。  
+ユーザーに共有したいグラフや、ユーザーがよく利用する一覧を表示することで、ユーザーが<Kintone />を開いたときに、常にグラフや一覧を閲覧できるようになります。
+<Img src="/k/kintone/img-ja/portal_tips_img03.png" alt="スクリーンショット：お知らせ掲示板でグラフを表示" />
+
+<Note>
+
+先にアプリにグラフまたは一覧を設定しておく必要があります。  
+グラフや一覧の設定方法については、次のページを参照してください。  
+[アプリの設定画面からグラフを追加する](/k/ja/id/040586.html)  
+[一覧を設定する](/k/ja/id/040612.html)
+
+</Note>
+
+<Heading level={3} id="portal_portal_tips_2010">手順</Heading>
+
+<Enabled regions={["JP"]}>
+<iframe width="700" height="393.75" src="https://www.youtube.com/embed/As_tS3SrfdE" frameborder="0" allowfullscreen></iframe>
+
+</Enabled>
+
+1. お知らせ掲示板の右上の「お知らせ掲示板を編集する」アイコンをクリックします。
+
+1. [アプリ貼り付け]をクリックして、グラフまたは一覧を表示するアプリを選択します。
+
+1. [保存]をクリックします。
+
+<Heading id="portal_portal_tips_30">必要なコンテンツのみ表示する</Heading>
+
+ポータルに表示するコンテンツを選択できます。  
+たとえば、「特にアプリをしっかり使ってほしい」「お知らせ掲示板を目に入りやすくしたい」という場合は、アプリとお知らせ掲示板以外のコンテンツを非表示にすることによって、情報を絞ったシンプルな画面にできます。
+<Img src="/k/kintone/img-ja/portal_tips_img04.png" alt="スクリーンショット：ポータルにお知らせ掲示板とアプリ欄のみ表示" />
+
+<Heading level={3} id="portal_portal_tips_3010">手順</Heading>
+
+1. ポータル画面右上の「オプション」アイコンをクリックし、[ポータルの設定]を選択します。
+
+1. [ポータルに表示するコンテンツ]の中から、非表示にしたいコンテンツのチェックを外します。
+   <Img src="/k/kintone/img-ja/portal_tips_img05.png" alt="スクリーンショット：ポータルの設定" />
+
+1. [保存]をクリックします。

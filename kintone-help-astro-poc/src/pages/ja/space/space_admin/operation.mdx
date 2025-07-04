@@ -1,0 +1,182 @@
+---
+title: "ユーザーがスペースでできる操作"
+weight: 100
+aliases:
+  - "/ja/id/040705"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+スペースの管理者や参加者、その他の一般ユーザーは、作成されたスペースで次の操作ができます。  
+なお、ゲストユーザーの操作は、次のページを参照してください。  
+[ユーザーがゲストスペースでできる操作](/k/ja/id/040650.html)
+
+<table>
+ <thead>
+   <tr>
+    <th>操作</th>
+      <th nowrap>スペース管理者</th>
+      <th nowrap>スペース参加者</th>
+      <th>スペースに参加していないユーザー<br />（非公開スペースでは、いずれの操作も不可）</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>基本設定の変更（スペース名の変更を含む）</th>
+            <td style="text-align: center;">&#10004;</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>スペースへの参加</th>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">基本設定で禁止されていなければ可能<Wovn></Wovn></td>
+        </tr>
+        <tr>
+            <th>お気に入りに追加／解除<sup>*1</sup></th>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+        </tr>
+        <tr>
+            <th>参加メンバーの変更</th>
+            <td style="text-align: center;">&#10004;</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>スペース本文の編集</th>
+            <td style="text-align: center;">&#10004;</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>スペース内検索</th>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+        </tr>
+        <tr>
+            <th>スペーステンプレートの作成</th>
+            <td style="text-align: center;" colspan="3" rowspan="1" >
+              <Kintone />システム管理者<sup>*2</sup>、または<Slash />共通管理者のみ可能
+            </td>
+        </tr>
+        <tr>
+         <th>スペースの退会</th>
+         <td  style="text-align: center;" colspan="2" rowspan="1" >基本設定で禁止されていなければ可能<Wovn></Wovn></td>
+         <td></td>
+        </tr>
+        <tr>
+            <th>スペースの削除</th>
+            <td style="text-align: center;">&#10004;</td>
+            <td></td>
+            <td></td>
+        </tr>
+         <tr>
+            <th>スレッドの追加<sup>*3</sup></th>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+        </tr>
+        <tr>
+            <th>スレッドの削除<sup>*3</sup></th>
+            <td style="text-align: center;">&#10004;</td>
+            <td colspan="2" rowspan="1" style="text-align: center;">自分が作成したスレッドのみ可能</td>
+        </tr>
+        <tr>
+            <th>スレッドのフォロー／フォロー解除</th>
+            <td style="text-align: center;" colspan="3" rowspan="1">基本設定で禁止されていなければ可能<Wovn></Wovn></td>
+        </tr>
+        <tr>
+            <th>スレッド本文の編集</th>
+            <td style="text-align: center;">&#10004;</td>
+            <td colspan="2" rowspan="1" style="text-align: center;">自分が作成したスレッドのみ可能</td>
+        </tr>
+        <tr>
+            <th>スレッドコメントの投稿</th>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+        </tr>
+        <tr>
+            <th>スレッドアクションの作成</th>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+        </tr>
+        <tr>
+            <th>スレッドアクションの利用</th>
+            <td colspan="3" rowspan="1" style="text-align: center;">スレッドアクションの利用者として設定されている場合のみ可能<Wovn></Wovn></td>
+        </tr>
+        <tr>
+            <th>スペース内アプリの作成<sup>*4</sup></th>
+            <td style="text-align: center;">&#10004;</td>
+            <td colspan="2" rowspan="1" style="text-align: center;">基本設定で禁止されていなければ可能<Wovn></Wovn></td>
+        </tr>
+        <tr>
+            <th>スペース内アプリの設定の操作</th>
+            <td style="text-align: center;" colspan="3" rowspan="1">アプリのアクセス権の設定に応じた操作が可能<Wovn></Wovn></td>
+        </tr>
+        <tr>
+            <th>スペース内アプリの削除</th>
+            <td style="text-align: center;" colspan="3" rowspan="1">アプリのアクセス権の設定に応じた操作が可能<Wovn></Wovn></td>
+        </tr>
+        <tr>
+            <th><a href="/k/ja/id/040492.html">スペース内アプリの所属するスペースの変更</a><sup>*5</sup></th>
+            <td style="text-align: center;">&#10004;</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>スペース内アプリの使用（検索含む）</th>
+            <td style="text-align: center;" colspan="3" rowspan="1">アプリのアクセス権の設定に応じた操作が可能<Wovn></Wovn></td>
+        </tr>
+        <tr>
+            <th>関連リンクの追加／削除</th>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+        </tr>
+</tbody>
+</table>
+
+<sup>\*1</sup>：操作したユーザーの<Wovn>［お気に入りのスペース］</Wovn>の一覧に追加されます。ほかのユーザーにこの操作が通知されることや、お気に入りの一覧が公開されることはありません。
+
+<sup>\*2</sup>：スペース内アプリを含むスペースの場合は、スペース内アプリの管理権限が必要です。
+
+<sup>\*3</sup>：<Wovn>［基本設定］</Wovn>で<Wovn>［スペースのポータルと複数のスレッドを使用する］</Wovn>にチェックが入っている場合のみ操作できます。
+
+<sup>\*4</sup>：スペースの管理者であっても、以下の場合はアプリを作成できません。また、<Wovn>［基本設定］</Wovn>の<Wovn>［アプリ作成できるユーザーをスペースの管理者に限定する］</Wovn>にチェックが入っていない場合も、以下の場合はアプリを作成できません。
+
+* <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>で、<Wovn>［アプリの作成］</Wovn>が許可されていない。
+* <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アプリグループ］</Wovn>で、<Wovn>［Public］</Wovn>の<Wovn>［アプリの作成］</Wovn>および<Wovn>［アプリの管理／使用／削除］</Wovn>が許可されていない。
+
+<sup>\*5</sup>：スペースの管理者であっても、以下の場合はスペース内アプリの所属するスペースを変更できません。
+
+* 該当アプリの管理権限がない。
+* <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>で、<Wovn>［アプリの作成］</Wovn>が許可されていない。
+* <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アプリグループ］</Wovn>で、<Wovn>［Public］</Wovn>の<Wovn>［アプリの作成］</Wovn>および<Wovn>［アプリの管理／使用／削除］</Wovn>が許可されていない。
+
+<Note>
+
+スペースやアプリの作成権限は<Wovn>［<Kintone />システム管理］</Wovn>で設定します。設定方法については、次のページを参照してください。  
+[<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+
+</Note>
+
+<Reference>
+
+* [スペースの設定を変更する](/k/ja/id/040696.html)
+* [スレッドアクションを作成する](/k/ja/id/040704.html)
+* [アプリにアクセス権を設定する](/k/ja/id/040589.html)
+* [アプリグループにアクセス権を設定する](/k/ja/id/04025.html)
+
+</Reference>

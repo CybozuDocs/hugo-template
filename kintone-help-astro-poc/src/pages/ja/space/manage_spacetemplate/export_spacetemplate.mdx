@@ -1,0 +1,46 @@
+---
+title: "スペーステンプレートをファイルに書き出す"
+weight: 400
+aliases:
+  - "/ja/id/04076"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+スペーステンプレートに含まれるデータをそのままファイルに書き出せます。  
+書き出したファイルは、他のドメインの<Kintone />で読み込めます。
+
+スペースが次の条件を満たす場合のみ、ファイルに書き出せます。
+
+* スペースまたはスレッドの本文に添付したファイルが、1つのファイルにつき20MB以下。  
+  スペースおよびスレッドの本文以外の添付ファイルは、テンプレートに含まれません。
+* 書き出したスペーステンプレートファイルが100MB以内になる。
+
+<Note>
+1つのファイルに含められるスペーステンプレートは1個までです。
+
+</Note>
+
+1. <Wovn>［<Kintone />システム管理］</Wovn>画面を開きます。  
+  [<Kintone />システム管理画面を開く](/k/ja/id/04046.html)
+
+1. <Wovn>［スペーステンプレート］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/export_spacetemplate_01.png" alt="スクリーンショット：［スペーステンプレート］の操作リンクが枠線で強調されている［{{&lt; kintone &gt;}}システム管理］のメニューの一覧" />
+
+1. 書き出したいテンプレートの右側にある<Wovn>［このテンプレートを書き出す］</Wovn>アイコンをクリックします。
+   <Img src="/k/kintone/img-ja/export_spacetemplate_02.png" alt="スクリーンショット：テンプレートを書き出すアイコンが枠線で強調されているスペーステンプレートの一覧" />
+
+1. ファイル名を入力して、<Wovn>［書き出す］</Wovn>をクリックします。  
+   スペーステンプレートがダウンロードされます。
+   <Img src="/k/kintone/img-ja/export_spacetemplate_03.png" alt="スクリーンショット：ファイル名の入力欄と書き出すボタンが枠線で強調されている［テンプレートの書き出し］画面" />
+
+<Reference>
+[ファイルからスペーステンプレートを読み込む](/k/ja/id/04077.html)
+
+</Reference>

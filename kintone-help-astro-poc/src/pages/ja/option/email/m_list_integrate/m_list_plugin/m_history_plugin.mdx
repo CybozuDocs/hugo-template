@@ -1,0 +1,65 @@
+---
+title: "メール履歴表示プラグイン"
+weight: 100
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040903"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Listsummary from "@/components/Listsummary.astro";
+
+
+メール履歴表示プラグインは、顧客のメールアドレスをキーとして、メール共有オプションでやりとりした顧客とのメール履歴を<Kintone />のレコードに表示するプラグインです。過去のやりとりがレコードに集約され、目的のメールに素早くアクセスできます。
+
+<Img src="/k/kintone/img-ja/m_history_plugin_01.png" alt="スクリーンショット：レコードにメール履歴が表示されている" />
+
+次の手順で、<Kintone />のアプリにメール履歴表示プラグインを設定します。各ステップの詳細は後述しています。
+
+<Listsummary>
+
+1. [プラグインをインストールする](#m_list_plugin_m_history_plugin_10)
+1. [アプリにプラグインを追加する](#m_list_plugin_m_history_plugin_20)
+1. [プラグインの設定を変更する](#m_list_plugin_m_history_plugin_30)
+
+</Listsummary>
+
+<Heading id="m_list_plugin_m_history_plugin_10">プラグインをインストールする</Heading>
+
+<Kintone />システム管理者がメール履歴表示プラグインを<Kintone />にインストールします。詳細は、次のページを参照してください。  
+[プラグインストアからプラグインを追加する](/k/ja/id/0408.html#add_plugin_plugin_20)
+
+<Heading id="m_list_plugin_m_history_plugin_20">アプリにプラグインを追加する</Heading>
+
+アプリ管理者がメール履歴表示プラグインをアプリに追加します。詳細は、次のページを参照してください。  
+[アプリにプラグインを追加する](/k/ja/id/040566.html#app_settings_plugin_10)
+
+<Heading id="m_list_plugin_m_history_plugin_30">プラグインの設定を変更する</Heading>
+
+メール履歴表示プラグインの設定を変更します。
+
+<Heading level={3} id="m_list_plugin_m_history_plugin_3010">手順</Heading>
+
+1. アプリの画面右上にある歯車の形をした[アプリを設定]アイコンをクリックします。  
+    <Img src="/k/kintone/img-ja/m_history_plugin_02.png" alt="スクリーンショット：[アプリを設定]アイコンを枠線で強調している" />
+
+1. 「アプリの設定」画面で[設定]タブを選択し、「カスタマイズ／サービス連携」の[プラグイン]をクリックします。
+
+1. 「メール履歴表示」の右側にある歯車の形をした[プラグインの設定]アイコンをクリックします。  
+    <Img src="/k/kintone/img-ja/m_history_plugin_03.png" alt="スクリーンショット：[プラグインの設定]アイコンを枠線で強調している" />
+
+1. 「メール履歴を表示するフィールド」をドロップダウンリストから選択します。  
+スペースフィールドの要素IDが選択肢として表示されます。何も表示されない場合は、スペースフィールドをフォームに配置し、要素IDを設定してください。
+    <Img src="/k/kintone/img-ja/m_history_plugin_04.png" alt="スクリーンショット：メール履歴を表示するフィールドが選択されている" />
+
+1. 「メールアドレスを指定するフィールド」をドロップダウンリストから選択します。  
+    <Img src="/k/kintone/img-ja/m_history_plugin_05.png" alt="スクリーンショット：メールアドレスを指定するフィールドが選択されている" />
+
+1. [保存]をクリックします。
+
+1. 「アプリの設定」画面に戻り、画面右上の[アプリを更新]をクリックします。
+
+1. 「アプリの設定」ダイアログで、[アプリを更新]をクリックします。

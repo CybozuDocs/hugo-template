@@ -1,0 +1,36 @@
+---
+title: "［REST APIの通知をメールで送信］とは"
+weight: 200
+aliases:
+  - "/ja/id/04052"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Wovn>［REST APIの通知をメールで送信］</Wovn>とは、REST APIを使って<Kintone />を操作した場合に、メールで通知するかどうかを設定できる項目です。  
+
+<Wovn>［利用する機能の選択］</Wovn>画面の<Wovn>［通知のメール送信］</Wovn>機能で設定します。  
+[利用する機能の選択](/k/ja/id/04031.html)  
+[通知のメール送信機能の利用設定](/k/ja/id/0403.html)  
+
+REST APIの通知とは、たとえば次の操作の通知です。
+
+例：
+
+* REST APIでレコードを追加したときにアプリの条件通知で送信される通知
+* REST APIで作業者を更新したときに送信される通知
+* REST APIでレコードを更新したときにレコードの条件通知で送信される通知
+
+なお、リマインダーの条件通知は、APIを実行したタイミングでは通知されないため、この設定にかかわらずメールで通知されます。たとえば、REST APIを利用してレコードを登録した場合、<Wovn>［REST APIの通知をメールで送信］</Wovn>の設定を無効にしていても、リマインダーの通知条件を満たすとメールで通知されます。
+
+REST APIで<Kintone />の操作を自動化していると、<Wovn>［REST APIの通知をメールで送信］</Wovn>を有効にした場合、大量のメール通知が送信されることがあります。大量のメール通知を避けたい場合は、<Wovn>［REST APIの通知をメールで送信］</Wovn>を無効にして、<Kintone />の画面内で通知を確認してください。  
+[通知を確認する](/k/ja/id/040672.html)
+
+<Note>
+REST APIは、プラグインやJavaScript/CSSカスタマイズで使われている場合もあります。<Wovn>［REST APIの通知をメールで送信］</Wovn>を無効にすると、プラグインやJavaScript/CSSカスタマイズで送信されるメール通知が来なくなることがあります。
+
+</Note>

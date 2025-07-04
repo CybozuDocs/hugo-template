@@ -1,0 +1,121 @@
+---
+title: "ポータルの設定／変更"
+weight: 100
+aliases:
+  - "/ja/id/04069"
+description: "ポータル（{{< kintone >}}のトップページ）の設定変更、およびカスタマイズについて説明しています。"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import Warning from "@/components/Warning.astro";
+
+
+<Kintone />のトップページを「ポータル」と呼びます。<Kintone />の入り口にあたるページで、多くの場合、ユーザーのアクセスがもっとも多く集まります。  
+初期設定では、ポータルには次の情報が表示されます。  
+1：お知らせ掲示板  
+2：通知  
+3：未処理  
+4：スペース  
+5：アプリ
+<Img src="/k/kintone/img-ja/customize_portal_img04.png" alt="スクリーンショット：ポータル画面" />
+
+ポータルに表示される情報の詳細は、次のページを参照してください。  
+[ポータルの見かた](/k/ja/id/040687.html)
+
+<Note>
+
+複数のポータルは作成できません。  
+部署ごと、プロジェクトごとなどに複数のポータルを利用したい場合は、複数のスペースを作成し、スペースのポータルを利用する方法もあります。  
+スペースのポータルについては、次のページを参照してください。  
+[スペースのポータルの表示コンテンツ／カスタマイズ](/k/ja/id/040697.html)
+
+</Note>
+
+<Heading id="portal_customize_portal_20">ポータルの設定を変更する</Heading>
+
+<Kintone />のシステム管理を持つユーザーと<Slash />共通管理者は、次の設定を変更できます。
+
+* 「ポータル」の名称を変更できます。
+* ポータルのカバー画像を変更できます。  
+  カバー画像は、5MBまでの画像ファイルを設定できます。PC版では、設定したカバー画像の縦幅は64pxで固定され、横幅はWebブラウザーの表示幅に応じて、拡大／縮小されます。
+* 「お知らせ掲示板」や「アプリ」などの各エリアを必要に応じて非表示にできます。
+* 「お知らせ掲示板」に掲示する内容を編集できます。
+
+<Note>
+
+各エリアの表示位置を変更したり、ユーザーごとにポータルの設定を変更したりできません。なお、「ポータルに表示するコンテンツ」でチェックを外して各エリアを非表示にしたあと、ポータルの表示をカスタマイズできます。  
+[ポータルのカスタマイズ](#portal_customize_portal_30)
+
+</Note>
+
+ポータル名やカバー画像、ポータルに何を表示するかは、ポータル画面右上の「オプション」アイコンから設定できます。  
+「お知らせ掲示板」に掲示する内容は、お知らせ掲示板の右上の「お知らせ掲示板を編集する」アイコンをクリックして編集します。  
+[お知らせ掲示板の編集](/k/ja/id/04070.html)
+
+ここでは、ポータル画面右上の「オプション」アイコンからの設定手順を説明します。
+
+<Heading level={3} id="portal_customize_portal_2010">手順</Heading>
+
+1. ポータル画面右上の「オプション」アイコンをクリックし、[ポータルの設定]を選択します。
+   <Img src="/k/kintone/img-ja/customize_portal_img05.png" alt="スクリーンショット：ポータル画面で、右上の「オプション」アイコンと[ポータルの設定]を赤枠で強調している" />
+
+1. 必要な項目を設定します。
+   <Img src="/k/kintone/img-ja/customize_portal_img03.png" alt="スクリーンショット：「ポータルの設定」画面" />
+
+1. [保存]をクリックします。
+
+<Heading id="portal_customize_portal_30">ポータルのカスタマイズ</Heading>
+
+APIやChrome拡張のKintone Portal Designer（開発終了）を利用して、ポータルをカスタマイズできます。カスタマイズ方法のポイントは、次のとおりです。
+
+<Note>
+
+ポータルはユーザーごとにカスタマイズできません。
+
+</Note>
+
+<Heading level={3} id="portal_customize_portal_3020">APIを利用したカスタマイズ</Heading>
+
+<Kintone />が提供するAPIを利用してJavaScriptプログラムを作成し、それを<Kintone />に適用することで、ポータルをカスタマイズできます。たとえば、ポータルにボタンを設置するなどのカスタマイズが可能です。
+
+JavaScriptファイルを<Kintone />に適用する方法については、次のページを参照してください。  
+[JavaScriptやCSSを使用した<Kintone />全体のカスタマイズ](/k/ja/id/04042.html)
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[<Kintone />ポータルのカスタマイズの始め方](https://cybozu.dev/ja/id/8233def99c744d831f48967d/)（日本語のみ）
+</Reference>
+
+</Enabled>
+
+<Heading level={3} id="portal_customize_portal_3010">Kintone Portal Designerを利用したカスタマイズ</Heading>
+
+<Warning>
+
+Kintone Portal Designerは、2025年05月12日をもって、セキュリティアップデートを含めたすべての開発を終了しました。
+
+</Warning>
+
+Kintone Portal Designerとは、HTMLとCSSを使用して、<Kintone />のポータルを自由にデザインできるツール（Chrome拡張）です。複数のテンプレートやアイコンが用意されており、テンプレートの一部を書き換えるだけで、ポータルをデザインできます。HTMLやCSSの基礎的な知識があれば、好みや用途にあったポータルをデザインできます。
+
+**デザイン例1：**  
+<Img src="/k/kintone/img-ja/customize_portal_img01.jpg" alt="スクリーンショット：ポータルのデザイン例1" />
+**デザイン例2：**  
+<Img src="/k/kintone/img-ja/customize_portal_img02.jpg" alt="スクリーンショット：ポータルのデザイン例2" />
+
+また、JavaScriptを組み合わせることで、HTMLやCSSだけでは実現できない複雑な動きを組み込むことも可能です。
+
+<Enabled regions={["JP"]}>
+
+詳細は、cybozu developer networkサイトを確認してください。  
+[Kintone Portal Designerを使ってポータルをデザインしよう](https://cybozu.dev/ja/id/6c258316d27e75112db5de3f/)（日本語のみ）
+
+</Enabled>

@@ -1,0 +1,85 @@
+---
+title: "ログイン画面をカスタマイズする"
+weight: 800
+aliases:
+  - "/ja/id/04041"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Store from "@/components/Store.astro";
+
+
+<Enabled regions={["JP"]}>
+ログイン画面に表示する会社名や背景画像を変更できます。初期状態では、<Store />で登録した会社名が表示されます。  
+この操作は、<Slash />共通管理者のみ可能です。
+
+</Enabled>
+
+<Enabled regions={["CN"]}>
+ログイン画面に表示するタイトルや背景画像を変更できます。初期状態では、申し込み時に登録した会社名が表示されます。  
+この操作は、<Slash />共通管理者のみ可能です。
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+ログイン画面に表示する会社名や背景画像を変更できます。初期状態では何も表示されません。  
+この操作は、<Slash />共通管理者のみ可能です。
+
+</Enabled>
+
+1. <Kintone />の画面上部の歯車の形をした[設定]アイコンをクリックし、[<SlashUi />]をクリックします。  
+  <Enabled regions={["JP"]}>
+   <Img src="/k/kintone/img-ja/restore_app_img01.png" alt="スクリーンショット：[{{&lt; slash_ui &gt;}}]が枠線で強調されている" />
+  </Enabled>
+
+1. 「カスタマイズ」の[ログインページ]をクリックします。
+
+1. 会社名を変更する場合は、[タイトル]に変更後の会社名を記載します。何も表示しない場合は空欄にします。
+
+1. 背景画像を変更する場合は、[参照]をクリックして画像ファイルを設定します。
+  <Note>
+
+   * 使用できる画像ファイルのサイズは、最大で5MBです。
+   * 登録した背景画像は、ユーザーのモニターのサイズに合わせて拡大または縮小されて表示されます。
+   * 鮮明な画像を表示するには、できるだけ縦横のサイズが大きい画像を登録します。ただし、画像ファイルの横幅が2,048pxを超える場合は、縦横比を維持した状態で、画像が縮小されます。
+   * 背景画像に使用できるファイルの形式は次のとおりです。  
+      gif、jpeg、jpg、png、bmp
+  </Note>
+
+1. [保存]をクリックします。
+
+<Enabled regions={["JP"]}>
+
+<Note>
+<SlashUi />の「ログインページの設定」画面でタイトルを変更しても、<Store />に登録された会社名は変更されません。  
+必要に応じて、「[<Store />](https://store.cybozu.com/login)」にログインして「会社情報」を編集してください。
+
+</Note>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+<Note>
+<SlashUi />の「ログインページの設定」画面でタイトルを変更しても、購入時に登録された会社名は変更されません。  
+購入時に登録された会社名は、<SlashUi />画面から変更できます。次のページの手順に従って購入状況を確認し、契約内容が表示されたページの「Contact Information」でCompany Nameを変更してください。  
+[契約の変更](/store/ja/id/0302.html)
+
+</Note>
+
+</Enabled>
+
+<Reference>
+
+* [ヘッダーのロゴを変更する](/k/ja/id/04040.html)
+* [ヘッダーの色を変更する](/k/ja/id/04039.html)
+* [<Slash />共通管理者の設定](/general/ja/id/0208.html)
+
+</Reference>

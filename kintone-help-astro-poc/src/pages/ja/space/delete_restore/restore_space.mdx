@@ -1,0 +1,131 @@
+---
+title: "削除したスペースを復旧する"
+weight: 300
+aliases:
+  - "/ja/id/04080"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />では、スペースを削除してしまった場合の対応策として、スペースを削除したときの状態に復旧する機能を提供しています。  
+削除したスペースを復旧すると、スレッドやスペース内アプリなどが削除時点の状態に戻り、削除前と同様にスペースを利用できるようになります。非公開スペース、ゲストスペースも復旧可能です。
+
+スペースを復旧できるのは、<Slash />共通管理者のみです。また、削除してから14日以上経過したスペースは復旧できません。  
+そのほかにも制限事項があるため、復旧前に必ず次の項目を確認してください。  
+[注意事項](#space_admin_restore_space_20)
+
+<Heading id="space_admin_restore_space_10">スペース復旧の流れ</Heading>
+
+全体の流れは次のとおりです。詳細は、次の項目を確認してください。  
+[操作手順の詳細](#space_admin_restore_space_30)
+
+(1)「削除したスペース名」、「削除したと思われる日時」、および「削除したと思われるユーザー」を可能な限り確認しておきます。
+
+(2) <Wovn>［<SlashUi />］</Wovn>画面で監査ログを確認し、（1）の情報をもとに「スペースID」を特定します。
+
+(3) 復旧画面で「スペースID」を入力し、復旧を実行します。
+
+<Heading id="space_admin_restore_space_20">注意事項</Heading>
+
+<Heading level={3} id="space_admin_restore_space_2010">元に戻る項目／元に戻らない項目</Heading>
+
+* **スペースを復旧すると元に戻る内容**
+  * スレッド
+  * スペース内に配置されていたアプリ
+  <Warning>  
+  アプリの一部の設定は復旧できません。詳細は、次のページを参照してください。  
+  [削除したアプリを復旧する](/k/ja/id/04016.html)
+  </Warning>
+  * スペースの設定内容
+  * 関連リンク
+  * スペースに割り当てられていたURL  
+    Webブラウザーのお気に入りなどからスペースに直接アクセスしていた場合も、以前と同じように使えるようになります。
+* **スペースを復旧しても元に戻らない内容**
+  * 送信済みの通知
+  * スペースを削除する前に変更／削除した内容
+
+<Heading level={3} id="space_admin_restore_space_2020">復旧できない条件</Heading>
+
+* 削除してから14日以上経過したスペースは、復旧できません。たとえば、6月1日10時にスペースを削除した場合、復旧できるのは6月15日10時までです。
+* 復旧後のスペース数が、ライセンスの上限を超える場合は復旧できません。  
+  作成可能なスペース数の上限は、<Wovn>［スペース管理］</Wovn>画面または<Wovn>［<SlashUi />］</Wovn>画面で確認できます。スペースを削除／復旧したタイミングで、<Wovn>［スペース管理］</Wovn>画面または<Wovn>［<SlashUi />］</Wovn>画面のスペース数にも反映されます。  
+  [スペースのライセンス使用状況を確認する](/k/ja/id/04073.html#space_admin_manage_spaces_20)
+
+<Heading id="space_admin_restore_space_30">操作手順の詳細</Heading>
+
+1. 「削除したスペース名」、「削除したと思われる日時」、および「削除したと思われるユーザー」を確認します。
+  <Hint>
+  スペースが削除されたかどうか明らかでない場合も、次のようなケースでは削除されたと考えられます。
+
+   * スペースを検索しても見つからない
+   * Webブラウザーからスペースを直接開いたときなどに、次のようなエラーが表示される：  
+     指定されたスペース(id: \*\*\*)が見つかりません。削除されている可能性があります。
+
+  以降の手順を参考に、削除状態を確認して復旧できます。
+  </Hint>
+
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［<SlashUi />］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/restore_space_img01.png" alt="スクリーンショット：[{{&lt; slash_ui &gt;}}]が枠線で強調されたポータル画面" />
+
+1. <Wovn>［監査ログ］</Wovn>の<Wovn>［閲覧とダウンロード］</Wovn>をクリックします。
+
+1. <Wovn>［絞り込み条件］</Wovn>の<Wovn>［アクション］</Wovn>に、「Space delete」と入力して<Wovn>［閲覧］</Wovn>ボタンをクリックします。
+   <Img src="/k/kintone/img-ja/restore_space_img03.png" alt="スクリーンショット：アクションの入力欄と閲覧ボタンが枠線で強調された［監査ログの閲覧とダウンロード］画面" />
+  画面下部に、絞り込んだログが一覧表示されます。
+
+1. 絞り込んだログの件数が多すぎて探しにくい場合は、わかる範囲で以下を絞り込み条件に追加し、再度<Wovn>［閲覧］</Wovn>ボタンをクリックします。
+
+    * 削除した日時がわかっている場合：  
+      <Wovn>［この日時から］</Wovn>と<Wovn>［この日時まで］</Wovn>で日時を範囲指定する
+    * 削除したと思われるユーザーがわかっている場合：  
+      <Wovn>［ユーザー］</Wovn>で削除したユーザーを選択する
+    * 削除したスペース名がわかっている場合：  
+      <Wovn>［補足］</Wovn>に削除したスペース名を入力する
+
+1. 一覧の日時やユーザーなどから該当しそうなログの<Wovn>［i］</Wovn>アイコンをクリックし、<Wovn>［補足］</Wovn>欄のスペース名などを確認してログを特定します。
+   <Img src="/k/kintone/img-ja/restore_space_img06.png" alt="スクリーンショット：［i］アイコンが枠線で強調されたログの一覧" />
+  <Note>
+
+  スペース内にアプリが配置されていた場合は、<Wovn>［補足］</Wovn>欄でアプリ名も確認できます。
+   <Img src="/k/kintone/img-ja/restore_space_img07.png" alt="スクリーンショット：［補足］欄のアプリ名が枠線で強調されたログの詳細" />
+  </Note>
+
+1. <Wovn>［補足］</Wovn>欄でスペースIDを確認します。
+   <Img src="/k/kintone/img-ja/restore_space_img04.png" alt="スクリーンショット：［補足］欄のスペースIDが枠線で強調されたログの詳細" />
+
+1. <Wovn>［<Kintone />システム管理］</Wovn>画面を開きます。  
+  [<Kintone />システム管理画面を開く](/k/ja/id/04046.html)
+
+1. <Wovn>［アプリ／スペースの復旧］</Wovn>をクリックします。
+
+1. <Wovn>［スペースID］</Wovn>に手順7で確認したスペースIDを入力し、<Wovn>［復旧］</Wovn>ボタンをクリックします。
+   <Img src="/k/kintone/img-ja/restore_space_img05.png" alt="スクリーンショット：スペースIDの入力欄が枠線で強調された［アプリ／スペースの復旧］画面" />
+
+1. 確認ダイアログで<Wovn>［このスペースを復旧］</Wovn>ボタンをクリックします。  
+  スペースが復旧され、画面上部に復旧完了のメッセージが表示されます。
+
+<Hint>
+
+* レコードをファイルに書き出して、バックアップをとっておくことも可能です。詳細は、次のページを参照してください。  
+  [レコードのバックアップ](/k/ja/id/04030.html)
+* エラーが表示されてスペースを復旧できない場合は、次のページを参照してください。  
+  [エラーが表示されて、スペースを復旧できない](/k/ja/id/040432.html)
+
+</Hint>
+
+<Heading id="space_admin_restore_space_50">Q&amp;A</Heading>
+
+* **スペースを復旧したのに、スペース内にあったアプリが復旧されていないのはなぜですか？**  
+  スペースを削除する前に、スペース内に配置されたアプリを削除した可能性があります。この場合は、スペースを復旧してもスペース内のアプリは復旧されません。  
+  スペースの復旧後であれば、スペース内のアプリを復旧することは可能です。アプリの復旧方法についての詳細は、次のページを参照してくだあい。  
+  [削除したアプリを復旧する](/k/ja/id/04016.html)

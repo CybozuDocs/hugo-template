@@ -1,0 +1,86 @@
+---
+title: "PC版の画面をモバイルから利用する"
+weight: 400
+aliases:
+  - "/ja/id/040666"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+モバイル端末のWebブラウザーでは、モバイル用に最適化された<Kintone />が表示されます。  
+ただし、アプリやスペースの設定など一部制限される機能があります。  
+制限される機能は、次のページを参照してください。  
+[モバイル版でできないこと](/k/ja/id/040668.html#mobile_access_smartphone_30)  
+モバイル端末からPCと同様の操作を行いたい場合は、PC版に切り替えて利用できます。
+
+<Heading id="mobile_access_view_10">モバイル端末で&lt;Kintone /&gt;を利用する3つの方法</Heading>
+
+モバイル端末で<Kintone />を利用する場合、次の3通りの方法があります。
+
+* Webブラウザーでモバイル版を使う
+* WebブラウザーでPC版を使う
+* モバイルアプリを使う
+
+モバイル端末のWebブラウザーで<Kintone />を利用したときの、モバイル版とPC版の画面の違いは次のとおりです。  
+初期設定では、モバイル版に最適化された画面が表示されます。  
+<Img src="/k/kintone/img-ja/mobile_view05.png" alt="スクリーンショット：Webブラウザーでモバイル版とPC版を表示したときの画面を比較している" />
+
+モバイルアプリでは、常にモバイル版の画面が表示されます。  
+<Img src="/k/kintone/img-ja/mobile_view06.png" alt="スクリーンショット：モバイルアプリのポータル画面が表示されている" />
+
+<Heading id="mobile_access_mobile_view_20">個人設定で表示をPC版に切り替える</Heading>
+
+各ユーザーごとにモバイルで利用する画面を切り替えできます。
+
+1. モバイル端末のWebブラウザーで<Kintone />にアクセスします。
+
+1. <Wovn>［ポータル］</Wovn>画面左上の<Wovn>［ナビゲーションメニュー］</Wovn>アイコンをタップします。
+
+1. <Wovn>［ナビゲーションメニュー］</Wovn>で、画面右上の歯車の形をした<Wovn>［設定］</Wovn>アイコンをタップして、<Wovn>［PC版を表示］</Wovn>をタップします。<Wovn></Wovn>  
+   <Img src="/k/kintone/img-ja/mobile_view03.png" alt="スクリーンショット：[PC版を表示]を枠線で強調している" />
+
+   <Note>
+
+   <Kintone />システム管理の<Wovn>［スマートフォンでの表示］</Wovn>画面で<Wovn>［ユーザー自身による表示の切り替えを許可する］</Wovn>にチェックが入っていない場合、<Wovn>［PC版を表示］</Wovn>のメニューは表示されません。  
+   詳細は、次のページを参照してください。  
+   [スマートフォンでの表示の初期設定](/k/ja/id/04048.html)
+
+   </Note>
+
+<Heading id="mobile_access_mobile_view_30">（管理者向け）全ユーザー共通で表示をPC版に切り替える</Heading>
+
+すべてのユーザーにPC版を表示させることも可能です。システム管理者が設定します。
+
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［<Kintone />システム管理］</Wovn>をクリックします。<Wovn></Wovn>  
+   <Img src="/k/kintone/img-ja/mobile_view07.png" alt="スクリーンショット：［{{&lt; kintone &gt;}}システム管理］画面を開くまでの動線を示している" />
+
+1. <Wovn>［<Kintone />システム管理］</Wovn>画面で、<Wovn>［その他］</Wovn>にある<Wovn>［スマートフォンでの表示］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/mobile_view08.png" alt="スクリーンショット：[スマートフォンでの表示]を枠線で強調している" />
+
+1. <Wovn>［スマートフォンでの表示］</Wovn>画面で、<Wovn>［PC版を表示する］</Wovn>を選択します。  
+  PC版の表示を強制する場合は、<Wovn>［ユーザー自身による表示の切り替えを許可する］</Wovn>のチェックを外します。  
+   <Img src="/k/kintone/img-ja/mobile_view09.png" alt="スクリーンショット：［スマートフォンでの表示］が表示されている" />
+
+<Heading id="mobile_access_mobile_view_40">モバイル版に戻す</Heading>
+
+PC版からモバイル版の画面に戻せます。
+
+1. モバイル端末のWebブラウザーで<Kintone />にアクセスします。
+
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをタップして、<Wovn>［モバイル版を表示］</Wovn>を選択します。<Wovn></Wovn>  
+   <Note>
+
+   <Kintone />システム管理の<Wovn>［スマートフォンでの表示］</Wovn>画面で<Wovn>［ユーザー自身による表示の切り替えを許可する］</Wovn>にチェックが入っていない場合、<Wovn>［モバイル版を表示］</Wovn>のメニューは表示されません。  
+   詳細は、次のページを参照してください。  
+   [スマートフォンでの表示の初期設定](/k/ja/id/04048.html)
+   </Note>
+
+   <Img src="/k/kintone/img-ja/mobile_view01.png" alt="スクリーンショット：[モバイル版の表示]を枠線で強調している" />
+
+すべてのユーザーの画面をモバイル版に戻したい場合は、システム管理者が<Kintone />システム管理の<Wovn>［スマートフォンでの表示］</Wovn>画面で<Wovn>［モバイル版を表示する］</Wovn>を選択してください。

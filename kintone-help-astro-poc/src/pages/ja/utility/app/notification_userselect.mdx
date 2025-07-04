@@ -1,0 +1,72 @@
+---
+title: "レコードごとに指定したユーザーに通知する"
+weight: 2200
+aliases:
+  - "/ja/id/040749"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+アプリの条件通知、レコードの条件通知、およびリマインダーの条件通知では、レコードごとに指定したユーザーを通知先に設定できます。  
+あらかじめフォームに「ユーザー選択」フィールドを追加し、条件通知の設定で、追加した「ユーザー選択」フィールドを通知先に指定してください。   
+
+ここでは、「アプリの条件通知」を例に、設定方法を説明します。
+
+<Heading id="notification_notification_userselect_10">STEP1：「ユーザー選択」フィールドを設定する</Heading>
+
+1. フォームに「ユーザー選択」フィールドを配置して、フィールド右上にある歯車の形をした設定アイコンから[設定]をクリックします。
+   <Img src="/k/kintone/img-ja/notification_userselect_01.png" alt="スクリーンショット：ユーザー選択フィールドの設定アイコンが枠線で強調されている" />
+
+1. フィールド名を設定します。  
+   ここでは例として、フィールド名を「通知先」とします。  
+   <Img src="/k/kintone/img-ja/notification_userselect_02.png" alt="スクリーンショット：フィールド名を入力している「ユーザー選択の設定」画面" />
+   初期値として表示したいユーザーがいる場合は、「初期値」で該当ユーザーを指定します。
+
+1. [保存]をクリックします。
+
+1. [フォームを保存]をクリックします。
+
+続けて、「アプリの条件通知」を設定します。
+
+<Heading id="notification_notification_userselect_20">STEP2：「アプリの条件通知」を設定する</Heading>
+
+1. 「設定」タブをクリックし、「通知」の[アプリの条件通知]をクリックします。
+   <Img src="/k/kintone/img-ja/notification_userselect_03.png" alt="スクリーンショット：「設定」タブと「アプリの条件通知」が枠線で強調されている「アプリの設定」画面" />
+
+1. 「フォームのフィールドを追加」のドロップダウンリストから、STEP1で設定した「ユーザー選択」フィールドを選択します。  
+  ここでは「通知先」を選択します。
+   <Img src="/k/kintone/img-ja/notification_userselect_04.png" alt="スクリーンショット：フォームのフィールドを追加するドロップダウンリストが枠線で強調されている「アプリの条件通知」画面" />
+
+1. 通知したい条件にチェックを入れます。
+   <Img src="/k/kintone/img-ja/notification_userselect_05.png" alt="スクリーンショット：通知する条件が枠線で強調されている" />
+
+1. 画面右下の[保存]をクリックします。
+
+1. 画面右上の[アプリを更新]をクリックします。
+
+1. 確認ダイアログで[アプリを更新]をクリックします。
+
+これで、設定が完了しました。  
+レコードで通知先を指定すると、指定したユーザーに「アプリの条件通知」で設定したタイミングで通知されます。
+<Img src="/k/kintone/img-ja/notification_userselect_06.png" alt="スクリーンショット：通知先を指定する入力欄が枠線で強調されているレコード" />
+
+<Note>
+STEP1で設定した「ユーザー選択」フィールドのアクセス権にかかわらず、通知先として指定されたユーザーには通知が送信されます。
+
+</Note>
+
+<Reference>
+
+* [フォームを設定する](/k/ja/id/040554.html)
+* [ユーザー選択](/k/ja/id/040543.html)
+* [[アプリの条件通知]アプリへの操作を条件にした通知を設定する](/k/ja/id/040561.html)
+* [[レコードの条件通知]レコードが特定の条件を満たしたときの通知を設定する](/k/ja/id/040563.html)
+* [[リマインダーの条件通知]日時を条件にしたリマインド通知を設定する](/k/ja/id/040564.html)
+* [通知が送信されるタイミングと宛先](/k/ja/id/040673.html)
+
+</Reference>
