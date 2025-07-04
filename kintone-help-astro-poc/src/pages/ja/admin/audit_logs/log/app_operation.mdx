@@ -1,0 +1,597 @@
+---
+title: "アプリのレコードの操作"
+weight: 200
+description: "{{< kintone >}}でアプリのレコードの操作をしたときに出力される監査ログについて説明します。"
+aliases:
+  - "/ja/id/040811"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+アプリのレコードの操作をしたときに出力されるログについて説明します。
+
+<Note>
+
+ユーザーが操作するアプリの環境に応じて、「アクション」の末尾に次の値が出力されます。
+
+* 運用環境の場合：(Public environment)
+* 動作テスト環境の場合：(Test environment)
+
+</Note>
+
+<Heading id="log_app_operation_10,class=&quot;no-trans&quot;">App operation</Heading>
+
+モジュールが「App operation」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_app_operation_1010,class=&quot;no-trans&quot;">Record file upload</Heading>
+
+アクションが「Record file upload」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_operation_101010">実行された操作</Heading>
+
+添付ファイルフィールドにファイルをアップロードした。
+
+<Heading level={4} id="log_app_operation_101020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_101030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+* ファイル名
+
+<Heading level={4} id="log_app_operation_101040">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, record id: *, filename: *
+
+```
+
+<Heading level={3} id="log_app_operation_1015,class=&quot;no-trans&quot;">Record file download</Heading>
+
+アクションが「Record file download」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_operation_101510">実行された操作</Heading>
+
+レコードに添付されたファイルについて、次の操作をした。
+
+* ファイルをダウンロードした
+* 画像のスライドショーを表示した
+
+<Heading level={4} id="log_app_operation_101520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_101530">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+* ファイル名
+
+<Heading level={4} id="log_app_operation_101540">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, record id: *, filename: *
+
+```
+
+<Heading level={3} id="log_app_operation_1020,class=&quot;no-trans&quot;">Record comment delete</Heading>
+
+アクションが「Record comment delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_operation_102010">実行された操作</Heading>
+
+コメントを削除した。
+
+<Heading level={4} id="log_app_operation_102020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_102030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+* コメント番号
+
+<Heading level={4} id="log_app_operation_102040">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, record id: *, comment id: *
+
+```
+
+<Heading level={3} id="log_app_operation_1025,class=&quot;no-trans&quot;">Record delete</Heading>
+
+アクションが「Record delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_operation_102510">実行された操作</Heading>
+
+レコードを削除した。
+
+<Heading level={4} id="log_app_operation_102520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_102530">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+
+<Heading level={4} id="log_app_operation_102540">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, record id: [*]
+
+```
+
+レコード番号は、カンマ区切りで表示されます。
+
+<Heading level={3} id="log_app_operation_1030,class=&quot;no-trans&quot;">Record bulk delete</Heading>
+
+アクションが「Record bulk delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_operation_103010">実行された操作</Heading>
+
+レコードを一括削除した。
+
+<Heading level={4} id="log_app_operation_103020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_103030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Note>
+
+操作に使用した端末に関わらず、「接続元」には「127.0.0.1」と出力されます。
+
+</Note>
+
+<Heading level={4} id="log_app_operation_103040">出力されるログの例</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_app_operation_1035,class=&quot;no-trans&quot;">Record import registered</Heading>
+
+アクションが「Record import registered」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_operation_103510">実行された操作</Heading>
+
+アプリに読み込むファイルを登録した。
+
+<Heading level={4} id="log_app_operation_103520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_103530">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* ファイルの行数  
+  ファイルの先頭行をフィールド名として読み込むように設定した場合は、ファイルの実際の行数よりも1行少ない値が記録されます。
+* ファイルサイズ
+* ファイル名
+
+<Reference>
+
+[ファイル読み込みの監査ログを確認する](/k/ja/id/04055.html)
+
+</Reference>
+
+<Heading level={4} id="log_app_operation_10103540">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, number of file lines: *, file size: *, filename: *
+
+```
+
+<Heading level={3} id="log_app_operation_1040,class=&quot;no-trans&quot;">Record import started</Heading>
+
+アクションが「Record import started」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_operation_104010">実行された操作</Heading>
+
+レコードのファイル読み込みを開始した。
+
+<Heading level={4} id="log_app_operation_104020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_104030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* ファイルの行数  
+  ファイルの先頭行をフィールド名として読み込むように設定した場合は、ファイルの実際の行数よりも1行少ない値が記録されます。
+* ファイルサイズ
+* ファイル名
+
+<Note>
+
+操作に使用した端末に関わらず、「接続元」には「127.0.0.1」と出力されます。
+
+</Note>
+
+<Reference>
+
+[ファイル読み込みの監査ログを確認する](/k/ja/id/04055.html)
+
+</Reference>
+
+<Heading level={4} id="log_app_operation_104040">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, number of file lines: *, file size: *, filename: *
+
+```
+
+<Heading level={3} id="log_app_operation_1045,class=&quot;no-trans&quot;">Record import finished</Heading>
+
+アクションが「Record import finished」である監査ログについて説明します。  
+2021年8月のアップデートより前の操作は、「Record import」と記録されます。
+
+<Heading level={4} id="log_app_operation_104510">実行された操作</Heading>
+
+レコードのファイル読み込みが完了した。
+
+<Heading level={4} id="log_app_operation_104520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_104530">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* ファイルの行数  
+  ファイルの先頭行をフィールド名として読み込むように設定した場合は、ファイルの実際の行数よりも1行少ない値が記録されます。
+* ファイルサイズ
+* ファイル名
+
+<Note>
+
+操作に使用した端末に関わらず、「接続元」には「127.0.0.1」と出力されます。
+
+</Note>
+
+<Reference>
+
+[ファイル読み込みの監査ログを確認する](/k/ja/id/04055.html)
+
+</Reference>
+
+<Heading level={4} id="log_app_operation_104540">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, number of file lines: *, file size: *, filename: *
+
+```
+
+<Heading level={3} id="log_app_operation_1050,class=&quot;no-trans&quot;">Record export</Heading>
+
+アクションが「Record export」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_operation_105010">実行された操作</Heading>
+
+ファイルにレコードを書き出した。
+
+<Heading level={4} id="log_app_operation_105020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_105030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Note>
+
+操作に使用した端末に関わらず、「接続元」には「127.0.0.1」と出力されます。
+
+</Note>
+
+<Heading level={4} id="log_app_operation_105040">出力されるログの例</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_app_operation_1055,class=&quot;no-trans&quot;">Report export</Heading>
+
+アクションが「Report export」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_operation_105510">実行された操作</Heading>
+
+ファイルにグラフを書き出した。
+
+<Heading level={4} id="log_app_operation_105520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_105530">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Note>
+
+操作に使用した端末に関わらず、「接続元」には「127.0.0.1」と出力されます。
+
+</Note>
+
+<Heading level={4} id="log_app_operation_105540">出力されるログの例</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_app_operation_1060,class=&quot;no-trans&quot;">Exported file download</Heading>
+
+アクションが「Exported file download」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_operation_106010">実行された操作</Heading>
+
+レコードを書き出したファイルをダウンロードした。
+
+<Heading level={4} id="log_app_operation_106020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_106030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* ファイル名
+
+<Heading level={4} id="log_app_operation_106040">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, filename: *
+
+```
+
+<Heading level={3} id="log_app_operation_1065,class=&quot;no-trans&quot;">Webhook notify</Heading>
+
+アクションが「Webhook notify」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_operation_106510">実行された操作</Heading>
+
+Webhookの通知が送信された。
+
+<Heading level={4} id="log_app_operation_106520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_106530">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+* 通知ID
+* イベントタイプ
+* 送信先サーバーのURL
+
+通知に成功した場合は、次の項目が出力されます。
+
+* 通知のステータスコード
+
+<Kintone />のエラーで通知に失敗した場合は、次の項目が出力されます。
+
+* エラータイプ：CLIENT_ERROR
+* エラーメッセージ
+
+通知を受け取るWebサービスのエラーで通知に失敗した場合は、次の項目が出力されます。
+
+* エラータイプ：SERVER_ERROR
+* 通知のHTTPステータスコード
+
+<Note>
+
+レコードのコメントを書き込んだ場合、コメント番号（comment id: *）がログに書き出されます。
+
+</Note>
+
+<Heading level={4} id="log_app_operation_106540">出力されるログの例</Heading>
+
+<Heading level={5} id="log_app_operation_10654010">通知に成功した場合</Heading>
+
+```
+app id: *, app name: *, record id: *, notification id: *, event type: {ADD_RECORD / ADD_RECORD_COMMENT / UPDATE_RECORD / UPDATE_STATUS / DELETE_RECORD}, server url: *, status code: *
+
+```
+
+<Heading level={5} id="log_app_operation_10654020">&lt;Kintone /&gt;のエラーで通知に失敗した場合</Heading>
+
+```
+app id: *, app name: *, record id: *, notification id: *, event type: {ADD_RECORD / ADD_RECORD_COMMENT / UPDATE_RECORD / UPDATE_STATUS / DELETE_RECORD}, server url: *, error type: CLIENT_ERROR, error message: *
+
+```
+
+<Heading level={5} id="log_app_operation_10654030">通知を受け取るWebサービスのエラーで通知に失敗した場合</Heading>
+
+```
+app id: *, app name: *, record id: *, notification id: *, event type: {ADD_RECORD / ADD_RECORD_COMMENT / UPDATE_RECORD / UPDATE_STATUS / DELETE_RECORD}, server url: *, error type: SERVER_ERROR, status code: *
+
+```
+
+<Heading level={3} id="log_app_operation_1070,class=&quot;no-trans&quot;">Send slack dm</Heading>
+
+アクションが「Send slack dm」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_operation_107010">実行された操作</Heading>
+
+Slackの通知が送信された。
+
+<Heading level={4} id="log_app_operation_107020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_operation_107030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+* 通知を受信するSlackのサブドメイン
+* 対象ユーザーのログイン名
+* 対象ユーザーのメールアドレス
+
+通知に成功した場合は、次の項目が出力されます。
+
+* Slack APIのレスポンスステータスコード
+
+<Kintone />のエラーで通知に失敗した場合は、次の項目が出力されます。
+
+* エラータイプ：CLIENT_ERROR
+* エラーメッセージ
+
+通知を受け取るWebサービスのエラーで通知に失敗した場合は、次の項目が出力されます。
+
+* エラータイプ：SERVER_ERROR
+* エラーになったSlack APIのレスポンスステータスコード
+* エラーメッセージ
+
+<Heading level={4} id="log_app_operation_107040">出力されるログの例</Heading>
+
+<Heading level={5} id="log_app_operation_10704010">通知に成功した場合</Heading>
+
+```
+app id: *, app name: *, record id: *, slack subdomain: *, user: *, Email: *, status code: *
+
+```
+
+<Heading level={5} id="log_app_operation_10704020">&lt;Kintone /&gt;のエラーで通知に失敗した場合</Heading>
+
+```
+app id: *, app name: *, record id: *, slack subdomain: *, user: *, Email: *, error type: CLIENT_ERROR, error message: *
+
+```
+
+<Heading level={5} id="log_app_operation_10704030">通知を受け取るWebサービスのエラーで通知に失敗した場合</Heading>
+
+```
+app id: *, app name: *, record id: *, slack subdomain: *, user: *, Email: *, error type: SERVER_ERROR, status code: *, error message: *
+
+```
+
+<Heading id="log_app_operation_20">プロパティ</Heading>
+
+監査ログの「補足」欄に出力されるプロパティは次のとおりです。
+
+<Heading level={3} id="log_app_operation_2010,class=&quot;no-trans&quot;">app id</Heading>
+
+アプリのIDです。
+
+<Heading level={3} id="log_app_operation_2012,class=&quot;no-trans&quot;">app name</Heading>
+
+アプリ名です。
+
+<Heading level={3} id="log_app_operation_2014,class=&quot;no-trans&quot;">comment id</Heading>
+
+レコードのコメント番号です。
+
+<Heading level={3} id="log_app_operation_2015,class=&quot;no-trans&quot;">Email</Heading>
+
+メールアドレスです。
+
+<Heading level={3} id="log_app_operation_2016,class=&quot;no-trans&quot;">error message</Heading>
+
+エラーメッセージです。
+
+<Heading level={3} id="log_app_operation_2018,class=&quot;no-trans&quot;">error type</Heading>
+
+エラータイプです。次のエラータイプが出力されます。
+
+* CLIENT_ERROR：<Kintone />が原因で通知の送信に失敗している場合に出力されます。
+* SERVER_ERROR：通知を受け取るWebサービス側のエラーが原因で失敗している場合に出力されます。
+
+<Heading level={3} id="log_app_operation_2020,class=&quot;no-trans&quot;">event type</Heading>
+
+イベントタイプです。次のイベントタイプが出力されます。
+
+* ADD_RECORD：レコードの追加
+* ADD_RECORD_COMMENT：レコードコメントの追加
+* UPDATE_RECORD：レコードの更新
+* UPDATE_STATUS：プロセス管理のステータスの更新
+* DELETE_RECORD：レコードの削除
+
+<Heading level={3} id="log_app_operation_2022,class=&quot;no-trans&quot;">file size</Heading>
+
+ファイルサイズです。
+
+<Heading level={3} id="log_app_operation_2024,class=&quot;no-trans&quot;">filename</Heading>
+
+ファイル名です。
+
+<Heading level={3} id="log_app_operation_2026,class=&quot;no-trans&quot;">login name</Heading>
+
+ゲストユーザーのログイン名です。
+
+<Heading level={3} id="log_app_operation_2028,class=&quot;no-trans&quot;">notification id</Heading>
+
+通知IDです。
+
+<Heading level={3} id="log_app_operation_2030,class=&quot;no-trans&quot;">number of file lines</Heading>
+
+ファイルの行数です。
+
+<Heading level={3} id="log_app_operation_2032,class=&quot;no-trans&quot;">record id</Heading>
+
+レコード番号です。
+
+<Heading level={3} id="log_app_operation_2034,class=&quot;no-trans&quot;">server url</Heading>
+
+サーバーURLです。
+
+<Heading level={3} id="log_app_operation_2036,class=&quot;no-trans&quot;">slack subdomain</Heading>
+
+通知を受信するSlackのサブドメインです。
+
+<Heading level={3} id="log_app_operation_2038,class=&quot;no-trans&quot;">status code</Heading>
+
+ステータスコードです。
+
+<Heading level={3} id="log_app_operation_2040,class=&quot;no-trans&quot;">user</Heading>
+
+ログイン名です。

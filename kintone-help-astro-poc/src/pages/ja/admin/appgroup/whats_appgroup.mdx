@@ -1,0 +1,157 @@
+---
+title: "アプリグループとは"
+weight: 100
+aliases:
+  - "/ja/id/04028"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+アプリグループとは、複数のアプリのアクセス権を一括で管理するためのものです。  
+複数のアプリに一括でアプリの作成権限や管理権限などを設定できます。
+
+アプリはいずれかのアプリグループに所属し、アプリ作成時はデフォルトで「Public」というアプリグループに所属します。  
+Public以外にも、<Kintone />システム管理者はアプリグループを自由に作成できます。
+
+<Note>
+
+スペース内アプリは必ずPublicアプリグループに所属し、変更できません。  
+なお、<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［利用する機能の選択］</Wovn>で<Wovn>［スペースに所属しないアプリの作成を許可する］</Wovn>が無効になっている場合は、スペース内アプリしか作成できません。このため、アプリを作成するとPublicアプリグループとなり、変更はできません。  
+[利用する機能の選択](/k/ja/id/04031.html)
+
+</Note>
+
+アプリグループの詳細について、以下に説明します。
+
+<Heading id="appgroup_whats_appgroup_10">あらかじめ設定されているアプリグループ</Heading>
+
+<Kintone />には、次のアプリグループがあらかじめ設定されています。これらのアプリグループは削除できません。
+
+<Heading level={3} id="appgroup_whats_appgroup_1010">Public</Heading>
+
+* アプリを作成すると、デフォルトではPublicアプリグループに所属します。  
+  アプリグループのデフォルトをPublicからほかのアプリグループに変更できます。
+* 初期設定では、Publicに所属するアプリはすべてのユーザーに公開されます。
+* アプリグループのアクセス権を変更することで、アプリの作成や使用などの操作をユーザーごとに制限できます。
+* スペース内アプリはPublicアプリグループに所属します。Publicからは変更できません。  
+  非公開スペースのアプリは、スペースのメンバーだけがアクセスできます。
+
+<Heading level={3} id="appgroup_whats_appgroup_1020">Private</Heading>
+
+* Privateグループのアプリは、アプリの作成者だけが利用可能です。アプリの作成者でない場合は、ポータル（トップページ）の<Wovn>［アプリ］</Wovn>や、<Wovn>［アプリ管理］</Wovn>画面の<Wovn>［アプリの一覧］</Wovn>に、Privateグループのアプリは表示されません。
+* アプリの作成権限を持つすべてのユーザーが、Privateに所属するアプリを作成できます。
+
+<Warning>
+
+<Slash />共通管理者はアプリグループの設定にかかわらず、すべてのアプリの管理権限があります。そのため、次の方法でPrivateに所属するアプリの<Wovn>［アプリの設定］</Wovn>画面を開くことができます。
+
+* <Wovn>［アプリの設定］</Wovn>画面のURLをWebブラウザーに直接入力する
+* <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［プラグイン］</Wovn>画面で<Wovn>［プラグインが必要なアプリ］</Wovn>や<Wovn>［追加しているアプリ］</Wovn>に表示されているアプリ名をクリックする（プラグインを追加しているアプリのみ可能）  
+参考：[プラグインの利用状況を確認する](/k/ja/id/0405.html)
+
+</Warning>
+
+<Enabled regions={["JP"]}>
+<Note>
+
+Privateグループのアプリは、ご契約上の作成可能なアプリ数にはカウントされませんが、ディスク使用量には影響を与える可能性があります。  
+[ディスク使用量を減らすにはどうすればいいですか？](/k/ja/id/040277.html)
+</Note>
+
+</Enabled>
+
+<Enabled regions={["US", "CN"]}>
+<Note>
+
+Privateグループのアプリは、ディスク使用量に影響を与える可能性があります。
+</Note>
+
+</Enabled>
+
+<Enabled regions={["JP"]}>
+
+<Heading level={3} id="appgroup_whats_appgroup_1030">Garoon Space Apps</Heading>
+
+* Garoonのスペースでアプリを作成したときにデフォルトで所属するアプリグループです。Garoonのスペースでアプリが作成されるまでは、このアプリグループはありません。
+* アプリグループ名やアクセス権の変更はできません。
+
+Garoonのスペースにアプリを作成する方法は、次のページを参照してください。  
+[新しいアプリを作成する（Garoon ユーザーヘルプ）](/g/ja/user/application/space/app.html#user_application_space_app_02)
+
+</Enabled>
+
+<Heading id="appgroup_whats_appgroup_20">アプリグループの作成と管理</Heading>
+
+あらかじめ設定されているアプリグループ以外にも、<Kintone />システム管理から新しいアプリグループを作成できます。  
+
+<Heading level={3} id="appgroup_whats_appgroup_2010">アプリグループの作成と管理に必要な権限</Heading>
+
+アプリグループの作成と管理には、アプリグループの管理権限が必要です。  
+<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>画面で、<Kintone />システム管理者のアクセス権のひとつとして設定します。
+
+<Img src="/k/kintone/img-ja/whats_appgropup_01.png" alt="スクリーンショット：アクセス権を設定する画面" />
+
+<Wovn>［アプリグループの管理］</Wovn>の操作を許可されたユーザーは、アプリグループの作成と管理ができます。
+
+<Wovn>［アプリグループの管理（閲覧のみ）］</Wovn>の操作だけを許可されたユーザーは、次の操作はできません。
+
+* アプリグループの作成
+* アプリグループ名の変更
+* アプリグループのアクセス権の変更の保存
+* アプリグループの削除
+
+<Wovn>［アプリグループの管理］</Wovn>や<Wovn>［アプリグループの管理（閲覧のみ）］</Wovn>の操作を許可するユーザーには、<Wovn>［システムの管理］</Wovn>も許可する必要があります。  
+[<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+
+<Heading level={3} id="appgroup_whats_appgroup_2020">アプリグループの作成方法</Heading>
+
+<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アプリグループ］</Wovn>画面から作成できます。  
+詳細は、次のページを参照してください。  
+[アプリグループを追加する](/k/ja/id/04024.html)
+
+
+<Heading level={3} id="appgroup_whats_appgroup_2030">作成したアプリグループでできること</Heading>
+
+作成したアプリグループでは、ユーザー、組織、およびグループに対して、次の操作を許可または禁止できます。
+
+* そのグループに所属するアプリの作成
+* そのグループに所属するアプリの管理、使用および削除  
+  アプリグループで禁止されている操作は、アプリのアクセス権の設定にかかわらず、できません。
+
+<Reference>
+
+* [アプリグループにアクセス権を設定する](/k/ja/id/04025.html)
+* [デフォルトのアプリグループを変更する](/k/ja/id/04026.html)
+* [アプリグループを削除する](/k/ja/id/04027.html)
+
+</Reference>
+
+<Heading id="appgroup_whats_appgroup_30">アプリグループを確認する</Heading>
+
+アプリが所属しているアプリグループは、次の方法で確認できます。
+
+* **<Kintone />システム管理で確認する**  
+  <Wovn>［<Kintone />システム管理］</Wovn>画面を開き、<Wovn>［アプリグループ］</Wovn>を開きます。  
+  各アプリグループの<Wovn>［所属するアプリ］</Wovn>をクリックすると、そのアプリグループが設定されているアプリを確認できます。  
+  [［<Kintone />システム管理］画面を開く](/k/ja/id/04046.html)
+
+* **<Wovn>［アプリの設定］</Wovn>画面で確認する**  
+  アプリが所属しているアプリグループは、<Wovn>［アプリのアクセス権］</Wovn>画面から確認および変更できます。  
+  詳細は、次のページを参照してください。  
+  [所属するアプリグループを変更する](/k/ja/id/040592.html)
+
+* **<Wovn>［アプリ管理］</Wovn>画面で確認する**  
+  <Wovn>［アプリ管理］</Wovn>画面の<Wovn>［アプリの一覧］</Wovn>で、アプリが所属するアプリグループを確認できます。  
+  詳細は、次のページを参照してください。  
+  [［アプリ管理］画面でアプリの一覧を確認する](/k/ja/id/04012.html)
+  <Img src="/k/kintone/img-ja/whats_appgropup_03.png" alt="スクリーンショット：アプリ管理画面" />

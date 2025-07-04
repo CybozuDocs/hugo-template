@@ -1,0 +1,71 @@
+---
+title: "アプリ管理者数を確認する"
+weight: 350
+aliases:
+  - "/ja/id/040894"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Warning>
+本機能は、検討中の新機能です。開発を中止したり、仕様を変更したりする可能性があります。この点をご理解いただいた上で、アップデートオプションの<Wovn>［検討中の新機能］</Wovn>の<Wovn>［アプリ管理画面でアプリ管理者数を確認できる機能］</Wovn>を有効化してご利用ください。詳細は、次のページを参照してください。  
+[(3) 現在検討中の新機能を有効化する](/k/ja/id/04050.html#new_feature_new_feature_overview_2030)
+
+</Warning>
+
+<Slash />共通管理者は、<Wovn>［アプリ管理］</Wovn>画面の<Wovn>［アプリの一覧］</Wovn>で、必要なタイミングで<Wovn>［アプリ管理者数］</Wovn>列を表示させることで、各アプリの設定変更の権限を持つユーザー数を確認できます。  
+設定変更の権限を持つユーザー数が多いアプリを把握し、適切なアクセス権が設定されているか担当者に確認するアクションを取りたいときなどに活用できます。
+
+<Heading id="app_admin_confirm_app_admins_10">&lt;Wovn&gt;［アプリ管理者数］&lt;/Wovn&gt;列に表示されるユーザー数について</Heading>
+
+アプリの設定変更の権限が付与されているユーザー数が表示されます。具体的には、次のすべての条件を満たすユーザー数が表示されます。
+
+* <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>画面で<Wovn>［アプリの管理］</Wovn>の<Wovn>［許可］</Wovn>にチェックが入っている
+* 該当のアプリの<Wovn>［アプリのアクセス権］</Wovn>画面で<Wovn>［アプリ管理］</Wovn>にチェックが入っている
+* <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アプリグループのアクセス権の設定］</Wovn>画面で<Wovn>［アプリの管理／使用／削除］</Wovn>の<Wovn>［許可］</Wovn>にチェックが入っている
+* アプリが非公開スペースに所属している場合は、そのスペースに参加している
+* <SlashUi />の<Wovn>［ユーザー情報の変更］</Wovn>画面にある<Wovn>［アカウントの使用状態］</Wovn>で <Wovn>［使用中］</Wovn>が選択されている
+
+なお、<Slash />共通管理者は、アクセス権の設定にかかわらず、すべてのアプリの設定を変更できます。<Slash />共通管理者であることが理由でアプリの設定を変更できるユーザーは、<Wovn>［アプリ管理者数］</Wovn>のカウント数には含まれません。
+
+<Heading id="app_admin_confirm_app_admins_20">&lt;Wovn&gt;［アプリ管理者数］&lt;/Wovn&gt;列の表示とデータ取得に関する注意点</Heading>
+
+<Wovn>［アプリ管理者数］</Wovn>列の表示とデータ取得に関しては、いくつか注意点があります。
+
+* <Wovn>［アプリ管理者数］</Wovn>列は自動的には表示されません。必要なタイミングで、<Slash />共通管理者が手動で表示します。
+* データの取得回数は、1日あたり10回までです。
+  * 取得回数は、協定世界時の午前0時（日本標準時の午前9時）に毎日リセットされます。
+  * データを取得する際に表示される、<Wovn>［手動更新データを取得］</Wovn>ダイアログには、現在の取得回数が表示されます。
+  * 1日のデータ取得回数の上限に達した場合、ダイアログには最後にデータを取得した日時が表示されます。その場合は、<Wovn>［手動更新データを取得］</Wovn>ダイアログで<Wovn>［表示する］</Wovn>ボタンをクリックすると、最後に取得した日時でのデータが表示されます。
+* <Wovn>［アプリ管理者数］</Wovn>列を表示した状態で、Webブラウザーを再読み込みすると、<Wovn>［アプリ管理者数］</Wovn>列が表示されなくなります。再び表示するには、<Wovn>［手動更新データを取得］</Wovn>ボタンをクリックしてデータを再度取得してください。
+
+<Heading id="app_admin_confirm_app_admins_30">&lt;Wovn&gt;［アプリ管理者数］&lt;/Wovn&gt;列を表示する</Heading>
+
+1. <Kintone />の画面上部にある<Wovn>［設定］</Wovn>アイコン（歯車の形）をクリックし、<Wovn>［アプリ管理］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/restart_creating_app_img02.png" alt="スクリーンショット：画面上部の［設定］アイコンと［アプリ管理］が強調されている" />
+
+1. <Wovn>［アプリ管理］</Wovn>画面の<Wovn>［アプリの一覧］</Wovn>にある<Wovn>［手動更新データを取得］</Wovn>ボタンをクリックします。
+   <Img src="/k/kintone/img-ja/confirm_app_admins_02.png" alt="スクリーンショット：［アプリ管理］画面の［アプリの一覧］の上部にある［手動更新データを取得］ボタンが強調されている" />
+
+1. <Wovn>［手動更新データを取得］</Wovn>ダイアログで、<Wovn>［取得する］</Wovn>ボタンをクリックします。
+   <Img src="/k/kintone/img-ja/confirm_app_admins_03.png" alt="スクリーンショット：［手動更新データを取得］ダイアログの下部にある［取得する］ボタンが強調されている" />
+   <Wovn>［アプリの一覧］</Wovn>に<Wovn>［アプリ管理者数］</Wovn>列が追加され、各アプリの設定変更の権限を持つユーザー数が表示されます。
+   <Img src="/k/kintone/img-ja/confirm_app_admins_01.png" alt="スクリーンショット：［アプリ管理］画面の［アプリの一覧］で［アプリ管理者数］列が強調されている" />
+
+<Heading id="app_admin_confirm_app_admins_40">&lt;Wovn&gt;［アプリ管理者数］&lt;/Wovn&gt;のデータをCSV形式でダウンロードする</Heading>
+
+1. <Wovn>［アプリ管理］</Wovn>画面で、<Wovn>［アプリ一覧］</Wovn>に<Wovn>［アプリ管理者数］</Wovn>列を表示します。  
+<Wovn>［アプリ管理者数］</Wovn>列を表示する手順は、次の項目を参照してください。  
+ [［アプリ管理者数］列を表示する](#app_admin_confirm_app_admins_30)
+
+1. <Wovn>［CSV形式でダウンロードする］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/confirm_app_admins_04.png" alt="スクリーンショット：［アプリ管理］画面の［アプリの一覧］の右にある［CSV形式でダウンロードする］リンクが強調されている" />
+  <Wovn>［アプリ管理者数］</Wovn>列を含むデータがCSV形式でダウンロードされます。

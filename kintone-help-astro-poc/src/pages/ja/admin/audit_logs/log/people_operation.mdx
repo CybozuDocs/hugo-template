@@ -1,0 +1,63 @@
+---
+title: "ピープル"
+weight: 400
+description: "{{< kintone >}}でピープルの操作をしたときに出力される監査ログについて説明します。"
+aliases:
+  - "/ja/id/040814"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+
+
+ピープルの操作をしたときに出力されるログについて説明します。
+
+<Heading id="log_people_operation_10,class=&quot;no-trans&quot;">People operation</Heading>
+
+モジュールが「People operation」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_people_operation_1010,class=&quot;no-trans&quot;">People comment file download</Heading>
+
+アクションが「People comment file download」である監査ログについて説明します。
+
+<Heading level={4} id="log_people_operation_101010">実行された操作</Heading>
+
+投稿またはコメントに添付されたファイルについて、次の操作をした。
+
+* ファイルをダウンロードした
+* 画像のスライドショーを表示した
+
+<Heading level={4} id="log_people_operation_101020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_people_operation_101030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* ログイン名
+* 投稿またはコメントのURL
+* ファイル名
+
+<Heading level={4} id="log_people_operation_101040">出力されるログの例</Heading>
+
+```
+user: *, comment url: *, filename: *
+
+```
+
+<Heading id="log_people_operation_20">プロパティ</Heading>
+
+監査ログの「補足」欄に出力されるプロパティは次のとおりです。
+
+<Heading level={3} id="log_people_operation_2010,class=&quot;no-trans&quot;">comment url</Heading>
+
+投稿またはコメントのURLです。
+
+<Heading level={3} id="log_people_operation_2020,class=&quot;no-trans&quot;">filename</Heading>
+
+ファイル名です。
+
+<Heading level={3} id="log_people_operation_2030,class=&quot;no-trans&quot;">user</Heading>
+
+ユーザーのログイン名です。

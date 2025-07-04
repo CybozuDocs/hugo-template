@@ -1,0 +1,181 @@
+---
+title: "ユーザーがゲストスペースでできる操作"
+weight: 100
+description: "ゲストスペース管理者や参加者が、作成されたゲストスペースでできる操作を説明しています。"
+aliases:
+  - "/ja/id/040650"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+このページでは、ゲストスペース管理者や参加者が、作成されたゲストスペースでできる操作を説明します。
+
+ゲストスペースの参加者には、利用中のドメインで管理されているユーザー（<SlashUi />でユーザー登録されているユーザー）と、ゲストスペースのみに参加しているゲストユーザーがいます。  
+ここでは、<SlashUi />でユーザー登録されているユーザーを「通常のユーザー」と呼びます。
+
+<table>
+ <thead>
+   <tr>
+    <th>操作</th>
+      <th>ゲストスペース管理者</th>
+      <th nowrap>ゲストスペース参加者<br />（通常のユーザー）</th>
+      <th nowrap>ゲストスペース参加者<br />（ゲストユーザー）</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <th>基本設定の変更（スペース名の変更を含む）</th>
+        <td style="text-align: center;">&#10004;</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <th>ゲストユーザーの管理（ゲストの招待を含む）</th>
+        <td style="text-align: center;">&#10004;</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <th>ゲストスペースへの参加</th>
+        <td style="text-align: center;" colspan="2" rowspan="1" ><Kintone />システム管理者、または<Slash />共通管理者のみ可能</td>
+        <td></td>
+        </tr>
+        <tr>
+        <th>お気に入りに追加／解除<sup>*1</sup></th>
+        <td style="text-align: center;">&#10004;</td>
+        <td style="text-align: center;">&#10004;</td>
+        <td style="text-align: center;">&#10004;</td>
+        </tr>
+        <tr>
+        <th>参加メンバーの変更</th>
+        <td style="text-align: center;">&#10004;</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <th>ゲストスペース本文の編集</th>
+        <td style="text-align: center;">&#10004;</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <th>ゲストスペース内検索</th>
+        <td style="text-align: center;">&#10004;</td>
+        <td style="text-align: center;">&#10004;</td>
+        <td style="text-align: center;">&#10004;</td>
+        </tr>
+        <tr>
+        <th>スペーステンプレートの作成</th>
+        <td style="text-align: center;" colspan="2" rowspan="1" ><Kintone />システム管理者<sup>*2</sup>、または<Slash />共通管理者のみ可能</td>
+        <td></td>
+        </tr>
+        <tr>
+         <th>ゲストスペースの退会</th>
+         <td style="text-align: center;" colspan="3" rowspan="1">基本設定で禁止されていなければ可能<Wovn></Wovn></td>
+        </tr>
+        <tr>
+        <th>ゲストスペースの削除</th>
+        <td style="text-align: center;">&#10004;</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+            <th>スレッドの追加<sup>*3</sup></th>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+        </tr>
+        <tr>
+            <th>スレッドの削除<sup>*3</sup></th>
+            <td style="text-align: center;">&#10004;</td>
+            <td colspan="2" rowspan="1" style="text-align: center;">自分が作成したスレッドのみ可能</td>
+        </tr>
+        <tr>
+            <th>スレッドのフォロー／フォロー解除</th>
+            <td style="text-align: center;" colspan="3" rowspan="1">基本設定で禁止されていなければ可能<Wovn></Wovn></td>
+        </tr>
+        <tr>
+            <th>スレッド本文の編集</th>
+            <td style="text-align: center;">&#10004;</td>
+            <td colspan="2" rowspan="1" style="text-align: center;">自分が作成したスレッドのみ可能</td>
+        </tr>
+        <tr>
+            <th>スレッドコメントの投稿</th>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">&#10004;</td>
+        </tr>
+        <tr>
+            <th>スレッドアクションの作成／利用</th>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>ゲストスペースに所属するアプリの作成<sup>*4</sup></th>
+            <td style="text-align: center;">&#10004;</td>
+            <td style="text-align: center;">基本設定で禁止されていなければ可能<Wovn></Wovn></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>ゲストスペースに所属するアプリの設定の操作</th>
+            <td style="text-align: center;" colspan="2" rowspan="1">アプリのアクセス権の設定に応じた操作が可能<Wovn></Wovn></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>ゲストスペースに所属するアプリの削除</th>
+            <td style="text-align: center;" colspan="2" rowspan="1">アプリのアクセス権の設定に応じた操作が可能<Wovn></Wovn></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th><a href="/k/ja/id/040492.html">アプリの所属するスペースを変更する</a></th>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>ゲストスペースに所属するアプリの使用（検索含む）</th>
+            <td style="text-align: center;" colspan="3" rowspan="1">アプリのアクセス権の設定に応じた操作が可能<Wovn></Wovn></td>
+        </tr>
+        <tr>
+            <th>関連リンクの追加／削除</th>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<sup>\*1</sup>：<Wovn>［参加中のゲストスペース（連携先ドメイン）］</Wovn>のスペースをお気に入りに追加した場合、連携先ドメイン側の<Wovn>［お気に入りのスペース］</Wovn>に表示されます。<Wovn></Wovn><Wovn></Wovn>
+
+<sup>\*2</sup>：スペース内アプリを含むスペースの場合は、スペース内アプリの管理権限が必要です。
+
+<sup>\*3</sup>：基本設定で<Wovn>［スペースのポータルと複数のスレッドを使用する］</Wovn>にチェックが入っている場合のみ操作できます。<Wovn></Wovn><Wovn></Wovn>
+
+<sup>\*4</sup>：ゲストスペースの管理者であっても、以下の場合はアプリを作成できません。また、基本設定の<Wovn>［アプリ作成できるユーザーをスペースの管理者に限定する］</Wovn>にチェックが入っていない場合でも、以下の場合はアプリを作成できません。<Wovn></Wovn><Wovn></Wovn>
+
+* <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>で、<Wovn>［アプリの作成］</Wovn>が許可されていない。<Wovn></Wovn>
+* <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アプリグループ］</Wovn>で、<Wovn>［Public］</Wovn>の<Wovn>［アプリの作成］</Wovn>および<Wovn>［アプリの管理／使用／削除］</Wovn>が許可されていない。<Wovn></Wovn>
+
+<Note>
+
+* ゲストユーザーは、ゲストスペースの管理者には設定できません。
+* ゲストスペースに参加していないユーザーは、いずれの操作もできません。
+
+</Note>
+
+<Reference>
+
+* [ゲストスペースの設定を変更する](/k/ja/id/040640.html)
+* [アプリにアクセス権を設定する](/k/ja/id/040589.html)
+* [<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+* [アプリグループにアクセス権を設定する](/k/ja/id/04025.html)
+
+</Reference>

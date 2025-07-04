@@ -1,0 +1,85 @@
+---
+title: "ポータル／スペース内のどちらにアプリを作成すればいいですか？"
+weight: 6300
+aliases:
+  - "/ja/id/040767"
+description: "アプリをスペース内に作成するかどうかで、どのような違いがあるかを説明しています。"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+
+
+<Kintone />のアプリは、ポータルまたはスペース内に作成できます。  
+たとえば部署ごとや用途ごとにスペースを作成し、それらのスペース内にアプリを作成すると、アプリを管理しやすくなるメリットがあります。  
+
+なお、ポータルまたはスペース内のどちらにアプリを作成しても、あとからアプリの所属場所を変更可能です。まずはポータルで気軽にアプリを作成し、<Kintone />の利用が進んできた段階で、スペースを活用してスペース内でアプリを管理するといった利用方法も可能です。  
+
+* [スペースにアプリを作成する](/k/ja/id/040694.html)  
+* [アプリの所属するスペースを変更する](/k/ja/id/040492.html)
+
+参考として、ポータルのアプリと、スペース内のアプリの主な違いを説明します。
+
+<Heading id="app_qa_spaceapp_portalapp_10">ポータルのアプリ／スペース内のアプリの主な違い</Heading>
+
+<Heading level={3} id="app_qa_spaceapp_portalapp_1010">ポータル（またはスペースのポータル）のアプリ一覧に表示されるかどうか</Heading>
+
+ポータル、またはスペースのポータルのアプリ一覧にアプリが表示されるかどうかは、アプリの所属場所によって異なります。
+
+<Heading level={4} id="app_qa_spaceapp_portalapp_101010">ポータルのアプリ</Heading>
+
+ポータルのアプリ一覧に表示されます。  
+<Img src="/k/kintone/img-ja/spaceapp_portalapp_img01.png" alt="スクリーンショット：ポータルのアプリ一覧" />
+
+<Heading level={4} id="app_qa_spaceapp_portalapp_101020">スペース内のアプリ</Heading>
+
+ポータルのアプリ一覧の「すべてのアプリ」と「最近公開されたアプリ」に、そのユーザーが参加しているスペース内のアプリが表示されます。参加していないスペース内のアプリは表示されません。  
+「お気に入りのアプリ」「最近開いたアプリ」「作成したアプリ」には、スペースに参加中かどうかにかかわらず、対象のアプリが表示されます。
+
+スペースのポータルのアプリ一覧には、スペースに参加中かどうかにかかわらず、そのスペース内のアプリが表示されます。  
+<Img src="/k/kintone/img-ja/spaceapp_portalapp_img02.png" alt="スクリーンショット：スペースのポータルのアプリ一覧" />
+
+<Note>
+
+ポータル、およびスペースのポータルのアプリ一覧に表示されるのは、そのユーザーが利用可能なアプリのみです。
+
+</Note>
+
+<Heading level={3} id="app_qa_spaceapp_portalapp_1020">アプリの利用ユーザー</Heading>
+
+アプリを利用できるユーザーは、次のとおりです。
+
+<Heading level={4} id="app_qa_spaceapp_portalapp_102010">ポータルのアプリ</Heading>
+
+「アプリのアクセス権」の設定内容に準じます。  
+
+<Heading level={4} id="app_qa_spaceapp_portalapp_102020">スペース内のアプリ</Heading>
+
+公開スペースの場合、「アプリのアクセス権」の設定内容に準じます。  
+非公開スペースの場合、スペースの参加メンバーのみがアプリを利用できます。スペースに参加していないメンバーは、「アプリのアクセス権」で閲覧権限が付与されていても、アプリを利用できません。  
+[アプリにアクセス権を設定する](/k/ja/id/040589.html)
+
+<Note>
+
+スペースを公開／非公開のどちらにするかは、スペースごとに管理ダイアログで設定できます。詳細は、「[スペースの設定を変更する](/k/ja/id/040696.html)」を参照してください。
+
+</Note>
+
+<Heading level={3} id="app_qa_spaceapp_portalapp_1030">アプリグループを選択できるかどうか</Heading>
+
+アプリグループとは、複数のアプリのアクセス権を一括で管理するためのものです。  
+[アプリグループとは](/k/ja/id/04028.html)
+
+アプリの所属場所によって、アプリグループを選択できるかどうかが異なります。  
+詳細は、次のとおりです。
+
+<Heading level={4} id="app_qa_spaceapp_portalapp_103010">ポータルのアプリ</Heading>
+
+アプリグループを選択可能です。
+
+<Heading level={4} id="app_qa_spaceapp_portalapp_103020">スペース内のアプリ</Heading>
+
+アプリグループは必ず「Public」となり、変更できません。

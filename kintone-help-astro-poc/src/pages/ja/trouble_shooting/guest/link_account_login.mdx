@@ -1,0 +1,59 @@
+---
+title: "アカウントの共通化をしていますが、{{< kintone >}}にログインできません"
+weight: 1900
+aliases:
+  - "/ja/id/040345"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+アカウントの共通化を行っている環境でログインできない場合は、アクセス方法が間違っている、またはユーザーのアカウントが存在しない（停止または削除されてしまった）などの可能性が考えられます。  
+  
+アカウントの共通化を行っている場合、該当のゲストアカウントは、契約中の<Kintone />のログイン画面からアクセスする必要があります。  
+アカウントの共通化を行ったあとは、ゲストユーザー用のログイン画面からメールアドレスとパスワードでログインできなくなります。また、アカウントの共通化は解除できません。
+
+<Heading id="guest_link_account_login_30">対処方法</Heading>
+
+はじめに「[<Kintone />アカウントでログインを試す](#guest_link_account_login_10)」の方法をお試しください。それでもアクセスできない場合には、ユーザーのアカウント停止や削除などが行われていないか確認のうえで「[ゲストユーザーとして再度招待してもらう](#guest_link_account_login_20)」を参照してください。
+
+<Heading id="guest_link_account_login_10">&lt;Kintone /&gt;アカウントでログインを試す</Heading>
+
+1. ゲストユーザーのログイン画面で、「<Kintone />アカウントでログイン」をクリックします。
+   <Img src="/k/kintone/img-ja/link_account_login01.png" alt="{{&lt; kintone &gt;}}アカウントでログイン" />
+
+1. ご自身の会社などで利用中の<Kintone />のサブドメインを入力します。
+   <Img src="/k/kintone/img-ja/link_account_login02.png" alt="サブドメイン入力" />
+
+   <Enabled regions={["JP"]}>
+   <Note>
+
+   サブドメインを確認する方法は、次のページを参照してください。  
+   [契約内容を確認する](/s/ja/id/0502.html#contract__index_10)
+   </Note>
+
+   </Enabled>
+
+サブドメインを入力してもログインできない場合、ご自身の会社などで利用中の<Kintone />に、該当ユーザーのアカウントが存在しない（停止または削除されてしまった）などの理由が考えられます。  
+利用中の<Kintone />の管理者に、該当ユーザーのアカウントの停止や削除などが行われていないか、確認してください。  
+アカウントの停止や削除が行われていてアクセスできない場合、ゲストユーザーとして再度招待してもらう必要があります。
+
+<Heading id="guest_link_account_login_20">ゲストユーザーとして再度招待してもらう</Heading>
+
+再度招待してもらう前に、利用中の<Kintone />の環境で、システム管理者が<Kintone />システム管理にアクセスし、[ゲストユーザー管理]から該当ユーザーを削除します。  
+[ゲストユーザーを削除する](/k/ja/id/040823.html#guest_confirm_guest_list_20)  
+
+そのあと、ゲストスペースの管理者が再度招待してください。  
+[ゲストユーザーの管理（ゲストの招待）](/k/ja/id/040649.html)  
+  
+なお、別のメールアドレスで招待する場合は、ゲストユーザーを削除しなくてもゲストの招待は可能です。
+
+<Reference>
+[[ゲストの操作] ゲストアカウントを<Kintone />アカウントと共通化する](/k/ja/id/040644.html)
+
+</Reference>

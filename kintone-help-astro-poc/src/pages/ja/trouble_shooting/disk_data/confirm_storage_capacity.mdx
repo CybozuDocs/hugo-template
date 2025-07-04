@@ -1,0 +1,80 @@
+---
+title: "ディスク容量とディスク使用量を知りたい"
+weight: 100
+disabled: "[US]"
+aliases:
+  - "/ja/id/040276"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+利用中のドメイン全体における、利用可能なディスク容量や、サービスごとのディスク使用量は、<SlashUi />の<Wovn>［契約状況］</Wovn>で確認できます。
+
+<Heading id="disk_data_confirm_storage_capacity_10">ディスク容量</Heading>
+
+<Kintone />、および<CybozuCom />の各サービス（Garoonなど）で利用可能なディスク容量は、「契約ユーザー数 × 5GB」です。ゲストユーザーは、契約ユーザーに含まれません。
+
+<Enabled regions={["JP"]}>
+
+詳細は、次のページを参照してください。  
+[料金](https://kintone.cybozu.co.jp/price/)（日本語のみ）
+
+</Enabled>
+
+<Heading id="disk_data_confirm_storage_capacity_20">ディスク使用量</Heading>
+
+<SlashUi />の<Wovn>［契約状況］</Wovn>に表示されるディスク使用量は、添付ファイル領域、監査ログ保存領域、およびデータベース領域を合計した値です。
+
+<Heading id="disk_data_confirm_storage_capacity_30">ディスク容量とディスク使用量の見かた</Heading>
+
+<SlashUi />の<Wovn>［契約状況］</Wovn>でのディスク容量とディスク使用量の見かたを説明します。
+
+<Img src="/k/kintone/img-ja/confirm_storage_capacity_01.png" alt="スクリーンショット：［契約状況］に表示されたディスク使用量の例" />
+
+* ディスク容量：  
+  ディスク容量は<Wovn>［全体のディスク使用量］</Wovn>項目の<Wovn>［上限］</Wovn>列を確認します。契約中のドメイン全体で利用できるディスク容量の上限が表示されます。  
+  ディスク増設オプションを購入している場合は、カッコ内に増設したディスク容量の合計が表示されます。
+* ディスク使用量：  
+  ディスク使用量は<Wovn>［ディスク使用量］</Wovn>項目の<Wovn>［利用中］</Wovn>列を確認します。利用中のドメイン全体でのディスク使用量と、サービスごとのディスク使用量が表示されます。
+
+<Enabled regions={["JP"]}>
+
+<Heading id="disk_data_confirm_storage_capacity_40">試用期間中のディスク容量</Heading>
+
+<Heading level={3} id="disk_data_confirm_storage_capacity_4010">すべてのサービスが試用中の場合</Heading>
+
+同じドメイン内のすべてのサービスが試用中の場合、「試用サービス数 × 10GB」の値が<Wovn>［全体のディスク使用量］</Wovn>項目の<Wovn>［上限］</Wovn>列に表示されます。  
+試用期間が終了し、サービスを購入すると、ディスク容量の上限は「契約ユーザー数 × 5GB」になります。  
+この上限を超えて、サービスの利用を継続する場合は、ディスク増設オプションを購入してください。
+
+<Heading level={3} id="disk_data_confirm_storage_capacity_4020">試用中のサービスと購入済みのサービスを併用する場合</Heading>
+
+同じドメイン内に、試用中のサービスと、すでに月額または年額契約のサービスがある場合、「試用サービス数 × 10GB」+「契約ユーザー数 × 5GB」の値が、<Wovn>［全体のディスク使用量］</Wovn>項目の<Wovn>［上限］</Wovn>列に表示されます。  
+この上限を超えると、超過お知らせメールが送信されます。  
+上限を超えて、サービスの利用を継続する場合は、ディスク増設オプションを購入してください。
+
+<Note>
+
+ディスク増設についての詳細は、次のページを参照してください。  
+[ディスク増設](https://www.cybozu.com/jp/service/option/disk.html)（日本語のみ）
+
+</Note>
+
+<Reference>
+
+* [ディスク容量やユーザー数の上限を超えたらどうなりますか？](/k/ja/id/040278.html)
+* [ディスク使用量を減らすにはどうすればいいですか？](/k/ja/id/040277.html)
+
+</Reference>
+
+</Enabled>

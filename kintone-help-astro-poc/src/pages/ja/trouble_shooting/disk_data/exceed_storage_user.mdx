@@ -1,0 +1,54 @@
+---
+title: "ディスク容量やユーザー数の上限を超えたらどうなりますか？"
+weight: 200
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040278"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Store from "@/components/Store.astro";
+
+
+ディスク容量やユーザー数の上限を超えても、すぐにサービスを使用できなくなるわけではありませんが、一定期間経過後に使用停止することがあります。  
+
+ご契約の上限を超えると、<Store />管理者への通知メールや<SlashUi />のメッセージでお知らせします。  
+通知メールは、上限を超えた日の翌日から毎日送信され、上限を超えている間は停止できません。  
+
+<Img src="/k/kintone/img-ja/exceed_storage_user_01.png" alt="スクリーンショット：{{&lt; slash_ui &gt;}}のメッセージ" />
+
+速やかにディスク容量や契約ユーザー数を追加するか、ディスク使用量やユーザー数を減らしてください。  
+[ディスク使用量を減らすにはどうすればいいですか？](/k/ja/id/040277.html)
+
+<Heading id="disk_data_exceed_storage_user_10">ディスク容量や契約ユーザー数を追加する</Heading>
+
+<Store />の管理者として「<Store />」にログインして、ディスク増設や契約ユーザー数を追加してください。  
+[<Store />](https://store.cybozu.com/login?redirect=https://store.cybozu.com/manage/)  
+
+サイボウズ オフィシャルパートナーから購入された場合は、購入元へご相談ください。
+
+<Heading level={3} id="disk_data_exceed_storage_user_1010">ディスク容量を追加する場合</Heading>
+
+オプションサービスでディスク増設を選択します。ディスク容量は10GB単位で追加できます。  
+
+<Heading level={3} id="disk_data_exceed_storage_user_1020">契約ユーザー数を追加する場合</Heading>
+
+ユーザー数を追加するサービスを選択し、契約内容を変更します。
+
+<Heading id="disk_data_exceed_storage_user_20">ユーザー数を減らす</Heading>
+
+<Slash />共通管理者が、使用していないユーザーを停止するか削除してください。  
+[ユーザーを使用停止にする](/general/ja/id/020252.html)  
+[ユーザーを削除する](/general/ja/id/020227.html)
+
+<Reference>
+
+* [ディスク容量とディスク使用量を知りたい](/k/ja/id/040276.html)
+* [契約ユーザー数](/s/ja/id/05023.html)
+
+</Reference>

@@ -1,0 +1,81 @@
+---
+title: "レコードタイトルに日付フィールドを設定したい"
+weight: 1810
+aliases:
+  - "/ja/id/040214"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Graynote from "@/components/Graynote.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Reference from "@/components/Reference.astro";
+
+
+レコードタイトルには、日付フィールドを指定できません。  
+[レコードタイトルに指定できるフィールド](/k/ja/id/040604.html#app_settings_title_field_20)
+
+ただし、レコードタイトルに指定可能な計算式フィールドや文字列（1行）フィールドを使うと、日付フィールドの内容をレコードタイトルに設定できます。  
+具体的には、計算フィールドや文字列（1行）フィールドに、計算式を使って日付フィールドの内容を表示させたあと、表示させたフィールドをレコードタイトルに設定します。  
+手順の詳細は、次のとおりです。
+
+<Heading id="app_qa_record_title_date_10">計算フィールドを利用する手順</Heading>
+
+1. レコードタイトルに設定したい日付フィールドのフィールドコードを確認します。
+   <Img src="/k/kintone/img-ja/app_qa_record_title_date_img01.png" alt="スクリーンショット：「日付の設定」ダイアログで、フィールドコードが強調されている" />
+
+1. 計算フィールドを配置し、右上の歯車の形をした設定アイコンから[設定]をクリックします。
+   <Img src="/k/kintone/img-ja/app_qa_record_title_date_img02.png" alt="スクリーンショット：計算式フィールドで、[設定]までの動線を示している" />
+
+1. 「計算式」に、手順1で確認した日付フィールドのフィールドコードを入力します。  
+  表示形式は「日付（例：2012-08-06）」を選択します。  
+   <Img src="/k/kintone/img-ja/app_qa_record_title_date_img03.png" alt="スクリーンショット：「計算式の設定」ダイアログが表示されている" />
+
+1. [保存]をクリックします。
+
+1. 画面左上の[フォームを保存]をクリックします。
+
+1. 設定した計算フィールドをレコードタイトルに設定します。  
+  [レコードタイトルを設定する](/k/ja/id/040604.html)
+
+アプリを更新して、設定は完了です。
+
+<Heading id="app_qa_record_title_date_20">文字列（1行）フィールドを利用する手順</Heading>
+
+文字列（1行）フィールドに日付フィールドと同じ内容を表示する場合は、「DATE_FORMAT」関数を利用する必要があります。
+
+1. レコードタイトルに設定したい日付フィールドのフィールドコードを確認します。
+   <Img src="/k/kintone/img-ja/app_qa_record_title_date_img01.png" alt="スクリーンショット：「日付の設定」ダイアログで、フィールドコードが強調されている" />
+
+1. 文字列（1行）フィールドを配置し、右上の歯車の形をした設定アイコンから[設定]をクリックします。
+   <Img src="/k/kintone/img-ja/app_qa_record_title_date_img04.png" alt="スクリーンショット：文字列（1行）フィールドで、[設定]までの動線を示している" />
+
+1. 「自動計算する」にチェックを入れ、計算式を入力します。  
+  手順1で確認したフィールドコードが「日付」の場合、計算式の例は次のとおりです。  
+
+   <Graynote>
+
+   DATE_FORMAT(日付,"YYYY-MM-dd","Etc/GMT")
+
+   </Graynote>
+
+   <Img src="/k/kintone/img-ja/app_qa_record_title_date_img05.png" alt="スクリーンショット：「文字列（1行）の設定」ダイアログが表示されている" />
+
+1. [保存]をクリックします。
+
+1. 画面左上の[フォームを保存]をクリックします。
+
+1. 設定した文字列（1行）フィールドをレコードタイトルに設定します。  
+  [レコードタイトルを設定する](/k/ja/id/040604.html)
+
+アプリを更新して、設定は完了です。
+
+<Reference>
+
+* [計算](/k/ja/id/040517.html)
+* [文字列（1行）](/k/ja/id/040539.html)
+* [フォームを設定する](/k/ja/id/040554.html)
+* [フィールドコードとは](/k/ja/id/040504.html)
+* [[DATE_FORMAT関数]日付や時刻の表示形式を指定して表示する](/k/ja/id/040501.html)
+
+</Reference>

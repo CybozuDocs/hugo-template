@@ -1,0 +1,98 @@
+---
+title: "アプリグループにアクセス権を設定する"
+weight: 300
+aliases:
+  - "/ja/id/04025"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+アプリグループにアクセス権を設定すると、同じアプリグループに所属する複数のアプリのアクセス権を一括で設定できます。  
+たとえば、アプリのアクセス権でひとつずつアクセス権を設定しなくても、営業部のアプリグループに所属するアプリは、営業部のメンバーのみが操作できるように設定できます。
+
+<Heading id="appgroup_appgroup_rights_10">アクセス権の詳細</Heading>
+
+<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アプリグループ］</Wovn>画面では、アプリグループごとに次の権限を設定できます。
+
+* <Wovn>［アプリの作成］</Wovn>：グループに所属するアプリの作成
+* <Wovn>［アプリの管理／使用／削除］</Wovn>：グループに所属するアプリの管理、使用および削除
+
+<Wovn>［アプリの作成］</Wovn>と<Wovn>［アプリの管理／使用／削除］</Wovn>の詳細を説明します。
+
+<Heading level={3} id="appgroup_appgroup_rights_1010">&lt;Wovn&gt;［アプリの作成］&lt;/Wovn&gt;</Heading>
+
+アプリグループ内にアプリを作成する権限です。  
+アプリグループ内にアプリを作成するには、この権限設定だけではなく、以下のアクセス権限が有効になっている必要があります。
+
+* <Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>で、アプリの作成権限が許可されている
+* アプリグループのアクセス権で、<Wovn>［アプリの管理／使用／削除］</Wovn>が許可されている
+
+<Warning>
+
+アプリグループのアクセス権で<Wovn>［アプリの作成］</Wovn>が許可されていない場合、<Wovn>［アプリの設定］</Wovn>画面で所属するアプリグループを変更する際の選択肢に表示されません。  
+[所属するアプリグループを変更する](/k/ja/id/040592.html)
+
+</Warning>
+
+<Heading level={3} id="appgroup_appgroup_rights_1020">&lt;Wovn&gt;［アプリの管理／使用／削除］&lt;/Wovn&gt;</Heading>
+
+次の操作が有効になる権限です。
+
+* レコードの閲覧
+* レコードの追加
+* レコードの編集
+* レコードの削除
+* アプリの設定
+* ファイル読み込み
+* ファイル書き出し
+
+<Heading id="appgroup_appgroup_rights_20">設定手順</Heading>
+
+アプリグループにアクセス権を設定する手順は次のとおりです。
+
+1. <Wovn>［<Kintone />システム管理］</Wovn>画面を開きます。  
+  [［<Kintone />システム管理］画面を開く](/k/ja/id/04046.html)
+
+1. <Wovn>［アプリグループ］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/appgroup_rights_01.png" alt="スクリーンショット：[アプリグループ]のリンクが枠線で強調されている" />
+
+1. アクセス権を設定するアプリグループの<Wovn>［アクセス権］</Wovn>をクリックします。今回は「営業部用」というアプリグループにアクセス権を設定します。  
+   <Img src="/k/kintone/img-ja/appgroup_rights_02.png" alt="スクリーンショット：アプリグループのアクセス権を設定するリンクが枠線で強調されている" />
+
+1. アプリグループのアクセス権を設定します。  
+  1人のユーザーに対して複数の権限を設定した場合、上の行の設定が優先されます。  
+   設定例1：  
+   * <Wovn>［ユーザー／組織／グループ］</Wovn>：「高橋 健太」
+     * <Wovn>［アプリの作成］</Wovn>：許可する
+     * <Wovn>［アプリの管理／使用／削除］</Wovn>：許可する 
+   * <Wovn>［ユーザー／組織／グループ］</Wovn>：「Everyone」
+     * <Wovn>［アプリの作成］</Wovn>：許可しない
+     * <Wovn>［アプリの管理／使用／削除］</Wovn>：許可する
+   <Img src="/k/kintone/img-ja/appgroup_rights_03.png" alt="スクリーンショット：設定例1のアプリグループのアクセス権の設定画面" />
+   「高橋 健太」だけが、「営業部用」アプリグループに所属するアプリを作成できます。  
+   「高橋 健太」以外のユーザーは、「営業部用」アプリグループに所属するアプリを作成できません。  
+   「営業部用」アプリグループに所属するアプリを操作することや、<Wovn>［アプリの設定］</Wovn>画面へのアクセスはできます。  
+
+   設定例2：  
+   * <Wovn>［ユーザー／組織／グループ］</Wovn>：「高橋 健太」
+     * <Wovn>［アプリの作成］</Wovn>：許可しない
+     * <Wovn>［アプリの管理／使用／削除］</Wovn>：許可しない 
+   * <Wovn>［ユーザー／組織／グループ］</Wovn>：「Everyone」
+     * <Wovn>［アプリの作成］</Wovn>：許可する
+     * <Wovn>［アプリの管理／使用／削除］</Wovn>：許可する
+   <Img src="/k/kintone/img-ja/appgroup_rights_04.png" alt="スクリーンショット：設定例2のアプリグループのアクセス権の設定画面" />
+   「高橋 健太」以外のすべてのユーザーが、アプリを作成、使用、管理および削除できます。  
+   「高橋 健太」は、「営業部用」アプリグループに所属するアプリを閲覧できません。 　
+  <Note>
+  <Wovn>［優先順位］</Wovn>の列の順位変更アイコンをドラッグアンドドロップすると、アクセス権の優先順位を変更できます。「Everyone」グループの順位は変更できません。
+  </Note>
+
+1. アクセス権を設定したら、<Wovn>［保存］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/appgroup_rights_05.png" alt="スクリーンショット：［保存］ボタンが枠線で強調されている" />

@@ -1,0 +1,69 @@
+---
+title: "「ソート」で選択できるフィールド・項目を知りたい"
+weight: 2400
+aliases:
+  - "/ja/id/040225"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Warning from "@/components/Warning.astro";
+
+<Heading id="app_qa_sort_10">ソートで選択できるフィールド・項目</Heading>
+
+ソートで選択できるフィールドの種類、および項目は次のとおりです。<br />
+ソートの選択肢では、フィールドの種類ではなくフィールド名で表示されます。
+
+* レコード番号
+* 更新者
+* 作成者
+* 更新日時
+* 作成日時
+* 文字列（1行）
+* 数値
+* 計算
+* ラジオボタン
+* ドロップダウン
+* 日付
+* 時刻
+* 日時
+* リンク
+* ルックアップ
+* プロセス管理のステータス
+
+<Warning>
+
+ 関連レコード一覧フィールドおよびテーブルにしたフィールドは、ソートできません。
+
+</Warning>
+
+<Heading id="app_qa_sort_20">ソートを設定できる画面</Heading>
+
+アプリでソートを設定できるのは、次の画面です。
+
+<Heading level={3} id="app_qa_sort_2010">レコード一覧画面</Heading>
+
+ソートを設定するには、フィールド名をクリックします。
+
+<Img src="/k/kintone/img-ja/sort_06.png" alt="スクリーンショット：レコード一覧画面でフィールド名が表示されている行を赤枠で強調している" />
+
+<Heading level={3} id="app_qa_sort_2020">レコード一覧画面の「絞り込む」アイコンで開いた画面</Heading>
+
+<Img src="/k/kintone/img-ja/sort_07.png" alt="スクリーンショット：「絞り込む」画面でソートエリアを赤枠で強調している" />
+
+<Heading level={3} id="app_qa_sort_2030">ルックアップの「取得」をクリックしてから「絞り込む」アイコンで開いた画面</Heading>
+
+<Img src="/k/kintone/img-ja/sort_01.png" alt="スクリーンショット：「絞り込む」画面でソートエリアを赤枠で強調している" />
+
+<Heading level={3} id="app_qa_sort_2040">アプリの設定画面の、一覧の設定画面</Heading>
+
+<Img src="/k/kintone/img-ja/sort_02.png" alt="スクリーンショット：一覧の設定画面の「絞り込み」項目でソートエリアを赤枠で強調している" />
+
+<Heading level={3} id="app_qa_sort_2050">フォームの設定画面で、ルックアップの設定の「ソートの初期設定」</Heading>
+
+<Img src="/k/kintone/img-ja/sort_04.png" alt="スクリーンショット：「フィールドの設定」画面で「ソートの初期設定」項目を強調している" />
+
+<Heading level={3} id="app_qa_sort_2060">フォームの設定画面で、関連レコード一覧の設定の「レコードのソート」</Heading>
+
+<Img src="/k/kintone/img-ja/sort_05.png" alt="スクリーンショット：「フィールドの設定」画面で「レコードのソート」項目を強調している" />

@@ -1,0 +1,154 @@
+---
+title: "{{< kintone >}}全体に関わるアクセス権を設定する"
+weight: 100
+aliases:
+  - "/ja/id/040867"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+ここでは、<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>で、<Kintone />全体に関わるアクセス権を設定する手順を説明します。
+
+<Kintone />システムの管理、および、アプリの作成や管理、アプリグループの管理、スペースやゲストスペースの作成に対する権限を設定できます。  
+各権限の詳細は、次のページを参照ください。  
+[<Kintone />システム管理で設定できるアクセス権](/k/ja/id/04062.html)
+
+<Heading id="permissions_set_permissions_10">&lt;Wovn&gt;［&lt;Kintone /&gt;システム管理］&lt;/Wovn&gt;画面でアクセス権を設定する</Heading>
+
+初期設定では、すべてのユーザーに対するアクセス権として、<Wovn>［Everyone］</Wovn>の設定行があります。  
+個別のユーザーや組織、グループに対するアクセス権を設定する場合は、<Wovn>［Everyone］</Wovn>の設定行の上に設定行を追加します。
+
+<Heading level={3} id="permissions_set_permissions_1010">手順</Heading>
+
+1. <Wovn>［<Kintone />システム管理］</Wovn>画面を開きます。  
+  [［<Kintone />システム管理］画面を開く](/k/ja/id/04046.html)
+
+1. <Wovn>［アクセス権］</Wovn>をクリックします。
+
+1. 設定を追加する場合は、<Wovn>［追加する］</Wovn>をクリックして、設定行を追加します。追加した設定行の<Wovn>［ユーザー／組織／グループ］</Wovn>でアクセス権を設定したいユーザーまたは組織、グループを選択します。  
+   <Img src="/k/kintone/img-ja/set_permissions_01.png" alt="スクリーンショット：［アクセス権］画面で［追加］とユーザー選択パーツが枠線で強調されている" />
+
+1. 選択した組織やグループの下位組織に所属するユーザーにも同じアクセス権を継承する場合は、<Wovn>［アクセス権の継承］</Wovn>の<Wovn>［下位組織に継承する］</Wovn>にチェックを入れます。  
+
+1. アクセス権ごとに許可するかどうかを変更します。  
+   * アクセス権を許可する場合は、<Wovn>［許可］</Wovn>にチェックを入れます。
+   * アクセス権を許可しない場合は、<Wovn>［許可］</Wovn>のチェックを外します。
+
+   <Note>
+   * <Wovn>［アプリグループの管理（閲覧のみ）］</Wovn>または<Wovn>［アプリグループの管理］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れる場合は、<Wovn>［システムの管理］</Wovn>の<Wovn>［許可］</Wovn>にもチェックを入れてください。
+   * <Wovn>［アプリグループの管理］</Wovn>にチェックを入れて保存すると、<Wovn>［アプリグループの管理（閲覧のみ）］</Wovn>にもチェックが入ります。
+   * <Wovn>［アプリの作成］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、<Wovn>［アプリの管理］</Wovn>の<Wovn>［許可］</Wovn>にもチェックが入ります。<Wovn>［アプリの作成］</Wovn>単独の許可はできません。
+   * <Wovn>［ゲストスペースの作成］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、<Wovn>［スペースの作成］</Wovn>の<Wovn>［許可］</Wovn>にもチェックが入ります。<Wovn>［ゲストスペースの作成］</Wovn>単独の許可はできません。
+
+   </Note>
+
+1. 設定の優先順位を変更する場合は、優先したい設定行が上になるように<Wovn>［優先順位］</Wovn>の並び替えアイコンをドラッグアンドドロップします。
+  <Note>
+
+  <Wovn>［Everyone］</Wovn>の設定行の位置は変更できません。
+  </Note>
+
+1. 画面左上の<Wovn>［保存］</Wovn>をクリックします。
+
+<Heading id="permissions_set_permissions_20">設定例</Heading>
+
+<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>の設定例を紹介します。  
+設定行が複数ある場合、上の行の設定が優先されます。優先したい設定が上になるように優先順位を変更してください。
+
+<Heading level={3} id="permissions_set_permissions_2010">設定例1：&lt;Kintone /&gt;システム管理者を設定する</Heading>
+
+<Heading level={4} id="permissions_set_permissions_201010">特定のユーザーだけが&lt;Kintone /&gt;システム管理を操作できるようにする場合</Heading>
+
+<Wovn>［Everyone］</Wovn>の設定行の上に設定行を追加して、次のように設定します。
+
+* 指定したユーザーまたは組織、グループ
+  * <Wovn>［システムの管理］</Wovn>を許可する
+
+* <Wovn>［Everyone］</Wovn>
+  * <Wovn>［システムの管理］</Wovn>を許可しない
+
+<Heading level={4} id="permissions_set_permissions_201020">特定のユーザー以外のすべてのユーザーが&lt;Kintone /&gt;システム管理を操作できるようにする場合</Heading>
+
+<Wovn>［Everyone］</Wovn>の設定行の上に設定行を追加して、次のように設定します。
+
+* 指定したユーザーまたは組織、グループ
+  * <Wovn>［システムの管理］</Wovn>を許可しない
+
+* <Wovn>［Everyone］</Wovn>
+  * <Wovn>［システムの管理］</Wovn>を許可する
+
+<Heading level={3} id="permissions_set_permissions_2020">設定例2：アプリ管理者を設定する</Heading>
+
+<Heading level={4} id="permissions_set_permissions_202010">特定のユーザーだけがアプリを作成および管理できるようにする場合</Heading>
+
+<Wovn>［Everyone］</Wovn>の設定行の上に設定行を追加して、次のように設定します。
+
+* 指定したユーザーまたは組織、グループ
+  * <Wovn>［アプリの作成］</Wovn>を許可する
+  * <Wovn>［アプリの管理］</Wovn>を許可する
+* <Wovn>［Everyone］</Wovn>
+  * <Wovn>［アプリの作成］</Wovn>を許可しない
+  * <Wovn>［アプリの管理］</Wovn>を許可しない
+
+<Heading level={4} id="permissions_set_permissions_202020">特定のユーザー以外のすべてのユーザーがアプリを作成および管理できるようにする場合</Heading>
+
+<Wovn>［Everyone］</Wovn>の設定行の上に設定行を追加して、次のように設定します。
+
+* 指定したユーザーまたは組織、グループ
+  * <Wovn>［アプリの作成］</Wovn>を許可しない
+  * <Wovn>［アプリの管理］</Wovn>を許可しない
+* <Wovn>［Everyone］</Wovn>
+  * <Wovn>［アプリの作成］</Wovn>を許可する
+  * <Wovn>［アプリの管理］</Wovn>を許可する
+
+<Heading level={3} id="permissions_set_permissions_2030">設定例3：スペースの作成権限を設定する</Heading>
+
+<Heading level={4} id="permissions_set_permissions_203010">特定のユーザーだけがスペースを作成できるようにする場合</Heading>
+
+<Wovn>［Everyone］</Wovn>の設定行の上に設定行を追加して、次のように設定します。
+
+* 指定したユーザーまたは組織、グループ
+  * <Wovn>［スペースの作成］</Wovn>を許可する
+* <Wovn>［Everyone］</Wovn>
+  * <Wovn>［スペースの作成］</Wovn>を許可しない
+
+<Heading level={4} id="permissions_set_permissions_203020">特定のユーザー以外のすべてのユーザーがスペースを作成できるようにする場合</Heading>
+
+<Wovn>［Everyone］</Wovn>の設定行の上に設定行を追加して、次のように設定します。
+
+* 指定したユーザーまたは組織、グループ
+  * <Wovn>［スペースの作成］</Wovn>を許可しない
+* <Wovn>［Everyone］</Wovn>
+  * <Wovn>［スペースの作成］</Wovn>を許可する
+
+<Heading level={3} id="permissions_set_permissions_2040">設定例4：ゲストスペースの作成権限を設定する</Heading>
+
+<Heading level={4} id="permissions_set_permissions_204010">特定のユーザーだけがゲストスペースを作成できるようにする場合</Heading>
+
+<Wovn>［Everyone］</Wovn>の設定行の上に設定行を追加して、次のように設定します。
+
+* 指定したユーザーまたは組織、グループ
+  * <Wovn>［ゲストスペースの作成］</Wovn>を許可する
+* <Wovn>［Everyone］</Wovn>Everyone
+  * <Wovn>［ゲストスペースの作成］</Wovn>を許可しない
+
+<Heading level={4} id="permissions_set_permissions_204020">特定のユーザー以外のすべてのユーザーがゲストスペースを作成できるようにする場合</Heading>
+
+<Wovn>［Everyone］</Wovn>の設定行の上に設定行を追加して、次のように設定します。
+
+* 指定したユーザーまたは組織、グループ
+  * <Wovn>［ゲストスペースの作成］</Wovn>を許可しない
+* <Wovn>［Everyone］</Wovn>
+  * <Wovn>［ゲストスペースの作成］</Wovn>を許可する
+
+<Note>
+
+<Wovn>［ゲストスペースの作成］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、<Wovn>［スペースの作成］</Wovn>の<Wovn>［許可］</Wovn>にもチェックが入ります。<Wovn>［ゲストスペースの作成］</Wovn>単独の許可はできません。
+
+</Note>

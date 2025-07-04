@@ -1,0 +1,78 @@
+---
+title: "横棒グラフ（集合）が、設定したソートと逆の並びで表示されます"
+weight: 4400
+aliases:
+  - "/ja/id/040164"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Reference from "@/components/Reference.astro";
+
+
+横棒グラフ（集合）では、縦軸の下が起点です。  
+そのため、中項目や小項目でソートすると、グラフの縦軸の下から見て、昇順または降順で項目が表示されます。
+
+このページでは、例を通して横棒グラフ（集合）のソートについて説明します。
+
+<Heading id="app_qa_bar_chart_10">フィールドの設定例</Heading>
+
+グラフで集計するフィールドをアプリに配置します。
+
+* アプリの設定画面のフォームタブを開き、文字列（1行）、数値、チェックボックスのフィールドを配置します。  
+* チェックボックスフィールドの設定画面で、「項目と順番」に、次を入力します。  
+  sample1  
+  sample2  
+  sample3  
+  sample4  
+
+フォームを保存してアプリを更新します。
+
+<Reference>
+[フォームを設定する](/k/ja/id/040554.html)
+
+</Reference>
+
+<Heading id="app_qa_bar_chart_20">レコードの入力例</Heading>
+
+次のレコードを追加します。
+
+* 文字列（1行）：testと入力  
+  数値：1を入力  
+  チェックボックス：sample1を選択  
+<br />  
+
+* 文字列（1行）：testと入力  
+  数値：3を入力  
+  チェックボックス：sample2を選択  
+<br />  
+
+* 文字列（1行）：testと入力  
+  数値：1を入力  
+  チェックボックス：sample3を選択  
+<br />  
+
+* 文字列（1行）：testと入力  
+  数値：2を入力  
+  チェックボックス：sample4を選択  
+
+<Heading id="app_qa_bar_chart_30">グラフの設定例</Heading>
+
+「レコードの一覧」画面の[集計する]アイコンをクリックし、グラフを追加します。「アプリの設定」画面の[グラフ]タブからも、グラフを追加できます。
+
+* グラフの種類：横棒グラフ／集合  
+* 分類する項目：大項目「文字列（1行）」、中項目「チェックボックス」  
+* 集計方法：合計／数値  
+* ソート：中項目／昇順  
+
+集計画面で[適用]をクリックすると、次のグラフが表示されます。
+<Img src="/k/kintone/img-ja/bar_chart01.png" alt="スクリーンショット：表示されたグラフ" />
+
+* 縦軸の下が起点となり、下から「中項目／昇順」（sample1＜sample4）の順で表示されます。  
+* 凡例は、左からグラフで設定しているソート「中項目／昇順」（sample1＜sample4）の順で表示されます。
+
+<Reference>
+[アプリの設定画面からグラフを追加する](/k/ja/id/040586.html)
+
+</Reference>

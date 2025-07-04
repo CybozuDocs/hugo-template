@@ -1,0 +1,71 @@
+---
+title: "ディスク容量とディスク使用量の確認方法"
+weight: 100
+disabled: "[JP,CN]"
+aliases:
+  - "/ja/id/040280"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+
+
+ディスク容量とディスク使用量は、<Slash />共通管理者のみ確認できます。  
+
+1. <Kintone />の画面上部の歯車の形をした[設定]アイコンをクリックします。  
+
+1. [<SlashUi />]をクリックします。  
+   <Img src="/k/kintone/img-ja/disk_storage_check_img01.png" alt="管理画面を表示方法を示す画像" />
+
+1. 「契約状況」画面を表示し、「<Kintone /> Strage」を確認します。  
+   <Img src="/k/kintone/img-ja/disk_storage_check_img02.png" alt="契約状況画面" />
+    * <b>「利用中」欄の数値</b>  
+      ディスク使用量です。試用開始時は0GBです。  
+      この数値が、上限のディスク容量を超えている場合は、警告が表示されます。  
+      次のいずれかの対処が必要です。  
+      * 契約ユーザー数を増やす
+      * ディスク容量を追加購入する
+      * ディスク使用量を減らす
+    * <b>「上限」欄の数値</b>  
+      お使いの<Kintone />のディスク容量の上限値です。
+
+<Heading id="disk_storage_check_10">より詳しい内訳を確認するには</Heading>
+
+ディスク使用量やディスク容量の内訳は、契約内容の確認画面で確認します。  
+
+1. 「契約状況」画面を表示し、[購入状況]をクリックします。  
+  契約内容が表示されます。  
+   <Img src="/k/kintone/img-ja/disk_storage_check_img03.png" alt="[購入状況]が矩形で囲まれた画像" />
+
+1. 「Options」セクションの「Storage」を確認します。  
+   <Img src="/k/kintone/img-ja/disk_storage_check_img04.png" alt="[購入状況]が矩形で囲まれた画像" />
+    <table>
+    <caption>Storageの内訳</caption>
+    <tbody>
+    <tr>
+    <th>Current Usage</th>
+    <td>
+      ディスク使用量です。<br />
+      分母は、「Free Storage + Purchased Storage」の合計値です。
+    </td>
+    </tr>
+    <tr>
+    <th>Free Storage</th>
+    <td>
+      無料で利用できるディスク容量です。<br />
+      「契約ユーザー数 × 5GB」で提供されます。
+    </td>
+    </tr>
+    <tr>
+    <th>Purchased Storage</th>
+    <td>
+      追加購入したディスク容量です。<br />
+      カッコ内に、月額サービスか年額サービスかが表示されます。
+    </td>
+    </tr>
+    </tbody>
+    </table>

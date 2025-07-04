@@ -1,0 +1,56 @@
+---
+title: "CSVファイルを読み込むと「ファイルの内容が不正です。」と表示される"
+weight: 1400
+aliases:
+  - "/ja/id/040242"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+
+
+<Kintone />では、改行コードが「CR+LF」または「LF」のCSVファイルを読み込むことが可能です。  
+
+上記以外の改行コードがCSVファイルに含まれていると、ファイル読み込み時に「ファイルの内容が不正です。」というエラーが表示されます。  
+テキストエディターでCSVファイルの改行コードを変更して、再度ファイル読み込みしてください。  
+
+ここでは、テキストエディターで改行コードを変更する方法を2通り紹介します。  
+
+<Heading id="app_trouble_csv_import_newline_code_10">改行コードを指定して保存する</Heading>
+
+改行コードが指定可能なテキストエディターをご準備ください。  
+表示されるメニュー名や項目名はお使いのテキストエディターによって異なります。
+
+1. テキストエディターでCSVファイルを開きます。
+1. メニューから[名前を付けて保存]をクリックします。
+1. 改行コードを「CR+LF」または「LF」に指定して保存します。
+
+<Enabled regions={["JP"]}>
+<Note> 
+
+* 改行コードが指定可能なテキストエディターには、秀丸エディタやTeraPadなどがあります。  
+* [改行コードの変換方法](/o/ja/admin/spec/format/ap.html#admin_spec_format_ap_023)（サイボウズ Officeのヘルプですが、同様の手順です。）
+</Note> 
+
+</Enabled>
+
+<Heading id="app_trouble_csv_import_newline_code_20">改行を手動で修正して保存する</Heading>
+
+1. テキストエディターでCSVファイルを開きます。
+1. 該当の改行を削除して、キーボードの「Enter」キーを押して改行します。
+1. ファイルを保存します。
+
+<Enabled regions={["JP"]}>
+<br />
+
+上記に該当しない、または上記の対処方法を行っても改善しない場合は、テクニカルサポートまで次のファイルをお送りください。
+
+* エラーが確認できる画面キャプチャー
+* 現象が発生しているCSVファイル
+
+参考：[カスタマーサポートに問い合わせる](/k/ja/id/040321.html)  
+
+</Enabled>

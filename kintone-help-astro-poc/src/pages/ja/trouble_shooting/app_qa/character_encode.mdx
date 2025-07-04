@@ -1,0 +1,56 @@
+---
+title: "ファイル書き出し時の文字コードの選びかたを知りたい"
+weight: 1200
+aliases:
+  - "/ja/id/040169"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Reference from "@/components/Reference.astro";
+import Warning from "@/components/Warning.astro";
+
+ファイルの書き出しや読み込みなどで、文字コードの指定が必要になる場合があります。
+
+<Img src="/k/kintone/img-ja/character_encode_01.png" alt="スクリーンショット：ファイルを書き出す画面。文字コードの項目が枠線で強調されている" />
+
+文字コードの選択に迷う場合は、下記を参考にしてください。
+
+<Heading id="app_qa_character_encode_10">UTF-8</Heading>
+
+さまざまな言語の文字を表現できる文字コードです。
+
+<Warning>
+
+次の文字を含むデータを扱う場合は、文字コードに「UTF-8」を選択してください。
+
+* 「髙」や「會」といった異体字
+* 著作権マーク（©）や登録商標マーク（®）などの特殊文字
+* [絵文字](https://unicode.org/emoji/charts/full-emoji-list.html)
+
+</Warning>
+
+<Heading id="app_qa_character_encode_20">BOM付きUTF-8</Heading>
+
+書き出したファイルをExcelなどのアプリケーションで扱う場合に選択する形式です。
+
+<Heading id="app_qa_character_encode_30">Shift-JIS</Heading>
+
+日本語の文字を表現できる文字コードです。
+
+<Heading id="app_qa_character_encode_40">Latin1</Heading>
+
+西ヨーロッパ言語（英語、フランス語、ドイツ語など）の文字を表現できる文字コードです。
+
+<Heading id="app_qa_character_encode_50">GBK/GB2312</Heading>
+
+英語や簡体字中国語の文字を表現できる文字コードです。
+
+<Reference>
+
+* [ファイルにデータを書き出す](/k/ja/id/040452.html)
+* [ファイルを読み込んでアプリを作成する](/k/ja/id/040623.html)
+* [レコードの一括登録と一括更新](/k/ja/id/040720.html)
+
+</Reference>

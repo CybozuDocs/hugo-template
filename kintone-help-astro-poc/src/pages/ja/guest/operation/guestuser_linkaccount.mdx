@@ -1,0 +1,119 @@
+---
+title: "ゲストの操作：ゲストアカウントを{{< kintone >}}アカウントと共通化する"
+weight: 200
+aliases:
+  - "/ja/id/040644"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+契約中の<Kintone />と招待されたゲストスペースとで、アカウントを共通化できます。  
+アカウントを共通化すると、シングルサインオンができるようになり、また、ゲストユーザーの利用料が無料になります。
+
+<Warning>
+
+* 一度アカウントを共通化すると、解除できません。
+
+</Warning>
+
+<Heading id="guestspace_guestuser_linkaccount_10">アカウントを共通化するメリット</Heading>
+
+アカウントを共通化するメリットは次のとおりです。
+
+* 契約中の<Kintone />から招待されたゲストスペースに、追加のログインなしで利用できる（シングルサインオン）。
+* ゲストユーザーの利用料が無料になる。
+* 契約中の<Kintone />に、参加中のゲストスペースで受信した自分宛の未読通知数が表示される。  
+  <Img src="/k/kintone/img-ja/guestuser_linkaccount_img6_1.png" alt="スクリーンショット：参加中のゲストスペースで受信した自分宛の未読通知の数が表示されている" />
+
+<Note>
+
+* 「連携先ドメイン」とは、招待されたゲストスペースの環境を指します。
+
+</Note>
+
+<Heading id="guestspace_guestuser_linkaccount_20">アカウントを共通化できる条件</Heading>
+
+次の条件にあてはまる場合、ゲストアカウントを<Kintone />アカウントと共通化できます。
+
+* ゲストスペースに招待されているか、または招待されたゲストスペースにゲストとして参加している（ゲストアカウントを持っている）
+* ご自身の会社などで<Kintone />を契約して利用している（<Kintone />アカウントを持っている）  
+  試用期間中はアカウントを共通化できません。
+
+<Enabled regions={["US"]}>
+<Note>
+招待されたゲストスペースのURLが<Wovn>［https://（任意の文字）.kintone.com］</Wovn>で始まる場合のみアカウントを共通化できます。  
+以下で始まる場合はアカウントを共通化できません。
+
+* https://（任意の文字）.cybozu.com/
+* https://（任意の文字）.cybozu.cn/
+</Note>
+
+</Enabled>
+
+<Heading id="guestspace_guestuser_linkaccount_30">アカウントを共通化する手順</Heading>
+
+アカウントを共通化できるタイミングは、次の2通りです。
+
+* ゲストスペースに招待されて参加するとき
+* ゲストスペースに参加中のとき
+
+<Heading level={3} id="guestspace_guestuser_linkaccount_3010">ゲストスペースに招待されて参加するときにアカウントを共通化する</Heading>
+
+招待されたゲストスペースに参加するとき、<Wovn>［<Kintone />アカウントで参加］</Wovn>欄から参加してアカウントを共通化できます。<Wovn></Wovn><Wovn></Wovn>  
+詳細は、次のページを参照してください。  
+[ゲストの操作：招待されたゲストスペースに参加する](/k/ja/id/040643.html)
+
+<Heading level={3} id="guestspace_guestuser_linkaccount_3020">ゲストスペースに参加中のときにあとからアカウントを共通化する</Heading>
+
+招待されたゲストスペースをすでに利用中の場合、あとからアカウントを共通化できます。
+
+1. ゲストアカウントで参加しているスペースにログインします。
+
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［アカウントの共通化］</Wovn>をクリックします。<Wovn></Wovn><Wovn></Wovn>  
+   <Img src="/k/kintone/img-ja/guestuser_linkaccount_img7.png" alt="スクリーンショット：［アカウントの共通化］までの動線を示している" />
+
+1. <Wovn>［アカウントの共通化］</Wovn>ダイアログで、<Wovn>［ご自身の会社などでご利用中の<Kintone />のURL］</Wovn>を補完し、<Wovn>［アカウントを共通化］</Wovn>をクリックします。<Wovn></Wovn><Wovn></Wovn><Wovn></Wovn><Wovn></Wovn><Wovn></Wovn>  
+   URLが不明な場合は、後述の項目を確認してください。  
+   [参考：<Kintone />のURLを確認する](#guestspace_guestuser_linkaccount_3030)  
+   <Img src="/k/kintone/img-ja/guestuser_linkaccount_img8.png" alt="スクリーンショット：［アカウントの共通化］ダイアログが表示されている" />
+
+1. ログイン画面で、ご自身の会社などで利用中の<Kintone />にログインします。  
+   すでにログインしている場合は、この手順は不要です。  
+    <Img src="/k/kintone/img-ja/guestuser_linkaccount_img9.png" alt="スクリーンショット：ログイン画面が表示されている" />
+
+<Reference>
+
+[アカウントの共通化をしていますが、<Kintone />にログインできません](/k/ja/id/040345.html)
+
+</Reference>
+
+<Heading level={3} id="guestspace_guestuser_linkaccount_3030">参考：&lt;Kintone /&gt;のURLを確認する</Heading>
+
+<Kintone />のURLは、ご自身の会社などで利用中の<Kintone />にアクセスし、Webブラウザーのアドレスバーを見ることで確認できます。
+
+<Enabled regions={["JP"]}>
+
+<Img src="/k/kintone/img-ja/guestuser_linkaccount_img10.png" alt="スクリーンショット：Webブラウザーのアドレスバーを枠線で強調している" />
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+<Img src="/k/kintone/img-ja/guestuser_linkaccount_img10_us.png" alt="スクリーンショット：Webブラウザーのアドレスバーを枠線で強調している" />
+
+</Enabled>
+
+<Enabled regions={["CN"]}>
+
+<Img src="/k/kintone/img-ja/guestuser_linkaccount_img10_cn.png" alt="スクリーンショット：Webブラウザーのアドレスバーを枠線で強調している" />
+
+</Enabled>

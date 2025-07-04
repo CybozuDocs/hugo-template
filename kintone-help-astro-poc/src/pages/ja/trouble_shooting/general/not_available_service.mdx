@@ -1,0 +1,27 @@
+---
+title: "「サービスの利用権限がありません。」と表示されて{{< kintone >}}にアクセスできません"
+weight: 1900
+aliases:
+  - "/ja/id/040309"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Slash from "@/components/Slash.astro";
+
+
+利用サービスに設定されていないサービスのURLにアクセスすると、「サービスの利用権限がありません。Code: CB_NO02」と表示されて、アクセスできません。
+<Img src="/k/kintone/img-ja/general_not_available_service_img01.png" alt="スクリーンショット：「サービスの利用権限がありません。」が表示された画面" />  
+
+たとえば、<Kintone />の利用を許可されていないユーザーが、<Kintone />のURL「https://（サブドメイン名）.<CybozuCom />/k/」にアクセスした場合、このエラーが表示されます。  
+
+<Heading id="general_not_available_service_10">対処方法</Heading>
+
+<Slash />共通管理者が、ユーザーごとに<Kintone />の利用を許可するか、<Kintone />の利用者をまとめて指定してください。  
+詳細の手順は、以下のページを参照してください。  
+[サービスの利用者を確認する](/general/ja/id/020248.html)  
+[利用するサービスを変更する（ユーザー単位）](/general/ja/id/020251.html)  
+[サービスの利用者を変更する（サービス単位）](/general/ja/id/020250.html)

@@ -1,0 +1,27 @@
+---
+title: "{{< kintone >}}の操作時に「ログインしてください。」エラーが表示される"
+weight: 300
+aliases:
+  - "/ja/id/040307"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+
+Webブラウザーで複数のタブを開いて<Kintone />の操作を行うと、セッションが切れて「ログインしてください。」エラーが表示される場合があります。  
+<Img src="/k/kintone/img-ja/login_error_01.png" alt=" " />
+
+たとえば、次のような操作を行った場合に表示されます。  
+
+1. レコード編集画面を開く
+
+1. Webブラウザーの別タブで<Kintone />にアクセスする
+
+1. 「2」のタブで開いた<Kintone />からログアウトする
+
+1. 「1」のレコード編集画面の[保存]をクリックする
+ 
+エラーが表示された状態で操作中の画面（レコード編集画面など）から画面遷移すると、編集中の内容が破棄されてしまいます。  
+入力内容をコピーしてから、 [キャンセル]ボタンを押すなどして操作中の画面を閉じてください。  
+そのあと再度<Kintone />にログインして、レコードの再編集などを行ってください。

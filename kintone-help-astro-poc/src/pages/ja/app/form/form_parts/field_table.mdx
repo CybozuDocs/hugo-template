@@ -1,0 +1,93 @@
+---
+title: "テーブル"
+weight: 2400
+aliases:
+  - "/ja/id/040529"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Warning from "@/components/Warning.astro";
+
+
+テーブル（表）を配置すると、入力内容の増減に応じて、行の追加や削除ができます。  
+テーブルを配置したあとに、テーブル内に配置したいフィールドを1つずつドラッグアンドドロップします。  
+<Img src="/k/kintone/img-ja/field_table_02.png" alt="スクリーンショット：テーブルに日付フィールドをドラッグアンドドロップしている" />
+
+<Hint>
+
+* 詳細な設定方法は、次のページを参照してください。  
+[フォームにテーブル（表）を追加する](/k/ja/id/040555.html)
+
+<Enabled regions={["JP"]}>
+
+* テーブルを初めて使用される方向けに、サンプルアプリを操作しながら学べるガイドブックがあります。
+詳細は、次のページを参照してください。  
+[（PDF）便利に使おうガイドブック vol.01 テーブル](https://kintone.cybozu.co.jp/material/pdf/kintone_guidebook_vol01.pdf)（日本語のみ）
+
+</Enabled>
+
+</Hint>
+
+<Warning>
+
+* テーブルは、すでにあるテーブルやグループフィールド内には配置できません。
+* 次のフィールドは、テーブル内に配置できません。
+  * すでに使用中のフィールド
+  * ラベル、関連レコード一覧、スペース、罫線、グループ、テーブル、レコード番号、作成者、更新者、作成日時、更新日時
+* テーブル化して保存したフィールドは、テーブル外や他のテーブルには移動できません。
+* テーブル内のフィールドでは、使用できない機能や操作があります（例：ルックアップ、関連レコード一覧、フィールドのアクセス権など）。詳細は次のページを参照してください。  
+  [テーブルに設定したフィールドで、使えない機能や操作できないことはありますか？](/k/ja/id/040227.html)
+
+</Warning>
+
+<Note>
+
+フィールドを先に配置してから、行全体をテーブル化することもできます。テーブル化したいフィールドを同じ行に配置し、その行の右端のテーブルの設定アイコンにカーソルを合わせて[テーブルの設定]をクリックし、[この行をテーブルにする]をクリックしてください。
+<Img src="/k/kintone/img-ja/table_img11.png" alt="スクリーンショット：行の右端にあるテーブルの設定アイコンにカーソルを合わせて[テーブルの設定]を表示している" />
+
+</Note>
+
+<Heading id="form_parts_field_table_20">設定項目</Heading>
+
+<Img src="/k/kintone/img-ja/field_table_05.png" alt="スクリーンショット：テーブルの設定画面" />  
+
+<Heading level={3} id="form_parts_field_table_2010">テーブル名</Heading>
+
+テーブルの見出しを指定します。
+
+<Heading level={3} id="form_parts_field_table_2020">テーブル名を表示しない</Heading>
+
+[テーブル名を表示しない]にチェックを入れると、次の画面でフィールド名を非表示にします。
+
+* レコードの追加画面
+* レコードの編集画面
+* レコードの詳細画面
+* レコードの印刷用画面
+* フォームの設定画面
+
+<Heading level={3} id="form_parts_field_table_2030">フィールドコード</Heading>
+
+APIでフィールドを指定するときに使用する文字列です。
+
+<Note>
+
+フィールドコードについては、次のページを参照してください。  
+[フィールドコード](/k/ja/id/040504.html)
+
+</Note>
+
+<Heading id="form_parts_field_table_10">使用例</Heading>
+
+行を追加できるため、複数の入力内容を一覧で管理したい場合に使用します。  
+
+たとえば、次のような場合に使用します。
+
+* 注文管理アプリで、商品の明細を複数登録する
+* 案件管理アプリで、営業の活動報告を日付ごとに入力する
+
+<Img src="/k/kintone/img-ja/field_table_04.png" alt="スクリーンショット：活動報告を日付ごとに入力する欄としてテーブルを使用している例" />

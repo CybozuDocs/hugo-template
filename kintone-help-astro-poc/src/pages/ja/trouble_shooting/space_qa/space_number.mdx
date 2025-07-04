@@ -1,0 +1,67 @@
+---
+title: "スペース数・ゲストスペース数はどこで確認できますか？"
+weight: 200
+aliases:
+  - "/ja/id/040427"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Disabled2 from "@/components/Disabled2.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import SlashUi from "@/components/SlashUi.astro";
+
+
+スペース数やゲストスペース数は、<Kintone />システム管理画面の[スペース管理]<Disabled2 regions={["US"]} />、または<SlashUi />画面&#123;&#123;< /disabled2 >&#125;&#125;から確認できます。
+
+<Kintone />システム管理画面の[スペース管理]では、スペース数やゲストスペース数とあわせて、スペース名や種別など、スペースの詳細も確認できます。  
+
+<Disabled2 regions={["US"]}>
+<SlashUi />画面では、スペース数やゲストスペース数の上限と利用数が確認できます。
+
+</Disabled2>
+
+<Heading id="space_qa_space_number_10">&lt;Kintone /&gt;システム管理画面から確認する</Heading>
+
+<Kintone />の画面上部の歯車の形をした[設定]アイコンをクリックし、[<Kintone />システム管理]をクリックします。  
+<Img src="/k/kintone/img-ja/space_number_01.png" alt="ポータルの画面" />  
+
+[スペース管理]をクリックします。  
+<Img src="/k/kintone/img-ja/space_number_02.png" alt="スペース管理を開く" />  
+
+「ライセンスの使用状況」で、スペース数とゲストスペース数が確認できます。  
+<Img src="/k/kintone/img-ja/space_number_03.png" alt="スペース数の確認" />  
+
+<Disabled2 regions={["US"]}>
+
+<Heading id="space_qa_space_number_20">&lt;SlashUi /&gt;画面から確認する</Heading>
+
+管理者権限を持つユーザーで、<SlashUi />画面を開きます。
+<Img src="/k/kintone/img-ja/confirm_companycode_domain_02.gif" alt="{{&lt; slash_ui &gt;}}画面" />
+
+「契約状況」で、スペース数とゲストスペース数が確認できます。
+<Img src="/k/kintone/img-ja/space_number_05.png" alt="契約状況" />
+
+<Note>
+
+「上限」には、作成できるスペース数・ゲストスペース数の上限が表示されます。  
+ご契約コースによって、作成できるスペース数・ゲストスペース数の上限が異なります。
+
+</Note>
+
+</Disabled2>
+
+<Reference> 
+
+* [スペースを管理する](/k/ja/id/04073.html)
+
+<Disabled2 regions={["US"]}>
+
+* [料金](https://kintone.cybozu.co.jp/price/)（日本語のみ）
+
+</Disabled2>
+
+</Reference>

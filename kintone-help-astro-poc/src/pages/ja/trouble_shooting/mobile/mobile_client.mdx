@@ -1,0 +1,36 @@
+---
+title: "モバイルのクライアント証明書が有効期限を迎えた場合の対処"
+weight: 200
+disabled: "US"
+aliases:
+  - "/ja/id/040365"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+
+
+モバイル端末のクライアント証明書が有効期限を迎えた場合、次のいずれかの操作を行ってください。この操作は<Slash />共通管理者が行う必要があります。  
+
+<Heading id="mobile_mobile_client_10">有効期限以降もセキュアアクセスを利用する場合</Heading>
+
+クライアント証明書の有効期限以降もセキュアアクセスを利用する場合は、クライアント証明書を再発行する必要があります。発行済みのクライアント証明書の有効期限は延長できません。  
+クライアント証明書を再発行する手順は、「[セキュアアクセスを設定する](/general/ja/id/02062.html)」を参照してください。
+
+<Heading id="mobile_mobile_client_20">モバイル端末へのアクセスを止める場合</Heading>
+
+クライアント証明書の有効期限以降、モバイル端末へのアクセスを止めたい場合は、次のいずれかの操作を行ってください。
+
+* パスワードの変更／クライアント証明書の無効化  
+  パスワードを変更することで、モバイル端末で<Kintone />からログアウトされてアクセスできなくなります。また、<Kintone /> モバイルからのプッシュ通知も届かなくなります。  
+  パスワードの変更に加えて、クライアント証明書の無効化も行ってください。  
+  [ユーザーのパスワードを変更する](/general/ja/id/020239.html)  
+  [セキュアアクセスの利用を停止する](/general/ja/id/02063.html)
+<br />
+
+* 該当ユーザーの停止  
+ <SlashUi />で該当ユーザーを停止すると、<Kintone />へのアクセスを止めることができます。  
+ [ユーザーを使用停止にする](/general/ja/id/020252.html)

@@ -1,0 +1,151 @@
+---
+title: "ユーザーのアクセス状況の確認"
+weight: 800
+aliases:
+  - "/ja/id/040782"
+description: "［ユーザーのアクセス状況］画面で、{{< kintone >}}へのアクセス状況をユーザーごとに確認する方法について説明しています。"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Service from "@/components/Service.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Wovn>［ユーザーのアクセス状況］</Wovn>画面では、<Kintone />を利用しているユーザーごとに、<Kintone />への最終アクセス日や、直近のアクセス日数を確認できます。また、アクセス状況の一覧をCSV形式でダウンロードすることも可能です。
+
+たとえば、<Kintone />のライセンスの付与状況が適切かどうか見直すために、各ユーザーのアクセス状況を把握したい、といった目的で活用できます。次のページも参照してください。  
+[<Kintone />の利用状況に応じて、ライセンスを付与するユーザーを見直したい](/k/ja/id/040786.html)
+
+なお、この機能を利用できるのは、<Slash />共通管理者のみです。
+
+<Heading id="admin_user_monitoring_10">注意事項</Heading>
+
+* <Wovn>［ユーザーのアクセス状況］</Wovn>画面には、本機能が追加された2022年6月12日の<Kintone />のアップデート以降のアクセス状況が反映されます。2022年6月11日以前のアクセス状況を確認することはできません。
+* 次のユーザーのアクセス状況は表示されません。
+  * ゲストユーザー
+  * <Kintone />の利用は許可されているが、使用状態が<Wovn>［停止中］</Wovn>のユーザー  
+  参考：[ユーザーを使用停止にする](/general/ja/id/020252.html)
+
+<Enabled regions={["JP", "CN"]}>
+
+* 次のような場合は、ユーザーのアクセス状況は更新されません。
+  * <Kintone />にはアクセスせず、<Service />のそのほかのサービス（Garoonや<SlashUi />など）のみにアクセスした場合
+  * <Kintone />へのアクセスに失敗してエラーが表示され、正常にアクセスできなかった場合
+  * APIを実行したが、<Kintone />の画面にはアクセスしていない場合
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+* 次のような場合は、ユーザーのアクセス状況は更新されません。
+  * <Kintone />にはアクセスせず、<SlashUi />のみにアクセスした場合
+  * <Kintone />へのアクセスに失敗してエラーが表示され、正常にアクセスできなかった場合
+  * APIを実行したが、<Kintone />の画面にはアクセスしていない場合
+
+</Enabled>
+
+* 2022年11月の定期アップデートが実施される前までに、本機能を無効にしていた場合は、無効にしていた間のアクセス状況は記録されません。
+
+<Heading id="admin_user_monitoring_20">&lt;Wovn&gt;［ユーザーのアクセス状況］&lt;/Wovn&gt;画面を開く</Heading>
+
+<Wovn>［ユーザーのアクセス状況］</Wovn>画面は、<Wovn>［<Kintone />システム管理］</Wovn>画面から開きます。
+
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［<Kintone />システム管理］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/manage_apps_img03.png" alt="スクリーンショット：ポータルの設定メニュー" />
+
+1. <Wovn>［<Kintone />システム管理］</Wovn>画面で、<Wovn>［ユーザーのアクセス状況］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/user_monitoring_img03.png" alt="スクリーンショット：［{{&lt; kintone &gt;}}システム管理］画面" />
+<Note>
+
+<Wovn>［ユーザーのアクセス状況］</Wovn>は、<Slash />共通管理権限がある場合のみ表示されます。
+</Note>
+
+<Heading id="admin_user_monitoring_30">&lt;Wovn&gt;［アクセス状況の一覧］&lt;/Wovn&gt;の見かた</Heading>
+
+<Wovn>［ユーザーのアクセス状況］</Wovn>画面の<Wovn>［アクセス状況の一覧］</Wovn>の各項目について説明します。
+
+<Img src="/k/kintone/img-ja/user_monitoring_img01.png" alt="スクリーンショット：［アクセス状況の一覧］" />
+
+<Wovn>［ユーザー］</Wovn>
+: <Kintone />を利用しているユーザー名が表示されます。  
+  各ユーザー名をクリックすると、プロフィール詳細を確認できます。 使用停止中のユーザー、およびゲストユーザーは表示されません。  
+  <SlashUi />で<Wovn>［別言語の表示名］</Wovn>が設定されているユーザーは、<Slash />共通管理者の言語設定に沿った表示名が表示されます。ただし、列名をクリックした際の並び順は、<Wovn>［別言語の表示名］</Wovn>ではなく<Wovn>［表示名］</Wovn>の昇順／降順となります。<Wovn></Wovn>
+
+<Wovn>［組織］</Wovn>
+: ユーザーが所属している組織が表示されます。  
+  複数の組織に所属している場合は、<SlashUi />のユーザー情報で<Wovn>［優先する組織］</Wovn>に設定されている組織が表示されます。所属する組織がユーザーに設定されていない場合は、<Wovn>［（なし）］</Wovn>と表示されます。  
+  列名をクリックすると、一覧を<SlashUi />の<Wovn>［組織/ユーザー］</Wovn>の組織の表示順に並び替えることができます。
+
+<Wovn>［最終アクセス日］</Wovn>
+: <Kintone />に最後にアクセスした日付が表示されます。  
+  <Wovn>［-］</Wovn>と表示されている場合、そのユーザーは本機能がリリースされて以降（2022年6月12日以降）に一度も<Kintone />にアクセスしていないことを示しています。
+
+<Wovn>［過去30日間のアクセス日数］</Wovn>
+: 当日を含め、過去30日間に<Kintone />にアクセスした日数が表示されます。  
+  2022年11月の定期アップデートが実施される前に、本機能を無効にしていた場合は、その間のアクセス状況は記録されません。
+
+<Note>
+
+* 列名をクリックすると、一覧を昇順または降順に並び替えることができます。なお、デフォルトではユーザーIDの昇順で表示されています。
+* <Wovn>［最終アクセス日］</Wovn>や<Wovn>［過去30日間のアクセス日数］</Wovn>は、<SlashUi />で設定されているタイムゾーン（システムタイムゾーン）に沿って表示されます。  
+[システムタイムゾーンの設定](/general/ja/id/020115.html)
+
+</Note>
+
+<Heading id="admin_user_monitoring_40">&lt;Wovn&gt;［アクセス状況の一覧］&lt;/Wovn&gt;をCSV形式でダウンロードする</Heading>
+
+<Wovn>［アクセス状況の一覧］</Wovn>をCSV形式（BOM付きUTF-8）でダウンロードできます。  
+<Wovn>［アクセス状況の一覧］</Wovn>をExcelで開いて分析したい場合や、アカウントを整理した際の記録としてファイルを残しておきたい場合などに活用できます。
+
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［<Kintone />システム管理］</Wovn>をクリックします。
+
+1. <Wovn>［<Kintone />システム管理］</Wovn>画面で、<Wovn>［ユーザーのアクセス状況］</Wovn>をクリックします。
+
+1. <Wovn>［ユーザーのアクセス状況］</Wovn>画面で<Wovn>［CSV形式でダウンロードする］</Wovn>をクリックします。  
+CSVファイルには、<Wovn>［アクセス状況の一覧］</Wovn>の項目に加えて、ユーザーのログイン名や、組織コードも出力されます。  
+<Img src="/k/kintone/img-ja/user_monitoring_img02.png" alt="スクリーンショット：［ユーザーのアクセス状況］画面のCSVダウンロードボタン" />
+
+<Heading level={3} id="admin_user_monitoring_4010">&lt;Wovn&gt;［アクセス状況の一覧］&lt;/Wovn&gt;のCSVファイルに含まれる項目</Heading>
+
+ダウンロードした<Wovn>［アクセス状況の一覧］</Wovn>のCSVファイルに含まれる項目について説明します。
+
+<Img src="/k/kintone/img-ja/user_monitoring_img04.png" alt="スクリーンショット：［アクセス状況の一覧］のCSVファイル" />
+
+<Wovn>［ユーザー］</Wovn>
+: <Wovn>［ユーザーのアクセス状況］</Wovn>画面の<Wovn>［ユーザー］</Wovn>列が出力されます。
+
+<Wovn>［ユーザー（ログイン名）］</Wovn>
+: ユーザーのログイン名が出力されます。<Wovn>［ユーザーのアクセス状況］</Wovn>画面では表示されませんが、ダウンロードする際に追加される項目です。  
+  ユーザーのログイン名は、<SlashUi />の<Wovn>［組織/ユーザー］</Wovn>で設定されています。
+
+<Wovn>［組織］</Wovn>
+: <Wovn>［ユーザーのアクセス状況］</Wovn>画面の<Wovn>［組織］</Wovn>列が出力されます。  
+  所属する組織がユーザーに設定されていない場合は、空欄になります。
+
+<Wovn>［組織（組織コード）］</Wovn>
+: ユーザーが所属する組織の組織コードが出力されます。<Wovn>［ユーザーのアクセス状況］</Wovn>画面では表示されませんが、ダウンロードする際に追加される項目です。  
+  所属する組織がユーザーに設定されていない場合は、空欄になります。  
+  組織コードは、<SlashUi />の<Wovn>［組織/ユーザー］</Wovn>で設定されています。
+
+<Wovn>［最終アクセス日］</Wovn>
+: <Wovn>［ユーザーのアクセス状況］</Wovn>画面の<Wovn>［最終アクセス日］</Wovn>が、「yyyy-MM-dd」の形式で出力されます。  
+  <Wovn>［ユーザーのアクセス状況］</Wovn>画面で<Wovn>［-］</Wovn>と表示されている場合は、空欄になります。
+
+<Wovn>［過去30日間のアクセス日数］</Wovn>
+: <Wovn>［ユーザーのアクセス状況］</Wovn>画面の<Wovn>［最終アクセス日］</Wovn>が、「yyyy-MM-dd」の形式で出力されます。  
+  <Wovn>［ユーザーのアクセス状況］</Wovn>画面の<Wovn>［過去30日間のアクセス日数］</Wovn>が出力されます。
+
+<Note>
+
+<Wovn>［ユーザーのアクセス状況］</Wovn>画面の一覧の並び順にかかわらず、ダウンロードしたファイル内の項目は、ユーザーIDの昇順で並んでいます。ユーザーIDとは、<CybozuCom />のシステムが付与するIDです。  
+参考：[ユーザーIDの確認方法が知りたい](/k/ja/id/040420.html)
+
+</Note>

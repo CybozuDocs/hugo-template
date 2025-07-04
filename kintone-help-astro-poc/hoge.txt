@@ -1,0 +1,13 @@
+
+> kintone-help@0.0.1 build
+> astro build --verbose
+
+10:58:09 [content] Syncing content
+10:58:09 [content] Synced content
+10:58:09 [types] Generated 27ms
+10:58:09 [build] output: "static"
+10:58:09 [build] mode: "static"
+10:58:09 [build] directory: /Users/mugi/ghq/github.com/CybozuDocs/hugo-template/kintone-help-astro-poc/dist/k/
+10:58:09 [build] Collecting build info...
+10:58:09 [build] ✓ Completed in 125ms.
+10:58:09 [build] Building static entrypoints...

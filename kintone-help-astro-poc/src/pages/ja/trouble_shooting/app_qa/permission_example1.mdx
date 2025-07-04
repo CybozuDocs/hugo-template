@@ -1,0 +1,41 @@
+---
+title: "ステータスが「完了」のレコードを編集不可にしたい"
+weight: 280
+aliases:
+  - "/ja/id/040596"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+プロセス管理機能が有効なアプリでは、レコードのステータスごとにユーザーのアクセス権を設定することができます。  
+たとえば、ステータスが「完了」のレコードをユーザーが編集、削除できないようにするには、次のように設定します。
+
+<Img src="/k/kintone/img-ja/rights_example1_01.png" alt="スクリーンショット：表のとおりレコードのアクセス権を設定した画面" />
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col">レコードの条件（優先度順）</th>
+            <th scope="col">ユーザー/組織/グループとアクセス権</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>「ステータス」「次のいずれかを含む」「完了」</td>
+            <td>Everyone&nbsp;&nbsp;&nbsp;[✔]閲覧&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;]編集&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;]削除</td>
+        </tr>
+        <tr>
+            <td>&nbsp;すべてのレコード</td>
+            <td>Everyone&nbsp;&nbsp;&nbsp;[✔]閲覧&nbsp;&nbsp;&nbsp;[✔]編集&nbsp;&nbsp;&nbsp;[✔]削除</td>
+        </tr>
+    </tbody>
+</table>
+
+<Note>
+
+* 設定手順の詳細は、「[レコードにアクセス権を設定する](/k/ja/id/040595.html)」を参照してください。  
+* 過去に作成したアプリでは、「ステータス」は、「処理状況」と表示される場合があります。
+
+</Note>

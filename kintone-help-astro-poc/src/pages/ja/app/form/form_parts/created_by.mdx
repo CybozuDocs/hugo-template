@@ -1,0 +1,66 @@
+---
+title: "作成者"
+weight: 2600
+aliases:
+  - "/ja/id/040519"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+
+作成者フィールドを配置すると、レコードを最初に保存したユーザーが表示されるフィールドを作成できます。  
+作成者は自動で設定され、変更できません。
+
+<Img src="/k/kintone/img-ja/created_by_01.png" alt="スクリーンショット：作成者フィールドの例" />
+
+<Note>
+
+作成者フィールドは、フォームに配置していない場合でも、レコードの絞り込みや集計で使用できます。
+
+</Note>
+
+<Heading id="form_parts_created_by_20">設定項目</Heading>
+
+<Img src="/k/kintone/img-ja/created_by_03.png" alt="スクリーンショット：作成者フィールドの設定画面" />
+
+<Heading level={3} id="form_parts_created_by_2010">フィールド名</Heading>
+
+入力項目の見出しを指定します。
+
+<Heading level={3} id="form_parts_created_by_2020">フィールド名を表示しない</Heading>
+
+[フィールド名を表示しない]にチェックを入れると、次の画面でフィールド名を非表示にします。
+
+* レコードの追加画面
+* レコードの編集画面
+* レコードの詳細画面
+* レコードの印刷用画面
+* フォームの設定画面
+
+<Heading level={3} id="form_parts_created_by_2030">フィールドコード</Heading>
+
+計算式やAPIでフィールドを指定するときに使用する文字列です。
+
+<Note>
+
+フィールドコードについては、次のページを参照してください。  
+[フィールドコード](/k/ja/id/040504.html)
+
+</Note>
+
+<Heading id="form_parts_created_by_10">使用例</Heading>
+
+作成者フィールドは、レコードを最初に保存したユーザーを自動で表示したい場合に使用します。  
+たとえば、日報アプリで、日報の作成者を表示するフィールドとして使用します。
+<Img src="/k/kintone/img-ja/created_by_02.png" alt="スクリーンショット：日報アプリで作成者フィールドを使用している例" />
+
+<Note>
+
+代理で日報を入力するなど作成者以外のユーザーも選択したい場合は、初期値をログインユーザーに指定したユーザー選択フィールドを使用します。  
+詳細は、次のページを参照してください。  
+[レコード登録時に担当者を初期値として自動的に入力する](/k/ja/id/040746.html)
+
+</Note>

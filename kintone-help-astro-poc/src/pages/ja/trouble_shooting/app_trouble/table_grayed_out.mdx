@@ -1,0 +1,43 @@
+---
+title: "「この行をテーブルにする」がグレーアウトし、テーブルに設定できません"
+weight: 1000
+aliases:
+  - "/ja/id/040260"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+テーブルの設定で、[この行をテーブルにする]がグレーアウトしてクリックできない場合、次のいずれかに該当していることが考えられます。  
+
+* テーブルにできないフィールドが含まれている  
+* 運用環境に適用済みのフィールドが含まれている  
+
+<Img src="/k/kintone/img-ja/app_trouble_table_grayed_out_img01.png" alt="画像" />
+
+<Heading id="app_trouble_table_grayed_out_10">テーブルにできないフィールドが含まれている</Heading>
+
+次のフィールドを含む行は、テーブルにできません。  
+
+* ラベル、関連レコード一覧、スペース、罫線、グループ、レコード番号、作成者、更新者、作成日時、更新日時  
+
+上記のフィールドが含まれている場合は、該当するフィールドを削除してから、テーブルにできるか再度確認してください。
+
+<Heading id="app_trouble_table_grayed_out_20">運用環境に適用済みのフィールドが含まれている</Heading>
+
+運用環境に適用済みのフィールドを含む行は、テーブルにできません。  
+フィールドを追加し直してから、テーブルにできるか再度確認してください。
+
+<Note>
+フォームの設定後に、アプリを公開またはアプリを更新していると、フィールドが運用環境に適用された状態となります。  
+
+</Note>
+
+<Reference>
+[フォームにテーブル（表）を追加する](/k/ja/id/040555.html)
+
+</Reference>

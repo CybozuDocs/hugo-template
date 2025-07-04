@@ -1,0 +1,60 @@
+---
+title: "ユーザーの招待"
+weight: 900
+description: "{{< kintone >}}でユーザーの招待をしたときに出力される監査ログについて説明します。"
+aliases:
+  - "/ja/id/040819"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Reference from "@/components/Reference.astro";
+
+
+ユーザーの招待をしたときに出力されるログについて説明します。
+
+<Reference>
+
+[チームメンバーを招待する](/k/ja/id/040139.html)
+
+</Reference>
+
+<Heading id="log_invite_users_10,class=&quot;no-trans&quot;">System administration</Heading>
+
+モジュールが「System administration」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_invite_users_1010,class=&quot;no-trans&quot;">Invite users</Heading>
+
+アクションが「Invite users」である監査ログについて説明します。
+
+<Heading level={4} id="log_invite_users_101020">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_invite_users_101030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* ユーザー名
+* メールアドレス
+
+<Heading level={4} id="log_invite_users_101040">出力されるログの例</Heading>
+
+```
+user names: [*], Emails: [*]
+
+```
+
+ユーザー名、メールアドレスはカンマ区切りで出力されます。
+
+<Heading id="log_invite_users_20">プロパティ</Heading>
+
+監査ログの「補足」欄に出力されるプロパティは次のとおりです。
+
+<Heading level={3} id="log_invite_users_2010,class=&quot;no-trans&quot;">Emails</Heading>
+
+メールアドレスです。
+
+<Heading level={3} id="log_invite_users_2020,class=&quot;no-trans&quot;">user names</Heading>
+
+ユーザー名です。

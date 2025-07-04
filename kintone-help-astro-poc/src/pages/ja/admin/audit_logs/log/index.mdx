@@ -1,0 +1,33 @@
+---
+title: "{{< kintone >}}が出力する監査ログの一覧"
+weight: 300
+description: "{{< kintone >}}が出力する監査ログの一覧です。"
+aliases:
+  - "/ja/id/040810"
+layout: "@/layouts/SectionLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import SlashHelp from "@/components/SlashHelp.astro";
+
+
+<Kintone />が出力する監査ログについて説明します。
+
+<Reference>
+
+<Slash />共通管理が出力する監査ログについては、<SlashHelp />を参照してください。  
+[監査ログの一覧](/general/ja/id/02090.html)
+
+</Reference>
+
+<Heading id="log__index10">ゲストユーザーによる操作</Heading>
+
+ゲストユーザーが操作をした場合、「ユーザー」に「[nobody]」が出力されます。  
+「補足」の先頭には、ゲストユーザーのログイン名が出力されます。
+
+```
+login name: *
+```

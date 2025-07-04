@@ -1,0 +1,75 @@
+---
+title: "ゲストの操作：招待されたゲストスペースに参加する"
+weight: 100
+disabled: []
+aliases:
+  - "/ja/id/040643"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+ゲストスペースに招待された場合、すでに<Kintone />を利用しているかどうかによって、参加方法が異なります。  
+また、ご利用の環境によって、画面の表示が異なる場合があります。
+
+<Heading id="guestspace_guestuser_join_10">ご自身の会社などで&lt;Kintone /&gt;を利用中の場合</Heading>
+
+ご自身の会社などで利用している<Kintone />のアカウントを利用して、招待されたゲストスペースに参加します。  
+この操作によってアカウントが共通化され、ご自身の会社などで利用しているkintoneのトップページからゲストスペースを開くことができるようになります。  
+[「アカウント共通化」とは何ですか？](/k/ja/id/040329.html)
+
+<Warning>
+
+一度アカウントを共通化すると、解除できません。
+
+</Warning>
+
+1. 利用中の<Kintone />のサブドメインを確認します。  
+  サブドメインは、<Kintone />にアクセスするURLの「.<CybozuCom />」の前にある文字列です。  
+  ご自身の会社などで利用中の<Kintone />にアクセスし、Webブラウザーのアドレスバーを見ることで確認できます。  
+  例：https://（サブドメイン名）.<CybozuCom />/k/
+
+1. 招待メールに記載されたリンクをクリックします。
+
+1. <Wovn>［<Kintone />アカウントで参加］</Wovn>欄に、会社などで利用中の<Kintone />のサブドメインを入力し、<Wovn>［<Kintone />アカウントで参加］</Wovn>をクリックします。<Wovn></Wovn><Wovn></Wovn>
+  <Note>
+   利用中のドメインと、画面に表示されているドメインが異なる場合は、ドメイン部分をクリックして切り替えてください。  
+   <Img src="/k/kintone/img-ja/guestuser_joinspace_img5.png" alt="スクリーンショット：ドメイン部分をクリックした画面" />
+  </Note>
+
+1. 利用中の<Kintone />にログインします。  
+  すでにログイン済みの場合は、この手順は不要です。
+
+1. <Wovn>［プロフィール登録］</Wovn>画面で、ゲストとしてのプロフィールを入力します。  
+    次の各項目を設定し、<Wovn>［プロフィールを登録］</Wovn>をクリックします。<Wovn></Wovn>  
+    * <Wovn>［写真］</Wovn>
+    * <Wovn>［名前］</Wovn>（必須）
+    * <Wovn>［会社］</Wovn>
+    * <Wovn>［タイムゾーン］</Wovn>（必須）
+
+<Note>
+
+<Wovn>［新規登録して参加］</Wovn>を選択し、あとからアカウントを共通化することもできます。<Wovn></Wovn>あとからアカウントを共通化する方法は、次のページを参照してください。  
+[ゲストの操作：ゲストアカウントを<Kintone />アカウントと共通化する](/k/ja/id/040644.html)
+
+</Note>
+
+<Heading id="guestspace_guestuser_join_20">&lt;Kintone /&gt;を利用していない場合</Heading>
+
+1. 招待メールに記載されたリンクをクリックします。
+
+1. <Wovn>［新規登録して参加］</Wovn>欄に各項目を入力し、<Wovn>［新規登録して参加］</Wovn>をクリックします。<Wovn></Wovn><Wovn></Wovn>
+
+<Reference>
+
+[ゲストユーザーがパスワードを忘れてしまいました](/k/ja/id/040334.html)
+
+</Reference>

@@ -1,0 +1,82 @@
+---
+title: "{{< kintone >}} AI"
+weight: 750
+disabled: "[US,CN]"
+description: "{{< kintone >}} AIの設定に関する操作をしたときに出力される監査ログについて説明します。"
+aliases:
+  - "/ja/id/040893"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone /> AIの設定に関する操作をしたときに出力される監査ログについて説明します。
+
+<Heading id="log_ai_management_10">&lt;Kintone /&gt; AIの有効化</Heading>
+
+<Heading level={3} id="log_ai_management_1010">実行された操作</Heading>
+
+<Kintone /> AIを有効にするかどうかの設定を変更した
+
+<Heading level={4} id="log_ai_management_101010">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_ai_management_101020">モジュール</Heading>
+
+System administration
+
+<Heading level={4} id="log_ai_management_101030">アクション</Heading>
+
+AI feature update
+
+<Heading level={4} id="log_ai_management_101040">補足</Heading>
+
+ai features enabled：<Wovn>［<Kintone /> AIを有効にする］</Wovn>の設定値です。
+
+* true：<Wovn>［<Kintone /> AIを有効にする］</Wovn>にチェックを入れた
+* false：<Wovn>［<Kintone /> AIを有効にする］</Wovn>のチェックを外した
+
+<Heading level={5} id="log_ai_management_10104010">出力されるログの例</Heading>
+
+```
+ai features enabled: {true/false}
+
+```
+
+<Heading id="log_ai_management_20">利用する機能の選択</Heading>
+
+<Heading level={3} id="log_ai_management_2010">実行された操作</Heading>
+
+<Kintone /> AIラボの各機能を利用するかどうかの設定を変更した
+
+<Heading level={4} id="log_ai_management_201010">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_ai_management_201020">モジュール</Heading>
+
+System administration
+
+<Heading level={4} id="log_ai_management_201030">アクション</Heading>
+
+AI feature update
+
+<Heading level={4} id="log_ai_management_201040">補足</Heading>
+
+* rag chat enabled：<Wovn>［<Kintone /> AIラボ］</Wovn>セクションの<Wovn>［検索AI］</Wovn>の設定値です。
+  * true：<Wovn>［<Kintone /> AIラボ］</Wovn>セクションの<Wovn>［検索AI］</Wovn>で<Wovn>［利用する］</Wovn>にチェックを入れた
+  * false：<Wovn>［<Kintone /> AIラボ］</Wovn>セクションの<Wovn>［検索AI］</Wovn>で<Wovn>［利用する］</Wovn>のチェックを外した
+* app settings flow support enabled：<Wovn>［<Kintone /> AIラボ］</Wovn>セクションの<Wovn>［アプリ作成AI］</Wovn>の設定値です。
+  * true：<Wovn>［<Kintone /> AIラボ］</Wovn>セクションの<Wovn>［アプリ作成AI］</Wovn>で<Wovn>［利用する］</Wovn>にチェックを入れた
+  * false：<Wovn>［<Kintone /> AIラボ］</Wovn>セクションの<Wovn>［アプリ作成AI］</Wovn>で<Wovn>［利用する］</Wovn>のチェックを外した
+
+<Heading level={5} id="log_ai_management_20104010">出力されるログの例</Heading>
+
+```
+rag chat enabled: {true/false}, app settings flow support enabled: {true/false}
+
+```

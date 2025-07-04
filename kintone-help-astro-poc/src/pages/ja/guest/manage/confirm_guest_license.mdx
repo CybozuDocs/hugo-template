@@ -1,0 +1,140 @@
+---
+title: "ゲストユーザーのライセンスの使用状況を確認する"
+weight: 200
+aliases:
+  - "/ja/id/040330"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+import Service from "@/components/Service.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Store from "@/components/Store.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Wovn>［ゲストユーザー管理］</Wovn>画面の<Wovn>［ライセンスの使用状況］</Wovn>には、ゲストユーザーのライセンス契約数や、ステータスとライセンスに応じたユーザー数が表示されます。<Wovn></Wovn><Wovn></Wovn>
+
+<Wovn>［ゲストユーザー管理］</Wovn>画面の開き方は、次のページを参照してください。  
+[［ゲストユーザー管理］画面を開く](/k/ja/id/04035.html#guest_manage_guest_10)
+
+<Img src="/k/kintone/img-ja/confirm_guest_lincense_01.png" alt="スクリーンショット：［ゲストユーザー管理］画面で［ライセンスの使用状況］を赤枠で強調" />
+
+ライセンスの違いについては、次の項目を参照してください。  
+[ゲストユーザーのライセンスの違い](#guest_confirm_guest_license_30)
+
+<Heading id="guest_confirm_guest_license_10">&lt;Wovn&gt;［ライセンスの使用状況］&lt;/Wovn&gt;の項目説明</Heading>
+
+<Heading level={3} id="guest_confirm_guest_license_1010">&lt;Wovn&gt;［試用期間中のゲストユーザー数］&lt;/Wovn&gt;</Heading>
+
+ゲストユーザーのうち、次のステータスとライセンスのユーザー数が表示されます。
+
+* <Wovn>［ステータス］</Wovn>：<Wovn>［使用中］</Wovn>
+* <Wovn>［ライセンス］</Wovn>：<Wovn>［試用］</Wovn>
+
+試用期間中のゲストユーザーは、30日間の試用期間が終了すると、自動的に有料ゲストユーザーに切り替わります。
+
+<Heading level={3} id="guest_confirm_guest_license_1020">&lt;Wovn&gt;［有料ゲストユーザー数］&lt;/Wovn&gt;</Heading>
+
+ゲストユーザーのうち、次のステータスとライセンスのユーザー数が表示されます。
+
+* <Wovn>［ステータス］</Wovn>：<Wovn>［使用中］</Wovn>
+* <Wovn>［ライセンス］</Wovn>：<Wovn>［有料］</Wovn>
+
+ゲストユーザーの<Wovn>［ライセンス］</Wovn>が<Wovn>［有料］</Wovn>でも、<Wovn>［ステータス］</Wovn>が<Wovn>［停止中］</Wovn>の場合は、<Wovn>［有料ゲストユーザー数］</Wovn>には含まれません。  
+<Wovn>［有料ゲストユーザー数］</Wovn>に表示されているユーザー数と同じ分だけ、ライセンス契約が必要です。
+
+<Heading level={3} id="guest_confirm_guest_license_1030">&lt;Wovn&gt;［有料ゲストユーザー数の契約数］&lt;/Wovn&gt;</Heading>
+
+ゲストユーザーの現在のライセンス契約数です。  
+<Wovn>［有料ゲストユーザー数の契約数］</Wovn>に表示されている契約数分の、ゲストユーザーのライセンス利用料が発生しています。
+
+<Wovn>［有料ゲストユーザー数の契約数］</Wovn>が<Wovn>［有料ゲストユーザー数］</Wovn>を下回っているときは、次の項目を参照して対処してください。  
+[ゲストユーザーのライセンス契約数が不足しているときは](#guest_confirm_guest_license_20)
+
+<Enabled regions={["US"]}>
+
+請求金額は、契約確認画面の<Wovn>［Billing Information］</Wovn>セクションで確認できます。  
+操作手順は、次のページを参照してください。  
+[Billing Informationを確認する](/store/ja/id/03029.html)
+
+<Img src="/k/kintone/img-ja/confirm_guest_license_02.png" alt="スクリーンショット：契約内容を確認できる画面" />
+
+</Enabled>
+
+<Heading id="guest_confirm_guest_license_20">ゲストユーザーのライセンス契約数が不足しているときは</Heading>
+
+<Enabled regions={["JP", "CN"]}>
+
+ゲストユーザーのお試し期間が終了したあとも、ゲストユーザーのライセンス契約数が不足したまま、購入手続きが行われない場合は、<Store />管理者への通知メールや<Wovn>［<SlashUi />］</Wovn>画面のメッセージでお知らせします。<Wovn></Wovn>  
+通知メールは、契約ユーザー数の上限を超えた日の翌日から毎日送信され、上限を超えている間は停止できません。
+
+<Img src="/k/kintone/img-ja/end_guest_trial_02.png" alt="スクリーンショット：ゲストユーザー数の上限を超えているエラー表示の画面" />
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+ゲストユーザーのお試し期間が終了したあとも、ゲストユーザーのライセンス契約数が不足したまま、購入手続きが行われない場合は、<Wovn>［<SlashUi />］</Wovn>画面のメッセージでお知らせします。<Wovn></Wovn>
+
+<Img src="/k/kintone/img-ja/end_guest_trial_02.png" alt="スクリーンショット：ゲストユーザー数の上限を超えているエラー表示の画面" />
+
+</Enabled>
+
+<Heading level={3} id="guest_confirm_guest_license_2010">ゲストユーザーの契約数を増やす場合</Heading>
+
+ゲストユーザーのライセンスを追加購入してください。
+
+<Enabled regions={["JP"]}>
+
+[<Service />のライセンスを購入する](/s/ja/id/05055.html)
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+[オプションサービスの購入方法](/store/ja/id/03022.html)
+
+</Enabled>
+
+<Heading level={3} id="guest_confirm_guest_license_2020">&lt;Wovn&gt;［有料ゲストユーザー数］&lt;/Wovn&gt;を減らす場合</Heading>
+
+<Wovn>［ゲストユーザーの一覧］</Wovn>で、<Wovn>［ライセンス］</Wovn>が<Wovn>［有料］</Wovn>のゲストユーザーを確認して、<Wovn>［ステータス］</Wovn>を<Wovn>［停止］</Wovn>に変更するか、アカウントを削除してください。
+
+[ゲストユーザーの一覧を確認する](/k/ja/id/040823.html)
+
+<Heading id="guest_confirm_guest_license_30">ゲストユーザーのライセンスの違い</Heading>
+
+ゲストユーザーのライセンスは、<Wovn>［試用］</Wovn>、<Wovn>［有料］</Wovn>、および<Wovn>［無料］</Wovn>の3種類です。
+
+<Heading level={3} id="guest_confirm_guest_license_3010">&lt;Wovn&gt;［試用］&lt;/Wovn&gt;</Heading>
+
+試用期間中のライセンスです。  
+ゲストスペースに招待され、ゲストユーザーとしてはじめてログインした日から30日間は試用期間となります。
+
+試用期間中、ゲストユーザーは無料でゲストスペースを利用できます。  
+30日間の試用期間が終了すると、ライセンスは自動的に<Wovn>［試用］</Wovn>から<Wovn>［有料］</Wovn>に切り替わります。
+
+<Heading level={3} id="guest_confirm_guest_license_3020">&lt;Wovn&gt;［有料］&lt;/Wovn&gt;</Heading>
+
+試用期間が経過した状態のライセンスです。  
+試用期間が終了したあとも、ゲストユーザーが<Kintone />を利用する場合、ゲストユーザーのライセンスが必要です。
+
+<Heading level={3} id="guest_confirm_guest_license_3030">&lt;Wovn&gt;［無料］&lt;/Wovn&gt;</Heading>
+
+ゲストアカウントを<Kintone />アカウントと共通化した状態のライセンスです。  
+ゲストアカウントを<Kintone />アカウントと共通化すると、ゲストユーザーのライセンス利用料が無料になります。
+
+ゲストアカウントを<Kintone />アカウントと共通化する方法については、次のページを参照してください。  
+[ゲストの操作：ゲストアカウントを<Kintone />アカウントと共通化する](/k/ja/id/040644.html)
+
+<Reference>
+
+* [ゲストユーザーの一覧を確認する](/k/ja/id/040823.html)
+* [ゲストユーザーの一覧をCSV形式でダウンロードする](/k/ja/id/040822.html)
+
+</Reference>

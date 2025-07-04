@@ -1,0 +1,63 @@
+---
+title: "レコードへのアクセスを、特定のユーザーだけに許可したい"
+weight: 285
+aliases:
+  - "/ja/id/040597"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+アプリのアクセス権とレコードのアクセス権の設定で、レコードへのアクセスを特定のユーザーだけに許可することができます。  
+たとえば、レコードの閲覧、編集、削除を、そのレコードの作成者だけに許可するには、アプリのアクセス権とレコードのアクセス権で、それぞれ次のように設定します。  
+
+* アプリのアクセス権  
+  <Img src="/k/kintone/img-ja/rights_example2_01.png" alt="スクリーンショット：表のとおりアプリのアクセス権を設定した画面" />
+
+  <table>
+    <tbody>
+        <tr>
+            <td>アプリ作成者</td>
+            <td>[✔]レコード閲覧&nbsp;&nbsp;&nbsp;[✔]レコード追加&nbsp;&nbsp;&nbsp;[✔]レコード編集&nbsp;&nbsp;&nbsp;[✔]レコード削除</td>
+        </tr>
+        <tr>
+            <td>Everyone</td>
+            <td>[✔]レコード閲覧&nbsp;&nbsp;&nbsp;[✔]レコード追加&nbsp;&nbsp;&nbsp;[✔]レコード編集&nbsp;&nbsp;&nbsp;[✔]レコード削除</td>
+        </tr>
+    </tbody>
+  </table>
+  ※デフォルトで上記の内容が設定されています。
+
+  <Note>
+  * 「アプリ管理」「ファイル読み込み」「ファイル書き出し」のチェックは任意です。  
+  * アプリ作成者の行が削除されている場合でも、Everyoneの行が上記の表のとおりとなっていれば、アクセス権の設定に影響はありません。  
+  * 設定手順の詳細は、「[アプリにアクセス権を設定する](/k/ja/id/040589.html)」を参照してください。
+
+  </Note>  
+
+* レコードのアクセス権  
+  <Img src="/k/kintone/img-ja/rights_example2_02.png" alt="スクリーンショット：表のとおりレコードのアクセス権を設定した画面" />
+
+  <table>
+      <thead>
+          <tr>
+              <th scope="col">レコードの条件（優先度順）</th>
+              <th scope="col">ユーザー/組織/グループとアクセス権</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td rowspan="2" colspan="1">すべてのレコード</td>
+              <td>作成者 &nbsp; &nbsp; &nbsp; [✔]閲覧&nbsp;&nbsp;&nbsp;[✔]編集&nbsp;&nbsp;&nbsp;[✔]削除</td>
+          </tr>
+          <tr>
+              <td>Everyone&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;]閲覧&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;]編集&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;]削除</td>
+          </tr>
+      </tbody>
+  </table>
+  
+  <Note>
+  設定手順の詳細は、「[レコードにアクセス権を設定する](/k/ja/id/040595.html)」を参照してください。
+  
+  </Note>

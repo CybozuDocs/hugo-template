@@ -1,0 +1,89 @@
+---
+title: "デスクトップ通知が表示されない"
+weight: 1600
+aliases:
+  - "/ja/id/040829"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+
+
+<Kintone />のデスクトップ通知が表示されない場合、次の要因が考えられます。それぞれの要因について確認し、必要に応じて対応してください。  
+
+デスクトップ通知の設定についての詳細は、次のページを参照してください。  
+[デスクトップ通知を設定する](/k/ja/id/040828.html)
+
+<Heading id="notification_qa_desktop_notifications_trouble_10">デスクトップ通知の設定が有効化されていない</Heading>
+
+<Kintone />でデスクトップ通知を利用するには、次のすべての設定で、デスクトップ通知を有効化する必要があります。
+
+* <Kintone />の個人設定
+* Webブラウザーの通知設定
+* OSの通知設定
+
+デスクトップ通知のそれぞれの設定を有効化する方法は、次のとおりです。
+
+<Heading level={3} id="notification_qa_desktop_notifications_trouble_1010">&lt;Kintone /&gt;の個人設定で[デスクトップ通知]を有効化する</Heading>
+
+デスクトップ通知を利用したいユーザーが、Webブラウザーを使用して、<Kintone />の個人設定画面から[デスクトップ通知]を有効化してください。
+
+1. <Kintone />の画面上部の歯車の形をした[設定メニューを表示する]アイコンをクリックし、[個人設定]をクリックします。  
+
+1. [デスクトップ通知]で[有効にする]を選択します。
+
+   <Note>
+
+    次の場合は、デスクトップ通知機能の対象外のため、[デスクトップ通知]は表示されません。
+
+   * Google Chrome、Microsoft Edge以外のWebブラウザーをお使いのとき
+
+   * ゲストユーザーでログインしたとき
+
+   </Note>
+
+1. [保存]をクリックします。  
+  Webブラウザーに<Kintone />からの通知送信を許可するかを確認するポップアップが表示されたら、許可します。 
+
+<Heading level={3} id="notification_qa_desktop_notifications_trouble_1020">Webブラウザーの設定で&lt;Kintone /&gt;からの通知を許可する</Heading>
+
+デスクトップ通知を利用したいユーザーが、個人設定で[デスクトップ通知]を有効化したときに、Webブラウザーに<Kintone />からの通知送信を許可するかどうかを確認するポップアップが表示されます。ポップアップが表示されたら、[許可]をクリックしてください。
+
+Webブラウザーにポップアップが表示されない場合は、Webブラウザーの通知設定で、利用している<Kintone />からの通知を許可してください。
+
+<Heading level={3} id="notification_qa_desktop_notifications_trouble_1030">OSの設定でデスクトップ通知を有効化する</Heading>
+
+デスクトップ通知を利用したいユーザーが、<Kintone />を使用しているOSの通知設定で、Webブラウザーの通知の受信を有効化してください。
+
+* Windowsの場合：[設定]メニューの[通知]から設定する。
+* macOSの場合：[システム設定]の[通知]から設定する。
+
+<Note>
+
+利用しているOSのバージョンによって、メニュー名が異なります。
+
+</Note>
+
+<Heading id="notification_qa_desktop_notifications_trouble_20">&lt;Kintone /&gt;の「自分宛」の通知が届いたときに、Webブラウザーのいずれかのタブで&lt;Kintone /&gt;を開いていない</Heading>
+
+Webブラウザーのいずれかのタブで<Kintone />を開いているときのみ、デスクトップ通知が表示されます。
+
+<Heading id="notification_qa_desktop_notifications_trouble_30">&lt;Kintone /&gt;を利用するWebブラウザーに、Google Chrome、Microsoft Edge以外を使用している</Heading>
+
+デスクトップ通知を利用するには、<Kintone />を利用するWebブラウザーとして、Google ChromeまたはMicrosoft Edgeを使用してください。  
+Google Chrome、Microsoft Edge以外のWebブラウザーを使用している場合、デスクトップ通知を利用できません。
+
+<Heading id="notification_qa_desktop_notifications_trouble_40">&lt;Kintone /&gt;で「自分宛」の通知が届いていない</Heading>
+
+<Kintone />のデスクトップ通知が表示されるのは、「自分宛」の通知のみです。  
+「自分宛」以外の通知を受信しても、デスクトップ通知は表示されません。  
+
+通知の種類についての詳細は、次のページを参照してください。  
+[「自分宛」通知と「すべて」通知の違い](/k/ja/id/040674.html)
+
+<Heading id="notification_qa_desktop_notifications_trouble_50">デスクトップ通知が表示される前に、Webブラウザーで&lt;Kintone /&gt;の「自分宛」の通知を閲覧した</Heading>
+
+<Kintone />で「自分宛」の通知を受信してから、デスクトップ通知が表示されるまでに時間差があります。  
+先にWebブラウザーで「自分宛」の通知内容を閲覧した場合は、デスクトップ通知は表示されません。

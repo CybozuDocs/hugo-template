@@ -1,0 +1,54 @@
+---
+title: "レコードタイトルにドロップダウンフィールドを設定したい"
+weight: 1800
+aliases:
+  - "/ja/id/040215"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Graynote from "@/components/Graynote.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Reference from "@/components/Reference.astro";
+
+
+レコードタイトルには、ドロップダウンフィールドを指定できません。  
+[レコードタイトルに指定できるフィールド](/k/ja/id/040604.html#app_settings_title_field_20)
+
+ただし、レコードタイトルに指定可能な文字列（1行）フィールドを使うと、ドロップダウンフィールドの内容をレコードタイトルに設定できます。  
+具体的には、文字列（1行）フィールドに、計算式を使ってドロップダウンフィールドの内容を表示させたあと、文字列（1行）フィールドをレコードタイトルに設定します。
+
+<Heading id="app_qa_record_title_dropdown_10">手順</Heading>
+
+1. レコードタイトルに設定したいドロップダウンフィールドのフィールドコードを確認します。  
+   <Img src="/k/kintone/img-ja/record_title_dropdown_01.png" alt="スクリーンショット：「ドロップダウンの設定」ダイアログで、フィールドコードが強調されている" />
+
+1. 文字列（1行）フィールドを配置し、フィールド右上の歯車の形をした設定アイコンの[設定]をクリックします。  
+   <Img src="/k/kintone/img-ja/record_title_dropdown_02.png" alt="スクリーンショット：文字列（1行）フィールドで、[設定]までの動線を示している" />
+
+1. 「自動計算する」にチェックを入れ、計算式を入力します。  
+   手順1で確認したフィールドコードが「ドロップダウン」の場合、計算式の例は次のとおりです。  
+
+   <Graynote>
+
+   ドロップダウン
+
+   </Graynote>
+
+   <Img src="/k/kintone/img-ja/record_title_dropdown_03.png" alt="スクリーンショット：「文字列（1行）の設定」ダイアログで計算式の欄が強調されている" />
+
+1. [保存]をクリックします。
+
+1. 画面左上の[フォームを保存]をクリックします。
+
+1. 設定した文字列（1行）フィールドをレコードタイトルに設定します。  
+   [レコードタイトルを設定する](/k/ja/id/040604.html)
+
+アプリを更新して、設定は完了です。
+
+<Reference>
+
+* [フィールドコードとは](/k/ja/id/040504.html)
+* [レコードタイトルを設定する](/k/ja/id/040604.html)
+
+</Reference>

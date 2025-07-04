@@ -1,0 +1,83 @@
+---
+title: "ゲストスペース"
+weight: 800
+aliases:
+  - "/ja/id/040639"
+layout: "@/layouts/SectionLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+ゲストスペースは、<Kintone />の利用ユーザー以外の人が、ゲストとして参加できるスペースです。社外のメンバーとの共同プロジェクトなどに、連絡の場として使用できます。
+
+ゲストスペースでは、ゲスト宛てに招待メールを送信できます。招待されたゲストは、招待メールから<Kintone />にアクセスし、ゲストアカウントを作成できます。  
+ゲストスペースに招待されたユーザーはゲストユーザーと呼びます。
+
+ゲストユーザーは、招待されたスペースと、そのスペースに所属するアプリだけにアクセスできます。そのほかのデータは閲覧できません。ゲストスペースでゲストユーザーが可能な操作については、次のページを参照してください。  
+[ユーザーがゲストスペースでできる操作](/k/ja/id/040650.html)
+
+<Warning>
+
+ゲストスペースに作成したアプリは、所属するスペースをあとから変更できません。  
+また、ゲストスペース以外で作成したアプリは、あとからゲストスペース内に移動できません。
+
+</Warning>
+
+<Enabled regions={["JP"]}>
+<Note>
+
+* ゲストユーザーのライセンスの詳細は、次のページを参照してください。  
+  [ゲストスペースの利用料・ライセンス](https://kintone.cybozu.co.jp/price/guestprice.html)（日本語のみ）
+* ゲストスペース機能を使用するには、<Wovn>［<Kintone />システム管理］</Wovn>で機能を有効にする必要があります。
+* ゲストスペースを作成できるユーザーを<Wovn>［<Kintone />システム管理］</Wovn>で制限できます。設定方法については、次のページを参照してください。  
+  [<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+* ゲストユーザーがアクセスする<Kintone />の環境にIPアドレス制限が設定されていても、ゲストユーザーのアクセスは制限されません。
+* 1つのゲストスペースに参加できるゲストの数に、上限はありません。
+* ゲストは、モバイルアプリを使用できません。ゲストがスマートフォンで<Kintone />にアクセスするには、Webブラウザーを使用します。  
+  使用できるWebブラウザーは、次のページを参照してください。  
+  サイボウズ製品サイト：[動作環境](https://www.cybozu.com/jp/service/requirements.html#q01)（日本語のみ）
+</Note>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Note>
+
+* ゲストスペース機能を使用するには、<Wovn>［<Kintone />システム管理］</Wovn>で機能を有効にする必要があります。
+* ゲストスペースを作成できるユーザーを<Wovn>［<Kintone />システム管理］</Wovn>で制限できます。設定方法については、次のページを参照してください。  
+  [<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+* ゲストユーザーがアクセスする<Kintone />の環境にIPアドレス制限が設定されていても、ゲストユーザーのアクセスは制限されません。
+* 1つのゲストスペースに参加できるゲストの数に上限はありません。
+* ゲストは、モバイルアプリを使用できません。ゲストがスマートフォンで<Kintone />にアクセスするには、Webブラウザーを使用します。  
+  使用できるWebブラウザーは、次のページを参照してください。  
+  [動作環境](https://trust-center.kintone.com/service/requirements/#app)
+</Note>
+
+</Enabled>
+
+<Enabled regions={["CN"]}>
+<Note>
+
+* ゲストスペース機能を使用するには、<Wovn>［<Kintone />システム管理］</Wovn>で機能を有効にする必要があります。
+* ゲストスペースを作成できるユーザーを<Wovn>［<Kintone />システム管理］</Wovn>で制限できます。設定方法については、次のページを参照してください。  
+  [<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+* ゲストユーザーがアクセスする<Kintone />の環境にIPアドレス制限が設定されていても、ゲストユーザーのアクセスは制限されません。
+* 1つのゲストスペースに参加できるゲストの数に上限はありません。
+* ゲストは、モバイルアプリを使用できません。ゲストがスマートフォンで<Kintone />にアクセスするには、Webブラウザーを使用します。
+</Note>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[ゲストスペースに関する質問](/k/ja/id/040328.html)
+</Reference>
+
+</Enabled>

@@ -1,0 +1,43 @@
+---
+title: "レコード番号を1から振り直せますか？"
+weight: 1900
+aliases:
+  - "/ja/id/040213"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+レコード番号は、レコードを追加した順に自動的に割り振られます。  
+一度割り振られたレコード番号は更新されません。
+
+レコード番号を1から振り直したい場合には、次の手順でアプリを作り直します。
+
+1. アプリをコピー（再利用）して新しく作成する
+   <Img src="/k/kintone/img-ja/record_qa_record_renumber_img02.gif" alt="アニメーション：{{&lt; kintone &gt;}}のポータルから、アプリを再利用して作成している" />
+   <Note>
+   * 再利用できるのは、管理権限を持つアプリだけです。
+   * 再利用して作成したアプリには、次の項目の設定は引き継がれません。  
+   アプリコード、APIトークン、利用しているプラグインに適用している設定  
+   * アプリのレコードのデータは引き継がれません。手順2以降で、レコードのデータを移行してください。
+   </Note>
+
+1. コピー元のアプリからレコードの内容をCSVファイルに書き出す
+   <Img src="/k/kintone/img-ja/record_qa_record_renumber_img03.gif" alt="アニメーション：コピー元のアプリのレコードを書き出している" />
+
+1. 書き出したCSVファイルを、手順1で作成したアプリに読み込む  
+   読み込む際、レコード番号の「一括更新のキー」のチェックは外してください。  
+   <Img src="/k/kintone/img-ja/record_qa_record_renumber_img01.png" alt="スクリーンショット：「ファイルから読み込む」画面で「一括更新のキー」のチェックが外れている" />
+   新しいアプリにレコードが一括登録され、レコード番号は1から振り直されます。
+
+<Reference>
+
+* [ほかのアプリを再利用して新しく作成する（アプリのコピー）](/k/ja/id/040630.html)
+* [ファイルにデータを書き出す](/k/ja/id/040452.html)
+* [ファイルからレコードのデータをアプリに読み込む](/k/ja/id/040724.html)
+* [入出力できるデータの一覧](/k/ja/id/04056.html)
+
+</Reference>

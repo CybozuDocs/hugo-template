@@ -1,0 +1,76 @@
+---
+title: "グループ（ロール）を設定する"
+weight: 100
+aliases:
+  - "/ja/id/04061"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Slash from "@/components/Slash.astro";
+import SlashHelp from "@/components/SlashHelp.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+グループ（ロール）とは、組織とは別に、役職や役割などで分類したユーザーのグループです。  
+
+例：
+
+* 部長のグループ（ロール）
+* 新商品開発チームのグループ（ロール）
+
+<Kintone />では、<Wovn>［グループ選択］</Wovn>フィールドでグループ（ロール）を選択したり、グループ（ロール）に対してアクセス権やプロセス管理の作業者を設定したりできます。  
+[グループ選択](/k/ja/id/040530.html)  
+
+<Heading id="common_set_role_10">グループ（ロール）の設定</Heading>
+
+グループ（ロール）の作成や管理は、<SlashUi />の<Wovn>［グループ（ロール）の設定］</Wovn>画面で設定します。  
+
+グループ（ロール）には<Wovn>［静的］</Wovn>と<Wovn>［動的］</Wovn>の2つの種類があります。
+
+* <b>静的グループ</b>  
+  静的グループは、ユーザーを指定して作成するグループです。  
+  静的グループのメンバーは、<Slash />共通管理者がユーザーを追加、削除しない限り変わりません。  
+  静的グループの設定方法は、<SlashHelp />を参照してください。  
+  [静的グループを追加する](/general/ja/id/020182.html)
+  <br />
+* <b>動的グループ</b>  
+  動的グループは、ユーザーの役職や組織などの条件を指定して作成するグループです。  
+  動的グループのメンバーは、ユーザーに設定された組織や役職の変更に応じて変わります。  
+  たとえば、ユーザーの役職を「部長」に変更したら、あらかじめ作成しておいた「部長」という動的グループのメンバーに自動的になるように設定できます。それには、動的グループを追加し、役職が「部長」という条件を指定してください。  
+  動的グループの設定方法は、<SlashHelp />を参照してください。  
+  [動的グループを追加する](/general/ja/id/020175.html)  
+  [動的グループの条件を指定する](/general/ja/id/020176.html)  
+
+<Heading id="common_set_role_20">グループ（ロール）を利用したアクセス権の設定例</Heading>
+
+ここでは例として、<SlashUi />で「部長」というグループ（ロール）が設定されているときに、<Kintone />の社外秘のレコードを「部長」グループ（ロール）のメンバーのみが閲覧・編集・削除できるように設定する方法を紹介します。  
+
+* <SlashUi />の設定  
+  「部長」というグループ（ロール）を設定しておきます。  
+  <Img src="/k/kintone/img-ja/sample_role_img10.png" alt="グループ（ロール）の設定画面" />
+  参考：[グループ（ロール）の設定](/k/ja/id/04061.html#common_set_role_10)  
+  <br />
+
+* <Kintone />のアプリの設定  
+  アプリに「社外秘」というフィールドを配置します。  
+  続いて、レコードのアクセス権を、以下のように設定してください。  
+  * 条件に「社外秘」フィールドの値を指定する
+  * アクセス権の対象ユーザーに「部長」グループ（ロール）を追加し、レコードの閲覧、編集、削除を許可する  
+  <Img src="/k/kintone/img-ja/sample_role_img20.png" alt="レコードのアクセス権の設定画面 " />
+  アクセス権の設定方法については、次のページを参照してください。  
+  [アクセス権の設定](/k/ja/id/040588.html)
+  <br />
+
+このように設定すると、「部長」グループ（ロール）のメンバーであるかどうかで、表示されるレコードが変わります。
+
+* 「部長」グループ（ロール）のメンバーである場合：  
+  社外秘のレコードが表示されます。  
+  <Img src="/k/kintone/img-ja/sample_role_img30.png" alt="社外秘のレコードが表示された画面" />
+
+* 「部長」グループ（ロール）のメンバーではない場合：  
+  社外秘のレコードは表示されません。
+  <Img src="/k/kintone/img-ja/sample_role_img40.png" alt="社外秘のレコードが表示されない画面" />

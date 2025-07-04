@@ -1,0 +1,110 @@
+---
+title: "メール通知が届かないときは"
+weight: 200
+aliases:
+  - "/ja/id/040377"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+
+
+メール通知が届かない場合、次の要因が考えられます。
+
+* [メール通知に必要な設定を行っていない](#notification_qa_notification_faq_10)
+* [<Kintone />のポータルにも通知が届いていない](#notification_qa_notification_faq_20)
+* [メール通知対象外の通知である](#notification_qa_notification_faq_30)
+* [メールサーバー/メールクライアントの設定でメール通知を受信できない](#notification_qa_notification_faq_40)
+* [同じメールアドレスを複数のユーザーに設定している](#notification_qa_notification_faq_50)
+
+それぞれの対処方法を説明します。
+
+<Heading id="notification_qa_notification_faq_10">メール通知に必要な設定を行っていない</Heading>
+
+すべてのメール通知が届かない場合と、一部のメールが届かない場合で、確認する点が異なります。
+
+<Heading level={3} id="notification_qa_notification_faq_1010">すべてのメール通知が届かない場合</Heading>
+
+<Slash />共通管理と<Kintone />システム管理で、メール通知が有効になっているか確認します。  
+管理者の設定が問題ない場合、ユーザーの個人設定でメール通知が「受信しない」になっていないか、確認します。詳細は、次のページを参照してください。  
+[メール通知を設定する](/k/ja/id/040670.html)
+
+<Heading level={3} id="notification_qa_notification_faq_1020">一部のメール通知が届かない場合</Heading>
+
+一部のメール通知が届かない場合、次の設定を確認します。
+
+<Heading level={4} id="notification_qa_notification_faq_102010">システム管理の設定を確認する</Heading>
+
+1. <Kintone />システム管理を開きます。  
+  [<Kintone />システム管理画面を開く](/k/ja/id/04046.html)
+
+1. その他カテゴリーにある[利用する機能の選択]をクリックします。
+
+1. 「通知のメール送信」の設定を確認します。  
+  「REST APIの通知をメールで送信」のチェックが外れていると、一部のメールが届かないことがあります。REST APIを使って<Kintone />を操作したときの通知もメールで受け取りたい場合は、この設定も有効にします。  
+  [「REST APIの通知をメールで送信」とは](/k/ja/id/04052.html)
+   <Img src="/k/kintone/img-ja/notification_rest_api_01.png" alt="スクリーンショット：「通知のメール送信」の設定で「REST APIの通知をメールで送信」にチェックを入れていることが枠線で強調されている" />
+
+1. 設定を変更した場合は[保存]を押します。
+
+<Heading level={3} id="notification_qa_notification_faq_102020">個人設定で、メール通知を受信する対象を確認する</Heading>
+
+1. <Kintone />の画面上部の歯車の形をした[設定]アイコンをクリックし、[個人設定]を開きます。
+   <Img src="/k/kintone/img-ja/notification_rest_api_02.png" alt="スクリーンショット：[個人設定]のリンクが枠線で強調されている" />
+
+1. 「個人設定」画面の「メール通知」で、メール通知の設定を確認します。  
+  [自分宛の通知のみ]を選択していると、自分宛以外はメールで通知されません。「すべての通知」をメールで受信したい場合は、[すべての通知]を選択します。
+   <Img src="/k/kintone/img-ja/notification_rest_api_03.png" alt="スクリーンショット：「個人設定」画面の「メール通知」が表示されている" />
+  <Note>
+  「すべての通知」を選択した場合、自分宛を含む「すべての通知」がメール通知されるため、非常に多くのメールが届いてしまう可能性があります。
+  </Note>
+
+1. 設定を変更した場合は[保存]を押します。
+
+<Hint>
+
+「個人設定」でメール通知を「自分宛の通知のみメールで受信」に設定している場合、「アプリの条件通知」の通知先が「通常の通知を受信するユーザー」にはメール通知は届きません。  
+通知先の詳細は「[通知が送信されるタイミングと宛先](/k/ja/id/040673.html)」で説明しています。  
+そのほか、アプリの条件通知やリマインド通知が届かない場合は、「[アプリの通知設定](/k/ja/id/040559.html)」を参照して、それぞれ設定が正しく行われているかを確認してください。
+
+</Hint>
+
+<Heading id="notification_qa_notification_faq_20">&lt;Kintone /&gt;のポータルにも通知が届いていない</Heading>
+
+<Kintone />のポータルにも通知が届いていない場合、メール通知も届きません。  
+[「通知」が届かないときは](/k/ja/id/040376.html)
+
+<Heading id="notification_qa_notification_faq_30">メール通知対象外の通知である</Heading>
+
+コメントに「いいね！」した際のコメント投稿者への通知など、メール通知されない通知があります。  
+対象の通知が、メール通知対象外でないかご確認ください。  
+メール通知対象外の内容は、「[通知が送信されるタイミングと宛先](/k/ja/id/040673.html)」の「補足」欄を参照してください。  
+また、対象となる通知を送信することで、メール通知されるか試しても確認できます。
+
+<Heading id="notification_qa_notification_faq_40">メールサーバー/メールクライアントの設定でメール通知を受信できない</Heading>
+
+次のいずれかに該当している可能性があります。
+
+* **「To」が空の場合、メールサーバーでメールが届かない設定になっている**  
+  メール通知の宛先は「Bcc」で送信されます。  
+  利用しているメールサーバーによっては、「To」が空の場合、フィルタリングされてしまい、メールが届かないことがあります。  
+  メールサーバー側で設定を確認してください。
+* **送信メールアドレスからのメール受信を許可していない**  
+  送信メールアドレスから送られたメールの受信を許可する設定に変更してください。
+
+<Heading id="notification_qa_notification_faq_50">同じメールアドレスを複数のユーザーに設定している</Heading>
+
+メール通知の「送信先メールアドレス」「送信日時」「本文」がすべて同じである場合、1通のみが送信されます。  
+<Kintone />の通知はそれぞれのユーザーに届きますが、メール通知はまとめられます。  
+メール通知を受信するユーザーごとに「メールアドレス」を分ける運用を検討してください。
+
+<Reference>
+[「通知」が届かないときは](/k/ja/id/040376.html)
+
+</Reference>

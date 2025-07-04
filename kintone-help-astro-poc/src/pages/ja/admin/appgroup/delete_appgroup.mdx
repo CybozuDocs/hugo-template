@@ -1,0 +1,60 @@
+---
+title: "アプリグループを削除する"
+weight: 500
+aliases:
+  - "/ja/id/04027"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Disabled2 from "@/components/Disabled2.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Slash from "@/components/Slash.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+アプリグループの管理者は、作成したアプリグループを削除できます。
+
+<Disabled2 regions={["US"]}>
+<Warning>
+Public、Private、Garoon Space Appsのアプリグループは削除できません。
+</Warning>
+
+</Disabled2>
+
+<Enabled regions={["US"]}>
+<Warning>
+Public、Privateのアプリグループは削除できません。
+</Warning>
+
+</Enabled>
+
+<Heading id="appgroup_delete_appgroup_10">手順</Heading>
+
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［<Kintone />システム管理］</Wovn>を開きます。  
+  [［<Kintone />システム管理］画面を開く](/k/ja/id/04046.html)
+
+1. <Wovn>［アプリグループ］</Wovn>をクリックします。
+
+1. 削除したいアプリグループの右側にあるごみ箱の形をした削除アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/delete_appgroup_01.png" alt="スクリーンショット：削除したいアプリグループの右側にあるごみ箱の形をした削除アイコンを赤枠で強調している" />
+
+1. 確認ダイアログが表示されたら、<Wovn>［削除する］</Wovn>をクリックします。
+
+<Heading id="appgroup_delete_appgroup_20">アプリグループを削除しようとしてエラーが表示されたときは</Heading>
+
+アプリグループを削除しようとしてエラーメッセージが表示された場合は、以下を参考に対処してください。
+
+<Heading level={3} id="appgroup_delete_appgroup_2010">エラー内容</Heading>
+
+削除しようとしているアプリグループに、削除済みかつ復旧可能なアプリが所属しています。
+
+<Heading level={3} id="appgroup_delete_appgroup_2020">原因と対処</Heading>
+
+アプリの復旧が必要になった場合にアクセス権も適切に復旧できるよう、削除したアプリが所属していたアプリグループは削除できません。  
+アプリを一度復旧し、アプリグループの設定を変更してください。または、アプリを削除してから14日以上経過すると、アプリを復旧できなくなるためアプリグループも削除できるようになります。  
+アプリを復旧できるのは、<Slash />共通管理者（ユーザー・組織の登録や、セキュリティの設定を行う管理者）のみです。  
+[削除したアプリを復旧する](/k/ja/id/04016.html)

@@ -1,0 +1,77 @@
+---
+title: "{{< kintone >}}の利用状況を確認したい"
+weight: 7400
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040325"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import SlashUi from "@/components/SlashUi.astro";
+
+<Kintone />のアプリやスペースの利用状況、プラグインや外部連携機能の適用状況について、それぞれ確認方法を説明します。  
+各機能の利用状況は、コースを選ぶ参考になります。  
+各コースの上限値は、次の製品サイトで確認してください。  
+[料金](https://kintone.cybozu.co.jp/price/)（日本語のみ）
+
+<Heading id="general_usage_status_10">アプリ数・API利用状況・各アプリへのカスタマイズ適用状況の確認方法</Heading>
+
+<Kintone />システム管理の「アプリ管理」を開きます。  
+[<Kintone />システム管理を開く](/k/ja/id/04046.html)  
+<Img src="/k/kintone/img-ja/usage_status_01.png" alt="アプリ管理" />
+
+「ライセンスの使用状況」で、アプリ数、1アプリで1日に実行できるAPIリクエスト数、カスタマイズできるアプリ数の上限値と実際に使用している数を確認できます。  
+契約コースによって上限数は異なり、表示される数値は毎日9時にリセットされます。  
+  
+「アプリの一覧」では、各アプリの1日のAPIリクエスト数、JavaScript/CSSによるカスタマイズの有無を確認できます。
+<Img src="/k/kintone/img-ja/usage_status_02.png" alt="ライセンス使用状況とAPIリクエスト数" />
+
+カスタマイズが適用されている状態でライトコースへ移行すると、カスタマイズが無効になりますのでご注意ください。
+
+<Heading id="general_usage_status_20">スペース数・ゲストスペース数の確認方法</Heading>
+
+<Kintone />システム管理の「スペース管理」を開きます。  
+<Img src="/k/kintone/img-ja/usage_status_03.png" alt="スペース管理" />
+
+「ライセンスの使用状況」で、スペース数、ゲストスペース数の上限数と実際に使用中の数を確認できます。契約コースによって上限数は異なります。
+<Img src="/k/kintone/img-ja/usage_status_04.png" alt="ライセンス使用状況" />
+
+<Heading id="general_usage_status_30">&lt;Kintone /&gt;全体へのJavaScript/CSS適用状況の確認方法</Heading>
+
+<Kintone />システム管理の「JavaScript / CSSでカスタマイズ」を開きます。  
+<Img src="/k/kintone/img-ja/usage_status_05.png" alt="JavaScript/CSSでカスタマイズ" />
+
+JavaScript/CSSによるカスタマイズを確認できます。URL指定や、ファイルのアップロードが行われていた場合は、カスタマイズが行われています。  
+カスタマイズが適用されている状態でライトコースへ移行すると、カスタマイズが無効になりますのでご注意ください。
+
+<Heading id="general_usage_status_40">プラグインの利用状況の確認方法</Heading>
+
+<Kintone />システム管理の「プラグイン」を開きます。  
+ライトコースをご契約の場合は、プラグイン機能を利用できません。
+<Img src="/k/kintone/img-ja/usage_status_06.png" alt="プラグイン" />
+
+「利用中のアプリ」で、プラグインを利用しているアプリを確認できます。  
+アプリ名をクリックすると、各アプリの設定画面に移動します。
+<Img src="/k/kintone/img-ja/usage_status_07.png" alt="利用中のアプリ" />
+
+<Heading id="general_usage_status_50">外部連携機能の適応状況の確認方法</Heading>
+
+<SlashUi />を開き、「外部連携」の「OAuth」を開きます。  
+[<SlashUi />を開く](/k/ja/id/04047.html)  
+<Img src="/k/kintone/img-ja/usage_status_08.png" alt="外部連携のOAuth画面" />
+外部連携サービスの設定状況を確認できます。  
+
+<Heading id="general_usage_status_60">Webhookの利用状況の確認方法</Heading>
+
+Webhookの利用状況は、アプリごとに確認します。
+
+「レコードの一覧」画面で、画面右上にある歯車の形をした[アプリを設定]アイコンをクリックします。  
+<Img src="/k/kintone/img-ja/usage_status_10.png" alt="スクリーンショット：[アプリを設定]アイコンが枠線で強調されている" />  
+「アプリの設定」画面で、[設定]タブの「カスタマイズ／サービス連携」にある[Webhook]をクリックします。
+
+Webhookの設定画面で設定状況を確認できます。  
+設定されている場合、WebhookのURLが表示されます。
+<Img src="/k/kintone/img-ja/usage_status_11.png" alt="Webhookの設定" />

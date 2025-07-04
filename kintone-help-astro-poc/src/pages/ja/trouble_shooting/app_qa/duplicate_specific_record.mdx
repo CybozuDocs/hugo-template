@@ -1,0 +1,46 @@
+---
+title: "レコードを再利用して登録するときに、特定のフィールドの値のみコピーしたい"
+weight: 4440
+aliases:
+  - "/ja/id/040185"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import DevnetName from "@/components/DevnetName.astro";
+import DevnetTop from "@/components/DevnetTop.astro";
+import Enabled from "@/components/Enabled.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+
+レコードを再利用するには、次の2通りの方法があります。  
+
+* 「レコードを再利用する」アイコンを利用する方法
+* アプリアクションを利用する方法
+
+「レコードを再利用する」アイコンを利用する場合は、特定のフィールドを指定して転記（コピー）することはできません。再利用で作成されたレコードには、転記可能なフィールドの値がすべて入力されるため、必要な箇所のみ修正してください。  
+
+アプリアクションを利用する場合は、同じアプリ（このアプリ）をコピー先に指定することで、特定のフィールドを転記（コピー）できます。詳細な設定方法は、「[同じアプリ内でレコードを再利用するためのアクションを作成する](/k/ja/id/040485.html)」を参照してください。
+<Img src="/k/kintone/img-ja/duplicate_specific_record_01.png" alt="スクリーンショット：アクションの設定" />
+
+<Note>
+
+アプリアクションの設定で、コピー先に指定できるフィールドは、コピー元のフィールドタイプによって異なります。詳細は、「[アプリアクションに設定できるフィールドの組み合わせ](/k/ja/id/040486.html)」を参照してください。
+
+</Note>
+
+<Enabled regions={["JP"]}>
+<Hint>
+
+カスタマイズ機能やプラグインを利用すると、フィールドの再利用を制限できます。
+
+カスタマイズに関する情報は、開発者向けサイト<DevnetName />を参照してください。  
+<DevnetTop />  
+プラグインは、次の製品サイトで検索できます。「再利用」などのキーワードで検索してください。  
+[プラグイン・連携サービス](https://kintone-sol.cybozu.co.jp/integrate/search/)（日本語のみ）
+
+ただし、ライトコースをご契約の場合は、カスタマイズ機能やプラグインを利用できません。
+</Hint>
+
+</Enabled>

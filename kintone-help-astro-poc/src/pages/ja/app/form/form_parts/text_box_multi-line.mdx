@@ -1,0 +1,74 @@
+---
+title: "文字列（複数行）"
+weight: 400
+aliases:
+  - "/ja/id/040538"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+
+文字列（複数行）フィールドを配置すると、複数行の文字列を入力する入力欄を作成できます。文字の装飾はできません。
+
+文字列（複数行）フィールドでは、入力欄の右下をマウスでつかんで広げると、横幅と縦幅を広げることができます。
+<Img src="/k/kintone/img-ja/text_box_multi-line_04.png" alt="スクリーンショット：文字列（複数行）フィールドの入力欄の右下を赤枠で強調している" />
+
+<Note>
+
+改行して入力した文字列は、ファイルへ書き出したときにも改行された状態で出力されます。  
+CSVファイルを使って他システムにデータを移行している場合など、データの連携時に影響がないか確認してください。
+
+</Note>
+
+<Heading id="form_parts_text_box_multi-line_20">文字列（複数行）の設定項目</Heading>
+
+<Img src="/k/kintone/img-ja/text_box_multi-line_img03.png" alt="スクリーンショット：文字列（複数行）フィールドの設定画面" />
+
+<Heading level={3} id="form_parts_text_box_multi-line_2010">フィールド名</Heading>
+
+入力項目の見出しを指定します。
+
+<Heading level={3} id="form_parts_text_box_multi-line_2020">フィールド名を表示しない</Heading>
+
+「フィールド名を表示しない」にチェックを入れると、次の画面でフィールド名を非表示にします。
+
+* レコードの追加画面
+* レコードの編集画面
+* レコードの詳細画面
+* レコードの印刷用画面
+* フォームの設定画面
+
+<Heading level={3} id="form_parts_text_box_multi-line_2030">必須項目にする</Heading>
+
+「必須項目にする」にチェックを入れると、値の入力が必須になります。
+
+<Heading level={3} id="form_parts_text_box_multi-line_2040">初期値</Heading>
+
+入力項目の初期値を表示したい場合に設定します。
+
+<Heading level={3} id="form_parts_text_box_multi-line_2050">フィールドコード</Heading>
+
+APIでフィールドを指定するときに使用する文字列です。
+
+<Note>
+
+フィールドコードについては、次のページを参照してください。  
+[フィールドコード](/k/ja/id/040504.html)
+
+</Note>
+
+<Heading id="form_parts_text_box_multi-line_10">使用例</Heading>
+
+フィールド内で改行して入力できるため、入力内容が多い項目での利用に向いています。  
+たとえば、顧客対応アプリで、「商談メモ」を記入するための入力欄として使用します。
+<Img src="/k/kintone/img-ja/text_box_multi-line_02.png" alt="スクリーンショット：「商談メモ」フィールドで文字列（複数行）フィールドを使用している例" />
+
+<Note>
+
+文字列を装飾したい場合は、リッチエディターフィールドを使用します。  
+[リッチエディター](/k/ja/id/040537.html)
+
+</Note>

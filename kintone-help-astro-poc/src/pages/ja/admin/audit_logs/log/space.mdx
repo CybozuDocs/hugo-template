@@ -1,0 +1,402 @@
+---
+title: "スペース"
+weight: 600
+description: "{{< kintone >}}でスペースの操作をしたときに出力される監査ログについて説明しています。"
+aliases:
+  - "/ja/id/040816"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+
+
+スペースの操作をしたときに出力されるログについて説明します。
+
+<Note>
+
+ゲストユーザーが操作をした場合は、ログの先頭にゲストユーザーのログイン名（login name: *）が出力されます。
+
+</Note>
+
+<Heading id="log_space_10,class=&quot;no-trans&quot;">Space management</Heading>
+
+モジュールが「Space management」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_space_1010,class=&quot;no-trans&quot;">Space add</Heading>
+
+アクションが「Space add」である監査ログについて説明します。
+
+<Heading level={4} id="log_space_101010">実行された操作</Heading>
+
+スペース、またはゲストスペースを作成した。
+
+<Heading level={4} id="log_space_101020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_space_101030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+
+<Heading level={4} id="log_space_101040">出力されるログの例</Heading>
+
+```
+space id: *, space name: *
+
+```
+
+<Heading level={3} id="log_space_1015,class=&quot;no-trans&quot;">Space update</Heading>
+
+アクションが「Space update」である監査ログについて説明します。
+
+<Heading level={4} id="log_space_101510">実行された操作</Heading>
+
+スペースの設定を変更した。
+
+<Heading level={4} id="log_space_101520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_space_101530">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+
+<Heading level={4} id="log_space_101540">出力されるログの例</Heading>
+
+```
+space id: *, space name: *
+
+```
+
+<Heading level={3} id="log_space_1020,class=&quot;no-trans&quot;">Space delete</Heading>
+
+アクションが「Space delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_space_102010">実行された操作</Heading>
+
+スペースを削除した。
+
+<Note>
+
+<Kintone />システム管理画面の[スペース管理]でスペースを削除した場合も出力されます。
+
+</Note>
+
+<Heading level={4} id="log_space_102020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_space_102030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+* アプリID
+* アプリ名
+
+<Heading level={4} id="log_space_102040">出力されるログの例</Heading>
+
+<Heading level={5} id="log_space_10204010">スペース内にアプリが配置されていなかった場合</Heading>
+
+```
+space id: *, space name: *
+
+```
+
+<Heading level={5} id="log_space_10204020">スペース内にアプリが配置されていた場合</Heading>
+
+```
+space id: *, space name: *, (app id: *, app name: *), (...
+
+```
+
+先頭には削除対象のスペース、（）内には同時に削除されたアプリが出力されます。
+
+<Heading level={3} id="log_space_1025,class=&quot;no-trans&quot;">Space restore</Heading>
+
+アクションが「Space restore」である監査ログについて説明します。
+
+<Heading level={4} id="log_space_102510">実行された操作</Heading>
+
+スペースを復旧した。
+
+<Heading level={4} id="log_space_102520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_space_102530">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+* アプリID
+* アプリ名
+
+<Heading level={4} id="log_space_102540">出力されるログの例</Heading>
+
+<Heading level={5} id="log_space_10254010">スペース削除時に、スペース内にアプリが配置されていなかった場合</Heading>
+
+```
+space id: *, space name: *
+
+```
+
+<Heading level={5} id="log_space_10254020">スペース削除時に、スペース内にアプリが配置されていた場合</Heading>
+
+```
+space id: *, space name: *, (app id: *, app name: *), (...
+
+```
+
+先頭には復旧対象のスペース、（）内には同時に復旧されたアプリが出力されます。
+
+<Heading id="log_space_20,class=&quot;no-trans&quot;">Space operation</Heading>
+
+モジュールが「Space operation」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_space_2010,class=&quot;no-trans&quot;">Space join</Heading>
+
+アクションが「Space join」である監査ログについて説明します。
+
+<Heading level={4} id="log_space_201010">実行された操作</Heading>
+
+スペースに参加した。
+
+<Note>
+
+<Kintone />システム管理画面の[スペース管理]でスペースに参加した場合も出力されます。
+
+</Note>
+
+<Heading level={4} id="log_space_201020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_space_201030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+
+<Heading level={4} id="log_space_201040">出力されるログの例</Heading>
+
+```
+space id: *, space name: *
+
+```
+
+<Heading level={3} id="log_space_2020,class=&quot;no-trans&quot;">Space leave</Heading>
+
+アクションが「Space leave」である監査ログについて説明します。
+
+<Heading level={4} id="log_space_202010">実行された操作</Heading>
+
+スペースから退会した。
+
+<Note>
+
+<Kintone />システム管理画面の[スペース管理]でスペースから退会した場合も出力されます。
+
+</Note>
+
+<Heading level={4} id="log_space_202020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_space_202030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+
+<Heading level={4} id="log_space_202040">出力されるログの例</Heading>
+
+```
+space id: *, space name: *
+
+```
+
+<Heading level={3} id="log_space_2030,class=&quot;no-trans&quot;">Space body file download</Heading>
+
+アクションが「Space body file download」である監査ログについて説明します。
+
+<Heading level={4} id="log_space_203010">実行された操作</Heading>
+
+スペース本文にアップロードされたファイルについて、次の操作をした。
+
+* ファイルをダウンロードした
+* 画像のスライドショーを表示した
+
+<Heading level={4} id="log_space_203020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_space_203030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+* ファイル名
+
+<Heading level={4} id="log_space_203040">出力されるログの例</Heading>
+
+```
+space id: *, space name: *, filename: *
+
+```
+
+<Heading level={3} id="log_space_2040,class=&quot;no-trans&quot;">Thread body file download</Heading>
+
+アクションが「Thread body file download」である監査ログについて説明します。
+
+<Heading level={4} id="log_space_204010">実行された操作</Heading>
+
+スレッド本文にアップロードされたファイルについて、次の操作をした。
+
+* ファイルをダウンロードした
+* 画像のスライドショーを表示した
+
+<Heading level={4} id="log_space_204020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_space_204030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+* スレッドID
+* スレッドのタイトル
+* ファイル名
+
+<Heading level={4} id="log_space_204040">出力されるログの例</Heading>
+
+```
+space id: *, space name: *, thread id: *, thread name: *, filename: *
+
+```
+
+<Heading level={3} id="log_space_2050,class=&quot;no-trans&quot;">Thread comment file download</Heading>
+
+アクションが「Thread comment file download」である監査ログについて説明します。
+
+<Heading level={4} id="log_space_205010">実行された操作</Heading>
+
+スレッドの投稿やコメントにアップロードされたファイルについて、次の操作をした。
+
+* ファイルをダウンロードした
+* 画像のスライドショーを表示した
+
+<Heading level={4} id="log_space_205020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_space_205030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+* スレッドID
+* スレッドのタイトル
+* 投稿またはコメントのURL
+* ファイル名
+
+<Heading level={4} id="log_space_205040">出力されるログの例</Heading>
+
+```
+space id: *, space name: *, thread id: *, thread name: *, comment url: *, filename: *
+
+```
+
+<Heading id="log_space_30,class=&quot;no-trans&quot;">Space template</Heading>
+
+モジュールが「Space template」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_space_3010,class=&quot;no-trans&quot;">Space Template add</Heading>
+
+アクションが「Space Template add」である監査ログについて説明します。
+
+<Heading level={4} id="log_space_301010">実行された操作</Heading>
+
+スペーステンプレートを作成した。
+
+<Heading level={4} id="log_space_301020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_space_301030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペーステンプレートID
+* スペーステンプレート名
+
+<Heading level={4} id="log_space_301040">出力されるログの例</Heading>
+
+```
+space template id: *, space template name: *
+
+```
+
+<Heading id="log_space_40">プロパティ</Heading>
+
+監査ログの「補足」欄に出力されるプロパティは次のとおりです。
+
+<Heading level={3} id="log_space_4010,class=&quot;no-trans&quot;">app id</Heading>
+
+アプリのIDです。
+
+<Heading level={3} id="log_space_4012,class=&quot;no-trans&quot;">app name</Heading>
+
+アプリ名です。
+
+<Heading level={3} id="log_space_4014,class=&quot;no-trans&quot;">comment url</Heading>
+
+投稿またはコメントのURLです。
+
+<Heading level={3} id="log_space_4016,class=&quot;no-trans&quot;">filename</Heading>
+
+ファイル名です。
+
+<Heading level={3} id="log_space_4018,class=&quot;no-trans&quot;">login name</Heading>
+
+ゲストユーザーのログイン名です。
+
+<Heading level={3} id="log_space_4020,class=&quot;no-trans&quot;">space id</Heading>
+
+スペースのIDです。
+
+<Heading level={3} id="log_space_4022,class=&quot;no-trans&quot;">space name</Heading>
+
+スペース名です。
+
+<Heading level={3} id="log_space_4024,class=&quot;no-trans&quot;">space template id</Heading>
+
+スペーステンプレートのIDです。
+
+<Heading level={3} id="log_space_4026,class=&quot;no-trans&quot;">space template name</Heading>
+
+スペーステンプレート名です。
+
+<Heading level={3} id="log_space_4028,class=&quot;no-trans&quot;">thread id</Heading>
+
+スレッドのIDです。
+
+<Heading level={3} id="log_space_4030,class=&quot;no-trans&quot;">thread name</Heading>
+
+スレッドのタイトルです。

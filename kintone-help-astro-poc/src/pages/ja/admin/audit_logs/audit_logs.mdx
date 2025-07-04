@@ -1,0 +1,50 @@
+---
+title: "{{< kintone >}}の監査ログの確認方法"
+weight: 100
+description: "{{< kintone >}}の監査ログの確認方法を説明しています。"
+aliases:
+  - "/ja/id/04054"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+
+
+<Kintone />の監査ログでは、誰が、いつ、どのような操作を<Kintone />上で行ったかを確認できます。  
+監査ログは「<SlashUi />」に出力されます。
+
+<Heading id="audit_logs_audit_logs_10">監査ログの確認方法</Heading>
+
+1. <Kintone />の画面上部の歯車の形をした[設定]アイコンをクリックし、[<SlashUi />]をクリックします。
+   <Img src="/k/kintone/img-ja/audit_logs_img01.png" alt="スクリーンショット：設定アイコンをクリックして、[{{&lt; slash_ui &gt;}}]をクリック" />
+  <Note>  
+  
+  「<SlashUi />」は、<Slash />共通管理（ユーザー・組織の登録や、セキュリティの設定を行う管理者）権限のある場合のみ表示されます。
+  </Note>
+
+1. 「監査ログ」の[閲覧とダウンロード]をクリックします。  
+
+1. 必要に応じて絞り込み条件を指定し、[閲覧]ボタンをクリックします。 
+   <Img src="/k/kintone/img-ja/audit_logs_img03.png" alt="スクリーンショット：監査ログの閲覧とダウンロード画面" />
+  <Note> 
+  絞り込み条件に指定する「モジュール」や「アクション」の値は、「[<Kintone />が出力する監査ログの一覧](/k/ja/id/040810.html)」を参照してください。
+  </Note>
+  画面下部に、絞り込んだログが一覧表示されます。
+
+1. ログの詳細を確認する場合は、[ i ]アイコンをクリックします。
+   <Img src="/k/kintone/img-ja/audit_logs_04.png" alt="スクリーンショット：ログ一覧の左に表示される[i]アイコン" />
+   <Note>
+   * 表示されるログの詳細は、「[<Kintone />が出力する監査ログの一覧](/k/ja/id/040810.html)」を参照してください。
+   * <Kintone />のログか、<SlashUi />のログかは、表示されるログの「サービス」欄で確認できます。<Kintone />のログはサービス欄に「<Kintone />」と表示され、<SlashUi />で操作したログは「サービス共通」と表示されます。「サービス共通」にはログインに関する操作も含まれます。
+   </Note>
+
+1. 必要に応じて、監査ログの設定や書き出しを行います。
+
+   * [監査ログをメールで通知する](/general/ja/id/020103.html)
+   * [監査ログの保存期間を設定する](/general/ja/id/020104.html)
+   * [監査ログをダウンロードする](/general/ja/id/02088.html)

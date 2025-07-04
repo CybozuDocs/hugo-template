@@ -1,0 +1,52 @@
+---
+title: "管理者が一括でメール通知を停止するには"
+weight: 1400
+aliases:
+  - "/ja/id/040372"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import SlashAdministrators from "@/components/SlashAdministrators.astro";
+import Warning from "@/components/Warning.astro";
+
+<Kintone />の管理者は、ユーザーに送信されるメール通知を一括で停止できます。  
+メール通知を停止すると、ユーザーは、<Kintone />内のポータルや「通知」画面でのみ通知を確認できます。
+
+設定方法は次のとおりです。
+
+<Heading id="notification_qa_admin_disable_10">設定方法</Heading>
+
+<Note>
+
+この設定には、<Kintone />システム管理の「アクセス権」で「システムの管理」の権限が必要です。  
+なお、<SlashAdministrators />の場合、「システムの管理」の権限の有無にかかわらず、一括でメール通知を停止できます。
+
+</Note>
+
+<Warning>
+
+この設定をすると、すべてのメール通知が停止されます。
+
+</Warning>
+
+1. <Kintone />システム管理を開きます。  
+   <Img src="/k/kintone/img-ja/admin_disable_01.png" alt="システム管理を開く" />
+
+1. 「その他」カテゴリーにある「利用する機能の選択」をクリックします。
+   <Img src="/k/kintone/img-ja/feature_activation01.png" alt="利用する機能の選択" />
+
+1. 「通知のメール送信機能を利用する」のチェックを外します。
+   <Img src="/k/kintone/img-ja/admin_disable_02.png" alt="システム管理を開く" />
+
+1. 画面左上の[保存]をクリックします。
+
+<Note>
+
+ユーザーが自分のメール通知を停止する手順は、次のページを参照してください。  
+[各ユーザーが自分のメール通知を停止するには](/k/ja/id/040381.html)
+
+</Note>

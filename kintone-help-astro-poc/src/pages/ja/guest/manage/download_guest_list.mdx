@@ -1,0 +1,53 @@
+---
+title: "ゲストユーザーの一覧をCSV形式でダウンロードする"
+weight: 400
+aliases:
+  - "/ja/id/040822"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+&#123;&#123;% slash %&#125;&#125;共通管理者は、<Wovn>［ゲストユーザー管理］</Wovn>画面からゲストユーザーの一覧をCSV形式（BOM付きUTF-8）でダウンロードできます。<Wovn></Wovn>  
+その時点でのゲストユーザーの情報を記録しておくためのファイルとして利用できます。
+
+<Img src="/k/kintone/img-ja/download_guest_list_01.png" alt="スクリーンショット：［ゲストユーザー管理］画面で［CSV形式でダウンロード］を赤枠で強調" />
+
+<Wovn>［ゲストユーザー管理］</Wovn>画面の開きかたは、次のページを参照してください。  
+[［ゲストユーザー管理］画面を開く](/k/ja/id/04035.html#guest_manage_guest_10)
+
+<Wovn>［CSV形式でダウンロードする］</Wovn>をクリックすると、ゲストユーザーの一覧がCSV形式でダウンロードされます。<Wovn></Wovn>
+
+<Heading id="guest_download_guest_list_10">ゲストユーザーの一覧のファイルに含まれる項目</Heading>
+
+ダウンロードしたゲストユーザーの一覧のファイルに含まれる項目は、次のとおりです。
+
+* <Wovn>［会社］</Wovn>
+* <Wovn>［名前］</Wovn>
+* <Wovn>［メールアドレス］</Wovn>
+* <Wovn>［ステータス］</Wovn>
+* <Wovn>［最終ログイン日時］</Wovn>
+* <Wovn>［所属するゲストスペースのID］</Wovn>
+* <Wovn>［所属するゲストスペース］</Wovn>
+* <Wovn>［ライセンス］</Wovn>
+* <Wovn>［試用期限］</Wovn>
+
+<Note>
+
+* <Wovn>［所属するゲストスペースのID］</Wovn>と<Wovn>［所属するゲストスペース］</Wovn>は、ゲストスペースに所属していないユーザーでは空欄になります。
+* <Wovn>［所属するゲストスペース］</Wovn>が複数ある場合は、複数行で出力されます。
+* <Wovn>［最終ログイン日時］</Wovn>は、ユーザーのタイムゾーンに沿って、「yyyy-MM-dd HH:mm」（24時間表記）の形式で出力されます。
+
+</Note>
+
+<Reference>
+
+* [ゲストユーザーのライセンスの使用状況を確認する](/k/ja/id/040330.html)
+* [ゲストユーザーの一覧を確認する](/k/ja/id/040823.html)
+
+</Reference>

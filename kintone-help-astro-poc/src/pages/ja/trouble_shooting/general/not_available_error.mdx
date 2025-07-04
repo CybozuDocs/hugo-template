@@ -1,0 +1,54 @@
+---
+title: "「CB_NO02」エラーが表示されて、特定のページにアクセスできません"
+weight: 1950
+aliases:
+  - "/ja/id/040778"
+description: "「CB_NO02」エラーが表示されて、特定のページにアクセスできない場合について説明します。"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+特定のページにアクセスした際に「権限がありません。CB_NO02」エラーが表示される場合は、そのページにアクセスする権限がありません。  
+
+エラー画面の例：
+
+<Img src="/k/kintone/img-ja/general_not_available_error_img01.png" alt="スクリーンショット：「エラー。権限がありません。CB_NO02」が表示された画面" />
+<Img src="/k/kintone/img-ja/general_not_available_error_img02.png" alt="スクリーンショット：「権限がありません。Code: CB_NO02」が表示された画面" />
+
+たとえば、次のような場合に「権限がありません。CB_NO02」エラーが表示されます。
+
+* 管理権限がないアプリの設定画面のURLにアクセスしようとした。
+
+* レコード閲覧が許可されていないアプリにレコードを追加した。
+
+* 閲覧が許可されていないレコードにアクセスしようとした。
+
+* 参加していないゲストスペースのURLにアクセスしようとした。
+
+<Heading id="not_available_error_10">対処方法</Heading>
+
+アクセスしたいアプリやスペースの管理者またはkintoneシステム管理者に、権限の確認を依頼してください。
+アクセス権についての詳細は、次のページを参照してください。
+
+* [アプリにアクセス権を設定する](/k/ja/id/040589.html)
+* [レコードにアクセス権を設定する](/k/ja/id/040595.html)
+* [ゲストスペースの管理](/k/ja/id/040866.html)
+
+<Note>
+
+「サービスの利用権限がありません。Code: CB_NO02」と表示されて<Kintone />にアクセスできない場合は、次のページを参照してください。  
+[「サービスの利用権限がありません。」と表示されて<Kintone />にアクセスできません](/k/ja/id/040309.html)
+
+</Note>
+
+<Reference>
+
+[管理者の種類と権限](/k/ja/id/04058.html)
+
+</Reference>

@@ -1,0 +1,73 @@
+---
+title: "ゲストユーザーの30日間のお試し期間が終了したらどうなりますか？"
+weight: 400
+aliases:
+  - "/ja/id/040333"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Service from "@/components/Service.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Store from "@/components/Store.astro";
+import Warning from "@/components/Warning.astro";
+
+
+ゲストユーザーのお試し期間は、ゲストスペースに招待され、ゲストユーザーとしてはじめてログインした日から30日間です。
+
+30日間のお試し期間が終了すると、ゲストユーザーのライセンスは自動的に「試用」から「有料」に切り替わります。  
+
+ゲストユーザーごとのライセンスの種類は、ゲストユーザーの管理画面から確認できます。  
+[ゲストユーザーの一覧を確認する](/k/ja/id/040823.html)
+<Img src="/k/kintone/img-ja/end_guest_trial_01.png" alt="スクリーンショット：ゲストユーザーのライセンス表示の画面" />
+
+そのアカウントを引き続き利用するか、試用期間で終了するかに応じて、対処してください。
+
+<Heading id="guest_end_guest_trial_10">引き続きゲストユーザーのアカウントを使用する場合</Heading>
+
+試用期間が終了したあとも、ゲストユーザーが<Kintone />を利用する場合、ゲストユーザーの数だけライセンス数が必要です。
+
+<Enabled regions={["JP"]}>
+
+[<Service />のライセンスを購入する](/s/ja/id/05055.html)
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+[オプションサービスの購入方法](/store/ja/id/03022.html)
+
+</Enabled>
+
+ゲストユーザーのお試し期間が終了したあとも、ライセンスがないまま使用すると、サービスを使用停止することがあります。自動的に課金されることはありませんが、速やかにライセンスの購入手続きを行ってください。
+
+<Enabled regions={["JP", "CN"]}>
+
+<Warning>
+
+ゲストユーザーのお試し期間が終了したあとも、購入手続きが行われない場合は、<Store />管理者への通知メールや<SlashUi />画面のメッセージでお知らせします。  
+通知メールは、契約ユーザー数の上限を超えた日の翌日から毎日送信され、上限を超えている間は停止できません。  
+<Img src="/k/kintone/img-ja/end_guest_trial_02.png" alt="スクリーンショット：ゲストユーザー数の上限を超えているエラー表示の画面" />
+
+</Warning>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+<Warning>
+
+ゲストユーザーのお試し期間が終了したあとも、購入手続きが行われない場合は、<SlashUi />画面のメッセージでお知らせします。  
+<Img src="/k/kintone/img-ja/end_guest_trial_02.png" alt="スクリーンショット：ゲストユーザー数の上限を超えているエラー表示の画面" />
+
+</Warning>
+
+</Enabled>
+
+<Heading id="guest_end_guest_trial_20">ゲストユーザーのアカウントを終了する場合</Heading>
+
+<Kintone />システム管理の「ゲストユーザー管理」画面で、ゲストユーザーのステータスを「停止中」に変更してください。  
+[ゲストユーザーのステータスを変更する](/k/ja/id/040823.html#guest_confirm_guest_list_30)

@@ -1,0 +1,483 @@
+---
+title: "ゲストスペース"
+weight: 800
+description: "{{< kintone >}}でゲストスペースの操作をしたときに出力される監査ログについて説明します。"
+aliases:
+  - "/ja/id/040817"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+ゲストスペースの操作をしたときに出力されるログについて説明します。
+
+<Reference>
+
+スペースと共通のログは、「[スペース](/k/ja/id/040816.html)」を参照してください。
+
+</Reference>
+
+<Heading id="log_guest_10,class=&quot;no-trans&quot;">Guest management</Heading>
+
+モジュールが「Guest management」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_guest_1010,class=&quot;no-trans&quot;">Invite guest</Heading>
+
+アクションが「Invite guest」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_101010">実行された操作</Heading>
+
+ゲストユーザーに招待メールを送信した。
+
+<Heading level={4} id="log_guest_101020">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_guest_101030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+* メールアドレス
+
+<Heading level={4} id="log_guest_101040">出力されるログの例</Heading>
+
+```
+space id: *, space name: *, Email: [*]
+
+```
+
+メールアドレスはカンマ区切りで表示されます。
+
+<Heading id="log_guest_20,class=&quot;no-trans&quot;">Guest operation</Heading>
+
+モジュールが「Guest operation」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_guest_2010,class=&quot;no-trans&quot;">Integrate account</Heading>
+
+アクションが「Integrate account」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_201010">実行された操作</Heading>
+
+ユーザーが他のドメインのゲストスペースに参加した。
+
+<Reference>
+
+[ゲストのアカウント登録時に記録されるログ](#log_guest_40)
+
+</Reference>
+
+<Heading level={4} id="log_guest_201020">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_guest_201030">「補足」に出力される内容</Heading>
+
+ドメインIDが出力されます。
+
+<Heading level={4} id="log_guest_201040">出力されるログの例</Heading>
+
+```
+domain id: *
+
+```
+
+<Heading level={3} id="log_guest_2015,class=&quot;no-trans&quot;">Guest integrate account</Heading>
+
+アクションが「Guest integrate account」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_201510">実行された操作</Heading>
+
+ゲストユーザーが、自身が持つ<Kintone />のアカウントを使って、アカウントを登録した。
+
+<Reference>
+
+[ゲストのアカウント登録時に記録されるログ](#log_guest_40)
+
+</Reference>
+
+<Heading level={4} id="log_guest_201520">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_guest_201530">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* ゲストユーザーのログイン名
+* ホームドメインのID
+
+<Heading level={4} id="log_guest_201540">出力されるログの例</Heading>
+
+```
+login name: *, domain id: *
+
+```
+
+<Heading level={3} id="log_guest_2020,class=&quot;no-trans&quot;">Guest download file</Heading>
+
+アクションが「Guest download file」である監査ログについて説明します。  
+2017年12月10日のアップデート以降は、通常のユーザーと同じログが出力されます。
+
+<Heading level={4} id="log_guest_202010">実行された操作</Heading>
+
+ゲストユーザーが、次の操作をした。
+
+* ファイルをダウンロードした
+* 画像のスライドショーを表示した
+
+<Heading level={4} id="log_guest_202020">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_guest_202030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* ゲストユーザーのログイン名
+* アプリID
+* アプリ名
+* レコード番号
+* ファイル名
+* スペースID
+* スペース名
+
+<Note>
+
+アプリID、アプリ名、およびレコード番号は、アプリの添付ファイルをダウンロードしたときだけ出力されます。
+
+</Note>
+
+<Heading level={4} id="log_guest_202040">出力されるログの例</Heading>
+
+```
+login name: *, app id: *, app name: *, record id: *, filename: *, space id: *, space name: *
+
+```
+
+<Heading level={3} id="log_guest_2025,class=&quot;no-trans&quot;">Guest export record</Heading>
+
+アクションが「Guest export record」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_202510">実行された操作</Heading>
+
+ゲストユーザーがレコードをファイルに書き出した。
+
+<Heading level={4} id="log_guest_202520">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_guest_202530">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* ゲストユーザーのログイン名
+* アプリID
+* アプリ名
+
+<Note>
+
+操作に使用した端末に関わらず、「接続元」には「127.0.0.1」と出力されます。
+
+</Note>
+
+<Heading level={4} id="log_guest_202540">出力されるログの例</Heading>
+
+```
+login name: *, app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_guest_2030,class=&quot;no-trans&quot;">Guest sign up</Heading>
+
+アクションが「Guest sign up」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_203010">実行された操作</Heading>
+
+ゲストユーザーがアカウントを登録した。
+
+<Reference>
+
+[ゲストのアカウント登録時に記録されるログ](#log_guest_40)
+
+</Reference>
+
+<Heading level={4} id="log_guest_203020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_guest_203030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* ゲストユーザーのログイン名
+* スペースID
+* スペース名
+
+<Heading level={4} id="log_guest_203040">出力されるログの例</Heading>
+
+```
+login name: *, space id: *, space name: *
+
+```
+
+<Heading level={3} id="log_guest_2035,class=&quot;no-trans&quot;">Guest join space</Heading>
+
+アクションが「Guest join space」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_203510">実行された操作</Heading>
+
+ゲストユーザーがスペースに参加した。
+
+<Heading level={4} id="log_guest_203520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_guest_203530">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* ゲストユーザーのログイン名
+* スペースID
+* スペース名
+
+<Heading level={4} id="log_guest_203540">出力されるログの例</Heading>
+
+```
+login name: *, space id: *, space name: *
+
+```
+
+<Heading level={3} id="log_guest_2040,class=&quot;no-trans&quot;">Guest withdraw</Heading>
+
+アクションが「Guest withdraw」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_204010">実行された操作</Heading>
+
+ゲストユーザーがスペースから退会した。
+
+<Heading level={4} id="log_guest_204020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_guest_204030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* ゲストユーザーのログイン名
+* スペースID
+* スペース名
+
+<Heading level={4} id="log_guest_204040">出力されるログの例</Heading>
+
+```
+login name: *, space id: *, space name: *
+
+```
+
+<Heading level={3} id="log_guest_2045,class=&quot;no-trans&quot;">Guest login</Heading>
+
+アクションが「Guest login」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_204510">実行された操作</Heading>
+
+ゲストユーザーがログインした。
+
+<Heading level={4} id="log_guest_204520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_guest_204530">「補足」に出力される内容</Heading>
+
+ゲストユーザーのログイン名が出力されます。
+
+<Heading level={4} id="log_guest_204540">出力されるログの例</Heading>
+
+```
+login name: *
+
+```
+
+<Heading level={3} id="log_guest_2050,class=&quot;no-trans&quot;">Guest logout</Heading>
+
+アクションが「Guest logout」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_205010">実行された操作</Heading>
+
+ゲストユーザーがログアウトした。
+
+<Heading level={4} id="log_guest_205020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_guest_205030">「補足」に出力される内容</Heading>
+
+ゲストユーザーのログイン名が出力されます。
+
+<Heading level={4} id="log_guest_205040">出力されるログの例</Heading>
+
+```
+login name: *
+
+```
+
+<Heading level={3} id="log_guest_2055,class=&quot;no-trans&quot;">Guest Email update</Heading>
+
+アクションが「Guest Email update」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_205510">実行された操作</Heading>
+
+ゲストユーザーがメールアドレス（ログイン名）を変更した。
+
+<Heading level={4} id="log_guest_205520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_guest_205530">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* ゲストユーザーの変更前のログイン名
+* ゲストユーザーの変更後のログイン名
+
+<Heading level={4} id="log_guest_205540">出力されるログの例</Heading>
+
+```
+login name: *, new login name:*
+
+```
+
+<Heading level={3} id="log_guest_2060,class=&quot;no-trans&quot;">Guest password update</Heading>
+
+アクションが「Guest password update」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_206010">実行された操作</Heading>
+
+ゲストユーザーが自分のパスワードを変更した。
+
+<Heading level={4} id="log_guest_206020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_guest_206030">「補足」に出力される内容</Heading>
+
+ゲストユーザーのログイン名が出力されます。
+
+<Heading level={4} id="log_guest_206040">出力されるログの例</Heading>
+
+```
+login name: *
+
+```
+
+<Heading level={3} id="log_guest_2065,class=&quot;no-trans&quot;">Guest send email</Heading>
+
+アクションが「Guest send email」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_206510">実行された操作</Heading>
+
+ゲストユーザーにパスワードを再設定するためのメールを送信した。
+
+<Heading level={4} id="log_guest_206520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_guest_206530">「補足」に出力される内容</Heading>
+
+ゲストユーザーのログイン名が出力されます。
+
+<Heading level={4} id="log_guest_206540">出力されるログの例</Heading>
+
+```
+login name: *
+
+```
+
+<Heading level={3} id="log_guest_2070,class=&quot;no-trans&quot;">Guest reset password</Heading>
+
+アクションが「Guest reset password」である監査ログについて説明します。
+
+<Heading level={4} id="log_guest_207010">実行された操作</Heading>
+
+パスワードを再設定するためのメールで、ゲストユーザーがパスワードを再設定した。
+
+<Heading level={4} id="log_guest_207020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_guest_207030">「補足」に出力される内容</Heading>
+
+ゲストユーザーのログイン名が出力されます。
+
+<Heading level={4} id="log_guest_207040">出力されるログの例</Heading>
+
+```
+login name: *
+
+```
+
+<Heading id="log_guest_30">プロパティ</Heading>
+
+監査ログの「補足」欄に出力されるプロパティは次のとおりです。
+
+<Heading level={3} id="log_guest_3010,class=&quot;no-trans&quot;">app id</Heading>
+
+アプリのIDです。
+
+<Heading level={3} id="log_guest_3012,class=&quot;no-trans&quot;">app name</Heading>
+
+アプリ名です。
+
+<Heading level={3} id="log_guest_3014,class=&quot;no-trans&quot;">domain id</Heading>
+
+<Kintone />のドメインIDです。
+
+<Heading level={3} id="log_guest_3016,class=&quot;no-trans&quot;">Email</Heading>
+
+メールアドレスです。
+
+<Heading level={3} id="log_guest_3018,class=&quot;no-trans&quot;">filename</Heading>
+
+ファイル名です。
+
+<Heading level={3} id="log_guest_3020,class=&quot;no-trans&quot;">login name</Heading>
+
+ゲストユーザーのログイン名です。
+
+<Heading level={3} id="log_guest_3022,class=&quot;no-trans&quot;">new login name</Heading>
+
+ゲストユーザーの変更後のログイン名です。
+
+<Heading level={3} id="log_guest_3024,class=&quot;no-trans&quot;">record id</Heading>
+
+レコードのIDです。
+
+<Heading level={3} id="log_guest_3026,class=&quot;no-trans&quot;">space id</Heading>
+
+スペースのIDです。
+
+<Heading level={3} id="log_guest_3028,class=&quot;no-trans&quot;">space name</Heading>
+
+スペース名です。
+
+<Heading id="log_guest_40">ゲストのアカウント登録時に記録されるログ</Heading>
+
+ゲストは、次のいずれかの方法でアカウントを登録して、招待されたゲストスペースに参加できます。
+
+* kintoneアカウントを使用して登録する（招待したゲストが別のドメインでkintoneを利用している場合）
+* 新規ゲストアカウントを登録する
+
+ゲストがkintoneアカウントを使用して登録した場合、アクションが「Guest integrate account」のログが記録されます。  
+ゲストが新規ゲストアカウントを登録した場合、アクションが「Guest sign up」のログが記録されます。  
+ゲストがkintoneアカウントを使用して登録した場合、そのゲストの利用料金は無料になります。
+
+<Reference>
+
+[「アカウント共通化」とは何ですか？](/k/ja/id/040329.html)
+
+</Reference>

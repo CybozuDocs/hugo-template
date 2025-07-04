@@ -1,0 +1,81 @@
+---
+title: "ゲストユーザーの管理（ゲストの招待）"
+weight: 400
+description: "ゲストスペースの管理者がゲストを招待する手順、ゲストの登録状況を確認する方法、およびゲストを削除する方法を説明しています。"
+aliases:
+  - "/ja/id/040649"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+ゲストスペースの管理者は、ゲストに招待メールを送信し、ゲストスペースに招待できます。招待したゲストが<Kintone />に登録したかどうかの確認や、ゲストユーザーの削除をすることも可能です。
+
+<Heading id="guest_guestspace_invite_10">ゲストを招待する手順</Heading>
+
+1. ゲストを招待するゲストスペースで、スペース画面右上の<Wovn>［オプション］</Wovn>アイコンをクリックし、<Wovn>［ゲストメンバーを管理］</Wovn>をクリックします。<Wovn></Wovn><Wovn></Wovn>
+   <Img src="/k/kintone/img-ja/guestspace_invite_img03.png" alt="スクリーンショット：［オプション］アイコンと［ゲストメンバーを管理］を枠線で強調している" />
+
+1. <Wovn>［ゲストを招待］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/guestspace_invite_img04.png" alt="スクリーンショット：［スペースの管理］ダイアログの［ゲストを招待］を枠線で強調している" />
+
+1. 各項目を指定します。
+
+    * <Wovn>［宛先］</Wovn>：  
+      ゲストのメールアドレスを入力します。複数のメールアドレスを入力できます。
+    * <Wovn>［本文］</Wovn>：  
+      招待メールの本文に追加するメッセージを入力します。
+
+1. <Wovn>［招待メール送信］</Wovn>をクリックします。  
+  宛先に指定したゲストに、招待メールが送信されます。  
+  招待メールの有効期間は1週間です。有効期限を過ぎた場合は再度招待メールを送信してください。
+
+<Note>
+
+* 招待メールの差出人は「no-reply@<CybozuCom />」です。  
+  迷惑メールとして処理されないよう、招待するゲストに差出人のメールアドレスを連絡してください。
+* 招待メールやアカウントの作成完了メールは、<Wovn>［<Kintone />システム管理］</Wovn>で設定したメール通知の形式で送信されます。詳細は、次のページを参照してください。  
+[メール通知の形式](/k/ja/id/0403.html#admin_feature_activ_1020)
+* ゲストのアカウントを別の<Kintone />のアカウントと共通化したい場合も、通常のゲストを招待する方法と同じように招待します。招待するときにアカウントの共通化を依頼してください。アカウントの共通化についての詳細は、次のページを参照してください。  
+[ゲストの操作：ゲストアカウントを<Kintone />アカウントと共通化する](/k/ja/id/040644.html)
+
+</Note>
+
+<Heading id="guest_guestspace_invite_20">招待したゲストの登録状況を確認する</Heading>
+
+<Wovn>［スペースの管理］</Wovn>ダイアログの<Wovn>［ゲスト］</Wovn>タブでは、招待したゲストが<Kintone />に登録したかどうかなど、登録状況を確認できます。<Wovn></Wovn><Wovn></Wovn>  
+ゲストのステータスは、次の3つがあります。
+
+<Wovn>［招待中］</Wovn>
+:  招待メールを送った後の状態
+
+<Wovn>［使用中］</Wovn>
+:  ゲストがスペースに参加した後の状態
+
+<Wovn>［停止中］</Wovn>
+:  ゲストスペースに参加後、<Wovn>［<Kintone />システム管理］</Wovn>画面から停止されている状態
+
+招待をキャンセルする場合は、ゲストの右側の<Wovn>［このスペースから削除する］</Wovn>アイコンをクリックし、<Wovn>［削除する］</Wovn>をクリックします。<Wovn></Wovn><Wovn></Wovn>
+<Img src="/k/kintone/img-ja/guestspace_invite_01.png" alt="[このスペースから削除する]アイコンを枠線で強調している" />
+
+<Note>
+
+ゲストがスペースに参加しないまま、招待メールの有効期限が過ぎた場合、招待したゲストは<Wovn>［ゲスト］</Wovn>タブに表示されなくなります。  
+もう一度招待したい場合は、再度以下の手順でゲストに招待メールを送信してください。  
+[ゲストを招待する手順](/k/ja/id/040649.html#guest_guestspace_invite_10)
+
+</Note>
+
+<Heading id="guest_guestspace_invite_30">ゲストスペースからゲストを削除する</Heading>
+
+ゲストスペースからゲストを削除する場合は、<Wovn>［スペースの管理］</Wovn>ダイアログの<Wovn>［ゲスト］</Wovn>タブで、ゲストの右側の<Wovn>［このスペースから削除する］</Wovn>アイコンをクリックし、<Wovn>［削除する］</Wovn>をクリックします。<Wovn></Wovn><Wovn></Wovn><Wovn></Wovn><Wovn></Wovn>
+
+この手順では、<Kintone />自体からゲストユーザーは削除されません。ゲストユーザーの削除は、<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［ゲストユーザー管理］</Wovn>から行います。<Wovn></Wovn>  
+詳細は次のページを参照してください。  
+[ゲストユーザーを削除する](/k/ja/id/040823.html#guest_confirm_guest_list_20)

@@ -1,0 +1,628 @@
+---
+title: "アプリの設定"
+weight: 100
+description: "{{< kintone >}}でアプリの設定に関する操作をしたときに出力される監査ログについて説明します。"
+aliases:
+  - "/ja/id/040812"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Note from "@/components/Note.astro";
+
+
+アプリの設定に関する操作をしたときに出力されるログについて説明します。
+
+<Heading id="log_app_management_10,class=&quot;no-trans&quot;">App management</Heading>
+
+モジュールが「App management」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_app_management_1010,class=&quot;no-trans&quot;">App update</Heading>
+
+アクションが「App update」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_management_101010">実行された操作</Heading>
+
+* 「アプリの設定」で設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコードのコメント機能の設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコードの変更履歴機能の設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコードの再利用機能の設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコードの一括削除機能の設定を変更した
+* 「アプリの設定」の「高度な設定」で、アプリコードの設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコード一覧でのインライン編集機能の設定を変更した
+
+<Heading level={4} id="log_app_management_101020">レベル</Heading>
+
+次の操作は「重要」と出力されます。
+
+* 「アプリの設定」の「高度な設定」で、レコードのコメント機能の設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコードの変更履歴機能の設定を変更した
+
+次の操作は「情報」と出力されます。
+
+* 「アプリの設定」で設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコードの再利用機能の設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコードの一括削除機能の設定を変更した
+* 「アプリの設定」の「高度な設定」で、アプリコードの設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコード一覧でのインライン編集機能の設定を変更した
+
+<Heading level={4} id="log_app_management_101030">「補足」に出力される内容</Heading>
+
+<Heading level={5} id="log_app_management_10103010">「アプリの設定」で設定を変更した場合</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 変更した設定項目（target）  
+  詳細は、次の項目を参照してください。  
+  [target](#log_app_management_7040)
+
+<Heading level={5} id="log_app_management_10103020">「高度な設定」で該当する設定を変更した場合</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 変更した設定項目と状態
+
+変更した設定項目は、下記が出力されます。
+
+* レコードのコメント機能（record comment）
+* レコードの変更履歴機能（record history）
+* レコードの再利用機能（record duplication）
+* レコードの一括削除機能（bulk delete）
+* アプリコードの設定（app code）
+* レコード一覧でのインライン編集機能（record inline edit and delete）
+
+変更した設定項目の状態は、下記のどちらかです。
+
+* 有効にした：true
+* 無効にした：false
+
+<Note>
+
+変更した設定項目がアプリコードの設定（app code）の場合、状態は出力されません。
+
+</Note>
+
+<Heading level={4} id="log_app_management_101040">出力されるログの例</Heading>
+
+<Heading level={5} id="log_app_management_10104010">「アプリの設定」で設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, target: *
+
+```
+
+<Heading level={5} id="log_app_management_10104020">レコードのコメント機能の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, record comment: {true/false}
+
+```
+
+<Heading level={5} id="log_app_management_10104030">レコードの変更履歴機能の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, record history: {true/false}
+
+```
+
+<Heading level={5} id="log_app_management_10104040">レコードの再利用機能の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, record duplication: {true/false}
+
+```
+
+<Heading level={5} id="log_app_management_10104050">レコードの一括削除機能の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, bulk delete: {true/false}
+
+```
+
+<Heading level={5} id="log_app_management_10104060">アプリコードの設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, target: app code
+
+```
+
+<Heading level={5} id="log_app_management_10104070">レコード一覧でのインライン編集機能の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, record inline edit and delete: {true/false}
+
+```
+
+<Heading level={3} id="log_app_management_1015,class=&quot;no-trans&quot;">App create</Heading>
+
+アクションが「App create」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_management_101510">実行された操作</Heading>
+
+アプリを作成した。
+
+<Heading level={4} id="log_app_management_101520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_management_101540">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリ名またはテンプレート名
+* アプリグループID
+
+<Heading level={4} id="log_app_management_101550">出力されるログの例</Heading>
+
+```
+app name: *, app group id: *
+
+```
+
+<Heading level={3} id="log_app_management_1020,class=&quot;no-trans&quot;">App create from template file</Heading>
+
+アクションが「App create from template」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_management_102010">実行された操作</Heading>
+
+アプリストアからテンプレートファイルを読み込んで、アプリを作成した。
+
+<Heading level={4} id="log_app_management_102020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_management_102040">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリ名
+* テンプレート名
+* アプリグループID
+
+<Heading level={4} id="log_app_management_102050">出力されるログの例</Heading>
+
+```
+filename: *, template name: *, app group id: *
+
+```
+
+テンプレートが複数ある場合、テンプレート名はカンマ区切りで出力されます。
+
+<Heading level={3} id="log_app_management_1025,class=&quot;no-trans&quot;">App delete</Heading>
+
+アクションが「App delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_management_102510">実行された操作</Heading>
+
+アプリを削除した。
+
+<Heading level={4} id="log_app_management_102520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_management_102540">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Note>
+
+アプリ名を変更し、その後アプリを更新せずに削除した場合は、変更後のアプリ名が出力されます。
+
+</Note>
+
+<Heading level={4} id="log_app_management_102550">出力されるログの例</Heading>
+
+<Heading level={5} id="log_app_management_10255010">アプリを単独で削除した場合</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={5} id="log_app_management_10255020">アプリをまとめて削除した場合</Heading>
+
+```
+app id: *, app name: *, (app id: *, app name: *), (...
+
+```
+
+先頭には削除対象のアプリ、（）内には同時に削除されたアプリが出力されます。
+
+<Heading level={3} id="log_app_management_1030,class=&quot;no-trans&quot;">App restore</Heading>
+
+アクションが「App restore」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_management_103010">実行された操作</Heading>
+
+アプリを復旧した。
+
+<Heading level={4} id="log_app_management_103020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_management_103030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Note>
+
+アプリ名を変更し、その後アプリを更新せずに削除または復旧した場合は、変更前のアプリ名が出力されます。
+
+</Note>
+
+<Heading level={4} id="log_app_management_103040">出力されるログの例</Heading>
+
+<Heading level={5} id="log_app_management_10304010">アプリを単独で復旧した場合</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={5} id="log_app_management_10304020">アプリをまとめて復旧した場合</Heading>
+
+```
+app id: *, app name: *, (app id: *, app name: *), (...
+
+```
+
+先頭には復旧対象のアプリ、（）内には同時に復旧されたアプリが出力されます。
+
+<Heading level={3} id="log_app_management_1035,class=&quot;no-trans&quot;">App report delete</Heading>
+
+アクションが「App report delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_management_103510">実行された操作</Heading>
+
+グラフを削除した。
+
+<Heading level={4} id="log_app_management_103520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_management_103540">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* グラフID
+* グラフ名
+
+<Heading level={4} id="log_app_management_103550">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, report id: *, report name: *
+
+```
+
+<Heading level={3} id="log_app_management_1040,class=&quot;no-trans&quot;">App view delete</Heading>
+
+アクションが「App view delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_management_104010">実行された操作</Heading>
+
+一覧を削除した。
+
+<Heading level={4} id="log_app_management_104020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_management_104030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 一覧ID
+* 一覧名
+
+<Heading level={4} id="log_app_management_104050">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, view id: *, view name: *
+
+```
+
+<Heading level={3} id="log_app_management_1045,class=&quot;no-trans&quot;">App change discard</Heading>
+
+アクションが「App change discard」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_management_104510">実行された操作</Heading>
+
+アプリの設定変更を取り消した。
+
+<Heading level={4} id="log_app_management_104520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_management_104540">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Heading level={4} id="log_app_management_104550">出力されるログの例</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_app_management_1050,class=&quot;no-trans&quot;">App change deployed</Heading>
+
+アクションが「App change deployed」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_management_105010">実行された操作</Heading>
+
+アプリの設定を完了した。
+
+<Heading level={4} id="log_app_management_105020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_management_105040">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Heading level={4} id="log_app_management_105050">出力されるログの例</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_app_management_1055,class=&quot;no-trans&quot;">Add slack integration</Heading>
+
+アクションが「Add slack integration」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_management_105510">実行された操作</Heading>
+
+Slackワークスペースと連携した。
+
+<Heading level={4} id="log_app_management_105520">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_management_105540">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 通知を受信するSlackのURL
+
+<Heading level={4} id="log_app_management_105550">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, slack workspace: *
+
+```
+
+<Heading level={3} id="log_app_management_1060,class=&quot;no-trans&quot;">App move started</Heading>
+
+アクションが「App move started」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_management_106010">実行された操作</Heading>
+
+アプリの所属するスペースを変更した。
+
+<Heading level={4} id="log_app_management_106020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_management_106040">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 変更前のスペースID
+* 変更前のスペース名
+* 変更後のスペースID
+* 変更後のスペース名
+
+<Note>
+
+変更前の所属スペースがない場合は「source space: none」、変更後の所属スペースがない場合は「destination space: none」と出力されます。
+
+</Note>
+
+<Heading level={4} id="log_app_management_106050">出力されるログの例</Heading>
+
+<Heading level={5} id="log_app_management_10605010">すでにスペースに所属しているアプリの所属スペースを変更した場合</Heading>
+
+```
+app id: *, app name: *, source space id: *, source space name: *, destination space id: *, destination space name: *
+
+```
+
+<Heading level={5} id="log_app_management_10605020">スペースに所属していないアプリをスペースに所属するように変更した場合</Heading>
+
+```
+app id: *, app name: *, source space: none, destination space id: *, destination space name: *
+
+```
+
+<Heading level={5} id="log_app_management_10605030">スペースへの所属を解除した場合</Heading>
+
+```
+app id: *, app name: *, source space id: *, source space name: *, destination space: *
+
+```
+
+<Heading id="log_app_management_20,class=&quot;no-trans&quot;">System administration</Heading>
+
+モジュールが「System administration」のログは、下記のとおりです。
+
+<Heading level={3} id="log_app_management_2010,class=&quot;no-trans&quot;">Template download</Heading>
+
+アクションが「Template download」である監査ログについて説明します。
+
+<Heading level={4} id="log_app_management_201010">実行された操作</Heading>
+
+アプリをテンプレートとしてダウンロードした。
+
+<Heading level={4} id="log_app_management_201020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_app_management_201030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* テンプレート名
+
+ダウンロードに成功した場合は、次のログも出力されます。
+
+* ファイル名
+
+<Heading level={4} id="log_app_management_201040">出力されるログの例</Heading>
+
+```
+app id: *, template name: *
+
+```
+
+ダウンロードに成功した場合は、次のログも出力されます。
+
+```
+filename: *
+
+```
+
+<Heading id="log_app_management_70">プロパティ</Heading>
+
+監査ログの「補足」欄に出力されるプロパティは次のとおりです。
+
+<Heading level={3} id="log_app_management_7008,class=&quot;no-trans&quot;">app group id</Heading>
+
+アプリグループIDです。
+
+<Heading level={3} id="log_app_management_7010,class=&quot;no-trans&quot;">app id</Heading>
+
+アプリのIDです。
+
+<Heading level={3} id="log_app_management_7012,class=&quot;no-trans&quot;">app name</Heading>
+
+アプリ名です。
+
+<Heading level={3} id="log_app_management_7013,class=&quot;no-trans&quot;">bulk delete</Heading>
+
+レコードの一括削除機能の設定値です。  
+状態は下記のどちらかです。
+
+* 有効にした：true
+* 無効にした：false
+
+<Heading level={3} id="log_app_management_7014,class=&quot;no-trans&quot;">destination space id</Heading>
+
+変更後のスペースIDです。
+
+<Heading level={3} id="log_app_management_7016,class=&quot;no-trans&quot;">destination space name</Heading>
+
+変更後のスペース名です。
+
+<Heading level={3} id="log_app_management_7018,class=&quot;no-trans&quot;">filename</Heading>
+
+ファイル名です。
+
+<Heading level={3} id="log_app_management_7022,class=&quot;no-trans&quot;">record comment</Heading>
+
+レコードのコメント機能の設定値です。  
+状態は下記のどちらかです。
+
+* 有効にした：true
+* 無効にした：false
+
+<Heading level={3} id="log_app_management_7026,class=&quot;no-trans&quot;">record duplication</Heading>
+
+レコードの再利用設定の設定値です。
+
+* 有効にした：true
+* 無効にした：false
+
+<Heading level={3} id="log_app_management_7028,class=&quot;no-trans&quot;">record history</Heading>
+
+レコードの変更履歴機能の設定値です。  
+状態は下記のどちらかです。
+
+* 有効にした：true
+* 無効にした：false
+
+<Heading level={3} id="log_app_management_7030,class=&quot;no-trans&quot;">report id</Heading>
+
+グラフのIDです。
+
+<Heading level={3} id="log_app_management_7032,class=&quot;no-trans&quot;">report name</Heading>
+
+グラフ名です。
+
+<Heading level={3} id="log_app_management_7034,class=&quot;no-trans&quot;">slack workspace</Heading>
+
+通知を受信するSlackのURLです。
+
+<Heading level={3} id="log_app_management_7036,class=&quot;no-trans&quot;">source space id</Heading>
+
+変更前のスペースIDです。
+
+<Heading level={3} id="log_app_management_7038,class=&quot;no-trans&quot;">source space name</Heading>
+
+変更前のスペース名です。
+
+<Heading level={3} id="log_app_management_7040,class=&quot;no-trans&quot;">target</Heading>
+
+「アプリの設定」で、設定を変更した箇所が出力されます。
+
+* form：フォームの設定
+* view：一覧を追加、変更、または複製
+* report：グラフを追加、変更、または複製
+* general：アプリ名、またはアイコンと説明
+* icon：アプリアイコン  
+  「アプリの設定」画面で変更した場合に出力されます。  
+  「一般設定」の「アイコンと説明」画面でアプリアイコンを変更した場合は「general」が出力されます。
+* theme：デザインテーマ
+* status：プロセス管理
+* notification：アプリの条件通知、レコードの条件通知、リマインダーの条件通知
+* plugin：プラグイン
+* customize：JavaScript/CSSでカスタマイズ
+* api token：APIトークン
+* webhook：Webhook
+* app acl：アプリのアクセス権
+* record acl：レコードのアクセス権
+* field acl：フィールドのアクセス権
+* category：カテゴリー
+* resource：言語ごとの名称
+* title：レコードのタイトル
+* info：高度な設定
+* action：アクション
+* maintenance：メンテナンスモード  
+  開始時に「maintenance: enabled」が出力されます。  
+  終了時に「maintenance: disabled」が出力されます。
+
+<Heading level={3} id="log_app_management_7042,class=&quot;no-trans&quot;">template name</Heading>
+
+テンプレート名です。
+
+<Heading level={3} id="log_app_management_7044,class=&quot;no-trans&quot;">view id</Heading>
+
+一覧のIDです。
+
+<Heading level={3} id="log_app_management_7046,class=&quot;no-trans&quot;">view name</Heading>
+
+一覧名です。

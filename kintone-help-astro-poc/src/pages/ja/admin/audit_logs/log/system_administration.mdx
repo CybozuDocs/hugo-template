@@ -1,0 +1,641 @@
+---
+title: "{{< kintone >}}システム管理"
+weight: 700
+description: "{{< kintone >}}システム管理の操作をしたときに出力される監査ログについて説明します。"
+aliases:
+  - "/ja/id/040818"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+
+
+<Kintone />システム管理の操作をしたときに出力されるログについて説明します。
+
+<Heading id="log_system_administration_10,class=&quot;no-trans&quot;">System administration</Heading>
+
+モジュールが「System administration」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_system_administration_1010,class=&quot;no-trans&quot;">Admit creation space</Heading>
+
+アクションが「Admit creation space」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_101010">実行された操作</Heading>
+
+ゲストスペースの作成権限の設定を変更した。
+
+<Heading level={4} id="log_system_administration_101020">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_system_administration_101030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* ゲストスペースの作成を許可されたユーザー、組織、またはグループ
+* ゲストスペースの作成を制限されたユーザー、組織、またはグループ
+
+対象は、ログイン名、組織コード、またはグループコードで出力されます。
+
+<Heading level={4} id="log_system_administration_101040">出力されるログの例</Heading>
+
+```
+granted users: [*], revoked users: [*]
+
+```
+
+<Heading level={3} id="log_system_administration_1012,class=&quot;no-trans&quot;">Guest user two-step verification</Heading>
+
+アクションが「Guest user two-step verification」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_101210">実行された操作</Heading>
+
+「ゲストユーザーの認証」画面で、ゲストユーザーの認証に二段階認証を利用する設定を変更した。
+
+<Heading level={4} id="log_system_administration_101220">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_system_administration_101230">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* 二段階認証を有効にした場合：enabled
+* 二段階認証を無効にした場合：disabled
+
+<Heading level={4} id="log_system_administration_101240">出力されるログの例</Heading>
+
+```
+{enabled/disabled}
+
+```
+
+<Heading level={3} id="log_system_administration_1014,class=&quot;no-trans&quot;">New feature update</Heading>
+
+アクションが「New feature update」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_101410">実行された操作</Heading>
+
+「アップデートオプション」の設定を変更した。
+
+<Heading level={4} id="log_system_administration_101420">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_system_administration_101430">「補足」に出力される内容</Heading>
+
+変更後の設定の状態が出力されます。
+
+状態は下記のどちらかです。
+
+* 有効にした：true
+* 無効にした：false
+
+<Heading level={4} id="log_system_administration_101440">出力されるログの例</Heading>
+
+```
+selected update channel: {monthly channel/current channel}, ability for kintone administrators to control app management permissions disabled: {true/false}, actions for non-assignees configurable in process management settings disabled: {true/false}, kintone ai disabled: {true/false}, also display error message at top of screen if error occurs when saving record permission settings disabled: {true/false}, new feature disabled by default: {true/false}, changes to content and display of trial environment disabled: {true/false}, product update feedback/survey forms (only available in japanese) disabled: {true/false}, system monitoring enabled: {true/false}, show date and time values in "DD MM YYYY" format when browser's language setting is set to english (australia) enabled: {true/false}, "header color" screen design and layout change enabled: {true/false}, ability to create additional portals enabled: {true/false}, try import record page react enabled: {true/false}, app management total count enabled: {true/false}, javascript api for getting logged-in user permissions for currently opened record enabled: {true/false}, javascript api for getting logged-in user’s app permissions enabled: {true/false}, javascript api for showing/hiding sidebar of currently opened record enabled: {true/false}, javascript api for showing/hiding add record button in custom view enabled: {true/false}, javascript api for showing/hiding edit record button enabled: {true/false}, javascript api for getting space information enabled: {true/false}, javascript api for getting general information of an app enabled: {true/false}, rest api for creating a space without specifying a space template enabled: {true/false}, REST API for getting/updating categories settings enabled: {true/false}, REST API for getting/updating app's plug-in settings enabled: {true/false}
+
+```
+
+<Heading level={3} id="log_system_administration_1016,class=&quot;no-trans&quot;">Feature update</Heading>
+
+アクションが「Feature update」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_101610">実行された操作</Heading>
+
+「利用する機能の選択」の設定を変更した。
+
+<Heading level={4} id="log_system_administration_101620">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_system_administration_101630">「補足」に出力される内容</Heading>
+
+変更後の設定内容が出力されます。
+
+状態は下記のどちらかです。
+
+* 有効にした：true
+* 無効にした：false
+
+<Heading level={4} id="log_system_administration_101640">出力されるログの例</Heading>
+
+```
+mail notification: {true/false} (include official api: {true/false}), space: {true/false}, allow create apps out of space: {true/false}, guest space: {true/false}, people: {true/false}, mail type: {text/html}, allow mail type personalization: {true/false}, mail personal setting:{none/mention}
+
+```
+
+<Heading level={3} id="log_system_administration_1018,class=&quot;no-trans&quot;">Mobile setting update</Heading>
+
+アクションが「Mobile setting update」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_101810">実行された操作</Heading>
+
+スマートフォンでの表示の初期設定を変更した。
+
+<Heading level={4} id="log_system_administration_101820">レベル</Heading>
+
+重要
+
+<Heading level={4} id="log_system_administration_101830">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スマートフォンでの表示の初期設定
+* ユーザー自身による表示の切り替えを許可しているか
+
+<Heading level={4} id="log_system_administration_101840">出力されるログの例</Heading>
+
+```
+default view: {PC/MOBILE}, user setting: {true/false}
+
+```
+
+<Heading level={3} id="log_system_administration_1020,class=&quot;no-trans&quot;">App group delete</Heading>
+
+アクションが「App group delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_102010">実行された操作</Heading>
+
+アプリグループを削除した。
+
+<Heading level={4} id="log_system_administration_102020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_102030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリグループID
+* アプリグループ名
+
+<Heading level={4} id="log_system_administration_102040">出力されるログの例</Heading>
+
+```
+app group id: *, app group name: *
+
+```
+
+<Heading level={3} id="log_system_administration_1022,class=&quot;no-trans&quot;">Template import</Heading>
+
+アクションが「Template import」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_102210">実行された操作</Heading>
+
+アプリテンプレートをファイルから読み込んで追加した。
+
+<Heading level={4} id="log_system_administration_102220">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_102230">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* テンプレートID
+* テンプレート名
+* ファイル名
+
+<Heading level={4} id="log_system_administration_102240">出力されるログの例</Heading>
+
+```
+(template id: *, template name: *), filename: *
+
+```
+
+<Heading level={3} id="log_system_administration_1024,class=&quot;no-trans&quot;">Template export</Heading>
+
+アクションが「Template export」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_102410">実行された操作</Heading>
+
+アプリテンプレートをファイルに書き出した。
+
+<Heading level={4} id="log_system_administration_102420">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_102430">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* テンプレートID
+* テンプレート名
+* ファイル名
+
+<Heading level={4} id="log_system_administration_102440">出力されるログの例</Heading>
+
+```
+(template id: *, template name: *), filename: *
+
+```
+
+<Heading level={3} id="log_system_administration_1026,class=&quot;no-trans&quot;">Plug-in installed</Heading>
+
+アクションが「Plug-in installed」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_102610">実行された操作</Heading>
+
+プラグインをインストールした。
+
+<Heading level={4} id="log_system_administration_102620">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_102630">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* プラグインID
+* プラグイン名
+
+<Heading level={4} id="log_system_administration_102640">出力されるログの例</Heading>
+
+```
+plugin id: *, plugin name: *
+
+```
+
+<Heading level={3} id="log_system_administration_1027,class=&quot;no-trans&quot;">Plug-in removed</Heading>
+
+アクションが「Plug-in removed」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_102710">実行された操作</Heading>
+
+プラグインをアンインストールした。
+
+<Heading level={4} id="log_system_administration_102720">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_102730">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* プラグインID
+* プラグイン名
+
+<Heading level={4} id="log_system_administration_102740">出力されるログの例</Heading>
+
+```
+plugin id: *, plugin name: *
+
+```
+
+<Heading level={3} id="log_system_administration_1028,class=&quot;no-trans&quot;">Plugin list export</Heading>
+
+アクションが「Plugin list export」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_102810">実行された操作</Heading>
+
+プラグインの一覧をCSV形式でダウンロードした。
+
+<Heading level={4} id="log_system_administration_102820">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_102830">「補足」に出力される内容</Heading>
+
+ファイル名が出力されます。
+
+<Heading level={4} id="log_system_administration_102840">出力されるログの例</Heading>
+
+```
+filename: *
+
+```
+
+<Heading level={3} id="log_system_administration_1029,class=&quot;no-trans&quot;">Plug-in setting update</Heading>
+
+アクションが「Plug-in setting update」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_102910">実行された操作</Heading>
+
+プラグインの利用許可の設定を保存した。
+
+<Heading level={4} id="log_system_administration_102920">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_102930">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* プラグインID
+* プラグイン名
+
+<Heading level={4} id="log_system_administration_102940">出力されるログの例</Heading>
+
+```
+plugin id: *, plugin name: *
+
+```
+
+<Heading level={3} id="log_system_administration_1030,class=&quot;no-trans&quot;">App list export</Heading>
+
+アクションが「App list export」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_103010">実行された操作</Heading>
+
+アプリの一覧をCSV形式でダウンロードした。
+
+<Heading level={4} id="log_system_administration_103020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_103030">「補足」に出力される内容</Heading>
+
+ファイル名が出力されます。
+
+<Heading level={4} id="log_system_administration_103040">出力されるログの例</Heading>
+
+```
+filename: *
+
+```
+
+<Heading level={3} id="log_system_administration_1032,class=&quot;no-trans&quot;">Space list export</Heading>
+
+アクションが「Space list export」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_103210">実行された操作</Heading>
+
+スペースの一覧をCSV形式でダウンロードした。
+
+<Heading level={4} id="log_system_administration_103220">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_103230">「補足」に出力される内容</Heading>
+
+ファイル名が出力されます。
+
+<Heading level={4} id="log_system_administration_103240">出力されるログの例</Heading>
+
+```
+filename: *
+
+```
+
+<Heading level={3} id="log_system_administration_1034,class=&quot;no-trans&quot;">User usage list exported</Heading>
+
+アクションが「User usage list exported」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_103410">実行された操作</Heading>
+
+ユーザーのアクセス状況の一覧を、CSV形式でダウンロードした。
+
+<Heading level={4} id="log_system_administration_103420">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_103430">「補足」に出力される内容</Heading>
+
+ファイル名が出力されます。
+
+<Heading level={4} id="log_system_administration_103440">出力されるログの例</Heading>
+
+```
+filename: *
+
+```
+
+<Heading id="log_system_administration_20,class=&quot;no-trans&quot;">Space template</Heading>
+
+モジュールが「Space template」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_system_administration_2010,class=&quot;no-trans&quot;">Space Template export</Heading>
+
+アクションが「Space Template export」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_201010">実行された操作</Heading>
+
+スペーステンプレート画面で、スペーステンプレートをファイルに書き出した。
+
+<Heading level={4} id="log_system_administration_201020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_201030">「補足」に出力される内容</Heading>
+
+テンプレート名が出力されます。
+
+<Heading level={4} id="log_system_administration_201040">出力されるログの例</Heading>
+
+```
+name: *
+
+```
+
+<Heading level={3} id="log_system_administration_2020,class=&quot;no-trans&quot;">Space Template import</Heading>
+
+アクションが「Space Template import」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_202010">実行された操作</Heading>
+
+スペーステンプレート画面で、スペーステンプレートのファイルを読み込んだ。
+
+<Heading level={4} id="log_system_administration_202020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_202030">「補足」に出力される内容</Heading>
+
+テンプレート名が出力されます。
+
+<Heading level={4} id="log_system_administration_202040">出力されるログの例</Heading>
+
+```
+name: *
+
+```
+
+<Heading level={3} id="log_system_administration_2030,class=&quot;no-trans&quot;">Space Template delete</Heading>
+
+アクションが「Space Template delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_203010">実行された操作</Heading>
+
+スペーステンプレート画面で、スペーステンプレートを削除した。
+
+<Heading level={4} id="log_system_administration_203020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_203030">「補足」に出力される内容</Heading>
+
+テンプレート名が出力されます。
+
+<Heading level={4} id="log_system_administration_203040">出力されるログの例</Heading>
+
+```
+name: *
+
+```
+
+<Heading id="log_system_administration_30,class=&quot;no-trans&quot;">Guest management</Heading>
+
+モジュールが「Guest management」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_system_administration_3010,class=&quot;no-trans&quot;">Guest status update</Heading>
+
+アクションが「Guest status update」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_301010">実行された操作</Heading>
+
+ゲストユーザー管理で、ゲストユーザーのステータスを変更した。
+
+<Heading level={4} id="log_system_administration_301020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_301030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* ゲストユーザーのログイン名
+* ステータス
+
+ステータスは下記のどちらかです。
+
+* 使用中にした：true
+* 停止中にした：false
+
+<Heading level={4} id="log_system_administration_301040">出力されるログの例</Heading>
+
+```
+login name: *, status: {true/false}
+
+```
+
+<Heading level={3} id="log_system_administration_3020,class=&quot;no-trans&quot;">Guest password update</Heading>
+
+アクションが「Guest password update」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_302010">実行された操作</Heading>
+
+ゲストユーザー管理で、ゲストユーザーのパスワードを変更した。
+
+<Heading level={4} id="log_system_administration_302020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_302030">「補足」に出力される内容</Heading>
+
+ゲストユーザーのログイン名が出力されます。
+
+<Heading level={4} id="log_system_administration_302040">出力されるログの例</Heading>
+
+```
+login name: *
+
+```
+
+<Heading level={3} id="log_system_administration_3030,class=&quot;no-trans&quot;">Delete guest</Heading>
+
+アクションが「Delete guest」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_303010">実行された操作</Heading>
+
+ゲストユーザー管理で、ゲストユーザーを削除した。
+
+<Heading level={4} id="log_system_administration_303020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_303030">「補足」に出力される内容</Heading>
+
+ゲストユーザーのログイン名が出力されます。
+
+<Heading level={4} id="log_system_administration_303040">出力されるログの例</Heading>
+
+```
+login name: *
+
+```
+
+<Heading level={3} id="log_system_administration_3040,class=&quot;no-trans&quot;">Guest list export</Heading>
+
+アクションが「Guest list export」である監査ログについて説明します。
+
+<Heading level={4} id="log_system_administration_304010">実行された操作</Heading>
+
+ゲストユーザー管理で、ゲストユーザーの一覧をCSV形式でダウンロードした。
+
+<Heading level={4} id="log_system_administration_304020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_system_administration_304030">「補足」に出力される内容</Heading>
+
+ファイル名が出力されます。
+
+<Heading level={4} id="log_system_administration_304040">出力されるログの例</Heading>
+
+```
+filename: *
+
+```
+
+<Heading id="log_system_administration_40">プロパティ</Heading>
+
+監査ログの「補足」欄に出力されるプロパティは次のとおりです。
+
+<Heading level={3} id="log_system_administration_4010,class=&quot;no-trans&quot;">app group id</Heading>
+
+アプリグループのIDです。
+
+<Heading level={3} id="log_system_administration_4011,class=&quot;no-trans&quot;">app group name</Heading>
+
+アプリグループ名です。
+
+<Heading level={3} id="log_system_administration_4012,class=&quot;no-trans&quot;">defalut view</Heading>
+
+スマートフォンでの表示の初期設定です。
+
+<Heading level={3} id="log_system_administration_4014,class=&quot;no-trans&quot;">filename</Heading>
+
+ファイル名です。
+
+<Heading level={3} id="log_system_administration_4016,class=&quot;no-trans&quot;">granted users</Heading>
+
+ゲストスペースの作成を許可されているログイン名、組織コード、またはグループコードです。
+
+<Heading level={3} id="log_system_administration_4018,class=&quot;no-trans&quot;">login name</Heading>
+
+ゲストユーザーのログイン名です。
+
+<Heading level={3} id="log_system_administration_4020,class=&quot;no-trans&quot;">name</Heading>
+
+スペーステンプレートの名前です。
+
+<Heading level={3} id="log_system_administration_4022,class=&quot;no-trans&quot;">plugin id</Heading>
+
+プラグインのIDです。
+
+<Heading level={3} id="log_system_administration_4024,class=&quot;no-trans&quot;">plugin name</Heading>
+
+プラグイン名です。
+
+<Heading level={3} id="log_system_administration_4026,class=&quot;no-trans&quot;">revoked users</Heading>
+
+ゲストスペースの作成を制限されているログイン名、組織コード、またはグループコードです。
+
+<Heading level={3} id="log_system_administration_4028,class=&quot;no-trans&quot;">status</Heading>
+
+ゲストユーザーのステータスです。
+
+<Heading level={3} id="log_system_administration_4030,class=&quot;no-trans&quot;">template id</Heading>
+
+アプリテンプレートのIDです。
+
+<Heading level={3} id="log_system_administration_4032,class=&quot;no-trans&quot;">template name</Heading>
+
+アプリテンプレートの名前です。
+
+<Heading level={3} id="log_system_administration_4034,class=&quot;no-trans&quot;">user setting</Heading>
+
+スマートフォンでの表示の切り替えをユーザー許可しているかどうかの設定値です。

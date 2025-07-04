@@ -1,0 +1,302 @@
+---
+title: "制限値一覧"
+weight: 100
+aliases:
+  - "/ja/id/04044"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Disabled2 from "@/components/Disabled2.astro";
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Store from "@/components/Store.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Kintone />の制限値一覧です。
+
+<Heading id="limitation_limit_10">全般</Heading>
+
+<Heading level={3} id="limitation_limit_1010">添付ファイル</Heading>
+
+1つのファイルにつきファイルサイズは1GBまでです。  
+サムネイルを表示できる画像サイズは10MBまで、画素数は5,000万画素までです。
+
+<Heading level={3} id="limitation_limit_1020">検索</Heading>
+
+検索ボックスに入力可能なのは100文字までです。  
+言語、英数字、および記号に関する注意事項は、次のページを参照してください。  
+[検索キーワード入力時の注意事項](/k/ja/id/040689.html#search_search_details_60)
+
+<Heading level={3} id="limitation_limit_1030">&lt;Kintone /&gt;全体のカスタマイズ</Heading>
+
+1つのアプリにつき、JavaScriptファイル、CSSファイルは、PC用とスマートフォン用でそれぞれ30個までです。  
+1つのファイルあたりのファイルサイズの上限は、20MBまでです。
+
+<Heading id="limitation_limit_20">アプリ</Heading>
+
+<Heading level={3} id="limitation_limit_2010">アプリ数</Heading>
+
+<Enabled regions={["JP"]}>
+
+契約コースによって上限値は異なります。  
+詳細は、次の製品サイトを参照してください。  
+[料金](https://kintone.cybozu.co.jp/price/)（日本語のみ）
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+900個までです。
+
+</Enabled>
+
+<Heading level={3} id="limitation_limit_2020">レコード数</Heading>
+
+<Enabled regions={["JP", "CN"]}>
+
+レコード数の上限はありません。  
+レコード数が多くなると、アプリの動作が遅くなる場合があります。表示やデータ処理の速度は、アクセス権、絞り込み条件、フィールド数などの利用条件によって異なります。  
+レコードの登録や閲覧に関しては、アクセス権や絞り込みを設定していない1つのアプリに100万件を登録した状態で、問題なく使用できることを確認しています。
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+1つのアプリにつき、50,000件までです。  
+ただし、レコード数が多くなると、アプリの動作が遅くなる場合があります。表示やデータ処理の速度は、アクセス権、絞り込み条件、フィールド数などの利用条件によって異なります。  
+現在の上限値の変更を依頼される場合は、製品サイトからご連絡ください。  
+[Contact us](https://www.kintone.com/support/)
+
+</Enabled>
+
+<Heading level={3} id="limitation_limit_2030">一覧</Heading>
+
+1つのアプリにつき、1,000件までです。
+
+<Heading level={3} id="limitation_limit_2040">グラフ</Heading>
+
+1つのアプリにつき、1,000件までです。
+
+<Heading level={3} id="limitation_limit_2050">アプリテンプレート</Heading>
+
+1つのアプリテンプレートにつき含まれるアプリは100個までです。  
+ルックアップ、関連レコード、およびアプリアクションで紐づいているアプリもアプリ数に含まれます。
+
+<Heading level={3} id="limitation_limit_2060">フィールド</Heading>
+
+<Enabled regions={["JP", "CN"]}>
+
+1つのアプリにつき、500個までです。  
+次のフィールドは、500個の上限に含まれません。
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+1つのアプリにつき、150個までです。  
+次のフィールドは、150個の上限に含まれません。
+
+</Enabled>
+
+* <Wovn>［ラベル］</Wovn>
+* <Wovn>［罫線］</Wovn>
+* <Wovn>［スペース］</Wovn>
+* <Wovn>［レコード番号］</Wovn>
+* <Wovn>［作成者］</Wovn>
+* <Wovn>［作成日時］</Wovn>
+* <Wovn>［更新者］</Wovn>
+* <Wovn>［更新日時］</Wovn>
+
+テーブルのフィールド数は、テーブル内に配置したフィールド数+1でカウントされます。  
+例：テーブル内にフィールドを3つ配置した場合、フィールド数は「4」です。  
+<Img src="/k/kintone/img-ja/limitation_limit_img01.png" alt="スクリーンショット：テーブル内のフィールドの数え方" />
+
+<Enabled regions={["US"]}>
+上限値は、500個までは変更が可能です。変更を依頼される場合は、<Wovn>［[Contact us](https://www.kintone.com/support/)］</Wovn>からご連絡ください。
+
+</Enabled>
+
+<Heading level={4} id="limitation_limit_206010">フィールド名</Heading>
+
+全角または半角で128文字までです。
+
+<Heading level={4} id="limitation_limit_206020">フィールドコード</Heading>
+
+全角または半角で128文字までです。  
+
+使用できない記号や文字は、次のページを参照してください。  
+[フィールドコードとは](/k/ja/id/040504.html)
+
+<Heading level={4} id="limitation_limit_206030">フィールドの入力制限</Heading>
+
+次のページを参照してください。  
+[フィールドの入力制限](/k/ja/id/040528.html)
+
+<Heading level={3} id="limitation_limit_2070">テーブル</Heading>
+
+1つのテーブルにつき、10フィールドかつ100行までを目安としたご利用をおすすめします。
+
+テーブルのフィールド数や行数が多くなると、画面の表示速度が遅くなり、レコード操作やカスタマイズに影響を与えることがあります。  
+また、登録されているデータ量が多くなるため、検索結果を表示するまでの処理時間にも影響を与えることがあります。
+
+<Disabled2 regions={["US"]}>
+
+参考：[<Kintone />の表示速度が遅い](/k/ja/id/040780.html)
+
+</Disabled2>
+
+<Heading level={3} id="limitation_limit_2080">カテゴリー</Heading>
+
+親カテゴリーを含め5階層まで、階層の合計は1,000個までです。
+
+<Heading level={3} id="limitation_limit_2090">レコードの絞り込み</Heading>
+
+絞り込み条件の上限は、指定する条件によって異なります。絞り込みの条件が多いと、レコードの一覧画面を開けないことがあります。
+
+また、取得するフィールド数が200万個を超える場合や、レコードの合計サイズが数十MBを超える場合、レコード情報の取得に失敗します。  
+取得するフィールド数、またはレコード数を減らしてください。  
+なお、レコードの合計サイズに、添付ファイルのサイズは含まれません。
+
+<Heading level={4} id="limitation_limit_209010">キーワードに指定できる文字数</Heading>
+
+条件によっては、キーワードに指定できる文字数に上限があります。  
+詳細は、次のページを参照してください。
+
+* [［次のキーワードを含む］／［次のキーワードを含まない］を使用する場合の注意事項](/k/ja/id/040458.html#app_collectdata_filter_records_20)
+* [［＝（等しい）］を使用する場合の注意事項](/k/ja/id/040458.html##app_collectdata_filter_records_21)
+
+<Heading level={3} id="limitation_limit_20100">ファイルの読み込み</Heading>
+
+<Heading level={4} id="limitation_limit_2010010">Excelファイル</Heading>
+
+1ファイルにつき、ファイルサイズは1MBまでです。  
+また、ファイルに含まれる行数は1,000行まで、列数は500列までです。  
+制限を超えるファイルを読み込みたい場合は、次のページを参照してください。  
+[Excelファイルが1MB、1,000行、500列の制限を超える場合の対処方法](/k/ja/id/040628.html)
+
+<Heading level={4} id="limitation_limit_2010020">CSV、TSV、TXTファイル</Heading>
+
+1ファイルにつき、ファイルサイズは100MBまでです。
+また、ファイルに含まれる行数は、10万行までです。
+
+<Heading level={3} id="limitation_limit_20120">ファイルの書き出し</Heading>
+
+1ファイルにつき、100MBまでです。  
+100MBを超えると書き出しに失敗します。一度に書き出すフィールド、またはレコードの数を減らしてください。
+
+<Heading level={3} id="limitation_limit_20130">リマインダー</Heading>
+
+1つのアプリにつき、10個までです。
+
+<Heading level={3} id="limitation_limit_20140">カスタマイズ</Heading>
+
+1つのアプリにつき、JavaScriptファイル、CSSファイルは、PC用とスマートフォン用でそれぞれ30個までです。  
+1つのファイルあたりのファイルサイズの上限は、20MBまでです。
+
+<Heading level={3} id="limitation_limit_20150">プラグイン</Heading>
+
+1つのアプリにつき、20個までです。  
+kintone.plugin.app.setConfig()で設定できる、プラグインの設定情報の値の合計は、1つのプラグインにつき256KBまでです。
+
+1つのファイルあたりのファイルサイズの上限は、次のとおりです。
+
+* JavaScriptファイル、CSSファイル、アイコンファイル：1ファイルにつき20MBまで
+* HTMLファイル：1ファイルにつき64KBまで
+
+プラグインをパッケージングしたファイルの合計サイズは、1つのプラグインにつき100MBまでです。
+
+<Heading level={3} id="limitation_limit_20170">APIトークン</Heading>
+
+1つのアプリにつき、20個までです。
+
+<Heading id="limitation_limit_40">ゲストスペース</Heading>
+
+1つのゲストスペースに参加できるゲスト数に、上限はありません。
+
+<Heading id="limitation_limit_30">REST API</Heading>
+
+<Heading level={3} id="limitation_limit_3010">同時アクセス数</Heading>
+
+1つのドメインにつき、100までです。  
+同時アクセス数が上限を超えると、REST APIの実行時にHTTPステータスコードが429のレスポンスが返ります。
+
+<Heading level={3} id="limitation_limit_3020">アップロードしたファイルの保存期間</Heading>
+
+アップロードしたファイルは、レコード登録APIやレコード更新APIによってレコードに添付しない限り3日間で削除されます。
+
+<Heading level={3} id="limitation_limit_3030">1日に実行できるAPIリクエスト数</Heading>
+
+<Enabled regions={["US", "CN"]}>
+
+1つのアプリにつき、10,000件までです。
+
+</Enabled>
+
+<Enabled regions={["JP"]}>
+
+契約コースによって上限値は異なります。  
+詳細は、次の製品サイトを参照してください。  
+[専用機能・コース](https://kintone.cybozu.co.jp/enterprise/course/)（日本語のみ）
+
+</Enabled>
+
+<Note>
+
+* /k/v1/bulkRequest.jsonで複数のAPIを実行した場合は、実行したAPIそれぞれがリクエスト数にカウントされます。
+* 特定のアプリに対する操作（リクエストで単一のアプリIDを指定するAPI）以外はリクエスト数にカウントされません。1日に実行できるAPIリクエスト数にカウントされない操作の詳細は、次のページを参照してください。  
+  [対象外のAPIリクエスト](https://cybozu.dev/ja/kintone/docs/rest-api/overview/kintone-rest-api-overview/#no-count-api)（日本語のみ）
+* kintone.proxy()などで実行する外部のAPIは、リクエスト数にカウントされません。
+
+</Note>
+
+<Hint>
+
+* 1日に実行できるAPIリクエスト数は、<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アプリ管理］</Wovn>画面で確認できます。  
+  詳細は、次のページを参照してください。  
+  [アプリのライセンス使用状況を確認する](/k/ja/id/04011.html)
+* 1日のAPIリクエスト数は日本時刻で毎日午前9時にリセットされます。
+
+<Enabled regions={["JP"]}>
+
+* APIリクエスト数を超過した場合、翌日の日本時刻午前9:00頃に<Store />の管理者のメールアドレスに警告メールが送信されます。このメールは停止できません。  
+  APIリクエスト数を減らすことが難しい場合はサポートまでご相談ください。  
+  [お問い合わせ](https://www.cybozu.com/jp/inquiry/tel/index.html)（日本語のみ）
+
+</Enabled>
+
+</Hint>
+
+<Heading level={3} id="limitation_limit_3040">リクエストボディのサイズ</Heading>
+
+50MBまでです。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+* [制限事項](https://www.cybozu.com/jp/service/restrictions.html)（日本語のみ）
+* [cybozu developer network](https://cybozu.dev/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Kintone Developer Program](https://kintone.dev/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["CN"]}>
+<Reference>
+
+[cybozu developer network](https://cybozudev.kf5.com/hc/)
+</Reference>
+
+</Enabled>

@@ -1,0 +1,40 @@
+---
+title: "レコードの閲覧は制限せずに、編集／削除は特定のユーザーだけに許可したい"
+weight: 290
+aliases:
+  - "/ja/id/040598"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+レコードのアクセス権の設定で、閲覧、編集、削除の権限をユーザーごとに変更することができます。  
+たとえば、レコードの編集と削除を人事部のユーザーだけに許可し、ほかのユーザーには閲覧だけを許可したい場合は、次のように設定します。
+
+<Img src="/k/kintone/img-ja/rights_example3_01.png" alt="スクリーンショット：表のとおりレコードのアクセス権を設定した画面" />
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col">レコードの条件（優先度順）</th>
+            <th scope="col">ユーザー/組織/グループとアクセス権</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="2" colspan="1">すべてのレコード</td>
+            <td>人事部 &nbsp; &nbsp; &nbsp; [✔]閲覧&nbsp;&nbsp;&nbsp;[✔]編集&nbsp;&nbsp;&nbsp;[✔]削除&nbsp;&nbsp;&nbsp;[✔]アクセス権の継承</td>
+        </tr>
+        <tr>
+            <td>Everyone&nbsp;&nbsp;&nbsp;[✔]閲覧&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;]編集&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;]削除</td>
+        </tr>
+    </tbody>
+</table>
+
+<Note>
+
+* 「アクセス権の継承」のチェックボックスを選択すると、下位組織に所属するユーザーにも同じアクセス権が継承されます。  
+* 設定手順の詳細は、「[レコードにアクセス権を設定する](/k/ja/id/040595.html)」を参照してください。  
+
+</Note>

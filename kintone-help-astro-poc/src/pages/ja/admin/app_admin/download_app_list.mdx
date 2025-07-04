@@ -1,0 +1,101 @@
+---
+title: "アプリの一覧をCSV形式でダウンロードする"
+weight: 400
+aliases:
+  - "/ja/id/04014"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Slash />共通管理者は、<Wovn>［アプリ管理］</Wovn>画面からアプリの一覧をCSV形式（BOM付きUTF-8）でダウンロードできます。
+
+その時点で存在するアプリを一覧として保存しておきたいときや、アプリの利用状況を分析したいとき、増えたアプリの整理や削除を進めたいときなどに活用できます。
+
+<Img src="/k/kintone/img-ja/download_app_list_01.png" alt="スクリーンショット：［CSV形式でダウンロードする］ボタン" />
+
+<Wovn>［アプリ管理］</Wovn>画面の開きかたは、次のページを参照してください。  
+[［アプリ管理］画面を開く](/k/ja/id/04015.html#app_admin_manage_app_10)
+
+<Wovn>［CSV形式でダウンロードする］</Wovn>をクリックすると、アプリIDの昇順で並んだアプリ一覧が、CSV形式でダウンロードされます。
+
+<Heading id="app_admin_download_app_list_10">ダウンロードしたアプリ一覧に含まれる項目</Heading>
+
+ダウンロードしたアプリ一覧のファイルに含まれる項目は、次のとおりです。  
+なお、ファイルに含まれる項目は、お使いの環境やご契約コースによって異なります。
+
+<Enabled regions={["JP", "CN"]}>
+
+* ID
+* アプリ名
+* アプリURL
+* アプリ設定URL
+* 所属スペース
+* 所属スペースURL
+* アプリグループ
+* ステータス
+* レコードの最終更新日
+* レコード数
+* フィールド数
+* 1日のAPIリクエスト数
+* 添付ファイルの合計サイズ（byte）
+* カスタマイズ
+* 作成者（表示名）
+* 作成者（ログイン名）
+* 作成日時
+* 設定の最終更新者（表示名）
+* 設定の最終更新者（ログイン名）
+* 設定の最終更新日時
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+* ID
+* アプリ名
+* アプリURL
+* アプリ設定URL
+* 所属スペース
+* 所属スペースURL
+* アプリグループ
+* ステータス
+* レコードの最終更新日
+* レコード数
+* フィールド数
+* 1日のAPIリクエスト数
+* 添付ファイルの合計サイズ（byte）
+* 作成者（表示名）
+* 作成者（ログイン名）
+* 作成日時
+* 設定の最終更新者（表示名）
+* 設定の最終更新者（ログイン名）
+* 設定の最終更新日時
+
+</Enabled>
+
+<Note>
+
+* <Wovn>［表示するアプリ］</Wovn>で自分が作成したアプリのみを絞り込んでいても、自分に管理権限のあるすべてのアプリがファイルに含まれます。
+* アプリURLは、運用開始前のアプリでは空欄になります。
+* 所属スペースと所属スペースURLは、スペースに所属していないアプリでは空欄になります。
+* レコードの最終更新日は、「yyyy-MM-dd」の形式で出力されます。ただし、<Wovn>［アプリ管理］</Wovn>画面で<Wovn>［（データなし）］</Wovn>と表示されているアプリでは空欄になります。
+* 作成日時と設定の最終更新日時は、ユーザーのタイムゾーンに沿って、「yyyy-MM-dd HH:mm」（24時間表記）の形式で出力されます。
+
+</Note>
+
+ダウンロードしたCSVファイルの活用については、次のページを参照してください。  
+[アプリ一覧のCSVファイルを利用してアプリを管理する](/k/ja/id/040736.html)
+
+<Reference>
+
+* [アプリのライセンス使用状況を確認する](/k/ja/id/04011.html)
+* [［アプリ管理］画面でアプリの一覧を確認する](/k/ja/id/04012.html)
+
+</Reference>

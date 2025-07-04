@@ -1,0 +1,2100 @@
+---
+title: "APIを使用した操作"
+weight: 1000
+description: "{{< kintone >}}でAPIを使用した操作を行ったときに出力される監査ログについて説明しています。"
+aliases:
+  - "/ja/id/040820"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+APIを使用した操作をしたときに出力されるログについて説明します。
+
+<Note>
+
+* APIトークンでAPIを使用した場合、ログの末尾にAPIトークンが出力されます。
+
+  ```
+  login token: *
+
+  ```
+
+* Microsoft Power Automateなどの外部連携サービスで、OAuthで認証してAPIを使用した場合、ログの末尾にOAuthのクライアントIDとクライアント名が出力されます。
+
+  ```
+  oauth client id: *, oauth client name: *
+
+  ```
+
+* 「結果」には操作の結果が出力されます。  
+  * SUCCESS：操作に成功しています。
+  * VALIDATION ERROR：入力値が不正だったため、操作に失敗しています。
+  * FAILED：操作に失敗しています。
+
+</Note>
+
+<Heading id="log_api_operation_10,class=&quot;no-trans&quot;">API operation</Heading>
+
+モジュールが「API operation」である監査ログは、下記のとおりです。
+
+<Heading level={3} id="log_api_operation_1010,class=&quot;no-trans&quot;">App create</Heading>
+
+アクションが「App create」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_101010">実行された操作</Heading>
+
+動作テスト環境にアプリを作成するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[動作テスト環境にアプリを作成する](https://cybozu.dev/ja/id/be316bcfaa096d7943d4e669/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Add Preview App](https://kintone.dev/en/docs/kintone/rest-api/apps/add-preview-app/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_101020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_101030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Heading level={4} id="log_api_operation_101040">出力されるログの例</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_api_operation_1012,class=&quot;no-trans&quot;">App deploy</Heading>
+
+アクションが「App deploy」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_101210">実行された操作</Heading>
+
+動作テスト環境のアプリの設定を、運用環境に反映するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[アプリの設定を運用環境へ反映する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/settings/deploy-app-settings/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Deploy App Settings](https://kintone.dev/en/docs/kintone/rest-api/apps/deploy-app-settings/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_101220">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_101230">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリの設定の変更をキャンセルしたかどうか
+  * アプリの設定の変更をキャンセルした場合：true
+  * アプリの設定の変更を運用環境へ反映した場合：false
+
+<Heading level={4} id="log_api_operation_101240">出力されるログの例</Heading>
+
+```
+app id: [*], revert: {true/false}
+
+```
+
+アプリIDはカンマ区切りで出力されます。
+
+<Heading level={3} id="log_api_operation_1014,class=&quot;no-trans&quot;">App update</Heading>
+
+アクションが「App update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_101410">実行された操作</Heading>
+
+動作テスト環境のアプリに対して、下記の設定を変更するAPIを実行した。
+
+* 「アプリの設定」の「アプリ管理者用メモ」を変更した
+* 「アプリの設定」の「一般設定」の設定を変更した
+* 「アプリの設定」の「レコードのタイトル」の設定を変更した
+* 「アプリの設定」の「高度な設定」で、サムネイル表示の設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコードの一括削除機能の設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコードのコメント機能の設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコードの再利用機能の設定を変更した
+* 「アプリの設定」の「高度な設定」で、レコード一覧でのインライン編集機能の設定を変更した
+* 「アプリの設定」の「高度な設定」で、数値と計算の精度の設定を変更した
+* 「アプリの設定」の「高度な設定」で、第一四半期の開始月を変更した
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[アプリの一般設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/settings/update-general-settings/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Update General Settings](https://kintone.dev/en/docs/kintone/rest-api/apps/update-general-settings/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_101420">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_101430">「補足」に出力される内容</Heading>
+
+<Heading level={5} id="log_api_operation_10143005">「アプリ管理者用メモ」を変更した場合</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 変更した設定項目（target）
+
+変更した設定項目には、「adminNotes」が出力されます。
+
+<Heading level={5} id="log_api_operation_10143010">「一般設定」の設定を変更した場合</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Heading level={5} id="log_api_operation_10143020">「レコードのタイトル」の設定を変更した場合</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 変更した設定項目の状態
+
+設定項目の状態は、下記のどちらかです。
+
+* 「レコードのタイトルとして利用するフィールド」の設定で「自動設定を利用する」を選択する場合：AUTO
+* 「レコードのタイトルとして利用するフィールド」の設定で「フィールドを選択する」を選択する場合：MANUAL
+
+「フィールドを選択する」を選択する場合、「レコードのタイトルとして利用するフィールド」のフィールドコードも出力されます。
+
+<Heading level={5} id="log_api_operation_10143030">「高度な設定」の設定を変更した場合</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 変更した設定項目と状態
+
+変更した設定項目は、下記が出力されます。
+
+* サムネイル表示（enableThumbnails）
+* レコードの一括削除機能（enableBulkDeletion）
+* レコードのコメント機能（enableComments）
+* レコードの再利用機能（enableDuplicateRecord）
+* レコード一覧でのインライン編集機能（enableInlineRecordEditing）
+* 数値と計算の精度の設定
+* 第一四半期の開始月の設定
+
+変更した設定項目の状態は、下記のどちらかです。
+
+* 有効にした：true
+* 無効にした：false
+
+数値と計算の精度の設定は、下記の値が出力されます。
+
+* 全体の桁数に設定された値（numberPrecision digits）
+* 小数部の桁数に設定された値（numberPrecision decimalPlaces）
+* 丸めかた（numberPrecision roundingMode）
+  * 最近接偶数への丸め：HALF_EVEN
+  * 切り上げ：UP
+  * 切り下げ：DOWN
+
+第一四半期の開始月の設定は、設定された値（firstMonthOfFiscalYear）が出力されます。
+
+<Note>
+
+アプリ名を変更した場合は、変更後のアプリ名が出力されます。
+
+</Note>
+
+<Heading level={4} id="log_api_operation_101440">出力されるログの例</Heading>
+
+<Heading level={5} id="log_api_operation_10144005">「アプリ管理者用メモ」を変更した場合</Heading>
+
+```
+app id: *, app name: *, target: adminNotes
+
+```
+
+<Heading level={5} id="log_api_operation_10144010">「一般設定」の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={5} id="log_api_operation_10144020">「レコードのタイトル」の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, titleField selectionMode: {AUTO/MANUAL}, titleField code: *
+
+```
+
+<Heading level={5} id="log_api_operation_10144030">「高度な設定」のサムネイル表示の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, enableThumbnails: {true/false}
+
+```
+
+<Heading level={5} id="log_api_operation_10144040">「高度な設定」のレコードの一括削除機能の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, enableBulkDeletion: {true/false}
+
+```
+
+<Heading level={5} id="log_api_operation_10144050">「高度な設定」のレコードのコメント機能の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, enableComments: {true/false}
+
+```
+
+<Heading level={5} id="log_api_operation_10144060">「高度な設定」のレコードの再利用機能の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, enableDuplicateRecord: {true/false}
+
+```
+
+<Heading level={5} id="log_api_operation_10144065">「高度な設定」のレコード一覧でのインライン編集機能の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, enableInlineRecordEditing: {true/false}
+
+```
+
+<Heading level={5} id="log_api_operation_10144070">「高度な設定」の数値と計算の精度の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, numberPrecision digits: *, numberPrecision decimalPlaces: *, numberPrecision roundingMode: {HALF_EVEN/UP/DOWN}
+
+```
+
+<Heading level={5} id="log_api_operation_10144080">「高度な設定」の第一四半期の開始月の設定を変更した場合</Heading>
+
+```
+app id: *, app name: *, firstMonthOfFiscalYear: *
+
+```
+
+<Heading level={3} id="log_api_operation_1016,class=&quot;no-trans&quot;">App status update</Heading>
+
+アクションが「App status update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_101610">実行された操作</Heading>
+
+動作テスト環境のアプリに対して、プロセス管理の設定を変更するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[プロセス管理の設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/settings/update-process-management-settings/)
+</Reference>
+
+</Enabled>
+<Enabled regions={["US"]}>
+<Reference>
+
+[Update Process Management Settings](https://kintone.dev/en/docs/kintone/rest-api/apps/update-process-management-settings/)
+</Reference>
+</Enabled>
+
+<Heading level={4} id="log_api_operation_101620">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_101630">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* プロセス管理の有効/無効
+* 更新後にあるステータス名のリスト
+* 更新後にあるアクション名のリスト
+
+ステータス名のリスト、アクション名のリストはデフォルトの言語で出力されます。
+
+<Heading level={4} id="log_api_operation_101640">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, enable: *, status: [*], actions: [*]
+
+```
+
+<Heading level={3} id="log_api_operation_1018,class=&quot;no-trans&quot;">App customize update</Heading>
+
+アクションが「App customize update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_101810">実行された操作</Heading>
+
+動作テスト環境のアプリに対して、JavaScript / CSSのカスタマイズの設定を変更するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[JavaScript / CSSカスタマイズ設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/settings/update-customization/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Update Customization](https://kintone.dev/en/docs/kintone/rest-api/apps/update-customization/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_101820">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_101830">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Heading level={4} id="log_api_operation_101840">出力されるログの例</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_api_operation_1020,class=&quot;no-trans&quot;">Notification update</Heading>
+
+アクションが「Notification update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_102010">実行された操作</Heading>
+
+動作テスト環境のアプリに対して、アプリ、レコード、またはリマインダーの条件通知の設定を変更するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+* [アプリの条件通知の設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/settings/update-general-notification-settings/)
+* [レコードの条件通知の設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/settings/update-per-record-notification-settings/)
+* [リマインダーの条件通知の設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/settings/update-reminder-notification-settings/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+* [Update General Notification Settings](https://kintone.dev/en/docs/kintone/rest-api/apps/update-general-notification-settings/)
+* [Update Per Record Notification Settings](https://kintone.dev/en/docs/kintone/rest-api/apps/update-per-record-notification-settings/)
+* [Update Reminder Notification Settings](https://kintone.dev/en/docs/kintone/rest-api/apps/update-reminder-notification-settings/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_102020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_102030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Heading level={4} id="log_api_operation_102040">出力されるログの例</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_api_operation_1022,class=&quot;no-trans&quot;">App permission update</Heading>
+
+アクションが「App permission update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_102210">実行された操作</Heading>
+
+アプリのアクセス権を変更するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[アプリのアクセス権の設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/settings/update-app-permissions/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Update App Permissions](https://kintone.dev/en/docs/kintone/rest-api/apps/update-app-permissions/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_102220">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_102230">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 動作テスト環境の場合：preview
+
+<Heading level={4} id="log_api_operation_102240">出力されるログの例</Heading>
+
+<Heading level={5} id="log_api_operation_10224010">運用環境の場合</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={5} id="log_api_operation_10224020">動作テスト環境の場合</Heading>
+
+```
+app id: *, app name: *, preview
+
+```
+
+<Heading level={3} id="log_api_operation_1024,class=&quot;no-trans&quot;">Record permission update</Heading>
+
+アクションが「Record permission update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_102410">実行された操作</Heading>
+
+レコードのアクセス権を変更するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[レコードのアクセス権の設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/settings/update-record-permissions/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Update Record Permissions](https://kintone.dev/en/docs/kintone/rest-api/apps/update-record-permissions/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_102420">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_102430">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 動作テスト環境の場合：preview
+
+<Heading level={4} id="log_api_operation_102440">出力されるログの例</Heading>
+
+<Heading level={5} id="log_api_operation_10244010">運用環境の場合</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={5} id="log_api_operation_10244020">動作テスト環境の場合</Heading>
+
+```
+app id: *, app name: *, preview
+
+```
+
+<Heading level={3} id="log_api_operation_1026,class=&quot;no-trans&quot;">Field permission update</Heading>
+
+アクションが「Field permission update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_102610">実行された操作</Heading>
+
+フィールドのアクセス権を変更するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[フィールドのアクセス権の設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/settings/update-field-permissions/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Update Field Permissions](https://kintone.dev/en/docs/kintone/rest-api/apps/update-field-permissions/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_102620">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_102630">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 動作テスト環境の場合：preview
+
+<Heading level={4} id="log_api_operation_102640">出力されるログの例</Heading>
+
+<Heading level={5} id="log_api_operation_10264010">運用環境の場合</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={5} id="log_api_operation_10264020">動作テスト環境の場合</Heading>
+
+```
+app id: *, app name: *, preview
+
+```
+
+<Heading level={3} id="log_api_operation_1028,class=&quot;no-trans&quot;">App action update</Heading>
+
+アクションが「App action update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_102810">実行された操作</Heading>
+
+動作テスト環境のアプリに対して、アクション設定を変更するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[アプリのアクション設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/settings/update-action-settings/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Update Action Settings](https://kintone.dev/en/docs/kintone/rest-api/apps/update-action-settings/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_102820">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_102830">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 変更後に存在するアクションのリスト
+
+<Heading level={4} id="log_api_operation_102840">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, actions: [*]
+
+```
+
+アクションのリストはカンマ区切りで出力されます。
+
+<Heading level={3} id="log_api_operation_1068,class=&quot;no-trans&quot;">App category update</Heading>
+
+アクションが「App category update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_106810">実行された操作</Heading>
+
+アプリのカテゴリーの設定を変更するAPIを実行した。
+
+<Heading level={4} id="log_api_operation_106820">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_106830">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Heading level={4} id="log_api_operation_106840">出力されるログの例</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_api_operation_1066,class=&quot;no-trans&quot;">App move started</Heading>
+
+アクションが「App move started」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_106610">実行された操作</Heading>
+
+アプリの所属スペースを変更するAPIを実行した。
+
+<Heading level={4} id="log_api_operation_106620">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_106630">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* 変更前のスペースID
+* 変更後のスペースID
+
+<Note>
+
+変更前の所属スペースがない場合は「source space: none」、スペースの所属を解除した場合は「destination space: none」と出力されます。
+
+</Note>
+
+<Heading level={4} id="log_api_operation_106640">出力されるログの例</Heading>
+
+```
+app id: *, source space id: *, destination space id: *
+
+```
+
+<Heading level={3} id="log_api_operation_1030,class=&quot;no-trans&quot;">Form update</Heading>
+
+アクションが「Form update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_103010">実行された操作</Heading>
+
+動作テスト環境のアプリに対して、次のAPIを実行した。
+
+* フィールドの追加
+* フィールドの設定の変更
+* フィールドの削除
+* フォームのレイアウトの変更
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+* [フィールドを追加する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/form/add-form-fields/)
+* [フィールドの設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/form/update-form-fields/)
+* [フィールドを削除する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/form/delete-form-fields/)
+* [フォームのレイアウトを変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/form/update-form-layout/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+* [Add Form Fields](https://kintone.dev/en/docs/kintone/rest-api/apps/add-form-fields/)
+* [Update Form Fields](https://kintone.dev/en/docs/kintone/rest-api/apps/update-form-fields/)
+* [Delete Form Fields](https://kintone.dev/en/docs/kintone/rest-api/apps/delete-form-fields/)
+* [Update Form Layout](https://kintone.dev/en/docs/kintone/rest-api/apps/update-form-layout/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_103020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_103030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 追加、変更、または削除したフィールドコード
+
+<Heading level={4} id="log_api_operation_103040">出力されるログの例</Heading>
+
+<Heading level={5} id="log_api_operation_10304010">フィールドを追加、変更、または削除した場合</Heading>
+
+```
+app id: *, app name: *, field code: [*]
+
+```
+
+フィールドコードはカンマ区切りで出力されます。
+
+<Heading level={5} id="log_api_operation_10304020">フォームのレイアウトを更新した場合</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_api_operation_1032,class=&quot;no-trans&quot;">App view update</Heading>
+
+アクションが「App view update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_103210">実行された操作</Heading>
+
+動作テスト環境のアプリに対して、一覧の設定を変更するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[一覧の設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/view/update-views/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Update Views](https://kintone.dev/en/docs/kintone/rest-api/apps/update-views/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_103220">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_103230">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 変更後に存在する一覧のリスト
+
+<Heading level={4} id="log_api_operation_103240">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, views: [*]
+
+```
+
+一覧のリストはカンマ区切りで出力されます。
+
+<Heading level={3} id="log_api_operation_1034,class=&quot;no-trans&quot;">App report update</Heading>
+
+アクションが「App report update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_103410">実行された操作</Heading>
+
+動作テスト環境のアプリに対して、グラフの設定を変更するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[アプリのグラフ設定を変更する](https://cybozu.dev/ja/kintone/docs/rest-api/apps/report/update-graph-settings/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Update Graph Settings](https://kintone.dev/en/docs/kintone/rest-api/apps/update-graph-settings/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_103420">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_103430">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* 変更後に存在するグラフ名のリスト
+
+<Heading level={4} id="log_api_operation_103440">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, reports: [*]
+
+```
+
+グラフ名のリストはカンマ区切りで出力されます。
+
+<Heading level={3} id="log_api_operation_1036,class=&quot;no-trans&quot;">Record add</Heading>
+
+アクションが「Record add」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_103610">実行された操作</Heading>
+
+レコードを登録するAPIを実行した。
+
+<Reference>
+<Enabled regions={["JP"]}>
+
+* [1件のレコードを登録する](https://cybozu.dev/ja/kintone/docs/rest-api/records/add-record/)
+* [複数のレコードを登録する](https://cybozu.dev/ja/kintone/docs/rest-api/records/add-records/)
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+* [Add Record](https://kintone.dev/en/docs/kintone/rest-api/records/add-record/)
+* [Add Records](https://kintone.dev/en/docs/kintone/rest-api/records/add-records/)
+
+</Enabled>
+
+</Reference>
+
+<Heading level={4} id="log_api_operation_103620">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_103630">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+
+<Heading level={4} id="log_api_operation_103640">出力されるログの例</Heading>
+
+<Heading level={5} id="log_api_operation_10364010">1件のレコードを登録するAPIを使用した場合</Heading>
+
+```
+app id: *, app name: *, record id: *
+
+```
+
+<Heading level={5} id="log_api_operation_10364020">複数のレコードを登録するAPIを使用した場合</Heading>
+
+```
+app id: *, app name: *, record id: [*]
+
+```
+
+レコード番号はカンマ区切りで出力されます。
+
+<Heading level={3} id="log_api_operation_1038,class=&quot;no-trans&quot;">Record update</Heading>
+
+アクションが「Record update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_103810">実行された操作</Heading>
+
+レコードを更新するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+* [1件のレコードを更新する](https://cybozu.dev/ja/kintone/docs/rest-api/records/update-record/)
+* [複数のレコードを更新する](https://cybozu.dev/ja/kintone/docs/rest-api/records/update-records/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+* [Update Record](https://kintone.dev/en/docs/kintone/rest-api/records/update-record/)
+* [Update Records](https://kintone.dev/en/docs/kintone/rest-api/records/update-records/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_103820">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_103830">「補足」に出力される内容</Heading>
+
+<Heading level={5} id="log_api_operation_10383010">1件のレコードを更新するAPIを使用した場合</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号（レコード番号を指定して更新した場合）
+* フィールドコード（フィールドコードと値を指定して更新した場合）
+* 指定した値（フィールドコードと値を指定して更新した場合）
+
+<Heading level={5} id="log_api_operation_10383020">複数のレコードを更新するAPIを使用した場合</Heading>
+
+次の項目が出力されます。
+
+<Heading level={6} id="log_api_operation_1038302010">UPSERTモードを無効にして実行した場合</Heading>
+
+* オペレーション  
+* アプリID  
+* アプリ名  
+* レコードID（レコード番号を指定して更新したとき）  
+* フィールドコード（フィールドコードと値を指定して更新したとき）  
+* 指定した値（フィールドコードと値を指定して更新したとき）
+
+<Heading level={6} id="log_api_operation_1038302020">UPSERTモードを有効にして実行した場合</Heading>
+
+* オペレーション  
+* アプリID  
+* アプリ名  
+* 新規に追加されたレコードID  
+* 更新されたレコードID  
+
+<Heading level={4} id="log_api_operation_103840">出力されるログの例</Heading>
+
+<Heading level={5} id="log_api_operation_10384010">1件のレコードを更新するAPI</Heading>
+
+<Heading level={6} id="log_api_operation_1038401010">レコード番号を指定して実行した場合</Heading>
+
+```
+app id: *, app name: *, record id: *
+
+```
+
+<Heading level={6} id="log_api_operation_1038401020">フィールドコードと値を指定して実行した場合</Heading>
+
+```
+app id: *, app name: *, field: *, value: *
+
+```
+
+<Heading level={5} id="log_api_operation_10384020">複数のレコードを更新するAPI</Heading>
+
+レコード番号、フィールドコード、指定した値はカンマ区切りで出力されます。  
+レコード番号とレコードキーは、空の場合「[]」と出力されます。
+
+<Heading level={6} id="log_api_operation_1038402010">UPSERTモードを無効にして実行した場合</Heading>
+
+```
+operation: update, app id: *, app name: *, record id: [*], record key: [[field: *, value: *]]
+
+```
+
+<Heading level={6} id="log_api_operation_1038402020">UPSERTモードを有効にして実行した場合</Heading>
+
+```
+operation: upsert, app id: *, app name: *, inserted record id: [*], updated record id: [*]
+
+```
+
+<Heading level={3} id="log_api_operation_1040,class=&quot;no-trans&quot;">Record delete</Heading>
+
+アクションが「Record delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_104010">実行された操作</Heading>
+
+レコードを削除するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[複数のレコードを削除する](https://cybozu.dev/ja/kintone/docs/rest-api/records/delete-records/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Delete Records](https://kintone.dev/en/docs/kintone/rest-api/records/delete-records/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_104020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_104030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+
+<Heading level={4} id="log_api_operation_104040">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, record id: [*]
+
+```
+
+レコード番号はカンマ区切りで出力されます。
+
+<Heading level={3} id="log_api_operation_1042,class=&quot;no-trans&quot;">Cursor create</Heading>
+
+アクションが「Cursor create」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_104210">実行された操作</Heading>
+
+レコードを一括取得するためのカーソルを作成するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[（レコードの一括取得）カーソルを作成する](https://cybozu.dev/ja/kintone/docs/rest-api/records/create-cursor/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Add Cursor](https://kintone.dev/en/docs/kintone/rest-api/records/add-cursor/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_104220">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_104230">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Heading level={4} id="log_api_operation_104240">出力されるログの例</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_api_operation_1044,class=&quot;no-trans&quot;">Record comment get</Heading>
+
+アクションが「Record comment get」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_104410">実行された操作</Heading>
+
+レコードのコメントを取得するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[レコードコメントを取得する](https://cybozu.dev/ja/kintone/docs/rest-api/records/get-comments/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Get Comments](https://kintone.dev/en/docs/kintone/rest-api/records/get-comments/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_104420">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_104430">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+* コメント番号
+
+<Heading level={4} id="log_api_operation_104440">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, record id: *,  comment id: [*]
+
+```
+
+コメント番号はカンマ区切りで出力されます。
+
+<Heading level={3} id="log_api_operation_1046,class=&quot;no-trans&quot;">Record comment add</Heading>
+
+アクションが「Record comment add」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_104610">実行された操作</Heading>
+
+レコードのコメントを投稿するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[レコードコメントを投稿する](https://cybozu.dev/ja/kintone/docs/rest-api/records/add-comment/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Add Comment](https://kintone.dev/en/docs/kintone/rest-api/records/add-comment/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_104620">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_104630">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+* コメント番号
+
+<Heading level={4} id="log_api_operation_104640">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, record id: *,  comment id: *
+
+```
+
+<Heading level={3} id="log_api_operation_1048,class=&quot;no-trans&quot;">Record comment delete</Heading>
+
+アクションが「Record comment delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_104810">実行された操作</Heading>
+
+レコードのコメントを削除するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[レコードコメントを削除する](https://cybozu.dev/ja/kintone/docs/rest-api/records/delete-comment/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Delete Comment](https://kintone.dev/en/docs/kintone/rest-api/records/delete-comment/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_104820">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_104830">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+* コメント番号
+
+<Heading level={4} id="log_api_operation_104840">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, record id: *,  comment id: *
+
+```
+
+<Heading level={3} id="log_api_operation_1050,class=&quot;no-trans&quot;">Record assignees update</Heading>
+
+アクションが「Record assignees update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_105010">実行された操作</Heading>
+
+レコードの作業者を更新するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[レコードの作業者を更新する](https://cybozu.dev/ja/kintone/docs/rest-api/records/update-assignees/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Update Assignees](https://kintone.dev/en/docs/kintone/rest-api/records/update-assignees/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_105020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_105030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+
+<Heading level={4} id="log_api_operation_105040">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, record id: *
+
+```
+
+<Heading level={3} id="log_api_operation_1052,class=&quot;no-trans&quot;">Record status update</Heading>
+
+アクションが「Record status update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_105210">実行された操作</Heading>
+
+レコードのステータスを変更するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+* [1件のレコードのステータスを更新する](https://cybozu.dev/ja/kintone/docs/rest-api/records/update-status/)
+* [複数のレコードのステータスを更新する](https://cybozu.dev/ja/kintone/docs/rest-api/records/update-statuses/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+* [Update Status](https://kintone.dev/en/docs/kintone/rest-api/records/update-status/)
+* [Update Statuses](https://kintone.dev/en/docs/kintone/rest-api/records/update-statuses/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_105220">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_105230">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+
+<Heading level={4} id="log_api_operation_105240">出力されるログの例</Heading>
+
+<Heading level={5} id="log_api_operation_10524010">1件のレコードのステータスを更新するAPIを実行した場合</Heading>
+
+```
+app id: *, app name: *, record id: *
+
+```
+
+<Heading level={5} id="log_api_operation_10524020">複数のレコードのステータスを更新するAPIを実行した場合</Heading>
+
+```
+app id: *, app name: *, record id: [*]
+
+```
+
+レコード番号はカンマ区切りで出力されます。
+
+<Heading level={3} id="log_api_operation_1080,class=&quot;no-trans&quot;">Space add</Heading>
+
+アクションが「Space add」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_108010">実行された操作</Heading>
+
+スペースを作成するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[テンプレートからスペースを作成する](https://cybozu.dev/ja/kintone/docs/rest-api/spaces/add-space-from-template/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Add Space](https://kintone.dev/en/docs/kintone/rest-api/spaces/add-space/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_108020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_108030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+
+<Heading level={4} id="log_api_operation_108040">出力されるログの例</Heading>
+
+```
+space id: *, space name: *
+
+```
+
+<Heading level={3} id="log_api_operation_1081,class=&quot;no-trans&quot;">Space update</Heading>
+
+アクションが「Space update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_108110">実行された操作</Heading>
+
+スペースの設定を更新するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[スペースのメンバーを更新する](https://cybozu.dev/ja/kintone/docs/rest-api/spaces/update-space-members/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Update Space Members](https://kintone.dev/en/docs/kintone/rest-api/spaces/update-space-members/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_108120">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_108130">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+
+<Heading level={4} id="log_api_operation_108140">出力されるログの例</Heading>
+
+```
+space id: *, space name: *
+
+```
+
+<Heading level={3} id="log_api_operation_1082,class=&quot;no-trans&quot;">Space delete</Heading>
+
+アクションが「Space delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_108210">実行された操作</Heading>
+
+スペースを削除するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[スペースを削除する](https://cybozu.dev/ja/kintone/docs/rest-api/spaces/delete-space/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Delete Space](https://kintone.dev/en/docs/kintone/rest-api/spaces/delete-space/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_108220">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_108230">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+* アプリID
+* アプリ名
+
+<Heading level={4} id="log_api_operation_108240">出力されるログの例</Heading>
+
+<Heading level={5} id="log_api_operation_10824010">指定したスペースIDが存在しない場合</Heading>
+
+```
+space id: *
+
+```
+
+<Heading level={5} id="log_api_operation_10824020">&lt;Kintone /&gt;システム管理画面の「利用する機能の選択」で「スペース機能を利用する」がオフになっている場合</Heading>
+
+```
+space id: *
+
+```
+
+<Heading level={5} id="log_api_operation_10824030">スペース内にアプリが配置されていなかった場合</Heading>
+
+```
+space id: *, space name: *
+
+```
+
+<Heading level={5} id="log_api_operation_10824040">スペース内にアプリが配置されていた場合</Heading>
+
+```
+space id: *, space name: *, (app id: *, app name: *), (...
+
+```
+
+<Heading level={3} id="log_api_operation_1056,class=&quot;no-trans&quot;">Thread comment add</Heading>
+
+アクションが「Thread comment add」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_105610">実行された操作</Heading>
+
+スペース内のスレッドにコメントを投稿するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[スペースのスレッドにコメントを投稿する](https://cybozu.dev/ja/kintone/docs/rest-api/spaces/add-thread-comment/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Add Thread Comment](https://kintone.dev/en/docs/kintone/rest-api/spaces/add-thread-comment/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_105620">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_105630">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* スペースID
+* スペース名
+* スレッドID
+* スレッドのタイトル
+* コメント番号
+
+<Heading level={4} id="log_api_operation_105640">出力されるログの例</Heading>
+
+```
+space id: *, space name: *, thread id: *, thread name: *, comment id: *
+
+```
+
+<Heading level={3} id="log_api_operation_1058,class=&quot;no-trans&quot;">Guests delete</Heading>
+
+アクションが「Guests delete」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_105810">実行された操作</Heading>
+
+ゲストユーザーを削除するAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[ゲストユーザーを削除する](https://cybozu.dev/ja/kintone/docs/rest-api/spaces/delete-guests/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Delete Guests](https://kintone.dev/en/docs/kintone/rest-api/spaces/delete-guests/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_105820">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_105830">「補足」に出力される内容</Heading>
+
+削除したゲストユーザーのメールアドレスが出力されます。
+
+<Heading level={4} id="log_api_operation_105840">出力されるログの例</Heading>
+
+```
+guest user code: *
+
+```
+
+ゲストユーザーのメールアドレスは、カンマ区切りで出力されます。
+
+<Heading level={3} id="log_api_operation_1060,class=&quot;no-trans&quot;">Record file download</Heading>
+
+アクションが「Record file download」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_106010">実行された操作</Heading>
+
+レコードの添付ファイルをダウンロードするAPIを実行した。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[ファイルをダウンロードする](https://cybozu.dev/ja/kintone/docs/rest-api/files/download-file/)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Reference>
+
+[Download File](https://kintone.dev/en/docs/kintone/rest-api/files/download-file/)
+</Reference>
+
+</Enabled>
+
+<Heading level={4} id="log_api_operation_106020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_106030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+* ファイル名
+
+<Heading level={4} id="log_api_operation_106040">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, record id: *, filename: *
+
+```
+
+<Heading level={3} id="log_api_operation_1062,class=&quot;no-trans&quot;">Webhook notify</Heading>
+
+アクションが「Webhook notify」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_106210">実行された操作</Heading>
+
+APIによる操作でWebhookの通知が送信された。
+
+<Heading level={4} id="log_api_operation_106220">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_106230">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+* 通知ID
+* イベントタイプ
+* 送信先サーバーのURL
+
+通知に成功した場合は、次の項目が出力されます。
+
+* 通知のステータスコード
+
+kintoneのエラーで通知に失敗した場合は、次の項目が出力されます。
+
+* エラータイプ：CLIENT_ERROR
+* エラーメッセージ
+
+通知を受け取るWebサービスのエラーで通知に失敗した場合は、次の項目が出力されます。
+
+* エラータイプ：SERVER_ERROR
+* 通知のHTTPステータスコード
+
+<Note>
+
+レコードのコメントを書き込んだ場合、コメント番号（comment id: *）がログに出力されます。
+
+</Note>
+
+<Heading level={4} id="log_api_operation_106240">出力されるログの例</Heading>
+
+<Heading level={5} id="log_api_operation_10624010">通知に成功した場合</Heading>
+
+```
+app id: *, app name: *, record id: *, notification id: *, event type: [ADD_RECORD / ADD_RECORD_COMMENT / UPDATE_RECORD / UPDATE_STATUS], server url: *, status code: *
+
+```
+
+<Heading level={5} id="log_api_operation_10624020">kintoneのエラーで通知に失敗した場合</Heading>
+
+```
+app id: *, app name: *, record id: *, notification id: *, event type: [ADD_RECORD / ADD_RECORD_COMMENT / UPDATE_RECORD / UPDATE_STATUS], server url: *, error type: CLIENT_ERROR, error message: *
+
+```
+
+<Heading level={5} id="log_api_operation_10624030">通知を受け取るWebサービスのエラーで通知に失敗した場合</Heading>
+
+```
+app id: *, app name: *, record id: *, notification id: *, event type: [ADD_RECORD / ADD_RECORD_COMMENT / UPDATE_RECORD / UPDATE_STATUS], server url: *, error type: SERVER_ERROR, status code: *
+
+```
+
+<Heading level={3} id="log_api_operation_1064,class=&quot;no-trans&quot;">Send slack dm</Heading>
+
+アクションが「Send slack dm」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_106410">実行された操作</Heading>
+
+APIによる操作でSlackの通知が送信された。
+
+<Heading level={4} id="log_api_operation_106420">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_106430">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* レコード番号
+* 通知先のSlackサブドメイン
+* 対象ユーザーのログイン名
+* 対象ユーザーのメールアドレス
+
+通知に成功した場合は、次の項目が出力されます。
+
+* Slack APIのレスポンスステータスコード
+
+kintoneのエラーで通知に失敗した場合は、次の項目が出力されます。
+
+* エラータイプ：CLIENT_ERROR
+* エラーメッセージ
+
+通知を受け取るWebサービスのエラーで通知に失敗した場合は、次の項目が出力されます。
+
+* エラータイプ：SERVER_ERROR
+* エラーになったSlack APIのレスポンスステータスコード
+* エラーメッセージ
+
+<Heading level={4} id="log_api_operation_106440">出力されるログの例</Heading>
+
+<Heading level={5} id="log_api_operation_10644010">通知に成功した場合</Heading>
+
+```
+app id: *, app name: *, record id: *, slack subdomain: *, user: *, Email: *, status code: *
+
+```
+
+<Heading level={5} id="log_api_operation_10644020">kintoneのエラーで通知に失敗した場合</Heading>
+
+```
+app id: *, app name: *, record id: *, slack subdomain: *, user: *, Email: *, error type: CLIENT_ERROR, error message: *
+
+```
+
+<Heading level={5} id="log_api_operation_10644030">通知を受け取るWebサービスのエラーで通知に失敗した場合</Heading>
+
+```
+app id: *, app name: *, record id: *, slack subdomain: *, user: *, Email: *, error type: SERVER_ERROR, status code: *, error message: *
+
+```
+
+<Heading level={3} id="log_api_operation_1070,class=&quot;no-trans&quot;">Plug-in installed</Heading>
+
+アクションが「Plug-in installed」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_107010">実行された操作</Heading>
+
+APIによる操作で<Kintone />システム管理にプラグインを読み込んだ。
+
+<Heading level={4} id="log_api_operation_107020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_107030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* プラグインID
+* プラグイン名
+
+<Heading level={4} id="log_api_operation_107040">出力されるログの例</Heading>
+
+```
+plugin id: *, plugin name: *
+
+```
+
+<Heading level={3} id="log_api_operation_1072,class=&quot;no-trans&quot;">Plug-in updated</Heading>
+
+アクションが「Plug-in updated」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_107210">実行された操作</Heading>
+
+APIによる操作で<Kintone />システム管理に読み込まれているプラグインを更新した。
+
+<Heading level={4} id="log_api_operation_107220">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_107230">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* プラグインID
+* プラグイン名
+
+<Heading level={4} id="log_api_operation_107240">出力されるログの例</Heading>
+
+```
+plugin id: *, plugin name: *
+
+```
+
+<Heading level={3} id="log_api_operation_1074,class=&quot;no-trans&quot;">Plug-in removed</Heading>
+
+アクションが「Plug-in removed」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_107410">実行された操作</Heading>
+
+APIによる操作で<Kintone />システム管理からプラグインをアンインストールした。
+
+<Heading level={4} id="log_api_operation_107420">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_107430">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* プラグインID
+* プラグイン名
+
+<Heading level={4} id="log_api_operation_107440">出力されるログの例</Heading>
+
+```
+plugin id: *, plugin name: *
+
+```
+
+<Heading level={3} id="log_api_operation_1090,class=&quot;no-trans&quot;">App plugins add</Heading>
+
+アクションが「App plugins add」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_109010">実行された操作</Heading>
+
+アプリにプラグインを追加するAPIを実行した。
+
+<Heading level={4} id="log_api_operation_109020">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_109030">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+
+<Heading level={4} id="log_api_operation_109040">出力されるログの例</Heading>
+
+```
+app id: *, app name: *
+
+```
+
+<Heading level={3} id="log_api_operation_1091,class=&quot;no-trans&quot;">Plugin config update</Heading>
+
+アクションが「Plugin config update」である監査ログについて説明します。
+
+<Heading level={4} id="log_api_operation_109110">実行された操作</Heading>
+
+アプリに追加されているプラグインの設定情報を変更するAPIを実行した。
+
+<Heading level={4} id="log_api_operation_109120">レベル</Heading>
+
+情報
+
+<Heading level={4} id="log_api_operation_109130">「補足」に出力される内容</Heading>
+
+次の項目が出力されます。
+
+* アプリID
+* アプリ名
+* プラグインID
+
+<Heading level={4} id="log_api_operation_109140">出力されるログの例</Heading>
+
+```
+app id: *, app name: *, plugin id: *
+
+```
+
+<Heading id="log_api_operation_20">プロパティ</Heading>
+
+監査ログの「補足」欄に出力されるプロパティは次のとおりです。
+
+<Heading level={3} id="log_api_operation_2010,class=&quot;no-trans&quot;">actions</Heading>
+
+アプリアクションのリストです。
+
+<Heading level={3} id="log_api_operation_2012,class=&quot;no-trans&quot;">app id</Heading>
+
+アプリのIDです。
+
+<Heading level={3} id="log_api_operation_2014,class=&quot;no-trans&quot;">app name</Heading>
+
+アプリ名です。
+
+<Heading level={3} id="log_api_operation_2016,class=&quot;no-trans&quot;">comment id</Heading>
+
+コメント番号です。
+
+<Heading level={3} id="log_api_operation_2017,class=&quot;no-trans&quot;">Email</Heading>
+
+メールアドレスです。
+
+<Heading level={3} id="log_api_operation_2068,class=&quot;no-trans&quot;">enableBulkDeletion</Heading>
+
+レコードの一括削除機能の設定値です。  
+状態は下記のどちらかです。
+
+* 有効にした：true
+* 無効にした：false
+
+<Heading level={3} id="log_api_operation_2070,class=&quot;no-trans&quot;">enableComments</Heading>
+
+レコードのコメント機能の設定値です。  
+状態は下記のどちらかです。
+
+* 有効にした：true
+* 無効にした：false
+
+<Heading level={3} id="log_api_operation_2072,class=&quot;no-trans&quot;">enableDuplicateRecord</Heading>
+
+レコードの再利用設定の設定値です。
+
+* 有効にした：true
+* 無効にした：false
+
+<Heading level={3} id="log_api_operation_2074,class=&quot;no-trans&quot;">enableThumbnails</Heading>
+
+サムネイルを表示する機能の設定値です。
+状態は下記のどちらかです。
+
+* 有効にした：true
+* 無効にした：false
+
+<Heading level={3} id="log_api_operation_2018,class=&quot;no-trans&quot;">error message</Heading>
+
+エラーメッセージです。
+
+<Heading level={3} id="log_api_operation_2020,class=&quot;no-trans&quot;">error type</Heading>
+
+エラータイプです。次のエラータイプが出力されます。
+
+* CLIENT_ERROR：kintone側のエラーが原因で失敗している場合に出力されます。
+* SERVER_ERROR：通知を受け取るWebサービス側のエラーが原因で失敗している場合に出力されます。
+
+<Heading level={3} id="log_api_operation_2022,class=&quot;no-trans&quot;">event type</Heading>
+
+イベントタイプです。次のイベントタイプが出力されます。
+
+* ADD_RECORD：レコードの追加
+* ADD_RECORD_COMMENT：レコードコメントの追加
+* UPDATE_RECORD：レコードの更新
+* UPDATE_STATUS：ステータスの更新
+* DELETE_RECORD：レコードの削除
+
+<Heading level={3} id="log_api_operation_2024,class=&quot;no-trans&quot;">field code</Heading>
+
+フィールドコードです。
+
+<Heading level={3} id="log_api_operation_2026,class=&quot;no-trans&quot;">field</Heading>
+
+フィールドコードです。
+
+<Heading level={3} id="log_api_operation_2028,class=&quot;no-trans&quot;">filename</Heading>
+
+ファイル名です。
+
+<Heading level={3} id="log_api_operation_2081,class=&quot;no-trans&quot;">firstMonthOfFiscalYear</Heading>
+
+第一四半期の開始月に設定された値です。
+
+<Heading level={3} id="log_api_operation_2030,class=&quot;no-trans&quot;">guest user code</Heading>
+
+ゲストユーザーのメールアドレスです。
+
+<Heading level={3} id="log_api_operation_2031,class=&quot;no-trans&quot;">inserted record id</Heading>
+
+追加されたレコード番号です。
+
+<Heading level={3} id="log_api_operation_2032,class=&quot;no-trans&quot;">notification id</Heading>
+
+通知IDです。
+
+<Heading level={3} id="log_api_operation_2076,class=&quot;no-trans&quot;">numberPrecision digits</Heading>
+
+全体の桁数に設定された値です。
+
+<Heading level={3} id="log_api_operation_2078,class=&quot;no-trans&quot;">numberPrecision decimalPlaces</Heading>
+
+小数部の桁数に設定された値です。
+
+<Heading level={3} id="log_api_operation_2080,class=&quot;no-trans&quot;">numberPrecision roundingMode</Heading>
+
+小数部の丸めかたの設定の状態が出力されます。
+
+* 最近接偶数への丸め：HALF_EVEN
+* 切り上げ：UP
+* 切り下げ：DOWN
+
+<Heading level={3} id="log_api_operation_2082,class=&quot;no-trans&quot;">operation</Heading>
+
+複数のレコードを更新する際に指定された操作モードです。
+
+<Heading level={3} id="log_api_operation_2084,class=&quot;no-trans&quot;">plugin id</Heading>
+
+プラグインIDです。
+
+<Heading level={3} id="log_api_operation_2086,class=&quot;no-trans&quot;">plugin name</Heading>
+
+プラグイン名です。
+
+<Heading level={3} id="log_api_operation_2034,class=&quot;no-trans&quot;">preview</Heading>
+
+動作テスト環境の場合に出力されます。
+
+<Heading level={3} id="log_api_operation_2036,class=&quot;no-trans&quot;">record id</Heading>
+
+レコード番号です。
+
+<Heading level={3} id="log_api_operation_2038,class=&quot;no-trans&quot;">record key</Heading>
+
+フィールドコードと指定した値のリストです。
+
+<Heading level={3} id="log_api_operation_2040,class=&quot;no-trans&quot;">reports</Heading>
+
+グラフ名のリストです。
+
+<Heading level={3} id="log_api_operation_2042,class=&quot;no-trans&quot;">revert</Heading>
+
+アプリの設定をキャンセルしたかどうかが出力されます。
+
+* true：アプリの設定の変更をキャンセルしました。
+* false：アプリの設定の変更を本番環境へ反映しました。
+
+<Heading level={3} id="log_api_operation_2044,class=&quot;no-trans&quot;">server url</Heading>
+
+サーバーURLです。
+
+<Heading level={3} id="log_api_operation_2045,class=&quot;no-trans&quot;">slack subdomain</Heading>
+
+Slackサブドメインです。
+
+<Heading level={3} id="log_api_operation_2046,class=&quot;no-trans&quot;">slack workspace</Heading>
+
+Slack連携を設定した相手先のSlackのURLです。
+
+<Heading level={3} id="log_api_operation_2048,class=&quot;no-trans&quot;">space id</Heading>
+
+スペースIDです。
+
+<Heading level={3} id="log_api_operation_2050,class=&quot;no-trans&quot;">space name</Heading>
+
+スペース名です。
+
+<Heading level={3} id="log_api_operation_2052,class=&quot;no-trans&quot;">status code</Heading>
+
+ステータスコードです。
+
+<Heading level={3} id="log_api_operation_2054,class=&quot;no-trans&quot;">status</Heading>
+
+ステータスのリストです。
+
+<Heading level={3} id="log_api_operation_2055,class=&quot;no-trans&quot;">target</Heading>
+
+「アプリの設定」で、設定を変更した箇所が出力されます。
+
+<Heading level={3} id="log_api_operation_2056,class=&quot;no-trans&quot;">thread id</Heading>
+
+スレッドIDです。
+
+<Heading level={3} id="log_api_operation_2058,class=&quot;no-trans&quot;">thread name</Heading>
+
+スレッドのタイトルです。
+
+<Heading level={3} id="log_api_operation_2064,class=&quot;no-trans&quot;">titleField selectionMode</Heading>
+
+レコードタイトルとして使用するフィールドの設定の状態が出力されます。
+
+* AUTO：「レコードのタイトルとして利用するフィールド」の設定で「自動設定を利用する」を選択している
+* MANUAL：「レコードのタイトルとして利用するフィールド」の設定で「フィールドを選択する」を選択している
+
+<Heading level={3} id="log_api_operation_2066,class=&quot;no-trans&quot;">titleField code</Heading>
+
+レコードタイトルとして指定されているフィールドのフィールドコードです。
+
+<Heading level={3} id="log_api_operation_2067,class=&quot;no-trans&quot;">updated record id</Heading>
+
+更新されたレコードIDです。
+
+<Heading level={3} id="log_api_operation_2059,class=&quot;no-trans&quot;">user</Heading>
+
+ログイン名です。
+
+<Heading level={3} id="log_api_operation_2060,class=&quot;no-trans&quot;">value</Heading>
+
+指定した値です。
+
+<Heading level={3} id="log_api_operation_2062,class=&quot;no-trans&quot;">views</Heading>
+
+一覧のリストです。

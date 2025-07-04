@@ -1,0 +1,128 @@
+---
+title: "{{< kintone >}}システム管理で設定できるアクセス権"
+weight: 300
+decription: "［{{< kintone >}}システム管理］画面の［アクセス権］で設定できるアクセス権と、設定手順について説明します。"
+aliases:
+  - "/ja/id/04062"
+layout: "@/layouts/SectionLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import SlashAdministrators from "@/components/SlashAdministrators.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アクセス権］</Wovn>では、<Kintone />全体に関わるアクセス権を設定できます。  
+
+<Kintone />全体に関わるアクセス権の設定には、<Kintone />のシステム管理権限が必要です。  
+なお、<Kintone />のシステム管理権限の許可も、この画面から設定します。<SlashAdministrators />か、すでに<Kintone />のシステム管理権限を持つユーザーが操作してください。
+
+<Img src="/k/kintone/img-ja/permissions_01.png" alt="スクリーンショット：［{{&lt; kintone &gt;}}システム管理］の［アクセス権］画面" />  
+
+初期設定では、すべてのユーザーに対するアクセス権として、<Wovn>［Everyone］</Wovn>の設定行があります。  
+個別のユーザーや組織、グループに対するアクセス権を設定する場合は、<Wovn>［Everyone］</Wovn>の設定行の上に設定行を追加します。  
+設定行が複数ある場合、上の行の設定が優先されます。優先したい設定が上になるように優先順位を変更してください。
+
+<Wovn>［<Kintone />システム管理］</Wovn>画面でアクセス権を設定する方法については、次のページを参照してください。  
+[<Kintone />全体に関わるアクセス権を設定する](/k/ja/id/040867.html)
+
+<Note>
+
+* ここでの設定にかかわらず、<SlashAdministrators />には、すべての権限が付与されています。
+* 個別のアプリに対するアクセス権は、各アプリの設定画面から操作します。設定方法については、次のページを参照してください。  
+  [アクセス権の設定](/k/ja/id/040588.html)
+
+</Note>
+
+<Heading id="permissions_index_10">&lt;Kintone /&gt;システム管理で設定できるアクセス権</Heading>
+
+<Heading level={3} id="permissions_index_1020">システムの管理権限</Heading>
+
+<Wovn>［システムの管理］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、そのユーザーは<Wovn>［<Kintone />システム管理］</Wovn>画面にアクセスできるようになります。<Wovn>［システムの管理］</Wovn>を許可できるユーザーの数に上限はありません。  
+なお、<SlashAdministrators />にはすべての権限が付与されるため、<Wovn>［システムの管理］</Wovn>の<Wovn>［許可］</Wovn>にチェックが入っていなくても、<Wovn>［<Kintone />システム管理］</Wovn>画面にアクセスできます。
+
+<Kintone />システム管理では、<Kintone />全体に関わる設定ができます。
+
+例：
+
+* アプリやスペースの作成権限の設定
+* アプリやスペースのテンプレートの作成
+* アプリやスペースの管理
+* <Kintone />全体のカスタマイズ
+* アップデートオプションの設定
+* プラグインの登録
+* お知らせ掲示板の編集
+* ポータルの設定
+
+<Note>
+
+次の操作を許可するユーザーには、<Wovn>［システムの管理］</Wovn>も許可する必要があります。
+
+* アプリグループの管理（閲覧のみ）
+* アプリグループの管理
+
+</Note>
+
+<Heading level={3} id="permissions_index_1030">アプリグループの管理権限</Heading>
+
+<Wovn>［アプリグループの管理］</Wovn>または<Wovn>［アプリグループの管理（閲覧のみ）］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、以下の操作が可能になります。
+
+* <Wovn>［アプリグループの管理］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、そのユーザーは、アプリグループの作成と管理が可能になります。  
+<br />
+* <Wovn>［アプリグループの管理（閲覧のみ）］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、そのユーザーは、アプリグループの閲覧のみが可能になります。次の操作はできません。
+
+  * アプリグループの作成  
+  * アプリグループ名の変更  
+  * アプリグループのアクセス権の変更の保存  
+  * アプリグループの削除  
+
+<Wovn>［アプリグループの管理］</Wovn>または<Wovn>［アプリグループの管理（閲覧のみ）］</Wovn>を許可するユーザーには、<Wovn>［システムの管理］</Wovn>も許可する必要があります。
+
+<Hint>
+
+&#123;&#123;< subtitle >&#125;&#125;アプリグループとは&#123;&#123;< /subtitle >&#125;&#125;
+
+アプリグループとは、複数のアプリを一括で管理するためのものです。アプリグループを使用すると、複数のアプリに対して、アプリの作成権限や管理権限などを一括で設定できます。  
+アプリグループは<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アプリグループ］</Wovn>から作成できます。  
+詳細については、次のページを参照してください。  
+[アプリグループの管理](/k/ja/id/04023.html)  
+
+</Hint>
+
+<Heading level={3} id="permissions_index_1040">アプリの作成権限</Heading>
+
+<Wovn>［アプリの作成］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、そのユーザーにアプリの作成が許可されます。  
+なお、初期設定では、すべてのユーザーにアプリの作成が許可されています。
+
+<Note>
+
+<Wovn>［アプリの作成］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、<Wovn>［アプリの管理］</Wovn>の<Wovn>［許可］</Wovn>にもチェックが入ります。<Wovn>［アプリの作成］</Wovn>単独の許可はできません。
+
+</Note>
+
+<Heading level={3} id="permissions_index_1050">アプリの管理権限</Heading>
+
+<Wovn>［アプリの管理］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、そのユーザーにアプリの管理が許可されます。  
+<Wovn>［アプリの管理］</Wovn>の<Wovn>［許可］</Wovn>のチェックを外すと、各アプリのアクセス権の設定にかかわらず、どのアプリの設定も操作できなくなります。  
+なお、初期設定では、すべてのユーザーにアプリの管理が許可されています。
+
+<Heading level={3} id="permissions_index_1060">スペースの作成権限</Heading>
+
+<Wovn>［スペースの作成］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、そのユーザーにスペースの作成が許可されます。  
+なお、初期設定では、すべてのユーザーにスペースの作成が許可されています。
+
+<Heading level={3} id="permissions_index_1070">ゲストスペースの作成権限</Heading>
+
+<Wovn>［ゲストスペースの作成］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、そのユーザーにゲストスペースの作成が許可されます。  
+なお、初期設定では、<Slash />共通管理者だけにゲストスペースの作成が許可されています。
+
+<Note>
+
+<Wovn>［ゲストスペースの作成］</Wovn>の<Wovn>［許可］</Wovn>にチェックを入れると、<Wovn>［スペースの作成］</Wovn>の<Wovn>［許可］</Wovn>にもチェックが入ります。<Wovn>［ゲストスペースの作成］</Wovn>単独の許可はできません。
+
+</Note>

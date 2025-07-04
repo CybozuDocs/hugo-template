@@ -1,0 +1,42 @@
+---
+title: "{{< slash_ui >}}でGuest Account Licenseの必要数を確認する"
+weight: 700
+disabled: "[JP,CN]"
+aliases:
+  - "/ja/id/04033"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+Guest Account Licenseの必要数は、<SlashUi />でも確認できます。  
+
+1. <Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックします。
+
+1. <Wovn>［<SlashUi />］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/guest_users_exceed_img01.png" alt="スクリーンショット：管理画面を表示方法を示す画像" />
+
+1. <Wovn>［契約状況］</Wovn>画面を表示し、<Wovn>［購入状況］</Wovn>をクリックします。  
+  契約内容が表示されます。  
+   <Img src="/k/kintone/img-ja/guest_users_exceed_img02.png" alt="スクリーンショット：［購入状況］が矩形で囲まれた画像" />
+
+1. <Wovn>［Options］</Wovn>セクションの<Wovn>［Guest Users］</Wovn>を確認します。<Wovn></Wovn><Wovn></Wovn>  
+  <Wovn>［Purchased Guest Account Licenses］</Wovn>を<Wovn>［Guest Users in Use］</Wovn>と同じ数量、もしくは、それより多い数量にする必要があります。<Wovn></Wovn><Wovn></Wovn>  
+   <Img src="/k/kintone/img-ja/guest_users_exceed_img03.png" alt="スクリーンショット：Optionsを示す画像" />
+
+   * Guest Users in Use：[［有料ゲストユーザー数］](/k/ja/id/040330.html#guest_confirm_guest_license_1020)
+   * Purchased Guest Account Licenses：[［有料ゲストユーザー数の契約数］](/k/ja/id/04036.html#guest_numbers_30)
+
+<Heading id="guest_exceed_20">ライセンス数が不足している場合</Heading>
+
+<Wovn>［Purchased Guest Account Licenses］</Wovn>が<Wovn>［Guest Users in Use］</Wovn>よりも少ない場合、<Wovn>［Options］</Wovn>セクションに警告が表示されます。<Wovn></Wovn><Wovn></Wovn><Wovn></Wovn>  
+<Img src="/k/kintone/img-ja/guest_users_exceed_img04.png" alt="スクリーンショット：警告メッセージの表示例" />
+
+警告表示は、ライセンスの必要数を下回った時点から表示され、必要な対処が完了するまで非表示にできません。  
+対処方法は、次のページを参照してください。  
+[ゲストユーザーのライセンス契約数が不足しているときは](/k/ja/id/040330.html#guest_confirm_guest_license_20)

@@ -1,0 +1,77 @@
+---
+title: "モバイルアプリにプッシュ通知が届きません"
+weight: 600
+aliases:
+  - "/ja/id/040369"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+
+
+<Kintone />のモバイルアプリにプッシュ通知が届かない場合、次の要因が考えられます。
+
+1.「自分宛」の通知が送られていない  
+2.モバイルアプリにログインしていない  
+3.モバイル端末のプッシュ通知の設定がオンになっていない  
+4.電波が弱いなど、何らかの理由で通知を受信できない環境である  
+
+それぞれ対処方法を説明します。
+
+<Heading id="mobile_push_notifications_10">1.「自分宛」の通知が送られていない</Heading>
+
+<Kintone />で「自分宛」の通知を受信すると、モバイル端末にプッシュ通知されます。  
+<Kintone />にアクセスして、「自分宛」の通知を受信しているか確認してください。
+
+<Note>
+
+* 通常の通知はプッシュ通知されません。
+* <Kintone />の通知画面に自分宛通知が届いていない場合、プッシュ通知も届きません。  
+  [「通知」が届かないときは](/k/ja/id/040376.html)
+
+</Note>
+
+<Reference>
+
+* [「自分宛」通知と「すべて」通知の違い](/k/ja/id/040674.html)
+* [通知が送信されるタイミングと宛先](/k/ja/id/040673.html)
+
+</Reference>
+
+<Heading id="mobile_push_notifications_20">2.モバイルアプリにログインしていない</Heading>
+
+通知を受信するユーザーで、モバイルアプリの<Kintone />にログインしてください。
+
+<Enabled regions={["JP"]}>
+<Slash />共通管理者によって、ログイン時にセキュアアクセスやBasic認証などが設定されている場合もあります。  
+[セキュアアクセスとは](/general/ja/id/02047.html)  
+[Basic認証とは](/general/ja/id/02044.html)
+
+</Enabled>
+
+<Heading id="mobile_push_notifications_30">3.モバイル端末のプッシュ通知の設定がオンになっていない</Heading>
+
+モバイルアプリをインストールしている端末の「通知」の設定をオンにしてください。
+
+<Reference>
+
+* [モバイル端末の通知のオン／オフを切り替える（iOS）](/k/ja/id/040663.html)
+* [モバイル端末の通知のオン／オフを切り替える（Android）](/k/ja/id/040658.html)
+
+</Reference>
+
+<Heading id="mobile_push_notifications_40">4.電波が弱いなど、何らかの理由で通知を受信できない環境である</Heading>
+
+インターネットに接続されている環境でプッシュ通知を受信できるか確認してください。  
+なお、モバイル端末の仕様により、次の現象が発生している可能性もあります。
+
+* 通知の受信が遅れることがある
+* 一部の通知が受信できないことがある
+
+Android OSやiOSの仕様により、プッシュ通知が受信できない場合があります。  
+プッシュ通知を受信できなかった場合に、<Kintone />でリトライして通知を送信することは行っていません。

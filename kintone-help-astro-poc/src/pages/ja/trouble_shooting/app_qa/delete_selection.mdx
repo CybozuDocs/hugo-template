@@ -1,0 +1,48 @@
+---
+title: "選択式のフィールドの設定で選択肢を削除／変更したら、レコードに登録済みの値はどうなりますか？"
+weight: 4600
+aliases:
+  - "/ja/id/040181"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+選択式のフィールドの設定で選択肢の項目を削除した場合、レコードに登録済みの値は、削除前のまま変わりません。  
+選択式のフィールドの設定で選択肢の項目名を変更した場合、レコードに登録済みの値は、変更後の項目名に置き換わります。
+
+選択式のフィールドは、次のとおりです。
+
+* ラジオボタン  
+* ドロップダウン  
+* チェックボックス  
+* 複数選択  
+
+<Heading id="app_qa_delete_selection_10">選択肢の項目を削除した場合の例</Heading>
+
+たとえば、レコードの登録時に、ドロップダウンフィールドの選択肢から「sample 1」を選択していたとします。その後、ドロップダウンフィールドの設定で選択肢「sample 1」を削除しても、レコードに登録済みの値は、選択していた「sample 1」の値のまま変わりません。
+<Img src="/k/kintone/img-ja/delete_selection_01.png" alt="選択肢の項目を削除した例" />
+
+ただし、レコードに登録済みの値を、削除した選択肢以外に変更して保存すると、次にレコード編集画面を開いたときには、削除した選択肢は表示されなくなります。また、レコード追加画面を開いたときも、削除した選択肢は表示されません。
+
+<Note>
+
+削除した選択肢の値がレコードに残っていると、レコードのデータをファイルに書き出した際に、その値も出力されます。  
+なお、チェックボックスフィールドと複数選択フィールドは、削除した選択肢の値がレコードに残っていなくても、レコードのデータをファイルに書き出した際に、削除した選択肢のカラム（列）が出力されます。
+
+</Note>
+
+<Heading id="app_qa_delete_selection_20">選択肢の項目名を変更した場合の例</Heading>
+
+たとえば、レコードの登録時に、ドロップダウンフィールドの選択肢から「sample 1」を選択していたとします。その後、ドロップダウンフィールドの設定で選択肢「sample 1」を「sample A」に変更すると、レコードに登録済みの値は「sample1」から「sample A」に置き換わります。
+<Img src="/k/kintone/img-ja/delete_selection_02.png" alt="選択肢の項目名を変更した例" />
+
+<Reference>
+
+[選択式のフィールドで削除した選択肢もファイル読み込みで登録されます](/k/ja/id/040200.html)
+
+</Reference>

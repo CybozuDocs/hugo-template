@@ -1,0 +1,42 @@
+---
+title: "ガントチャートで表示し、工数管理などを行うことはできますか？"
+weight: 4600
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040196"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Hint from "@/components/Hint.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+
+<Kintone />の標準機能では、ガントチャートの作成や表示はできません。  
+カスタマイズやプラグインを適用することで、ガントチャートを表示できます。
+
+<Note>
+ライトコースをご契約の場合は、プラグインを利用できません。  
+
+</Note>
+
+開発者向けサイトcybozu developer networkでは、ガントチャートプラグインを公開しています。このプラグインを適用することで、<Kintone />でガントチャートを表示できます。
+プラグインは、<Kintone />システム管理からzipファイルを読み込んだあと、アプリの設定画面で追加します。  
+ガントチャートプラグインの詳細と適用方法は、次のページを参照してください。  
+
+* [ガントチャートプラグイン](https://cybozu.dev/ja/kintone/tips/development/plugins/sample-plugin/ganttchart-plugin/)（日本語のみ）
+* [プラグインを追加／削除する（<Kintone />システム管理）](/k/ja/id/0408.html)
+* [プラグインを追加／削除する（アプリの設定）](/k/ja/id/040566.html)
+
+<Hint>
+
+* cybozu developer networkでは、ほかの開発者の方と情報交換ができるコミュニティを用意しています。プラグインについて不明点がある場合など、ご活用ください。  
+  [cybozu developer community](https://community.cybozu.dev/)
+
+* APIの仕様は、API窓口にお問い合わせください。  
+  [API、カスタマイズ、プラグインや連携サービスに関する問い合わせ](/k/ja/id/040274.html)  
+
+* <Kintone />のお試し環境では、スタンダードコースと同様の機能を利用できます。  
+  現在ライトコースをご契約の場合は、よろしければ別途お試し環境を作成し、ガントチャート表示をご確認ください。  
+  [お試しはできますか？お試し方法を教えてください。](https://faq.cybozu.info/alphascope/cybozu/web/cybozu.com/Detail.aspx?id=52)（日本語のみ）
+
+</Hint>

@@ -1,0 +1,231 @@
+---
+title: "サイボウズ Officeのスケジュールと連携する"
+weight: 400
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040837"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Listsummary from "@/components/Listsummary.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+プラグインを利用して、サイボウズ Officeに登録した予定と<Kintone />のレコードを関連付けることができます。
+
+サイボウズ Officeのスケジュールとの連携を設定すると、次の機能が利用できます。
+
+* サイボウズ Officeに登録された予定に、<Kintone />のレコードの情報を関連付けできる  
+  関連付けたレコードの情報は、予定の詳細画面に表示され、レコードを開くリンクになります。  
+  <Img src="/k/kintone/img-ja/office_schedule_plugin_01.png" alt="スクリーンショット：{{&lt; kintone &gt;}}の関連情報が表示されている予定の詳細画面" />
+
+* <Kintone />のレコードから、関連するサイボウズ Officeの予定を一覧で表示できる  
+  <Img src="/k/kintone/img-ja/office_schedule_plugin_02.png" alt="スクリーンショット：レコードと関連付けられた予定が一覧表示されている画面" />
+
+* <Kintone />のレコードから、サイボウズ Officeに予定を登録できる  
+  <Img src="/k/kintone/img-ja/office_schedule_plugin_03.png" alt="スクリーンショット：［レコードの詳細］画面から予定を登録する画面" />
+
+<Note>
+
+* <Kintone />と関連付けられる予定の種類は、「通常予定」と「翌日以降まで続く予定」です。
+* 予定に<Kintone />のレコードを関連付けても、操作しているユーザーが閲覧できないアプリ、レコード、およびフィールドの情報は表示されません。
+* ゲストスペース内のアプリも連携できます。ただし、ゲストユーザーは連携機能を利用できません。
+
+</Note>
+
+<Heading id="add_plugin_office_schedule_plugin_10">サイボウズ Officeのスケジュールと連携するための条件</Heading>
+
+<Kintone />とサイボウズ Officeのスケジュールを連携するためには、次の条件が必要です。
+
+* **同じドメインで<Kintone />とサイボウズ Officeを利用している**  
+  まだ<Kintone />とサイボウズ Officeのどちらか、または両方を利用していない場合は、試用か契約を申し込んでください。
+
+* **<Kintone />の試用中である、またはプラグインを利用できる<Kintone />のコースを契約している**  
+  <Kintone />でプラグインを利用できないコースを契約している場合、サイボウズ Officeのスケジュールと連携できません。なお、サイボウズ Officeはどのコースを契約していても、<Kintone />と連携できます。
+
+<Heading id="add_plugin_office_schedule_plugin_20">サイボウズ Officeのスケジュールとの連携を利用するための条件</Heading>
+
+<Kintone />とサイボウズ Officeのスケジュールとの連携機能をユーザーが利用するためには、次の条件が必要です。
+
+* **ユーザーが<Kintone />とサイボウズ Officeの両方とも利用できる**  
+  機能を利用するユーザーが、まだ<Kintone />とサイボウズ Officeのどちらか、または両方とも利用できない場合は、<Slash />の管理者が、該当ユーザーにサービスの利用を許可してください。  
+  サービスの利用を許可する方法は、次のページを参照してください。  
+  [サービスの利用許可](/general/ja/id/020247.html)  
+
+* **PCで<Kintone />を利用している**  
+  スマートフォンで<Kintone />を操作するときは、サイボウズ Officeのスケジュールと連携した機能を利用できません。
+
+<Heading id="add_plugin_office_schedule_plugin_30">&lt;Kintone /&gt;でサイボウズ Officeのスケジュールとの連携を設定する</Heading>
+
+<Kintone />のレコードから、サイボウズ Officeの予定を登録または検索するには、プラグインの設定が必要です。
+
+<Listsummary>
+
+1. [<Kintone />にサイボウズ Office スケジュール連携のプラグインをインストールする](#add_plugin_office_schedule_plugin_3010)
+1. [アプリを準備する](#add_plugin_office_schedule_plugin_3020)
+1. [アプリにサイボウズ Office スケジュール連携のプラグインを追加して、設定する](#add_plugin_office_schedule_plugin_3030)
+
+</Listsummary>
+
+<Note>
+
+プラグインのバージョンにより、利用できない機能がある場合があります。必要に応じて、最新のバージョンのプラグインをダウンロードして、設定しなおしてください。
+
+</Note>
+
+<Heading level={3} id="add_plugin_office_schedule_plugin_3010">&lt;Kintone /&gt;にサイボウズ Office スケジュール連携のプラグインをインストールする</Heading>
+
+<Kintone />システム管理者が、<Kintone />システム管理画面でサイボウズ Office スケジュール連携のプラグインをインストールします。
+
+詳細は、次のページを参照してください。  
+[プラグインストアからプラグインを追加する](/k/ja/id/0408.html#add_plugin_plugin_20)
+
+<Heading level={3} id="add_plugin_office_schedule_plugin_3020">アプリを準備する</Heading>
+
+サイボウズ Officeのスケジュールと連携したいアプリに、次のフィールドを配置してください。
+
+* 予定の登録や検索ができるボタンを表示するフィールド  
+  ボタンを表示する場所に、<Wovn>［スペース］</Wovn>フィールドを配置してください。配置した<Wovn>［スペース］</Wovn>フィールドの設定で、任意の「要素ID」を指定します。この要素IDは、プラグインの設定時に使用します。
+
+* 予定にレコードの情報として表示するフィールド  
+  次のいずれかのフィールドを配置してください。
+  * <Wovn>［文字列（1行）］</Wovn>
+  * <Wovn>［文字列（複数行）］</Wovn>
+  * <Wovn>［ルックアップ］</Wovn>（「コピー元のフィールド」が<Wovn>［文字列（1行）］</Wovn>）
+
+  <Note>
+
+  * 上記のフィールド以外にも、レコード番号を予定に表示するレコードの情報に指定できます。
+  * テーブル内のフィールドは、予定に表示するレコードの情報に指定できません。
+
+  </Note>
+
+* 予定を登録するときの、日付の初期値として利用するフィールド  
+  <Kintone />のレコードからサイボウズ Officeに予定を登録する画面の、日付の初期値にフィールドの値を利用できます。  
+  日付の初期値にフィールドの値を利用したい場合は、次のいずれかのフィールドを配置してください。
+  * <Wovn>［日付］</Wovn>
+  * <Wovn>［日時］</Wovn>
+
+  <Note>
+
+  テーブル内のフィールドは、日付の初期値に指定できません。
+
+  </Note>
+
+<Heading level={3} id="add_plugin_office_schedule_plugin_3030">アプリにサイボウズ Office スケジュール連携のプラグインを追加して、設定する</Heading>
+
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［カスタマイズ／サービス連携］</Wovn>にある<Wovn>［プラグイン］</Wovn>をクリックします。
+
+1. <Wovn>［プラグイン］</Wovn>画面で、<Wovn>［追加する］</Wovn>をクリックします。
+
+1. <Wovn>［プラグインの追加］</Wovn>画面で、<Wovn>［サイボウズ Office スケジュール連携］</Wovn>にチェックを入れ、画面右下の<Wovn>［追加］</Wovn>をクリックします。
+
+1. <Wovn>［プラグイン］</Wovn>画面で、<Wovn>［サイボウズ Office スケジュール連携］</Wovn>の右側にある<Wovn>［プラグインの設定］</Wovn>アイコンをクリックします。
+
+1. <Wovn>［予定の登録ボタンと検索ボタンを表示するフィールド］</Wovn>を指定します。  
+  予定の登録や検索ができるボタンを表示するフィールドとして配置した、<Wovn>［スペース］</Wovn>フィールドの要素IDを選択します。
+
+1. 予定を登録するときの初期値となるフィールドを設定する場合は、<Wovn>［予定の初期値として利用するフィールド］</Wovn>の<Wovn>［日付］</Wovn>で初期値として利用するフィールドを選択します。
+
+1. <Wovn>［保存］</Wovn>をクリックします。
+
+1. <Wovn>［アプリの設定］</Wovn>画面に戻り、画面右上の<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. 確認ダイアログで<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+<Heading id="add_plugin_office_schedule_plugin_40">サイボウズ Officeで&lt;Kintone /&gt;との連携を設定する</Heading>
+
+サイボウズ Officeのシステム管理者が、サイボウズ Officeで<Kintone />との連携を設定してください。  
+<Kintone />との連携を有効にして、予定に表示するレコードの情報としてアプリやフィールドを指定します。
+
+1. サイボウズ Officeで、ヘッダーの右側の歯車アイコンをクリックします。
+
+1. <Wovn>［サイボウズ Officeシステム設定］</Wovn>をクリックします。
+
+1. <Wovn>［各アプリケーション］</Wovn>の<Wovn>［スケジュールと施設予約］</Wovn>をクリックします。
+  <Note>
+
+  <Wovn>［各アプリケーション］</Wovn>が表示されていない場合は、<Wovn>［詳細設定を開く］</Wovn>をクリックしてから操作してください。
+  </Note>
+
+1. <Wovn>［<Kintone />連携］</Wovn>をクリックします。
+
+1. <Wovn>［<Kintone />連携の設定］</Wovn>画面で、<Wovn>［有効にする］</Wovn>をクリックします。
+
+1. <Wovn>［追加する］</Wovn>をクリックします。  
+   連携項目は、最大3件まで追加できます。
+
+1. <Wovn>［連携項目の追加］</Wovn>画面で、連携先のアプリとフィールドを指定します。
+   * <Wovn>［連携先の<Kintone />アプリ］</Wovn>：  
+    アプリ名を入力すると、入力した文字を含むアプリが候補として表示されます。  
+    候補から、連携するアプリを選択します。
+   * <Wovn>［フィールド名］</Wovn>：  
+    予定にレコードの情報として表示するフィールドを選択します。  
+    選択できるフィールドのタイプは、次のとおりです。なお、テーブル内のフィールドは選択できません。
+     * <Wovn>［レコード番号］</Wovn>
+     * <Wovn>［文字列（1行）］</Wovn>
+     * <Wovn>［文字列（複数行）］</Wovn>
+     * <Wovn>［ルックアップ］</Wovn>（「コピー元のフィールド」が<Wovn>［文字列（1行）］</Wovn>）
+
+1. <Wovn>［追加する］</Wovn>をクリックします。
+
+<Note>
+
+連携項目の変更や削除の手順は、「サイボウズ Office マニュアル」の次のページを参照してください。<Wovn></Wovn>  
+[<Kintone />連携の設定](/o/ja/admin/app/sh/ki_relate.html)（日本語のみ）
+
+</Note>
+
+<Heading id="add_plugin_office_schedule_plugin_50">サイボウズ Officeのスケジュールと連携した機能を利用する</Heading>
+
+<Heading level={3} id="add_plugin_office_schedule_plugin_5010">サイボウズ Officeの予定に、&lt;Kintone /&gt;のレコードを関連付ける</Heading>
+
+サイボウズ Officeに登録された予定に、関連するレコードの情報として、<Kintone />のアプリやレコードへのリンクを表示します。  
+<Kintone />と関連付けられる予定の種類は、「通常予定」と「翌日以降まで続く予定」です。
+
+1. サイボウズ Officeで、登録された予定の<Wovn>［予定の詳細］</Wovn>画面を開きます。
+
+1. <Wovn>［関連情報を追加する］</Wovn>をクリックし、関連付けるアプリを選択します。
+
+1. <Wovn>［関連情報の追加］</Wovn>画面で、関連付けるレコードを選択して、<Wovn>［追加する］</Wovn>をクリックします。  
+  レコードを追加してから関連付けする場合は、<Wovn>［新しいレコードを追加する］</Wovn>をクリックして、レコードを追加します。<Wovn>［関連情報の追加］</Wovn>画面に戻り、<Wovn>［更新］</Wovn>をクリックして、追加したレコードを選択してください。
+
+<Note>
+
+* レコードとの関連付けを削除する場合は、<Wovn>［予定の詳細］</Wovn>画面で<Wovn>［関連情報を削除する］</Wovn>をクリックして、<Wovn>［削除する］</Wovn>をクリックしてください。
+* レコードとの関連付けを追加、削除するには、予定の変更権限が必要です。
+
+</Note>
+
+<Heading level={3} id="add_plugin_office_schedule_plugin_5020">&lt;Kintone /&gt;のレコードから、関連するサイボウズ Officeの予定を表示する</Heading>
+
+<Kintone />のレコードから、そのレコードと関連付けられた予定の<Wovn>［予定の詳細］</Wovn>画面を表示します。  
+表示される予定は、操作しているユーザーが閲覧できる予定のみです。
+
+1. <Wovn>［レコードの詳細］</Wovn>画面で、<Wovn>［予定を検索］</Wovn>をクリックします。  
+  <Wovn>［検索結果］</Wovn>ダイアログに、レコードと関連付けられた予定のうち、操作した日を基準に前後1か月の予定が一覧で表示されます。
+  <Note>
+
+  予定の絞り込みを変更する場合は、<Wovn>［予定の範囲］</Wovn>で開始日時と終了日時を指定して、<Wovn>［検索］</Wovn>をクリックしてください。
+  </Note>
+
+1. 詳細を確認したい予定をクリックします。
+
+<Heading level={3} id="add_plugin_office_schedule_plugin_5030">&lt;Kintone /&gt;のレコードから、サイボウズ Officeに予定を登録する</Heading>
+
+<Kintone />のレコードから、そのレコードと関連付けた予定を登録します。  
+登録できる予定の種類は、「通常予定」と「翌日以降まで続く予定」です。
+
+1. <Wovn>［レコードの詳細］</Wovn>画面で、<Wovn>［予定を登録］</Wovn>をクリックします。  
+   サイボウズ Officeの予定を登録する画面が開きます。  
+   予定を登録するときの初期値を設定している場合は、指定したフィールドの値が入力されています。
+
+1. 予定の内容を入力して、<Wovn>［登録する］</Wovn>をクリックします。

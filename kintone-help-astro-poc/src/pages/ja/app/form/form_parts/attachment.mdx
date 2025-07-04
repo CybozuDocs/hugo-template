@@ -1,0 +1,102 @@
+---
+title: "添付ファイル"
+weight: 1400
+aliases:
+  - "/ja/id/040514"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+
+
+添付ファイルフィールドを配置すると、レコードにファイルを添付できるようになります。  
+複数のファイルを添付したり、添付したファイルを並べ替えたりできます。
+
+<Heading id="form_parts_attachment_20">設定項目</Heading>
+
+<Img src="/k/kintone/img-ja/attachment_06.png" alt="スクリーンショット：添付ファイルフィールドの設定画面" />
+
+<Heading level={3} id="form_parts_attachment_2010">フィールド名</Heading>
+
+入力項目の見出しを指定します。
+
+<Heading level={3} id="form_parts_attachment_2020">フィールド名を表示しない</Heading>
+
+[フィールド名を表示しない]にチェックを入れると、次の画面でフィールド名を非表示にします。
+
+* レコードの追加画面
+* レコードの編集画面
+* レコードの詳細画面
+* レコードの印刷用画面
+* フォームの設定画面
+
+<Heading level={3} id="form_parts_attachment_2030">必須項目にする</Heading>
+
+[必須項目にする]にチェックを入れると、ファイルの添付が必須になります。
+
+<Heading level={3} id="form_parts_attachment_2040">サムネイルの大きさ</Heading>
+
+画像ファイルを添付すると表示される、サムネイルの大きさを選択します。  
+サムネイルが表示されるのは、次の条件を満たすファイルです。
+
+* サイズ：10MB以内
+* 画素数：5,000万画素以内
+* 形式：BMP、GIF、JPG、PNG
+
+サムネイルが表示されないファイルの場合、ファイル名とサイズが表示されます。
+
+レコードの一覧画面では、画像ファイルのサムネイルが50x50（ピクセル）の大きさで表示されます。
+
+<Hint>
+
+アプリの[高度な設定]で画像のサムネイル表示を無効にできます。  
+詳細は、次のページを参照してください。  
+[画像のサムネイル表示を設定する](/k/ja/id/040481.html)
+
+</Hint>
+
+<Heading level={3} id="form_parts_attachment_2050">フィールドコード</Heading>
+
+APIでフィールドを指定するときに使用する文字列です。
+
+<Note>
+
+フィールドコードについては、次のページを参照してください。  
+[フィールドコード](/k/ja/id/040504.html)
+
+</Note>
+
+<Heading id="form_parts_attachment_10">使いかた</Heading>
+
+添付ファイルフィールドの使いかたは次のとおりです。
+
+<Heading level={3} id="form_parts_attachment_1010">ファイルの添付</Heading>
+
+ファイルを添付するには、レコード追加または編集画面で[参照]をクリックして、ファイルを選択します。  
+Excel、Word、PDFファイルなど、ファイルの種類を問わず添付できます。  
+<Img src="/k/kintone/img-ja/attachment_04.png" alt="スクリーンショット：参照をクリックしてファイルを添付" />
+[参照]にファイルをドラッグアンドドロップすることでも、ファイルを添付できます。  
+<Img src="/k/kintone/img-ja/attachment_05.png" alt="スクリーンショット：ドラッグアンドドロップでファイルを添付" />
+
+<Heading level={3} id="form_parts_attachment_1020">添付ファイルの並び替え</Heading>
+
+添付したファイルを並び替えるには、レコード追加または編集画面で、添付したファイルをドラッグアンドドロップします。  
+<Img src="/k/kintone/img-ja/attachment_07.png" alt="スクリーンショット：添付したファイルをドラッグアンドドロップで並び替えている" />
+
+<Heading level={3} id="form_parts_attachment_1030">添付ファイルの削除</Heading>
+
+添付したファイルを削除するには、レコード追加または編集画面で、添付したファイルのファイル名の左横にある[×]の形をした削除アイコンをクリックします。  
+<Img src="/k/kintone/img-ja/attachment_08.png" alt="スクリーンショット：添付したファイルのファイル名の左横にある[×]の形をした削除アイコンを枠線で強調" />
+
+<Heading level={3} id="form_parts_attachment_1040">添付ファイルの表示とダウンロード</Heading>
+
+レコード詳細画面では、添付ファイルのファイル名とサイズが表示されます。  
+ファイル名をクリックするとダウンロードできます。  
+<Img src="/k/kintone/img-ja/attachment_02.png" alt="スクリーンショット：複数ファイルの例" />
+
+会社ロゴなど画像ファイルを添付した場合は、サムネイル（縮小画像）が表示されます。  
+サムネイルをクリックすると、画像が拡大表示されます。  
+<Img src="/k/kintone/img-ja/attachment_03.png" alt="スクリーンショット：画像ファイルの添付例" />

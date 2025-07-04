@@ -1,0 +1,76 @@
+---
+title: "Webhookを利用できないようにする"
+weight: 200
+aliases:
+  - "/ja/id/040793"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+設定したWebhookを一時的に設定を無効にしたり、設定を削除したりできます。  
+また、すべてのユーザーに対してWebhookの利用を禁止することも可能です。
+
+<Heading id="set_webhook_disabled_webhook_10">Webhookの設定を無効化する</Heading>
+
+設定を削除することなく、Webhookを無効化できます。手順は以下のとおりです。
+
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［カスタマイズ／サービス連携］</Wovn>にある<Wovn>［Webhook］</Wovn>をクリックします。
+
+1. <Wovn>［Webhook］</Wovn>画面で、無効にしたいWebhookの一番右の列の<Wovn>［編集］</Wovn>アイコンをクリックします。
+   <Img src="/k/kintone/img-ja/disabled_webhook_01.png" alt="スクリーンショット：［編集］アイコンを枠線で強調している" />
+
+1. <Wovn>［Webhookの編集］</Wovn>画面で、<Wovn>［このWebhookを有効にする］</Wovn>のチェックを外し、<Wovn>［保存］</Wovn>をクリックします。  
+   <Img src="/k/kintone/img-ja/disabled_webhook_02.png" alt="スクリーンショット：［このWebhookを有効にする］が枠線で強調されている" />
+
+1. <Wovn>［Webhook］</Wovn>画面で、画面上部に表示されるメッセージの<Wovn>［アプリの設定］</Wovn>をクリックするか、画面左下の<Wovn>［アプリの設定に戻る］</Wovn>をクリックします。
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+再度有効にする場合は、<Wovn>［Webhookの編集］</Wovn>画面で<Wovn>［このWebhookを有効にする］</Wovn>にチェックを入れます。
+
+<Heading id="set_webhook_disabled_webhook_20">Webhookの利用を禁止する（&lt;Slash /&gt;共通管理者の操作）</Heading>
+
+<Slash />共通管理者は、すべてのユーザーに対してWebhookの利用を禁止できます（ユーザーごとの利用制御はできません）。  
+Webhookの利用を禁止すると、すべてのアプリの設定画面で<Wovn>［Webhook］</Wovn>のメニューが表示されなくなり、Webhookの追加・閲覧・編集ができなくなります。また、設定済みのWebhookの通知は送信されなくなります。
+
+Webhookの利用を禁止する手順は、次のページを参照してください。  
+[Webhookの送信を制御する](/general/ja/id/020424.html)
+
+<Note>
+
+<SlashUi />の<Wovn>［組織間のアクセス権］</Wovn>を設定した場合は、<Slash />共通管理者と<Kintone />システム管理者のみWebhookを利用できます。  
+<Wovn>［組織間のアクセス権］</Wovn>の詳細は以下ページを参照してください。  
+[所属組織が異なるユーザーのプロフィールと組織の閲覧を制限する](/k/ja/id/04060.html)
+
+</Note>
+
+<Heading id="set_webhook_disabled_webhook_30">Webhookの設定を削除する</Heading>
+
+Webhookの設定を削除する手順は、次のとおりです。
+
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：[アプリを設定]アイコンが枠線で強調されている" />
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［カスタマイズ／サービス連携］</Wovn>にある<Wovn>［Webhook］</Wovn>をクリックします。
+
+1. <Wovn>［Webhook］</Wovn>画面で、削除したいWebhookの一番右の列の<Wovn>［削除］</Wovn>アイコンをクリックして、<Wovn>［削除する］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/webhook_11.png" alt="スクリーンショット：[削除]を枠線で強調している" />
+
+1. 画面上部に表示されるメッセージの<Wovn>［アプリの設定］</Wovn>をクリックするか、画面左下の<Wovn>［アプリの設定に戻る］</Wovn>をクリックします。
+
+1. <Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［アプリを更新］</Wovn>をクリックします。
+
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。

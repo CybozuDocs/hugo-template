@@ -1,0 +1,51 @@
+---
+title: "{{< slash_ui >}}を開く"
+weight: 200
+aliases:
+  - "/ja/id/04047"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import SlashHelp from "@/components/SlashHelp.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Enabled regions={["JP", "CN"]}>
+<SlashUi />では、ユーザーや所属する組織、セキュリティなど、<Slash />の各サービスに共通する項目を一元管理できます。
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<SlashUi />では、ユーザー情報やセキュリティ設定などの項目を管理できます。
+
+</Enabled>
+
+この操作は、<Slash />共通管理者のみ可能です。
+
+設定できる項目の例：
+
+* ユーザーや組織の追加、削除（ゲストユーザーを除く）
+* 監査ログの閲覧やダウンロード
+* ログイン時のセキュリティやアクセス制限の設定
+* OAuthを使った外部サービス連携の設定
+
+<SlashUi />を開くには、<Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［<SlashUi />］</Wovn>をクリックします。
+
+<Img src="/k/kintone/img-ja/restore_app_img01.png" alt="スクリーンショット：［{{&lt; slash_ui &gt;}}］を赤枠で強調している" />
+
+<Note>
+
+<Wovn>［<SlashUi />］</Wovn>は、<Slash />共通管理権限がある場合のみ表示されます。
+
+</Note>
+
+<Kintone />で使用するグループ（ロール）を設定する方法、および組織の閲覧を制限する方法については、次のページを参照してください。  
+[<SlashUi />での権限設定](/k/ja/id/04059.html)  
+その他の設定項目については、<SlashHelp />を参照してください。  
+[<SlashHelp />](/general/ja/)

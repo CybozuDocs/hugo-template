@@ -1,0 +1,72 @@
+---
+title: "［アプリ管理］画面でできること"
+weight: 100
+aliases:
+  - "/ja/id/04015"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Img src="/k/kintone/img-ja/manage_apps_img04.png" alt="スクリーンショット：［アプリ管理］画面" />
+
+<Wovn>［アプリ管理］</Wovn>画面では、お使いの環境でのアプリのライセンス使用状況や、自分が管理権限を持つアプリを一覧で確認できます。
+
+アプリの一覧から、<Wovn>［アプリの設定］</Wovn>画面を表示して設定を変更したり、アプリを削除したりできます。  
+
+また、<Slash />共通管理者は、次の操作を行えます。
+
+* アプリ管理者数を確認する（検討中の新機能）
+* アプリの一覧をCSV形式でダウンロードする
+
+詳細は次のページを参照してください。
+
+* [アプリのライセンス使用状況を確認する](/k/ja/id/04011.html)
+* [<Wovn>［アプリ管理］</Wovn>画面でアプリの一覧を確認する](/k/ja/id/04012.html)
+* [<Wovn>［アプリ管理］</Wovn>画面からアプリを削除する](/k/ja/id/04013.html)
+* [アプリ管理者数を確認する](/k/ja/id/040894.html)（<Slash />共通管理者のみ）
+* [アプリの一覧をCSV形式でダウンロードする](/k/ja/id/04014.html)（<Slash />共通管理者のみ）
+
+アプリ作成権限のあるユーザーは、画面左上の<Wovn>［アプリを作成する］</Wovn>からもアプリを作成できます。
+
+<Note>
+
+<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［利用する機能の選択］</Wovn>で<Wovn>［スペースに所属しないアプリの作成を許可する］</Wovn>が無効になっている場合は、<Wovn>［アプリを作成する］</Wovn>は表示されません。  
+[利用する機能の選択](/k/ja/id/04031.html)
+
+</Note>
+
+以下に、<Wovn>［アプリ管理］</Wovn>画面の開きかたを説明します。
+
+<Heading id="app_admin_manage_app_10">&lt;Wovn&gt;［アプリ管理］&lt;/Wovn&gt;画面を開く</Heading>
+
+<Wovn>［アプリ管理］</Wovn>画面にアクセスするには、<Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［アプリ管理］</Wovn>をクリックします。  
+<Img src="/k/kintone/img-ja/manage_apps_img01.png" alt="スクリーンショット：［設定］アイコンから表示" />
+
+<Wovn>［アプリ管理］</Wovn>画面が開きます。
+
+<Heading id="app_admin_manage_app_20">&lt;Wovn&gt;［&lt;Kintone /&gt;］&lt;/Wovn&gt;から&lt;Wovn&gt;［アプリ管理］&lt;/Wovn&gt;画面を開く</Heading>
+
+<Slash />共通管理者と<Kintone />のシステム管理者は、<Wovn>［<Kintone />システム管理］</Wovn>からも<Wovn>［アプリ管理］</Wovn>画面を開くことができます。
+
+<Kintone />の画面上部の歯車の形をした<Wovn>［設定］</Wovn>アイコンをクリックし、<Wovn>［<Kintone />システム管理］</Wovn>をクリックします。
+<Img src="/k/kintone/img-ja/manage_apps_img03.png" alt="スクリーンショット：［設定］アイコンと［{{&lt; kintone &gt;}}システム管理］のリンクを枠線で強調している" />
+
+<Wovn>［<Kintone />システム管理］</Wovn>の<Wovn>［アプリ管理］</Wovn>をクリックすると、<Wovn>［アプリ管理］</Wovn>画面に移動します。
+
+<Enabled regions={["JP", "US"]}>
+<Img src="/k/kintone/img-ja/manage_apps_img02.png" alt="スクリーンショット：［アプリ管理］のリンクを枠線で強調している" />
+
+</Enabled>
+
+<Enabled regions={["CN"]}>
+<Img src="/k/kintone/img-ja/manage_apps_img02_cn.png" alt="スクリーンショット：［アプリ管理］のリンクを枠線で強調している" />
+
+</Enabled>

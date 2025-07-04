@@ -1,0 +1,65 @@
+---
+title: "［小数部の桁数］を「0」にしたら、正しく計算されません"
+weight: 500
+aliases:
+  - "/ja/id/040268"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Hint from "@/components/Hint.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+<Wovn>［高度な設定］</Wovn>画面の<Wovn>［小数部の桁数］</Wovn>や<Wovn>［丸めかた］</Wovn>の設定は、計算式内の数値にも適用されます。  
+
+<table>
+  <caption>フィールドの設定例</caption>
+    <thead>
+        <tr>
+            <th>フィールド名とフィールドコード</th>
+            <th>フィールドタイプ</th>
+            <th>計算式</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>税抜き価格</td>
+            <td><Wovn>［数値］</Wovn></td>
+            <td>
+              -
+            </td>
+        </tr>
+        <tr>
+            <td>税込み価格</td>
+            <td><Wovn>［計算］</Wovn></td>
+            <td>税抜き価格*1.1</td>
+        </tr>
+    </tbody>
+</table> 
+
+この設定例の場合、「税抜き価格」フィールドに「100」と入力すると、次のように表示されます。  
+
+* <Wovn>［小数部の桁数］</Wovn>を「2」にすると、「税込み価格」フィールドは「110」と表示  
+* <Wovn>［小数部の桁数］</Wovn>を「0」にすると、「税込み価格」フィールドは「100」と表示  
+ ※「税込み価格」フィールドの計算式が「税抜き価格*1」となるため  
+  
+<Wovn>［小数部の桁数］</Wovn>を「0」にした状態で「税込み価格」フィールドの結果を「110」と表示したい場合、「税込み価格」フィールドの計算式を「税抜き価格*110/100」と設定する必要があります。  
+
+<Hint>
+
+計算結果を四捨五入、切り捨て、切り上げしたい場合は、<Wovn>［高度な設定］</Wovn>の設定ではなく、次のどちらかを行ってください。  
+
+* 計算式でROUND関数・ROUNDDOWN関数・ROUNDUP関数を使用する  
+* <Wovn>［計算］</Wovn>フィールドの設定にある<Wovn>［小数点以下の表示桁数］</Wovn>を指定する  
+
+詳しくは、次のページを参照してください。  
+[四捨五入、切り捨て、切り上げするときの設定の使い分け](/k/ja/id/040508.html)
+
+</Hint>
+
+<Reference>
+
+[計算式の設定](/k/ja/id/040495.html)  
+[数値の有効桁数と丸めかたを設定する](/k/ja/id/040482.html)
+
+</Reference>

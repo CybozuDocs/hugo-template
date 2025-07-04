@@ -1,0 +1,27 @@
+---
+title: "{{< kintone >}}にアップロードした添付ファイルを一括でダウンロードすることは可能ですか？"
+weight: 5100
+aliases:
+  - "/ja/id/040184"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Kintone from "@/components/Kintone.astro";
+
+
+アプリなどに添付されている複数のファイルを、一括でダウンロードすることはできません。お手数ですが、1ファイルずつダウンロードしてください。
+
+参考となりますが、APIを利用することで、添付ファイルを一括でダウンロードすることは可能です。
+
+<Enabled regions={["JP"]}>
+APIのマニュアルやサンプルコードなど、APIに関する情報はcybozu developer networkで公開しています。以下のページを参考にしてください（日本語のみ）。
+
+* [<Kintone /> コマンドラインツール（cli-kintone）](https://cybozu.dev/ja/kintone/sdk/backup/cli-kintone/)
+* [<Kintone />の添付ファイルをJSZipで一括ダウンロードしよう](https://cybozu.dev/ja/kintone/tips/development/customize/file/jszip-download/)
+* [ファイルダウンロードで必須となる2つの手順](https://cybozu.dev/ja/kintone/tips/development/customize/file/steps-download-files/)
+
+APIのお問い合わせについては、以下のページを参照してください。  
+[API、カスタマイズ、プラグインや連携サービスに関する問い合わせ](/k/ja/id/040274.html)
+
+</Enabled>
