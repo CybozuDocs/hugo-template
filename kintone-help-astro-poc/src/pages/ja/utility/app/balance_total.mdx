@@ -1,0 +1,114 @@
+---
+title: "前回の残高の累計を引き継いで、集計したい"
+weight: 2500
+aliases:
+  - "/ja/id/040738"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+
+
+アクション機能を利用することで、「前回の累計を引継いで集計する」運用を行うことが可能です。  
+[アプリアクションの設定](/k/ja/id/040484.html)
+
+ここでは、前日までの残高の累計に入金や出金などを加減算して、最新の累計を算出する方法を紹介します。
+
+<Heading id="app_balance_total_10">フィールドを設定する</Heading>
+
+アプリのフォームに、以下のフィールドを配置します。なお、アプリ名は「入出金アプリ」とします。
+
+<table>
+<caption>フィールドの設定例</caption>
+    <thead>
+        <tr>
+            <th>フィールド名</th>
+            <th>フィールドコード</th>
+            <th>フィールドタイプ</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td>日付</td>
+        <td>日付</td>
+        <td>日付</td>
+        </tr>
+        <tr>
+        <td>前日残高</td>
+        <td>前日残高</td>
+        <td>数値</td>
+        </tr>
+        <tr>
+        <td>入金</td>
+        <td>入金</td>
+        <td>数値</td>
+        </tr>
+        <tr>
+        <td>出金</td>
+        <td>出金</td>
+        <td>数値</td>
+        </tr>
+        <td>残高累計</td>
+        <td>残高累計</td>
+        <tr>
+        <td>
+          計算<br />
+          - 計算式：前日残高 + 入金 - 出金<br />
+        </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+
+フィールドの配置後、フォームを保存してください。
+
+<Heading id="app_balance_total_20">アクションを設定する</Heading>
+
+次に、アクションを設定します。
+
+1. アプリの設定画面で「設定」タブを選択し、「その他の設定」の[アクション]をクリックします。
+1. 画面左上の[作成]をクリックします。
+1. アクションの設定を行い、[保存]をクリックします。  
+設定例は次のとおりです。
+    <table>
+    <caption>アクションの設定例</caption>
+    <tbody>
+    <tr>
+        <td>アクション名</td>
+        <td>累計を引き継いで登録</td>
+        </tr>
+        <tr>
+        <td>コピー先</td>
+        <td>入出金アプリ（このアプリ）</td>
+        </tr>
+        <tr>
+        <td>フィールドの関連付け</td>
+        <td>残高累計　→　前日残高</td>
+        </tr>
+        <tr>
+        <td>アクションの利用者</td>
+        <td>Everyone</td>
+        </tr>
+    </tbody>
+    </table>
+
+   <Img src="/k/kintone/img-ja/balance_total01.png" alt="アクションの設定例の画面" />
+
+1. アプリの設定に戻り、画面右上の[アプリを更新]をクリックします。
+
+1. 確認ダイアログで[アプリを更新]をクリックします。
+
+<Heading id="app_balance_total_30">レコードを登録し、残高の累計を引き継いで集計する</Heading>
+
+1. 入出金アプリを開き、画面の右上にある「レコードを追加する」アイコンをクリックします。
+1. 各フィールドに数字を入力して、レコードを保存します。  
+「残高累計」は計算式で自動的に入力されます。
+<Img src="/k/kintone/img-ja/balance_total02.png" alt="「残高累計」が自動的に表示されている画面" />
+1. 手順2で登録したレコードの詳細画面で、[累計を引き継いで登録]をクリックします。  
+前日残高が入力された状態で新しいレコード登録画面が開きます。
+<Img src="/k/kintone/img-ja/balance_total03.png" alt="「累計を引き継いで登録」ボタンの位置を示している" />
+1. 日付を変更し、入金や出金を入力してレコードを保存します。
+   <Img src="/k/kintone/img-ja/balance_total04.png" alt="残高累計が引き継がれた状態の画面" />
+
+残高累計が前日残高に引き継がれた状態で、翌日のレコードを保存できます。

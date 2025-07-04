@@ -130,5 +130,20 @@ export default {
         );
       },
     },
+    {
+      filePath: "utility/app/balance_total.md",
+      transform: (content) => {
+        // Fix missing opening tr tag and remove unnecessary closing tr tag
+        return content
+          .replaceAll(
+            "        <td>残高累計</td>\n        <td>残高累計</td>\n        <td>計算</br>\n            - 計算式：前日残高 + 入金 - 出金</br>\n        </td>\n        </tr>",
+            "        <tr>\n        <td>残高累計</td>\n        <td>残高累計</td>\n        <td>計算</br>\n            - 計算式：前日残高 + 入金 - 出金</br>\n        </td>\n        </tr>"
+          )
+          .replaceAll(
+            "        <td>アクションの利用者</td>\n        <td>Everyone</td>\n        </tr>\n        <tr>",
+            "        <td>アクションの利用者</td>\n        <td>Everyone</td>\n        </tr>"
+          );
+      },
+    },
   ],
 };
