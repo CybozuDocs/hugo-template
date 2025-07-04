@@ -154,6 +154,30 @@ describe('processShortcodes', () => {
       expect(result.imports).toContain('import Enabled from "@/components/Enabled.astro";');
     });
 
+    it('インライン形式のenabled2を正しく変換する', () => {
+      const input = 'グループウェア{{< enabled2 JP >}}（Garoonなど）{{< /enabled2 >}}のようなスケジュール機能はありません。';
+      const result = processShortcodes(input);
+      
+      const expected = 'グループウェア<Enabled regions={["JP"]}>（Garoonなど）</Enabled>のようなスケジュール機能はありません。';
+      expect(result.content).toBe(expected);
+      expect(result.imports).toContain('import Enabled from "@/components/Enabled.astro";');
+      expect(result.converted).toBe(true);
+    });
+
+    it('enabled2が誤ってEnabledに属性形式で変換されないことを確認', () => {
+      const input = 'グループウェア{{< enabled2 JP >}}（Garoonなど）{{< /enabled2 >}}のようなスケジュール機能はありません。';
+      const result = processShortcodes(input);
+      
+      // 期待しない結果のパターン
+      const unexpectedPattern1 = 'グループウェア<Enabled2 regions={["JP"]} />（Garoonなど）';
+      const unexpectedPattern2 = '&#123;&#123;< /enabled2 >&#125;&#125;';
+      
+      expect(result.content).not.toContain('Enabled2');
+      expect(result.content).not.toContain(unexpectedPattern1);
+      expect(result.content).not.toContain(unexpectedPattern2);
+      expect(result.content).not.toContain('&#123;&#123;');
+    });
+
     it('ネストされたショートコードを処理する', () => {
       const input = `{{< note >}}
 {{< kintone >}}の使い方について説明します。

@@ -1,0 +1,81 @@
+---
+title: "{{< kintone >}}でスケジュールを管理するには"
+weight: 600
+aliases:
+  - "/ja/id/040740"
+description: "{{< kintone >}}でスケジュール管理をする方法として、アプリのトップページをカレンダー形式で表示する方法を紹介しています。"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+<Kintone />では、アプリのトップページをカレンダー形式で表示できます。  
+社内イベント管理アプリや、採用面談予定アプリなど、カレンダー上でスケジュールを管理したい場合に活用してみましょう。  
+グループウェア<Enabled regions={["JP"]}>（Garoonなど）</Enabled>のようなスケジュール機能はありません。  
+<Img src="/k/kintone/img-ja/calendar_02.png" alt="スクリーンショット：レコードの一覧がカレンダー形式で表示されている" />
+
+アプリのトップページをカレンダー形式で表示するには、カレンダー形式に設定した一覧を、デフォルトの一覧に設定します。
+
+<Heading id="app_calendar_10">手順</Heading>
+
+カレンダー形式の一覧をアプリに追加し、アプリのトップページに表示する手順を説明します。  
+この操作には、そのアプリの管理権限が必要です。
+
+1. 「レコードの一覧」画面で、画面右上にある歯車の形をした[アプリを設定]アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_shortcut_icon.png" alt="スクリーンショット：[アプリを設定]アイコンが枠線で強調されている" />
+
+1. 「アプリの設定」画面で、[一覧]タブをクリックします。
+
+1. 画面右側の+の形をした[一覧を追加する]アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/calendar_03.png" alt="スクリーンショット：[一覧を追加する]アイコンが枠線で強調されている" />
+
+1. 「一覧」画面で、「一覧名」に一覧の名前を入力します。
+
+1. 「レコード一覧の表示形式」で[カレンダー形式]を選択します。  
+   <Img src="/k/kintone/img-ja/calendar_04.png" alt="スクリーンショット：[カレンダー形式]が選択されている" />
+
+1. 「日付」と「タイトル」に指定するフィールドを、それぞれ選択します。  
+   「日付」にはカレンダーの日付にするフィールド、「タイトル」にはタイトルとして表示するフィールドを選択します。  
+    詳細は、次のページを参照してください。  
+     [カレンダー形式を選択した場合](/k/ja/id/040612.html#view_set_view_2020)  
+    <Img src="/k/kintone/img-ja/calendar_05.png" alt="スクリーンショット：「日付」と「タイトル」のフィールドが選択されている" />
+
+1. 必要に応じて、「絞り込み」でレコードの条件を設定します。
+
+1. 画面右下の[保存]をクリックします。
+
+1. 「アプリの設定」画面で、作成した一覧の左側にある[ドラッグして並び替え]アイコンをドラッグアンドドロップし、作成した一覧を一番上に移動してデフォルトの一覧に設定します。  
+   <Img src="/k/kintone/img-ja/calendar_06.png" alt="スクリーンショット：作成した一覧が一番上に並べ替えられている" />
+
+1. 画面右上の[アプリを更新]をクリックします。
+
+1. 「アプリを更新」ダイアログで[アプリを更新]をクリックします。
+
+<Reference>
+
+* [一覧を設定する](/k/ja/id/040612.html)
+* [デフォルトの一覧を変更する](/k/ja/id/040607.html)
+* [一覧とは](/k/ja/id/040614.html)
+
+</Reference>
+
+<Enabled regions={["JP"]}>
+<Note>
+
+* ご契約によっては、プラグインを利用してカレンダー形式で表示することもできます。  
+  ご契約の詳細は、次の製品サイトを参照してください。  
+  [料金](https://kintone.cybozu.co.jp/price/)（日本語のみ）  
+  プラグインの詳細は、次の製品サイトを参照してください。  
+  [カレンダー機能を追加するプラグイン](https://kintone-sol.cybozu.co.jp/integrate/search/?keyword=カレンダー)（日本語のみ）
+* Garoonやサイボウズ Officeのクラウド版を<Kintone />と併用している場合は、<Kintone />のプラグインを利用すると、<Kintone />のアプリのデータをGaroonやサイボウズ Officeの予定とひも付けできます。  
+  [Garoon スケジュール連携を設定する](/k/ja/id/0406.html)  
+  [サイボウズ Officeのスケジュールと連携する](/k/ja/id/040837.html)
+</Note>
+
+</Enabled>

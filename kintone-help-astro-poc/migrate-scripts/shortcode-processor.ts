@@ -53,9 +53,6 @@ export const SHORTCODE_MAPPINGS: ShortcodeMapping = {
   // Components with attributes
   attributes: {
     'screen': ['src', 'alt'],
-    'enabled': ['regions'],
-    'enabled2': ['regions'],
-    'disabled2': ['regions'],
     'heading': ['level', 'id', 'class'],
     'tile_img': ['src', 'alt'],
     'tile_img3': ['src', 'alt'],
@@ -140,51 +137,84 @@ function processContentShortcodes(
         }
       }
     } else {
-      // Match opening and closing tags with content, handling attributes and preserving indentation
-      const regex = new RegExp(
+      // First, handle inline formats (not starting at line beginning)
+      const inlineRegex = new RegExp(
+        `(?<!^\\s*)\\{\\{<\\s*${shortcode}(\\s+[^>]*)?\\s*>\\}\\}([\\s\\S]*?)\\{\\{<\\s*/${shortcode}\\s*>\\}\\}`,
+        'gm'
+      );
+      
+      const inlineMatches = Array.from(processed.matchAll(inlineRegex));
+      
+      // Process inline matches first
+      for (const match of inlineMatches) {
+        const fullMatch = match[0];
+        const attributeString = match[1];
+        const innerContent = match[2];
+        
+        let replacement;
+        if (attributeString && (shortcode === 'enabled' || shortcode === 'enabled2' || shortcode === 'disabled2')) {
+          try {
+            const attributes = parseAttributes(attributeString.trim());
+            let astroAttributes = '';
+            if (attributes.regions) {
+              const regions = attributes.regions.split(',').map(r => r.trim());
+              astroAttributes = ` regions={[${regions.map(r => `"${r}"`).join(', ')}]}`;
+            }
+            replacement = `<${component}${astroAttributes}>${innerContent}</${component}>`;
+          } catch (error) {
+            replacement = `<${component}>${innerContent}</${component}>`;
+          }
+        } else {
+          replacement = `<${component}>${innerContent}</${component}>`;
+        }
+        
+        processed = processed.replace(fullMatch, replacement);
+        imports.add(`import ${component} from "@/components/${component}.astro";`);
+      }
+      
+      // Then handle block formats (starting at line beginning) - original logic
+      const blockRegex = new RegExp(
         `^(\\s*)\\{\\{<\\s*${shortcode}(\\s+[^>]*)?\\s*>\\}\\}([\\s\\S]*?)^(\\s*)\\{\\{<\\s*/${shortcode}\\s*>\\}\\}`,
         'gm'
       );
       
-      const matches = Array.from(processed.matchAll(regex));
+      const blockMatches = Array.from(processed.matchAll(blockRegex));
       
-      if (matches.length > 0) {
-        for (const match of matches) {
-          const fullMatch = match[0];
-          const indent = match[1]; // Capture leading whitespace
-          const attributeString = match[2];
-          const innerContent = match[3];
-          const closingIndent = match[4]; // Capture closing tag indent (but use opening indent for consistency)
-          
-          // Only adjust content indentation for problematic cases
-          // Check if any line in the content has insufficient indentation
-          const hasProblematicIndentation = checkForProblematicIndentation(innerContent, indent);
-          const adjustedInnerContent = hasProblematicIndentation 
-            ? adjustContentIndentation(innerContent, indent)
-            : innerContent;
-          
-          // Handle special cases and attributes
-          let replacement;
-          if (attributeString && (shortcode === 'enabled' || shortcode === 'enabled2' || shortcode === 'disabled2')) {
-            // Handle attributes for enabled/disabled2
-            try {
-              const attributes = parseAttributes(attributeString.trim());
-              let astroAttributes = '';
-              if (attributes.regions) {
-                const regions = attributes.regions.split(',').map(r => r.trim());
-                astroAttributes = ` regions={[${regions.map(r => `"${r}"`).join(', ')}]}`;
-              }
-              replacement = `${indent}<${component}${astroAttributes}>${adjustedInnerContent}${indent}</${component}>`;
-            } catch (error) {
-              replacement = `${indent}<${component}>${adjustedInnerContent}${indent}</${component}>`;
+      for (const match of blockMatches) {
+        const fullMatch = match[0];
+        const indent = match[1]; // Capture leading whitespace
+        const attributeString = match[2];
+        const innerContent = match[3];
+        const closingIndent = match[4]; // Capture closing tag indent (but use opening indent for consistency)
+        
+        // Only adjust content indentation for problematic cases
+        // Check if any line in the content has insufficient indentation
+        const hasProblematicIndentation = checkForProblematicIndentation(innerContent, indent);
+        const adjustedInnerContent = hasProblematicIndentation 
+          ? adjustContentIndentation(innerContent, indent)
+          : innerContent;
+        
+        // Handle special cases and attributes
+        let replacement;
+        if (attributeString && (shortcode === 'enabled' || shortcode === 'enabled2' || shortcode === 'disabled2')) {
+          // Handle attributes for enabled/disabled2
+          try {
+            const attributes = parseAttributes(attributeString.trim());
+            let astroAttributes = '';
+            if (attributes.regions) {
+              const regions = attributes.regions.split(',').map(r => r.trim());
+              astroAttributes = ` regions={[${regions.map(r => `"${r}"`).join(', ')}]}`;
             }
-          } else {
+            replacement = `${indent}<${component}${astroAttributes}>${adjustedInnerContent}${indent}</${component}>`;
+          } catch (error) {
             replacement = `${indent}<${component}>${adjustedInnerContent}${indent}</${component}>`;
           }
-          
-          processed = processed.replace(fullMatch, replacement);
-          imports.add(`import ${component} from "@/components/${component}.astro";`);
+        } else {
+          replacement = `${indent}<${component}>${adjustedInnerContent}${indent}</${component}>`;
         }
+        
+        processed = processed.replace(fullMatch, replacement);
+        imports.add(`import ${component} from "@/components/${component}.astro";`);
       }
     }
   }
