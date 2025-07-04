@@ -331,8 +331,7 @@ function checkForProblematicIndentation(content: string, baseIndent: string): bo
   }
   
   const lines = content.split('\n');
-  let hasContentWithoutIndent = false;
-  let hasContentWithIndent = false;
+  let hasContentWithInsufficientIndent = false;
   
   for (const line of lines) {
     // Skip empty lines
@@ -344,23 +343,16 @@ function checkForProblematicIndentation(content: string, baseIndent: string): bo
     const currentIndentMatch = line.match(/^(\s*)/);
     const currentIndent = currentIndentMatch ? currentIndentMatch[1] : '';
     
-    if (currentIndent.length === 0) {
-      hasContentWithoutIndent = true;
-    } else if (currentIndent.length > 0) {
-      hasContentWithIndent = true;
+    // Check if content has insufficient indentation (less than baseIndent)
+    if (currentIndent.length < baseIndent.length) {
+      hasContentWithInsufficientIndent = true;
+      break;
     }
   }
   
-  // Only consider it problematic if we have a mixed situation:
-  // - Some content with no indentation AND the base tag has indentation
-  // - This indicates the content needs to be adjusted to match the tag's level
-  // BUT: if ALL content has no indentation, it might be intentional (like warning/hint content)
-  // So we need a more nuanced check: only if baseIndent > 0 AND we have content that starts at 0 indent
-  // AND that content should logically be indented (like content inside an indented Note)
-  
-  // For now, be very conservative: only adjust if baseIndent > 0 and we have unindented content
-  // that appears to be problematic (like when the opening tag itself is indented significantly)
-  return baseIndent.length > 0 && hasContentWithoutIndent && baseIndent.length >= 3;
+  // Consider it problematic if we have content with insufficient indentation
+  // and the base tag has significant indentation (indicating nested structure)
+  return baseIndent.length > 0 && hasContentWithInsufficientIndent && baseIndent.length >= 3;
 }
 
 function adjustContentIndentation(content: string, baseIndent: string): string {
@@ -424,8 +416,8 @@ function adjustContentIndentation(content: string, baseIndent: string): string {
           // Link lines that are sub-items should be indented 2 spaces more than baseIndent
           newIndent = baseIndent + '  ';
         } else {
-          // Regular content should be indented one space more than baseIndent
-          newIndent = baseIndent + ' ';
+          // Regular content should be indented by adding baseIndent to current indentation
+          newIndent = baseIndent + currentIndent;
         }
       }
       

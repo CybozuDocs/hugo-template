@@ -350,4 +350,22 @@ describe('processShortcodes', () => {
       expect(result.converted).toBe(true);
     });
   });
+
+  describe('深いインデントでの問題', () => {
+    it('深いインデントでのhintコンポーネントの内容インデントを適切に調整する', () => {
+      const input = `      {{< hint >}}
+   スレッドの作成手順については、次のページを参照してください。
+   [スレッドでチームメンバーとやり取りしてみよう](/k/ja/id/040144.html)
+      {{< /hint >}}`;
+      const result = processShortcodes(input);
+      
+      const expected = `      <Hint>
+         スレッドの作成手順については、次のページを参照してください。
+         [スレッドでチームメンバーとやり取りしてみよう](/k/ja/id/040144.html)
+      </Hint>`;
+      expect(result.content).toBe(expected);
+      expect(result.imports).toContain('import Hint from "@/components/Hint.astro";');
+      expect(result.converted).toBe(true);
+    });
+  });
 });
