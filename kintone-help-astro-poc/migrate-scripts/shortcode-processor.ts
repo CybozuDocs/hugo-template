@@ -325,8 +325,11 @@ function convertToAstroAttributes(
 }
 
 function checkForProblematicIndentation(content: string, baseIndent: string): boolean {
-  // If baseIndent is empty, no indentation issues possible
-  if (baseIndent.length === 0) {
+  // Clean baseIndent - remove any newlines and keep only spaces/tabs
+  const cleanBaseIndent = baseIndent.replace(/\n/g, '');
+  
+  // If baseIndent is empty after cleaning, no indentation issues possible
+  if (cleanBaseIndent.length === 0) {
     return false;
   }
   
@@ -343,101 +346,65 @@ function checkForProblematicIndentation(content: string, baseIndent: string): bo
     const currentIndentMatch = line.match(/^(\s*)/);
     const currentIndent = currentIndentMatch ? currentIndentMatch[1] : '';
     
-    // Check if content has insufficient indentation (less than baseIndent)
-    if (currentIndent.length < baseIndent.length) {
+    // Check if content has insufficient indentation (less than cleanBaseIndent)
+    if (currentIndent.length < cleanBaseIndent.length) {
       hasContentWithInsufficientIndent = true;
       break;
     }
   }
   
-  // Consider it problematic if we have content with insufficient indentation
-  // and the base tag has significant indentation (indicating nested structure)
-  return baseIndent.length > 0 && hasContentWithInsufficientIndent && baseIndent.length >= 3;
+  return hasContentWithInsufficientIndent;
 }
 
 function adjustContentIndentation(content: string, baseIndent: string): string {
-  // Don't adjust if baseIndent is empty (no indentation needed)
-  if (baseIndent.length === 0) {
+  // Clean baseIndent - remove any newlines and keep only spaces/tabs
+  const cleanBaseIndent = baseIndent.replace(/\n/g, '');
+  
+  // Don't adjust if baseIndent is empty after cleaning
+  if (cleanBaseIndent.length === 0) {
     return content;
   }
   
   const lines = content.split('\n');
-  const adjustedLines: string[] = [];
   
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    
-    // Handle empty lines
+  // First pass: find the maximum indentation deficit
+  let maxDeficit = 0;
+  for (const line of lines) {
+    // Skip empty lines
     if (line.trim() === '') {
-      // Check if this empty line is between a list item and its immediate sub-content
-      if (i > 0 && i + 1 < lines.length) {
-        const prevLine = lines[i - 1].trim();
-        const nextLineRaw = lines[i + 1];
-        const nextLine = nextLineRaw.trim();
-        
-        // If previous line is a list item and next line is indented content (link or text), skip this empty line
-        if (prevLine.startsWith('* ') && nextLine.length > 0 && !nextLine.startsWith('* ') && (nextLine.startsWith('[') || nextLineRaw.startsWith('  ') || nextLineRaw.startsWith('\t'))) {
-          continue;
-        }
-      }
-      
-      adjustedLines.push('');
       continue;
     }
     
     // Calculate current indentation
     const currentIndentMatch = line.match(/^(\s*)/);
     const currentIndent = currentIndentMatch ? currentIndentMatch[1] : '';
-    const trimmedLine = line.trim();
     
-    // Only adjust lines that have insufficient indentation (strictly less than baseIndent length)
-    if (currentIndent.length < baseIndent.length) {
-      // Determine the appropriate indentation based on content type
-      let newIndent: string;
-      
-      // Check if this is a list item or sub-item
-      if (trimmedLine.startsWith('* ')) {
-        // List items should align with the opening tag (same as baseIndent)
-        newIndent = baseIndent;
-      } else {
-        // Check the context: if the previous non-empty line was a list item,
-        // this should be indented as a sub-item
-        let isSubItem = false;
-        for (let j = adjustedLines.length - 1; j >= 0; j--) {
-          const prevLine = adjustedLines[j].trim();
-          if (prevLine === '') continue; // Skip empty lines
-          if (prevLine.startsWith('* ')) {
-            isSubItem = true;
-          }
-          break; // Found the first non-empty previous line
-        }
-        
-        if (isSubItem && trimmedLine.startsWith('[')) {
-          // Link lines that are sub-items should be indented 2 spaces more than baseIndent
-          newIndent = baseIndent + '  ';
-        } else {
-          // Regular content should be indented by adding baseIndent to current indentation
-          newIndent = baseIndent + currentIndent;
-        }
-      }
-      
-      adjustedLines.push(newIndent + trimmedLine);
-    } else {
-      // Keep the line as is - it already has sufficient indentation
-      adjustedLines.push(line);
-    }
+    // Calculate deficit (how much indentation is missing)
+    const deficit = Math.max(0, cleanBaseIndent.length - currentIndent.length);
+    maxDeficit = Math.max(maxDeficit, deficit);
   }
   
-  // Remove consecutive empty lines while preserving single empty lines
-  let result = adjustedLines.join('\n');
+  // If no deficit, return content as-is
+  if (maxDeficit === 0) {
+    return content;
+  }
   
-  // Remove triple or more newlines, replace with double newlines
-  result = result.replace(/\n\n\n+/g, '\n\n');
+  // Second pass: apply the adjustment
+  const adjustedLines: string[] = [];
+  const additionalIndent = ' '.repeat(maxDeficit);
   
-  // Remove empty lines between list items and their sub-content
-  result = result.replace(/(\n\s*\*[^\n]*)\n\n(\s+\[[^\]]+\])/g, '$1\n$2');
+  for (const line of lines) {
+    // Handle empty lines - preserve them as they are
+    if (line.trim() === '') {
+      adjustedLines.push(line);
+      continue;
+    }
+    
+    // Add the additional indent to all non-empty lines
+    adjustedLines.push(additionalIndent + line);
+  }
   
-  return result;
+  return adjustedLines.join('\n');
 }
 
 function findNextNonEmptyLine(lines: string[], startIndex: number): number {

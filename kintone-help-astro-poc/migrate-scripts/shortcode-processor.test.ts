@@ -351,7 +351,73 @@ describe('processShortcodes', () => {
     });
   });
 
-  describe('深いインデントでの問題', () => {
+  describe('インデント調整の問題', () => {
+    it('ユーザーが指摘したインデント問題の例1', () => {
+      const input = `{{< hint >}}
+xxx
+
+  yyy
+{{< /hint >}}`;
+      const result = processShortcodes(input);
+      
+      const expected = `<Hint>
+xxx
+
+  yyy
+</Hint>`;
+      expect(result.content).toBe(expected);
+      expect(result.imports).toContain('import Hint from "@/components/Hint.astro";');
+      expect(result.converted).toBe(true);
+    });
+
+    it('ユーザーが指摘したインデント問題の例2', () => {
+      const input = `   {{< hint >}}
+   xxx
+   {{< /hint >}}`;
+      const result = processShortcodes(input);
+      
+      const expected = `   <Hint>
+   xxx
+   </Hint>`;
+      expect(result.content).toBe(expected);
+      expect(result.imports).toContain('import Hint from "@/components/Hint.astro";');
+      expect(result.converted).toBe(true);
+    });
+
+    it('ユーザーが指摘したインデント問題の例3', () => {
+      const input = `   {{< hint >}}
+  xxx
+
+   yyy
+   {{< /hint >}}`;
+      const result = processShortcodes(input);
+      
+      const expected = `   <Hint>
+   xxx
+
+    yyy
+   </Hint>`;
+      expect(result.content).toBe(expected);
+      expect(result.imports).toContain('import Hint from "@/components/Hint.astro";');
+      expect(result.converted).toBe(true);
+    });
+
+    it('ユーザーが指摘した実際のファイルの例', () => {
+      const input = `     {{< hint >}}
+  スレッドの作成手順については、次のページを参照してください。
+  [スレッドでチームメンバーとやり取りしてみよう](/k/ja/id/040144.html)
+     {{< /hint >}}`;
+      const result = processShortcodes(input);
+      
+      const expected = `     <Hint>
+     スレッドの作成手順については、次のページを参照してください。
+     [スレッドでチームメンバーとやり取りしてみよう](/k/ja/id/040144.html)
+     </Hint>`;
+      expect(result.content).toBe(expected);
+      expect(result.imports).toContain('import Hint from "@/components/Hint.astro";');
+      expect(result.converted).toBe(true);
+    });
+
     it('深いインデントでのhintコンポーネントの内容インデントを適切に調整する', () => {
       const input = `      {{< hint >}}
    スレッドの作成手順については、次のページを参照してください。
@@ -359,12 +425,69 @@ describe('processShortcodes', () => {
       {{< /hint >}}`;
       const result = processShortcodes(input);
       
+      // コンテンツのインデントが開始・終了タグより小さい場合、最低限開始タグのインデント数に調整
       const expected = `      <Hint>
-         スレッドの作成手順については、次のページを参照してください。
-         [スレッドでチームメンバーとやり取りしてみよう](/k/ja/id/040144.html)
+      スレッドの作成手順については、次のページを参照してください。
+      [スレッドでチームメンバーとやり取りしてみよう](/k/ja/id/040144.html)
       </Hint>`;
       expect(result.content).toBe(expected);
       expect(result.imports).toContain('import Hint from "@/components/Hint.astro";');
+      expect(result.converted).toBe(true);
+    });
+
+    it('実際のファイルの形式：不要な空行が挿入される問題を検証', () => {
+      // このテストケースは実際の変換前ファイルの内容と同じ形式
+      const input = `1. 画面左側のフィールド一覧から、{{< wv_brk >}}［ドロップダウン］{{< /wv_brk >}}というフィールドを右側のエリアにドラッグアンドドロップします。
+  ![動画：［ドロップダウン］フィールドをフォームに配置している](/k/img-ja/app_setting_change_img02.gif)
+
+   {{< note >}}
+   アプリの設定を変更すると、画面上部に次のようなメッセージが表示されます。  
+   バナーの内容：  
+   反映前の変更があります　変更した設定をアプリに反映するには、[アプリを更新]ボタンをクリックします（ヘルプ）。  
+   <br>
+   このバナーは、変更した設定がアプリにまだ反映されていないことを示しています。手順9と手順10に従って、アプリを更新すると、変更した設定がアプリに反映され、バナーが消えます。
+   ![スクリーンショット：反映前の変更があることを示すバナー](/k/img-ja/app_setting_change_img06.png)
+   {{< /note >}}`;
+      const result = processShortcodes(input);
+      
+      // 問題のある出力：各行の間に空行が挿入される
+      const problematicExpected = `1. 画面左側のフィールド一覧から、<Wovn>［ドロップダウン］</Wovn>というフィールドを右側のエリアにドラッグアンドドロップします。
+  <Img src="/k/kintone/img-ja/app_setting_change_img02.gif" alt="動画：［ドロップダウン］フィールドをフォームに配置している" />
+
+   <Note>
+
+      アプリの設定を変更すると、画面上部に次のようなメッセージが表示されます。
+
+      バナーの内容：
+
+      反映前の変更があります　変更した設定をアプリに反映するには、[アプリを更新]ボタンをクリックします（ヘルプ）。
+
+      <br />
+
+      このバナーは、変更した設定がアプリにまだ反映されていないことを示しています。手順9と手順10に従って、アプリを更新すると、変更した設定がアプリに反映され、バナーが消えます。
+
+      <Img src="/k/kintone/img-ja/app_setting_change_img06.png" alt="スクリーンショット：反映前の変更があることを示すバナー" />
+
+   </Note>`;
+      
+      // 期待される正しい出力：空行が挿入されない
+      const expectedCorrect = `1. 画面左側のフィールド一覧から、<Wovn>［ドロップダウン］</Wovn>というフィールドを右側のエリアにドラッグアンドドロップします。
+  ![動画：［ドロップダウン］フィールドをフォームに配置している](/k/img-ja/app_setting_change_img02.gif)
+
+   <Note>
+   アプリの設定を変更すると、画面上部に次のようなメッセージが表示されます。  
+   バナーの内容：  
+   反映前の変更があります　変更した設定をアプリに反映するには、[アプリを更新]ボタンをクリックします（ヘルプ）。  
+   <br>
+   このバナーは、変更した設定がアプリにまだ反映されていないことを示しています。手順9と手順10に従って、アプリを更新すると、変更した設定がアプリに反映され、バナーが消えます。
+   ![スクリーンショット：反映前の変更があることを示すバナー](/k/img-ja/app_setting_change_img06.png)
+
+   </Note>`;
+      
+      // 修正後、不要な空行が挿入されないことを確認
+      expect(result.content).toBe(expectedCorrect);
+      expect(result.imports).toContain('import Note from "@/components/Note.astro";');
+      expect(result.imports).toContain('import Wovn from "@/components/Wovn.astro";');
       expect(result.converted).toBe(true);
     });
   });
