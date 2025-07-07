@@ -68,6 +68,7 @@
 }
 
 .top-page-card {
+  font-family: inherit;
   width: 300px;
   min-height: 50px;
   background-color: var(--item-bg-color);
