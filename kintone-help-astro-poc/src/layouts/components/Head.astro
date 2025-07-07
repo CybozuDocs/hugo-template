@@ -37,8 +37,7 @@ const generateSiteName = () => {
 
 // ページタイトルの生成
 const generateTitle = () => {
-  // TODO: Title コンポーネントの出力を取得
-  const baseTitle = ""; // Title コンポーネントから取得
+  const baseTitle = page.frontmatter.title;
   const sitename = generateSiteName();
 
   if (!page.isHome) {
@@ -50,11 +49,9 @@ const generateTitle = () => {
 // 説明文の生成
 const generateDescription = () => {
   if (page.frontmatter.description) {
-    // TODO: ApplyParams コンポーネントの機能を利用
     return page.frontmatter.description;
   }
 
-  // TODO: i18n の実装
   const descBase = `${env.productName}の${env.help}です。`;
   const desc2 = `${env.productName}を利用するために必要な設定や操作方法などを説明します。`;
 
@@ -97,6 +94,7 @@ const activeChatTargets = processChatSettings();
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="IE=11" />
+{/* @ts-expect-error */}
 <meta name="date" content={buildnum} scheme="YYYYMMDD" />
 <meta name="cy-template-version" content="2" />
 <meta name="cy-product-name" content="kintone" />
