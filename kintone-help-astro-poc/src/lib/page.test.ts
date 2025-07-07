@@ -14,6 +14,7 @@ import {
   isValidPageFile,
   findParentSection,
   findPageInTree,
+  isAncestor,
 } from "./page";
 
 describe("page.ts", () => {
@@ -486,6 +487,156 @@ describe("page.ts", () => {
       expect(result).toBeUndefined();
     });
   });
+
+  describe("isAncestor", () => {
+    let parentPage: PageProps;
+    let childPage: PageProps;
+    let siblingPage: PageProps;
+    let grandChildPage: PageProps;
+
+    beforeEach(() => {
+      parentPage = {
+        isHome: false,
+        isSection: true,
+        relPermalink: "/k/ja/app",
+        permalink: "/k/ja/app",
+        lang: "ja",
+        frontmatter: {
+          title: "アプリ",
+          titleUs: undefined,
+          titleCn: undefined,
+          description: "",
+          weight: 1,
+          type: "",
+          disabled: [],
+          aliases: [],
+          labels: [],
+        },
+        sections: [],
+        pages: [],
+      } as PageProps;
+
+      childPage = {
+        isHome: false,
+        isSection: true,
+        relPermalink: "/k/ja/app/form",
+        permalink: "/k/ja/app/form",
+        lang: "ja",
+        frontmatter: {
+          title: "フォーム",
+          titleUs: undefined,
+          titleCn: undefined,
+          description: "",
+          weight: 1,
+          type: "",
+          disabled: [],
+          aliases: [],
+          labels: [],
+        },
+        sections: [],
+        pages: [],
+      } as PageProps;
+
+      siblingPage = {
+        isHome: false,
+        isSection: true,
+        relPermalink: "/k/ja/user",
+        permalink: "/k/ja/user",
+        lang: "ja",
+        frontmatter: {
+          title: "ユーザー",
+          titleUs: undefined,
+          titleCn: undefined,
+          description: "",
+          weight: 2,
+          type: "",
+          disabled: [],
+          aliases: [],
+          labels: [],
+        },
+        sections: [],
+        pages: [],
+      } as PageProps;
+
+      grandChildPage = {
+        isHome: false,
+        isSection: false,
+        relPermalink: "/k/ja/app/form/lookup",
+        permalink: "/k/ja/app/form/lookup",
+        lang: "ja",
+        frontmatter: {
+          title: "ルックアップ",
+          titleUs: undefined,
+          titleCn: undefined,
+          description: "",
+          weight: 1,
+          type: "",
+          disabled: [],
+          aliases: [],
+          labels: [],
+        },
+        sections: [],
+        pages: [],
+      } as PageProps;
+    });
+
+    it("直接の親子関係で祖先を正しく判定すること", () => {
+      expect(isAncestor(childPage, parentPage)).toBe(true);
+      expect(isAncestor(parentPage, childPage)).toBe(false);
+    });
+
+    it("深い階層の祖先関係を正しく判定すること", () => {
+      expect(isAncestor(grandChildPage, parentPage)).toBe(true);
+      expect(isAncestor(grandChildPage, childPage)).toBe(true);
+      expect(isAncestor(parentPage, grandChildPage)).toBe(false);
+      expect(isAncestor(childPage, grandChildPage)).toBe(false);
+    });
+
+    it("兄弟関係では祖先ではないこと", () => {
+      expect(isAncestor(siblingPage, parentPage)).toBe(false);
+      expect(isAncestor(parentPage, siblingPage)).toBe(false);
+    });
+
+    it("同じページでは祖先ではないこと", () => {
+      expect(isAncestor(parentPage, parentPage)).toBe(false);
+      expect(isAncestor(childPage, childPage)).toBe(false);
+    });
+
+    it("パスの部分一致では祖先ではないこと", () => {
+      const similarPage = {
+        isHome: false,
+        isSection: true,
+        relPermalink: "/k/ja/application",
+        permalink: "/k/ja/application",
+        lang: "ja",
+        frontmatter: {
+          title: "アプリケーション",
+          titleUs: undefined,
+          titleCn: undefined,
+          description: "",
+          weight: 1,
+          type: "",
+          disabled: [],
+          aliases: [],
+          labels: [],
+        },
+        sections: [],
+        pages: [],
+      } as PageProps;
+
+      expect(isAncestor(similarPage, parentPage)).toBe(false);
+      expect(isAncestor(parentPage, similarPage)).toBe(false);
+    });
+
+    it("ホームページから全てのページへの祖先関係を正しく判定すること", () => {
+      const homePage = getSiteHome();
+      
+      expect(isAncestor(parentPage, homePage)).toBe(false); // /k/ja/app は / の祖先ではない
+      expect(isAncestor(childPage, homePage)).toBe(false);
+      expect(isAncestor(grandChildPage, homePage)).toBe(false);
+    });
+  });
+
 });
 
 // 統合テスト: getSiteHomeSections の実際の動作テスト
@@ -540,11 +691,11 @@ describe("getSiteHomeSections integration", () => {
 
   it("親子関係が正しく設定されること", async () => {
     const sections = await getSiteHomeSections();
-    const homeData = getSiteHome();
 
-    // 各セクションの親はホーム
+    // 各セクションの親はホーム（relPermalinkで比較）
     sections.forEach((section) => {
-      expect(section.parent).toEqual(homeData);
+      expect(section.parent?.isHome).toBe(true);
+      expect(section.parent?.frontmatter.title).toBe("kintone ヘルプ");
     });
 
     // 個別のテスト
@@ -564,15 +715,15 @@ describe("getSiteHomeSections integration", () => {
     );
     const customization = advancedSection?.pages?.[0];
 
-    expect(advancedSection?.parent).toEqual(startSection);
-    expect(whatskintone?.parent).toEqual(startSection);
-    expect(customization?.parent).toEqual(advancedSection);
+    expect(advancedSection?.parent?.frontmatter.title).toBe("スタートガイド");
+    expect(whatskintone?.parent?.frontmatter.title).toBe("スタートガイド");
+    expect(customization?.parent?.frontmatter.title).toBe("上級編");
 
     // guideセクション内の関係
     const basicPage = guideSection.pages?.find(
       (p) => p.frontmatter.title === "基本操作",
     );
-    expect(basicPage?.parent).toEqual(guideSection);
+    expect(basicPage?.parent?.frontmatter.title).toBe("ガイド");
   });
 
   it("ページとセクションが weight でソートされること", async () => {

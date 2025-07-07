@@ -165,6 +165,50 @@ export function findPageInTree(
   return undefined;
 }
 
+/**
+ * 指定されたページが現在のページの祖先かどうかを判定
+ * Hugo の .IsAncestor に対応
+ * @param currentPage 現在のページ
+ * @param targetPage 判定対象のページ
+ * @returns 指定されたページが祖先の場合true
+ */
+export function isAncestor(currentPage: PageProps, targetPage: PageProps): boolean {
+  // 同じページの場合は祖先ではない
+  if (currentPage.relPermalink === targetPage.relPermalink) {
+    return false;
+  }
+
+  // パスを正規化して比較
+  let currentPath = normalizePathname(removeKPrefix(currentPage.relPermalink));
+  let targetPath = normalizePathname(removeKPrefix(targetPage.relPermalink));
+
+  // ホームページ（"/"）の場合の特別処理
+  if (targetPage.isHome) {
+    targetPath = "";
+  }
+  if (currentPage.isHome) {
+    currentPath = "";
+  }
+
+  // ホームページから他のページへの関係はfalse（ホームページは他のページの祖先ではない）
+  if (targetPage.isHome && !currentPage.isHome) {
+    return false;
+  }
+
+  // 他のページからホームページへの関係もfalse
+  if (!targetPage.isHome && currentPage.isHome) {
+    return false;
+  }
+
+  // currentPathがtargetPathの子パスかどうかを判定
+  // 例: targetPath="/ja/app", currentPath="/ja/app/form" の場合、targetはcurrentの祖先
+  if (targetPath === "") {
+    return false; // ルートパスは他のページの祖先ではない
+  }
+  
+  return currentPath.startsWith(targetPath + "/");
+}
+
 // =============================================================================
 // Public API functions (exported)
 // =============================================================================

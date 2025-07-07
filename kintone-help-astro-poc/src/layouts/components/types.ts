@@ -98,9 +98,6 @@ export interface PageProps {
   // ファイル情報
   fileContentBaseName?: string;
   aliases?: string[];
-
-  // 関数
-  isAncestor?: (target: PageProps) => boolean;
 }
 
 export interface BaseProps {

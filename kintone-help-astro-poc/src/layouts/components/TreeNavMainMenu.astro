@@ -1,6 +1,6 @@
 ---
 import { env } from "@/lib/env";
-import { getSiteHome } from "@/lib/page";
+import { getSiteHome, isAncestor } from "@/lib/page";
 import Title from "./Title.astro";
 import TreeNavTreeItem from "./TreeNavTreeItem.astro";
 import type { PageProps } from "./types";
@@ -37,7 +37,7 @@ if (isSection && !isRedirectJs && !isDisabled) {
   const numberOfPages = (pages.length || 0) + (curnode.sections?.length || 0);
 
   // opened/selected の判定
-  if (curnode.isAncestor?.(target) || curnode === target) {
+  if (isAncestor(target, curnode) || curnode === target) {
     opened = true;
   }
   if (curnode.relPermalink === target.relPermalink) {
