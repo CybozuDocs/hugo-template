@@ -8,9 +8,12 @@ layout: "@/layouts/PageLayout.astro"
 
 import Img from "@/components/Img.astro";
 import Kintone from "@/components/Kintone.astro";
+import Wovn from "@/components/Wovn.astro";
 
-Webブラウザーで複数のタブを開いて<Kintone />の操作を行うと、セッションが切れて「ログインしてください。」エラーが表示される場合があります。  
-<Img src="/k/kintone/img-ja/login_error_01.png" alt=" " />
+Webブラウザーで複数のタブを開いて<Kintone />の操作を行うと、セッションが切れて次のエラーが表示される場合があります。  
+エラー  
+ログインしてください。  
+<Img src="/k/kintone/img-ja/login_error_01.png" alt="スクリーンショット：［ログインしてください。］エラーが表示された画面" />
 
 たとえば、次のような操作を行った場合に表示されます。  
 
@@ -20,8 +23,8 @@ Webブラウザーで複数のタブを開いて<Kintone />の操作を行うと
 
 1. 「2」のタブで開いた<Kintone />からログアウトする
 
-1. 「1」のレコード編集画面の[保存]をクリックする
+1. 「1」のレコード編集画面の<Wovn>［保存］</Wovn>をクリックする
  
 エラーが表示された状態で操作中の画面（レコード編集画面など）から画面遷移すると、編集中の内容が破棄されてしまいます。  
-入力内容をコピーしてから、 [キャンセル]ボタンを押すなどして操作中の画面を閉じてください。  
+入力内容をコピーしてから、 <Wovn>［キャンセル］</Wovn>ボタンをクリックするなどして操作中の画面を閉じてください。  
 そのあと再度<Kintone />にログインして、レコードの再編集などを行ってください。

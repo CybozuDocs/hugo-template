@@ -1,0 +1,267 @@
+---
+title: "［アプリ管理］画面でアプリの一覧を確認する"
+weight: 300
+aliases:
+  - "/ja/id/04012"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Wovn>［アプリ管理］</Wovn>画面の<Wovn>［アプリの一覧］</Wovn>では、自分に管理権限のあるアプリを確認できます。  
+管理権限のあるアプリのうち、自分が作成したアプリのみを絞り込み表示することも可能です。  
+[アプリの一覧で自分が作成したアプリのみ表示する](#app_admin_confirm_app_list_20)
+
+<Note>
+<Slash />共通管理者は、アプリの一覧をCSV形式でダウンロードできます。  
+詳細は、次のページを参照してください。  
+[アプリの一覧をCSV形式でダウンロードする](/k/ja/id/04014.html)
+
+</Note>
+
+<Wovn>［アプリ管理］</Wovn>画面の開きかたは、次のページを参照してください。  
+[［アプリ管理］画面を開く](/k/ja/id/04015.html#app_admin_manage_app_10)
+
+<Heading id="app_admin_confirm_app_list_10">&lt;Wovn&gt;［アプリの一覧］&lt;/Wovn&gt;の項目説明</Heading>
+
+<Wovn>［アプリの一覧］</Wovn>の各項目について説明します。  
+アプリの一覧に表示される項目は、お使いの環境やご契約のコースによって異なります。
+
+<Img src="/k/kintone/img-ja/confirm_app_list_00.png" alt="スクリーンショット：アプリの一覧" />
+
+<table cellpadding="2" cellspacing="2" width="100%">
+    <thead>
+        <tr>
+            <th scope="col" style="vertical-align: top; width: 170px;"><b>項目名</b></th>
+            <th scope="col" style="vertical-align: top;">説明</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［ID］</Wovn></td>
+            <td style="vertical-align: top;">自動的に割り振られたアプリのIDです。</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［アプリ名］</Wovn></td>
+            <td style="vertical-align: top;">
+              アプリの名前です。<br />
+              アプリ名をクリックすると、該当のアプリが開きます。作成途中で未公開のアプリはクリックできません。
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［設定］</Wovn></td>
+            <td style="vertical-align: top;">歯車の形をしたアイコンをクリックすると、<Wovn>［アプリの設定］</Wovn>画面が開きます。</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［所属スペース］</Wovn></td>
+            <td style="vertical-align: top;">
+              アプリが所属しているスペースです。<br />
+              スペース名をクリックすると、該当のスペースのポータル画面が開きます。<br />
+              <Wovn>［（なし）］</Wovn>と表示されているアプリは、スペースに所属していないアプリです。
+              <Note>
+              <Slash />共通管理者の場合：<br />
+              <ul>
+                <li>
+                  スペース名をクリックして、スペースのポータル画面を開いた際に、次のメッセージが表示される：権限がありません。<br />
+                  この場合、該当のスペースは、自分が参加していない、非公開スペースかゲストスペースです。
+                </li>
+                <li>
+                  スペース名をクリックしても<Kintone />のトップページに戻る場合、<Wovn>［利用する機能の選択］</Wovn>でスペース機能が無効に設定されています。<br />
+                  <a href="/k/ja/id/04031.html">利用する機能の選択</a>
+                </li>
+              </ul>
+              </Note>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［アプリグループ］</Wovn></td>
+            <td style="vertical-align: top;">
+              アプリが所属するアプリグループです。<br />
+              詳細は次のページを参照してください。<br />
+              <a href="/k/ja/id/04028.html">アプリグループとは</a>
+              <br />
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［ステータス］</Wovn></td>
+            <td style="vertical-align: top;">
+              アプリのステータスです。
+              <ul>
+                <li><Wovn>［運用開始前］</Wovn>：作成途中の未公開のアプリ</li>
+                <li><Wovn>［運用中］</Wovn>：公開中のアプリ</li>
+                <li><Wovn>［変更あり］</Wovn>：公開中のアプリのうち、設定の変更が運用環境に未反映のアプリ</li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［レコードの最終更新日］</Wovn></td>
+            <td style="vertical-align: top;">
+              最後にレコードが追加／編集された日です。<br />
+              <Wovn>［レコードの最終更新日］</Wovn>が更新される操作は、次のとおりです。<br />
+              <ul>
+                <li>レコードの追加／編集画面でのレコードの追加／編集</li>
+                <li>ファイル読み込み（Excel／CSV）によるレコードの追加／編集</li>
+                <li>APIの実行によるレコードの追加／編集</li>
+              </ul>
+              次の操作を行っても、<Wovn>［レコードの最終更新日］</Wovn>は更新されません。
+              <ul>
+                <li>プロセス管理のステータスや作業者の変更</li>
+                <li>コメントの書き込み</li>
+                <li>レコードの削除</li>
+                <li>動作テスト環境での操作</li>
+              </ul>
+              アプリ作成後に一度もレコードが追加／編集されていない場合は、アプリの作成日が表示されます。<br />
+              <Wovn>［（データなし）］</Wovn>と表示されているアプリは、2021年1月のアップデートより前に作成され、アップデート後に一度もレコードが追加／編集されていないアプリです。<br />
+              <br />
+              レコードの最終更新日の詳細や、この列を利用したアプリの棚卸し方法は次のページを参照してください。
+              <br />
+              <a href="/k/ja/id/040737.html">［レコードの最終更新日］を利用してアプリを棚卸しする</a>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［レコード数］</Wovn></td>
+            <td style="vertical-align: top;">
+              アプリに登録されているレコード数です。<br />
+              作成途中で未公開のアプリでは、<Wovn>［0］</Wovn>と表示されます。
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［フィールド数］</Wovn></td>
+            <td style="vertical-align: top;">
+              アプリに配置されているフィールド数です。<br />
+              次の項目はフィールド数に含まれません。
+              <ul>
+                <li><Wovn>［作成者］</Wovn></li>
+                <li><Wovn>［更新者］</Wovn></li>
+                <li><Wovn>［作成日時］</Wovn></li>
+                <li><Wovn>［更新日時］</Wovn></li>
+                <li><Wovn>［レコード番号］</Wovn></li>
+                <li><Wovn>［ラベル］</Wovn></li>
+                <li><Wovn>［スペース］</Wovn></li>
+                <li><Wovn>［罫線］</Wovn></li>
+                <li><Wovn>［カテゴリー］</Wovn></li>
+                <li>プロセス管理の<Wovn>［ステータス］</Wovn>（処理状況）</li>
+                <li>プロセス管理の<Wovn>［作業者］</Wovn></li>
+              </ul>
+              <Wovn>［グループ］</Wovn>フィールドとテーブルは、それ自体もフィールド数にカウントされます。たとえば、テーブルの中に<Wovn>［チェックボックス］</Wovn>と<Wovn>［文字列（1行）］</Wovn>がある場合、全部で3つのフィールドとなります。<br />
+              作成途中で未公開のアプリでは、<Wovn>［0］</Wovn>と表示されます。
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［1日のAPIリクエスト数］</Wovn></td>
+            <td style="vertical-align: top;">
+              1日のAPIを利用したリクエスト数がカウントされます。<br />
+              作成途中の未公開のアプリやPrivateアプリグループに所属するアプリは、カウントの対象外です。
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［添付ファイル］</Wovn></td>
+            <td style="vertical-align: top;">
+              アプリ内の以下のファイルの合計サイズが表示されます。<br />
+              <ul>
+                <li>各レコードの<Wovn>［添付ファイル］</Wovn>フィールドに添付されているファイル</li>
+                <li>各レコードの変更履歴内のファイル</li>
+              </ul>
+              なお、動作テスト環境内の上記ファイルのサイズも、合計サイズに含まれます。<br />
+              <br />
+              ファイルの合計サイズは、GB単位で小数点以下第2位まで表示されます。ただし、合計サイズが0GBより大きく0.01GB未満となる場合は、<Wovn>［0.01GB］</Wovn>と一律で表示されます。<br />
+              より詳細にサイズを確認したい場合は、アプリの一覧をCSV形式でダウンロードすることで、byte単位での確認が可能です。<br />
+              <a href="/k/ja/id/04014.html">アプリの一覧をCSV形式でダウンロードする</a><br />
+              <br />
+              この列の値は1日ごとに更新されます。<br />
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［カスタマイズ］</Wovn></td>
+            <td style="vertical-align: top;">
+              次のいずれかを設定していると<Wovn>［あり］</Wovn>と表示されます。
+              <ul>
+                <li>JavaScript/CSSによるカスタマイズ</li>
+                <li><Wovn>［カスタマイズ］</Wovn>形式の一覧</li>
+                <li>プラグイン</li>
+              </ul>
+              カスタマイズを設定していない場合は<Wovn>［なし］</Wovn>と表示されます。
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［作成者］</Wovn></td>
+            <td style="vertical-align: top;">アプリを作成したユーザーです。</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［作成日時］</Wovn></td>
+            <td style="vertical-align: top;">
+              アプリを作成した日時です。<br />
+              アプリのステータス（運用開始前や運用中）にかかわらず、アプリを作成した時点の日時が表示されます。
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［設定の最終更新者］</Wovn></td>
+            <td style="vertical-align: top;">アプリの設定を最後に更新したユーザーです。</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;"><Wovn>［設定の最終更新日時］</Wovn></td>
+            <td style="vertical-align: top;">アプリの設定を最後に更新した日時です。</td>
+        </tr>
+    </tbody>
+</table>
+
+次の項目は、項目名をクリックして昇順／降順で並べ替えることができます。
+
+* <Wovn>［ID］</Wovn>、<Wovn>［アプリ名］</Wovn>、<Wovn>［所属スペース］</Wovn>、<Wovn>［アプリグループ］</Wovn>、<Wovn>［ステータス］</Wovn>、<Wovn>［レコードの最終更新日］</Wovn>、<Wovn>［レコード数］</Wovn>、<Wovn>［フィールド数］</Wovn>、<Wovn>［1日のAPIリクエスト数］</Wovn>、<Wovn>［添付ファイル］</Wovn>、<Wovn>［作成者］</Wovn>、<Wovn>［作成日時］</Wovn>、<Wovn>［設定の最終更新者］</Wovn>、<Wovn>［設定の最終更新日時］</Wovn>
+
+<Enabled regions={["JP", "CN"]}>
+<Note>
+
+* <Slash />共通管理者には、管理権限やアクセス権を持たないアプリも表示されます。
+* ほかのユーザーが作成したPrivateアプリグループに所属するアプリは表示されません。
+* <Wovn>［1日のAPIリクエスト数］</Wovn>と<Wovn>［カスタマイズ］</Wovn>は、ライトコースをご契約の場合は表示されません。
+</Note>
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Note>
+
+* <Slash />共通管理者には、管理権限やアクセス権を持たないアプリも表示されます。
+* ほかのユーザーが作成したPrivateアプリグループに所属するアプリは表示されません。
+* <Wovn>［カスタマイズ］</Wovn>はお使いの環境では表示されません。
+</Note>
+
+</Enabled>
+
+<Heading id="app_admin_confirm_app_list_20">アプリの一覧で自分が作成したアプリのみ表示する</Heading>
+
+<Wovn>［表示するアプリ］</Wovn>から<Wovn>［管理権限のあるアプリ（自分が作成したアプリのみ）］</Wovn>に切り替えることで、管理権限のあるアプリのうち、自分が作成したアプリのみを絞り込んで表示できます。  
+<Img src="/k/kintone/img-ja/confirm_app_list_01.png" alt="スクリーンショット：表示するアプリを切り替えている" />
+
+作成途中だった自分のアプリを見つけて設定を再開したいときや、自分が作成したアプリを整理・削除したいときなどに活用できます。
+
+<Heading id="app_admin_confirm_app_list_30">&lt;Wovn&gt;［手動更新データを取得］&lt;/Wovn&gt;ボタンについて</Heading>
+
+<Warning>
+<Wovn>［手動更新データを取得］</Wovn>ボタンは、アップデートオプションで<Wovn>［検討中の新機能］</Wovn>の<Wovn>［アプリ管理画面でアプリ管理者数を確認できる機能］</Wovn>を有効化している場合に、<Slash />共通管理者にだけ表示されます。詳細は、次のページを参照してください。  
+[(3) 現在検討中の新機能を有効化する](/k/ja/id/04050.html#new_feature_new_feature_overview_2030)
+
+</Warning>
+
+<Img src="/k/kintone/img-ja/confirm_app_admins_02.png" alt="スクリーンショット：［アプリ管理］画面の［アプリの一覧］の上部にある［手動更新データを取得］ボタンが強調されている" />
+
+<Wovn>［手動更新データを取得］</Wovn>ボタンをクリックすると、各アプリのアプリ管理者数を確認できます。  
+詳細は、次のページを参照してください。  
+[アプリ管理者数を確認する](/k/ja/id/040894.html)
+
+<Reference>
+
+* [アプリのライセンス使用状況を確認する](/k/ja/id/04011.html)
+* [アプリの一覧をCSV形式でダウンロードする](/k/ja/id/04014.html)
+
+</Reference>

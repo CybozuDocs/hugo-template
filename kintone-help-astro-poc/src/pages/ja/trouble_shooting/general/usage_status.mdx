@@ -11,67 +11,70 @@ import Heading from "@/components/Heading.astro";
 import Img from "@/components/Img.astro";
 import Kintone from "@/components/Kintone.astro";
 import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
 
 <Kintone />のアプリやスペースの利用状況、プラグインや外部連携機能の適用状況について、それぞれ確認方法を説明します。  
-各機能の利用状況は、コースを選ぶ参考になります。  
-各コースの上限値は、次の製品サイトで確認してください。  
+各機能の利用状況を確認することで、コースを選ぶ際の参考になります。  
+各コースの上限値は、次のページを参照してください。  
 [料金](https://kintone.cybozu.co.jp/price/)（日本語のみ）
 
-<Heading id="general_usage_status_10">アプリ数・API利用状況・各アプリへのカスタマイズ適用状況の確認方法</Heading>
+<Heading id="general_usage_status_10">アプリ数・APIの利用状況・各アプリへのカスタマイズ適用状況の確認方法</Heading>
 
-<Kintone />システム管理の「アプリ管理」を開きます。  
+<Wovn>［<Kintone />システム管理］</Wovn>画面の<Wovn>［アプリ管理］</Wovn>を開きます。  
 [<Kintone />システム管理を開く](/k/ja/id/04046.html)  
-<Img src="/k/kintone/img-ja/usage_status_01.png" alt="アプリ管理" />
+<Img src="/k/kintone/img-ja/usage_status_01.png" alt="スクリーンショット：［{{&lt; kintone &gt;}}システム管理］画面で［アプリ管理］が枠線で強調されている" />
 
-「ライセンスの使用状況」で、アプリ数、1アプリで1日に実行できるAPIリクエスト数、カスタマイズできるアプリ数の上限値と実際に使用している数を確認できます。  
-契約コースによって上限数は異なり、表示される数値は毎日9時にリセットされます。  
-  
-「アプリの一覧」では、各アプリの1日のAPIリクエスト数、JavaScript/CSSによるカスタマイズの有無を確認できます。
-<Img src="/k/kintone/img-ja/usage_status_02.png" alt="ライセンス使用状況とAPIリクエスト数" />
+<Wovn>［ライセンスの使用状況］</Wovn>で、<Wovn>［アプリ数］</Wovn>、<Wovn>［1アプリで1日に実行できるAPIリクエスト数］</Wovn>、および<Wovn>［カスタマイズできるアプリ数］</Wovn>について、それぞれ上限数と使用中の数を確認できます。  
+なお、上限数は契約コースによって異なります。  
+また、<Wovn>［使用中］</Wovn>列に表示される数値は、協定世界時の午前0時（日本標準時の午前9時）に毎日リセットされます。  
+
+<Wovn>［アプリの一覧］</Wovn>では、各アプリの1日のAPIリクエスト数、JavaScript/CSSによるカスタマイズの有無を確認できます。
+<Img src="/k/kintone/img-ja/usage_status_02.png" alt="スクリーンショット：［アプリ管理］画面で、［ライセンス使用状況］、［1日のAPIリクエスト数］、および［カスタマイズ］が枠線で強調されている" />
 
 カスタマイズが適用されている状態でライトコースへ移行すると、カスタマイズが無効になりますのでご注意ください。
 
-<Heading id="general_usage_status_20">スペース数・ゲストスペース数の確認方法</Heading>
+<Heading id="general_usage_status_20">スペース数とゲストスペース数の確認方法</Heading>
 
-<Kintone />システム管理の「スペース管理」を開きます。  
-<Img src="/k/kintone/img-ja/usage_status_03.png" alt="スペース管理" />
+<Wovn>［<Kintone />システム管理］</Wovn>画面の<Wovn>［スペース管理］</Wovn>を開きます。  
+<Img src="/k/kintone/img-ja/usage_status_03.png" alt="スクリーンショット：［{{&lt; kintone &gt;}}システム管理］画面で［スペース管理］が枠線で強調されている" />
 
-「ライセンスの使用状況」で、スペース数、ゲストスペース数の上限数と実際に使用中の数を確認できます。契約コースによって上限数は異なります。
-<Img src="/k/kintone/img-ja/usage_status_04.png" alt="ライセンス使用状況" />
+<Wovn>［ライセンスの使用状況］</Wovn>で、<Wovn>［スペース数］</Wovn>と<Wovn>［ゲストスペース数］</Wovn>について、それぞれ上限数と使用中の数を確認できます。  
+なお、上限数は契約コースによって異なります。
+<Img src="/k/kintone/img-ja/usage_status_04.png" alt="［スペース管理］画面の［ライセンス使用状況］で、［スペース数］と［ゲストスペース数］の上限数と使用中の数が枠線で強調されている" />
 
 <Heading id="general_usage_status_30">&lt;Kintone /&gt;全体へのJavaScript/CSS適用状況の確認方法</Heading>
 
-<Kintone />システム管理の「JavaScript / CSSでカスタマイズ」を開きます。  
-<Img src="/k/kintone/img-ja/usage_status_05.png" alt="JavaScript/CSSでカスタマイズ" />
+<Wovn>［<Kintone />システム管理］</Wovn>画面の<Wovn>［JavaScript / CSSでカスタマイズ］</Wovn>を開きます。  
+<Img src="/k/kintone/img-ja/usage_status_05.png" alt="スクリーンショット：［{{&lt; kintone &gt;}}システム管理］画面で［JavaScript/CSSでカスタマイズ］が枠線で強調されている" />
 
 JavaScript/CSSによるカスタマイズを確認できます。URL指定や、ファイルのアップロードが行われていた場合は、カスタマイズが行われています。  
 カスタマイズが適用されている状態でライトコースへ移行すると、カスタマイズが無効になりますのでご注意ください。
 
 <Heading id="general_usage_status_40">プラグインの利用状況の確認方法</Heading>
 
-<Kintone />システム管理の「プラグイン」を開きます。  
+<Wovn>［<Kintone />システム管理］</Wovn>画面の<Wovn>［プラグイン］</Wovn>を開きます。  
 ライトコースをご契約の場合は、プラグイン機能を利用できません。
-<Img src="/k/kintone/img-ja/usage_status_06.png" alt="プラグイン" />
+<Img src="/k/kintone/img-ja/usage_status_06.png" alt="スクリーンショット：［{{&lt; kintone &gt;}}システム管理］画面で［プラグイン］が枠線で強調されている" />
 
-「利用中のアプリ」で、プラグインを利用しているアプリを確認できます。  
+<Wovn>［利用中のアプリ］</Wovn>で、プラグインを利用しているアプリを確認できます。  
 アプリ名をクリックすると、各アプリの設定画面に移動します。
-<Img src="/k/kintone/img-ja/usage_status_07.png" alt="利用中のアプリ" />
+<Img src="/k/kintone/img-ja/usage_status_07.png" alt="［プラグイン］画面の［利用中のアプリ］が枠線で強調されている" />
 
 <Heading id="general_usage_status_50">外部連携機能の適応状況の確認方法</Heading>
 
-<SlashUi />を開き、「外部連携」の「OAuth」を開きます。  
+<SlashUi />を開き、<Wovn>［外部連携］</Wovn>の<Wovn>［OAuth］</Wovn>を開きます。  
 [<SlashUi />を開く](/k/ja/id/04047.html)  
-<Img src="/k/kintone/img-ja/usage_status_08.png" alt="外部連携のOAuth画面" />
+<Img src="/k/kintone/img-ja/usage_status_08.png" alt="スクリーンショット：{{&lt; slash_ui &gt;}}の［OAuth］画面で、Microsoft Power AutomateとSlackが枠線で強調されている" />
 外部連携サービスの設定状況を確認できます。  
 
 <Heading id="general_usage_status_60">Webhookの利用状況の確認方法</Heading>
 
 Webhookの利用状況は、アプリごとに確認します。
 
-「レコードの一覧」画面で、画面右上にある歯車の形をした[アプリを設定]アイコンをクリックします。  
-<Img src="/k/kintone/img-ja/usage_status_10.png" alt="スクリーンショット：[アプリを設定]アイコンが枠線で強調されている" />  
-「アプリの設定」画面で、[設定]タブの「カスタマイズ／サービス連携」にある[Webhook]をクリックします。
+<Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。  
+<Img src="/k/kintone/img-ja/usage_status_10.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />  
+<Wovn>［アプリの設定］</Wovn>画面で、<Wovn>［設定］</Wovn>タブの<Wovn>［カスタマイズ／サービス連携］</Wovn>にある<Wovn>［Webhook］</Wovn>をクリックします。
 
-Webhookの設定画面で設定状況を確認できます。  
+<Wovn>［Webhook］</Wovn>の設定画面で設定状況を確認できます。  
 設定されている場合、WebhookのURLが表示されます。
-<Img src="/k/kintone/img-ja/usage_status_11.png" alt="Webhookの設定" />
+<Img src="/k/kintone/img-ja/usage_status_11.png" alt="スクリーンショット：［アプリの設定］の［Webhook］で、WebhookのURLが枠線で強調表示されている" />

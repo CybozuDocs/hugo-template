@@ -1,0 +1,868 @@
+---
+title: "所属組織が異なるユーザーのプロフィールと組織の閲覧を制限する"
+weight: 200
+aliases:
+  - "/ja/id/04060"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Slash from "@/components/Slash.astro";
+import SlashHelp from "@/components/SlashHelp.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Img src="/k/kintone/img-ja/control_view_profile_img01.png" alt="組織間のアクセス権の設定" />
+
+<SlashUi />で、所属している最上位組織が異なるユーザーのプロフィール画面と組織情報へのアクセスを制限できます。この機能を、組織間のアクセス権の設定と呼びます。  
+
+<Img src="/k/kintone/img-ja/control_view_profile_img1.png" alt="組織間のアクセス権の設定" />
+
+[<SlashUi />を開く](/k/ja/id/04047.html)  
+
+<Heading id="common_control_view_profile_10">プロフィールの閲覧制限</Heading>
+
+組織間のアクセス権の設定を有効にすると、所属する最上位組織が異なるユーザー間では、互いのプロフィールと組織情報を閲覧できなくなります。  
+所属している最上位組織が同じであれば、所属する組織の階層に関わらず、互いのプロフィールと組織情報を閲覧できます。  
+<Img src="/k/kintone/img-ja/control_view_profile_img2.png" alt="プロフィールの閲覧制限" />  
+ただし、<Slash />共通管理者は、<SlashUi />で、各ユーザーのプロフィールと組織情報を閲覧できます。
+
+<Heading id="common_control_view_profile_20">検索の制限</Heading>
+
+組織間のアクセス権の設定を有効にすると、所属する最上位組織が異なるユーザーと組織を検索できなくなります。  
+また、コメントの宛先指定でも、所属する最上位組織が異なるユーザーは指定できません。  
+そのほかにも、所属する最上位組織が異なるユーザーが画面に表示されなくなるなど、ユーザーや組織の情報へのアクセスが制限されます。  
+詳細は、次の項目を参照してください。  
+[組織間のアクセス権の設定で制限される表示と選択](#common_control_view_profile_30)
+
+<Note>
+
+組織間のアクセス権の設定方法は、<SlashHelp />を参照してください。  
+[組織間のアクセス権の設定](/general/ja/admin/list_useradmin/list_division/dep_accessctrl.html)
+
+</Note>
+
+<Heading id="common_control_view_profile_30">組織間のアクセス権の設定で制限される表示と選択</Heading>
+
+組織間のアクセス権の設定を有効にした場合に制限される操作を、画面ごとに説明します。  
+たとえば、<Slash />共通管理の表では、組織間のアクセス権の設定を有効にした場合、一般ユーザーは組織の異なるユーザーのプロフィールを閲覧できないことを示しています。  
+
+制限される表示と選択は、PCとモバイルで同様です。
+
+<table>
+<caption><SlashUi /></caption>
+    <thead>
+        <tr>
+            <th nowrap="nowrap">画面、ダイアログ</th>
+            <th>操作</th>
+            <th><Slash />共通管理者</th>
+            <th><Kintone />システム管理者</th>
+            <th>一般ユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>プロフィール</td>
+            <td>閲覧</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>プロフィール以外</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+<caption><Kintone />システム管理</caption>
+    <thead>
+        <tr>
+            <th>画面、ダイアログ</th>
+            <th>項目</th>
+            <th nowrap="nowrap">操作</th>
+            <th><Slash />共通管理者</th>
+            <th><Kintone />システム管理者</th>
+            <th>一般ユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><Wovn>［アプリ管理］</Wovn></td>
+            <td><Wovn>［設定の最終更新者］</Wovn></td>
+            <td>閲覧</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［アプリテンプレート］</Wovn></td>
+            <td><Wovn>［作成者］</Wovn></td>
+            <td>閲覧</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［スペース管理］</Wovn></td>
+            <td><Wovn>［設定の最終更新者］</Wovn></td>
+            <td>閲覧</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［スペーステンプレート］</Wovn></td>
+            <td><Wovn>［作成者］</Wovn></td>
+            <td>閲覧</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［スレッドのアクション］</Wovn></td>
+            <td><Wovn>［最終更新者］</Wovn></td>
+            <td>閲覧</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［アクションの設定］</Wovn>ダイアログ</td>
+            <td><Wovn>［アクションの利用者］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［アクセス権］</Wovn></td>
+            <td><Wovn>［ユーザー／組織／グループ］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［アプリグループのアクセス権の設定］</Wovn></td>
+            <td><Wovn>［ユーザー／組織／グループ］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+<caption>アプリの設定</caption>
+    <thead>
+        <tr>
+            <th nowrap="nowrap">画面、ダイアログ</th>
+            <th colspan="2">項目</th>
+            <th  nowrap="nowrap">操作</th>
+            <th><Slash />共通管理者</th>
+            <th><Kintone />システム管理者</th>
+            <th nowrap="nowrap">一般ユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="7"><Wovn>［フォーム］</Wovn></td>
+        </tr>
+        <tr>
+            <td colspan="2"><Wovn>［ユーザー選択］</Wovn>フィールド<br />（選択肢を指定する）</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td colspan="2"><Wovn>［ユーザー選択］</Wovn>フィールド<br />（初期値）</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td colspan="2"><Wovn>［組織選択］</Wovn>フィールド<br />（選択肢を指定する）</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td colspan="2"><Wovn>［組織選択］</Wovn>フィールド<br />（初期値）</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td colspan="2"><Wovn>［ルックアップ］</Wovn>フィールド<br />（絞り込みの初期設定）</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td colspan="2"><Wovn>［関連レコード一覧］</Wovn>フィールド<br />（さらに絞り込む条件）</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［一覧］</Wovn></td>
+            <td colspan="2"><Wovn>［絞り込み］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［アプリの条件通知］</Wovn></td>
+            <td colspan="2"><Wovn>［通知先］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［レコードの条件通知］</Wovn></td>
+            <td colspan="2"><Wovn>［レコードの条件］</Wovn><br /><Wovn>［通知先］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［リマインダーの条件通知］</Wovn></td>
+            <td colspan="2"><Wovn>［リマインドの条件］</Wovn><br /><Wovn>［通知先］</Wovn></td>
+            <td >閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［グラフ］</Wovn></td>
+            <td colspan="2"><Wovn>［条件］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td rowspan="2"><Wovn>［プロセス管理］</Wovn></td>
+            <td colspan="2"><Wovn>［作業者］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td colspan="2"><Wovn>［アクションが実行できる条件］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［APIトークン］</Wovn></td>
+            <td colspan="2">画面</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［Webhook］</Wovn></td>
+            <td colspan="2">画面</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［Slack連携］</Wovn></td>
+            <td colspan="2">画面</td>
+            <td>閲覧</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［アクション］</Wovn></td>
+            <td colspan="2"><Wovn>［最終更新者］</Wovn></td>
+            <td>閲覧</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［アクションの作成］</Wovn><br /><Wovn>［アクションの編集］</Wovn></td>
+            <td colspan="2"><Wovn>［アクションの利用者］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［アプリのアクセス権］</Wovn></td>
+            <td colspan="2"><Wovn>［ユーザー／組織／グループ］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td rowspan="3"><Wovn>［レコードのアクセス権］</Wovn></td>
+        </tr>
+        <tr>
+            <td colspan="2"><Wovn>［レコードの条件］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td colspan="2"><Wovn>［ユーザー／組織／グループとアクセス権］</Wovn></td>
+            <td >閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［フィールドのアクセス権］</Wovn></td>
+            <td colspan="2"><Wovn>［ユーザー／組織／グループとアクセス権］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+<caption>アプリ</caption>
+    <thead>
+        <tr>
+            <th nowrap="nowrap">画面、ダイアログ</th>
+            <th nowrap="nowrap">項目</th>
+            <th nowrap="nowrap">操作</th>
+            <th><Slash />共通管理者</th>
+            <th><Kintone />システム管理者</th>
+            <th nowrap="nowrap">一般ユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="5">レコード一覧</td>
+            <td>
+              <ul>
+                <li><Wovn>［作成者］</Wovn></li>
+                <li><Wovn>［更新者］</Wovn></li>
+                <li><Wovn>［ユーザー選択］</Wovn>フィールド</li>
+              </ul>
+            </td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［ユーザー選択］</Wovn>フィールド</td>
+            <td>選択</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［組織選択］</Wovn>フィールド</td>
+            <td nowrap="nowrap">閲覧<br />選択</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>絞り込み、集計の条件</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［作業者］</Wovn></td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td rowspan="5">レコード追加</td>
+            <td><Wovn>［ユーザー選択］</Wovn>フィールド</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［組織選択］</Wovn>フィールド</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>ルックアップの絞り込み条件</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>
+              関連レコード一覧内の次のフィールド
+              <ul>
+                <li><Wovn>［作成者］</Wovn></li>
+                <li><Wovn>［更新者］</Wovn></li>
+                <li><Wovn>［作業者］</Wovn></li>
+                <li><Wovn>［ユーザー選択］</Wovn></li>
+              </ul>
+            </td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td>関連レコード一覧内の<Wovn>［組織選択］</Wovn>フィールド</td>
+            <td>閲覧</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td rowspan="6">レコード編集</td>
+            <td>
+              <ul>
+                <li><Wovn>［作成者］</Wovn></li>
+                <li><Wovn>［更新者］</Wovn></li>
+              </ul>
+            </td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［ユーザー選択］</Wovn>フィールド</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［組織選択］</Wovn>フィールド</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>ルックアップの絞り込み条件</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>
+              関連レコード一覧内の次のフィールド
+              <ul>
+                <li><Wovn>［作成者］</Wovn></li>
+                <li><Wovn>［更新者］</Wovn></li>
+                <li><Wovn>［作業者］</Wovn></li>
+                <li><Wovn>［ユーザー選択］</Wovn></li>
+              </ul>
+            </td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td>関連レコード一覧内の<Wovn>［組織選択］</Wovn>フィールド</td>
+            <td>閲覧</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td rowspan="8">レコード詳細</td>
+            <td>
+              <ul>
+                <li><Wovn>［作成者］</Wovn></li>
+                <li><Wovn>［更新者］</Wovn></li>
+                <li><Wovn>［ユーザー選択］</Wovn>フィールド</li>
+              </ul>
+            </td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［組織選択］</Wovn>フィールド</td>
+            <td>閲覧</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>
+              関連レコード一覧内の次のフィールド
+              <ul>
+                <li><Wovn>［作成者］</Wovn></li>
+                <li><Wovn>［更新者］</Wovn></li>
+                <li><Wovn>［作業者］</Wovn></li>
+                <li><Wovn>［ユーザー選択］</Wovn></li>
+                <li><Wovn>［組織選択］</Wovn></li>
+              </ul>
+            </td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［作業者を選ぶ］</Wovn></td>
+            <td>選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［現在の作業者を変更］</Wovn></td>
+            <td>選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［ステータスの履歴］</Wovn></td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［変更履歴］</Wovn></td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>コメントの宛先指定</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td rowspan="2">印刷用画面</td>
+            <td>
+              <ul>
+                <li><Wovn>［作成者］</Wovn></li>
+                <li><Wovn>［更新者］</Wovn></li>
+                <li><Wovn>［ユーザー選択］</Wovn>フィールド</li>
+                <li><Wovn>［組織選択］</Wovn>フィールド</li>
+              </ul>
+            </td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td><Wovn>［ステータスの履歴］</Wovn></td>
+            <td>閲覧</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+    </tbody>
+</table>
+
+<Note>
+
+* 閲覧権限のない組織のユーザーを<Wovn>［ユーザー選択］</Wovn>フィールドやコメントの宛先などに指定することはできません。  
+  ただし、次の場合は、閲覧権限のない組織のユーザーが<Wovn>［（表示できないユーザー）］</Wovn>として表示されます。  
+  * <Wovn>［ユーザー選択］</Wovn>フィールドで、初期値または既定の選択肢として該当のユーザーが指定されているとき
+  * 変更履歴からレコードを過去のバージョンに戻したとき
+  * コメントに返信する、または、ほかのユーザーが指定した宛先をコピーして貼り付けたとき（宛先のユーザーには通知が送信されます。）
+
+* ファイルを使用して<Wovn>［ユーザー選択］</Wovn>フィールドを編集すると、閲覧権限のない組織のユーザーがフィールドから削除されます。
+
+</Note>
+
+<table>
+<caption>スペース</caption>
+    <thead>
+        <tr>
+            <th nowrap="nowrap">画面、ダイアログ</th>
+            <th>項目</th>
+            <th nowrap="nowrap">操作</th>
+            <th><Slash />共通管理者</th>
+            <th><Kintone />システム管理者</th>
+            <th nowrap="nowrap">一般ユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><Wovn>［スペースの作成］</Wovn>ダイアログ<br /><Wovn>［スペースの管理］</Wovn>ダイアログ</td>
+            <td><Wovn>［参加メンバー］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td rowspan="2">ポータル</td>
+            <td>スペースに参加しているユーザーの一覧</td>
+            <td>閲覧</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>お知らせの更新者</td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td rowspan="4">スレッド詳細</td>
+            <td>スレッドをフォローしているユーザーの一覧</td>
+            <td>閲覧</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>本文の更新者</td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td>コメントの宛先指定</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td>いいね！と言っているユーザー</td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+       <tr>
+            <td rowspan="2"><Wovn>［アクションの設定］</Wovn>ダイアログ</td>
+            <td rowspan="2"><Wovn>［アクションの利用者］</Wovn></td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>選択</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+    </tbody>
+</table>
+
+<Note>
+
+コメントに返信する、または、ほかのユーザーが指定した宛先をコピーして貼り付けたときなど、組織間のアクセス権の設定で閲覧権限のないユーザーをコメントの宛先に指定すると、<Wovn>［（表示できないユーザー）］</Wovn>として表示されます。  
+ユーザー情報の閲覧は制限されていますが、宛先のユーザーには通知が送信されます。
+
+</Note>
+
+<table>
+<caption>ピープル</caption>
+    <thead>
+        <tr>
+            <th nowrap="nowrap">画面、ダイアログ</th>
+            <th>項目</th>
+            <th nowrap="nowrap">操作</th>
+            <th><Slash />共通管理者</th>
+            <th><Kintone />システム管理者</th>
+            <th nowrap="nowrap">一般ユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ピープル一覧</td>
+            <td>画面</td>
+            <td>閲覧</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>閲覧できないユーザーのプロフィール</td>
+            <td>画面</td>
+            <td>閲覧</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td rowspan="2">プロフィール</td>
+            <td>コメントの宛先指定</td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td>いいね！と言っているユーザー</td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+    </tbody>
+</table>
+
+<Note>
+
+コメントに返信する、または、ほかのユーザーが指定した宛先をコピーして貼り付けるなど、組織間のアクセス権の設定で閲覧権限のないユーザーをコメントの宛先に指定すると、<Wovn>［（表示できないユーザー）］</Wovn>として表示されます。  
+ユーザー情報の閲覧は制限されていますが、宛先のユーザーには通知が送信されます。
+
+</Note>
+
+<table>
+<caption>メッセージ</caption>
+    <thead>
+        <tr>
+            <th>画面、ダイアログ</th>
+            <th nowrap="nowrap">項目</th>
+            <th nowrap="nowrap">操作</th>
+            <th><Slash />共通管理者</th>
+            <th><Kintone />システム管理者</th>
+            <th>一般ユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>閲覧できないユーザーのメッセージ</td>
+            <td>画面</td>
+            <td>閲覧</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+<caption>通知</caption>
+    <thead>
+        <tr>
+            <th nowrap="nowrap">画面、ダイアログ</th>
+            <th nowrap="nowrap">項目</th>
+            <th nowrap="nowrap">操作</th>
+            <th><Slash />共通管理者</th>
+            <th><Kintone />システム管理者</th>
+            <th nowrap="nowrap">一般ユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>通知一覧</td>
+            <td>送信者名</td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td>通知詳細</td>
+            <td>送信者名</td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td rowspan="2"><Wovn>［絞り込みの設定］</Wovn>ダイアログ</td>
+            <td><Wovn>［送信者で絞り込む］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td><Wovn>［場所で絞り込む］</Wovn></td>
+            <td>閲覧<br />選択</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+<caption>検索</caption>
+    <thead>
+        <tr>
+            <th nowrap="nowrap">画面、ダイアログ</th>
+            <th nowrap="nowrap">項目</th>
+            <th nowrap="nowrap">操作</th>
+            <th><Slash />共通管理者</th>
+            <th><Kintone />システム管理者</th>
+            <th nowrap="nowrap">一般ユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="3">検索結果</td>
+            <td>作成者</td>
+            <td>閲覧</td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+            <td style="text-align: center;"><span style="line-height: 20.8px;">不可</span></td>
+        </tr>
+        <tr>
+            <td>作成者の絞り込み</td>
+            <td>選択</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+        <tr>
+            <td>ピープル</td>
+            <td>閲覧</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+            <td style="text-align: center;">不可</td>
+        </tr>
+    </tbody>
+</table>

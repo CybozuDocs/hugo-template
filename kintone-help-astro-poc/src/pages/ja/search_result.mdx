@@ -1,0 +1,21 @@
+---
+title: "{{< kintone >}} ヘルプ 検索結果"
+title_us: "検索結果"
+weight: 1
+type: "search_result"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Subnavi from "@/components/Subnavi.astro";
+
+
+<Enabled regions={["JP"]}>
+<Subnavi msg="ヘルプで見つからない情報は、サポートにお問い合わせください。" url="/k/ja/id/040321.html" inquiry="お問い合わせ" />
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+<Subnavi msg="ヘルプで見つからない情報は、サポートにお問い合わせください。" url="https://www.kintone.com/support/" inquiry="お問い合わせ" />
+
+</Enabled>

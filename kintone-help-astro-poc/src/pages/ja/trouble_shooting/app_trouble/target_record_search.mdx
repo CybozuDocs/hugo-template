@@ -1,0 +1,79 @@
+---
+title: "アプリ、レコード、フィールドを閲覧できるにもかかわらず、検索結果に対象レコードが表示されない"
+weight: 1700
+aliases:
+  - "/ja/id/040261"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+作成日時フィールドに閲覧権限がないことが原因だと考えられます。  
+全体検索、スペース内検索、アプリ内検索では、作成日時フィールドに閲覧権限がない場合、検索結果に表示されません。
+
+<Reference>
+
+* [データを検索する](/k/ja/id/040689.html)
+* [検索キーワード入力時の注意事項](/k/ja/id/040689.html#search_search_details_60)
+* [作成日時フィールド](/k/ja/id/040520.html)
+
+</Reference>
+
+<Heading id="app_trouble_target_record_search_10">対処方法</Heading>
+
+次のいずれかの方法をお試しください。  
+
+* [作成日時フィールドにアクセス権を設定する](#app_trouble_target_record_search_1010)  
+* [一覧の絞り込み機能を利用する（検索対象の値が含まれるフィールドが特定できている場合）](#app_trouble_target_record_search_1030)
+
+<Heading level={3} id="app_trouble_target_record_search_1010">作成日時フィールドにアクセス権を設定する</Heading>
+
+1. 「レコードの一覧」画面で、画面右上にある歯車の形をした[アプリを設定]アイコンをクリックします。  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：[アプリを設定]アイコンが強調されている" />
+
+1. 「アプリの設定」画面で、[設定]タブの「アクセス権」にある[フィールド]をクリックします。
+
+1. [追加する]ボタンをクリックし、作成日時フィールドを指定してアクセス権を設定します。  
+  <b>設定例</b>   
+    <table>
+      <tbody>
+        <tr>
+          <td width="100">管理部</td>
+          <td width="100">[✔]閲覧</td>
+          <td width="100">[✔]編集</td>
+        </tr>
+        <tr>
+          <td>Everyone</td>
+          <td>[&nbsp;&nbsp;]閲覧</td>
+          <td>[&nbsp;&nbsp;]編集</td>
+        </tr>
+      </tbody>
+    </table>
+    この設定例では、管理部のメンバーは作成日時フィールドの閲覧・編集が可能となります。その他のユーザーは、  デフォルトの検索結果に対象レコードが表示されません。  
+    <Note>
+
+    「作成日時」フィールドを「グループ」フィールド内に配置している場合は、「グループ」フィールドのアクセス権も確認してください。
+    </Note>
+
+1. 画面右下の[保存]をクリックします。
+
+1. 画面右上の[アプリを更新]をクリックします。
+
+1. 確認ダイアログで[アプリを更新]をクリックします。  
+
+<Reference>
+
+* [フィールドにアクセス権を設定する](/k/ja/id/040593.html)
+
+</Reference>
+
+<Heading level={3} id="app_trouble_target_record_search_1030">一覧の絞り込み機能を利用する（検索対象の値が含まれるフィールドが特定できている場合）</Heading>
+
+検索対象の値が含まれるフィールドが特定できている場合は、絞り込み機能を利用してレコードを絞り込む方法もあります。
+
+絞り込み機能の詳細については、次のページを参照してください。  
+[一覧に表示するレコードを絞り込む](/k/ja/id/040458.html)

@@ -1,0 +1,72 @@
+---
+title: "権限の管理"
+weight: 200
+aliases:
+  - "/ja/id/04057"
+description: "{{< kintone >}}の権限の種類について、概要を説明しています。"
+layout: "@/layouts/SectionLayout.astro"
+---
+
+import CorpName from "@/components/CorpName.astro";
+import CybozuCom from "@/components/CybozuCom.astro";
+import Enabled from "@/components/Enabled.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import SlashHelp from "@/components/SlashHelp.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Enabled regions={["JP", "CN"]}>
+
+<Kintone />の権限の種類には、<Kintone />全体に関わる権限と、個別のアプリ／スペースに関する権限があります。また、<CybozuCom />（<CorpName />のクラウド基盤）の管理画面では、<Kintone />を安全に運用するための各種設定を行うことができます。
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+<Kintone />の権限の種類には、<Kintone />全体に関わる権限と、個別のアプリ／スペースに関する権限があります。また、<SlashUi />（<Kintone />のクラウド基盤の管理画面）では、<Kintone />を安全に運用するための各種設定を行うことができます。
+
+</Enabled>
+
+<Enabled regions={["JP"]}>
+
+<Img src="/k/kintone/img-ja/permission_admin01.png" alt="イラスト：アクセス権の全体イメージ" />
+
+</Enabled>
+
+<Enabled regions={["CN"]}>
+
+<Img src="/k/kintone/img-ja/permission_admin01_cn.png" alt="イラスト：アクセス権の全体イメージ" />
+
+</Enabled>
+
+<Enabled regions={["US"]}>
+
+<Img src="/k/kintone/img-ja/permission_admin01_us.png" alt="イラスト：アクセス権の全体イメージ" />
+
+</Enabled>
+
+権限や設定項目の例と、それらの設定画面は以下のとおりです。詳細については、各リンク先を参照してください。
+
+* <Kintone />全体に関わる権限
+  * 権限の例：アプリやスペースの作成権限、アプリグループの管理権限、システムの管理権限など
+  * 設定画面：<Wovn>［<Kintone />システム管理］</Wovn>画面で設定できます。  
+  [<Kintone />システム管理で設定できるアクセス権](/k/ja/id/04062.html)  
+  [アプリグループの管理](/k/ja/id/04023.html)
+* アプリごとに設定する権限
+  * 権限の例：レコード追加／編集の権限、フィールドごとの閲覧権限など
+  * 設定画面：<Wovn>［アプリの設定］</Wovn>画面で設定できます。  
+  [アクセス権の設定](/k/ja/id/040588.html)
+* スペースごとに設定する権限
+  * 権限の例：スペース内アプリの作成権限、スペースの管理権限など
+  * 設定画面：<Wovn>［スペースの管理］</Wovn>ダイアログで設定できます。  
+  [スペースの設定を変更する](/k/ja/id/040696.html)
+* <Kintone />を安全に運用するための設定
+  * 設定項目の例：組織／ユーザーの設定、組織間のアクセス権など
+  * 設定画面：<SlashUi />で設定できます。  
+  [<SlashUi />での権限設定](/k/ja/id/04059.html)  
+  [<SlashHelp />](/general/ja/id/0202.html)
+
+なお、管理者の種類と、各管理者ができることについては、次のページを参照してください。  
+[管理者の種類と権限](/k/ja/id/04058.html)

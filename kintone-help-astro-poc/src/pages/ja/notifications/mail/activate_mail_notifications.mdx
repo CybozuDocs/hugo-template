@@ -1,0 +1,153 @@
+---
+title: "通知のメール送信機能の利用設定"
+weight: 100
+aliases:
+  - "/ja/id/0403"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+ここでは、<Wovn>［利用する機能の選択］</Wovn>画面にある<Wovn>［通知のメール送信］</Wovn>機能について説明します。  
+通知のメール送信機能とは、<Kintone />の通知をメールで送信する機能のことです。<Kintone />上の通知に加えて、メールでも通知内容を確認できます。  
+初期設定では有効になっており、「自分宛」の通知がHTML形式のメールで送信されます。
+
+<Wovn>［利用する機能の選択］</Wovn>画面の開きかたは、次のページを参照してください。  
+[利用する機能の選択](/k/ja/id/04031.html)
+
+<Note>
+
+この機能が有効になっている場合は、個人でメール通知を受信するかどうか変更することも可能です。  
+詳細は、次のページを参照してください。  
+[個人設定でメール通知を設定する（各ユーザー）](/k/ja/id/040670.html#notifications_mail_notification_1040)
+
+</Note>
+
+<Kintone />の通知をメールで送信するためには、この設定以外にも、システムメールやメールアドレスの設定などが必要です。詳細は、次のページを参照してください。<Wovn></Wovn><Wovn></Wovn>  
+[メール通知を設定する](/k/ja/id/040670.html)
+
+<Heading id="admin_feature_activ_10">各項目の説明</Heading>
+
+<Img src="/k/kintone/img-ja/feature_activ05.png" alt="スクリーンショット：通知のメール送信画面" />
+
+<table>
+    <thead>
+         <tr>
+            <th style="width: 150px;">項目</th>
+            <th>説明</th>
+            <th style="width: 150px;">初期設定</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><Wovn>［通知のメール送信機能を利用する］</Wovn></td>
+            <td><Kintone />の通知をメールでも送信する機能です。</td>
+            <td>利用する</td>
+        </tr>
+        <tr>
+            <td><a href="#admin_feature_activ_1010"><Wovn>［受信設定の既定値］</Wovn></a></td>
+            <td>ユーザーがメール通知を受信するかどうかの既定値を設定します。</td>
+            <td><Wovn>［受信する（自分宛の通知のみ）］</Wovn></td>
+        </tr>
+        <tr>
+            <td><a href="#admin_feature_activ_1020"><Wovn>［メール通知の形式］</Wovn></a></td>
+            <td>
+              ユーザーが受信するメール通知を、HTML形式／テキスト形式のどちらにするかを設定します。
+            </td>
+            <td>
+              <Wovn>［HTML形式］</Wovn>（<Wovn>［個人設定による変更を許可する］</Wovn>が有効）
+            </td>
+        </tr>
+        <tr>
+            <td><a href="#admin_feature_activ_1030"><Wovn>［その他の設定］</Wovn></a></td>
+            <td>REST APIを使って<Kintone />を操作した場合に、メールで通知するかどうかを設定します。</td>
+            <td><Wovn>［REST APIの通知をメールで送信］</Wovn>が無効</td>
+        </tr>
+    </tbody>
+</table>
+
+<Reference>
+* [個人設定](/k/ja/id/040713.html)  
+* [［REST APIの通知をメールで送信］とは](/k/ja/id/04052.html)
+
+</Reference>
+
+各設定項目の詳細について以下に説明します。
+
+<Heading level={3} id="admin_feature_activ_1010">&lt;Wovn&gt;［受信設定の既定値］&lt;/Wovn&gt;</Heading>
+
+ユーザーがメール通知を受信するかどうかの既定値を設定できます。  
+受信設定の既定値を変更したとき、ユーザーによって適用されるかどうかが異なります。
+
+* 個人設定のメール通知の設定を一度も変更していないユーザー<Wovn></Wovn><Wovn></Wovn>  
+  変更後の設定に切り替わります。
+* 個人設定のメール通知の設定をすでに設定変更しているユーザー<Wovn></Wovn><Wovn></Wovn>  
+  変更後の設定に切り替わりません。ユーザー自身が設定した値がそのまま適用されます。<Wovn></Wovn>
+* 設定変更後に追加したユーザー  
+  変更後の値が最初から適用されています。
+
+ユーザーがあとから変更することは可能です。
+
+システム管理で<Wovn>［受信する（自分宛の通知のみ）］</Wovn>を選択した場合、メール通知として受信する通知は「自分宛」の通知のみとなります。  
+「自分宛」の通知とは、コメントの宛先に自分を指定されたときや、プロセス管理の作業者に設定されたときなどに受信する通知です。「自分宛」の通知を受信すると、画面上部の<Wovn>［通知一覧］</Wovn>アイコンに、受信した通知の数が表示されます。この「自分宛」の通知がメール通知されます。
+<Img src="/k/kintone/img-ja/feature_activ04.png" alt="利用する機能の選択画面" />
+「自分宛」の通知を受信する操作の詳細は、次のページを参照してください。  
+[通知が送信されるタイミングと宛先](/k/ja/id/040673.html)
+
+「すべて」の通知を受信するには、個人設定のメール通知の設定を変更する必要があります。<Wovn></Wovn><Wovn></Wovn>  
+ただし、「すべて」の通知を選択した場合、自分宛を含む「すべて」の通知がメール通知されるため、非常に多くのメールが届いてしまう可能性があります。<Wovn></Wovn>APIの実行で多くの通知を<Kintone />で受信する場合などは、メール通知も大量に届くようになるため注意してください。
+
+<Note>
+ゲストユーザーの既定値は、システム管理の設定にかかわらず「すべて」の通知を受信する設定になります。
+
+</Note>
+
+<Heading level={3} id="admin_feature_activ_1020">&lt;Wovn&gt;［メール通知の形式］&lt;/Wovn&gt;</Heading>
+
+ユーザーが受信するメール通知を、HTML形式／テキスト形式のどちらにするか設定できます。<Wovn></Wovn><Wovn></Wovn>  
+メール通知の形式を変更したとき、ユーザーによって適用されるかどうかが異なります。
+
+* 個人設定のメール通知の形式を一度も変更していないユーザー<Wovn></Wovn><Wovn></Wovn>  
+  変更後の設定に切り替わります。
+* 個人設定のメール通知の形式をすでに設定変更しているユーザー<Wovn></Wovn><Wovn></Wovn>  
+  変更後の設定に切り替わりません。ユーザー自身が設定した値がそのまま適用されます。<Wovn></Wovn>
+* 設定変更後に追加したユーザー  
+  変更後の値が最初から適用されています。
+
+ユーザーがあとから変更することは可能です。
+
+<Wovn>［個人設定による変更を許可する］</Wovn>のチェックを外して保存すると、<Wovn>［個人設定］</Wovn>画面ではメール形式の選択ができなくなります。  
+各ユーザーが<Wovn>［個人設定］</Wovn>画面で選択していた<Wovn>［メール通知の形式］</Wovn>の設定は無効になり、元に戻すことはできません。
+
+HTML形式のメール通知の例：  
+<Img src="/k/kintone/img-ja/enable_mail_notification_img1.png" alt="HTML形式のメール通知の例の画像" />  
+テキスト形式のメール通知の例：  
+<Img src="/k/kintone/img-ja/enable_mail_notification_img2.png" alt="テキスト形式のメール通知の例の画像" />
+
+<Note>
+
+ゲストユーザーへの、通知以外のメール（招待メールやアカウントの作成完了メールなど）は個人設定の選択にかかわらず、システム管理のメール通知の形式で送信されます。
+
+</Note>
+
+<Heading level={3} id="admin_feature_activ_1030">&lt;Wovn&gt;［その他の設定］&lt;/Wovn&gt;</Heading>
+
+REST APIを使って<Kintone />を操作した場合にメールで通知するかどうかを設定できます。  
+初期値は無効になっています。  
+<Wovn>［REST APIの通知をメールで送信］</Wovn>のチェックが外れていると、一部のメールが届かないことがあります。「すべて」の通知を受け取りたいときは、設定を有効にします。
+
+<Reference>
+
+* [通知が送信されるタイミングと宛先](/k/ja/id/040673.html)
+* [「自分宛」通知と「すべて」通知の違い](/k/ja/id/040674.html)
+* [メール通知を設定する](/k/ja/id/040670.html)
+* [メール通知が届かないときは](/k/ja/id/040377.html)
+* [管理者が一括でメール通知を停止するには](/k/ja/id/040372.html)
+
+</Reference>

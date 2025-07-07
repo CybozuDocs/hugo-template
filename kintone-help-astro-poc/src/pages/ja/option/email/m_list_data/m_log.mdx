@@ -1,0 +1,237 @@
+---
+title: "メール共有オプションの監査ログ"
+weight: 600
+disabled: "[US,CN]"
+aliases:
+  - "/ja/id/040988"
+labels: "[3]"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+
+
+監査ログは、誰が、いつ、どのような操作を行ったかを記録したログです。メール共有オプションの監査ログは、<Slash />共通管理で確認できます。
+
+メール共有オプションの監査ログには、次の項目に常に共通の値が出力されます。
+
+* サービス：kintone メール共有オプション
+* レベル：情報
+
+<table>
+    <thead>
+        <tr>
+            <th class="txtcenter wd10">モジュール</th>
+            <th class="txtcenter wd30">アクション</th>
+            <th class="txtcenter wd10">結果</th>
+            <th class="txtcenter wd50">補足</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Browse</td>
+            <td>\{メールアプリケーション名\}の閲覧</td>
+            <td>SUCCESS</td>
+            <td>\{メールアプリケーション名\}=\{メールID\{WID\}\}</td>
+        </tr>
+        <tr>
+            <td>Customer</td>
+            <td>アドレス帳の同期(追加または更新)</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーションID\},Count=\{追加または更新した数\}</td>
+        </tr>
+        <tr>
+            <td>Customer</td>
+            <td>アドレス帳の同期(追加または更新)</td>
+            <td>FAILED</td>
+            <td>メールアプリケーション=\{メールアプリケーションID\}</td>
+        </tr>
+        <tr>
+            <td>Customer</td>
+            <td>アドレス帳の同期(削除)</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーションID\},Count=\{削除した数\}</td>
+        </tr>
+        <tr>
+            <td>Customer</td>
+            <td>アドレス帳の同期(削除)</td>
+            <td>FAILED</td>
+            <td>メールアプリケーション=\{メールアプリケーションID\}</td>
+        </tr>
+        <tr>
+            <td>Export</td>
+            <td>メールの書き出し</td>
+            <td>SUCCESS</td>
+            <td>メールスペース=\{メールスペース名\}</td>
+        </tr>
+        <tr>
+            <td>Mail</td>
+            <td>メールの削除</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},メール=\{メールID\},受信日時/送信日時/日時=\{YYYY-MM-DDThh:mm:ss+09:00\},件名=\{件名(0～100文字)\}</td>
+        </tr>
+        <tr>
+            <td>Mail</td>
+            <td>メールの完全削除</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},メール=\{メールID\},受信日時/送信日時/日時=\{YYYY-MM-DDThh:mm:ss+09:00\},件名=\{件名(0～100文字)\}</td>
+        </tr>
+        <tr>
+            <td>Mail</td>
+            <td>メールのドラフトの削除</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},メール=\{メールID\}</td>
+        </tr>
+        <tr>
+            <td>Mail</td>
+            <td>メールのソースの削除</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},メール=\{メールID\}</td>
+        </tr>
+        <tr>
+            <td>Mail</td>
+            <td>メールの復旧</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},メール=\{メールID\}</td>
+        </tr>
+        <tr>
+            <td>Mail</td>
+            <td>メールの一括削除</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\}</td>
+        </tr>
+        <tr>
+            <td>Mail</td>
+            <td>メールの一括削除</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},フォルダ=\{フォルダ名\},サブフォルダ=\{サブフォルダを含めない場合は0を、含める場合は1を表示\}</td>
+        </tr>
+        <tr>
+            <td>Mail</td>
+            <td>メールの一括削除</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},期間=\{期間\}</td>
+        </tr>
+        <tr>
+            <td>Mail</td>
+            <td>メールの一括削除</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},フォルダ=ごみ箱</td>
+        </tr>
+        <tr>
+            <td>Mail</td>
+            <td>メールの移動</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},メールアプリケーション(移動先)=\{メールアプリケーション名\},フォルダ=\{フォルダ名\}</td>
+        </tr>
+        <tr>
+            <td>MailSetting</td>
+            <td>振り分けの追加</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},条件名=\{条件名\},振り分け先=\{振り分け先のフォルダ名\}</td>
+        </tr>
+        <tr>
+            <td>MailSetting</td>
+            <td>振り分けの変更</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},条件名=\{条件名\},振り分け先=\{振り分け先のフォルダ名\}</td>
+        </tr>
+        <tr>
+            <td>MailSetting</td>
+            <td>振り分けの削除</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},条件名=\{条件名\}</td>
+        </tr>
+        <tr>
+            <td>MailSetting</td>
+            <td>自動返信の追加</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},条件名=\{条件名\}</td>
+        </tr>
+        <tr>
+            <td>MailSetting</td>
+            <td>自動返信の変更</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},条件名=\{条件名\}</td>
+        </tr>
+        <tr>
+            <td>MailSetting</td>
+            <td>自動返信の削除</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},条件名=\{条件名\}</td>
+        </tr>
+        <tr>
+            <td>MailSetting</td>
+            <td>自動転送の追加</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},条件名=\{条件名\},転送先=\{転送先\}</td>
+        </tr>
+        <tr>
+            <td>MailSetting</td>
+            <td>自動転送の変更</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},条件名=\{条件名\},転送先=\{転送先\}</td>
+        </tr>
+        <tr>
+            <td>MailSetting</td>
+            <td>自動転送の削除</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},条件名=\{条件名\}</td>
+        </tr>
+        <tr>
+            <td>Send</td>
+            <td>メール送信</td>
+            <td>SUCCESS</td>
+            <td>メール=\{メールID\},Message-ID=\{メールのMessage-ID\}</td>
+        </tr>
+        <tr>
+            <td>Send</td>
+            <td>メール送信(通知)</td>
+            <td>SUCCESS</td>
+            <td>メール=\{メールID\}, Message-ID=\{メールのMessage-ID\}</td>
+        </tr>
+        <tr>
+            <td>Send</td>
+            <td>メール送信(通知)</td>
+            <td>FAILED</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},通知対象のメールID=\{メールID/メールID/...\},宛先=\{通知の宛先メールアドレス\},エラーメッセージ=\{エラーメッセージ\},サーバーからの応答=\{サーバーからの応答(最大1000文字)\}</td>
+        </tr>
+        <tr>
+            <td>Send</td>
+            <td>メール送信(予約送信)</td>
+            <td>FAILED</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},メール=\{メールID\}, エラー=\{エラー番号\}, ErrorID＝\{エラーID\}, サーバーからの応答=\{サーバーからの応答(最大1000文字)\}</td>
+        </tr>
+        <tr>
+            <td>Send</td>
+            <td>メール送信(予約送信)</td>
+            <td>FAILED</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},エラー=\{エラー番号\}, ErrorID＝\{エラーID\}</td>
+        </tr>
+        <tr>
+            <td>Send</td>
+            <td>メール送信(自動返信)</td>
+            <td>FAILED</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},返信元のメールID=\{メールID\},条件ID=\{条件ID\},エラーメッセージ=\{エラーメッセージ\},サーバーからの応答=\{サーバーからの応答(最大1000文字)\}</td>
+        </tr>
+        <tr>
+            <td>Send</td>
+            <td>メール送信(自動転送)</td>
+            <td>FAILED</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\},転送元のメールID=\{メールID\},エラーメッセージ=\{エラーメッセージ\},サーバーからの応答=\{サーバーからの応答(最大1000文字)\}</td>
+        </tr>
+        <tr>
+            <td>System</td>
+            <td>メールアプリケーションの削除</td>
+            <td>SUCCESS</td>
+            <td>メールアプリケーション=\{メールアプリケーション名\}</td>
+        </tr>
+    </tbody>
+</table>
+
+<Reference>
+
+[監査ログの設定](/general/ja/id/02085.html)
+
+</Reference>

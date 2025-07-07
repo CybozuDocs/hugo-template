@@ -1,0 +1,42 @@
+---
+title: "コメントや変更履歴を閉じた状態でレコード詳細画面を開くことはできますか？"
+weight: 1700
+aliases:
+  - "/ja/id/040172"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Enabled from "@/components/Enabled.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+
+
+コメント機能を有効にしている場合、コメント／変更履歴欄を閉じた状態でレコード詳細画面を開くことはできません。  
+
+レコード詳細画面を開いてから、コメントアイコンまたは変更履歴アイコンをクリックすると、コメント／変更履歴欄を閉じることができます。  
+<Img src="/k/kintone/img-ja/comments_closed_img02.png" alt="画像" />
+
+<Enabled regions={["JP"]}>
+<Hint>
+
+カスタマイズすると、コメント／変更履歴欄を非表示にできる場合があります。カスタマイズ可能かどうかは契約コースによって異なります。
+</Hint>
+
+</Enabled>
+
+なお、コメント機能を無効にすると、レコード詳細画面でコメント欄が表示されなくなり、変更履歴欄も閉じられた状態でレコードを開くことができます。  
+コメント機能を無効にするには、アプリの設定画面で「設定」タブを選択した後、[高度な設定]をクリックし、「レコードのコメント機能を有効にする」のチェックを外してください。その後、[アプリを更新]をクリックし、確認ダイアログで[アプリを更新]をクリックしてください。
+
+<Note>
+
+コメント機能を無効にした場合は、再度有効にすることで、各レコードのコメントを閲覧できるようになります。
+
+</Note>
+
+<Reference>
+
+[レコードのコメント機能を無効にする](/k/ja/id/040480.html)
+
+</Reference>

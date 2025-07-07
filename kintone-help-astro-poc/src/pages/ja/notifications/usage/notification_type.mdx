@@ -1,0 +1,401 @@
+---
+title: "通知が送信されるタイミングと宛先"
+weight: 200
+aliases:
+  - "/ja/id/040673"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+通知がどのタイミングでどのユーザーに送信されるかを説明します。  
+なお、<Kintone />の通知には、ポータルや通知ページの「すべて」に届く通知と、「自分宛」に届く通知の2つがあります。それぞれの違いは、次のページを参照してください。  
+[「自分宛」通知と「すべて」通知の違い](/k/ja/id/040674.html)
+
+<Note>
+
+通知はメールでも受け取ることができますが、一部対応していないものもあります。  
+対応していないメール通知については、表の下の補足で説明しています。
+
+メール通知の設定方法は、次のページを参照してください。  
+[メール通知を設定する](/k/ja/id/040670.html)
+
+</Note>
+
+<Heading id="notifications_notification_type_10">アプリ／レコード</Heading>
+
+<table style="" width="100%" align="center">
+    <thead>
+        <tr>
+            <th>送信されるタイミング</th>
+            <th>「すべて」の通知を受信するユーザー</th>
+            <th>「自分宛」の通知を受信するユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>レコードを追加したとき</td>
+            <td>
+              <Wovn>［アプリの条件通知］</Wovn>の<Wovn>［レコード追加］</Wovn>が有効な、次のユーザー<br />
+              <ul>
+                <li>通知先に指定されたユーザー<Wovn></Wovn></li>
+                <li>通知先に指定された組織やグループに所属するユーザー</li>
+              </ul>
+            </td>
+            <td>
+              <Wovn>［アプリの条件通知］</Wovn>の<Wovn>［レコード追加］</Wovn>が有効な、次のフィールドに該当するユーザー<br />
+              <ul>
+                <li><Wovn>［ユーザー選択］</Wovn></li>
+                <li><Wovn>［組織選択］</Wovn></li>
+                <li><Wovn>［グループ選択］</Wovn></li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>レコードを更新したとき</td>
+            <td>
+              <Wovn>［アプリの条件通知］</Wovn>の<Wovn>［レコード編集］</Wovn>が有効な、次のユーザー<br />
+              <ul>
+                <li>通知先に指定されたユーザー<Wovn></Wovn></li>
+                <li>通知先に指定された組織やグループに所属するユーザー<Wovn></Wovn></li>
+              </ul>
+            </td>
+            <td>
+              <Wovn>［アプリの条件通知］</Wovn>の<Wovn>［レコード編集］</Wovn>が有効な、次のフィールドに該当するユーザー<br />
+              <ul>
+                <li><Wovn>［作成者］</Wovn></li>
+                <li><Wovn>［作業者］</Wovn><sup>*1</sup></li>
+                <li><Wovn>［ユーザー選択］</Wovn></li>
+                <li><Wovn>［組織選択］</Wovn></li>
+                <li><Wovn>［グループ選択］</Wovn></li>
+              </ul>
+              *1：編集した時点で<Wovn>［現在の作業者］</Wovn>に割り当てられているユーザー。なお、<Wovn>［現在の作業者］</Wovn>に割り当てられているユーザーのうち、すでにアクションを実行したユーザーには通知されません。
+            </td>
+        </tr>
+        <tr>
+            <td>レコードにコメントを書き込んだとき</td>
+            <td>
+              <Wovn>［アプリの条件通知］</Wovn>の<Wovn>［コメント書き込み］</Wovn>が有効な、次のユーザー<br />
+              <ul>
+                <li>通知先に指定されたユーザー<Wovn></Wovn></li>
+                <li>通知先に指定された組織やグループに所属するユーザー<Wovn></Wovn></li><br />
+                <li>そのレコードにコメントを書いたことがあるユーザー（<Wovn>［コメントを書き込んだユーザーは、そのレコードにコメントが書き込まれたときに通知を受信する］</Wovn>にチェックがついている場合）<Wovn></Wovn></li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>コメントでメンションされたユーザー</li><br />
+                <li><Wovn>［アプリの条件通知］</Wovn>の<Wovn>［コメント書き込み］</Wovn>が有効な、次のフィールドに該当するユーザー</li>
+                <ul>
+                <li><Wovn>［作成者］</Wovn></li>
+                <li><Wovn>［更新者］</Wovn></li>
+                <li><Wovn>［作業者］</Wovn><sup>*1</sup></li>
+                <li><Wovn>［ユーザー選択］</Wovn></li>
+                <li><Wovn>［組織選択］</Wovn></li>
+                <li><Wovn>［グループ選択］</Wovn></li>
+                </ul>
+              </ul>
+              *1：書き込みした時点で<Wovn>［現在の作業者］</Wovn>に割り当てられているユーザー。なお、<Wovn>［現在の作業者］</Wovn>に割り当てられているユーザーのうち、すでにアクションを実行したユーザーには通知されません。
+            </td>
+        </tr>
+        <tr>
+            <td>レコードのコメントの<Wovn>［いいね！］</Wovn>をクリックしたとき</td>
+            <td>コメントを書き込んだユーザー</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>「作業者」を変更したとき<Wovn></Wovn></td>
+            <td></td>
+            <td>「作業者」に設定されたユーザー<Wovn></Wovn></td>
+        </tr>
+        <tr>
+            <td>レコードのステータスを更新したとき</td>
+            <td>
+              <Wovn>［アプリの条件通知］</Wovn>の<Wovn>［ステータスの更新］</Wovn>が有効な、次のユーザー<br />
+              <ul>
+                <li>通知先に指定されたユーザー<Wovn></Wovn></li>
+                <li>通知先に指定された組織やグループに所属するユーザー<Wovn></Wovn></li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li><Wovn>［アプリの条件通知］</Wovn>の<Wovn>［ステータスの更新］</Wovn>が有効な、次のフィールドに該当するユーザー</li>
+                <ul>
+                <li><Wovn>［作成者］</Wovn></li>
+                <li><Wovn>［作業者］</Wovn><sup>*1</sup></li>
+                <li><Wovn>［ユーザー選択］</Wovn></li>
+                <li><Wovn>［組織選択］</Wovn></li>
+                <li><Wovn>［グループ選択］</Wovn></li>
+                </ul>
+              </ul>
+              *1：ステータス変更後の「作業者」に設定されたユーザー<Wovn></Wovn>
+            </td>
+        </tr>
+        <tr>
+            <td>レコードのファイルへの書き出しが完了したとき</td>
+            <td nowrap></td>
+            <td nowrap>レコードを書き出したユーザー</td>
+        </tr>
+        <tr>
+            <td>レコードのファイルへの書き出しが失敗したとき</td>
+            <td></td>
+            <td>レコードの書き出しを行ったユーザー</td>
+        </tr>
+        <tr>
+            <td>レコードのファイルへの書き出しをキャンセルしたとき</td>
+            <td></td>
+            <td>レコードの書き出しを行ったユーザー</td>
+        </tr>
+        <tr>
+            <td>ファイルを使用したレコードの登録や更新が完了したとき</td>
+            <td>
+              <Wovn>［アプリの条件通知］</Wovn>の<Wovn>［ファイル読み込み］</Wovn>が有効な、次のユーザー<br />
+              <ul>
+                <li>通知先に指定されたユーザー<Wovn></Wovn></li>
+                <li>通知先に指定された組織やグループに所属するユーザー<Wovn></Wovn></li>
+              </ul>
+            </td>
+            <td>ファイルを読み込んだユーザー</td>
+        </tr>
+        <tr>
+            <td>ファイルを使用したレコードの読み込みが失敗したとき</td>
+            <td></td>
+            <td>レコードの読み込みを行ったユーザー</td>
+        </tr>
+        <tr>
+            <td>ファイルを使用したレコードの読み込みをキャンセルしたとき</td>
+            <td></td>
+            <td>レコードの読み込みをキャンセルしたユーザー</td>
+        </tr>
+        <tr>
+            <td>レコードの一括削除を行ったとき</td>
+            <td></td>
+            <td>一括削除を行ったユーザー</td>
+        </tr>
+        <tr>
+            <td>レコードの一括削除が失敗したとき</td>
+            <td></td>
+            <td>一括削除を行ったユーザー</td>
+        </tr>
+        <tr>
+            <td>レコードの一括削除を中断したとき</td>
+            <td></td>
+            <td>一括削除を行ったユーザー</td>
+        </tr>
+        <tr>
+            <td>定期レポートが記録されたとき</td>
+            <td>定期レポートを設定したユーザー</td>
+            <td style="text-align: center; vertical-align: middle;"></td>
+        </tr>
+        <tr>
+            <td>定期レポートの記録が失敗したとき</td>
+            <td>アプリの管理者</td>
+            <td style="text-align: center; vertical-align: middle;"><span style="line-height: 20.8px;"></span>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>クロス集計のファイルへの書き出しが完了したとき</td>
+            <td></td>
+            <td>クロス集計を書き出したユーザー</td>
+        </tr>
+        <tr>
+            <td>クロス集計のファイルへの書き出しが失敗したとき</td>
+            <td></td>
+            <td>クロス集計の書き出しを行ったユーザー</td>
+        </tr>
+        <tr>
+            <td>集計結果を書き出したとき</td>
+            <td></td>
+            <td>集計結果を書き出したユーザー</td>
+        </tr>
+        <tr>
+            <td>集計結果の書き出しに失敗したとき</td>
+            <td></td>
+            <td>集計結果の書き出しを行ったユーザー</td>
+        </tr>
+        <tr>
+            <td>
+              <Wovn>［レコードの条件通知］</Wovn>の条件を満たしたとき<br /><br />
+              レコードが追加、更新、ステータス変更されたタイミングで、設定された条件に合致した場合に通知を送信します。CSVインポートによるレコード追加更新では条件通知を送信しません。
+            </td>
+            <td></td>
+            <td><Wovn>［レコードの条件通知］</Wovn>で通知先に設定したユーザー</td>
+        </tr>
+        <tr>
+            <td>
+              <Wovn>［リマインダーの条件通知］</Wovn>の条件を満たしたとき<br /><br />
+              10分間隔で条件に合致するレコードをチェックしてリマインダー通知を送信します。送信者は常にAdministratorとなります。
+            </td>
+            <td></td>
+            <td><Wovn>［リマインダーの条件通知］</Wovn>で設定したユーザー</td>
+        </tr>
+        <tr>
+            <td><Wovn>［リマインダーの条件通知］</Wovn>で通知の条件を設定し、<Wovn>［次のキーワードを含む／含まない］</Wovn>の対象が10万件を超えるとき<Wovn></Wovn></td>
+            <td></td>
+            <td>アプリの管理者</td>
+        </tr>
+    </tbody>
+</table>
+
+<Note>
+
+* レコードのコメントの<Wovn>［いいね！］</Wovn>をクリックしたときの通知は、メール通知が送信されません。
+
+</Note>
+
+<Reference>
+
+* [アプリの条件通知：アプリへの操作を条件にした通知を設定する](/k/ja/id/040561.html)
+* [レコードの条件通知：レコードが特定の条件を満たしたときの通知を設定する](/k/ja/id/040563.html)
+* [リマインダーの条件通知：日時を条件にしたリマインド通知を設定する](/k/ja/id/040564.html)
+
+</Reference>
+
+<Heading id="notifications_notification_type_20">スペース</Heading>
+
+<table style="" width="100%" align="center">
+        
+    <thead>
+        <tr>
+            <th width="35%">送信されるタイミング</th>
+            <th width="30%">「すべて」の通知を受信するユーザー</th>
+            <th width="35%">「自分宛」の通知を受信するユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>スペースを作成したとき</td>
+            <td></td>
+            <td>スペースの参加メンバー</td>
+        </tr>
+        <tr>
+            <td>スペースの本文を編集したとき</td>
+            <td>スペースの参加メンバー</td>
+            <td>本文の宛先に指定したユーザー</td>
+        </tr>
+        <tr>
+            <td>スペースの公開／非公開の設定を変更したとき</td>
+            <td>
+              <p>スペースの参加メンバー</p>
+            </td>
+            <td style="text-align: center; vertical-align: middle;"></td>
+        </tr>
+        <tr>
+            <td>スペースにゲストが参加／退会したとき</td>
+            <td>スペースの参加メンバー</td>
+            <td style="text-align: center; vertical-align: middle;"></td>
+        </tr>
+        <tr>
+            <td>スレッドを作成したとき</td>
+            <td>スペースの参加メンバー</td>
+            <td>本文の宛先に指定したユーザー<br /><br />スレッド作成時、<Wovn>［スレッドの作成をスペース参加メンバーに「自分宛」で通知する］</Wovn>にチェックを入れた場合は、スペースの参加メンバーにも「自分宛」で通知されます。</td>
+        </tr>
+        <tr>
+            <td>スレッドの本文を編集したとき</td>
+            <td>スレッドをフォローしているユーザー</td>
+            <td>本文の宛先に指定したユーザー</td>
+        </tr>
+        <tr>
+            <td>スレッドにコメントを書き込んだとき</td>
+            <td>スレッドをフォローしているユーザー</td>
+            <td>コメントの宛先に指定したユーザー</td>
+        </tr>
+        <tr>
+            <td>スレッドのコメントの<Wovn>［いいね！］</Wovn>をクリックしたとき</td>
+            <td>コメントを書き込んだユーザー</td>
+            <td style="text-align: center; vertical-align: middle;"></td>
+        </tr>
+    </tbody>
+</table>
+
+<Note>
+
+以下の通知は、メール通知が送信されません。
+
+* スペースの公開／非公開の設定を変更したとき
+* スペースにゲストが参加／退会したとき
+* スレッドのコメントの<Wovn>［いいね！］</Wovn>をクリックしたとき<Wovn></Wovn>
+
+</Note>
+
+<Heading id="notifications_notification_type_30">ピープル</Heading>
+
+<table style="" width="100%" align="center">
+        
+    <thead>
+        <tr>
+            <th>送信されるタイミング</th>
+            <th>「すべて」の通知を受信するユーザー</th>
+            <th>「自分宛」の通知を受信するユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>自分のピープルにコメントを書き込んだとき</td>
+            <td>自分をフォローしているユーザー</td>
+            <td>コメントの宛先に指定したユーザー</td>
+        </tr>
+        <tr>
+            <td>ほかのユーザーのピープルにコメントを書き込んだとき</td>
+            <td>ピープルのオーナーをフォローしているユーザー</td>
+            <td>
+              <ul>
+                <li>ピープルのオーナー</li>
+                <li>コメントの宛先に指定したユーザー</li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>ピープルのコメントの<Wovn>［いいね！］</Wovn>をクリックしたとき<Wovn></Wovn></td>
+            <td>コメントを書き込んだユーザー</td>
+            <td style="text-align: center; vertical-align: middle;"></td>
+        </tr>
+    </tbody>
+</table>
+
+<Note>
+
+* ピープルのコメントの<Wovn>［いいね！］</Wovn>をクリックしたときの通知は、メール通知が送信されません。<Wovn></Wovn>
+
+</Note>
+
+<Heading id="notifications_notification_type_40">メッセージ</Heading>
+
+<table style="" width="100%" align="center">
+        
+    <thead>
+        <tr>
+            <th>送信されるタイミング</th>
+            <th>「すべて」の通知を受信するユーザー</th>
+            <th>「自分宛」の通知を受信するユーザー</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>メッセージを書き込んだとき</td>
+            <td></td>
+            <td>メッセージの宛先のユーザー<br /><br />メッセージをやり取りしている2人以外のユーザーに宛先を指定して書き込んでも、通知は送信されません。</td>
+        </tr>
+        <tr>
+            <td>メッセージの<Wovn>［いいね！］</Wovn>をクリックしたとき<Wovn></Wovn></td>
+            <td>メッセージを書き込んだユーザー</td>
+            <td style="text-align: center; vertical-align: middle;"></td>
+        </tr>
+    </tbody>
+</table>
+
+<Note>
+
+* メッセージの<Wovn>［いいね！］</Wovn>をクリックしたときの通知は、メール通知が送信されません。<Wovn></Wovn>
+
+</Note>
+
+<Reference>
+
+[アプリの通知設定](/k/ja/id/040559.html)
+
+</Reference>

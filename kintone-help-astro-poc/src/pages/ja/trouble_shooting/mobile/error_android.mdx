@@ -1,0 +1,157 @@
+---
+title: "エラーが表示されてAndroid端末で接続設定ができない場合"
+weight: 400
+aliases:
+  - "/ja/id/040362"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import CybozuCom from "@/components/CybozuCom.astro";
+import Enabled from "@/components/Enabled.astro";
+import Graynote from "@/components/Graynote.astro";
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+
+エラーが表示されてモバイルの接続設定ができない場合の対処方法を説明します。
+
+<Enabled regions={["JP", "CN"]}>
+
+<Heading id="mobile_error_android_10">Android Chromeでエラーが表示される場合</Heading>
+
+エラーの表示例：
+<Img src="/k/kintone/img-ja/android_error_01.png" alt="スクリーンショット：アクセスにはクライアント証明書が必要ですエラー" />
+
+<Heading level={3} id="mobile_error_android_1010">「アクセスにはクライアント証明書が必要です。」というエラーメッセージが表示される</Heading>
+
+セキュアアクセス用のURL「https://（サブドメイン名）.s.<CybozuCom />/」にアクセスした場合に、Webブラウザーにクライアント証明書がインストールされていないと表示されます。
+Android Chromeにクライアント証明書をインストールしてください。
+
+<Reference>
+
+* [Android Chromeでセキュアアクセスを利用する](/k/ja/id/040656.html#android_secure_android_10)
+* [セキュアアクセスを設定する](/general/ja/id/02062.html)
+
+</Reference>
+
+<Heading level={3} id="mobile_error_android_1020">「アクセスするには認証が必要です。」というエラーメッセージが表示される</Heading>
+
+次のエラーメッセージが表示されます。
+
+<Graynote>
+アクセスするには認証が必要です。  
+クライアント証明書をお持ちでしたら、こちらでアクセスできます：https://（サブドメイン名）.s.<CybozuCom />  
+このボタンをチェックすると、以後自動的にリダイレクトします。
+
+</Graynote>
+
+IPアドレス制限によって、アクセスが制限されている場合に表示されます。  
+許可されているIPアドレスからアクセスしてください。  
+どのIPアドレスからのアクセスが許可されているかは、<SlashUi />で確認できます。
+
+&#123;&#123;< enabled2 JP >&#125;&#125;
+<Reference>
+
+[IPアドレス制限](/general/ja/id/02045.html)
+</Reference>
+
+</Enabled>
+
+<Heading level={3} id="mobile_error_android_1030">「証明書が不正です。」というエラーメッセージが表示される</Heading>
+
+別ユーザーのクライアント証明書で<Kintone />にログインしようとした場合に表示されます。  
+クライアント証明書はユーザーに紐づきます。1台のクライアントパソコンを複数人で利用する場合は、各ユーザー分のクライアント証明書をインストールする必要があります。
+
+<Reference>
+
+[端末にクライアント証明書をインストールする](/general/ja/id/020405.html)
+
+</Reference>
+
+&#123;&#123;< /enabled2 >&#125;&#125;
+
+<Heading id="mobile_error_android_20">モバイルアプリでエラーが表示される場合</Heading>
+
+エラーの表示例：
+<Img src="/k/kintone/img-ja/android_error_02.png" alt="スクリーンショット：アクセスにはクライアント証明書が必要ですエラー" />
+
+<Heading level={3} id="mobile_error_android_2010">「IPアドレス制限によってアクセスが制限されています」というエラーが表示される</Heading>
+
+次のエラーメッセージが表示されます。
+
+<Graynote>
+IPアドレス制限によってアクセスが制限されています  
+許可されているIPアドレスからアクセスするか、セキュアアクセスを利用してアクセスしてください。
+
+</Graynote>
+
+このエラーメッセージが表示される場合、下記の手順で問題が解決できるかどうか試してください。
+
+<Heading level={4} id="mobile_error_android_201010">IPアドレス制限を確認する</Heading>
+
+IPアドレス制限によって、アクセスが制限されている場合に表示されます。  
+IPアドレス制限で許可されている環境からアクセスしてください。  
+どの環境からのアクセスが許可されているかは、<SlashUi />で確認できます。
+
+<Enabled regions={["JP"]}>
+<Reference>
+
+[IPアドレス制限](/general/ja/id/02045.html)
+</Reference>
+
+</Enabled>
+
+<Enabled regions={["JP", "CN"]}>
+
+<Heading level={4} id="mobile_error_android_201020">セキュアアクセスを使ってアクセスする</Heading>
+
+セキュアアクセスを利用している場合、セキュアアクセス機能を使って<Kintone />にアクセスできます。  
+クライアント証明書を送信して、メールに添付されたクライアント証明書をタップして接続設定を行ってください。
+
+<Reference>
+
+[モバイルアプリをセキュアアクセスで利用する](/k/ja/id/040656.html#android_secure_android_20)
+
+</Reference>
+
+</Enabled>
+
+<Heading level={3} id="mobile_error_android_2030">「ログイン名またはパスワードが間違っています。」というエラーが表示される</Heading>
+
+このエラーメッセージが表示される場合、下記の手順で問題が解決できるかどうか試してください。
+
+<Heading level={4} id="mobile_error_android_203010">ログイン名とパスワードが正しいか確認する</Heading>
+
+ログイン名とパスワードは、大文字や小文字を正しく入力する必要があります。  
+意図した文字が入力できていない理由として、次のようなものが挙げられます。
+
+* コピーアンドペーストの結果、前後に余分なスペースがついている
+* CapsLockが有効になっている
+
+<Heading level={4} id="mobile_error_android_203020">Webブラウザーから仮パスワードを変更する</Heading>
+
+<Slash />共通管理者がユーザー追加やパスワード変更したあと、該当ユーザーが仮パスワードを変更していない場合に表示されます。  
+PCやモバイル端末のWebブラウザーから<Kintone />にアクセスして、仮パスワードを変更してください。
+
+<Enabled regions={["JP", "CN"]}>
+
+<Heading level={3} id="mobile_error_android_2040">「アクセスするには認証が必要です。」というエラーが表示される</Heading>
+
+<Slash />共通管理者がBasic認証のユーザー名やパスワードを変更した場合に表示されます。  
+モバイルアプリをアンインストールしてから再度インストールしてください。そのあと、Basic認証の正しいユーザー名とパスワードを入力します。
+
+<Heading level={3} id="mobile_error_android_2050">「クライアント証明書の有効期限が切れたか、無効です。」というエラーが表示される</Heading>
+
+クライアント証明書の有効期限が切れたか、無効になった場合に表示されます。  
+モバイルアプリをアンインストールしてから再度インストールしてください。そのあと、新しいクライアント証明書を送信し、メールに添付されたクライアント証明書をタップして接続設定を行ってください。
+
+<Reference>
+
+[モバイルアプリをセキュアアクセスで利用する](/k/ja/id/040656.html#android_secure_android_20)
+
+</Reference>
+
+</Enabled>

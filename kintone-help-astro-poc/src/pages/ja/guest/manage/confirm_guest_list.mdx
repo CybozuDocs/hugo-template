@@ -1,0 +1,154 @@
+---
+title: "ゲストユーザーの一覧を確認する"
+weight: 300
+aliases:
+  - "/ja/id/040823"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import Slash from "@/components/Slash.astro";
+import SlashUi from "@/components/SlashUi.astro";
+import Wovn from "@/components/Wovn.astro";
+
+
+<Wovn>［ゲストユーザー管理］</Wovn>画面の<Wovn>［ゲストユーザーの一覧］</Wovn>には、<Kintone />に参加しているゲストユーザーの登録情報や、所属するゲストスペース、ステータスなどが表示されます。<Wovn></Wovn><Wovn></Wovn>  
+
+<Img src="/k/kintone/img-ja/confirm_guest_list_01.png" alt="スクリーンショット：［ゲストユーザー管理］画面で［ゲストユーザーの一覧］を赤枠で強調" />
+
+ゲストユーザーのステータスや<Kintone />の利用状況を確認して、不要なアカウントがあれば、<Wovn>［ゲストユーザーの一覧］</Wovn>で、ゲストユーザーを削除できます。<Wovn></Wovn>  
+また、ゲストユーザーの詳細情報を表示して、ステータスやログイン時のパスワードを変更できます。  
+[ゲストユーザーを削除する](#guest_confirm_guest_list_20)  
+[ゲストユーザーのステータスを変更する](#guest_confirm_guest_list_30)  
+[ゲストユーザーのパスワードを変更する](#guest_confirm_guest_list_40)  
+
+<Note>
+<Slash />共通管理者は、ゲストユーザーの一覧をCSV形式でダウンロードできます。  
+[ゲストユーザーの一覧をCSV形式でダウンロードする](/k/ja/id/040822.html)
+
+</Note>
+
+<Wovn>［ゲストユーザー管理］</Wovn>画面の開き方は、次のページを参照してください。  
+[［ゲストユーザー管理］画面を開く](/k/ja/id/04035.html#guest_manage_guest_10)
+
+<Heading id="guest_confirm_guest_list_10">&lt;Wovn&gt;［ゲストユーザーの一覧］&lt;/Wovn&gt;の項目説明</Heading>
+
+招待中のゲストユーザーは、<Wovn>［ゲストユーザーの一覧］</Wovn>には表示されません。
+
+<Heading level={3} id="guest_confirm_guest_list_1010">&lt;Wovn&gt;［会社］&lt;/Wovn&gt;</Heading>
+
+ゲストユーザーの<Wovn>［プロフィール］</Wovn>に設定されている<Wovn>［会社］</Wovn>が表示されます。  
+[ゲストの操作：プロフィールを編集する](/k/ja/id/040645.html)
+
+<Heading level={3} id="guest_confirm_guest_list_1020">&lt;Wovn&gt;［名前］&lt;/Wovn&gt;</Heading>
+
+ゲストユーザーの<Wovn>［プロフィール］</Wovn>に設定されている<Wovn>［名前］</Wovn>が表示されます。  
+[ゲストの操作：プロフィールを編集する](/k/ja/id/040645.html)
+
+<Heading level={3} id="guest_confirm_guest_list_1030">&lt;Wovn&gt;［メールアドレス］&lt;/Wovn&gt;</Heading>
+
+ゲストユーザーのメールアドレス（ログイン名）が表示されます。
+
+<Hint>
+
+ゲストユーザーのメールアドレスを変更したい場合は、次のページを参照してください。  
+[ゲストユーザーのログイン時のメールアドレスを変更できますか？](/k/ja/id/040338.html)
+
+</Hint>
+
+<Heading level={3} id="guest_confirm_guest_list_1040">&lt;Wovn&gt;［ステータス］&lt;/Wovn&gt;</Heading>
+
+ゲストユーザーのステータスが表示されます。  
+ゲストユーザーのステータスは、<Wovn>［使用中］</Wovn>と<Wovn>［停止中］</Wovn>の2種類です。  
+<Wovn>［ステータス］</Wovn>が<Wovn>［停止中］</Wovn>のゲストユーザーは、<Kintone />にアクセスできません。
+
+ステータスを変更する方法は、次のページを参照してください。  
+[ゲストユーザーのステータスを変更する](#guest_confirm_guest_list_30)
+
+<Heading level={3} id="guest_confirm_guest_list_1050">&lt;Wovn&gt;［最終ログイン日時］&lt;/Wovn&gt;</Heading>
+
+ゲストユーザーが最後にログインした日時が表示されます。
+
+<Heading level={3} id="guest_confirm_guest_list_1060">&lt;Wovn&gt;［所属するゲストスペース］&lt;/Wovn&gt;</Heading>
+
+ゲストユーザーが所属しているゲストスペースが表示されます。  
+複数のゲストスペースに参加している場合は、最大4件まで表示されます。
+
+<Heading level={3} id="guest_confirm_guest_list_1070">&lt;Wovn&gt;［ライセンス］&lt;/Wovn&gt;</Heading>
+
+ゲストユーザーのライセンスの種類が表示されます。  
+ゲストユーザーのライセンスは、<Wovn>［試用］</Wovn>、<Wovn>［有料］</Wovn>、および<Wovn>［無料］</Wovn>の3種類です。
+
+ライセンスの詳細は、次のページを参照してください。  
+[ゲストユーザーのライセンスの違い](/k/ja/id/040330.html#guest_confirm_guest_license_30)
+
+<Heading level={3} id="guest_confirm_guest_list_1080">&lt;Wovn&gt;［試用期限］&lt;/Wovn&gt;</Heading>
+
+<Wovn>［ライセンス］</Wovn>が<Wovn>［試用］</Wovn>のゲストユーザーに、試用期限が表示されます。  
+ゲストユーザーの試用期間は、ゲストスペースに招待され、ゲストユーザーとしてはじめてログインした日から30日間です。
+
+30日間の試用期間が終了すると、ライセンスは自動的に<Wovn>［試用］</Wovn>から<Wovn>［有料］</Wovn>に切り替わります。  
+
+<Heading id="guest_confirm_guest_list_20">ゲストユーザーを削除する</Heading>
+
+<Wovn>［ゲストユーザーの一覧］</Wovn>で、ゲストユーザーを削除できます。  
+削除されたゲストユーザーは、<Kintone />にアクセスできなくなります。
+
+1. 削除したいゲストユーザーの右側にある<Wovn>［削除する］</Wovn>アイコンをクリックして、<Wovn>［削除する］</Wovn>をクリックします。<Wovn></Wovn>  
+   <Img src="/k/kintone/img-ja/confirm_guest_list_02.png" alt="スクリーンショット：ゲストを削除する" />
+
+<Heading id="guest_confirm_guest_list_30">ゲストユーザーのステータスを変更する</Heading>
+
+ゲストユーザーのステータスを<Wovn>［使用中］</Wovn>または<Wovn>［停止中］</Wovn>に切り替えできます。
+
+<Wovn>［ステータス］</Wovn>が<Wovn>［停止中］</Wovn>のゲストユーザーは、<Kintone />にアクセスできなくなります。  
+また、ライセンス契約が不要になり、<Wovn>［有料ゲストユーザー数］</Wovn>には含まれなくなります。<Wovn></Wovn>
+
+1. ステータスを変更したいゲストユーザーの先頭にある<Wovn>［編集する］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/confirm_guest_list_03.png" alt="スクリーンショット：ゲストユーザーの編集画面を開く" />
+
+1. ステータスを変更して、画面左上の<Wovn>［保存］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/confirm_guest_list_04.png" alt="スクリーンショット：ゲストユーザーのステータスを変更" />
+
+<Wovn>［ゲストユーザー管理］</Wovn>画面に戻るには、画面左上の<Wovn>［ゲストユーザー管理］</Wovn>のリンクをクリックします。
+
+<Heading id="guest_confirm_guest_list_40">ゲストユーザーのパスワードを変更する</Heading>
+
+ゲストユーザーのログイン時のパスワードを変更できます。  
+ただし、ゲストユーザーが他のドメインの<Kintone />アカウントと共通化している場合は、ゲストユーザーのパスワードは変更できません。  
+
+<Hint>
+
+ゲストユーザーが、ログイン画面からパスワードをリセットする方法もあります。  
+[ゲストユーザー自身がパスワードをリセットする](/k/ja/id/040334.html#guest_forgot_password_10)
+
+</Hint>
+
+1. パスワードを変更したいゲストユーザーの先頭にある<Wovn>［編集する］</Wovn>アイコンをクリックします。  
+   <Img src="/k/kintone/img-ja/confirm_guest_list_03.png" alt="スクリーンショット：ゲストユーザーの編集画面を開く" />
+
+1. <Wovn>［新パスワード］</Wovn>を2か所入力して、画面左上の<Wovn>［保存］</Wovn>をクリックします。
+   <Img src="/k/kintone/img-ja/confirm_guest_list_05.png" alt="スクリーンショット：パスワードを変更" />
+
+<Wovn>［ゲストユーザー管理］</Wovn>画面に戻るには、画面右上の<Wovn>［ゲストユーザー管理］</Wovn>のリンクをクリックします。
+
+<Note>
+
+* ゲストユーザーのパスワードには、<SlashUi />で設定したパスワードポリシーが適用されます。パスワードポリシーの設定については、次のページを参照してください。  
+  [パスワードの複雑さや有効期間を設定する](/general/ja/admin/list_security/list_login/pw_policy.html)
+* <SlashUi />で設定するログインセキュリティには、ゲストユーザーに適用される項目と、適用されない項目があります。詳細は、次のページを参照してください。  
+  [ゲストに適用されるログインセキュリティの設定](/k/ja/id/040821.html)
+
+</Note>
+
+<Reference>
+
+* [ゲストユーザーのライセンスの使用状況を確認する](/k/ja/id/040330.html)
+* [ゲストユーザーの一覧をCSV形式でダウンロードする](/k/ja/id/040822.html)
+
+</Reference>

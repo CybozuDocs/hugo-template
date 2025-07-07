@@ -1,0 +1,47 @@
+---
+title: "まとめて削除した複数アプリを、一緒に復旧できますか？"
+weight: 600
+aliases:
+  - "/ja/id/040221"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Img from "@/components/Img.astro";
+import Note from "@/components/Note.astro";
+import Reference from "@/components/Reference.astro";
+import SlashUi from "@/components/SlashUi.astro";
+
+
+参照関係のある複数アプリをまとめて削除し、そのうちいずれかのアプリを復旧する場合、そのアプリが参照しているアプリは一緒に復旧されます。さらにその先にも参照しているアプリがあれば、一緒に復旧されます。  
+一方、復旧対象アプリを参照しているアプリがある場合、参照している側のアプリは復旧されません。
+
+<b>例：アプリA/B/C/Dをまとめて削除し、アプリAを復旧する場合</b>  
+アプリAを復旧する場合、アプリAが参照しているアプリB、およびアプリBが参照しているアプリCは一緒に復旧されます。ただし、アプリAを参照しているアプリDは、復旧されません。必要に応じて個別に復旧してください。
+<Img src="/k/kintone/img-ja/restore_app_img09.png" alt="画像" /> 
+
+<Heading id="app_qa_restore_multi_app_qa_10">まとめて削除したアプリを復旧する流れ</Heading>
+
+ここでは例として、アプリA/B/Cをまとめて削除し、その後アプリAを復旧する場合の流れを紹介します。
+
+1. 「アプリAの名前」、「削除したと思われる日時」、「削除したと思われるユーザー」を可能な限り確認しておきます。  
+
+1. <SlashUi />画面で監査ログを確認し、手順1の情報をもとにアプリAの「アプリID」を特定します。  
+
+1. システム管理画面を開いて[アプリ／スペースの復旧]をクリックし、アプリIDを入力して[復旧]ボタンをクリックします。
+   <Img src="/k/kintone/img-ja/restore_app_qa_img01.png" alt="画像" />
+  「アプリの復旧」ダイアログが表示され、 アプリAが参照していたアプリの名前が表示されます。これらのアプリがまとめて復旧されます。  
+   <Img src="/k/kintone/img-ja/restore_app_img08.png" alt="画像" />
+  
+1. [このアプリを復旧]をクリックします。  
+  「アプリの復旧」ダイアログに表示されていたアプリがまとめて復旧され、完了すると画面上部に復旧完了のメッセージが表示されます。
+    <Note>  
+  
+    複数のアプリがまとめて復旧された場合でも、復旧完了のメッセージには、1つのアプリ名のみ（手順3でIDを指定したアプリ）が表示されます。
+    </Note>
+
+<Reference> 
+
+[削除したアプリを復旧する](/k/ja/id/04016.html)
+
+</Reference>

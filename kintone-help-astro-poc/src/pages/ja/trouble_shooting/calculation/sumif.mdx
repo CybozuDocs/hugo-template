@@ -1,0 +1,119 @@
+---
+title: "{{< kintone >}}にSUMIF関数はありますか？"
+weight: 800
+aliases:
+  - "/ja/id/040784"
+description: "SUMIF関数と同様の集計をする方法として、IF関数とSUM関数を組み合わせて、テーブル内の数値を条件ごとに合計する方法を紹介しています。"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Hint from "@/components/Hint.astro";
+import Img from "@/components/Img.astro";
+import Kintone from "@/components/Kintone.astro";
+import Reference from "@/components/Reference.astro";
+import Wovn from "@/components/Wovn.astro";
+
+<Kintone />にはSUMIF関数はありませんが、IF関数とSUM関数を組み合わせることで、テーブル内の数値を条件ごとに合計できます。  
+条件を指定してテーブル内の数値を合計したい場合は、次の手順で対応できます。  
+
+Step1. IF関数を使用して条件に一致する数値（行）を抜き出します。  
+Step2. 該当の数値（行）をSUM関数で合計します。  
+<Img src="/k/kintone/img-ja/sumif_01.png" alt="計算例1" />
+
+<Heading id="calculation_sumif_10">参考例：テーブルから特定の店舗の売上金額を集計する</Heading>
+
+「店舗別売上」のテーブルから「大阪店」だけの売上金額を集計する方法を紹介します。  
+
+<Heading level={3} id="calculation_sumif_1010">テーブルに配置するフィールド</Heading>
+
+テーブルに次のフィールドを配置します。  
+
+* <Wovn>［ドロップダウン］</Wovn>フィールド  
+  フィールド名とフィールドコード：店舗  
+  選択肢には、東京、大阪、福岡など店舗名を入力します。  
+
+* <Wovn>［数値］</Wovn>フィールド  
+  フィールド名とフィールドコード：売上  
+
+* <Wovn>［計算］</Wovn>フィールド  
+  フィールド名とフィールドコード：大阪店売上  
+  計算式：IF(店舗="大阪",売上,0)
+
+この設定で、店舗が大阪の場合は売上を表示し、大阪以外の場合は0を表示します。  
+また、テーブルには必要に応じて<Wovn>［日付］</Wovn>フィールドなどを設定します。  
+
+<Heading level={3} id="calculation_sumif_1020">テーブル外に配置するフィールド</Heading>
+
+テーブル外に大阪店の売上を集計するフィールドを配置します。  
+
+* <Wovn>［計算］</Wovn>フィールド  
+  フィールド名：大阪店売上合計  
+  計算式：SUM(大阪店売上)  
+
+フィールドコードは任意です。  
+この設定で、大阪店だけの売上を出すことができます。
+
+<Img src="/k/kintone/img-ja/sumif_01.png" alt="計算例1" />
+
+<Heading id="calculation_sumif_20">そのほかの計算式の例</Heading>
+
+「明細」のテーブルから、「自費」にチェックが入っている行の合計と、チェックが入っていない行の合計をそれぞれ集計します。  
+「自費」は<Wovn>［チェックボックス］</Wovn>フィールドを使用しています。  
+計算式は、すべて<Wovn>［計算］</Wovn>フィールドに設定します。  
+<table width="100%">
+  <tbody>
+    <tr>
+    <td>
+      <img src="/k/img-ja/sumif_02.png" alt="計算式例2" />
+      <ul>
+        <li><b>テーブル内「自費金額」の計算式：IF(CONTAINS(自費,"自費"),金額,"")</b></li>
+        <li><b>テーブル内「自費以外金額」の計算式：IF(CONTAINS(自費,"自費"),"",金額)</b></li>
+        <li><b>テーブル外「自費合計」の計算式：SUM(自費金額)</b></li>
+        <li><b>テーブル外「自費以外合計」の計算式：SUM(自費以外金額)</b></li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+
+「自費」にチェックが入っている場合は「自費金額」に金額を抜き出し、チェックが入っていない場合は「自費以外金額」に金額を抜き出します。  
+「自費金額」と「自費以外金額」の合計がそれぞれテーブル外に表示されます。  
+
+<Hint>
+
+* [IF関数：条件によって表示する値を変える](/k/ja/id/040505.html)
+* [CONTAINS関数：チェックボックス、複数選択の計算](/k/ja/id/040506.html)
+
+</Hint>
+
+<Heading id="calculation_sumif_30">アプリテンプレート</Heading>
+
+このページで紹介した計算式が設定されたアプリのテンプレートをダウンロードできます。  
+<table>
+    <thead>
+        <tr>
+            <th style="text-align: center;">アプリテンプレート「kintone_sumif.zip」</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <div style="text-align: center;">
+                <a href="/k/files-ja/kintone_sumif.zip"><img src="/k/img/icon_add_tmpl_file.png" alt="" /><br />
+                </a>
+              </div>
+              <div style="text-align: center;">
+                <a href="/k/files-ja/kintone_sumif.zip">kintone_sumif.zip</a>
+              </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+リンクをクリックしてテンプレートファイル（zip）をダウンロードしたあと、解凍せずに<Kintone />で読み込んでください。  
+
+<Reference>
+
+[テンプレートファイルからアプリを作成する](/k/ja/id/040627.html)
+
+</Reference>

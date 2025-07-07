@@ -9,14 +9,15 @@ layout: "@/layouts/PageLayout.astro"
 import Heading from "@/components/Heading.astro";
 import Img from "@/components/Img.astro";
 import Note from "@/components/Note.astro";
+import Wovn from "@/components/Wovn.astro";
 
 
-アプリ管理者用メモは、アプリに関してメモしておきたい情報を自由に書き残すことができる機能です。  
+アプリ管理者用メモは、アプリに関してメモしておきたい情報を自由に書き残すことができる機能です。<Wovn></Wovn>  
 アプリ管理者用メモは、アプリの管理権限があるユーザーのみ作成および閲覧できます。
 
 <Heading id="app_settings_notes_for_app_administrators_30">アプリ管理者用メモの活用例</Heading>
 
-* アプリの作成経緯や目的、設計や設定のポイント、注意事項などをアプリ管理者用メモに残しておくことで、継続的なアプリの改善を行いやすくする
+* アプリの作成経緯や目的、設計や設定のポイント、注意事項などをアプリ管理者用メモに残しておくことで、継続的なアプリの改善をしやすくする
 * アプリの管理者が複数人いる場合に、管理者間で共有しておきたい内容をメモに残しておくことで、複数人での設定作業を行いやすくする
 
 <Img src="/k/kintone/img-ja/app_settings_notes_for_app_administrators_img01.png" alt="スクリーンショット：アプリ管理者用のメモを入力している" />
@@ -25,24 +26,25 @@ import Note from "@/components/Note.astro";
 
 アプリ管理者用メモを作成する手順は次のとおりです。
 
-1. 「レコードの一覧」画面で、画面右上にある歯車の形をした[アプリを設定]アイコンをクリックします。  
-   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：[アプリを設定]アイコンが枠線で強調されている" />
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。<Wovn></Wovn><Wovn></Wovn>  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
 
-1. 「アプリの設定」画面で、アプリ名の下にある、[作成する]（アプリ管理者用メモの作成ボタン）をクリックします。  
-   <Img src="/k/kintone/img-ja/app_settings_notes_for_app_administrators_img02.png" alt="スクリーンショット：[作成する]を枠線で強調している" />
+1. <Wovn>［アプリの設定］</Wovn>画面で、アプリ名の下にある、<Wovn>［作成する］</Wovn>（アプリ管理者用メモの作成ボタン）をクリックします。<Wovn></Wovn><Wovn></Wovn>  
+   <Img src="/k/kintone/img-ja/app_settings_notes_for_app_administrators_img02.png" alt="スクリーンショット：［作成する］を枠線で強調している" />
 
    <Note>
 
-   [作成する]は、アプリ管理者用メモが作成されていない場合のみ表示されます。  
-   すでに作成されているメモの内容を変更する手順は、「[アプリ管理者用メモを閲覧／編集する](#app_settings_notes_for_app_administrators_20)」を参照してください。
+   <Wovn>［作成する］</Wovn>は、アプリ管理者用メモが作成されていない場合のみ表示されます。<Wovn></Wovn>  
+   すでに作成されているメモの内容を変更する手順は、次の項目を参照してください。  
+   [アプリ管理者用メモを閲覧／編集する](#app_settings_notes_for_app_administrators_20)
 
    </Note>
 
-1. 「アプリ管理者用メモを作成」ダイアログで、メモを記入します。
+1. <Wovn>［アプリ管理者用メモを作成］</Wovn>ダイアログで、メモを記入します。<Wovn></Wovn>
    * 文字色・背景色・文字サイズの変更や、下線・箇条書きの設定、リンクの設定などが可能です。
    * メモは、10,000文字以下で入力します。文字に書式を指定すると、入力可能な文字数が少なくなる場合があります。
 
-1. 必要に応じて、「アプリテンプレートやアプリの再利用時にこのメモの内容を含める」にチェックを入れます。  
+1. 必要に応じて、<Wovn>［アプリテンプレートやアプリの再利用時にこのメモの内容を含める］</Wovn>にチェックを入れます。<Wovn></Wovn>  
    <Img src="/k/kintone/img-ja/app_settings_notes_for_app_administrators_img03.png" alt="スクリーンショット：「アプリテンプレートやアプリの再利用時にこのメモの内容を含める」を枠線で囲んでいる" />
 
    初期設定ではチェックは入っておらず、アプリテンプレートやアプリの再利用時に、メモの内容は含まれない設定となっています。  
@@ -51,43 +53,43 @@ import Note from "@/components/Note.astro";
    * [アプリテンプレートとは](/k/ja/id/04022.html)
    * [ほかのアプリを再利用して新しく作成する（アプリのコピー）](/k/ja/id/040630.html)
 
-1. [保存]をクリックします。
+1. <Wovn>［保存］</Wovn>をクリックします。<Wovn></Wovn>
 
-1. 「アプリ管理者用メモ」ダイアログで、[閉じる]をクリックます。
+1. <Wovn>［アプリ管理者用メモ］</Wovn>ダイアログで、<Wovn>［閉じる］</Wovn>をクリックます。<Wovn></Wovn><Wovn></Wovn>
 
-1. 画面右上の[アプリを更新]をクリックします。
+1. 画面右上の<Wovn>［アプリを更新］</Wovn>をクリックします。<Wovn></Wovn>
 
-1. 「アプリを更新」ダイアログで、[アプリを更新]をクリックします。
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。<Wovn></Wovn><Wovn></Wovn>
 
 <Heading id="app_settings_notes_for_app_administrators_20">アプリ管理者用メモを閲覧／編集する</Heading>
 
 作成したアプリ管理者用メモは、いつでも閲覧、編集できます。  
 手順は次のとおりです。
 
-1. 「レコードの一覧」画面で、画面右上にある歯車の形をした[アプリを設定]アイコンをクリックします。  
-   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：[アプリを設定]アイコンが枠線で強調されている" />
+1. <Wovn>［レコードの一覧］</Wovn>画面で、画面右上にある歯車の形をした<Wovn>［アプリを設定］</Wovn>アイコンをクリックします。<Wovn></Wovn><Wovn></Wovn>  
+   <Img src="/k/kintone/img/settings_new_icon.png" alt="スクリーンショット：［アプリを設定］アイコンが枠線で強調されている" />
 
-1. 「アプリの設定」画面で、アプリ名の下にある、[アプリ管理者用メモ]をクリックします。
-   <Img src="/k/kintone/img-ja/app_settings_notes_for_app_administrators_img04.png" alt="スクリーンショット：[アプリ管理者用メモ]を枠線で強調している" />
+1. <Wovn>［アプリの設定］</Wovn>画面で、アプリ名の下にある、<Wovn>［アプリ管理者用メモ］</Wovn>をクリックします。<Wovn></Wovn><Wovn></Wovn>
+   <Img src="/k/kintone/img-ja/app_settings_notes_for_app_administrators_img04.png" alt="スクリーンショット：［アプリ管理者用メモ］を枠線で強調している" />
 
-1. 「アプリ管理者用メモ」ダイアログで、メモの内容を確認します。  
-   メモの内容を変更する場合は、[編集する]をクリックします。
+1. <Wovn>［アプリ管理者用メモ］</Wovn>ダイアログで、メモの内容を確認します。<Wovn></Wovn>  
+   メモの内容を変更する場合は、<Wovn>［編集する］</Wovn>をクリックします。<Wovn></Wovn>
 
-1. 「アプリ管理者用メモを編集」ダイアログで、メモを編集します。  
+1. <Wovn>［アプリ管理者用メモを編集］</Wovn>ダイアログで、メモを編集します。<Wovn></Wovn>  
    * 文字色・背景色・文字サイズの変更や、下線・箇条書きの設定、リンクの設定などが可能です。  
    * メモは、10,000文字以下で入力してください。文字に書式を指定すると、入力可能な文字数が少なくなる場合があります。  
 
-1. 必要に応じて、「アプリテンプレートやアプリの再利用時にこのメモの内容を含める」のチェックボックスの選択を変更します。  
+1. 必要に応じて、<Wovn>［アプリテンプレートやアプリの再利用時にこのメモの内容を含める］</Wovn>のチェックボックスの選択を変更します。  
    <Img src="/k/kintone/img-ja/app_settings_notes_for_app_administrators_img03.png" alt="スクリーンショット：「アプリテンプレートやアプリの再利用時にこのメモの内容を含める」を枠線で強調している" />
   チェックを入れると、アプリテンプレートやアプリを再利用して作成するアプリに、メモの内容が含まれるようになります。
 
    * [アプリテンプレートとは](/k/ja/id/04022.html)  
    * [ほかのアプリを再利用して新しく作成する（アプリのコピー）](/k/ja/id/040630.html)
 
-1. [保存]をクリックします。
+1. <Wovn>［保存］</Wovn>をクリックします。<Wovn></Wovn>
 
-1. 「アプリ管理者用メモ」ダイアログで、[閉じる]をクリックします。
+1. <Wovn>［アプリ管理者用メモ］</Wovn>ダイアログで、<Wovn>［閉じる］</Wovn>をクリックします。<Wovn></Wovn><Wovn></Wovn>
 
-1. 画面右上の[アプリを更新]をクリックします。
+1. 画面右上の<Wovn>［アプリを更新］</Wovn>をクリックします。<Wovn></Wovn>
 
-1. 「アプリを更新」ダイアログで、[アプリを更新]をクリックします。
+1. <Wovn>［アプリを更新］</Wovn>ダイアログで、<Wovn>［アプリを更新］</Wovn>をクリックします。<Wovn></Wovn><Wovn></Wovn>

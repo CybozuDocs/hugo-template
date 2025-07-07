@@ -13,18 +13,19 @@ import Img from "@/components/Img.astro";
 import Kintone from "@/components/Kintone.astro";
 import SlashUi from "@/components/SlashUi.astro";
 import Warning from "@/components/Warning.astro";
+import Wovn from "@/components/Wovn.astro";
 
 
 お使いの<Kintone />のディスク使用量を減らす方法を紹介します。  
 
 <Heading id="disk_storage_reduce_10">ディスク使用量の内訳</Heading>
 
-<SlashUi />の「契約状況」に表示されるディスク使用量は、次の容量が合算された値です。  
+<SlashUi />の<Wovn>［契約状況］</Wovn>に表示されるディスク使用量は、次の容量が合算された値です。  
 
 * <Kintone />に添付されたファイル
 * csvファイルに書き出された監査ログ
 
-<Img src="/k/kintone/img-ja/disk_storage_reduce_img01.png" alt="契約状況画面" />  
+<Img src="/k/kintone/img-ja/disk_storage_reduce_img01.png" alt="［契約状況］画面" />  
 
 <Heading id="disk_storage_reduce_20">不要な添付ファイルを削除する</Heading>
 
@@ -35,7 +36,7 @@ import Warning from "@/components/Warning.astro";
 [アプリの変更履歴内のファイルを削除する](#disk_storage_reduce_30)
 
 <Hint>
-添付ファイルサイズの大きいアプリを見つけるには、アプリ一覧の「添付ファイル」列を利用すると便利です。  
+添付ファイルサイズの大きいアプリを見つけるには、アプリ一覧の<Wovn>［添付ファイル］</Wovn>列を利用すると便利です。  
 [アプリごとの添付ファイルサイズの合計を確認する](/k/ja/id/040773.html)  
 
 </Hint>
@@ -46,7 +47,7 @@ import Warning from "@/components/Warning.astro";
 変更履歴が有効となっているアプリでは、レコードからファイルを削除しても変更履歴には添付ファイルが残ります。変更履歴に残ったファイルを削除するには、次のいずれかの操作が必要です。  
 
 * 不要なレコードを削除する  
-* アプリにある添付ファイルフィールドを削除する  
+* アプリにある<Wovn>［添付ファイル］</Wovn>フィールドを削除する  
 * レコードの変更履歴の記録機能を無効にする
 
 レコードの変更履歴を無効に設定すると、これまでの履歴は削除されます。  

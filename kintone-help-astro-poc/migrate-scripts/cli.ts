@@ -1,35 +1,35 @@
-import { parseArgs } from 'node:util';
-import type { ConversionConfig, PathReplacement } from './types.js';
+import { parseArgs } from "node:util";
+import type { ConversionConfig, PathReplacement } from "./types.js";
 
 export function parseCliArgs(): ConversionConfig {
   const { values, positionals } = parseArgs({
     args: process.argv.slice(2),
     options: {
-      'input-dir': {
-        type: 'string',
-        short: 'i',
+      "input-dir": {
+        type: "string",
+        short: "i",
       },
-      'output-dir': {
-        type: 'string',
-        short: 'o',
+      "output-dir": {
+        type: "string",
+        short: "o",
       },
-      'filter': {
-        type: 'string',
-        short: 'f',
+      filter: {
+        type: "string",
+        short: "f",
       },
-      'image-path-from': {
-        type: 'string',
+      "image-path-from": {
+        type: "string",
       },
-      'image-path-to': {
-        type: 'string',
+      "image-path-to": {
+        type: "string",
       },
-      'preprocessor': {
-        type: 'string',
-        short: 'p',
+      preprocessor: {
+        type: "string",
+        short: "p",
       },
-      'help': {
-        type: 'boolean',
-        short: 'h',
+      help: {
+        type: "boolean",
+        short: "h",
       },
     },
     allowPositionals: true,
@@ -40,11 +40,11 @@ export function parseCliArgs(): ConversionConfig {
     process.exit(0);
   }
 
-  const inputDir = values['input-dir'] || positionals[0];
-  const outputDir = values['output-dir'] || positionals[1];
+  const inputDir = values["input-dir"] || positionals[0];
+  const outputDir = values["output-dir"] || positionals[1];
 
   if (!inputDir || !outputDir) {
-    console.error('Error: Both input-dir and output-dir are required.');
+    console.error("Error: Both input-dir and output-dir are required.");
     showHelp();
     process.exit(1);
   }
@@ -58,10 +58,10 @@ export function parseCliArgs(): ConversionConfig {
     config.filter = values.filter;
   }
 
-  if (values['image-path-from'] && values['image-path-to']) {
+  if (values["image-path-from"] && values["image-path-to"]) {
     config.imagePathPrefix = {
-      from: values['image-path-from'],
-      to: values['image-path-to'],
+      from: values["image-path-from"],
+      to: values["image-path-to"],
     };
   }
 

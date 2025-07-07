@@ -1,0 +1,299 @@
+---
+title: "{{< kintone >}}の操作で送信されるWebhookの通知内容"
+weight: 400
+aliases:
+  - "/ja/id/040602"
+layout: "@/layouts/PageLayout.astro"
+---
+
+import Heading from "@/components/Heading.astro";
+import Kintone from "@/components/Kintone.astro";
+
+
+Webhookを有効にすると、<Kintone />からJSON形式の通知が送信されます。  
+各操作を行ったときの通知のパラメーターは、次のとおりです。
+
+<Heading id="set_webhook_webhook_notification_10">レコードの追加／編集／ステータスの変更</Heading>
+
+<table>
+    <thead>
+        <tr>
+            <th>パラメーター</th>
+            <th>データ型</th>
+            <th>説明</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>文字列</td>
+            <td>通知ごとに割り当てられる固有のIDです。</td>
+        </tr>
+        <tr>
+            <td>type</td>
+            <td>文字列</td>
+            <td>
+              操作の種類です。<br />
+              レコードを追加した：ADD_RECORD<br />
+              レコードを編集した：UPDATE_RECORD<br />
+              レコードのステータスを変更した：UPDATE_STATUS
+            </td>
+        </tr>
+        <tr>
+            <td>app</td>
+            <td>オブジェクト</td>
+            <td>アプリの情報を表すオブジェクトです。</td>
+        </tr>
+        <tr>
+            <td>app.id</td>
+            <td>文字列</td>
+            <td>アプリのIDです。</td>
+        </tr>
+        <tr>
+            <td>app.name</td>
+            <td>文字列</td>
+            <td>アプリ名です。</td>
+        </tr>
+        <tr>
+            <td>record</td>
+            <td>オブジェクト</td>
+            <td>
+              レコードの情報を表すオブジェクトです。<br />
+              オブジェクトの形式は、レコードを取得するREST APIと同様です。<br />
+              &#123;&#123;< enabled2 JP >&#125;&#125;<a target="_blank" href="https://cybozu.dev/ja/id/ca1c4e932b47856d3eb1a819/">1件のレコードを取得する</a>（cybozu developer network）&#123;&#123;< /enabled2 >&#125;&#125;
+              &#123;&#123;< enabled2 US >&#125;&#125;<a target="_blank" href="https://kintone.dev/en/docs/kintone/rest-api/records/get-record/">Get Record</a>（cybozu developer network）&#123;&#123;< /enabled2 >&#125;&#125;
+              &#123;&#123;< enabled2 CN >&#125;&#125;<a target="_blank" href="https://cybozudev.kf5.com/hc/kb/article/201594/">获取记录（GET）</a>（cybozu developer network）&#123;&#123;< /enabled2 >&#125;&#125;
+            </td>
+        </tr>
+        <tr>
+            <td>recordTitle</td>
+            <td>文字列</td>
+            <td>
+              レコードのタイトルです。<br />
+              タイトルにするフィールドは変更できます。<br />
+              <a href="/k/ja/id/040604.html">レコードタイトルを設定する</a>
+            </td>
+        </tr>
+        <tr>
+            <td>url</td>
+            <td>文字列</td>
+            <td>レコードのURLです。</td>
+        </tr>
+    </tbody>
+</table>
+
+<Heading level={3} id="set_webhook_webhook_notification_1010">送信される通知の例</Heading>
+
+```
+{
+    "id":"01234567-0123-0123-0123-0123456789ab",
+    "type":"ADD_RECORD",
+    "app":{
+        "id":"1",
+        "name":"案件管理"
+        },
+    "record":{
+        "レコード番号":{
+            "type":"RECORD_NUMBER",
+            "value":"2"
+        },
+        ～～
+        "$revision":{
+            "type":"__REVISION__",
+            "value":"3"
+            },
+        "$id":{
+            "type":"__ID__",
+            "value":"2"
+            }
+        },
+    "recordTitle":"往訪：サイボウズ株式会社",
+    "url":"https://example.cybozu.com/k/1/show#record=2"
+}
+
+```
+
+<Heading id="set_webhook_webhook_notification_20">レコードの削除</Heading>
+
+<table>
+    <thead>
+        <tr>
+            <th>パラメーター</th>
+            <th>データ型</th>
+            <th>説明</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>文字列</td>
+            <td>通知ごとに割り当てられる固有のIDです。</td>
+        </tr>
+        <tr>
+            <td>type</td>
+            <td>文字列</td>
+            <td>
+              操作の種類です。<br />
+              レコードを削除した：DELETE_RECORD
+            </td>
+        </tr>
+        <tr>
+            <td>app</td>
+            <td>オブジェクト</td>
+            <td>アプリの情報を表すオブジェクトです。</td>
+        </tr>
+        <tr>
+            <td>app.id</td>
+            <td>文字列</td>
+            <td>アプリのIDです。</td>
+        </tr>
+        <tr>
+            <td>app.name</td>
+            <td>文字列</td>
+            <td>アプリ名です。</td>
+        </tr>
+        <tr>
+            <td>recordId</td>
+            <td>文字列</td>
+            <td>レコード番号です。アプリコードは含まれません。</td>
+        </tr>
+        <tr>
+            <td>deletedBy</td>
+            <td>オブジェクト</td>
+            <td>レコードを削除したユーザーの情報を表すオブジェクトです。</td>
+        </tr>
+        <tr>
+            <td>deletedBy.code</td>
+            <td>文字列</td>
+            <td>ユーザーのログイン名です。</td>
+        </tr>
+        <tr>
+            <td>deletedBy.name</td>
+            <td>文字列</td>
+            <td>ユーザーの名前です。</td>
+        </tr>
+        <tr>
+            <td>deletedAt</td>
+            <td>文字列</td>
+            <td>削除した日時です。</td>
+        </tr>
+    </tbody>
+</table>
+
+<Heading level={3} id="set_webhook_webhook_notification_2010">送信される通知の例</Heading>
+
+```
+{
+    "app":{
+        "id":"1",
+        "name":"案件管理"
+        },
+    "id":"01234567-0123-0123-0123-0123456789ab",
+    "recordId":"2",
+    "deletedBy":{
+        "code":"sato",
+        "name":"佐藤 昇"
+        },
+    "deletedAt":"2017-07-03T09:38:09Z",
+    "type":"DELETE_RECORD"
+}
+
+```
+
+<Heading id="set_webhook_webhook_notification_30">コメントの書き込み</Heading>
+
+<table>
+    <thead>
+        <tr>
+            <th>パラメーター</th>
+            <th>データ型</th>
+            <th>説明</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>app</td>
+            <td>オブジェクト</td>
+            <td>アプリの情報を表すオブジェクトです。</td>
+        </tr>
+        <tr>
+            <td>app.id</td>
+            <td>文字列</td>
+            <td>アプリのIDです。</td>
+        </tr>
+        <tr>
+            <td>app.name</td>
+            <td>文字列</td>
+            <td>アプリ名です。</td>
+        </tr>
+        <tr>
+            <td>comment</td>
+            <td>オブジェクト</td>
+            <td>
+              コメントの情報を表すオブジェクトです。<br />
+              オブジェクトの形式は、レコードコメントを一括取得するREST APIと同様です。<br />
+              &#123;&#123;< enabled2 JP >&#125;&#125;<a href="https://cybozu.dev/ja/kintone/docs/rest-api/records/get-comments/" target="_blank">レコードコメントの一括取得</a>（cybozu developer network）&#123;&#123;< /enabled2 >&#125;&#125;
+              &#123;&#123;< enabled2 US >&#125;&#125;<a href="https://kintone.dev/en/docs/kintone/rest-api/records/get-comments/" target="_blank">Get Comments</a>（cybozu developer network）&#123;&#123;< /enabled2 >&#125;&#125;
+              &#123;&#123;< enabled2 CN >&#125;&#125;<a href="https://cybozudev.kf5.com/hc/kb/article/1099206/" target="_blank">批量获取记录的回复</a>（cybozu developer network）&#123;&#123;< /enabled2 >&#125;&#125;
+            </td>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>文字列</td>
+            <td>通知ごとに割り当てられる固有のIDです。</td>
+        </tr>
+        <tr>
+            <td>recordId</td>
+            <td>文字列</td>
+            <td>レコード番号です。アプリコードは含まれません。</td>
+        </tr>
+        <tr>
+            <td>type</td>
+            <td>文字列</td>
+            <td>
+              操作の種類です。<br />
+              コメントを書き込んだ：ADD_RECORD_COMMENT
+            </td>
+        </tr>
+        <tr>
+            <td>url</td>
+            <td>文字列</td>
+            <td>コメントのURLです。</td>
+        </tr>
+    </tbody>
+</table>
+
+<Heading level={3} id="set_webhook_webhook_notification_3010">送信される通知の例</Heading>
+
+```
+{
+    "app":{
+        "id":"1",
+        "name":"案件管理"
+        },
+    "comment":{
+        "createdAt":"2012-02-03T09:38:09Z",
+        "creator":{
+            "code":"kato",
+            "name":"加藤 美咲"
+            },
+        "id":"11",
+        "mentions":[{
+            "code":"kato",
+            "type":"USER"
+            },{
+            "code":"org1",
+            "type":"ORGANIZATION"
+            },{
+            "code":"group1",
+            "type":"GROUP"
+            }],
+        "text":"サイボウズ株式会社に往訪してきました。"
+        },
+    "id":"01234567-0123-0123-0123-0123456789ab",
+    "recordId":"2",
+    "type":"ADD_RECORD_COMMENT",
+    "url":"https://example.cybozu.com/k/1/show#record=2&comment=11"
+}
+
+```
