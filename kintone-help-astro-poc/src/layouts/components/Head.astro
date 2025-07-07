@@ -55,8 +55,8 @@ const generateDescription = () => {
   }
 
   // TODO: i18n の実装
-  const descBase = "i18n__todo__og_desc1";
-  const desc2 = "i18n__todo__og_desc2";
+  const descBase = `${env.productName}の${env.help}です。`;
+  const desc2 = `${env.productName}を利用するために必要な設定や操作方法などを説明します。`;
 
   return `${descBase} ${desc2}`.trim();
 };

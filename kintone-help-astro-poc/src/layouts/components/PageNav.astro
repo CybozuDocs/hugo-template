@@ -16,7 +16,7 @@ const { nextInSection, prevInSection } = Astro.props;
       <div class="pagination-previous">
         <i class="fas fa-caret-left" />
         <a href={nextInSection.relPermalink}>
-          <Wovn>i18n__Previous_page</Wovn>
+          <Wovn>前のページへ</Wovn>
         </a>
       </div>
     )
@@ -25,7 +25,7 @@ const { nextInSection, prevInSection } = Astro.props;
     prevInSection && (
       <div class="pagination-next">
         <a href={prevInSection.relPermalink}>
-          <Wovn>i18n__Next_page</Wovn>
+          <Wovn>次のページへ</Wovn>
         </a>
         <i class="fas fa-caret-right" />
       </div>

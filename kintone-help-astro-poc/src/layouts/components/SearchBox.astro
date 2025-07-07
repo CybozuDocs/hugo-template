@@ -30,7 +30,7 @@ let placeholder = "";
 if (!fullsize) {
   placeholder = "";
 } else {
-  placeholder = "i18n__todo__Search_example";
+  placeholder = "検索する（例：ルックアップ、通知、ログインできない）";
 }
 
 // Google言語コードの変換
@@ -58,7 +58,7 @@ if (fullsize) {
         <button
           id="search-filter-current"
           class={buttonstyle}
-          title="i18n__todo__Search_filter"
+          title="次の中から検索する"
           aria-controls="search-filter-list"
           aria-haspopup="listbox"
           aria-expanded="false"
@@ -97,13 +97,13 @@ if (fullsize) {
       id="search-input"
       class="search-input"
       placeholder={placeholder}
-      aria-label="i18n__todo__search_word"
+      aria-label="検索ワード"
     />
 
     <button
       class="search-submit"
-      title="i18n__todo__search"
-      aria-label="i18n__todo__search"></button>
+      title="検索"
+      aria-label="検索"></button>
   </div>
 
   {
@@ -114,13 +114,13 @@ if (fullsize) {
       >
         {env.bingSearch && (
           <span>
-            <Wovn>i18n__search_bing</Wovn>
+            <Wovn>Enhanced by Bing</Wovn>
             {" ("}
             <a
               href="https://www.microsoft.com/en-gb/privacy/privacystatement"
               target="_blank"
             >
-              <Wovn>i18n__search_bing_legal</Wovn>
+              <Wovn>Microsoft Privacy Statement</Wovn>
             </a>
             {")"}
           </span>

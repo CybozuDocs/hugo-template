@@ -16,7 +16,7 @@ const { page } = Astro.props;
         <div class="pagination-previous">
           <i class="fas fa-caret-left" aria-hidden="true" />
           <a href={page.siteNext.permalink}>
-            <Wovn>i18n__Previous_page</Wovn>
+            <Wovn>前のページへ</Wovn>
           </a>
         </div>
       )
@@ -27,7 +27,7 @@ const { page } = Astro.props;
     page.sitePrev !== null && page.sitePrev && !page.sitePrev.isHome && (
       <div class="pagination-next">
         <a href={page.sitePrev.permalink}>
-          <Wovn>i18n__Next_page</Wovn>
+          <Wovn>次のページへ</Wovn>
         </a>
         <i class="fas fa-caret-right" aria-hidden="true" />
       </div>

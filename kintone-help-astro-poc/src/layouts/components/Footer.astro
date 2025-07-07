@@ -125,7 +125,7 @@ const processedLegalMenu = legalMenu.map((item) => {
                         <a href={href}>{text}</a>
                         {status === "jaonly" && (
                           <span class="status-info">
-                            <Wovn>i18n__Only_ja</Wovn>
+                            <Wovn>日本語のみ</Wovn>
                           </span>
                         )}
                       </li>
@@ -153,7 +153,7 @@ const processedLegalMenu = legalMenu.map((item) => {
           }
         </ul>
         <div class="footer-legal-copyright">
-          <Wovn>i18n__Footer_copyright</Wovn>
+          <Wovn>記載された商品名、各製品名は各社の登録商標または商標です。 ©Cybozu</Wovn>
         </div>
         {
           env.targetRegion === "US" && (
