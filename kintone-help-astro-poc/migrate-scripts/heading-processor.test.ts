@@ -152,6 +152,44 @@ describe("processHeadings", () => {
     });
   });
 
+  describe("Astroコンポーネントを含む見出し", () => {
+    it("見出し内のAstroコンポーネントがエスケープされないことを確認", () => {
+      const input = "### <Wovn>［レコードの一覧］</Wovn>{#mobile_access_mobileui_6010}";
+      const result = processHeadings(input);
+
+      const expected = `<Heading level={3} id="mobile_access_mobileui_6010"><Wovn>［レコードの一覧］</Wovn></Heading>`;
+      expect(result.content).toBe(expected);
+      expect(result.converted).toBe(true);
+    });
+
+    it("複数のAstroコンポーネントが含まれる見出し", () => {
+      const input = "## <Wovn>［アクセス状況の一覧］</Wovn>と<Kintone />の設定{#test_heading}";
+      const result = processHeadings(input);
+
+      const expected = `<Heading id="test_heading"><Wovn>［アクセス状況の一覧］</Wovn>と<Kintone />の設定</Heading>`;
+      expect(result.content).toBe(expected);
+      expect(result.converted).toBe(true);
+    });
+
+    it("自己終了タグのAstroコンポーネントが含まれる見出し", () => {
+      const input = "# <Kintone />システム管理{#kintone_admin}";
+      const result = processHeadings(input);
+
+      const expected = `<Heading level={1} id="kintone_admin"><Kintone />システム管理</Heading>`;
+      expect(result.content).toBe(expected);
+      expect(result.converted).toBe(true);
+    });
+
+    it("通常のHTMLタグはエスケープされることを確認", () => {
+      const input = "## <script>alert('test')</script>{#dangerous}";
+      const result = processHeadings(input);
+
+      const expected = `<Heading id="dangerous">&lt;script&gt;alert('test')&lt;/script&gt;</Heading>`;
+      expect(result.content).toBe(expected);
+      expect(result.converted).toBe(true);
+    });
+  });
+
   describe("エッジケース", () => {
     it("見出し内に中括弧がある場合も正しく処理する", () => {
       const input = "## オブジェクト{key: value}の説明{#object}";

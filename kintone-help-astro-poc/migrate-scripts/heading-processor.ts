@@ -106,6 +106,12 @@ function escapeAttribute(value: string): string {
 }
 
 function escapeContent(value: string): string {
+  // Don't escape content that contains Astro components
+  // Check for patterns like <ComponentName> or <ComponentName />
+  if (/<[A-Z][a-zA-Z0-9]*(\s+[^>]*)?\s*\/?>/.test(value)) {
+    return value;
+  }
+  
   return value
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")

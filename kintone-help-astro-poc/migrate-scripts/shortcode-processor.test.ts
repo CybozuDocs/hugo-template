@@ -317,6 +317,51 @@ inquiry="お問い合わせ"
     });
   });
 
+  describe("Heading内にWovnが含まれるケース", () => {
+    it("heading内のWovnコンポーネントがエスケープされずに処理される", () => {
+      const input = `{{< heading id="admin_user_monitoring_20" >}}{{< wv_brk >}}［ユーザーのアクセス状況］{{< /wv_brk >}}画面を開く{{< /heading >}}`;
+      const result = processShortcodes(input);
+
+      const expected = `<Heading id="admin_user_monitoring_20"><Wovn>［ユーザーのアクセス状況］</Wovn>画面を開く</Heading>`;
+      expect(result.content).toBe(expected);
+      expect(result.imports).toContain(
+        'import Heading from "@/components/Heading.astro";',
+      );
+      expect(result.imports).toContain(
+        'import Wovn from "@/components/Wovn.astro";',
+      );
+      expect(result.converted).toBe(true);
+    });
+
+    it("heading内に複数のWovnが含まれるケース", () => {
+      const input = `{{< heading id="test_heading_30" >}}{{< wv_brk >}}［アクセス状況の一覧］{{< /wv_brk >}}と{{< wv_brk >}}［CSVファイル］{{< /wv_brk >}}{{< /heading >}}`;
+      const result = processShortcodes(input);
+
+      const expected = `<Heading id="test_heading_30"><Wovn>［アクセス状況の一覧］</Wovn>と<Wovn>［CSVファイル］</Wovn></Heading>`;
+      expect(result.content).toBe(expected);
+      expect(result.imports).toContain(
+        'import Heading from "@/components/Heading.astro";',
+      );
+      expect(result.imports).toContain(
+        'import Wovn from "@/components/Wovn.astro";',
+      );
+    });
+
+    it("heading内にkintoneコンポーネントが含まれるケース", () => {
+      const input = `{{< heading level="3" id="kintone_system" >}}{{< kintone >}}システム管理{{< /heading >}}`;
+      const result = processShortcodes(input);
+
+      const expected = `<Heading level={3} id="kintone_system"><Kintone />システム管理</Heading>`;
+      expect(result.content).toBe(expected);
+      expect(result.imports).toContain(
+        'import Heading from "@/components/Heading.astro";',
+      );
+      expect(result.imports).toContain(
+        'import Kintone from "@/components/Kintone.astro";',
+      );
+    });
+  });
+
   describe("ネストした複雑なケース", () => {
     it("wv_brk内にテキストが含まれるパターンを処理する", () => {
       const input =

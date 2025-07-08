@@ -276,18 +276,20 @@ function processAttributeShortcodes(
   )) {
     const component = getComponentName(shortcode);
 
-    // Match shortcodes with attributes
-    const regex = new RegExp(
-      `\\{\\{<\\s*${shortcode}\\s+([^>]+)\\s*>\\}\\}`,
-      "g",
-    );
+    // Special handling for heading shortcode with content
+    if (shortcode === "heading") {
+      // Match heading shortcode with content
+      const headingRegex = new RegExp(
+        `\\{\\{<\\s*${shortcode}\\s+([^>]+)\\s*>\\}\\}([\\s\\S]*?)\\{\\{<\\s*/${shortcode}\\s*>\\}\\}`,
+        "g",
+      );
 
-    const matches = Array.from(processed.matchAll(regex));
+      const headingMatches = Array.from(processed.matchAll(headingRegex));
 
-    if (matches.length > 0) {
-      for (const match of matches) {
+      for (const match of headingMatches) {
         const fullMatch = match[0];
         const attributeString = match[1];
+        const innerContent = match[2];
 
         try {
           const attributes = parseAttributes(attributeString);
@@ -295,7 +297,7 @@ function processAttributeShortcodes(
             attributes,
             allowedAttrs,
           );
-          const replacement = `<${component}${astroAttributes} />`;
+          const replacement = `<${component}${astroAttributes}>${innerContent}</${component}>`;
 
           processed = processed.replace(fullMatch, replacement);
           imports.add(
@@ -303,6 +305,37 @@ function processAttributeShortcodes(
           );
         } catch (error) {
           errors.push(`Failed to process shortcode ${shortcode}: ${error}`);
+        }
+      }
+    } else {
+      // Match shortcodes with attributes (self-closing)
+      const regex = new RegExp(
+        `\\{\\{<\\s*${shortcode}\\s+([^>]+)\\s*>\\}\\}`,
+        "g",
+      );
+
+      const matches = Array.from(processed.matchAll(regex));
+
+      if (matches.length > 0) {
+        for (const match of matches) {
+          const fullMatch = match[0];
+          const attributeString = match[1];
+
+          try {
+            const attributes = parseAttributes(attributeString);
+            const astroAttributes = convertToAstroAttributes(
+              attributes,
+              allowedAttrs,
+            );
+            const replacement = `<${component}${astroAttributes} />`;
+
+            processed = processed.replace(fullMatch, replacement);
+            imports.add(
+              `import ${component} from "@/components/${component}.astro";`,
+            );
+          } catch (error) {
+            errors.push(`Failed to process shortcode ${shortcode}: ${error}`);
+          }
         }
       }
     }
