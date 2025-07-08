@@ -415,4 +415,204 @@ layout: "@/layouts/PageLayout.astro"
       expect(result).toBe(expected);
     });
   });
+
+  describe("FrontMatter内のショートコード変換", () => {
+    it("description内の{{< kintone >}}ショートコードを変換する", () => {
+      const input = `---
+title: "タイトル"
+description: "{{< kintone >}}が出力する監査ログについて説明します。"
+---
+
+コンテンツ`;
+      const parsed = parseFrontMatter(input);
+      const isIndexFile =
+        "file.md".endsWith("_index.md") || "file.md".endsWith("index.md");
+      const processed = processFrontMatter(parsed.frontmatter, isIndexFile);
+      const result = stringifyFrontMatter(processed, parsed.content);
+
+      const expected = `---
+title: "タイトル"
+description: "<Kintone />が出力する監査ログについて説明します。"
+layout: "@/layouts/PageLayout.astro"
+---
+
+コンテンツ`;
+      expect(result).toBe(expected);
+    });
+
+    it("title内の{{< slash_ui >}}ショートコードを変換する", () => {
+      const input = `---
+title: "{{< slash_ui >}}でGuest Account Licenseの必要数を確認する"
+weight: 100
+---
+
+コンテンツ`;
+      const parsed = parseFrontMatter(input);
+      const isIndexFile =
+        "file.md".endsWith("_index.md") || "file.md".endsWith("index.md");
+      const processed = processFrontMatter(parsed.frontmatter, isIndexFile);
+      const result = stringifyFrontMatter(processed, parsed.content);
+
+      const expected = `---
+title: "<SlashUi />でGuest Account Licenseの必要数を確認する"
+weight: 100
+layout: "@/layouts/PageLayout.astro"
+---
+
+コンテンツ`;
+      expect(result).toBe(expected);
+    });
+
+    it("複数のフィールドで異なるショートコードを変換する", () => {
+      const input = `---
+title: "{{< kintone >}}の設定方法"
+description: "{{< service >}}で{{< slash_ui >}}を使用する方法を説明します。"
+weight: 200
+---
+
+コンテンツ`;
+      const parsed = parseFrontMatter(input);
+      const isIndexFile =
+        "file.md".endsWith("_index.md") || "file.md".endsWith("index.md");
+      const processed = processFrontMatter(parsed.frontmatter, isIndexFile);
+      const result = stringifyFrontMatter(processed, parsed.content);
+
+      const expected = `---
+title: "<Kintone />の設定方法"
+description: "<Service />で<SlashUi />を使用する方法を説明します。"
+weight: 200
+layout: "@/layouts/PageLayout.astro"
+---
+
+コンテンツ`;
+      expect(result).toBe(expected);
+    });
+
+    it("同じフィールド内に複数のショートコードがある場合でも変換する", () => {
+      const input = `---
+title: "{{< kintone >}}と{{< slash >}}の違い"
+description: "{{< corpname >}}が提供する{{< kintone >}}と{{< slash >}}について説明します。"
+---
+
+コンテンツ`;
+      const parsed = parseFrontMatter(input);
+      const isIndexFile =
+        "file.md".endsWith("_index.md") || "file.md".endsWith("index.md");
+      const processed = processFrontMatter(parsed.frontmatter, isIndexFile);
+      const result = stringifyFrontMatter(processed, parsed.content);
+
+      const expected = `---
+title: "<Kintone />と<Slash />の違い"
+description: "<CorpName />が提供する<Kintone />と<Slash />について説明します。"
+layout: "@/layouts/PageLayout.astro"
+---
+
+コンテンツ`;
+      expect(result).toBe(expected);
+    });
+
+    it("ショートコードが含まれていないフィールドはそのまま保持する", () => {
+      const input = `---
+title: "通常のタイトル"
+description: "ショートコードのない普通の説明文です。"
+weight: 100
+aliases: /ja/id/040141
+---
+
+コンテンツ`;
+      const parsed = parseFrontMatter(input);
+      const isIndexFile =
+        "file.md".endsWith("_index.md") || "file.md".endsWith("index.md");
+      const processed = processFrontMatter(parsed.frontmatter, isIndexFile);
+      const result = stringifyFrontMatter(processed, parsed.content);
+
+      const expected = `---
+title: "通常のタイトル"
+description: "ショートコードのない普通の説明文です。"
+weight: 100
+aliases:
+  - "/ja/id/040141"
+layout: "@/layouts/PageLayout.astro"
+---
+
+コンテンツ`;
+      expect(result).toBe(expected);
+    });
+
+    it("数値や配列などの非文字列フィールドは変更しない", () => {
+      const input = `---
+title: "{{< kintone >}}の設定"
+weight: 100
+aliases: ["/ja/id/1", "/ja/id/2"]
+enabled: true
+---
+
+コンテンツ`;
+      const parsed = parseFrontMatter(input);
+      const isIndexFile =
+        "file.md".endsWith("_index.md") || "file.md".endsWith("index.md");
+      const processed = processFrontMatter(parsed.frontmatter, isIndexFile);
+      const result = stringifyFrontMatter(processed, parsed.content);
+
+      const expected = `---
+title: "<Kintone />の設定"
+weight: 100
+aliases:
+  - "[\"/ja/id/1\", \"/ja/id/2\"]"
+enabled: true
+layout: "@/layouts/PageLayout.astro"
+---
+
+コンテンツ`;
+      expect(result).toBe(expected);
+    });
+
+    it("_index.mdでもショートコード変換が動作する", () => {
+      const input = `---
+title: "{{< kintone >}}セクション"
+description: "{{< service >}}の概要セクション"
+weight: 100
+---
+
+コンテンツ`;
+      const parsed = parseFrontMatter(input);
+      const isIndexFile =
+        "_index.md".endsWith("_index.md") || "_index.md".endsWith("index.md");
+      const processed = processFrontMatter(parsed.frontmatter, isIndexFile);
+      const result = stringifyFrontMatter(processed, parsed.content);
+
+      const expected = `---
+title: "<Kintone />セクション"
+description: "<Service />の概要セクション"
+weight: 100
+layout: "@/layouts/SectionLayout.astro"
+---
+
+コンテンツ`;
+      expect(result).toBe(expected);
+    });
+
+    it("ショートコード名にスペースがある場合も正しく変換する", () => {
+      const input = `---
+title: "{{<kintone>}}と{{<  slash_ui  >}}の使い方"
+description: "{{<   service   >}}について"
+---
+
+コンテンツ`;
+      const parsed = parseFrontMatter(input);
+      const isIndexFile =
+        "file.md".endsWith("_index.md") || "file.md".endsWith("index.md");
+      const processed = processFrontMatter(parsed.frontmatter, isIndexFile);
+      const result = stringifyFrontMatter(processed, parsed.content);
+
+      const expected = `---
+title: "<Kintone />と<SlashUi />の使い方"
+description: "<Service />について"
+layout: "@/layouts/PageLayout.astro"
+---
+
+コンテンツ`;
+      expect(result).toBe(expected);
+    });
+  });
 });

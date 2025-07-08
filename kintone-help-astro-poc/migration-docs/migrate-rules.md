@@ -38,6 +38,78 @@
 - 変更理由を明確に記録
 - 再発防止策を実装
 
+## FrontMatter内コンポーネント文字列の置換
+
+### 自動置換処理
+
+FrontMatter内のコンポーネント風文字列（`<ComponentName />`）は、page.tsで自動的に実際のenv値に置換されます。
+
+#### 対応コンポーネント（8つ）
+
+以下のコンポーネントのみが自動置換の対象です：
+
+```typescript
+// 対応コンポーネント一覧
+Kintone: "kintone",                       // <Kintone /> → env.kintone
+CybozuCom: "cybozuCom",                   // <CybozuCom /> → env.cybozuCom
+Store: "store",                           // <Store /> → env.store
+Slash: "slash",                           // <Slash /> → env.slash
+SlashUi: "slashUi",                       // <SlashUi /> → env.slashUi
+Service: "service",                       // <Service /> → env.service
+SlashAdministrators: "slashAdministrators", // <SlashAdministrators /> → env.slashAdministrators
+SlashHelp: "slashHelp",                   // <SlashHelp /> → env.slashHelp
+```
+
+#### 置換対象フィールド
+
+- `title`
+- `description` 
+- `aliases`（配列内の各要素）
+- その他の文字列フィールド
+
+#### 未対応コンポーネントの扱い
+
+**対象外のコンポーネント風文字列は無視され、そのまま表示されます。**
+
+```yaml
+# 例：意図的なコンポーネント風文字列
+title: "React component <Yeah /> の使い方"
+description: "<CustomComponent /> を活用しよう"
+```
+
+これらは置換されず、そのまま表示されます：
+- `React component <Yeah /> の使い方`
+- `<CustomComponent /> を活用しよう`
+
+#### エラーハンドリング
+
+**対応済みコンポーネントでenv値が未設定の場合、ビルドエラーとなります：**
+
+```bash
+# env.kintoneが未設定の場合
+Error: Environment value not set for component 'Kintone' (env key: 'kintone')
+```
+
+これにより設定ミスを即座に検知できます。
+
+#### 使用例
+
+```yaml
+---
+title: "<Kintone /> の基本操作"           # → "kintone の基本操作"
+description: "<Service /> ヘルプ"        # → "cybozu.com ヘルプ"  
+labels:
+  - "<Store />"                         # → "サイボウズドットコム ストア"
+  - "<Yeah />"                          # → "<Yeah />" (そのまま)
+---
+```
+
+#### 実装ファイル
+
+- `src/lib/component-mapping.ts`：コンポーネントとenv値のマッピング、対応チェック
+- `src/lib/frontmatter-replacer.ts`：置換処理のロジック
+- `src/lib/page.ts`：FrontMatter読み込み時の置換適用
+
 ## Partials移行時の重要ルール
 
 ### 1. コンポーネント名の対応規則

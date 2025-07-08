@@ -1,5 +1,6 @@
 import type { PageProps } from "../layouts/components/types";
 import type { AstroGlobal } from "astro";
+import { replaceFrontMatterComponents } from "./frontmatter-replacer";
 
 // =============================================================================
 // Page sorting utilities
@@ -50,7 +51,10 @@ export function createPageData(
   filepath: string,
   module: Record<string, unknown>,
 ): PageProps {
-  const frontmatter = (module.frontmatter as Record<string, unknown>) || {};
+  const rawFrontmatter = (module.frontmatter as Record<string, unknown>) || {};
+  
+  // FrontMatter内のコンポーネント風文字列を実際のenv値に置換
+  const frontmatter = replaceFrontMatterComponents(rawFrontmatter);
 
   // パスから情報を抽出（テスト用パスにも対応）
   let urlPath = filepath;

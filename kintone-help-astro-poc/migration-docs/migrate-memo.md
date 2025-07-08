@@ -4,6 +4,28 @@
 
 このドキュメントは、Hugo ショートコードから Astro コンポーネントへの移行作業の進捗状況と課題を記録します。
 
+## 最新追加機能（2025-01-08）
+
+### FrontMatter内ショートコード置換機能 ✅ 完了
+
+**実装目的**: コミット 851d488f でFrontMatter内にコンポーネント風文字列（`<Kintone />`等）が生成されるようになったが、これらは実際のコンポーネントとして機能しないため、page.ts読み込み時に実際のenv値に置換する機能を実装。
+
+**対応コンポーネント（8つ）**:
+- Kintone, CybozuCom, Store, Slash, SlashUi, Service, SlashAdministrators, SlashHelp
+
+**主要機能**:
+- FrontMatter内の`<ComponentName />`を対応するenv値に自動置換
+- 未対応コンポーネント（`<Yeah />`等）は無視してそのまま表示
+- env値未設定時はビルドエラーで設定ミスを即座に検知
+
+**実装ファイル**:
+- `src/lib/component-mapping.ts`: マッピング定義、対応チェック
+- `src/lib/frontmatter-replacer.ts`: 置換処理ロジック
+- `src/lib/page.ts`: createPageData関数での適用
+- テスト: 19ケースで全機能網羅
+
+**動作確認**: `/k/ja/ai/ai_enable`で`<Kintone />`→`kintone`の置換を確認済み
+
 ## ショートコード移行プロジェクト（Phase 1-3 完了）
 
 ### 📊 移行完了状況

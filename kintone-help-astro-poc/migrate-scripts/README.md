@@ -5,6 +5,7 @@ Hugo形式のMarkdownファイルをAstro MDX形式に変換するためのス�
 ## 機能
 
 - **フロントマター変換**: Hugo形式からAstro形式への変換
+  - **FrontMatter内ショートコード変換**: FrontMatter内の`{{< kintone >}}`等をAstroコンポーネントに変換（2025-01-08追加）
 - **ショートコード変換**: Hugo shortcodesをAstroコンポーネントに変換
 - **画像パス変換**: 画像パスのプレフィックス置換
 - **HTMLタグ整形**: Astro/MDX互換のためのHTML構造調整
@@ -156,7 +157,8 @@ migrate-scripts/
 **Hugo形式:**
 ```yaml
 ---
-title: "ページタイトル"
+title: "{{< kintone >}}の使い方"
+description: "{{< slash_ui >}}でGuest Account Licenseの必要数を確認する"
 weight: 100
 aliases: /ja/id/123456
 ---
@@ -165,13 +167,28 @@ aliases: /ja/id/123456
 **Astro形式:**
 ```yaml
 ---
-title: "ページタイトル"
+title: "<Kintone />の使い方"
+description: "<SlashUi />でGuest Account Licenseの必要数を確認する"
 weight: 100
 aliases:
   - "/ja/id/123456"
 layout: "@/layouts/PageLayout.astro"
 ---
 ```
+
+#### FrontMatter内ショートコード変換
+
+FrontMatter内の以下のショートコードが自動的に変換されます：
+
+| Hugoショートコード | Astroコンポーネント |
+|-------------------|-------------------|
+| `{{< kintone >}}` | `<Kintone />` |
+| `{{< slash_ui >}}` | `<SlashUi />` |
+| `{{< service >}}` | `<Service />` |
+| `{{< corpname >}}` | `<CorpName />` |
+| その他のsimple shortcode | 対応するコンポーネント |
+
+**注意**: FrontMatter内では属性付きショートコードやコンテンツ付きショートコードは処理されません。Simple shortcodeのみが対象です。
 
 ### ショートコード変換
 

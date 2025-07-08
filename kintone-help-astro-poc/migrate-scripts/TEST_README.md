@@ -36,9 +36,10 @@ Hugo から Astro への変換スクリプトの動作を検証するための�
 - JSXコンポーネント除外、import文除外を含む
 
 #### 6. **Frontmatter Processor** (`frontmatter-processor.test.ts`)
-- **17テストケース**
+- **25テストケース**
 - YAMLフロントマターの処理
 - layout自動追加、配列フィールド正規化
+- **FrontMatter内ショートコード変換**（2025-01-08追加）
 
 ## テストデータソース
 
@@ -126,6 +127,10 @@ npm test image-processor.test.ts shortcode-processor.test.ts
 - ✅ ファイルパス別処理（_index.mdの判定）
 - ✅ 複雑なYAML構造の処理
 - ✅ エッジケース（空のフロントマター等）
+- ✅ **FrontMatter内ショートコード変換**（2025-01-08追加）
+  - ✅ title、description内の`{{< kintone >}}`等の変換
+  - ✅ 複数フィールド、複数ショートコードの処理
+  - ✅ 非文字列フィールドの保護
 
 ## 実際の使用パターン
 
@@ -144,7 +149,7 @@ npm test image-processor.test.ts shortcode-processor.test.ts
 3. **見出し変換の完全性**: カスタムIDの適切な処理とレベル別対応
 4. **HTML整形の信頼性**: 自己閉じタグと構造整形の正確な実行
 5. **エスケープ処理の安全性**: MDX互換性を保つ適切なエスケープ
-6. **フロントマター処理の一貫性**: layout追加と配列正規化の確実な実行
+6. **フロントマター処理の一貫性**: layout追加、配列正規化、FrontMatter内ショートコード変換の確実な実行
 
 ### リグレッション防止効果
 - 全プロセッサの動作保証
@@ -156,7 +161,7 @@ npm test image-processor.test.ts shortcode-processor.test.ts
 
 - **テストフレームワーク**: Vitest
 - **TypeScript**: 型安全なテスト実装
-- **実データベース**: 実際の変換済みファイルから抽出した88個のテストケース
+- **実データベース**: 実際の変換済みファイルから抽出した143個のテストケース
 - **カバレッジ**: 主要な変換パターンを網羅
 
 ## 注意事項
@@ -170,3 +175,4 @@ npm test image-processor.test.ts shortcode-processor.test.ts
 
 - 2025-01-04: 初版作成
 - 2025-01-04: プリプロセッサテスト削除、ファイル配置最適化、全プロセッサのテスト完成
+- 2025-01-08: FrontMatter内ショートコード変換機能追加に伴うテストケース更新（8ケース追加、総計143ケース）

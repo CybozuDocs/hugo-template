@@ -75,6 +75,11 @@ npx tsx migrate-scripts/convert-content.ts \
 - **対応**: shortcode-processor.tsの空行削除ロジック修正（lines配列の元データで判定）
 - **解決方法**: 元の行データで前行がリスト項目、次行がインデントされたコンテンツの場合、空行をスキップ
 
+### FrontMatter内ショートコード変換機能追加
+- **症状**: FrontMatter内の`{{< kintone >}}`等がAstroで処理できない
+- **対応**: frontmatter-processor.tsに新機能追加（2025-01-08実装完了）
+- **解決方法**: `processFrontMatterShortcodes()`関数で文字列フィールドのsimple shortcodeを変換
+
 ---
 
 ## ❌ よくある作業ミス（絶対回避）
@@ -180,5 +185,5 @@ npx tsx migrate-scripts/convert-content.ts \
 
 ---
 
-**最終更新**: 2025-01-02（Noteコンテンツ空行削除問題対応、作業品質管理強化）
+**最終更新**: 2025-01-08（FrontMatter内ショートコード変換機能追加）
 **次回更新**: 新しい問題パターン発見時、または重要なルール変更時

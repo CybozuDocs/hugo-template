@@ -1,5 +1,5 @@
 ---
-// TODO: 旧実装では {{$.Site.Params.kintone}} を利用。それを再現する
+ import { env } from "@/lib/env";
 ---
 
-<span>kintone</span>
+{env.kintone}

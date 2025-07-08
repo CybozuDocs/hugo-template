@@ -1,4 +1,5 @@
 import type { FileContent, FrontMatterData } from "./types.js";
+import { SHORTCODE_MAPPINGS } from "./shortcode-processor.js";
 
 const FRONTMATTER_DELIMITER = "---";
 
@@ -72,6 +73,9 @@ export function processFrontMatter(
 ): Record<string, unknown> {
   let processed = { ...frontmatter };
 
+  // Process shortcodes in frontmatter values
+  processed = processFrontMatterShortcodes(processed);
+
   // Add layout field
   processed = addLayoutField(processed, isIndexFile);
 
@@ -85,6 +89,48 @@ export function processFrontMatter(
       processed.aliases = [processed.aliases];
     } else if (Array.isArray(processed.aliases)) {
       processed.aliases = [...processed.aliases];
+    }
+  }
+
+  return processed;
+}
+
+/**
+ * Process shortcodes in frontmatter values
+ * Converts Hugo shortcodes like {{< kintone >}} to Astro components like <Kintone />
+ */
+function processFrontMatterShortcodes(
+  frontmatter: Record<string, unknown>,
+): Record<string, unknown> {
+  const processed: Record<string, unknown> = {};
+
+  for (const [key, value] of Object.entries(frontmatter)) {
+    if (typeof value === "string") {
+      processed[key] = processShortcodesInString(value);
+    } else {
+      processed[key] = value;
+    }
+  }
+
+  return processed;
+}
+
+/**
+ * Process shortcodes in a string value
+ * Only handles simple shortcodes (no attributes, no content)
+ */
+function processShortcodesInString(text: string): string {
+  let processed = text;
+
+  // Process simple shortcodes only
+  for (const [shortcode, component] of Object.entries(
+    SHORTCODE_MAPPINGS.simple,
+  )) {
+    const regex = new RegExp(`\\{\\{<\\s*${shortcode}\\s*>\\}\\}`, "g");
+    const replacement = `<${component} />`;
+
+    if (regex.test(processed)) {
+      processed = processed.replace(regex, replacement);
     }
   }
 
