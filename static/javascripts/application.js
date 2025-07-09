@@ -194,14 +194,12 @@
         }
 
         const displaySpinner = () => {
-            document.getElementById("page-spinner").style.display = "block";
+            setTimeout(() => {document.getElementById("page-spinner").style.display = "block"}, 1000);
         }
-            
+
         window.addEventListener('wovnApiReady',function(){
             window.addEventListener('beforeunload', () => {
-                console.log("beforeunload");
-                console.log(displaySpinner);
-                //setTimeout(displaySpinner, 1000);
+                displaySpinner();
             });
 
             let hideCalled = 0;
