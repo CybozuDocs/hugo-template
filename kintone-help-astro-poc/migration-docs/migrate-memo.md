@@ -1322,3 +1322,24 @@ npx tsx migrate-scripts/convert-content.ts \
 Hugo から Astro への移行において、コンテンツ変換は最も重要な基盤作業です。このスクリプトシステムにより、大量のMarkdownコンテンツを型安全かつ一貫性を保って変換できる基盤が確立されました。特に、MDXパーサーの厳密性に対応したプリプロセッサシステムは、今後の類似課題解決のパターンとして重要な価値を持ちます。
 
 **継続作業**: 変換スクリプトは継続的に改善が必要な作業です。大量のコンテンツファイルに対して順次変換を実行し、発生するMDXパースエラーに対してプリプロセッサルールを追加していく反復的なプロセスが続きます。
+
+
+## 0038_csv-to-ts-conversion (2025-07-09)
+
+### 概要
+CSVファイルをTypeScriptファイルに変換し、リージョン別データを統合
+
+### 学習事項
+- CSVデータの構造分析（3種類の異なるフォーマット）
+- リージョン別ファイルの統合パターン
+- TypeScript型定義による型安全性の確保
+
+### 変換パターン
+1. **home系**: type/icon/title の3カラム → HomeItem型
+2. **homeAppendix系**: type/title/icon の3カラム → HomeAppendixItem型  
+3. **links系**: categoryId/title/url の4カラム → LinkItem型
+
+### 注意事項
+- CSVデータにカンマを含む値がないため単純なsplit処理で対応可能
+- 空文字列はundefinedではなくそのまま保持
+- ファイル名変更: home_apx → homeAppendix

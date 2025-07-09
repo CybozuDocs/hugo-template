@@ -1,0 +1,161 @@
+/**
+ * ホームページ用のメニューデータ
+ */
+
+export type HomeItemType = 'category' | 'page' | 'partition';
+
+export interface HomeItem {
+  type: HomeItemType;
+  icon?: string;
+  title?: string;
+  url?: string;
+}
+
+export interface HomeData {
+  JP: HomeItem[];
+  US: HomeItem[];
+  CN: HomeItem[];
+}
+
+/**
+ * ホームメニューアイテムデータ
+ */
+export const homeData: HomeData = {
+  JP: [
+    { type: "category", icon: "fas fa-rocket", title: "はじめに" },
+    { type: "page", url: "/ja/id/040130" },
+    { type: "page", url: "/ja/id/040830" },
+    { type: "category", icon: "fas fa-cube", title: "アプリを作って運用する" },
+    { type: "page", url: "/ja/id/040616" },
+    { type: "page", url: "/ja/id/040473" },
+    { type: "page", url: "/ja/id/040603" },
+    { type: "page", url: "/ja/id/040841" },
+    { type: "page", url: "/ja/id/040494" },
+    { type: "page", url: "/ja/id/040484" },
+    { type: "page", url: "/ja/id/040568" },
+    { type: "page", url: "/ja/id/040588" },
+    { type: "page", url: "/ja/id/040489" },
+    { type: "partition" },
+    { type: "page", url: "/ja/id/040848" },
+    { type: "page", url: "/ja/id/04053" },
+    { type: "page", url: "/ja/id/040605" },
+    { type: "page", url: "/ja/id/040465" },
+    { type: "page", url: "/ja/id/040714" },
+    { type: "page", url: "/ja/id/040856" },
+    { type: "page", url: "/ja/id/040459" },
+    { type: "partition" },
+    { type: "page", url: "/ja/id/040857" },
+    { type: "page", url: "/ja/id/040859" },
+    { type: "page", url: "/ja/id/040599" },
+    { type: "page", url: "/ja/id/040860" },
+    { type: "page", url: "/ja/id/040676" },
+    { type: "category", icon: "fas fa-puzzle-piece", title: "kintoneの他の機能を使ってみる" },
+    { type: "page", url: "/ja/id/040868" },
+    { type: "page", url: "/ja/id/040688" },
+    { type: "page", url: "/ja/id/040669" },
+    { type: "page", url: "/ja/id/040617" },
+    { type: "page", url: "/ja/id/040691" },
+    { type: "page", url: "/ja/id/040639" },
+    { type: "page", url: "/ja/id/040679" },
+    { type: "page", url: "/ja/id/040651" },
+    { type: "page", url: "/ja/id/0402" },
+    { type: "page", url: "/ja/id/040907" },
+    { type: "page", url: "/ja/id/040653" },
+    { type: "category", icon: "fas fa-user", title: "契約とユーザー管理" },
+    { type: "page", url: "https://jp.cybozu.help/s/ja/", title: "契約と支払い" },
+    { type: "page", url: "https://jp.cybozu.help/general/ja/id/0202.html", title: "cybozu.com共通管理" },
+    { type: "category", icon: "fas fa-book", title: "お役立ち情報" },
+    { type: "page", url: "/ja/id/040732" },
+    { type: "page", url: "/ja/id/040146" }
+  ],
+  US: [
+    { type: "category", icon: "fas fa-rocket", title: "はじめに" },
+    { type: "page", url: "https://get.kintone.help/store/ja/id/03038.html", title: "トライアル" },
+    { type: "page", url: "/ja/id/040130" },
+    { type: "page", url: "/ja/id/040830" },
+    { type: "category", icon: "fas fa-cube", title: "アプリを作って運用する" },
+    { type: "page", url: "/ja/id/040616" },
+    { type: "page", url: "/ja/id/040473" },
+    { type: "page", url: "/ja/id/040603" },
+    { type: "page", url: "/ja/id/040841" },
+    { type: "page", url: "/ja/id/040494" },
+    { type: "page", url: "/ja/id/040484" },
+    { type: "page", url: "/ja/id/040568" },
+    { type: "page", url: "/ja/id/040588" },
+    { type: "page", url: "/ja/id/040489" },
+    { type: "partition" },
+    { type: "page", url: "/ja/id/040848" },
+    { type: "page", url: "/ja/id/04053" },
+    { type: "page", url: "/ja/id/040605" },
+    { type: "page", url: "/ja/id/040465" },
+    { type: "page", url: "/ja/id/040714" },
+    { type: "page", url: "/ja/id/040856" },
+    { type: "page", url: "/ja/id/040459" },
+    { type: "partition" },
+    { type: "page", url: "/ja/id/040857" },
+    { type: "page", url: "/ja/id/040859" },
+    { type: "page", url: "/ja/id/040599" },
+    { type: "page", url: "/ja/id/040860" },
+    { type: "page", url: "/ja/id/040676" },
+    { type: "category", icon: "fas fa-puzzle-piece", title: "Kintoneの他の機能を使ってみる" },
+    { type: "page", url: "/ja/id/040688" },
+    { type: "page", url: "/ja/id/040669" },
+    { type: "page", url: "/ja/id/040617" },
+    { type: "page", url: "/ja/id/040691" },
+    { type: "page", url: "/ja/id/040639" },
+    { type: "page", url: "/ja/id/040679" },
+    { type: "page", url: "/ja/id/040651" },
+    { type: "page", url: "/ja/id/0402" },
+    { type: "page", url: "/ja/id/040653" },
+    { type: "category", icon: "fas fa-user", title: "契約とユーザー管理" },
+    { type: "page", url: "https://get.kintone.help/store/ja/id/03027.html", title: "購入" },
+    { type: "page", url: "https://get.kintone.help/general/ja/id/0202.html", title: "Kintone共通管理" },
+    { type: "category", icon: "fas fa-book", title: "お役立ち情報" },
+    { type: "page", url: "/ja/id/040732" },
+    { type: "page", url: "/ja/id/040146" }
+  ],
+  CN: [
+    { type: "category", icon: "fas fa-rocket", title: "はじめに" },
+    { type: "page", url: "/ja/id/040130" },
+    { type: "page", url: "/ja/id/040830" },
+    { type: "category", icon: "fas fa-cube", title: "アプリを作って運用する" },
+    { type: "page", url: "/ja/id/040616" },
+    { type: "page", url: "/ja/id/040473" },
+    { type: "page", url: "/ja/id/040603" },
+    { type: "page", url: "/ja/id/040841" },
+    { type: "page", url: "/ja/id/040494" },
+    { type: "page", url: "/ja/id/040484" },
+    { type: "page", url: "/ja/id/040568" },
+    { type: "page", url: "/ja/id/040588" },
+    { type: "page", url: "/ja/id/040489" },
+    { type: "partition" },
+    { type: "page", url: "/ja/id/040848" },
+    { type: "page", url: "/ja/id/04053" },
+    { type: "page", url: "/ja/id/040605" },
+    { type: "page", url: "/ja/id/040465" },
+    { type: "page", url: "/ja/id/040714" },
+    { type: "page", url: "/ja/id/040856" },
+    { type: "page", url: "/ja/id/040459" },
+    { type: "partition" },
+    { type: "page", url: "/ja/id/040857" },
+    { type: "page", url: "/ja/id/040859" },
+    { type: "page", url: "/ja/id/040599" },
+    { type: "page", url: "/ja/id/040860" },
+    { type: "page", url: "/ja/id/040676" },
+    { type: "category", icon: "fas fa-puzzle-piece", title: "kintoneの他の機能を使ってみる" },
+    { type: "page", url: "/ja/id/040688" },
+    { type: "page", url: "/ja/id/040669" },
+    { type: "page", url: "/ja/id/040617" },
+    { type: "page", url: "/ja/id/040691" },
+    { type: "page", url: "/ja/id/040639" },
+    { type: "page", url: "/ja/id/040679" },
+    { type: "page", url: "/ja/id/040651" },
+    { type: "page", url: "/ja/id/0402" },
+    { type: "page", url: "/ja/id/040653" },
+    { type: "category", icon: "fas fa-user", title: "ユーザー管理" },
+    { type: "page", url: "https://help.cybozu.cn/general/ja/id/0202.html", title: "cybozu.cn共通管理" },
+    { type: "category", icon: "fas fa-book", title: "お役立ち情報" },
+    { type: "page", url: "/ja/id/040732" },
+    { type: "page", url: "/ja/id/040146" }
+  ]
+};
