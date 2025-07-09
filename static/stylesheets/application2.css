@@ -63,15 +63,3 @@ a {
 .footer::before {
   background-image: none;
 }
-
-#page-spinner {
-  display: none;
-}
-.spinner-icon {
-  width: 150px;
-  height: 150px;
-  position: fixed;
-  top: 150px;
-  left: calc(50% - 150px);
-  z-index: 9999;
-}
