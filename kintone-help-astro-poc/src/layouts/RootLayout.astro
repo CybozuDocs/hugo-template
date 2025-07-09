@@ -1,0 +1,218 @@
+---
+import type { MarkdownLayoutProps } from "astro";
+import Head from "./components/Head.astro";
+import { env } from "../lib/env.js";
+import { getCurrentPage, getSiteHomeSections } from "../lib/page";
+import Footer from "./components/Footer.astro";
+import Header from "./components/Header.astro";
+import MegaNav from "./components/MegaNav.astro";
+import LocaleModal from "./components/LocaleModal.astro";
+import AnnouncementBanner from "./components/AnnouncementBanner.astro";
+import SearchBox from "./components/SearchBox.astro";
+import Wovn from "../components/Wovn.astro";
+import { homeData, type HomeData } from "../pages/_data/home";
+import { homeAppendixData, type HomeAppendixData } from "../pages/_data/homeAppendix";
+
+type Props = MarkdownLayoutProps<{}>;
+
+// 型定義
+interface GroupedCategoryItem {
+  type: string;
+  url?: string;
+  title?: string;
+  cardIndex: number;
+}
+
+interface GroupedCategory {
+  title: string;
+  icon: string;
+  items: GroupedCategoryItem[];
+}
+
+interface GroupedAppendixItem {
+  type: string;
+  title: string;
+  url?: string;
+}
+
+interface GroupedAppendixCategory {
+  title: string;
+  icon: string;
+  items: GroupedAppendixItem[];
+}
+
+// サイトのセクション情報を取得
+const sections = await getSiteHomeSections();
+
+// 現在ページを特定（ホームページ）
+const currentPage = getCurrentPage(Astro, sections);
+
+// リージョン別データを取得（型安全性を確保）
+const validRegions = ['JP', 'US', 'CN'] as const;
+type ValidRegion = typeof validRegions[number];
+
+const targetRegion = (validRegions.includes(env.targetRegion as ValidRegion) ? env.targetRegion : 'JP') as ValidRegion;
+const regionData = homeData[targetRegion];
+const appendixData = homeAppendixData[targetRegion];
+
+// メインメニューデータをカテゴリごとにグループ化
+const groupedMainMenuData: GroupedCategory[] = [];
+let currentCategory: GroupedCategory | null = null;
+let cardIndex = 0;
+
+for (const item of regionData) {
+  if (item.type === "category") {
+    // 新しいカテゴリの開始
+    currentCategory = {
+      title: item.title || '',
+      icon: item.icon || '',
+      items: []
+    };
+    groupedMainMenuData.push(currentCategory);
+  } else if (currentCategory) {
+    // 現在のカテゴリに項目を追加
+    currentCategory.items.push({
+      type: item.type,
+      url: item.url,
+      title: item.title,
+      cardIndex: cardIndex++
+    });
+  }
+}
+
+// 付録情報データをカテゴリごとにグループ化
+const groupedAppendixData: GroupedAppendixCategory[] = [];
+let currentAppendixCategory: GroupedAppendixCategory | null = null;
+
+for (const item of appendixData) {
+  if (item.type === "category") {
+    // 新しいカテゴリの開始
+    currentAppendixCategory = {
+      title: item.title,
+      icon: item.icon || '',
+      items: []
+    };
+    groupedAppendixData.push(currentAppendixCategory);
+  } else if (currentAppendixCategory && item.type === "link") {
+    // 現在のカテゴリにリンクを追加
+    currentAppendixCategory.items.push({
+      type: item.type,
+      title: item.title,
+      url: item.url
+    });
+  }
+}
+---
+
+<!doctype html>
+<html lang="ja" prefix="og: https://ogp.me/ns#">
+  <head>
+    <Head page={currentPage} />
+  </head>
+  <body class="font-ja">
+    {env.targetRegion === "US" && <LocaleModal />}
+    
+    <AnnouncementBanner />
+    
+    <Header page={currentPage} />
+    
+    <div class="page-pad" />
+    
+    {env.meganav && (
+      <>
+        <div class="mnav-pad" />
+        <MegaNav 
+          lang={currentPage.lang}
+          isHome={currentPage.isHome}
+          type={currentPage.frontmatter.type}
+          relPermalink={currentPage.relPermalink}
+        />
+      </>
+    )}
+    
+    {/* トップページヘッダー（templateVersion=2 固定） */}
+    <div class="top-page-header">
+      <div class="search-wrap">
+        <div class="welcome_message">
+          <Wovn>i18n__Welcome</Wovn>! <Wovn>i18n__Enter_keywords</Wovn>
+        </div>
+        <SearchBox page={currentPage} />
+      </div>
+    </div>
+    
+    {/* トップページメインコンテンツ */}
+    <div id="top-page" class="top-page">
+      <main class="main">
+        <article class="home-article">
+          {/* メインメニュー部分 */}
+          {groupedMainMenuData.map((category, categoryIndex) => (
+            <div>
+              <h2 class="top-page-category">
+                <i class={`${category.icon} top-page-category-icon`}></i>
+                {category.title}
+              </h2>
+              <div class="top-page-card-group">
+                {category.items.map((item, itemIndex) => {
+                  if (item.type === "page") {
+                    if (item.url && item.url.startsWith("http")) {
+                      // 外部リンクの場合
+                      return (
+                        <a 
+                          class="top-page-card top-page-card-anchor" 
+                          href={item.url}
+                        >
+                          {item.title}
+                        </a>
+                      );
+                    } else {
+                      // 内部リンクの場合
+                      // TODO: allPages からページを検索して子ページの有無を判定
+                      // 暫定的に直接リンクとして表示
+                      return (
+                        <a 
+                          class="top-page-card top-page-card-anchor" 
+                          href={item.url}
+                        >
+                          {item.title}
+                        </a>
+                      );
+                    }
+                  } else if (item.type === "partition") {
+                    return (
+                      <div class="top-page-partition"></div>
+                    );
+                  }
+                })}
+              </div>
+            </div>
+          ))}
+          
+          {/* 付録情報部分 */}
+          {groupedAppendixData.length > 0 && (
+            <div class="appendix-info">
+              {groupedAppendixData.map((category, categoryIndex) => (
+                <div class="appendix-category-group">
+                  <h3 class="appendix-category">
+                    <span class="appendix-category-icon-frame">
+                      <i class={`${category.icon} appendix-category-icon`}></i>
+                    </span>
+                    <span class="appendix-category-title">{category.title}</span>
+                  </h3>
+                  {category.items.map((item, itemIndex) => (
+                    <div class="appendix-link-item">
+                      <a href={item.url}>
+                        {item.title}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
+        </article>
+      </main>
+    </div>
+    
+    <Footer page={currentPage} />
+  </body>
+</html>

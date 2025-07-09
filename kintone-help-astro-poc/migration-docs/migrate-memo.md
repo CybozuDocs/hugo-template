@@ -236,6 +236,7 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 - 2025年1月 - Partials統合作業の完了を反映
 - 2025年1月 - 環境変数ファイル拡張作業の完了を反映
 - 2025年1月 - Footer.astro CSVファイル読み込み機能実装完了を反映
+- 2025年1月 - RootLayout.astro 実装完了を反映
 
 ### 2025年1月更新内容
 
@@ -247,6 +248,26 @@ const className = langCode === 'en' ? 'wv-brk wv-brk-en' : 'wv-brk';
 - **重要な学習事項**:
   - partial名とコンポーネント名の正確な対応が必要（例：disclaimer2.html → Disclaimer2.astro）
   - DOM構造の厳密な保持（文言の勝手な追加は禁止）
+
+#### 0040_root-layout 作業完了（2025年1月9日）
+- **実装内容**: layouts/index.html をベースに RootLayout.astro を作成
+- **主要機能**:
+  - トップページ専用レイアウト（templateVersion=2固定）
+  - home.ts/homeAppendix.ts からの型安全なデータ読み込み
+  - リージョン別データ対応（JP, US, CN）
+  - カテゴリ別メニューの動的生成
+  - 付録情報の動的生成
+- **技術的な課題と解決**:
+  - JSXでのDOM構造生成：データを事前にグループ化して完全なJSXブロックを生成
+  - 型安全性の確保：既存のTS化されたデータファイルを活用
+  - リージョン別対応：env.targetRegionを使用したデータ選択
+- **削除された機能（固定値化による）**:
+  - product="kintone"固定により：リモートJSONデータ取得、外部サイト連携、support_guide専用処理
+  - templateVersion="2"固定により：バージョン1の処理、ヒーロー画像、静的コンテンツ表示
+- **今後の課題**:
+  - 内部リンクの子ページ判定（allPages相当の機能実装）
+  - 展開可能なボタン（子ページがある場合の展開機能）
+  - アクセシビリティ（ARIA属性の完全実装）
   - templateVersion=2のみ存在するため、Footer2を標準のFooterとして使用
 - **判明した課題**:
   - 最高難易度: TreeNav、Header、AnnouncementBanner（再帰処理、API統合が必要）

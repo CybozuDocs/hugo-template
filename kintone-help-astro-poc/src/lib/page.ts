@@ -291,8 +291,10 @@ function loadAllPages(): {
       const pathSegments = getPathSegments(pathWithoutPrefix);
       const sectionKey = pathSegments.slice(1).join("/"); // セクション階層全体をキーにする
 
-      if (sectionKey) {
-        sectionsMap.set(sectionKey, pageData);
+      // 言語ルートページ（/ja/, /en/ など）の場合、sectionKeyが空文字列になるため特別扱い
+      if (sectionKey || pathSegments.length === 1) {
+        const key = sectionKey || pathSegments[0]; // 言語ルートページの場合は言語コードをキーにする
+        sectionsMap.set(key, pageData);
       }
     }
   }
@@ -450,8 +452,22 @@ export async function getSiteHomeSections(): Promise<PageProps[]> {
   assignSectionNavigation(sectionsMap);
 
   // トップレベルのセクションのみを返す（親がホームのもの）
+  // ただし、言語ルートページ（/ja/, /en/ など）は除外する
   const topLevelSections = Array.from(sectionsMap.values())
-    .filter((section) => section.parent === homeData)
+    .filter((section) => {
+      if (section.parent !== homeData) return false;
+      
+      // 言語ルートページかどうかを判定
+      const pathWithoutPrefix = removeKPrefix(section.relPermalink);
+      const pathSegments = getPathSegments(pathWithoutPrefix);
+      
+      // パスが /ja や /en などの言語ルートページの場合は除外
+      if (pathSegments.length === 1) {
+        return false;
+      }
+      
+      return true;
+    })
     .sort((a, b) => a.frontmatter.weight - b.frontmatter.weight);
 
   return topLevelSections;
@@ -503,6 +519,20 @@ export function getCurrentPage(
   const foundPage = findPageInTree(sections, normalizedPath);
 
   if (!foundPage) {
+    // 言語ルートページ（/k/ja/, /k/en/ など）の場合は直接 sectionsMap から検索
+    const pathWithoutPrefix = removeKPrefix(normalizedPath);
+    const pathSegments = getPathSegments(pathWithoutPrefix);
+    
+    if (pathSegments.length === 1) {
+      // 言語ルートページの可能性がある場合、全ページから検索
+      const { sectionsMap } = loadAllPages();
+      const languageRootPage = sectionsMap.get(pathSegments[0]);
+      
+      if (languageRootPage) {
+        return languageRootPage;
+      }
+    }
+    
     throw new Error(`ページが見つかりません: ${currentPath}`);
   }
 
