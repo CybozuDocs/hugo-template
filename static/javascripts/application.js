@@ -193,10 +193,11 @@
             }
         }
 
+        const displaySpinner = () => {
+            document.getElementById("page-spinner").style.display = "block";
+        }
+            
         window.addEventListener('wovnApiReady',function(){
-            const displaySpinner = () => {
-                document.getElementById("page-spinner").style.display = "block";
-            }
             window.addEventListener('beforeunload', () => {
                 console.log("beforeunload");
                 console.log(displaySpinner);
