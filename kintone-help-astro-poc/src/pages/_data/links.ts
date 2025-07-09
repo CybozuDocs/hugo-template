@@ -6,6 +6,8 @@ export interface LinkItem {
   categoryId: string;
   title: string;
   url?: string;
+  status?: string;
+  target?: "_blank" | "_self" | "_parent" | "_top";
 }
 
 export interface LinksData {

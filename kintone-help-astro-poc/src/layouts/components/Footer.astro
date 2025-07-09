@@ -14,36 +14,19 @@ const basePath = baseUrl.pathname;
 // フルサイズの判定
 const fullsize = page.isHome || basePath.startsWith("/k/");
 
-// CSVデータの読み込み処理
-const csvContent = await import(
-  `../../pages/_data/csv/links.${env.targetRegion}.csv?raw`
-);
+// TSデータの読み込み処理
+import { linksData } from "../../pages/_data/links";
 
-// CSVをパースして配列に変換
-const lines = csvContent.default.split("\n");
-const footerData = lines
-  .filter((line: string) => line.trim()) // 空行を除外
-  .map((line: string) => {
-    // 簡易的なCSVパース（カンマ区切り、クォート対応）
-    const result: string[] = [];
-    let current = "";
-    let inQuotes = false;
+// リージョン別データの取得
+const regionData = linksData[env.targetRegion as keyof typeof linksData] || [];
 
-    for (let i = 0; i < line.length; i++) {
-      const char = line[i];
-      if (char === '"') {
-        inQuotes = !inQuotes;
-      } else if (char === "," && !inQuotes) {
-        result.push(current);
-        current = "";
-      } else {
-        current += char;
-      }
-    }
-    result.push(current); // 最後のフィールドを追加
-
-    return result;
-  });
+// CSVフォーマットに合わせた配列形式に変換
+const footerData = regionData.map((item) => [
+  item.categoryId,
+  item.title,
+  item.url || "",
+  item.status || item.target || ""
+]);
 
 // データ処理
 const sep = "\t";
