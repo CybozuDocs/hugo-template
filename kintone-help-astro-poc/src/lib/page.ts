@@ -93,8 +93,8 @@ export function createPageData(
   };
 
   return {
-    // パスから計算される値
-    isHome: urlPath === "" || urlPath === "/",
+    // パスから計算される値（frontmatterのisHomeを優先）
+    isHome: frontmatter.isHome === true || urlPath === "" || urlPath === "/",
     isSection:
       filepath.endsWith("/index.mdx") || filepath.endsWith("/index.md"),
     relPermalink: "/k" + urlPath,
