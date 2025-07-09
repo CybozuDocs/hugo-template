@@ -2,7 +2,8 @@
 import type { MarkdownLayoutProps } from "astro";
 import Head from "./components/Head.astro";
 import { env } from "../lib/env.js";
-import { getCurrentPage, getSiteHomeSections } from "../lib/page";
+import { getCurrentPage, getSiteHomeSections, loadAllPages, findPageByAlias, hasChildPages, collectPagesRecursively, buildDropdownChildren, type DropdownChild } from "../lib/page";
+import type { PageProps } from "./components/types";
 import Footer from "./components/Footer.astro";
 import Header from "./components/Header.astro";
 import MegaNav from "./components/MegaNav.astro";
@@ -10,98 +11,162 @@ import LocaleModal from "./components/LocaleModal.astro";
 import AnnouncementBanner from "./components/AnnouncementBanner.astro";
 import SearchBox from "./components/SearchBox.astro";
 import Wovn from "../components/Wovn.astro";
-import { homeData, type HomeData } from "../pages/_data/home";
-import { homeAppendixData, type HomeAppendixData } from "../pages/_data/homeAppendix";
+import { homeData, type HomeItem } from "../pages/_data/home";
+import { homeAppendixData, type HomeAppendixItem } from "../pages/_data/homeAppendix";
 
 type Props = MarkdownLayoutProps<{}>;
 
 // 型定義
-interface GroupedCategoryItem {
+type ValidRegion = 'JP' | 'US' | 'CN';
+
+interface ProcessedMenuItem {
   type: string;
+  cardIndex: number;
   url?: string;
   title?: string;
-  cardIndex: number;
+  // 内部リンクの場合
+  isInternal?: boolean;
+  resolvedPage?: PageProps;
+  hasChildren?: boolean;
+  dropdownChildren?: DropdownChild[];
 }
 
-interface GroupedCategory {
+interface ProcessedCategory {
   title: string;
   icon: string;
-  items: GroupedCategoryItem[];
+  items: ProcessedMenuItem[];
 }
 
-interface GroupedAppendixItem {
+interface ProcessedAppendixItem {
   type: string;
   title: string;
   url?: string;
 }
 
-interface GroupedAppendixCategory {
+interface ProcessedAppendixCategory {
   title: string;
   icon: string;
-  items: GroupedAppendixItem[];
+  items: ProcessedAppendixItem[];
 }
 
-// サイトのセクション情報を取得
+function processHomeMenuData(regionData: HomeItem[], allPages: PageProps[]): ProcessedMenuItem[] {
+  let cardIndex = 0;
+  
+  return regionData
+    .filter(item => item.type !== "category")
+    .map(item => {
+      const baseItem: ProcessedMenuItem = {
+        type: item.type,
+        cardIndex: cardIndex++,
+        url: item.url,
+        title: item.title
+      };
+      
+      if (item.type === "page" && item.url && !item.url.startsWith("http")) {
+        // 内部リンクの場合
+        const resolvedPage = findPageByAlias(item.url, allPages);
+        if (resolvedPage) {
+          const hasChildren = hasChildPages(resolvedPage);
+          return {
+            ...baseItem,
+            isInternal: true,
+            resolvedPage,
+            hasChildren,
+            dropdownChildren: hasChildren ? buildDropdownChildren(resolvedPage) : undefined,
+            title: resolvedPage.frontmatter.title
+          };
+        }
+      }
+      
+      return baseItem;
+    });
+}
+
+function groupHomeDataByCategory(
+  data: HomeItem[],
+  processedItems: ProcessedMenuItem[]
+): ProcessedCategory[] {
+  const groups: ProcessedCategory[] = [];
+  let currentGroup: ProcessedCategory | null = null;
+  let itemIndex = 0;
+  
+  for (const item of data) {
+    if (item.type === "category") {
+      currentGroup = {
+        title: item.title || '',
+        icon: item.icon || '',
+        items: []
+      };
+      groups.push(currentGroup);
+    } else if (currentGroup) {
+      if (itemIndex < processedItems.length) {
+        currentGroup.items.push(processedItems[itemIndex]);
+        itemIndex++;
+      }
+    }
+  }
+  
+  return groups;
+}
+
+function groupAppendixDataByCategory(
+  data: HomeAppendixItem[],
+  processedItems: ProcessedAppendixItem[]
+): ProcessedAppendixCategory[] {
+  const groups: ProcessedAppendixCategory[] = [];
+  let currentGroup: ProcessedAppendixCategory | null = null;
+  let itemIndex = 0;
+  
+  for (const item of data) {
+    if (item.type === "category") {
+      currentGroup = {
+        title: item.title || '',
+        icon: item.icon || '',
+        items: []
+      };
+      groups.push(currentGroup);
+    } else if (currentGroup) {
+      if (itemIndex < processedItems.length) {
+        currentGroup.items.push(processedItems[itemIndex]);
+        itemIndex++;
+      }
+    }
+  }
+  
+  return groups;
+}
+
+// データの準備
 const sections = await getSiteHomeSections();
-
-// 現在ページを特定（ホームページ）
 const currentPage = getCurrentPage(Astro, sections);
+loadAllPages();
 
-// リージョン別データを取得（型安全性を確保）
-const validRegions = ['JP', 'US', 'CN'] as const;
-type ValidRegion = typeof validRegions[number];
+// 階層構造を持つ全ページデータの構築
+const flatAllPages = collectPagesRecursively(sections);
 
-const targetRegion = (validRegions.includes(env.targetRegion as ValidRegion) ? env.targetRegion : 'JP') as ValidRegion;
+// リージョン別データの取得
+const validRegions: ValidRegion[] = ['JP', 'US', 'CN'];
+const targetRegion: ValidRegion = validRegions.includes(env.targetRegion as ValidRegion) 
+  ? env.targetRegion as ValidRegion 
+  : 'JP';
+
 const regionData = homeData[targetRegion];
 const appendixData = homeAppendixData[targetRegion];
 
-// メインメニューデータをカテゴリごとにグループ化
-const groupedMainMenuData: GroupedCategory[] = [];
-let currentCategory: GroupedCategory | null = null;
-let cardIndex = 0;
+// メインメニューデータの処理
+const processedMenuItems = processHomeMenuData(regionData, flatAllPages);
+const groupedMainMenuData = groupHomeDataByCategory(regionData, processedMenuItems);
 
-for (const item of regionData) {
-  if (item.type === "category") {
-    // 新しいカテゴリの開始
-    currentCategory = {
-      title: item.title || '',
-      icon: item.icon || '',
-      items: []
-    };
-    groupedMainMenuData.push(currentCategory);
-  } else if (currentCategory) {
-    // 現在のカテゴリに項目を追加
-    currentCategory.items.push({
-      type: item.type,
-      url: item.url,
-      title: item.title,
-      cardIndex: cardIndex++
-    });
-  }
-}
+// 付録データの処理
+const processedAppendixItems: ProcessedAppendixItem[] = appendixData
+  .filter(item => item.type === "link")
+  .map(item => ({
+    type: item.type,
+    title: item.title,
+    url: item.url
+  }));
 
-// 付録情報データをカテゴリごとにグループ化
-const groupedAppendixData: GroupedAppendixCategory[] = [];
-let currentAppendixCategory: GroupedAppendixCategory | null = null;
-
-for (const item of appendixData) {
-  if (item.type === "category") {
-    // 新しいカテゴリの開始
-    currentAppendixCategory = {
-      title: item.title,
-      icon: item.icon || '',
-      items: []
-    };
-    groupedAppendixData.push(currentAppendixCategory);
-  } else if (currentAppendixCategory && item.type === "link") {
-    // 現在のカテゴリにリンクを追加
-    currentAppendixCategory.items.push({
-      type: item.type,
-      title: item.title,
-      url: item.url
-    });
-  }
-}
+const groupedAppendixData = groupAppendixDataByCategory(appendixData, processedAppendixItems);
 ---
 
 <!doctype html>
@@ -130,67 +195,110 @@ for (const item of appendixData) {
       </>
     )}
     
-    {/* トップページヘッダー（templateVersion=2 固定） */}
+    <!-- トップページヘッダー（templateVersion=2 固定） -->
     <div class="top-page-header">
       <div class="search-wrap">
         <div class="welcome_message">
-          <Wovn>i18n__Welcome</Wovn>! <Wovn>i18n__Enter_keywords</Wovn>
+          <Wovn>{env.productName}&nbsp;{env.help}へようこそ</Wovn>! <Wovn>何をお探しですか？</Wovn>
         </div>
         <SearchBox page={currentPage} />
       </div>
     </div>
     
-    {/* トップページメインコンテンツ */}
+    <!-- トップページメインコンテンツ -->
     <div id="top-page" class="top-page">
       <main class="main">
         <article class="home-article">
-          {/* メインメニュー部分 */}
-          {groupedMainMenuData.map((category, categoryIndex) => (
+          <!-- メインメニュー部分 -->
+          {groupedMainMenuData.map((category) => (
             <div>
               <h2 class="top-page-category">
                 <i class={`${category.icon} top-page-category-icon`}></i>
                 {category.title}
               </h2>
               <div class="top-page-card-group">
-                {category.items.map((item, itemIndex) => {
-                  if (item.type === "page") {
-                    if (item.url && item.url.startsWith("http")) {
-                      // 外部リンクの場合
-                      return (
-                        <a 
-                          class="top-page-card top-page-card-anchor" 
-                          href={item.url}
-                        >
-                          {item.title}
-                        </a>
-                      );
-                    } else {
-                      // 内部リンクの場合
-                      // TODO: allPages からページを検索して子ページの有無を判定
-                      // 暫定的に直接リンクとして表示
-                      return (
-                        <a 
-                          class="top-page-card top-page-card-anchor" 
-                          href={item.url}
-                        >
-                          {item.title}
-                        </a>
-                      );
-                    }
-                  } else if (item.type === "partition") {
-                    return (
+                {category.items.map((item) => (
+                  <>
+                    {item.type === "page" && (
+                      <>
+                        {item.url?.startsWith("http") ? (
+                          <!-- 外部リンク -->
+                          <a 
+                            class="top-page-card top-page-card-anchor" 
+                            href={item.url}
+                          >
+                            {item.title}
+                          </a>
+                        ) : item.isInternal && item.resolvedPage ? (
+                          <>
+                            {item.hasChildren ? (
+                              <!-- ドロップダウンボタン -->
+                              <div>
+                                <button 
+                                  type="button" 
+                                  id={`top-page-card-${item.cardIndex}`}
+                                  class="top-page-card top-page-card-parent" 
+                                  aria-controls={`top-page-panel-${item.cardIndex}`}
+                                  aria-haspopup="true" 
+                                  aria-expanded="false"
+                                >
+                                  {item.title}
+                                </button>
+                                <ul 
+                                  id={`top-page-panel-${item.cardIndex}`}
+                                  class="top-page-panel" 
+                                  aria-labelledby={`top-page-card-${item.cardIndex}`}
+                                  tabindex="-1" 
+                                  role="menu"
+                                >
+                                  {item.dropdownChildren?.map((child, childIndex) => (
+                                    <li role="none">
+                                      <a 
+                                        href={child.relPermalink} 
+                                        role="menuitem"
+                                        data-itemnum={childIndex.toString()}
+                                        tabindex="-1"
+                                      >
+                                        <span class="top-page-item">{child.title}</span>
+                                      </a>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ) : (
+                              <!-- 直接リンク -->
+                              <a 
+                                class="top-page-card top-page-card-anchor" 
+                                href={item.resolvedPage.relPermalink}
+                              >
+                                {item.title}
+                              </a>
+                            )}
+                          </>
+                        ) : (
+                          <!-- ページが見つからない場合 -->
+                          <a 
+                            class="top-page-card top-page-card-anchor" 
+                            href={item.url || "#"}
+                          >
+                            {item.title || item.url}
+                          </a>
+                        )}
+                      </>
+                    )}
+                    {item.type === "partition" && (
                       <div class="top-page-partition"></div>
-                    );
-                  }
-                })}
+                    )}
+                  </>
+                ))}
               </div>
             </div>
           ))}
           
-          {/* 付録情報部分 */}
+          <!-- 付録情報部分 -->
           {groupedAppendixData.length > 0 && (
             <div class="appendix-info">
-              {groupedAppendixData.map((category, categoryIndex) => (
+              {groupedAppendixData.map((category) => (
                 <div class="appendix-category-group">
                   <h3 class="appendix-category">
                     <span class="appendix-category-icon-frame">
@@ -198,7 +306,7 @@ for (const item of appendixData) {
                     </span>
                     <span class="appendix-category-title">{category.title}</span>
                   </h3>
-                  {category.items.map((item, itemIndex) => (
+                  {category.items.map((item) => (
                     <div class="appendix-link-item">
                       <a href={item.url}>
                         {item.title}

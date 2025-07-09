@@ -15,6 +15,10 @@ import {
   findParentSection,
   findPageInTree,
   isAncestor,
+  findPageByAlias,
+  hasChildPages,
+  collectPagesRecursively,
+  buildDropdownChildren,
 } from "./page";
 
 describe("page.ts", () => {
@@ -630,13 +634,269 @@ describe("page.ts", () => {
 
     it("ホームページから全てのページへの祖先関係を正しく判定すること", () => {
       const homePage = getSiteHome();
-      
+
       expect(isAncestor(parentPage, homePage)).toBe(false); // /k/ja/app は / の祖先ではない
       expect(isAncestor(childPage, homePage)).toBe(false);
       expect(isAncestor(grandChildPage, homePage)).toBe(false);
     });
   });
 
+  // 新しく追加されたユーティリティ関数のテスト
+  describe("findPageByAlias", () => {
+    let mockPages: PageProps[];
+
+    beforeEach(() => {
+      mockPages = [
+        {
+          isHome: false,
+          isSection: true,
+          relPermalink: "/k/ja/start",
+          permalink: "/k/ja/start",
+          lang: "ja",
+          frontmatter: {
+            title: "スタートガイド",
+            titleUs: undefined,
+            titleCn: undefined,
+            description: "",
+            weight: 1,
+            type: "",
+            disabled: [],
+            aliases: ["/ja/id/040130", "/ja/start"],
+            labels: [],
+          },
+          sections: [],
+          pages: [],
+        } as PageProps,
+        {
+          isHome: false,
+          isSection: true,
+          relPermalink: "/k/ja/form",
+          permalink: "/k/ja/form",
+          lang: "ja",
+          frontmatter: {
+            title: "フォームの設計",
+            titleUs: undefined,
+            titleCn: undefined,
+            description: "",
+            weight: 2,
+            type: "",
+            disabled: [],
+            aliases: ["/ja/id/040473"],
+            labels: [],
+          },
+          sections: [],
+          pages: [],
+        } as PageProps,
+      ];
+    });
+
+    it("aliasが存在する場合、対応するページを返すこと", () => {
+      const result = findPageByAlias("/ja/id/040130", mockPages);
+      expect(result).toBeDefined();
+      expect(result?.frontmatter.title).toBe("スタートガイド");
+    });
+
+    it("複数のaliasがある場合、正しいページを返すこと", () => {
+      const result = findPageByAlias("/ja/start", mockPages);
+      expect(result).toBeDefined();
+      expect(result?.frontmatter.title).toBe("スタートガイド");
+    });
+
+    it("aliasが存在しない場合、undefinedを返すこと", () => {
+      const result = findPageByAlias("/ja/nonexistent", mockPages);
+      expect(result).toBeUndefined();
+    });
+
+    it("aliasが未定義のページは検索対象外", () => {
+      const pageWithoutAlias = {
+        ...mockPages[0],
+        frontmatter: { ...mockPages[0].frontmatter, aliases: undefined },
+      } as PageProps;
+
+      const result = findPageByAlias("/ja/id/040130", [pageWithoutAlias]);
+      expect(result).toBeUndefined();
+    });
+  });
+
+  describe("hasChildPages", () => {
+    it("pagesがある場合、trueを返すこと", () => {
+      const pageWithPages = {
+        pages: [{ frontmatter: { title: "子ページ" } }],
+        sections: [],
+      } as PageProps;
+
+      expect(hasChildPages(pageWithPages)).toBe(true);
+    });
+
+    it("sectionsがある場合、trueを返すこと", () => {
+      const pageWithSections = {
+        pages: [],
+        sections: [{ frontmatter: { title: "子セクション" } }],
+      } as PageProps;
+
+      expect(hasChildPages(pageWithSections)).toBe(true);
+    });
+
+    it("pagesとsectionsの両方がある場合、trueを返すこと", () => {
+      const pageWithBoth = {
+        pages: [{ frontmatter: { title: "子ページ" } }],
+        sections: [{ frontmatter: { title: "子セクション" } }],
+      } as PageProps;
+
+      expect(hasChildPages(pageWithBoth)).toBe(true);
+    });
+
+    it("pagesもsectionsもない場合、falseを返すこと", () => {
+      const pageWithoutChildren = {
+        pages: [],
+        sections: [],
+      } as PageProps;
+
+      expect(hasChildPages(pageWithoutChildren)).toBe(false);
+    });
+
+    it("pagesもsectionsもundefinedの場合、falseを返すこと", () => {
+      const pageWithUndefined = {
+        pages: undefined,
+        sections: undefined,
+      } as PageProps;
+
+      expect(hasChildPages(pageWithUndefined)).toBe(false);
+    });
+  });
+
+  describe("collectPagesRecursively", () => {
+    let mockPages: PageProps[];
+
+    beforeEach(() => {
+      mockPages = [
+        {
+          frontmatter: { title: "ページ1" },
+          pages: [
+            {
+              frontmatter: { title: "ページ1-1" },
+              pages: [
+                {
+                  frontmatter: { title: "ページ1-1-1" },
+                  pages: [],
+                  sections: [],
+                },
+              ],
+              sections: [],
+            },
+          ],
+          sections: [
+            {
+              frontmatter: { title: "セクション1-1" },
+              pages: [],
+              sections: [],
+            },
+          ],
+        },
+        {
+          frontmatter: { title: "ページ2" },
+          pages: [],
+          sections: [],
+        },
+      ] as PageProps[];
+    });
+
+    it("再帰的にすべてのページを収集すること", () => {
+      const result = collectPagesRecursively(mockPages);
+
+      expect(result).toHaveLength(5);
+      expect(result[0].frontmatter.title).toBe("ページ1");
+      expect(result[1].frontmatter.title).toBe("ページ1-1");
+      expect(result[2].frontmatter.title).toBe("ページ1-1-1");
+      expect(result[3].frontmatter.title).toBe("セクション1-1");
+      expect(result[4].frontmatter.title).toBe("ページ2");
+    });
+
+    it("空の配列を渡した場合、空の配列を返すこと", () => {
+      const result = collectPagesRecursively([]);
+      expect(result).toEqual([]);
+    });
+
+    it("子ページがない場合、親ページのみを返すこと", () => {
+      const simplePages = [
+        { frontmatter: { title: "単純ページ" }, pages: [], sections: [] },
+      ] as PageProps[];
+
+      const result = collectPagesRecursively(simplePages);
+      expect(result).toHaveLength(1);
+      expect(result[0].frontmatter.title).toBe("単純ページ");
+    });
+  });
+
+  describe("buildDropdownChildren", () => {
+    let mockParentPage: PageProps;
+
+    beforeEach(() => {
+      mockParentPage = {
+        frontmatter: { title: "親ページ" },
+        relPermalink: "/k/ja/parent",
+        pages: [
+          {
+            frontmatter: { title: "子ページ1" },
+            relPermalink: "/k/ja/parent/child1",
+          },
+          {
+            frontmatter: { title: "子ページ2" },
+            relPermalink: "/k/ja/parent/child2",
+          },
+        ],
+        sections: [
+          {
+            frontmatter: { title: "子セクション1" },
+            relPermalink: "/k/ja/parent/section1",
+          },
+        ],
+      } as PageProps;
+    });
+
+    it("親ページを最初に含み、子ページとセクションを追加すること", () => {
+      const result = buildDropdownChildren(mockParentPage);
+
+      expect(result).toHaveLength(4);
+      expect(result[0].title).toBe("親ページ");
+      expect(result[0].relPermalink).toBe("/k/ja/parent");
+      expect(result[1].title).toBe("子ページ1");
+      expect(result[2].title).toBe("子ページ2");
+      expect(result[3].title).toBe("子セクション1");
+    });
+
+    it("子ページがない場合、親ページのみを返すこと", () => {
+      const parentOnly = {
+        frontmatter: { title: "親のみ" },
+        relPermalink: "/k/ja/parent-only",
+        pages: [],
+        sections: [],
+      } as PageProps;
+
+      const result = buildDropdownChildren(parentOnly);
+      expect(result).toHaveLength(1);
+      expect(result[0].title).toBe("親のみ");
+    });
+
+    it("titleが空の場合、空文字列を設定すること", () => {
+      const parentWithEmptyTitle = {
+        frontmatter: { title: "" },
+        relPermalink: "/k/ja/empty-title",
+        pages: [
+          {
+            frontmatter: { title: undefined },
+            relPermalink: "/k/ja/empty-title/child",
+          },
+        ],
+        sections: [],
+      } as PageProps;
+
+      const result = buildDropdownChildren(parentWithEmptyTitle);
+      expect(result).toHaveLength(2);
+      expect(result[0].title).toBe("");
+      expect(result[1].title).toBe("");
+    });
+  });
 });
 
 // 統合テスト: getSiteHomeSections の実際の動作テスト
@@ -757,50 +1017,59 @@ describe("getSiteHomeSections integration", () => {
   describe("nextInSection/prevInSection", () => {
     it("should correctly set nextInSection and prevInSection for pages within the same section", async () => {
       const sections = await getSiteHomeSections();
-      
+
       // startセクションを取得
-      const startSection = sections.find(s => s.relPermalink === "/k/ja/start");
+      const startSection = sections.find(
+        (s) => s.relPermalink === "/k/ja/start",
+      );
       expect(startSection).toBeDefined();
       expect(startSection!.pages).toBeDefined();
-      
+
       // セクション内のすべてのページをweight降順で取得（Hugo仕様）
-      const sectionPages = startSection!.pages!
-        .sort((a, b) => b.frontmatter.weight - a.frontmatter.weight);
-      
+      const sectionPages = startSection!.pages!.sort(
+        (a, b) => b.frontmatter.weight - a.frontmatter.weight,
+      );
+
       // 実際のページ数を確認（少なくとも4つ：3つのseriesページ + whatskintone）
       expect(sectionPages.length).toBeGreaterThanOrEqual(4);
-      
+
       // 最初のページ（最高weight）のテスト
       const firstPage = sectionPages[0];
       expect(firstPage.prevInSection).toBeUndefined(); // 最初のページは前のページがない
       expect(firstPage.nextInSection).toBeDefined(); // 次のページがある
-      
+
       // 最後のページ（最低weight）のテスト
       const lastPage = sectionPages[sectionPages.length - 1];
       expect(lastPage.nextInSection).toBeUndefined(); // 最後のページは次のページがない
       expect(lastPage.prevInSection).toBeDefined(); // 前のページがある
-      
+
       // 中間ページのテスト
       if (sectionPages.length > 2) {
         const middlePage = sectionPages[1];
         expect(middlePage.prevInSection).toBeDefined(); // 前のページがある
         expect(middlePage.nextInSection).toBeDefined(); // 次のページがある
-        
+
         // 前後関係の確認
-        expect(middlePage.prevInSection!.frontmatter.weight).toBeGreaterThan(middlePage.frontmatter.weight);
-        expect(middlePage.nextInSection!.frontmatter.weight).toBeLessThan(middlePage.frontmatter.weight);
+        expect(middlePage.prevInSection!.frontmatter.weight).toBeGreaterThan(
+          middlePage.frontmatter.weight,
+        );
+        expect(middlePage.nextInSection!.frontmatter.weight).toBeLessThan(
+          middlePage.frontmatter.weight,
+        );
       }
     });
 
     it("should not set navigation for sections with only one page", async () => {
       const sections = await getSiteHomeSections();
-      
+
       // guideセクションを取得（1ページのみ）
-      const guideSection = sections.find(s => s.relPermalink === "/k/ja/guide");
+      const guideSection = sections.find(
+        (s) => s.relPermalink === "/k/ja/guide",
+      );
       expect(guideSection).toBeDefined();
       expect(guideSection!.pages).toBeDefined();
       expect(guideSection!.pages!).toHaveLength(1);
-      
+
       const singlePage = guideSection!.pages![0];
       expect(singlePage.nextInSection).toBeUndefined();
       expect(singlePage.prevInSection).toBeUndefined();

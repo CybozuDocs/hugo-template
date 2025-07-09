@@ -94,7 +94,7 @@
 
       let currentNum = 0;
       if ($currentItem.length > 0) {
-        currentNum = Number($currentItem.parent().attr("itemnum"));
+        currentNum = Number($currentItem.parent().attr("data-itemnum"));
       }
 
       let nextNum = currentNum + diff;
@@ -111,7 +111,7 @@
      }
 
       $aTags.each(function() {
-        if ($(this).attr("itemnum") === String(nextNum)) {
+        if ($(this).attr("data-itemnum") === String(nextNum)) {
            $(this).find("span").addClass(SELECTEDCLASS);
            $(this).attr("tabindex", "0");
            $(this).focus();

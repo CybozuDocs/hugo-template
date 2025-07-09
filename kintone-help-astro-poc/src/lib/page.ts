@@ -246,7 +246,7 @@ export function getSiteHome(): PageProps {
 /**
  * ページ読み込みとページデータの作成
  */
-function loadAllPages(): {
+export function loadAllPages(): {
   allPagesData: PageProps[];
   sectionsMap: Map<string, PageProps>;
 } {
@@ -537,4 +537,87 @@ export function getCurrentPage(
   }
 
   return foundPage;
+}
+
+// =============================================================================
+// Page utility functions (moved from RootLayout)
+// =============================================================================
+
+/**
+ * DropdownChild型定義
+ */
+export interface DropdownChild {
+  title: string;
+  relPermalink: string;
+}
+
+/**
+ * aliasからページを検索
+ * @param alias 検索するalias
+ * @param allPages 検索対象のページ配列
+ * @returns 見つかったページまたはundefined
+ */
+export function findPageByAlias(alias: string, allPages: PageProps[]): PageProps | undefined {
+  return allPages.find(page => 
+    page.frontmatter.aliases && page.frontmatter.aliases.includes(alias)
+  );
+}
+
+/**
+ * ページが子ページを持つかどうかを判定
+ * @param page 判定対象のページ
+ * @returns 子ページを持つ場合true
+ */
+export function hasChildPages(page: PageProps): boolean {
+  const hasRegularPages = Boolean(page.pages && page.pages.length > 0);
+  const hasSections = Boolean(page.sections && page.sections.length > 0);
+  return hasRegularPages || hasSections;
+}
+
+/**
+ * ページ配列を再帰的に収集してフラットな配列に変換
+ * @param pages 収集対象のページ配列
+ * @returns フラットなページ配列
+ */
+export function collectPagesRecursively(pages: PageProps[]): PageProps[] {
+  const result: PageProps[] = [];
+  
+  function collectPages(pages: PageProps[]): void {
+    for (const page of pages) {
+      result.push(page);
+      if (page.pages) collectPages(page.pages);
+      if (page.sections) collectPages(page.sections);
+    }
+  }
+  
+  collectPages(pages);
+  return result;
+}
+
+/**
+ * ドロップダウン用の子ページ配列を構築
+ * Hugoと同じ動作：親ページを最初に配置し、その後に子ページを追加
+ * @param resolvedPage 親ページ
+ * @returns ドロップダウン用の子ページ配列
+ */
+export function buildDropdownChildren(resolvedPage: PageProps): DropdownChild[] {
+  const allChildren: PageProps[] = [];
+  
+  // 親ページ自体を最初に追加（Hugoと同じ動作）
+  allChildren.push(resolvedPage);
+  
+  // 通常のページを追加
+  if (resolvedPage.pages) {
+    allChildren.push(...resolvedPage.pages);
+  }
+  
+  // セクションページを追加
+  if (resolvedPage.sections) {
+    allChildren.push(...resolvedPage.sections);
+  }
+  
+  return allChildren.map(page => ({
+    title: page.frontmatter.title || '',
+    relPermalink: page.relPermalink
+  }));
 }

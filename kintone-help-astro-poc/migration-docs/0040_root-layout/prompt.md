@@ -211,3 +211,68 @@ RootLayout.astro で TypeScript の型エラーが発生
 - データ変換関数を作成してfrontmatter内で実行
 - 変換済みデータをテンプレートに渡す
 - テンプレート部分は map での繰り返し表示のみに限定
+
+## 大規模リファクタリング実施（2025年1月9日）
+
+### 要請内容
+- 型エラーが無いように
+- テンプレート内にロジックは持たないように
+  - 先にFrontMatterでデータを準備し、それをテンプレート部で表示する形として
+- その他、きれいにできそうな部分があればリファクタして
+
+### 実施内容
+
+#### 1. 型エラーの完全修正
+- `ValidRegion` 型の定義と型ガード実装
+- `ProcessedMenuItem`, `ProcessedCategory` 等の詳細な型定義
+- `hasChildPages` 関数の boolean 型エラーを `Boolean()` で修正
+- HTML属性の型エラー修正（`itemnum` → `data-itemnum`）
+
+#### 2. テンプレート内ロジックの完全削除
+- 複雑な `(() => {})()` IIFE 関数をfrontmatter部分に移動
+- `buildDropdownChildren` 関数でドロップダウン要素を事前構築
+- テンプレート部分は純粋な表示のみに変更
+
+#### 3. コード構造の大幅改善
+- 機能別に関数を整理・分離
+- `groupHomeDataByCategory` と `groupAppendixDataByCategory` に分離
+- `collectPagesRecursively` で型安全な再帰処理
+- 未使用のimportを削除
+
+#### 4. データ準備の完全化
+- 表示に必要なすべてのデータを frontmatter で事前準備
+- `ProcessedMenuItem` でドロップダウン情報も完全に処理済み
+- テンプレート部分は準備済みデータの単純な表示のみ
+
+#### 5. ページユーティリティ関数の分離
+以下の関数を `RootLayout.astro` から `page.ts` に移動：
+- `findPageByAlias`: aliasからページを検索
+- `hasChildPages`: ページが子ページを持つかの判定
+- `collectPagesRecursively`: ページを再帰的にフラットな配列に変換
+- `buildDropdownChildren`: ドロップダウン用の子ページ配列を構築
+- `DropdownChild` 型定義
+
+#### 6. 包括的なテスト追加
+`page.test.ts` に新しいテストケースを追加：
+- `findPageByAlias`: 4つのテストケース（正常系、複数alias、存在しない、未定義）
+- `hasChildPages`: 5つのテストケース（pages有、sections有、両方有、無し、undefined）
+- `collectPagesRecursively`: 3つのテストケース（深い階層、空配列、単純ページ）
+- `buildDropdownChildren`: 3つのテストケース（親+子+セクション、親のみ、空タイトル）
+
+### 技術的な成果
+- **型安全性**: 完全な型定義でランタイムエラーを防止
+- **保守性**: 純粋なページ関数を別モジュールに分離
+- **テスト可能性**: 各関数が独立してテスト可能
+- **再利用性**: 他のコンポーネントからも使用可能
+- **コードの整理**: RootLayoutがより簡潔で理解しやすくなった
+
+### 動作確認
+- ✅ 51個のテストがすべて通過
+- ✅ ページが正常に表示される
+- ✅ ドロップダウンが正しく機能する
+- ✅ 本番サイトと同じ動作を確認
+
+### 削除された未使用ファイル
+- `src/components/HomeMenu.astro`
+- `src/lib/page-title-resolver.ts`
+- `src/lib/home-data-populater.ts`
