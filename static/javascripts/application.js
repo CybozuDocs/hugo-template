@@ -194,12 +194,12 @@
         }
 
         const displaySpinner = () => {
-            setTimeout(() => {document.getElementById("page-spinner").style.display = "block"}, 1000);
+            setTimeout(() => {document.getElementById("page-spinner").style.display = "block"}, 500);
         }
 
         window.addEventListener('wovnApiReady',function(){
             window.addEventListener('beforeunload', () => {
-                //displaySpinner();
+                displaySpinner();
             });
 
             let hideCalled = 0;
