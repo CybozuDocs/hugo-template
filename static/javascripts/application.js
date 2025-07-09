@@ -196,10 +196,12 @@
         window.addEventListener('wovnApiReady',function(){
             const displaySpinner = () => {
                 document.getElementById("page-spinner").style.display = "block";
-            } 
+            }
+            /*
             window.addEventListener('beforeunload', () => {
                 setTimeout(displaySpinner, 1000);
             });
+            */
 
             let hideCalled = 0;
             // WOVN管理者の場合、他のパーツを非表示にする
