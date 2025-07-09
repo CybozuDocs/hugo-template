@@ -199,7 +199,7 @@
 
         window.addEventListener('wovnApiReady',function(){
             window.addEventListener('beforeunload', () => {
-                displaySpinner();
+                //displaySpinner();
             });
 
             let hideCalled = 0;
