@@ -176,20 +176,6 @@
             }
         }
 
-        // WOVN 機械翻訳免責文言の表示
-        function setDisclamer(langcode) {
-            const $disc2 = $("#disclaimer2");
-            if ($disc2.length > 0) {
-                const paths = location.pathname.split("/");
-                fetch("/" + paths[1] + "/json/" + langcode + "/message.json")
-                    .then(response => response.json())
-                    .then((data) => { 
-                        $disc2.text(data.disclamer);
-                        $disc2.css("display", "block");
-                    });
-            }
-        }
-
         // WOVN 本文中の他プロダクトの言語付きURLを置き換える
         function replaceLanguageURL(langcode) {
             const atags = document.getElementsByTagName("a");
@@ -207,7 +193,15 @@
             }
         }
 
+        const displaySpinner = () => {
+            setTimeout(() => {document.getElementById("page-spinner").style.display = "block"}, 500);
+        }
+
         window.addEventListener('wovnApiReady',function(){
+            window.addEventListener('beforeunload', () => {
+                displaySpinner();
+            });
+
             let hideCalled = 0;
             // WOVN管理者の場合、他のパーツを非表示にする
             const hideParts = () => {
@@ -244,8 +238,7 @@
             const wovnlang = wovnobj.name;
             const wovncode = wovnobj.code;
 
-            if (wovncode !== "en") {
-                setDisclamer(wovncode);
+            if (wovncode !== "ja") {
                 replaceLanguageURL(wovncode);
             }
         });
@@ -1139,14 +1132,9 @@
                     return;
                 }
                 let cpdflg = false;
-                // text() を使うと末尾に2つスペースが入るので除去する
-                const text = codeblockContent.text().replace(/  $/g,'');
+                const text = codeblockContent[0].innerText;
                 if(navigator.clipboard){
                     navigator.clipboard.writeText(text);
-                    cpdflg = true;
-                } else if(window.clipboardData){
-                    // for IE
-                    window.clipboardData.setData("Text" , text);
                     cpdflg = true;
                 }
                 if (cpdflg) {

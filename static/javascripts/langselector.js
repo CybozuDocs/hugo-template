@@ -148,21 +148,6 @@
         $displang[0].innerText = langtext;
         const $alllangs = $('#alter-lang [role="option"]');
 
-        // 言語リストの先頭に英語を追加
-        const cururl = location.href;
-        const enurl = cururl.replace("/"+langcode+"/", "/en/");
-        const $enli = $("<li>", {
-          id: "lang_item_en-us",
-          class: "lang-item",
-          role: "option",
-          desturl: enurl
-        }).insertBefore($alllangs[0]);
-
-        $("<span>", {
-          class: "lang-title",
-          text: "English"
-        }).appendTo($enli);
-
         // 表示中の言語を言語リストから削除
         const $deltarget = $("#lang_item_" + langcode);
         $deltarget.remove();
@@ -177,7 +162,7 @@
               const wovnlang = wovnobj.name;
               const wovncode = wovnobj.code;
 
-              if (wovncode !== "en") {
+              if (wovncode !== "ja") {
                 changeSelectedLang(wovncode, wovnlang);
               }
             });

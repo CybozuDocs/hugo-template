@@ -22,9 +22,6 @@
         {{- if and (eq $.Site.Params.product "Garoon") (ne $.Site.LanguageCode "ja-jp") (ne $.Site.LanguageCode "ja-cn") }}
             {{ partial "disclaimer" . }}
         {{- end }}
-        {{- if eq $.Site.Params.use_wovn true }}
-            {{ partial "disclaimer2" . }}
-        {{- end }}
         {{- partial "latestpageguide" . }}
         <main id="main" role="main">
             {{- partial "breadcrumb" . -}}

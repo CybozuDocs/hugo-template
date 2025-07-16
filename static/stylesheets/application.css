@@ -440,13 +440,7 @@ li .lang-title {
     margin-left: 5px;
     font-size:1.25em;
 }
-.disclaimer-note {
-    display: none;
-    padding: 0.5em 1em;
-    background-color: #eceaf7;
-    border-radius: 6px;
-    border: solid 1px #a298dc;
-}
+
 /* -------------------------end of disclaimer */
 
 
@@ -787,35 +781,7 @@ h6 + .id-link-button {
 }
 /* -------------------- end of Header label */
 
-.codeblock-wrapper {
-    position: relative;
-}
 
-.codeblock-copy-button {
-    display: block;
-    position: absolute;
-    right: 4px;
-    top: 4px;
-    padding: 4px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #fff;
-}
-
-.codeblock-copy-button:hover {
-    background-color: #ECEAF7;
-}
-
-.codeblock-copy-message {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 48px;
-    padding: .5em;
-    color: #fff;
-    background-color: rgba(29,30,29,0.8);
-    z-index: 999;
-}
 
 /* tree navigation -------------------- */
 .tree-wrap {
@@ -1249,6 +1215,48 @@ h6 + .id-link-button {
     content: none;
 }
 /* -------------------- end of Article */
+
+/* codeblock -------------------- */
+.codeblock-wrapper {
+    position: relative;
+}
+
+.codeblock-copy-button {
+    display: block;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.codeblock-copy-button:hover {
+    background-color: #ECEAF7;
+}
+
+.codeblock-copy-message {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 48px;
+    padding: .5em;
+    color: #fff;
+    background-color: rgba(29,30,29,0.8);
+    z-index: 999;
+}
+
+.article .codeblock-csv {
+    color: #f8f8f2;
+    background: #272822;
+}
+
+.article .codeblock-plaintext {
+    color: #d8dee9;
+    background: #2e3440;
+}
+/* -------------------- end of codeblock */
 
 
 /* Table size -------------------- */
@@ -2256,6 +2264,18 @@ i.index-pdf {
   font-weight: bold;
 }
 /* ----- Temporary Measures end */
+
+#page-spinner {
+  display: none;
+}
+.spinner-icon {
+  width: 150px;
+  height: 150px;
+  position: fixed;
+  top: 150px;
+  left: calc(50% - 150px);
+  z-index: 9999;
+}
 
 /* 370px以上の設定 *****************************************************/
 @media only screen and (min-width:370px){

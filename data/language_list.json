@@ -1,6 +1,22 @@
 {
     "languages": [
         {
+            "display_name": "日本語",
+            "language_code": "ja"
+        },
+        {
+            "display_name": "English",
+            "language_code": "en"
+        },
+        {
+            "display_name": "中文(簡体)",
+            "language_code": "zh"
+        },
+        {
+            "display_name": "中文(繁體)",
+            "language_code": "zh-tw"
+        },
+        {
             "display_name": "Español",
             "language_code": "es"
         },
