@@ -18,84 +18,92 @@
     <div id="shield"></div>
     <header id="header" class="header {{$hedclass}}">
         <div id="head" class="header-wrap">
-        {{- $langlen := len $.AllTranslations }}
-        {{- $baselang := "" }}
-        {{- if ne $langlen 0 }}
-            {{- $baselang = printf "%s/" $.Lang }}
-        {{- end }}
-            <div class="logo-wrap">
-        {{- if and (not .IsHome) (eq $templateversion "2") -}}
-                <button id="tree-switch-mobile" class="tree-switch-mobile">
-                    <i class="fas fa-bars" aria-hidden="true"></i>
-                </button>
-        {{- end }}
-                <h1>
-        {{- $urlparts := split $.Site.BaseURL "/" }}
-        {{- $base := "/" }}
-        {{- if ne $.Site.Params.product "support_guide" }}
-          {{- $product_pos := sub ($urlparts | len ) 2 }}
-          {{- $base = printf "/%s/" (index $urlparts $product_pos) }}
-        {{- end }}
-        {{- $baseLink := printf "%s%s/" $base $.Lang }}
-                    <a class="logo-link" href="{{$baseLink}}">
-        {{- if or (eq .Site.Params.product "kintone") (eq $.Site.Params.TargetRegion "US") }}
-            {{- $alt := printf "%s %s" $.Site.Params.product_name $.Site.Params.help}}
-                        <img class="logo-img" src="{{$base}}{{ $.Site.Params.logo }}" alt="{{$alt}}" title="{{$alt}}">
-        {{- else }}
-            {{- $title := printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help }}
-            {{- if eq $.Site.Params.preview_site true }}
-                {{- $title = $.Site.Params.product_name }}
+        <div class="left-item">
+            {{- $langlen := len $.AllTranslations }}
+            {{- $baselang := "" }}
+            {{- if ne $langlen 0 }}
+                {{- $baselang = printf "%s/" $.Lang }}
             {{- end }}
-                        <span class="logo-title">{{$title}}</span>
-        {{- end }}
-                    </a>
-                </h1>
-            </div>
-
-        {{- $glang := $.Lang}}
-        {{- $disp_sbox := true }}
-        {{- if eq .Params.type "search_result" }}
-            {{- $disp_sbox = false }}
-        {{- else if and .IsHome (eq $v2_prod true) }}
-            {{- $disp_sbox = false }}
-        {{- else if eq .Params.type "gr6/home" }}
-            {{- $disp_sbox = false }}
-        {{- else if eq $.Site.Params.preview_site true }}
-            {{- $disp_sbox = false }}
-        {{- end }}
-
-        {{- if eq $disp_sbox true }}
-          {{- if eq $templateversion "2" -}}
-            {{ partial "searchbox" . }}
-          {{- else }}
-            {{- if eq $glang "zh" }}
-                {{- $glang = "zh-CN" }}
-            {{- else if eq $glang "zh-tw" }}
-                {{- $glang = "zh-TW" }}
+                <div class="logo-wrap">
+            {{- if and (not .IsHome) (eq $templateversion "2") -}}
+                    <button id="tree-switch-mobile" class="tree-switch-mobile">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </button>
             {{- end }}
-            {{- $u := urls.Parse $.Site.BaseURL }}
-            <div id="search" class="search-wrap">
-                <form id="searchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}' role="search" >
-                    <div class="searchbox">
-                        <input type="search" name="q" id="headerSearchBox_input" class="search-input home-search-input" role="searchbox" aria-label='{{i18n "search_word"}}' placeholder='{{i18n "Enter_keywords"}}'>
-                        <button type="submit" class="search-submit" data-disable-with="" aria-label='{{i18n "search"}}'></button>
-            {{- if ne .Site.Params.google_search true }}
-                        <input type="hidden" name="ct" value="{{ .Site.Params.search_all }}">
+                    <h1>
+            {{- $urlparts := split $.Site.BaseURL "/" }}
+            {{- $base := "/" }}
+            {{- if ne $.Site.Params.product "support_guide" }}
+            {{- $product_pos := sub ($urlparts | len ) 2 }}
+            {{- $base = printf "/%s/" (index $urlparts $product_pos) }}
             {{- end }}
-                    </div>
-                </form>
-            </div>
-
-            {{- if eq .Site.Params.google_search true }}
-            <script src="https://www.gstatic.com/prose/brand.js" targetId="headerSearchBox_input" hl="{{$glang}}"></script>
+            {{- $baseLink := printf "%s%s/" $base $.Lang }}
+                        <a class="logo-link" href="{{$baseLink}}">
+            {{- if or (eq .Site.Params.product "kintone") (eq $.Site.Params.TargetRegion "US") }}
+                {{- $alt := printf "%s %s" $.Site.Params.product_name $.Site.Params.help}}
+                            <img class="logo-img" src="{{$base}}{{ $.Site.Params.logo }}" alt="{{$alt}}" title="{{$alt}}">
+            {{- else }}
+                {{- $title := printf "%s %s" ($.Scratch.Get "sitename") $.Site.Params.help }}
+                {{- if eq $.Site.Params.preview_site true }}
+                    {{- $title = $.Site.Params.product_name }}
+                {{- end }}
+                            <span class="logo-title">{{$title}}</span>
             {{- end }}
-          {{- end }}
-        {{- end }}
+                        </a>
+                    </h1>
+                </div>
+        </div>
 
-        {{- if and .IsTranslated (eq .Site.Params.langSelector true) }}
-            {{ partial "langselector" . }}
-        {{- end}}
+        <div class="right-item">
+            {{- $glang := $.Lang}}
+            {{- $disp_sbox := true }}
+            {{- if eq .Params.type "search_result" }}
+                {{- $disp_sbox = false }}
+            {{- else if and .IsHome (eq $v2_prod true) }}
+                {{- $disp_sbox = false }}
+            {{- else if eq .Params.type "gr6/home" }}
+                {{- $disp_sbox = false }}
+            {{- else if eq $.Site.Params.preview_site true }}
+                {{- $disp_sbox = false }}
+            {{- end }}
 
+            {{- if eq $disp_sbox true }}
+            {{- if eq $templateversion "2" -}}
+                {{ partial "searchbox" . }}
+            {{- else }}
+                {{- if eq $glang "zh" }}
+                    {{- $glang = "zh-CN" }}
+                {{- else if eq $glang "zh-tw" }}
+                    {{- $glang = "zh-TW" }}
+                {{- end }}
+                {{- $u := urls.Parse $.Site.BaseURL }}
+                <div id="search" class="search-wrap">
+                    <form id="searchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_input").value==""){return false;}' role="search" >
+                        <div class="searchbox">
+                            <input type="search" name="q" id="headerSearchBox_input" class="search-input home-search-input" role="searchbox" aria-label='{{i18n "search_word"}}' placeholder='{{i18n "Enter_keywords"}}'>
+                            <button type="submit" class="search-submit" data-disable-with="" aria-label='{{i18n "search"}}'></button>
+                {{- if ne .Site.Params.google_search true }}
+                            <input type="hidden" name="ct" value="{{ .Site.Params.search_all }}">
+                {{- end }}
+                        </div>
+                    </form>
+                </div>
+
+                {{- if eq .Site.Params.google_search true }}
+                <script src="https://www.gstatic.com/prose/brand.js" targetId="headerSearchBox_input" hl="{{$glang}}"></script>
+                {{- end }}
+            {{- end }}
+            {{- end }}
+
+            {{- if and .IsTranslated (eq .Site.Params.langSelector true) }}
+                {{ partial "langselector" . }}
+            {{- end}}
+
+            {{- if .Site.Params.use_wovn }}
+                <a class="ai-translation-disclaimer" href="https://dummy.invalid">
+                    AI翻訳の免責
+                </a>
+            {{- end}}
+        </div>
         </div>
     </header>
-
