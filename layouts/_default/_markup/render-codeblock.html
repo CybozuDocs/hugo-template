@@ -7,7 +7,7 @@
     <pre class="codeblock-{{.Type}} codeblock--content">{{.Inner | safeHTML}}</pre>
   {{- else -}}
     <div class="codeblock--content">
-    {{- highlight ( .Inner | safeHTML ) .Type .Options }}
+    {{- highlight ( .Inner | plainify | safeHTML ) .Type .Options }}
     </div>
   {{- end }}
 </div>
