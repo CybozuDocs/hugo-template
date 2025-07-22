@@ -6,6 +6,6 @@
     <div class="codeblock-copy-message">{{ i18n "Codeblock_was_copied" }}</div>
   {{- end -}}
   <div class="codeblock--content">
-    {{- highlight ( .Inner | plainify | safeHTML ) .Type .Options }}
+    {{- highlight ( .Inner | safeHTML ) .Type .Options }}
   </div>
 </div>
