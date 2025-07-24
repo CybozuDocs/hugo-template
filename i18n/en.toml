@@ -2,7 +2,7 @@
 other = "Welcome to {{$.Site.Params.product_name}} {{$.Site.Params.help}}"
 
 [Enter_keywords]
-other = "Enter keywords to search help."
+other = "Enter keywords to search Help."
 
 [Page_not_found]
 other = "The page you are looking for could not be found"
