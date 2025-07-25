@@ -2,7 +2,7 @@
 other = "Welcome to {{$.Site.Params.product_name}} {{$.Site.Params.help}}"
 
 [Enter_keywords]
-other = "Enter keywords to search Help."
+other = "Enter keywords to search Help"
 
 [Page_not_found]
 other = "The page you are looking for could not be found"
@@ -185,7 +185,7 @@ other = "Hide side navigation"
 other = "Japanese"
 
 [Search_example]
-other = "Search Help Articles (e.g., \"Lookups\", \"Notifications\", \"Can't log in\")"
+other = "Search Help articles (e.g., \"Lookups\", \"Notifications\", \"Can't log in\")"
 
 [Search_filter]
 other = "Select where to search"
