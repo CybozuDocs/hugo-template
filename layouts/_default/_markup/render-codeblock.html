@@ -4,10 +4,12 @@
       <i class="fas fa-copy" aria-hidden="true"></i>{{ i18n "Copy_codeblock_button" }}
     </button>
     <div class="codeblock-copy-message">{{ i18n "Codeblock_was_copied" }}</div>
-    <pre class="codeblock-{{.Type}} codeblock--content">{{.Inner | safeHTML}}</pre>
-  {{- else -}}
-    <div class="codeblock--content">
-    {{- highlight ( .Inner | plainify | safeHTML ) .Type .Options }}
-    </div>
   {{- end }}
+    <div class="codeblock--content">
+  {{- if and (eq .Page.Site.Params.use_wovn true) (ne .Attributes.tag true) }}
+      <pre class="codeblock-{{.Type}} codeblock--content">{{.Inner | safeHTML}}</pre>
+  {{- else }}
+      {{- highlight ( .Inner | safeHTML ) .Type .Options }}
+  {{- end }}
+    </div>
 </div>
