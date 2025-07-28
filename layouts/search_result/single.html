@@ -2,6 +2,7 @@
 {{- if eq $.Site.Params.TargetRegion "US" }}{{- partial "localemodal" . }}{{- end -}}
 {{- partial "announcementbanner.html" . -}}
 {{- partial "header" . }}
+{{- $buildnum := (now.Format "2006010203") }}
 <div class="page-pad page-pad-search"></div>
 {{- if eq $.Site.Params.meganav true -}}
     {{- partial "meganav" . }}
@@ -13,10 +14,52 @@
             <article id="search-result" class="search-result" >
                 <h1>{{ partial "title" . }}</h1>
                 <div id="searchResultContainer">
-                    <div id="main_form">
-              {{- if eq $.Site.Params.template_version "2" }}
-                {{- partial "searchbox" . }}
+              {{- if eq $.Site.Params.TargetRegion "CN" }}
+                {{- $ph := (i18n "Enter_keywords") }}
+                {{- if eq $.Site.Params.product "kintone" }}
+                  {{- $ph = (i18n "Search_example") }}
+                {{- end }}
+                {{- $lang := .Site.LanguageCode }}
+                {{- if eq (hasPrefix $lang "zh-tw") true }}
+                  {{- $lang = substr $lang 0 5 }}
+                {{- else }}
+                  {{- $lang = substr $lang 0 2 }}
+                {{- end }}
+                    <div class="mf_finder_container">
+                      <mf-search-box
+                        lang="{{$lang}}"
+                        ajax-url="https://finder.api.mf.marsflag.com/api/v1/finder_service/documents/fe060ed6/search"
+                        input-placeholder="{{$ph}}"
+                        imgsize-default="0"
+                        category-all-text=""
+                        category-default="{{ .Site.Params.search_all }}"
+                        force-category-csv="{{ .Site.Params.search_categories }}"
+                        doctype-hidden="true"
+                        sort-hidden="true"
+                        pagemax-hidden="true"
+                        imgsize-hidden="true"
+                        use-links="true"
+                        use-clear-input-btn="true"
+                {{- if eq $lang "zh-tw" }}
+                {{- end }}
+                      ></mf-search-box>
+                      <mf-search-results
+                        no-keyword-result
+                        spellcheck-hidden
+                      ></mf-search-results>
+                    </div>
+                    <script type="text/javascript">
+                    !(function () {
+                          var G = (window.GALFSRAM = window.GALFSRAM || {});
+                          G.mfx = G.mfx || {};
+                          G.mfx.router_mode = 'history'
+                        })()
+                    </script>
               {{- else }}
+                    <div id="main_form">
+                {{- if eq $.Site.Params.template_version "2" }}
+                  {{- partial "searchbox" . }}
+                {{- else }}
                         <div role="search" class="search-part">
                             <input type="search" v-model="search_words" v-on:keyup.enter="submit_button" class="search-words" v-bind:disabled="searching == true" aria-label='{{i18n "search_word"}}'>
                             <button role="button" class="search-button" v-on:click="submit_button" v-bind:disabled="searching == true" title='{{i18n "search"}}' aria-label='{{i18n "search"}}'><i class="fa fa-search" aria-hidden="true"></i>
@@ -27,15 +70,13 @@
                                 <span>{{ i18n "search_bing" }} (<a href="https://www.microsoft.com/en-gb/privacy/privacystatement" target="_blank">{{ i18n "search_bing_legal" }}</a>)</span>
                             {{- end }}
                         </div>
-              {{- end }}
-
+                {{- end }}
                         <div class="category-bar" v-bind:class="{ nodisp : initial }" v-cloak>
                             <span class="ctab" v-for="(ctab, index) in ctabs">
                                 <input type="radio" name="category" class="category-tab" :id="'category'+(index)" v-model="cid" v-on:click="change_category(index)" :value="index">
                                 <label :for="'category'+(index)" v-on:keydown.enter="key_down" role="tab" tabindex="0">[[ctab]]</label>
                             </span>
                         </div>
-
                         <div class="result" v-bind:class="{ nodisp : initial }" v-cloak>
                             <div class="item-total">[[total]] results<span class="current-position" v-bind:class="{ nodisp : pages.length <= 1 }">([[start]]-[[last]])</span></div>
                             <div v-for="item in items" class="items">
@@ -60,6 +101,7 @@
 
                         <div class="errmsg" v-bind:class="{ nodisp : initial }" v-cloak>[[error_message]]</div>
                     </div>
+              {{- end }}
                 </div>
             </article>
         </main>
@@ -67,6 +109,11 @@
     {{ .Content }}
 </div>
     {{ partial "footer" . }}
+    {{- if eq $.Site.Params.TargetRegion "CN" }}
+    <link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/mf_custom.css" $buildnum | relURL }}">
+    <script src="https://ce.mf.marsflag.com/latest/js/mf-search.js" defer></script>
+    <script type="text/javascript" src="{{ printf "%s?%s" "javascripts/mf_custom.js" $buildnum | relURL }}" defer></script>
+    {{- else }}
         {{- $categories := (slice) }}
         {{- with $.Site.Params.google_search_tabs }}
             {{- $categories = trim $.Site.Params.google_search_tabs "\"" | safeJS}}
@@ -75,7 +122,7 @@
             {{- $categories = trim $.Site.Params.bing_search_tabs "\"" | safeJS}}
         {{- end }}
     <script>var category_list = {{$categories}};</script>
-        {{- $buildnum := (now.Format "2006010203") }}
     <script type="text/javascript" src="{{ printf "%s?%s" "javascripts/helpsearch.js" $buildnum | relURL }}"></script>
+    {{- end }}
   </body>
 </html>
