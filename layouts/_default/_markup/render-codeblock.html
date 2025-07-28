@@ -6,7 +6,7 @@
     <div class="codeblock-copy-message">{{ i18n "Codeblock_was_copied" }}</div>
   {{- end -}}
     <div class="codeblock--content">
-    {{- if and (eq .Page.Site.Params.use_wovn true) (ne .Attributes.tag true) }}
+    {{- if and (or (eq .Page.Site.Params.product "kintone")  (eq .Page.Site.Params.product "slash")) (ne .Attributes.tag true) }}
       {{- highlight ( .Inner | plainify | safeHTML ) .Type .Options }}
     {{- else }}
       {{- highlight ( .Inner | safeHTML ) .Type .Options }}
