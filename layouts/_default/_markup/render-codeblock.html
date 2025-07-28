@@ -1,11 +1,16 @@
 <div class="codeblock-wrapper">
+{{.Attributes}}
   {{- if .Attributes.copy }}
     <button class="codeblock-copy-button" title="{{ i18n "Copy_codeblock_button" }}">
       <i class="fas fa-copy" aria-hidden="true"></i>{{ i18n "Copy_codeblock_button" }}
     </button>
     <div class="codeblock-copy-message">{{ i18n "Codeblock_was_copied" }}</div>
   {{- end -}}
-  <div class="codeblock--content">
-    {{- highlight ( .Inner | safeHTML ) .Type .Options }}
-  </div>
+    <div class="codeblock--content">
+    {{- if and (eq .Page.Site.Params.use_wovn true) (ne .Attributes.tag true) }}
+      {{- highlight ( .Inner | plainify | safeHTML ) .Type .Options }}
+    {{- else }}
+      {{- highlight ( .Inner | safeHTML ) .Type .Options }}
+    {{- end }}
+    </div>
 </div>
