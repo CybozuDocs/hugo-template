@@ -45,6 +45,14 @@
         <input type="search" id="search-input" class="search-input" placeholder='{{ $ph }}' aria-label='{{i18n "search_word"}}'>
         <button class="search-submit" title='{{i18n "search"}}' aria-label='{{i18n "search"}}'></button>
       </div>
+{{- if eq $fullsize true }}
+      <div id="logo_place" class="search-logo {{ if eq .Site.Params.bing_search true }} search-logo-bing{{ end }}">
+  {{- if eq .Site.Params.TargetRegion "CN" }}
+      <br>
+  {{- end }}
+      </div>
+{{- end }}
+    </div>
 {{- if eq .Site.Params.google_search true }}
   {{- $glang := $.Lang}}
   {{- if eq $glang "zh" }}
@@ -57,9 +65,5 @@
     {{- $logoplace = "logo_place" }}
   {{- end }}
   <script src="https://www.gstatic.com/prose/brand.js" targetId="{{$logoplace}}" hl="{{$glang}}"></script>
-{{- else }}
-  <br>
 {{- end }}
-    </div>
-
 
