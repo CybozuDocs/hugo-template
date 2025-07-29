@@ -1,7 +1,7 @@
 {{- $filter := (slice) }}
 {{- if eq .Site.Params.google_search true }}
   {{- $paramfilter := .Site.Params.google_search_tabs }}
-  {{- if gt ( $paramfilter | len ) 0 }}
+  {{- with $paramfilter }}
     {{- $paramfilter = strings.TrimLeft "[" $paramfilter }}
     {{- $paramfilter = strings.TrimRight "]" $paramfilter }}
     {{- $filter = split $paramfilter "," }}
