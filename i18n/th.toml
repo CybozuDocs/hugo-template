@@ -189,3 +189,12 @@ other = "ค้นหาบทความช่วยเหนือ (เช่
 
 [Search_filter]
 other = "Search among"
+
+[Search_category]
+other = "Category"
+
+[Search_noresult]
+other = "No search results found"
+
+[Search_nokeyword]
+other = "No search keyword entered"

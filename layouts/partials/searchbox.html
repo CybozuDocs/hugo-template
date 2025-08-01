@@ -1,16 +1,13 @@
 {{- $filter := (slice) }}
-{{- $paramfilter := "" }}
 {{- if eq .Site.Params.google_search true }}
-  {{- $paramfilter = .Site.Params.google_search_tabs }}
-{{- else if eq .Site.Params.bing_search true }}
-  {{- $paramfilter = .Site.Params.bing_search_tabs }}
-{{- end }}
-{{- if eq $paramfilter nil}}
-  {{- $paramfilter = "" }}
-{{- end }}
-{{- if gt ( $paramfilter | len ) 0 }}
-  {{- $paramfilter = strings.TrimLeft "[" $paramfilter }}
-  {{- $paramfilter = strings.TrimRight "]" $paramfilter }}
+  {{- $paramfilter := .Site.Params.google_search_tabs }}
+  {{- with $paramfilter }}
+    {{- $paramfilter = strings.TrimLeft "[" $paramfilter }}
+    {{- $paramfilter = strings.TrimRight "]" $paramfilter }}
+    {{- $filter = split $paramfilter "," }}
+  {{- end }}
+{{- else if eq .Site.Params.TargetRegion "CN" }}
+  {{- $paramfilter := .Site.Params.search_categories }}
   {{- $filter = split $paramfilter "," }}
 {{- end }}
 {{- $fullsize := false }}
@@ -25,7 +22,7 @@
 {{- end }}
     <div id="search" class="search-wrap" role="search" >
       <div class="searchbox">
-        {{- if ne $paramfilter "" }}
+        {{- if gt ( $filter | len ) 0 }}
           {{- $buttonstyle := "search-filter-current" }}
           {{- if eq $fullsize true }}
             {{- $buttonstyle = (printf "%s %s" $buttonstyle "search-filter-current-top") }}
@@ -50,9 +47,9 @@
       </div>
 {{- if eq $fullsize true }}
       <div id="logo_place" class="search-logo {{ if eq .Site.Params.bing_search true }} search-logo-bing{{ end }}">
-          {{- if eq .Site.Params.bing_search true }}
-              <span>{{ i18n "search_bing" }} (<a href="https://www.microsoft.com/en-gb/privacy/privacystatement" target="_blank">{{ i18n "search_bing_legal" }}</a>)</span>
-          {{- end }}
+  {{- if eq .Site.Params.TargetRegion "CN" }}
+      <br>
+  {{- end }}
       </div>
 {{- end }}
     </div>
