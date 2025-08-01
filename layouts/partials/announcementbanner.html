@@ -1,9 +1,11 @@
 {{- $msg := slice "session-notice-1" "#f9aeb6" "fas fa-exclamation-triangle" "#cd1b49" (i18n "Unsupported_browser") (i18n "Unsupported_message") }}
 {{- template "makeannouncebanner" $msg }}
 
-{{- $announcementfile := printf "csv/%s/announcement_%s.csv" $.Lang $.Site.Params.TargetRegion }}
-{{- if os.FileExists $announcementfile }}
-    {{- $p := "common/csv/icon_images.csv" }}
+{{- $announcementfile := printf "%s/csv/announcement_%s.csv" $.Lang $.Site.Params.TargetRegion }}
+{{- $fileconfimeation := printf "assets/%s" $announcementfile }}
+
+{{- if os.FileExists $fileconfimeation }}
+    {{- $p := $announcementfile }}
     {{- with resources.Get $p }}
         {{- $data := . | transform.Unmarshal (dict "delimiter" ",") }}
         {{- range $i, $r := $data }}
