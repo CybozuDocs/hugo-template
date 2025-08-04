@@ -190,3 +190,11 @@ other = "输入搜索关键字（例如：Lookup、通知、无法登录）"
 [Search_filter]
 other = "搜索范围"
 
+[Search_category]
+other = "类别"
+
+[Search_noresult]
+other = "未找到搜索结果"
+
+[Search_nokeyword]
+other = "未输入搜索关键字"

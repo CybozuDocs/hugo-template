@@ -5,6 +5,7 @@
     const $filterList = $(".search-filter-list");
     const $items = $(".search-filter-item");
     let filterId = 0;
+    let filterName = "";
 
     function closeFilterList() {
       $currentFilter.attr("aria-expanded", "false");
@@ -33,17 +34,24 @@
 
       $(e.target).addClass("search-filter-selected");
       $(e.target).attr("aria-selected", "true");
-      const filterName = $(e.target).text();
+      filterName = $(e.target).text();
       $currentFilter.text(filterName);
       $filterList.css("display" ,"none");
       filterId = Number($(e.target).attr("listid"));
+    }
+
+    function getMfOptions() {
+      const categoryName = $currentFilter.text().replace(" ", "+");
+      return categoryName + "&p=1&pm=10&s=0&dd=&dt=all&is=0";
     }
 
     function submitSearch() {
       const searchText = $("#search-input").val();
       
       if (searchText !== "") {
-        const params = "c=" + filterId + "&q=" + encodeURIComponent(searchText);
+        const region =  document.querySelector('meta[name="cy-region"]').content;
+        const param_c = region === "CN" ? getMfOptions() : filterId;
+        const params = "c=" + param_c + "&q=" + encodeURIComponent(searchText);
 
         const product = document.querySelector('meta[name="cy-product-name"]').content;
         const strPathes = location.pathname;

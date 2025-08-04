@@ -189,3 +189,12 @@ other = "検索する（例：ルックアップ、通知、ログインでき�
 
 [Search_filter]
 other = "次の中から検索する"
+
+[Search_category]
+other = "カテゴリ"
+
+[Search_noresult]
+other = "検索結果がありません"
+
+[Search_nokeyword]
+other = "キーワードが設定されていません"
