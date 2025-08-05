@@ -190,11 +190,3 @@ other = "Buscar artículos de Ayuda (Por ejemplo, \"Búsquedas\", \"Notificacion
 [Search_filter]
 other = "Buscar entre"
 
-[Search_category]
-other = "Category"
-
-[Search_noresult]
-other = "No search results found"
-
-[Search_nokeyword]
-other = "No search keyword entered"

@@ -26,31 +26,6 @@
                   {{- $lang = substr $lang 0 2 }}
                 {{- end }}
                     <div class="mf_finder_container">
-                {{- if eq $lang "zh-tw" }}
-                    <script>
-                    let callCnt = 0;
-                    const replace_hant = () => {
-                        callCnt++;
-                        const disp = document.getElementsByClassName("mf-search-results_header");
-                        const countElem  = document.getElementsByClassName("mf-search-results_header_results-count");
-                        
-                        if (disp && disp.length > 0 && countElem && countElem.length > 0) {
-                          const start = document.getElementsByClassName("mf-search-results_header_results-start")[0].innerText;
-                          const end   = document.getElementsByClassName("mf-search-results_header_results-end")[0].innerText;
-                          const count = document.getElementsByClassName("mf-search-results_header_results-count")[0].innerText;
-                          const word  = document.getElementsByClassName("mf-search-results_header_search-query")[0].innerText;
-                          
-                          disp[0].innerHTML = `顯示 ${start} - ${end} 共 ${count} 結果 "${word}"`;
-                          callCnt = 999;
-                        } else if (callCnt <= 3) {
-                          setTimeout(replace_hant, 1000);
-                        }
-                    }
-                    var handleCallback = () => {
-                        setTimeout(replace_hant, 50);
-                    }
-                    </script>
-                {{- end }}
                       <mf-search-box
                         lang="{{$lang}}"
                         ajax-url="https://finder.api.mf.marsflag.com/api/v1/finder_service/documents/fe060ed6/search"
@@ -65,20 +40,10 @@
                         imgsize-hidden="true"
                         use-links="true"
                         use-clear-input-btn="true"
-                {{- if eq $lang "zh-tw" }}
-                        submit-btn-text="{{ i18n "search" }}"
-                        submit-btn-title ="{{ i18n "search" }}"
-                        use-links-category-text ="{{ i18n "Search_category"}}"
-                {{- end }}
                       ></mf-search-box>
                       <mf-search-results
                         no-keyword-result
                         spellcheck-hidden
-                {{- if eq $lang "zh-tw" }}
-                        no-result-text="{{ i18n "Search_noresult"}}"
-                        no-keyword-result-text="{{ i18n "Search_nokeyword"}}"
-                        result-callback="handleCallback"
-                {{- end }}
                       ></mf-search-results>
                     </div>
                     <script type="text/javascript">
