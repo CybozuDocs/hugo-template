@@ -192,11 +192,3 @@ other = "搜尋關鍵字（例：Lookup、通知、無法登入）"
 [Search_filter]
 other = "搜尋範圍"
 
-[Search_category]
-other = "類別"
-
-[Search_noresult]
-other = "未找到搜尋結果"
-
-[Search_nokeyword]
-other = "未輸入搜尋關鍵字"

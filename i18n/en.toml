@@ -190,11 +190,3 @@ other = "Search Help articles (e.g., \"Lookups\", \"Notifications\", \"Can't log
 [Search_filter]
 other = "Select where to search"
 
-[Search_category]
-other = "Category"
-
-[Search_noresult]
-other = "No search results found"
-
-[Search_nokeyword]
-other = "No search keyword entered"
