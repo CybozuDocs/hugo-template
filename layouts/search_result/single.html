@@ -10,6 +10,12 @@
 <div class="page" >
     <div class="contents-wrap">
         <main class="main" role="main">
+            {{- $lang := .Site.LanguageCode }}
+            {{- if eq (hasPrefix $lang "zh-tw") true }}
+              {{- $lang = substr $lang 0 5 }}
+            {{- else }}
+              {{- $lang = substr $lang 0 2 }}
+            {{- end }}
             {{- partial "breadcrumb" . }}
             <article id="search-result" class="search-result" >
                 <h1>{{ partial "title" . }}</h1>
@@ -18,12 +24,6 @@
                 {{- $ph := (i18n "Enter_keywords") }}
                 {{- if eq $.Site.Params.product "kintone" }}
                   {{- $ph = (i18n "Search_example") }}
-                {{- end }}
-                {{- $lang := .Site.LanguageCode }}
-                {{- if eq (hasPrefix $lang "zh-tw") true }}
-                  {{- $lang = substr $lang 0 5 }}
-                {{- else }}
-                  {{- $lang = substr $lang 0 2 }}
                 {{- end }}
                     <div class="mf_finder_container">
                       <mf-search-box
@@ -64,10 +64,8 @@
                             </button>
                         </div>
                         <div id="logo_place" class="search-logo">
-                            {{- if eq .Site.Params.bing_search true }}
-                                <span>{{ i18n "search_bing" }} (<a href="https://www.microsoft.com/en-gb/privacy/privacystatement" target="_blank">{{ i18n "search_bing_legal" }}</a>)</span>
-                            {{- end }}
                         </div>
+                        <script src="https://www.gstatic.com/prose/brand.js" targetId="logo_place" hl="{{$lang}}"></script>
                 {{- end }}
                         <div class="category-bar" v-bind:class="{ nodisp : initial }" v-cloak>
                             <span class="ctab" v-for="(ctab, index) in ctabs">
@@ -115,9 +113,6 @@
         {{- $categories := (slice) }}
         {{- with $.Site.Params.google_search_tabs }}
             {{- $categories = trim $.Site.Params.google_search_tabs "\"" | safeJS}}
-        {{- end }}
-        {{- with $.Site.Params.bing_search_tabs }}
-            {{- $categories = trim $.Site.Params.bing_search_tabs "\"" | safeJS}}
         {{- end }}
     <script>var category_list = {{$categories}};</script>
     <script type="text/javascript" src="{{ printf "%s?%s" "javascripts/helpsearch.js" $buildnum | relURL }}"></script>
