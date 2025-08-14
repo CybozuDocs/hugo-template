@@ -211,35 +211,11 @@
     </main>
   </div>
 {{- else }}
-  <!-- for version 1 -->
-  {{- if ne $.Site.Params.preview_site true }}
-    <div class="eye-catching">
-        <div class="hero" style="background-image: url('{{ "images/hero_common.png" | relURL}}');"></div>
-    </div>
-  {{- end }}
+  <!-- for version 1 (only using KEP preview) -->
     <main class="main">
         <article class="article home-article" >
             <div class="wrapper">
-              {{- if eq $.Site.Params.preview_site true }}
                 {{ partial "preview_list" . }}
-              {{- else }}
-                {{- $toptitle := (i18n "Welcome" .) }}
-                <div class="welcome_message">{{$toptitle}}</div>
-                <div class="search-wrap">
-                    <form id="headerSearchBox_form" action="{{ "" | relURL }}{{.Lang}}/search_result.html" onsubmit='if(document.getElementById("headerSearchBox_form").value==""){return false;}' role="search">
-                        <div class="searchbox">
-                            <input type="search" name="q" id="topSearchBox_input" class="search-input" placeholder='{{ i18n "Enter_keywords" }}' aria-label='{{i18n "search_word"}}'>
-                            <button type="submit" name="commit" value="" class="search-submit" data-disable-with="" aria-label='{{i18n "search"}}'></button>
-                        </div>
-                    </form>
-                    <div id="logo_place" class="search-logo {{ if eq .Site.Params.bing_search true }} search-logo-bing{{ end }}">
-                    <br>
-                    </div>
-                </div>
-              <nav class="col-flex">
-                    {{ .Content }}
-              </nav>
-              {{- end }}
             </div>
         </article>
     </main>
