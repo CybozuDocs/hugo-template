@@ -232,12 +232,6 @@
                     if("searchInformation" in jd) {
                         vm.total = Number(jd["searchInformation"].totalResults);
                     }
-                    // Bing
-                    if (jd.hasOwnProperty("webPages")) {
-                        const rec_items = jd["webPages"]["value"];
-                        vm.items = rec_items;
-                        vm.total = jd["webPages"]["totalEstimatedMatches"];
-                    }
                     if (jd.hasOwnProperty("queries")) {
                         const queries = jd["queries"];
                         if("request" in queries) {

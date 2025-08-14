@@ -46,7 +46,7 @@
         <button class="search-submit" title='{{i18n "search"}}' aria-label='{{i18n "search"}}'></button>
       </div>
 {{- if eq $fullsize true }}
-      <div id="logo_place" class="search-logo {{ if eq .Site.Params.bing_search true }} search-logo-bing{{ end }}">
+      <div id="logo_place" class="search-logo">
   {{- if eq .Site.Params.TargetRegion "CN" }}
       <br>
   {{- end }}
