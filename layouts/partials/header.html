@@ -79,8 +79,9 @@
                     <div class="searchbox">
                         <input type="search" name="q" id="headerSearchBox_input" class="search-input home-search-input" role="searchbox" aria-label='{{i18n "search_word"}}' placeholder='{{i18n "Enter_keywords"}}'>
                         <button type="submit" class="search-submit" data-disable-with="" aria-label='{{i18n "search"}}'></button>
-            {{- if ne .Site.Params.google_search true }}
-                        <input type="hidden" name="ct" value="{{ .Site.Params.search_all }}">
+            {{- if eq $.Site.Params.TargetRegion "CN" }}
+                        <input type="hidden" name="c" value="{{ .Site.Params.search_all }}">
+                        <input type="hidden" name="is" value="0">
             {{- end }}
                     </div>
                 </form>
