@@ -133,6 +133,18 @@ td {
     display: flex;
     justify-content: space-between;
 }
+/* -------------------- end of Header */
+
+/* Left and Right items -------------------- */
+.left-item {}
+.right-item {
+    display: flex;   
+    gap: 10px;
+    padding-right: 10px;
+}
+/* -------------------- end of Left and Right items */
+
+/* Logo -------------------- */
 .logo-wrap {
     display: flex;
     padding-top: 6px;
@@ -163,8 +175,6 @@ td {
     text-decoration: none;
     cursor: pointer;
 }
-
-/* -------------------- end of Header */
 
 
 /* Searchbox --------------------*/
@@ -299,6 +309,14 @@ li .lang-title {
     background-color: #0d7b91;
 }
 /* -------------------- end of Language selector */
+
+/* AI translation disclaimer -------------------------------------- */
+.ai-translation-disclaimer {
+    display: flex;
+    align-items: center;
+}
+/* -------------------- end of AI translation disclaimer */
+
 .page-pad {
     height: 94px;
 }
