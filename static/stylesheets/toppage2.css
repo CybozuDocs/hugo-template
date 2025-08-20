@@ -103,6 +103,9 @@
 .top-page-card-selected {
   color: var(--select-color);
   border: solid 4px var(--select-color);
+  border-bottom: 0;
+  padding-top: 13px;
+  padding-left: 13px;
 }
 .top-page-card-selected::after {
   transform: rotate(315deg);
@@ -145,7 +148,7 @@
 
 .top-page-item {
   display: inline-block;
-  width: 276px;;
+  width: 268px;;
 }
 .top-page-item:hover,.top-page-item-selected {
   color: var(--select-color);
@@ -155,7 +158,7 @@
 .top-page-item:hover::after,.top-page-item-selected::after {
   content: "";
   margin-top: 5px;
-  margin-right: 5px;
+  margin-right: -14px;
   position: relative;
   display: inline-block;
   float: right;
