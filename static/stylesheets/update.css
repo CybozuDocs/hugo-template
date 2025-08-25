@@ -1,0 +1,155 @@
+/* アップデート情報用 -------------------------------------- */
+
+.update {
+	line-height: 1.5;
+
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font: inherit;
+		font-size: 100%;
+		vertical-align: baseline;
+		border: none;
+	}
+
+	.update_list_table tr {
+		display: table-row;
+		border-bottom: 5px solid #FFFFFF;
+	}
+
+	.update_list_table {
+		width: 100%;
+	}
+
+	.update_list_table th {
+		font-size: 13px;
+		text-align: center;
+		background-color: #fff9c4;
+		padding: 15px;
+		width: 200px;
+		font-weight: normal;
+		vertical-align: middle;
+		border: none;
+	}
+
+	.update_list_table td {
+		padding: 10px 5px;
+		background-color: #FFFCE4;
+		font-weight: normal;
+		vertical-align: middle;
+		text-align: left;
+		border: none;
+	}
+
+	.update_list_table td a {
+		font-size: 13px;
+		color: #616161;
+		padding-left: 20px;
+		display: block;
+		text-decoration: none;
+	}
+
+	.update_list_table td a+a {
+		margin-top: 16px;
+	}
+
+	.update_list_table td a:hover {
+		color: #fba100;
+	}
+
+	.blueBack {
+		background-color: #dbe3f1;
+	}
+
+	.arrow {
+		display: block;
+	}
+
+	.updateH2 {
+		padding-left: 0;
+		display: flex;
+		align-items: center;
+
+		@media screen and (min-width: 768px) {
+			position: relative;
+			font-size: 24px;
+			font-weight: bold;
+			color: #000000;
+			padding-bottom: 24px;
+			margin: 0;
+			border-bottom: 2px solid #ffeb3b;
+		}
+
+		@media screen and (max-width: 785px) {
+			flex-direction: column;
+			margin-bottom: 10px;
+		}
+
+		.title_category {
+			background-color: #fff9c4;
+			padding: 16px 24px;
+			margin-right: 20px;
+			font-size: 16px;
+			min-width: 152px;
+			text-align: center;
+			white-space: nowrap;
+
+			@media screen and (max-width: 785px) {
+				margin-bottom: 10px;
+			}
+		}
+
+		.title_cnt {
+			font-size: 18px;
+		}
+	}
+
+	.template-body {
+		margin: 20px 0;
+	}
+
+	.h-medium {
+		margin: 18px 0;
+		border: none;
+		font-size: 18px;
+	}
+
+	.h-small {
+		margin-bottom: 20px;
+		border: none;
+		font-size: 16px;
+		margin-top: 0;
+		padding-top: 0;
+
+		&::before {
+			content: "";
+			border: none;
+			padding: 0;
+			margin: 0;
+		}
+	}
+
+	.flex {
+		display: flex;
+		gap: 24px
+	}
+
+	img {
+		width: 100%;
+		height: auto;
+	}
+
+	.border-box {
+		border: 3px solid #e3e7e8;
+		padding: 16px;
+		box-sizing: border-box;
+		margin-bottom: 24px;
+	}
+
+	.yellow {
+		border-color: #f6c143;
+	}
+}

@@ -20,6 +20,7 @@
 .article h4 {
   margin-left: -5px;
 }
+
 .article h4::before {
   content: "";
   margin-left: -5px;
@@ -31,11 +32,13 @@
   width: 160px;
   height: 30px;
 }
+
 .logo-title {
   display: none;
 }
 
-.selectlang, .lang-item:hover {
+.selectlang,
+.lang-item:hover {
   color: var(--select-color);
   background-color: var(--select-bg-color);
 }
@@ -50,44 +53,46 @@
 
 /* コードブロック -------------------------------------- */
 .article pre {
-    border-radius: 4px;
+  border-radius: 4px;
 }
+
 .codeblock-copy-button {
-    top: 10px;
-    right: 10px;
+  top: 10px;
+  right: 10px;
 }
-.codeblock-wrapper + p {
-    margin-top: 0.9em;
+
+.codeblock-wrapper+p {
+  margin-top: 0.9em;
 }
 
 /* definition listの設定 -------------------------------------- */
 
 .article dl {
-    margin: 5px;
-  }
+  margin: 5px;
+}
 
-  .article dt {
-    margin-bottom: 7px;
-    font-weight: bold;
-  }
+.article dt {
+  margin-bottom: 7px;
+  font-weight: bold;
+}
 
-  .article dl > dt:nth-child(n + 2) {
-    margin-top: 14px;
-  }
+.article dl>dt:nth-child(n + 2) {
+  margin-top: 14px;
+}
 
-  .article dd {
-    margin-bottom: 7px;
-    padding-left: 20px;
-  }
+.article dd {
+  margin-bottom: 7px;
+  padding-left: 20px;
+}
 
 /* list shortcode -------------------------------------- */
-.article .listsummary ol > li::before {
-    color: #ffffff;
-    background-color: #0d7b91;
+.article .listsummary ol>li::before {
+  color: #ffffff;
+  background-color: #0d7b91;
 }
 
 /* 768px以上の設定 *****************************************************/
-@media only screen and (min-width:768px){
+@media only screen and (min-width:768px) {
   #tree {
     display: block;
   }
