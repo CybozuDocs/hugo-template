@@ -364,6 +364,8 @@
                             {{- $targeturl = (printf "/k/%s/admin" $lang) -}}
                         {{- else if eq $weight 300 -}}
                             {{- $targeturl = (printf "/k/%s/app" $lang) -}}
+                        {{- else if eq $weight 350 -}}
+                            {{- $targeturl = (printf "/k/%s/ai" $lang) -}}
                         {{- else if eq $weight 200 -}}
                             {{- $targeturl = (printf "/k/%s/common_operation" $lang) -}}
                         {{- else if eq $weight 800 -}}
