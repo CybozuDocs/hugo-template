@@ -62,6 +62,8 @@
             {{- $disp_sbox = false }}
         {{- else if eq $.Site.Params.preview_site true }}
             {{- $disp_sbox = false }}
+        {{- else if eq .Params.type "update" }}
+            {{- $disp_sbox = false }}
         {{- end }}
 
         {{- if eq $disp_sbox true }}
