@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{{.Site.LanguageCode}}" prefix="og: https://ogp.me/ns#">
+
+<head>
+	{{- $buildnum := (now.Format "20060102") }}
+	{{- if eq .Site.Params.use_wovn true }}
+	{{- $baseUrl := split .Site.BaseURL "/" }}
+	{{- $num := sub (len $baseUrl) 2 }}
+	{{- $prefix := index $baseUrl $num }}
+	{{- end }}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	{{- $sitename := "kintoneヘルプ" }}
+	{{- $title := partial "title" . }}
+	{{- $title = printf "%s | %s" $title $sitename }}
+	<title>{{ $title }}</title>
+	<link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application.css" $buildnum | relURL }}">
+	<link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application2.css" $buildnum | relURL }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
+	<script src="{{ printf "%s?%s" "javascripts/preload.js" $buildnum | relURL }}"></script>
+  <script src="{{ printf "%s?%s" "javascripts/application.js" $buildnum | relURL }}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.8/vue.global.prod.min.js"></script>
+
+    {{- with .Site.Params.custom_css }}
+        {{- $files := split . "," }}
+        {{- range $files }}
+    <link rel="stylesheet" href="{{ printf "%s?%s" . $buildnum | relURL }}">
+        {{- end }}
+    {{- end}}	
+</head>
+
+<body>
+	{{- partial "header" . }}
+	<div class="page-pad"></div>
+	<div id="page" class="page" >
+	    <div id="tree" class="tree-wrap">
+        {{- if eq $.Site.Params.json_tree true }}
+            {{ partial "treenav3" . }}
+        {{- else }}
+            {{ partial "treenav" . }}
+        {{- end }}
+    </div>
+		<main class="main" role="main">
+			{{- partial "breadcrumb" . }}
+			<article class="article" role="article">
+				<div class="id-title">
+					<h1>{{ partial "title" . }}</h1>
+				</div>
+				<div class="section">
+					{{ .Content }}
+				</div>
+			</article>
+		</main>
+	</div>
+</body>
+</html>
