@@ -2,6 +2,32 @@
 <html lang="{{.Site.LanguageCode}}" prefix="og: https://ogp.me/ns#">
 
 <head>
+	<!-- Google Tag Manager -->
+	<script>(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-5N49D3');</script>
+	<script>(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-PW4L527');</script>
+	<!-- End Google Tag Manager -->
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-K98FR27D');</script>
+	<!-- End Google Tag Manager -->
+
 	{{- $buildnum := (now.Format "20060102") }}
 	{{- if eq .Site.Params.use_wovn true }}
 	{{- $baseUrl := split .Site.BaseURL "/" }}
@@ -10,10 +36,45 @@
 	{{- end }}
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="description" content="kintoneの 「アップデート情報」 をご紹介します。kintone（キントーン）は開発の知識がなくても自社の業務に合わせたシステムをかんたんに作成できる、サイボウズのクラウドサービスです。業務アプリを直感的に作成でき、チーム内で共有して使えます。社員間のつながりを活性化する社内SNSとしての機能も備えているため、スピーディーに情報共有ができます。">
+	<meta name="keywords" content="ファストシステム, クラウド, kintone, サイボウズ, アップデート情報">
+	<meta property="og:title" content="kintone（キントーン）- アップデート情報">
+	<meta property="og:url" content="https://kintone.cybozu.co.jp/update/all/120101.html">
+	<meta property="og:image" content="https://kintone.cybozu.co.jp/assets/image/ogp.jpg">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="業務効率化と生産性を上げるサイボウズのクラウド『kintone（キントーン）』">
+	<meta property="og:image" content="https://{{.Site.Params.domain}}{{ .Site.Params.update_og_img | relURL }}">
+	<meta property="og:locale" content="ja_JP">
+	{{- $canonicalURL := "" -}}	
+	{{- with .Params.canonical -}}
+  {{- $canonicalURL = . -}}
+	{{- else -}}
+  {{- $canonicalURL = "https://jp.cybozu.help/k/ja/update.html" -}}
+	{{- end -}}
+	<link rel="canonical" href="{{ $canonicalURL }}">
+	<!-- 後で消す -->
+	<meta name="robots" content="noindex">
+
+	<!-- タイトル -->
 	{{- $sitename := "kintoneヘルプ" }}
 	{{- $title := partial "title" . }}
 	{{- $title = printf "%s | %s" $title $sitename }}
 	<title>{{ $title }}</title>
+
+	<!--header analysis tag-->
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5N49D3" height="0" width="0"
+			style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW4L527" height="0" width="0"
+			style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K98FR27D"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+
+
 	<link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application.css" $buildnum | relURL }}">
 	<link rel="stylesheet" href="{{ printf "%s?%s" "stylesheets/application2.css" $buildnum | relURL }}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
