@@ -1,155 +1,475 @@
 /* アップデート情報用 -------------------------------------- */
 
-.update {
-	line-height: 1.5;
+/* 一覧ページ */
 
-	table {
-		border-collapse: collapse;
-		border-spacing: 0;
-		margin: 0;
-		padding: 0;
-		border: 0;
-		font: inherit;
-		font-size: 100%;
-		vertical-align: baseline;
-		border: none;
-	}
+.article h3  {
+	border-bottom: none !important;
+	margin: 12px 0;
+	font-size: 20px;
+}
 
-	.update_list_table tr {
-		display: table-row;
-		border-bottom: 5px solid #FFFFFF;
-	}
+.article h2 {
+	margin: 16px 0;
+}
 
-	.update_list_table {
-		width: 100%;
-	}
+/* ==========================================
+   Desktop Styles (min-width: 768px)
+   ========================================== */
 
-	.update_list_table th {
-		font-size: 13px;
-		text-align: center;
-		background-color: #fff9c4;
-		padding: 15px;
-		width: 200px;
-		font-weight: normal;
-		vertical-align: middle;
-		border: none;
-	}
-
-	.update_list_table td {
-		padding: 10px 5px;
-		background-color: #FFFCE4;
-		font-weight: normal;
-		vertical-align: middle;
-		text-align: left;
-		border: none;
-	}
-
-	.update_list_table td a {
-		font-size: 13px;
-		color: #616161;
-		padding-left: 20px;
-		display: block;
-		text-decoration: none;
-	}
-
-	.update_list_table td a+a {
-		margin-top: 16px;
-	}
-
-	.update_list_table td a:hover {
-		color: #fba100;
-	}
-
-	.blueBack {
-		background-color: #dbe3f1;
-	}
-
-	.arrow {
-		display: block;
-	}
-
-	.updateH2 {
+	.article dd {
+		margin-bottom: 0;
 		padding-left: 0;
-		display: flex;
-		align-items: center;
-
-		@media screen and (min-width: 768px) {
-			position: relative;
-			font-size: 24px;
-			font-weight: bold;
-			color: #000000;
-			padding-bottom: 24px;
-			margin: 0;
-			border-bottom: 2px solid #ffeb3b;
-		}
-
-		@media screen and (max-width: 785px) {
-			flex-direction: column;
-			margin-bottom: 10px;
-		}
-
-		.title_category {
-			background-color: #fff9c4;
-			padding: 16px 24px;
-			margin-right: 20px;
-			font-size: 16px;
-			min-width: 152px;
-			text-align: center;
-			white-space: nowrap;
-
-			@media screen and (max-width: 785px) {
-				margin-bottom: 10px;
-			}
-		}
-
-		.title_cnt {
-			font-size: 18px;
-		}
 	}
 
-	.template-body {
-		margin: 20px 0;
-	}
+@media screen and (min-width: 768px) {
+  .update_main {
+    min-width: 960px;
+  }
 
-	.h-medium {
-		margin: 18px 0;
-		border: none;
-		font-size: 18px;
-	}
 
-	.h-small {
-		margin-bottom: 20px;
-		border: none;
-		font-size: 16px;
-		margin-top: 0;
-		padding-top: 0;
 
-		&::before {
-			content: "";
-			border: none;
-			padding: 0;
-			margin: 0;
-		}
-	}
+  /* Timeline Section */
+  .update_main section#timeline {
+    margin-top: 48px;
+    padding-bottom: 48px;
+  }
 
-	.flex {
-		display: flex;
-		gap: 24px
-	}
+  .update_main section#timeline .inner {
+    box-sizing: border-box;
+    padding: 0px 16px;
+    margin: 0px auto;
+  }
 
-	img {
-		width: 100%;
-		height: auto;
-	}
+  .update_main section#timeline .inner dl {
+    position: relative;
+    background: url("/k/img-ja/kintone-update-images/bg_timeline.png") 128px top repeat-y;
+    padding-bottom: 96px;
+  }
 
-	.border-box {
-		border: 3px solid #e3e7e8;
-		padding: 16px;
-		box-sizing: border-box;
-		margin-bottom: 24px;
-	}
+  .update_main section#timeline .inner dl::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 128px;
+    width: 48px;
+    height: 48px;
+    background: url("/k/img-ja/kintone-update-images/timeline_end.png") left top no-repeat;
+  }
 
-	.yellow {
-		border-color: #f6c143;
-	}
+  .update_main section#timeline .inner dl dd,
+  .update_main section#timeline .inner dl dt {
+    margin-bottom: 24px;
+  }
+
+  .update_main section#timeline .inner dl dt {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 48px;
+    background: url("/k/img-ja/kintone-update-images/timeline_y.png") 128px top no-repeat;
+  }
+
+  .update_main section#timeline .inner dl dt:first-child {
+    background: url("/k/img-ja/kintone-update-images/timeline_y_start.png") 128px top no-repeat;
+  }
+
+  .update_main section#timeline .inner dl dt span {
+    font-size: 16px;
+  }
+
+  .update_main section#timeline .inner dl dd {
+    padding-left: 176px;
+    background: url("/k/img-ja/kintone-update-images/timeline_m.png") 128px top no-repeat;
+  }
+
+  .update_main section#timeline .inner dl dd a {
+    display: block;
+  }
+
+  .update_main section#timeline .inner dl dd a:hover {
+    opacity: 0.7;
+  }
+
+  .update_main section#timeline .inner dl dd .block {
+    position: relative;
+    box-sizing: border-box;
+    border: 1px solid rgb(253, 216, 53);
+  }
+
+  .update_main section#timeline .inner dl dd .block .month {
+    width: 270px;
+    height: 47px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 48px;
+    padding-left: 30px;
+    box-sizing: border-box;
+    background: url("/k/img-ja/kintone-update-images/bg_month.png") left top no-repeat;
+    color: rgb(0, 0, 0);
+  }
+
+  .update_main section#timeline .inner dl dd .block .month span {
+    font-size: 20px;
+    margin-left: 4px;
+  }
+
+  .update_main section#timeline .inner dl dd .block.new::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -16px;
+    width: 80px;
+    height: 80px;
+    background: url("/k/img-ja/kintone-update-images/new.png") left top no-repeat;
+  }
+
+  .update_main section#timeline .inner dl dd .block.first {
+    background-color: rgb(255, 253, 231);
+    border: 2px solid rgb(253, 216, 53);
+  }
+
+  .update_main section#timeline .inner dl dd .block.first .month {
+    background: url("/k/img-ja/kintone-update-images/bg_month_first.png") left top no-repeat;
+  }
+
+  .update_main section#timeline .inner dl dd .block.relative {
+    position: relative;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap {
+    padding: 24px 30px 42px;
+    overflow: hidden;
+  }
+
+  .update_main section#timeline .inner dl dd .block.relative .wrap {
+    padding: 24px 30px 142px;
+  }
+
+  .update_main section#timeline .inner dl dd .block.relative .wrap.wrap01 {
+    padding: 24px 30px 42px;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .img {
+    float: right;
+    width: 288px;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .img.absolute {
+    float: none;
+    position: absolute;
+    width: auto;
+    top: 20px;
+    right: 60px;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .img.absolute.right05 {
+    right: 5px;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .img img {
+    width: 100%;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .img .update-day-text {
+    font-size: 13px;
+    color: rgb(0, 0, 0);
+    text-align: right;
+    margin-bottom: 50px;
+    line-height: 1.5;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .img.absolute img {
+    width: auto;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .txt {
+    float: left;
+    width: 384px;
+    color: rgb(66, 66, 66);
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .txt.noImg {
+    width: auto;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .txt p {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .txt ul li {
+    font-size: 13px;
+    line-height: 24px;
+    background: url("/k/img-ja/kintone-update-images/list_mark.png") 2px 0.5em no-repeat;
+    padding-left: 20px;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .txt .btn {
+    width: 176px;
+    height: 32px;
+    margin-top: 20px;
+    background: url("/k/img-ja/kintone-update-images/btn.png") left top no-repeat;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 32px;
+    color: rgb(66, 66, 66);
+    text-align: center;
+  }
+}
+
+/* ==========================================
+   Mobile Styles (max-width: 767px)
+   ========================================== */
+
+@media screen and (max-width: 767px) {
+  .update_main section#content_header {
+    position: relative;
+    padding: 12px 0px;
+    box-sizing: border-box;
+  }
+
+  .update_main section#timeline {
+    position: relative;
+    padding-top: 24px;
+    margin-bottom: 64px;
+  }
+
+  .update_main section#timeline::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0px;
+    height: 0px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: rgb(255, 249, 196) transparent transparent rgb(255, 249, 196);
+    border-image: initial;
+    z-index: 10;
+  }
+
+  .update_main section#timeline .inner dl dt {
+    height: 48px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 52px;
+    color: rgb(0, 0, 0);
+    background: url("/k/img-ja/kintone-update-images/sp/timeline_y.png") 6px center / 21px no-repeat;
+    padding-left: 33px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .update_main section#timeline .inner dl dt:first-child {
+    margin-top: 0px;
+  }
+
+  .update_main section#timeline .inner dl dt + dd {
+    border-top: 1px solid rgb(253, 216, 53);
+  }
+
+  .update_main section#timeline .inner dl dd {
+    border-bottom: 1px solid rgb(253, 216, 53);
+  }
+
+  .update_main section#timeline .inner dl dd .block {
+    position: relative;
+    padding-bottom: 24px;
+  }
+
+  .update_main section#timeline .inner dl dd .block .month {
+    width: 168px;
+    height: 48px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 48px;
+    color: rgb(0, 0, 0);
+    padding-left: 16px;
+    background: url("/k/img-ja/kintone-update-images/sp/bg_month.png") left top / auto 100% no-repeat;
+  }
+
+  .update_main section#timeline .inner dl dd .block.new::after {
+    content: "";
+    position: absolute;
+    top: -24px;
+    right: 8px;
+    width: 48px;
+    height: 48px;
+    background: url("/k/img-ja/kintone-update-images/sp/new.png") left top / 100% no-repeat;
+  }
+
+  .update_main section#timeline .inner dl dd .block.first {
+    background-color: rgb(255, 253, 231);
+  }
+
+  .update_main section#timeline .inner dl dd .block.first .month {
+    width: 168px;
+    height: 48px;
+    background: url("/k/img-ja/kintone-update-images/sp/bg_month_first.png") left top / 100% no-repeat;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap {
+    padding-top: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .img.absolute {
+    text-align: center;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .img img {
+    width: 100%;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .img.absolute img {
+    width: auto;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .txt p {
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(66, 66, 66);
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .txt ul li {
+    font-size: 14px;
+    line-height: 24px;
+    color: rgb(66, 66, 66);
+    background: url("/k/img-ja/kintone-update-images/sp/list_mark.png") 4px 0.5em / 8px no-repeat;
+    padding-left: 18px;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .btn {
+    width: 168px;
+    height: 40px;
+    margin: 24px auto 0px;
+    background: url("/k/img-ja/kintone-update-images/sp/btn.png") left top / 100% no-repeat;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 40px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+  }
+
+  .update_main section#timeline .inner dl dd .block .wrap .img .update-day-text {
+    font-size: 13px;
+    color: rgb(0, 0, 0);
+    text-align: right;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+}
+
+/* ==========================================
+   Modified Block Styles
+   ========================================== */
+
+.update_main section#timeline .inner dl dd .block.modified .wrap .txt {
+  width: auto;
+  float: none;
+}
+
+.update_main section#timeline .inner dl dd .block.modified .wrap .img {
+  float: none;
+  max-width: 420px;
+  width: auto;
+  margin-bottom: 20px;
+}
+
+.update_main section#timeline .inner dl dd .block.modified .wrap .update-day-text {
+  font-size: 13px;
+  text-align: right;
+}
+
+.update_main section#timeline .inner dl dd .block.modified .wrap .txt ul {
+  margin-top: 10px;
+}
+
+.update_main section#timeline .inner dl dd .block.modified .wrap .txt ul li {
+  display: flex;
+  align-items: baseline;
+  background: none;
+  padding: 0.7em 0px;
+  border-bottom: 1px dashed rgb(202, 202, 202);
+}
+
+.update_main section#timeline .inner dl dd .block.modified .wrap .txt span.update-tag {
+  padding: 0.1em 0.5em;
+  display: inline-block;
+  border: 1px solid rgb(253, 220, 75);
+  margin-right: 0.7em;
+  background: rgb(255, 253, 231);
+  font-size: 12px;
+  min-width: 8em;
+  text-align: center;
+}
+
+.update_main section#timeline .inner dl dd .block.modified .wrap .txt span.update-tag.min-w10 {
+  min-width: 10em;
+}
+
+.update_main section#timeline .inner dl dd .block.modified .wrap .txt span.update-tag.min-w12 {
+  min-width: 14em;
+}
+
+@media screen and (max-width: 767px) {
+  .update_main section#timeline .inner dl dd .block.modified .wrap .txt ul li {
+    flex-direction: column;
+  }
+
+  .update_main section#timeline .inner dl dd .block.modified .wrap .txt span.update-tag {
+    margin: 5px auto;
+  }
+
+  .update_main section#timeline .inner dl dd .block.modified .wrap .update-day-text:nth-child(2) {
+    padding-top: 0px;
+  }
+}
+
+/* ==========================================
+   Focus States
+   ========================================== */
+
+#banso a:focus,
+.footer_banner_area a.img_link:active.focus,
+.footer_banner_area a.img_link:active:focus,
+.footer_banner_area a.img_link:focus,
+.footer_banner_area a.movie_link:active.focus,
+.footer_banner_area a.movie_link:active:focus,
+.footer_banner_area a.movie_link:focus,
+.footer_banner_area .img_flx_list li a:active.focus,
+.footer_banner_area .img_flx_list li a:active:focus,
+.footer_banner_area .img_flx_list li a:focus,
+.footer_banner_area a.txt_cmn_link:active.focus,
+.footer_banner_area a.txt_cmn_link:active:focus,
+.footer_banner_area a.txt_cmn_link:focus,
+.footer_banner_area .update_main_tile_list li a:focus,
+.footer_banner_area :focus,
+.footer_banner_area .active.focus,
+.footer_banner_area .active:focus,
+.footer_banner_area .focus,
+.footer_banner_area :active:focus,
+.footer_banner_area .active.focus,
+.footer_banner_area .inner a.focus,
+.footer_banner_area .btn_cmn.active.focus,
+.footer_banner_area .btn_cmn.active:focus,
+.footer_banner_area .ft_schedule tbody tr td.link a.focus,
+.footer_banner_area .ft_schedule tbody tr td.link a:focus,
+.footer_banner_area .btn_cmn:active.focus,
+.footer_banner_area .btn_cmn:active:focus,
+.footer_banner_area .btn_cmn:focus {
+  outline: 0px !important;
+}
+
+.footer_banner_area .img_flx_list li a:active,
+.footer_banner_area a.img_link:active,
+.footer_banner_area a.movie_link:active,
+.footer_banner_area a.txt_cmn_link:active,
+.footer_banner_area a.txt_cmn_link,
+.footer_banner_area .update_main_tile_list li a:active,
+.footer_banner_area :active,
+.footer_banner_area .ft_schedule tbody tr td.link a:active,
+.footer_banner_area a.btn_cmn:active,
+.footer_banner_area a.btn_cmn {
+  box-shadow: none;
 }
