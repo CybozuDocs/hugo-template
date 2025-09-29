@@ -473,3 +473,103 @@
 .footer_banner_area a.btn_cmn {
   box-shadow: none;
 }
+
+/* ==========================================
+   2018-06 Specific Styles
+   ========================================== */
+
+/* Heading Styles for older update pages */
+.update_main .ttl01,
+.update_main h1.ttl01 {
+  font-size: 25px;
+  font-weight: 700;
+  color: #424242;
+  margin: 20px 0 10px;
+  padding: 3px 0 5px 18px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.update_main .ttl04,
+.update_main h2.ttl04 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #424242;
+  margin: 20px 0;
+  padding: 0 0 0 15px;
+  border-bottom: 1px dotted #cccccc;
+}
+
+.update_main .ttl05,
+.update_main h3.ttl05 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #424242;
+  margin: 0 0 15px;
+  padding: 0 0 0 20px;
+  border-bottom: none;
+}
+
+/* Override default article h1, h2, h3 styles for update_main pages */
+.article.update_main h1:not(.id-title) {
+  font-size: 25px;
+  color: #424242;
+  padding: 3px 0 5px 18px;
+  margin: 20px 0 10px;
+  border-bottom: 1px solid #cccccc;
+  font-weight: 700;
+}
+
+.article.update_main h2 {
+  font-size: 20px;
+  color: #424242;
+  padding: 0 0 0 15px;
+  margin: 20px 0;
+  border-bottom: 1px dotted #cccccc;
+  font-weight: 700;
+}
+
+.article.update_main h3 {
+  font-size: 17px;
+  color: #424242;
+  padding: 0 0 0 20px;
+  margin: 0 0 15px;
+  border-bottom: none;
+  font-weight: 700;
+}
+
+/* Additional utility classes from 2018-06 */
+.update_main .mb10 {
+  margin-bottom: 10px;
+}
+
+.update_main .mb30 {
+  margin-bottom: 30px;
+}
+
+.update_main .mb50 {
+  margin-bottom: 50px;
+}
+
+.update_main .mt40 {
+  margin-top: 40px;
+}
+
+.update_main .mb0 {
+  margin-bottom: 0;
+}
+
+.update_main .tac {
+  text-align: center;
+}
+
+.update_main .attention {
+  color: #ff0000;
+}
+
+.update_main .red {
+  color: #ff0000;
+}
+
+.update_main .txtS {
+  font-size: 13px;
+}
