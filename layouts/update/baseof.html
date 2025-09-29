@@ -54,6 +54,8 @@
   {{- $canonicalURL = "https://jp.cybozu.help/k/ja/update.html" -}}
 	{{- end -}}
 	<meta property="og:url" content="{{ $canonicalURL }}">
+	<link rel="shortcut icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
+  <link rel="icon" type="image/x-icon" href="{{ with .Site.Params.favicon }}{{ . | relURL }}{{ else }}{{ "favicon.ico" | relURL }}{{ end }}">
 	<link rel="canonical" href="{{ $canonicalURL }}">
 	<!-- 後で消す -->
 	<meta name="robots" content="noindex">
