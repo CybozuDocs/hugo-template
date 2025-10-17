@@ -5,7 +5,7 @@
             <span id="displang" class="lang-title">{{ .Site.Language.LanguageName }}</span>
             <i class="fas fa-chevron-down" aria-hidden="true"></i>
         </button>
-        <ul id="alter-lang" class="alter-lang" role="listbox" tabindex="-1" aria-hidden="true">
+        <ul id="alter-lang" class="alter-lang" style="position: absolute;" role="listbox" tabindex="-1" aria-hidden="true">
             {{- range .Translations }}
                 <li id="lang_item_{{ .Site.LanguageCode }}" class="lang-item" role="option" desturl="{{ .RelPermalink }}"><span class="lang-title">{{ .Site.Language.LanguageName }}</span></li>
             {{- end -}}
