@@ -70,13 +70,11 @@ a {
   align-items: center;
   background: #F5F5F5;
   justify-content: center;
-  
+
   .content{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    max-width: 100%;
-    min-width: 1200px;
+    max-width: 1200px;
   }
 
   .text {
@@ -86,15 +84,19 @@ a {
     font-weight: 900;
     line-height: 150%; /* 21px */ 
   }
+
+  .logo-days{
+    height: 36px;
+    width: auto;
+    border-radius: 8px;
+  }
+
   .left {
     display: flex;
     gap: 24px;
     align-items: center;
-
-    .logo-days{
-      height: 36px;
-      width: auto;
-    }
+    margin-left: 8px;
+    margin-right: 24px;
   }
   .box{
     display: flex;
