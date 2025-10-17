@@ -63,3 +63,81 @@ a {
 .footer::before {
   background-image: none;
 }
+
+.days {
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  background: #F5F5F5;
+  justify-content: center;
+
+  .content{
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+  }
+
+  .text {
+    color: var(--color-text-default, #121212);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 150%; /* 21px */ 
+  }
+
+  .logo-days{
+    height: 36px;
+    width: auto;
+    border-radius: 8px;
+  }
+
+  .left {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-left: 8px;
+    margin-right: 24px;
+  }
+  .box{
+    display: flex;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    align-items: center;
+    gap: 8px;
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    .btn{
+      display: block;
+      padding: 2px 16px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      align-self: stretch;
+      border-radius: 100px;
+      border: 1px solid #000;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .white{
+      color: #000;
+    }
+      
+    .black{
+      color: #fff;
+      background-color: #000;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .days {
+    display: none;
+  }
+}
