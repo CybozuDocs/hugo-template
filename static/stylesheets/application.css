@@ -296,7 +296,7 @@ li .lang-title {
 }
 /* -------------------- end of Language selector */
 .page-pad {
-    height: 107px;
+    height: 94px;
 }
 .page {
     display: flex;
@@ -799,7 +799,6 @@ h6 + .id-link-button {
 
 /* tree navigation -------------------- */
 .tree-wrap {
-    top:10px;
     height: 100%;
     line-height: 1.2em;
     font-size: .95rem;
@@ -2310,7 +2309,7 @@ i.index-pdf {
     }
 
     .page-pad {
-        height: 107px;
+        height: 56px;
     }
     .page {
         flex-direction: row;
